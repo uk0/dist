@@ -1,5 +1,11 @@
 {
   
+  "2017-05-30-cicd-e6-88-90-e5-8a-9f-e9-83-a8-e7-bd-b2": {
+    "title": "CICD。",
+    "url": " /2017/05/30/CICD%E6%88%90%E5%8A%9F%E9%83%A8%E7%BD%B2/",
+    "category": "Kubernetes,docker,travis"
+  },
+  
   "2016-12-21-kubernetes-1-5-1": {
     "title": "Kubernetes 1.5.1 版本升级。",
     "url": " /2016/12/21/kubernetes-1.5.1/",
@@ -208,6 +214,12 @@
     "title": "Kubernetes 1.5.1 版本升级。",
     "url": "/2016/12/21/kubernetes-1.5.1/",
     "category": "[&quot;Kubernetes&quot;]"
+  },
+  
+  "2017-05-30-cicd-e6-88-90-e5-8a-9f-e9-83-a8-e7-bd-b2": {
+    "title": "CICD。",
+    "url": "/2017/05/30/CICD%E6%88%90%E5%8A%9F%E9%83%A8%E7%BD%B2/",
+    "category": "[&quot;Kubernetes,docker,travis&quot;]"
   },
   
   "wiki-android-studio": {

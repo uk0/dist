@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-05-30T05:07:38+08:00</updated><id>http://firsh.me/</id><title type="html">会飞的胖子。</title><subtitle>张建新个人博客</subtitle><author><name>飞鱼</name></author><entry><title type="html">Kubernetes 1.5.1 版本升级。</title><link href="http://firsh.me/2016/12/21/kubernetes-1.5.1/" rel="alternate" type="text/html" title="Kubernetes 1.5.1 版本升级。" /><published>2016-12-21T00:00:00+08:00</published><updated>2016-12-21T00:00:00+08:00</updated><id>http://firsh.me/2016/12/21/kubernetes-1.5.1</id><content type="html" xml:base="http://firsh.me/2016/12/21/kubernetes-1.5.1/">&lt;p&gt;Kubernetes 1.5.1 版本升级！&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-05-30T05:18:36+08:00</updated><id>http://firsh.me/</id><title type="html">会飞的胖子。</title><subtitle>张建新个人博客</subtitle><author><name>飞鱼</name></author><entry><title type="html">CICD。</title><link href="http://firsh.me/2017/05/30/CICD%E6%88%90%E5%8A%9F%E9%83%A8%E7%BD%B2/" rel="alternate" type="text/html" title="CICD。" /><published>2017-05-30T00:00:00+08:00</published><updated>2017-05-30T00:00:00+08:00</updated><id>http://firsh.me/2017/05/30/CICD%E6%88%90%E5%8A%9F%E9%83%A8%E7%BD%B2</id><content type="html" xml:base="http://firsh.me/2017/05/30/CICD%E6%88%90%E5%8A%9F%E9%83%A8%E7%BD%B2/">&lt;p&gt;CICD (travis) for my blog Success Full&lt;/p&gt;
+
+&lt;h2 id=&quot;see&quot;&gt;See&lt;/h2&gt;
+
+&lt;h2 id=&quot;travis-ci-&quot;&gt;Travis CI &lt;a href=&quot;https://travis-ci.org/zmatsh/zmatsh.github.io&quot;&gt;&lt;img src=&quot;https://travis-ci.org/zmatsh/zmatsh.github.io.svg?branch=master&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt;&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;使用jekyll搭建的一个免费博客，作为镜像托管在Github上&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>飞鱼</name></author><summary type="html">CICD (travis) for my blog Success Full</summary></entry><entry><title type="html">Kubernetes 1.5.1 版本升级。</title><link href="http://firsh.me/2016/12/21/kubernetes-1.5.1/" rel="alternate" type="text/html" title="Kubernetes 1.5.1 版本升级。" /><published>2016-12-21T00:00:00+08:00</published><updated>2016-12-21T00:00:00+08:00</updated><id>http://firsh.me/2016/12/21/kubernetes-1.5.1</id><content type="html" xml:base="http://firsh.me/2016/12/21/kubernetes-1.5.1/">&lt;p&gt;Kubernetes 1.5.1 版本升级！&lt;/p&gt;
 
 &lt;h2 id=&quot;main&quot;&gt;Main&lt;/h2&gt;
 
@@ -1013,95 +1021,4 @@ public class MetricsCore {
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/majutsushi/tagbar/issues/70&quot;&gt;majutsushi/tagbar#70&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/majutsushi/tagbar/wiki&quot;&gt;Support for additional filetypes&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>飞鱼</name></author><summary type="html">假设我们正在 Vim 里编辑一个很长的 Markdown 文档，这时想跳转到另一个章节去查看或编辑内容，可以怎么做？</summary></entry><entry><title type="html">Kloudsec 挂了，GitHub Pages 去 HTTPS 化</title><link href="http://firsh.me/2016/07/11/remove-https/" rel="alternate" type="text/html" title="Kloudsec 挂了，GitHub Pages 去 HTTPS 化" /><published>2016-07-11T00:00:00+08:00</published><updated>2016-07-11T00:00:00+08:00</updated><id>http://firsh.me/2016/07/11/remove-https</id><content type="html" xml:base="http://firsh.me/2016/07/11/remove-https/">&lt;p&gt;前天收到来自 Kloudsec 的邮件，说 Kloudsec 将于 2016/08/01 停止服务。Bad news，请容许我做一个悲伤的表情。&lt;/p&gt;
-
-&lt;h2 id=&quot;邮件原文&quot;&gt;邮件原文&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Hi all,&lt;/p&gt;
-
-  &lt;p&gt;It is with great sadness that I have to inform you that Kloudsec is shutting down.&lt;/p&gt;
-
-  &lt;p&gt;&lt;strong&gt;Why is Kloudsec shutting down?&lt;/strong&gt;&lt;/p&gt;
-
-  &lt;ol&gt;
-    &lt;li&gt;We have been funding Kloudsec out of our own pocket&lt;/li&gt;
-    &lt;li&gt;Kloudsec is very expensive to maintain (upwards to $10000 / month)&lt;/li&gt;
-    &lt;li&gt;We are unable to make money from Kloudsec, nor raise any funds for it&lt;/li&gt;
-  &lt;/ol&gt;
-
-  &lt;p&gt;&lt;strong&gt;We will shut Kloudsec down on 1st August&lt;/strong&gt;&lt;/p&gt;
-
-  &lt;p&gt;From now till then, we will not be maintaining the service.&lt;/p&gt;
-
-  &lt;p&gt;&lt;strong&gt;Migrating out of Kloudsec&lt;/strong&gt;&lt;/p&gt;
-
-  &lt;p&gt;Migrating out of Kloudsec is extremely simple. All you have to do is to point your domain back at its origin server.&lt;/p&gt;
-
-  &lt;p&gt;You will lose the HTTPS cert. But you can fix that by&lt;/p&gt;
-
-  &lt;ul&gt;
-    &lt;li&gt;either issuing your own LetsEncrypt certificate&lt;/li&gt;
-    &lt;li&gt;or using Cloudflare.&lt;/li&gt;
-  &lt;/ul&gt;
-
-  &lt;p&gt;&lt;strong&gt;Lessons learnt&lt;/strong&gt;&lt;/p&gt;
-
-  &lt;p&gt;From the start, we are extremely lucky to have a small revenue stream that let us to experiment with cool products. And Kloudsec is one of our biggest experiment.&lt;/p&gt;
-
-  &lt;p&gt;There are a couple of things we did right, and a couple we did wrong.&lt;/p&gt;
-
-  &lt;p&gt;We did right by having the right team come together, building a seriously sophiscated product. (Thank you Ivan and Bach)&lt;/p&gt;
-
-  &lt;p&gt;We did wrong by building a sophiscated product that made it hard for a small team to maintain, let alone scale.&lt;/p&gt;
-
-  &lt;p&gt;We did wrong by building a product that was not immediately useful enough so much so that people will pay for.&lt;/p&gt;
-
-  &lt;p&gt;We did wrong by building a product that was too expensive to maintain.&lt;/p&gt;
-
-  &lt;p&gt;We did wrong by assuming that traction solves all ailments. Not in Singapore, you don’t. There is no good venture money for real hard-tech software startups in Singapore.&lt;/p&gt;
-
-  &lt;p&gt;We did right with pulling the plug so we can learn from these mistakes and work on the next product.&lt;/p&gt;
-
-  &lt;p&gt;&lt;strong&gt;What’s next for us&lt;/strong&gt;&lt;/p&gt;
-
-  &lt;p&gt;From Kloudsec, we identified a few niche problems that we will be looking to solve. In other words, we will continually be building.&lt;/p&gt;
-
-  &lt;p&gt;And you can be sure from our next product onwards, we will charge right from day 1 so we can sustain the product financially.&lt;/p&gt;
-
-  &lt;p&gt;Lastly, thank you!&lt;/p&gt;
-
-  &lt;p&gt;Thank you. Most of you have spoken to me, or read the posts I’ve written on Github, on Hacker News, or Producthunt about Kloudsec. You guys took a leap of faith in trusting this small unknown team and product, and used us.&lt;/p&gt;
-
-  &lt;p&gt;I’m sorry to disappoint you with this piece of news, but I’ll try better next time.&lt;/p&gt;
-
-  &lt;p&gt;If you like, you can follow me on Twitter at @nubela. You can also contact me at anytime at steven@nubela.co&lt;/p&gt;
-
-  &lt;p&gt;Steven Goh.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;我的决定&quot;&gt;我的决定&lt;/h2&gt;
-
-&lt;p&gt;Sigh!&lt;/p&gt;
-
-&lt;p&gt;想起五月份的时候我还欢天喜地地给博客 HTTPS 化了，并为此写了一篇博客 &lt;a href=&quot;http://mazhuang.org/2016/05/21/enable-https-for-github-pages/&quot;&gt;为绑定域名的 GitHub Pages 启用 HTTPS&lt;/a&gt;，还将它推荐到了 &lt;a href=&quot;http://gold.xitu.io/entry/574f7ea17db2a20055c3b818/detail&quot;&gt;掘金&lt;/a&gt;，收获了 64 次收藏，并在那篇文章下创下了我个人博客单篇评论数最多的记录。&lt;/p&gt;
-
-&lt;p&gt;没想到还没等到 Kloudsec 第一次为我的域名证书自动续期，它家的服务就要关停了。&lt;/p&gt;
-
-&lt;p&gt;但也没有办法，使用第三方的服务，特别是初创公司的服务本就有这种风险。&lt;/p&gt;
-
-&lt;p&gt;本来 GitHub Pages + Custom Domain + HTTPS 也还有其它解决方案，但我已不想再折腾了，多引入一层中间服务，就多一层出状况的风险，我只是想作一名安静地写博客的美男子啊。&lt;/p&gt;
-
-&lt;p&gt;所以决定去掉自定义域名的 HTTPS，恢复 HTTP，现在 GitHub Pages 已经支持 &lt;code class=&quot;highlighter-rouge&quot;&gt;*.github.io&lt;/code&gt; 域名的 HTTPS，除非哪天它原生支持 Custom Domain 的 HTTPS，否则我不再折腾这个事情。&lt;/p&gt;
-
-&lt;h2 id=&quot;采取的措施&quot;&gt;采取的措施&lt;/h2&gt;
-
-&lt;p&gt;当初之所以想开启 HTTPS 的一个重要原因就是 Google 收录了博客的 HTTPS 链接，但是证书不对导致用户打不开或者有警告，既然使用自定义域名没有办法让证书对，那就让 Google 不收录 HTTPS 的链接吧。&lt;/p&gt;
-
-&lt;h3 id=&quot;告诉-google-不收录-https-链接&quot;&gt;告诉 Google 不收录 HTTPS 链接&lt;/h3&gt;
-
-&lt;p&gt;如果一个页面使用 HTTPS 和 HTTP 都能访问，那如果想 Google 只收录 HTTP 版，而不收录 HTTPS 版，那可以在页面的 &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; 里添加 &lt;code class=&quot;highlighter-rouge&quot;&gt;canonical&lt;/code&gt; 给爬虫以建议，具体方法如下：&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;canonical&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http 开头的 URL&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>飞鱼</name></author><summary type="html">前天收到来自 Kloudsec 的邮件，说 Kloudsec 将于 2016/08/01 停止服务。Bad news，请容许我做一个悲伤的表情。</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>飞鱼</name></author><summary type="html">假设我们正在 Vim 里编辑一个很长的 Markdown 文档，这时想跳转到另一个章节去查看或编辑内容，可以怎么做？</summary></entry></feed>
