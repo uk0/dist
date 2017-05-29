@@ -1,0 +1,1107 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-05-30T02:40:55+08:00</updated><id>http://firsh.me/</id><title type="html">会飞的胖子。</title><subtitle>张建新个人博客</subtitle><author><name>飞鱼</name></author><entry><title type="html">Kubernetes 1.5.1 版本升级。</title><link href="http://firsh.me/2016/12/21/kubernetes-1.5.1/" rel="alternate" type="text/html" title="Kubernetes 1.5.1 版本升级。" /><published>2016-12-21T00:00:00+08:00</published><updated>2016-12-21T00:00:00+08:00</updated><id>http://firsh.me/2016/12/21/kubernetes-1.5.1</id><content type="html" xml:base="http://firsh.me/2016/12/21/kubernetes-1.5.1/">&lt;p&gt;Kubernetes 1.5.1 版本升级！&lt;/p&gt;
+
+&lt;h2 id=&quot;main&quot;&gt;Main&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG.md#server-binaries&quot;&gt;kubernetes1.5.1&lt;/a&gt;
+  &lt;a href=&quot;http://kubernetes.io/kubernetes/third_party/swagger-ui/#!/api%2Fv1/createNamespacedPodTemplate&quot;&gt;swagger-ui&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;工作太忙稍后补上步骤。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;升级为替换docker镜像即可。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;替换kube-apiserver,kube-controller-manager,kube-scheduler镜像，替换kubectl kubelet kube-proxy&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>飞鱼</name></author><summary type="html">Kubernetes 1.5.1 版本升级！</summary></entry><entry><title type="html">vultr VPS运营商，删除信用卡，以及账户。</title><link href="http://firsh.me/2016/12/11/vultr-%E5%88%A0%E9%99%A4%E8%B4%A6%E6%88%B7/" rel="alternate" type="text/html" title="vultr VPS运营商，删除信用卡，以及账户。" /><published>2016-12-11T00:00:00+08:00</published><updated>2016-12-11T00:00:00+08:00</updated><id>http://firsh.me/2016/12/11/vultr-%E5%88%A0%E9%99%A4%E8%B4%A6%E6%88%B7</id><content type="html" xml:base="http://firsh.me/2016/12/11/vultr-%E5%88%A0%E9%99%A4%E8%B4%A6%E6%88%B7/">&lt;p&gt;今天大脑错乱了，买了个Vultr的VPS，速度很慢，远远不比Linode的VPS速度。&lt;/p&gt;
+
+&lt;h2 id=&quot;文章&quot;&gt;文章&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;今天大脑错乱了，买了个Vultr的VPS，速度很慢，远远不比Linode的VPS速度。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;#下面的链接是删除账户的链接。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;用了一会发现速度实在太慢，还不稳定带宽比较低，所以想解绑信用卡，发现解决不了索性直接删除账户。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;hostus，linode的主机都不错，都稳定服务态度也好，推荐大家使用。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;下面是删除用户的链接地址。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://my.vultr.com/billing/cancel/&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>飞鱼</name></author><summary type="html">今天大脑错乱了，买了个Vultr的VPS，速度很慢，远远不比Linode的VPS速度。</summary></entry><entry><title type="html">Kubernetes集群安全配置案例[link]。</title><link href="http://firsh.me/2016/12/07/nginx-Kubernetes%E9%9B%86%E7%BE%A4%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E6%A1%88%E4%BE%8B/" rel="alternate" type="text/html" title="Kubernetes集群安全配置案例[link]。" /><published>2016-12-07T00:00:00+08:00</published><updated>2016-12-07T00:00:00+08:00</updated><id>http://firsh.me/2016/12/07/nginx-Kubernetes%E9%9B%86%E7%BE%A4%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E6%A1%88%E4%BE%8B</id><content type="html" xml:base="http://firsh.me/2016/12/07/nginx-Kubernetes%E9%9B%86%E7%BE%A4%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E6%A1%88%E4%BE%8B/">&lt;p&gt;Kubernetes集群安全配置案例。&lt;/p&gt;
+
+&lt;p&gt;## 文章&lt;/p&gt;
+
+&lt;p&gt;###Kubernetes 系统提供了三种认证方式：CA 认证、Token 认证 和 Base 认证。安全功能是一把双刃剑，它保护系统不被攻击，但是也带来额外的性能损耗。集群内的各组件访问 API Server 时，由于它们与 API Server 同时处于同一局域网内，所以建议用非安全的方式访问 API Server 效率更高。&lt;/p&gt;
+
+&lt;p&gt;####接下来对集群的双向认证配置和简单认证配置过程进行详细说明。&lt;/p&gt;
+
+&lt;p&gt;####双向认证配置&lt;/p&gt;
+
+&lt;p&gt;####双向认证方式是最为严格和安全的集群安全配置方式，主要配置流程如下：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;生成根证书、API Server 服务端证书、服务端私钥、各个组件所用的客户端证书和客户端私钥。&lt;/li&gt;
+  &lt;li&gt;修改 Kubernetes 各个服务进程的启动参数，启用双向认证模式。&lt;/li&gt;
+  &lt;li&gt;详细的配置操作流程如下：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;####生成根证书&lt;/p&gt;
+
+&lt;p&gt;#####用 openssl 工具生成 CA 证书，请注意将其中 subject 等参数改为用户所需的数据，CN 的值通常是域名、主机名或 IP 地址。&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd /var/run/kubernetes
+$ openssl genrsa -out dd_ca.key 2048
+$ openssl req -x509 -new -nodes -key dd_ca.key -subj &quot;/CN=YOUDOMAIN.COM&quot; -days 5000 -out dd_ca.crt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;#####生成 API Server 服务端证书和私钥&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ openssl genrsa -out dd_server.key 2048
+$ HN=`hostname`
+$ openssl req -new -key dd_server.key -subj &quot;/CN=$HN&quot; -out dd_server.csr
+$ openssl x509 -req -in dd_server.csr -CA dd_ca.crt -CAkey dd_ca.key -CAcreateserial-out dd_server.crt -days 5000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;#####生成 Controller Manager 与 Scheduler 进程共用的证书和私钥&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ openssl genrsa -out dd_cs_client.key 2048
+$ openssl req -new -key dd_cs_client.key -subj &quot;/CN=$HN&quot; -out dd_cs_client.csr
+$ openssl x509 -req -in dd_cs_client.csr －CA dd_ca.crt -CAkey dd_ca.key -CAcreateserial -out dd_cs_client.crt -days 5000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;#####生成 Kubelet 所用的客户端证书和私钥
+######注意，这里假设 Kubelet 所在机器的 IP 地址为 192.168.1.129。&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ openssl genrsa -out dd_kubelet_client.key 2048
+$ openssl req -new -key dd_kubelet_client.key -subj &quot;/CN=192.168.1.129&quot; -out dd_kubelet_client.csr
+$ openssl x509 -req -in dd_kubelet_client.csr -CA dd_ca.crt -CAkey dd_ca.key -CAcreateserial -out dd_kubelet_client.crt -days 5000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;#####修改 API Server 的启动参数
+#####增加 CA 根证书、Server 自身证书等参数并设置安全端口为 443.&lt;/p&gt;
+
+&lt;p&gt;修改/etc/kubernetes/apiserver 配置文件的 KUBE_API_ARGS 参数：&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;KUBE_API_ARGS=&quot;--log-dir=/var/log/kubernetes --secure-port=443 --client_ca_file=/var/run/kubernetes/dd_ca.crt --tls-private-key-file=/var/run/kubernetes/dd_server.key --tls-cert-file=/var/run/kubernetes/dd_server.crt&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;####重启 kube-apiserver 服务：
+####systemctl restart kube-apiserver
+####验证 API Server 的 HTTPS 服务。&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ curl https://kubernetes-master:443/api/v1/nodes --cert /var/run/kubernetes/dd_cs_client.crt --key /var/run/kubernetes/dd_cs_client.key --cacert /var/run/kubernetes/dd_ca.crt
+修改 Controller Manager 的启动参数
+修改/etc/kubernetes/controller-manager 配置文件
+KUBE_CONTROLLER_MANAGER_ARGS=&quot;--log-dir=/var/log/kubernetes --service_account_private_key_file=/var/run/kubernetes/server.key --root-ca-file=/var/run/kubernetes/ca.crt --master=https://kubernetes-master:443 --kubeconfig=/etc/kubernetes/cmkubeconfig&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;创建/etc/kubernetes/cmkubeconfig 文件，配置证书等相关参数，具体内容如下：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;apiVersion: v1
+kind: Config
+users
+- name: controllermanager
+  user:
+    client-certificate: /var/run/kubernetes/dd_cs_client.crt
+    client-key: /var/run/kubernetes/dd_cs_client.key
+clusters:
+- name: local
+  cluster:
+    certificate-authority: /var/run/kubernetes/dd_ca.crt
+contexts:
+- context:
+    cluster: local
+    user: controllermanager
+  name: my-context
+current-context: my-context
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;重启 kube-controller-manager 服务：&lt;/p&gt;
+
+&lt;h1 id=&quot;systemctl-restart-kube-controller-manager&quot;&gt;systemctl restart kube-controller-manager&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;配置各个节点上的 Kubelet 进程&lt;/li&gt;
+  &lt;li&gt;复制 Kubelet 的证书、私钥 与 CA 根证书到所有 Node 上。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ scp /var/run/kubernetes/dd_kubelet* root@kubernetes-minion1:/home
+$ scp /var/run/kubernetes/dd_ca.* root@kubernetes-minion:/home
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;在每个 Node 上创建/var/lib/kubelet/kubeconfig 文件，内容如下：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;apiVersion: v1
+kind: Config
+users:
+- name: kubelet
+  user:
+    client-certificats: /home/dd_kubelet_client.crt
+    client-key: /home/dd_kubelet_client.key
+clusters:
+- name: local
+  cluster:
+    certificate-authority: /home/dd_ca.crt
+contexts:
+- context:
+    cluster: local
+    user: kubelet
+  name: my-context
+current-context: my-context
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;修改 Kubelet 的启动参数，以修改/etc/kubernetes/kubelet 配置文件为例：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;KUBELET_API_SERVER=&quot;--api_servers=https://kubernetes-master:443&quot;
+KUBELET_ARGS=&quot;--pod_infro_container_image=192.168.1.128:1180/google_containers/pause:latest --cluster_dns=10.2.0.100 --cluster_domain=cluster.local --kubeconfig=/var/lib/kubelet/kubeconfig&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;#重启 kubelet 服务：&lt;/p&gt;
+
+&lt;p&gt;###systemctl restart kubelet&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;配置 kube-proxy&lt;/li&gt;
+  &lt;li&gt;首先，创建/var/lib/kubeproxy/proxykubeconfig 文件，内容如下：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;apiVersion: v1
+kind: Config
+users:
+- name: kubeproxy
+  user:
+    client-certificate: /home/dd_kubelet_client.crt
+    client-key: /home/dd_kubelet_client.key
+clusters:
+- name: local
+  cluster:
+    certificate-authority: /home/dd_ca.crt
+contexts:
+- context:
+    cluster: local
+    user: kubeproxy
+  name: my-context
+current-context: my-context
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;然后，修改 kube-proxy 的启动参数，引用上述文件并指明 API Server 在安全模式下的访问地址，以修改配置文件/etc/kubenetes/proxy 为例：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;KUBE_PROXY_ARGS=&quot;--kubeconfig=/var/lib/kubeproxy/proxykubeconfig --master=https://kubenetes-master:443&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;重启 kube-proxy 服务：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;systemctl-restart-kube-proxy&quot;&gt;systemctl restart kube-proxy&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;至此，一个双向认证的 Kubernetes 集群环境就搭建完成了。&lt;/li&gt;
+  &lt;li&gt;简单认证配置&lt;/li&gt;
+  &lt;li&gt;除了双向认证方式，Kubernets 也提供了基于 Token 和 HTTP Base 的简单认证方式。通信方式仍然采用 HTTPS，但不使用数字证书。&lt;/li&gt;
+  &lt;li&gt;采用基于 Token 和 HTTP Base 的简单认证方式时，API Server 对外暴露 HTTPS 端口，客户端提供 Token 或用户名、密码来完成认证过程。这里需要说明的一点是 Kubelet 比较特殊，它同时支持双向认证与简单认证两种模式，其他组件智能配置为双向认证或非安全模式。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;api-server-基于-token-认证的配置过程如下&quot;&gt;API Server 基于 Token 认证的配置过程如下&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;建立包括用户名、密码和 UID 的文件 token_auth_file：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cat /root/token_auth_file
+dingmingk,dingmingk,1
+admin,admin,2
+system,system,3
+修改 API Server 的配置，采用上述文件进行安全认证
+$ vi /etc/kubernetes/apiserver
+KUBE_API_ARGS=&quot;--secure-port=443 --token_auth_file=/root/token_auth_file&quot;
+重启 API Server 服务
+# systemctl restart kube-apiserver
+用 curl 验证连接 API Server
+$ curl https://kubenetes-master:443/version --header &quot;Authorization: Bearer dingmingk&quot; -k
+{
+  &quot;major&quot;: &quot;1&quot;,
+  &quot;minor&quot;: &quot;0&quot;,
+  &quot;gitVersion&quot;: &quot;v1.0.0&quot;,
+  &quot;gitCommit&quot;: &quot;xxxHASHCODE&quot;,
+  &quot;gitTreeState&quot;: &quot;clean&quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;API Server 基于 HTTP Base 认证的配置过程如下&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;创建包括用户名、密码和 UID 的文件 basic_auth_file：&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cat /root/basic_auth_file
+dingmingk,dingmingk,1
+admin,admin,2
+system,system,3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;修改 API Server 的配置，采用上述文件进行安全认证&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ vi /etc/kubernetes/apiserver&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;KUBE_API_ARGS=&quot;--secure-port=443 --basic_auth_file=/root/basic_auth_file&quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;重启-api-server-服务&quot;&gt;重启 API Server 服务&lt;/h3&gt;
+
+&lt;h3 id=&quot;systemctl-restart-kube-apiserver&quot;&gt;systemctl restart kube-apiserver&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;用 curl 验证连接 API Server&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ curl https://kubernetes-master:443/version --basic -u dingmingk:dingmingk -k
+{
+  &quot;major&quot;: &quot;1&quot;,
+  &quot;minor&quot;: &quot;0&quot;,
+  &quot;gitVersion&quot;: &quot;v1.0.0&quot;,
+  &quot;gitCommit&quot;: &quot;xxxHASHCODE&quot;,
+  &quot;gitTreeState&quot;: &quot;clean&quot;
+}
+使用 Kubelet 时则需要指定用户名和密码来访问 API Server
+$ kubectl get nodes --server=&quot;https://kubernetes-master:443&quot; --api-version=&quot;v1&quot; --username=&quot;dingmingk&quot; --password=&quot;dingmingk&quot; --insecure-skip-tls-verify=true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;###kubectl config set-cluster
+####在kubeconfig配置文件中设置一个集群项。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;摘要&lt;/li&gt;
+  &lt;li&gt;在kubeconfig配置文件中设置一个集群项。 如果指定了一个已存在的名字，将合并新字段并覆盖旧字段。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl config set-cluster NAME [--server=server] [--certificate-authority=path/to/certficate/authority] [--insecure-skip-tls-verify=true]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;示例
+    &lt;h1 id=&quot;仅设置e2e集群项中的server字段不影响其他字段&quot;&gt;仅设置e2e集群项中的server字段，不影响其他字段&lt;/h1&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl config set-cluster e2e --server=https://1.2.3.4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h1 id=&quot;向e2e集群项中添加认证鉴权数据&quot;&gt;向e2e集群项中添加认证鉴权数据&lt;/h1&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl config set-cluster e2e --certificate-authority=~/.kube/e2e/kubernetes.ca.crt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;####取消dev集群项中的证书检查&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;html
+kubectl config set-cluster e2e --insecure-skip-tls-verify=true
+选项
+      --api-version=&quot;&quot;: 设置kuebconfig配置文件中集群选项中的api-version。
+      --certificate-authority=&quot;&quot;: 设置kuebconfig配置文件中集群选项中的certificate-authority路径。
+      --embed-certs[=false]: 在是否则kubeconfig配置文件中嵌入客户端证书/key。
+      --insecure-skip-tls-verify[=false]: 设置kuebconfig配置文件中集群选项中的insecure-skip-tls-verify开关。
+      --server=&quot;&quot;: 设置kuebconfig配置文件中集群选项中的server。
+继承自父命令的选项
+      --alsologtostderr[=false]: 同时输出日志到标准错误控制台和文件。
+      --certificate-authority=&quot;&quot;: 用以进行认证授权的.cert文件路径。
+      --client-certificate=&quot;&quot;: TLS使用的客户端证书路径。
+      --client-key=&quot;&quot;: TLS使用的客户端密钥路径。
+      --cluster=&quot;&quot;: 指定使用的kubeconfig配置文件中的集群名。
+      --context=&quot;&quot;: 指定使用的kubeconfig配置文件中的环境名。
+      --insecure-skip-tls-verify[=false]: 如果为true，将不会检查服务器凭证的有效性，这会导致你的HTTPS链接变得不安全。
+      --kubeconfig=&quot;&quot;: 命令行请求使用的配置文件路径。
+      --log-backtrace-at=:0: 当日志长度超过定义的行数时，忽略堆栈信息。
+      --log-dir=&quot;&quot;: 如果不为空，将日志文件写入此目录。
+      --log-flush-frequency=5s: 刷新日志的最大时间间隔。
+      --logtostderr[=true]: 输出日志到标准错误控制台，不输出到文件。
+      --match-server-version[=false]: 要求服务端和客户端版本匹配。
+      --namespace=&quot;&quot;: 如果不为空，命令将使用此namespace。
+      --password=&quot;&quot;: API Server进行简单认证使用的密码。
+  -s, --server=&quot;&quot;: Kubernetes API Server的地址和端口号。
+      --stderrthreshold=2: 高于此级别的日志将被输出到错误控制台。
+      --token=&quot;&quot;: 认证到API Server使用的令牌。
+      --user=&quot;&quot;: 指定使用的kubeconfig配置文件中的用户名。
+      --username=&quot;&quot;: API Server进行简单认证使用的用户名。
+      --v=0: 指定输出日志的级别。
+      --vmodule=: 指定输出日志的模块，格式如下：pattern=N，使用逗号分隔。
+     &lt;/code&gt;&lt;/p&gt;</content><author><name>飞鱼</name></author><summary type="html">Kubernetes集群安全配置案例。</summary></entry><entry><title type="html">nginx的重定向进行防盗链设置。</title><link href="http://firsh.me/2016/12/04/nginx%E9%98%B2%E7%9B%97%E9%93%BE/" rel="alternate" type="text/html" title="nginx的重定向进行防盗链设置。" /><published>2016-12-04T00:00:00+08:00</published><updated>2016-12-04T00:00:00+08:00</updated><id>http://firsh.me/2016/12/04/nginx%E9%98%B2%E7%9B%97%E9%93%BE</id><content type="html" xml:base="http://firsh.me/2016/12/04/nginx%E9%98%B2%E7%9B%97%E9%93%BE/">&lt;p&gt;对博客的保护，以及原创的文章图片进行防盗链设置。&lt;/p&gt;
+
+&lt;h2 id=&quot;文章&quot;&gt;文章&lt;/h2&gt;
+
+&lt;p&gt;测试url: &lt;a href=&quot;http://firsh.me:8888/dockericon.png&quot;&gt;http://firsh.me:8888/dockericon.png&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;code-nginx.conf&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  location ~* \.(gif|jpg|png|jpeg)$ {
+      expires     30d;
+      valid_referers *.firsh.me firsh.me;
+      if ($invalid_referer) {
+      rewrite ^/ http://firsh.me:8888/40x.html;
+      #return 404;
+      }
+   }
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>飞鱼</name></author><summary type="html">对博客的保护，以及原创的文章图片进行防盗链设置。</summary></entry><entry><title type="html">Java metrics</title><link href="http://firsh.me/2016/12/04/Java-metrics/" rel="alternate" type="text/html" title="Java metrics" /><published>2016-12-04T00:00:00+08:00</published><updated>2016-12-04T00:00:00+08:00</updated><id>http://firsh.me/2016/12/04/Java-metrics</id><content type="html" xml:base="http://firsh.me/2016/12/04/Java-metrics/">&lt;p&gt;项目中有对程序的一个健康检查，以及TPS,QPS等。&lt;/p&gt;
+
+&lt;h2 id=&quot;文档&quot;&gt;文档&lt;/h2&gt;
+
+&lt;p&gt;*Maven&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-code&quot;&gt; &amp;lt;!--  metrics * --&amp;gt;
+    &amp;lt;dependency&amp;gt;
+        &amp;lt;groupId&amp;gt;io.dropwizard.metrics&amp;lt;/groupId&amp;gt;
+        &amp;lt;artifactId&amp;gt;metrics-core&amp;lt;/artifactId&amp;gt;
+        &amp;lt;version&amp;gt;3.1.0&amp;lt;/version&amp;gt;
+    &amp;lt;/dependency&amp;gt;
+    &amp;lt;dependency&amp;gt;
+        &amp;lt;groupId&amp;gt;io.dropwizard.metrics&amp;lt;/groupId&amp;gt;
+        &amp;lt;artifactId&amp;gt;metrics-servlets&amp;lt;/artifactId&amp;gt;
+        &amp;lt;version&amp;gt;3.1.0&amp;lt;/version&amp;gt;
+    &amp;lt;/dependency&amp;gt;
+    &amp;lt;dependency&amp;gt;
+        &amp;lt;groupId&amp;gt;com.codahale.metrics&amp;lt;/groupId&amp;gt;
+        &amp;lt;artifactId&amp;gt;metrics-healthchecks&amp;lt;/artifactId&amp;gt;
+        &amp;lt;version&amp;gt;3.0.1&amp;lt;/version&amp;gt;
+    &amp;lt;/dependency&amp;gt;
+    &amp;lt;dependency&amp;gt;
+        &amp;lt;groupId&amp;gt;com.github.davidb&amp;lt;/groupId&amp;gt;
+        &amp;lt;artifactId&amp;gt;metrics-influxdb&amp;lt;/artifactId&amp;gt;
+        &amp;lt;version&amp;gt;0.8.2&amp;lt;/version&amp;gt;
+    &amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+  &lt;li&gt;核心工具类&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import com.codahale.metrics.*;
+import com.ktyh.think.filter.prometheus.DropwizardExportSetUp;
+import io.prometheus.client.CollectorRegistry;
+import metrics_influxdb.InfluxdbReporter;
+import metrics_influxdb.api.protocols.InfluxdbProtocols;
+import org.slf4j.LoggerFactory;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import java.util.concurrent.TimeUnit;
+/**
+ * Created by zhangjianxin on 2016/11/3.
+ * metrics core config and static void formart
+ */
+public class MetricsCore {
+    /**
+     * 因数据存在争议，改为单例模式。
+     */
+    private static final MetricRegistry METRIC_REGISTRY = new MetricRegistry();
+    private static String HOST_IP_ADDRESS;
+    private static String USERNAME;
+    private static String PASSWORD;
+    private static String DATABASE;
+    private static int PORT;
+    private static ServletRequest ARG_REQ;
+    private static ServletResponse ARG_RESP;
+    /**
+     * @author 内存使用程度MB
+     */
+    Gauge&lt;span class=&quot;nt&quot;&gt;&amp;lt;Long&amp;gt;&lt;/span&gt; getFreeMemory = () -&amp;gt; toMb(Runtime.getRuntime().freeMemory());
+    Gauge&lt;span class=&quot;nt&quot;&gt;&amp;lt;Long&amp;gt;&lt;/span&gt; getTotalMemory = () -&amp;gt; toMb(Runtime.getRuntime().totalMemory());
+
+    public static synchronized MetricRegistry getInstance() {
+        return METRIC_REGISTRY;
+    }
+
+    public static ScheduledReporter influxdbReporter(MetricRegistry metrics) {
+        InitInfluxdbConfig();//初始化
+        return InfluxdbReporter.forRegistry(metrics)
+                .protocol(InfluxdbProtocols.http(HOST_IP_ADDRESS, PORT, USERNAME, PASSWORD, DATABASE))
+                .convertRatesTo(TimeUnit.SECONDS)
+                .convertDurationsTo(TimeUnit.MILLISECONDS)
+                .filter(MetricFilter.ALL)
+                .skipIdleMetrics(false)
+                .build();
+    }
+
+
+    public static void freeMemoryForJvm(MetricRegistry metrics) {
+        metrics.register(MetricRegistry.name(&quot;memory_free_mb_size&quot;), new Gauge&lt;span class=&quot;nt&quot;&gt;&amp;lt;Long&amp;gt;&lt;/span&gt;() {
+            @Override
+            public Long getValue() {
+                return toMb(Runtime.getRuntime().freeMemory());
+            }
+        });
+    }
+
+    public static void totalMemoryForJvm(MetricRegistry metrics) {
+        metrics.register(MetricRegistry.name(&quot;memory_total_mb_size&quot;), new Gauge&lt;span class=&quot;nt&quot;&gt;&amp;lt;Long&amp;gt;&lt;/span&gt;() {
+            @Override
+            public Long getValue() {
+                return toMb(Runtime.getRuntime().totalMemory());
+            }
+        });
+    }
+
+    //转换为MB
+    private static long toMb(long bytes) {
+        return bytes / 1024 / 1024;
+    }
+
+    /**
+     * 初始化时序数据库配置，可以通过反射进行更改
+     **/
+
+    public static void InitInfluxdbConfig() {
+        PORT = 8085;
+        HOST_IP_ADDRESS = &quot;192.168.1.102&quot;;
+        USERNAME = &quot;root&quot;;
+        PASSWORD = &quot;root&quot;;
+        // DATABASE = &quot;Metrics&quot;;
+        DATABASE = &quot;_internal&quot;;
+    }
+
+    /**
+     * 传递初始化参数，用单例去回调
+     *
+     * @param &quot;Servlet request and respone&quot;
+     */
+
+    public static void requestFullArgs(ServletRequest req, ServletResponse resp) {
+        ARG_REQ = req;
+        ARG_RESP = resp;
+    }
+
+    /**
+     * Reporter 数据的展现位置
+     *
+     * @param metrics
+     * @return
+     */
+
+    public ConsoleReporter consoleReporter(MetricRegistry metrics) {
+        return ConsoleReporter.forRegistry(metrics)
+                .convertRatesTo(TimeUnit.SECONDS)
+                .convertDurationsTo(TimeUnit.MILLISECONDS)
+                .build();
+    }
+
+    public Slf4jReporter slf4jReporter(MetricRegistry metrics) {
+        return Slf4jReporter.forRegistry(metrics)
+                .outputTo(LoggerFactory.getLogger(&quot;demo.metrics&quot;))
+                .convertRatesTo(TimeUnit.SECONDS)
+                .convertDurationsTo(TimeUnit.MILLISECONDS)
+                .build();
+    }
+
+    public JmxReporter jmxReporter(MetricRegistry metrics, String doMain) {
+        return JmxReporter.forRegistry(metrics)
+                .inDomain(doMain)
+                .convertRatesTo(TimeUnit.SECONDS)
+                .convertDurationsTo(TimeUnit.MILLISECONDS)
+                .filter(MetricFilter.ALL).build();
+    }
+
+    /**
+     * Meters会将最近1分钟，5分钟，15分钟的TPS（每秒处理的request数）给打印出来，还有所有时间的TPS。
+     *
+     * @param metrics
+     * @return
+     */
+    public Meter requestMeter(MetricRegistry metrics, String arg) {
+        return metrics.meter(MetricRegistry.name(&quot;meter_event_&quot; + arg));
+    }
+
+    /**
+     * 直方图
+     *
+     * @param metrics
+     * @return
+     */
+
+    public Histogram responseSizes(MetricRegistry metrics, String arg) {
+        return metrics.histogram(MetricRegistry.name(&quot;size_histogram_&quot; + arg));
+    }
+
+    /**
+     * 计数器
+     *
+     * @param metrics
+     * @return
+     */
+
+    public Counter pendingJobs(MetricRegistry metrics, String arg) {
+        return metrics.counter(MetricRegistry.name(&quot;counter_Job_&quot; + arg));
+    }
+
+    /**
+     * 计时器
+     *
+     * @param metrics
+     * @return
+     */
+
+    public Timer responsesExecureTime(MetricRegistry metrics, String arg) {
+        return metrics.timer(MetricRegistry.name(&quot;response_timer_&quot; + arg));
+    }
+
+    public Meter requestURLCount(MetricRegistry metrics, String arg) {
+        return metrics.meter(MetricRegistry.name(&quot;request_URL_&quot; + arg));
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;##目前这种方式只是将数据推送到influxdb ，以及prometheus 。&lt;/p&gt;
+
+&lt;p&gt;1 数据采集&lt;/p&gt;
+
+&lt;p&gt;2 采集点(Filter,Controller,Service)&lt;/p&gt;
+
+&lt;p&gt;3 数据推送(influxdb,primetheus,jmx,console,cvs等。)&lt;/p&gt;</content><author><name>飞鱼</name></author><summary type="html">项目中有对程序的一个健康检查，以及TPS,QPS等。</summary></entry><entry><title type="html">vim-markdown-toc 发布 v1.0 版</title><link href="http://firsh.me/2016/10/22/vim-markdown-toc-release/" rel="alternate" type="text/html" title="vim-markdown-toc 发布 v1.0 版" /><published>2016-10-22T00:00:00+08:00</published><updated>2016-10-22T00:00:00+08:00</updated><id>http://firsh.me/2016/10/22/vim-markdown-toc-release</id><content type="html" xml:base="http://firsh.me/2016/10/22/vim-markdown-toc-release/">&lt;p&gt;前几天，第一款由我独立开发的 Vim 插件 vim-markdown-toc 升级了功能，发布了 v1.0 版本。&lt;/p&gt;
+
+&lt;p&gt;它的主要功能是为 Markdown 文件生成 toc（Table of Contents）、更新已经存在的 toc 和在保存时自动更新 toc。&lt;/p&gt;
+
+&lt;p&gt;说它是当前使用 Vim 编辑 Markdown 文件时维护 Table of Contents 的最佳解决方案应该不为过。&lt;/p&gt;
+
+&lt;h2 id=&quot;下载地址&quot;&gt;下载地址&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/mzlogin/vim-markdown-toc&quot;&gt;vim-markdown-toc&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;主要更新&quot;&gt;主要更新&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;支持使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;:UpdateToc&lt;/code&gt; 命令更新已经存在的 toc。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;支持保存时自动更新 toc。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;功能演示&quot;&gt;功能演示&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mzlogin/vim-markdown-toc/master/screenshots/english.gif&quot; alt=&quot;vim-markdown-toc-screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;一些体会&quot;&gt;一些体会&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;相比于 &lt;a href=&quot;https://github.com/mzlogin/awesome-adb&quot;&gt;awesome-adb&lt;/a&gt; 的一千多个 Star，&lt;a href=&quot;https://github.com/mzlogin/vim-markdown-toc&quot;&gt;vim-markdown-toc&lt;/a&gt; 的三十多个 Star 在我心目中含金量更高。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;做能挣钱的东西，或者对自己有用的东西。&lt;/p&gt;
+
+    &lt;p&gt;有天和我们组去年来的小朋友聊天，他说了一个观点我觉得很有道理：做能给自己产生经济效益的东西，你才有动力持续下去。虽然听起来功利，但不无道理。&lt;/p&gt;
+
+    &lt;p&gt;这么一个插件显然不能挣钱，它属于第二种。本次更新的功能其实在半年前就有网友提过需求，见 &lt;a href=&quot;https://github.com/mzlogin/vim-markdown-toc/issues/6&quot;&gt;#6&lt;/a&gt;，但我却迟迟没有动手。半年后的某个夜里，突然就决定要把这些做出来，并且花了几个小时就做完了。究其原因，还是因为自己现在有了需求，我现在要维护几份比较长的 Markdown 文档，如果每次手动去删除已有 toc 然后再次生成，虽然比纯手工写 toc 要不知道方便和准确到哪里去了，但归根结底还是不够完美。果然最后用着自己做的功能替自己省下不少重复劳动时，那种感觉也是很爽的。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;酒香也怕巷子深。&lt;/p&gt;
+
+    &lt;p&gt;发布了个人的项目后，适当地在相关的社区进行推广，让更多的人享受到你的劳动成果，帮助验证和反馈，也能给自己带来更多的成就感和关注度。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name>飞鱼</name></author><summary type="html">前几天，第一款由我独立开发的 Vim 插件 vim-markdown-toc 升级了功能，发布了 v1.0 版本。</summary></entry><entry><title type="html">一道在知乎很火的 Java 题——如何输出 ab</title><link href="http://firsh.me/2016/09/20/java-output-ab/" rel="alternate" type="text/html" title="一道在知乎很火的 Java 题——如何输出 ab" /><published>2016-09-20T00:00:00+08:00</published><updated>2016-09-20T00:00:00+08:00</updated><id>http://firsh.me/2016/09/20/java-output-ab</id><content type="html" xml:base="http://firsh.me/2016/09/20/java-output-ab/">&lt;p&gt;这是一个源自知乎的话题，原贴链接：&lt;a href=&quot;https://www.zhihu.com/question/50801791&quot;&gt;一道百度的面试题，有大神会嘛？&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;虽然我不是大神，但我也点进去看了一下，思考了一会之后有了一些思路，然后去看其它人的答案的时候果然全都已经被各路大神们先想到并贴出来了，所以我就不去凑热闹写重复答案了，整理一下网友们的智慧在这里自娱自乐好了。&lt;/p&gt;
+
+&lt;h2 id=&quot;题目&quot;&gt;题目&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/java/output-ab.jpg&quot; alt=&quot;java-output-ab&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;思路一&quot;&gt;思路一&lt;/h2&gt;
+
+&lt;p&gt;作为一个多年前也见过不少笔试题的少年，看到这个题目的第一想法是脑筋急转弯——注入一段逻辑直接改变原 if 结构。&lt;/p&gt;
+
+&lt;h3 id=&quot;解法一&quot;&gt;解法一&lt;/h3&gt;
+
+&lt;p&gt;填入内容 &lt;code class=&quot;highlighter-rouge&quot;&gt;true){System.out.print(&quot;a&quot;);}if(false&lt;/code&gt;。&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;类似地也可以填入 &lt;code class=&quot;highlighter-rouge&quot;&gt;true){System.out.print(&quot;ab&quot;);return;}if(false&lt;/code&gt; 等。&lt;/p&gt;
+
+&lt;p&gt;当初大学时单纯的少年可是很难想出这样的套路的，时间改变了我们啊。&lt;/p&gt;
+
+&lt;h2 id=&quot;思路二&quot;&gt;思路二&lt;/h2&gt;
+
+&lt;p&gt;如果正经遵从题目的原代码结构，那就得想办法构造一段代码，既能输出 &lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt;，又能返回 &lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h3 id=&quot;解法二&quot;&gt;解法二&lt;/h3&gt;
+
+&lt;p&gt;我也想到能否使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;System.out.print&lt;/code&gt; 的返回值来做文章，但奈何并不记得它返回什么，首先让我们复习一下 &lt;code class=&quot;highlighter-rouge&quot;&gt;PrintStream&lt;/code&gt; 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;print&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;println&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;printf&lt;/code&gt; 方法的区别：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;方法&lt;/th&gt;
+      &lt;th&gt;功能&lt;/th&gt;
+      &lt;th&gt;返回值&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;print&lt;/td&gt;
+      &lt;td&gt;打印一个值或者对象&lt;/td&gt;
+      &lt;td&gt;void&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;println&lt;/td&gt;
+      &lt;td&gt;打印并换行&lt;/td&gt;
+      &lt;td&gt;void&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;printf&lt;/td&gt;
+      &lt;td&gt;格式化打印&lt;/td&gt;
+      &lt;td&gt;PrintStream&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;所以适用的是 &lt;code class=&quot;highlighter-rouge&quot;&gt;printf&lt;/code&gt;，它的返回值是 &lt;code class=&quot;highlighter-rouge&quot;&gt;PrintStream&lt;/code&gt; 类型的 &lt;code class=&quot;highlighter-rouge&quot;&gt;System.out&lt;/code&gt;，判它是否为空即可。&lt;/p&gt;
+
+&lt;p&gt;填入内容 &lt;code class=&quot;highlighter-rouge&quot;&gt;System.out.printf(&quot;a&quot;) == null&lt;/code&gt;。&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;经测试填入 &lt;code class=&quot;highlighter-rouge&quot;&gt;System.out.append(&quot;a&quot;) == null&lt;/code&gt; 也是可以达到效果的。&lt;/p&gt;
+
+&lt;h3 id=&quot;解法三&quot;&gt;解法三&lt;/h3&gt;
+
+&lt;p&gt;仍然是思路二，但从匿名内部类来作文章。&lt;/p&gt;
+
+&lt;p&gt;实现代码：&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这里利用的知识点是匿名内部类可以声明基类没有的新方法并且马上调用。&lt;/p&gt;
+
+&lt;h3 id=&quot;解法四&quot;&gt;解法四&lt;/h3&gt;
+
+&lt;p&gt;使用 Java 8 里的 lambda 来实现思路二。&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;BooleanSupplier&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;})).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getAsBoolean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;严格来讲这个不一定能算作正确答案，因为要增加 &lt;code class=&quot;highlighter-rouge&quot;&gt;import java.util.function.BooleanSupplier;&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h2 id=&quot;脑洞大开&quot;&gt;脑洞大开&lt;/h2&gt;
+
+&lt;p&gt;讲完严肃的解法，来看看网友 &lt;a href=&quot;https://www.zhihu.com/people/qiong-xiao-zi-158&quot;&gt;穷小子&lt;/a&gt; 开脑洞的思路：&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//    if ( ) {&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//    } else {&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//    }&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;如果没有特意说明只能在括号里加东西，倒真是个妙计！&lt;/p&gt;
+
+&lt;p&gt;同样看得我一愣一愣的还有 &lt;a href=&quot;https://www.zhihu.com/people/caiwei710&quot;&gt;caiwei&lt;/a&gt; 同学的答案，他和朋友们发现题目里少写了个大括号（真的），于是我们看到他的朋友老方的解决方案：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/java/add-brace.jpg&quot; alt=&quot;add-brace&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;真是防不胜防啊~不过我喜欢！:+1:&lt;/p&gt;
+
+&lt;h2 id=&quot;参考&quot;&gt;参考&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.zhihu.com/question/50801791/answer/122781965&quot;&gt;RednaxelaFX 的回答&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.zhihu.com/question/50801791/answer/122773831&quot;&gt;仓鼠君 的回答&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.zhihu.com/question/50801791/answer/122769426&quot;&gt;放开那女孩 的回答&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.zhihu.com/question/50801791/answer/122863062&quot;&gt;穷小子 的回答&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.zhihu.com/question/50801791/answer/122795854&quot;&gt;caiwei 的回答&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>飞鱼</name></author><summary type="html">这是一个源自知乎的话题，原贴链接：一道百度的面试题，有大神会嘛？</summary></entry><entry><title type="html">C++ 程序员的 Java 指南</title><link href="http://firsh.me/2016/08/30/java-guide-to-cpp-programmers/" rel="alternate" type="text/html" title="C++ 程序员的 Java 指南" /><published>2016-08-30T00:00:00+08:00</published><updated>2016-08-30T00:00:00+08:00</updated><id>http://firsh.me/2016/08/30/java-guide-to-cpp-programmers</id><content type="html" xml:base="http://firsh.me/2016/08/30/java-guide-to-cpp-programmers/">&lt;p&gt;这是一个 C++ 程序员自己总结的 Java 学习中应该注意的点。&lt;/p&gt;
+
+&lt;h2 id=&quot;缘起&quot;&gt;缘起&lt;/h2&gt;
+
+&lt;p&gt;因工作原因从 Windows 客户端开发转为 Android 客户端开发，所以主要的开发语言也由 C++ 变为了 Java，在学习 Java 的过程中，即享受到 Java 的自带程序库的丰富带来的便捷，也遇到一些与 C++ 里的习惯不符需要注意的地方。&lt;/p&gt;
+
+&lt;p&gt;初学时的计划是看完一本 Java 教材，过程中整理 C++ 程序员学习 Java 需要注意的点，然后对照写一篇《C++ 程序员的 Java 指南》，但最后懒癌犯了，只整理了一部分不同点，要形成一份「指南」还有很长的路要走，暂且把这个坑挖在这里，如果哪天心血来潮就填上。&lt;/p&gt;
+
+&lt;p&gt;一个知乎问答下有我的答案，与本篇文章内容同步：&lt;a href=&quot;https://www.zhihu.com/question/49770330/answer/118395115?from=profile_answer_card&quot;&gt;习惯写C++的人突然转去写Java，会有什么样的坑？&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;注意点&quot;&gt;注意点&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;char 是两个字节（字符及字符串默认都是 utf-16）。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;浮点数默认是 double，所以要写成 float f = (float)5.0 或 5.0f，不然会报错。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;整数除整数可能导致除零异常，而浮点数不会。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;break 和 continue 能够使用 flag 来跳出和继续指定循环。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;boolean 值只能是 true 和 false，不能从整形等其它值转换而来。用于字符串连接的时候会自动转换成「true」和「false」。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;if 里只能接受 boolean 值，所以 C++ 里的好习惯 if (5 == var) 在 Java 里不再必要，少写了一个 = 的时候 IDE 和编译器都会提示你。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;new Person(); 必须有 ()，否则编译不过。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;数组的声明方式推荐 int[] nArray = new int[4]; 或者 int[] nArray = {1,2,3};，第一种称为动态初始化，第二种称为静态初始化。动态初始化时，系统按如下规则分配初始值：整形为 0，浮点型为 0.0，字符型为’\u0000’，布尔型为 false，引用类型为 null。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;当系统加载类或创建该类的实例时，系统自动为成员变量分配内存空间，并在分配内存空间后，自动为成员变量指定初始值。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;局部变量定义后，必须经过显式初始化后才能使用，系统不会为局部变量执行初始化。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;访问控制符有 private、default、protected、public。private 只能在同一个类中访问，default 能在同一个类、同一个包中访问，protected 能在同一个类、同一个包、子类中访问，public 能在全局范围内访问。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在构造器中可以使用 this(params) 来调用本类的其它构造器，使用 super(params) 来调用父类构造器，只能书写在本构造器第一行，所以它们不能同时出现。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;使用 super 调用父类中的实例方法，使用父类类名调用父类中的类方法。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;如果父类方法具有 private 访问权限，则该方法对其子类是隐藏的，因此其子类无法访问和重写该方法。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;java 中有 instanceof 运算符，c++ 中对应的 RTTI 方式是（typeid）？instanceof 运算符的前一个操作数通常是一个引用类型的变量，后一个操作数通常是一个类（也可以是接口，可以把接口理解成一种特殊的类），它用于判断前面的对象是否是后面的类，或者其子类、实现类的实例。如果是，则返回 true，否则返回 false。判断是否是同一个类的实例时应使用 obj1.getClass()==obj2.getClass()。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;初始化块和声明属性时指定初始值，这些按源程序中排列顺序执行。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;java 中只有值传递。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;对 private 方法，即使它使用 final 修饰，在子类中也可以定义一个相同的，因为这是子类定义了一个新方法，并非重写。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;final 和 abstract 永远不能同时使用；static 和 abstrace 不能同时修饰某个方法；private 和 abstrace 不能同时修饰某个方法。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;java 中的 abstract 方法不能有方法体，c++ 中的 pure virtual 函数可以有实现。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;interface 的方法只能是 public abstract 的，属性只能是 public static final 的，使用 private 等修饰编译会报错。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;从内部类里引用外部类的属性或者方法时，可以用命 OuterClass.this.。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;非静态内部类里不能有静态成员。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;内部类可以使用 static 修饰，外部类不行。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;从外部类外创建内部非静态类的语法：OuterClass.InnerClass varName = OuterInstance.new InnerConstructor();
+从外部类外创建内部静态类的语法：OuterClass.InnerClass varName = new OuterClass.InnerConstructor();&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;内部类不可能被外部类的子类中重写，因为命名空间不同。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;纠误一处：《疯狂 Java 讲义》P214 讲道「如果匿名内部类需要访问外部类的局部变量，则必须使用 final 修饰符来修饰外部类的局部变量，否则系统将报错。经验证，只要这个局部变量在后续不改变其值，即使它不以 final 修饰，但实际表现是有效的 final 时，在 Java 8 环境下编译后会自动为它加上 final，不报错。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;switch 表达式可以使用整形或者枚举类实例（从 Java 7 开始，可以使用 String 对象了，参考：&lt;a href=&quot;http://docs.oracle.com/javase/7/docs/technotes/guides/language/strings-switch.html&quot;&gt;Strings in switch Statements&lt;/a&gt;）。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Set 判断两个对象是否相同不是使用 == 运算符，而是根据 equals 方法。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;HashSet 判断两个元素相等的标准是两个对象通过 equals 方法比较相等，并且两个对象的 hashCode() 方法返回值也相等。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;foreach 循环仅适用于实现了 Iterable 接口的 Java array 和 Collection 类。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;遍历任何 Collection（例如 Map、Set 或 List）时要删除元素只能使用 Iterator 的 remove 方法。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>飞鱼</name></author><summary type="html">这是一个 C++ 程序员自己总结的 Java 学习中应该注意的点。</summary></entry><entry><title type="html">在 Vim 里为 Markdown 文档展示导航窗格</title><link href="http://firsh.me/2016/08/03/add-outline-for-markdown-in-vim/" rel="alternate" type="text/html" title="在 Vim 里为 Markdown 文档展示导航窗格" /><published>2016-08-03T00:00:00+08:00</published><updated>2016-08-03T00:00:00+08:00</updated><id>http://firsh.me/2016/08/03/add-outline-for-markdown-in-vim</id><content type="html" xml:base="http://firsh.me/2016/08/03/add-outline-for-markdown-in-vim/">&lt;p&gt;假设我们正在 Vim 里编辑一个很长的 Markdown 文档，这时想跳转到另一个章节去查看或编辑内容，可以怎么做？&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;查找章节标题。&lt;/li&gt;
+  &lt;li&gt;上下翻页。&lt;/li&gt;
+  &lt;li&gt;记得行号，精确跳转（请收下我的膝盖）。&lt;/li&gt;
+  &lt;li&gt;…&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;不知你此时感受如何，反正我是无比想念 Word 的导航窗格，各种编程 IDE 的 Outline。&lt;/p&gt;
+
+&lt;p&gt;但等等，我们正在用编辑器之神 Vim 诶！无论想弄啥折腾折腾就有了。&lt;/p&gt;
+
+&lt;h2 id=&quot;最终效果&quot;&gt;最终效果&lt;/h2&gt;
+
+&lt;p&gt;我的完整 Vim 配置托管在 GitHub，可供参考：&lt;a href=&quot;https://github.com/mzlogin/config-files&quot;&gt;config-files&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/vim/vim-markdown-outline.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;实现步骤&quot;&gt;实现步骤&lt;/h2&gt;
+
+&lt;h3 id=&quot;安装-tagbar&quot;&gt;安装 tagbar&lt;/h3&gt;
+
+&lt;p&gt;这里我们借助于 tagbar 插件实现导航窗格。当然 tagbar 的功能远不限于此，可以为 C、C++、Python 和 Java 等很多语言提供类和方法列表视图等等，详见 &lt;a href=&quot;https://github.com/majutsushi/tagbar&quot;&gt;tagbar&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;推荐使用 &lt;a href=&quot;https://github.com/VundleVim/Vundle.vim&quot;&gt;Vundle&lt;/a&gt; 管理 Vim 插件，这样就可以简单几步安装插件了。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;在 vimrc 文件里添加如下内容：&lt;/p&gt;
+
+    &lt;div class=&quot;language-viml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Plugin &lt;span class=&quot;s1&quot;&gt;'majutsushi/tagbar'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;:so $MYVIMRC&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;:PluginInstall&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;安装-exuberant-ctags&quot;&gt;安装 Exuberant ctags&lt;/h3&gt;
+
+&lt;p&gt;tagbar 正常工作依赖于 Vim 7.0+ 和 Exuberant ctags。&lt;/p&gt;
+
+&lt;p&gt;下载地址：&lt;a href=&quot;http://ctags.sourceforge.net/&quot;&gt;http://ctags.sourceforge.net/&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;下载后将 ctags 可执行文件放置到一个在 PATH 环境变量的文件夹里，或者 Vim 安装目录的 Vim74 文件夹下，比如我是将 ctags.exe 放在 &lt;code class=&quot;highlighter-rouge&quot;&gt;D:\Program Files (x86)\Vim\vim74&lt;/code&gt; 文件夹下。&lt;/p&gt;
+
+&lt;h3 id=&quot;配置-tagbar-显示-markdown-导航窗格&quot;&gt;配置 tagbar 显示 Markdown 导航窗格&lt;/h3&gt;
+
+&lt;p&gt;tagbar 默认并不支持 Markdown 文件，但配置一下就好了。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;给 ~/.ctags 文件（Windows 下是 &lt;code class=&quot;highlighter-rouge&quot;&gt;C:\Users\&amp;lt;username&amp;gt;\.ctags&lt;/code&gt; 里增加如下内容，没有这个文件就新建一个：&lt;/p&gt;
+
+    &lt;div class=&quot;language-viml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;langdef&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;markdown
+&lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;langmap&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;markdown&lt;span class=&quot;p&quot;&gt;:.&lt;/span&gt;md
+&lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;regex&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;markdown&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/^#{1}[ \t]*([^#]+.*)/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt; \&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/h,headings/&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;regex&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;markdown&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/^#{2}[ \t]*([^#]+.*)/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;   \&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/h,headings/&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;regex&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;markdown&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/^#{3}[ \t]*([^#]+.*)/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;     \&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/h,headings/&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;regex&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;markdown&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/^#{4}[ \t]*([^#]+.*)/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;       \&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/h,headings/&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;regex&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;markdown&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/^#{5}[ \t]*([^#]+.*)/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;         \&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/h,headings/&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;regex&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;markdown&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/^#{6}[ \t]*([^#]+.*)/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;           \&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/h,headings/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;这表示提取 Markdown 文件里的一到六级标题，并使用空格缩进表示层次。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;给你的 vimrc 文件里增加如下内容：&lt;/p&gt;
+
+    &lt;div class=&quot;language-viml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:tagbar_type_markdown&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;        \&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'ctagstype'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'markdown'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;        \&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'kinds'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;                \&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'h:headings'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;        \&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;    \&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'sort'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;配置 tagbar 支持 Markdown。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;更多自定义配置&quot;&gt;更多自定义配置&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;现在你可以使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;:TagbarToggle&amp;lt;CR&amp;gt;&lt;/code&gt; 来打开导航窗格了，但每次开关导航窗格都要敲这么长一串命令毕竟不够方便，配置快捷键来操作更顺手，在你的 vimrc 文件里增加一个映射：&lt;/p&gt;
+
+    &lt;div class=&quot;language-viml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nnoremap &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;leader&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;tb &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;TagbarToggle&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;CR&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;现在你可以使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;leader&amp;gt;tb&lt;/code&gt; 来随时开/关导航窗格了。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;导航窗格默认是在右边，如果你也像我一样喜欢它在左边，也想指定它的宽度，可以在你的 vimrc 文件里配置：&lt;/p&gt;
+
+    &lt;div class=&quot;language-viml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:tagbar_width&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;30&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:tagbar_left&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;至此，大功告成了！&lt;/p&gt;
+
+&lt;h2 id=&quot;参考链接&quot;&gt;参考链接&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/majutsushi/tagbar/issues/70&quot;&gt;majutsushi/tagbar#70&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/majutsushi/tagbar/wiki&quot;&gt;Support for additional filetypes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>飞鱼</name></author><summary type="html">假设我们正在 Vim 里编辑一个很长的 Markdown 文档，这时想跳转到另一个章节去查看或编辑内容，可以怎么做？</summary></entry><entry><title type="html">Kloudsec 挂了，GitHub Pages 去 HTTPS 化</title><link href="http://firsh.me/2016/07/11/remove-https/" rel="alternate" type="text/html" title="Kloudsec 挂了，GitHub Pages 去 HTTPS 化" /><published>2016-07-11T00:00:00+08:00</published><updated>2016-07-11T00:00:00+08:00</updated><id>http://firsh.me/2016/07/11/remove-https</id><content type="html" xml:base="http://firsh.me/2016/07/11/remove-https/">&lt;p&gt;前天收到来自 Kloudsec 的邮件，说 Kloudsec 将于 2016/08/01 停止服务。Bad news，请容许我做一个悲伤的表情。&lt;/p&gt;
+
+&lt;h2 id=&quot;邮件原文&quot;&gt;邮件原文&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Hi all,&lt;/p&gt;
+
+  &lt;p&gt;It is with great sadness that I have to inform you that Kloudsec is shutting down.&lt;/p&gt;
+
+  &lt;p&gt;&lt;strong&gt;Why is Kloudsec shutting down?&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;ol&gt;
+    &lt;li&gt;We have been funding Kloudsec out of our own pocket&lt;/li&gt;
+    &lt;li&gt;Kloudsec is very expensive to maintain (upwards to $10000 / month)&lt;/li&gt;
+    &lt;li&gt;We are unable to make money from Kloudsec, nor raise any funds for it&lt;/li&gt;
+  &lt;/ol&gt;
+
+  &lt;p&gt;&lt;strong&gt;We will shut Kloudsec down on 1st August&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;p&gt;From now till then, we will not be maintaining the service.&lt;/p&gt;
+
+  &lt;p&gt;&lt;strong&gt;Migrating out of Kloudsec&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;p&gt;Migrating out of Kloudsec is extremely simple. All you have to do is to point your domain back at its origin server.&lt;/p&gt;
+
+  &lt;p&gt;You will lose the HTTPS cert. But you can fix that by&lt;/p&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;either issuing your own LetsEncrypt certificate&lt;/li&gt;
+    &lt;li&gt;or using Cloudflare.&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;p&gt;&lt;strong&gt;Lessons learnt&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;p&gt;From the start, we are extremely lucky to have a small revenue stream that let us to experiment with cool products. And Kloudsec is one of our biggest experiment.&lt;/p&gt;
+
+  &lt;p&gt;There are a couple of things we did right, and a couple we did wrong.&lt;/p&gt;
+
+  &lt;p&gt;We did right by having the right team come together, building a seriously sophiscated product. (Thank you Ivan and Bach)&lt;/p&gt;
+
+  &lt;p&gt;We did wrong by building a sophiscated product that made it hard for a small team to maintain, let alone scale.&lt;/p&gt;
+
+  &lt;p&gt;We did wrong by building a product that was not immediately useful enough so much so that people will pay for.&lt;/p&gt;
+
+  &lt;p&gt;We did wrong by building a product that was too expensive to maintain.&lt;/p&gt;
+
+  &lt;p&gt;We did wrong by assuming that traction solves all ailments. Not in Singapore, you don’t. There is no good venture money for real hard-tech software startups in Singapore.&lt;/p&gt;
+
+  &lt;p&gt;We did right with pulling the plug so we can learn from these mistakes and work on the next product.&lt;/p&gt;
+
+  &lt;p&gt;&lt;strong&gt;What’s next for us&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;p&gt;From Kloudsec, we identified a few niche problems that we will be looking to solve. In other words, we will continually be building.&lt;/p&gt;
+
+  &lt;p&gt;And you can be sure from our next product onwards, we will charge right from day 1 so we can sustain the product financially.&lt;/p&gt;
+
+  &lt;p&gt;Lastly, thank you!&lt;/p&gt;
+
+  &lt;p&gt;Thank you. Most of you have spoken to me, or read the posts I’ve written on Github, on Hacker News, or Producthunt about Kloudsec. You guys took a leap of faith in trusting this small unknown team and product, and used us.&lt;/p&gt;
+
+  &lt;p&gt;I’m sorry to disappoint you with this piece of news, but I’ll try better next time.&lt;/p&gt;
+
+  &lt;p&gt;If you like, you can follow me on Twitter at @nubela. You can also contact me at anytime at steven@nubela.co&lt;/p&gt;
+
+  &lt;p&gt;Steven Goh.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;我的决定&quot;&gt;我的决定&lt;/h2&gt;
+
+&lt;p&gt;Sigh!&lt;/p&gt;
+
+&lt;p&gt;想起五月份的时候我还欢天喜地地给博客 HTTPS 化了，并为此写了一篇博客 &lt;a href=&quot;http://mazhuang.org/2016/05/21/enable-https-for-github-pages/&quot;&gt;为绑定域名的 GitHub Pages 启用 HTTPS&lt;/a&gt;，还将它推荐到了 &lt;a href=&quot;http://gold.xitu.io/entry/574f7ea17db2a20055c3b818/detail&quot;&gt;掘金&lt;/a&gt;，收获了 64 次收藏，并在那篇文章下创下了我个人博客单篇评论数最多的记录。&lt;/p&gt;
+
+&lt;p&gt;没想到还没等到 Kloudsec 第一次为我的域名证书自动续期，它家的服务就要关停了。&lt;/p&gt;
+
+&lt;p&gt;但也没有办法，使用第三方的服务，特别是初创公司的服务本就有这种风险。&lt;/p&gt;
+
+&lt;p&gt;本来 GitHub Pages + Custom Domain + HTTPS 也还有其它解决方案，但我已不想再折腾了，多引入一层中间服务，就多一层出状况的风险，我只是想作一名安静地写博客的美男子啊。&lt;/p&gt;
+
+&lt;p&gt;所以决定去掉自定义域名的 HTTPS，恢复 HTTP，现在 GitHub Pages 已经支持 &lt;code class=&quot;highlighter-rouge&quot;&gt;*.github.io&lt;/code&gt; 域名的 HTTPS，除非哪天它原生支持 Custom Domain 的 HTTPS，否则我不再折腾这个事情。&lt;/p&gt;
+
+&lt;h2 id=&quot;采取的措施&quot;&gt;采取的措施&lt;/h2&gt;
+
+&lt;p&gt;当初之所以想开启 HTTPS 的一个重要原因就是 Google 收录了博客的 HTTPS 链接，但是证书不对导致用户打不开或者有警告，既然使用自定义域名没有办法让证书对，那就让 Google 不收录 HTTPS 的链接吧。&lt;/p&gt;
+
+&lt;h3 id=&quot;告诉-google-不收录-https-链接&quot;&gt;告诉 Google 不收录 HTTPS 链接&lt;/h3&gt;
+
+&lt;p&gt;如果一个页面使用 HTTPS 和 HTTP 都能访问，那如果想 Google 只收录 HTTP 版，而不收录 HTTPS 版，那可以在页面的 &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; 里添加 &lt;code class=&quot;highlighter-rouge&quot;&gt;canonical&lt;/code&gt; 给爬虫以建议，具体方法如下：&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;canonical&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http 开头的 URL&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><author><name>飞鱼</name></author><summary type="html">前天收到来自 Kloudsec 的邮件，说 Kloudsec 将于 2016/08/01 停止服务。Bad news，请容许我做一个悲伤的表情。</summary></entry></feed>

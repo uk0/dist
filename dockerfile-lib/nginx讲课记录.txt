@@ -1,0 +1,1099 @@
+DOCS
+http://wiki.nginx.org/Main
+http://www.nginx.com.cn
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx lvs 比较
+http://os.51cto.com/art/201112/305750.htm
+
+LVS和Nginx都可以用作多机负载的方案，它们各有优缺，在生产环境中需要好好分析实际情况并加以利用。
+
+首先提醒，做技术切不可人云亦云，我云即你云；同时也不可太趋向保守，过于相信旧有方式而等别人来帮你做垫被测试。把所有即时听说到的好东西加以钻研，从而提高自己对技术的认知和水平，乃是一个好习惯。
+
+下面来分析一下两者：
+
+一、lvs的优势：
+
+1、抗负载能力强，因为lvs工作方式的逻辑是非常之简单，而且工作在网络4层仅做请求分发之用，没有流量，所以在效率上基本不需要太过考虑。在我手里的 lvs，仅仅出过一次问题：在并发最高的一小段时间内均衡器出现丢包现象，据分析为网络问题，即网卡或linux2.4内核的承载能力已到上限，内存和 cpu方面基本无消耗。
+
+2、配置性低，这通常是一大劣势，但同时也是一大优势，因为没有太多可配置的选项，所以除了增减服务器，并不需要经常去触碰它，大大减少了人为出错的几率。
+
+3、工作稳定，因为其本身抗负载能力很强，所以稳定性高也是顺理成章，另外各种lvs都有完整的双机热备方案，所以一点不用担心均衡器本身会出什么问题，节点出现故障的话，lvs会自动判别，所以系统整体是非常稳定的。
+
+4、无流量，上面已经有所提及了。lvs仅仅分发请求，而流量并不从它本身出去，所以可以利用它这点来做一些线路分流之用。没有流量同时也保住了均衡器的IO性能不会受到大流量的影响。
+
+5、基本上能支持所有应用，因为lvs工作在4层，所以它可以对几乎所有应用做负载均衡，包括http、数据库、聊天室等等。
+
+另：lvs也不是完全能判别节点故障的，譬如在wlc分配方式下，集群里有一个节点没有配置VIP，会使整个集群不能使用，这时使用wrr分配方式则会丢掉一台机。目前这个问题还在进一步测试中。所以，用lvs也得多多当心为妙。
+
+二、nginx和lvs作对比的结果
+
+1、nginx工作在网络的7层，所以它可以针对http应用本身来做分流策略，比如针对域名、目录结构等，相比之下lvs并不具备这样的功能，所以 nginx单凭这点可利用的场合就远多于lvs了；但nginx有用的这些功能使其可调整度要高于lvs，所以经常要去触碰触碰，由lvs的第2条优点 看，触碰多了，人为出问题的几率也就会大。
+
+2、nginx对网络的依赖较小，理论上只要ping得通，网页访问正常，nginx就能连得通，nginx同时还能区分内外网，如果是同时拥有内外网的 节点，就相当于单机拥有了备份线路；lvs就比较依赖于网络环境，目前来看服务器在同一网段内并且lvs使用direct方式分流，效果较能得到保证。另 外注意，lvs需要向托管商至少申请多一个ip来做Visual IP，貌似是不能用本身的IP来做VIP的。要做好LVS管理员，确实得跟进学习很多有关网络通信方面的知识，就不再是一个HTTP那么简单了。
+
+3、nginx安装和配置比较简单，测试起来也很方便，因为它基本能把错误用日志打印出来。lvs的安装和配置、测试就要花比较长的时间了，因为同上所述，lvs对网络依赖比较大，很多时候不能配置成功都是因为网络问题而不是配置问题，出了问题要解决也相应的会麻烦得多。
+
+4、nginx也同样能承受很高负载且稳定，但负载度和稳定度差lvs还有几个等级：nginx处理所有流量所以受限于机器IO和配置；本身的bug也还是难以避免的；nginx没有现成的双机热备方案，所以跑在单机上还是风险较大，单机上的事情全都很难说。
+
+5、nginx可以检测到服务器内部的故障，比如根据服务器处理网页返回的状态码、超时等等，并且会把返回错误的请求重新提交到另一个节点。目前lvs中 ldirectd也能支持针对服务器内部的情况来监控，但lvs的原理使其不能重发请求。重发请求这点，譬如用户正在上传一个文件，而处理该上传的节点刚 好在上传过程中出现故障，nginx会把上传切到另一台服务器重新处理，而lvs就直接断掉了，如果是上传一个很大的文件或者很重要的文件的话，用户可能 会因此而恼火。
+
+6、nginx对请求的异步处理可以帮助节点服务器减轻负载，假如使用apache直接对外服务，那么出现很多的窄带链接时apache服务器将会占用大 量内存而不能释放，使用多一个nginx做apache代理的话，这些窄带链接会被nginx挡住，apache上就不会堆积过多的请求，这样就减少了相 当多的内存占用。这点使用squid也有相同的作用，即使squid本身配置为不缓存，对apache还是有很大帮助的。lvs没有这些功能，也就无法能 比较。
+
+7、nginx能支持http和email（email的功能估计比较少人用），lvs所支持的应用在这点上会比nginx更多。
+
+在使用上，一般最前端所采取的策略应是lvs，也就是DNS的指向应为lvs均衡器，lvs的优点令它非常适合做这个任务。
+
+重要的ip地址，最好交由lvs托管，比如数据库的ip、webservice服务器的ip等等，这些ip地址随着时间推移，使用面会越来越大，如果更换ip则故障会接踵而至。所以将这些重要ip交给lvs托管是最为稳妥的，这样做的唯一缺点是需要的VIP数量会比较多。
+
+nginx可作为lvs节点机器使用，一是可以利用nginx的功能，二是可以利用nginx的性能。当然这一层面也可以直接使用squid，squid的功能方面就比nginx弱不少了，性能上也有所逊色于nginx。
+
+nginx也可作为中层代理使用，这一层面nginx基本上无对手，唯一可以撼动nginx的就只有lighttpd了，不过lighttpd目前还没有 能做到nginx完全的功能，配置也不那么清晰易读。另外，中层代理的IP也是重要的，所以中层代理也拥有一个VIP和lvs是最完美的方案了。
+
+nginx也可作为网页静态服务器，不过超出了本文讨论的范畴，简单提一下。
+
+具体的应用还得具体分析，如果是比较小的网站（日PV<1000万），用nginx就完全可以了，如果机器也不少，可以用DNS轮询，lvs所耗费的机器还是比较多的；大型网站或者重要的服务，机器不发愁的时候，要多多考虑利用lvs。
+
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+说明：
+1、 使用Nginx+keepalved实现负载均衡，解决单点与高流量并发问题
+一、 Nginx+keepalved实现负载均衡
+WHY? 为什么用Nginx而不用LVS?
+7点理由足以说明一切：
+1 、高并发连接： 官方测试能够支撑 5 万并发连接，在实际生产环境中跑到 2 ～ 3 万并发连接数。?
+2 、内存消耗少： 在 3 万并发连接下，开启的 10 个 Nginx 进程才消耗 150M 内存（ 15M*10=150M ）。?
+3 、配置文件非常简单： 风格跟程序一样通俗易懂。?
+4 、成本低廉： Nginx 为开源软件，可以免费使用。而购买 F5 BIG-IP 、 NetScaler 等硬件负载均衡交换机则需要十多万至几十万人民币。?
+? 使用 Nginx 做七层负载均衡的理由?
+5 、支持 Rewrite 重写规则： 能够根据域名、 URL 的不同，将 HTTP 请求分到不同的后端服务器群组。?
+6 、内置的健康检查功能： 如果 Nginx Proxy 后端的某台 Web 服务器宕机了，不会影响前端访问。?
+7 、节省带宽： 支持 GZIP 压缩，可以添加浏览器本地缓存的 Header 头。
+进一步说明：
+Keepalived是Linux下面实现VRRP 备份路由的高可靠性运行件。基于Keepalived设计的服务模式能够真正做到主服务器和备份服务器故障时IP瞬间无缝交接。
+Nginx是基于Linux 2.6内核中epoll模型http服务器，与Apache进程派生模式不同的是Nginx进程基于于Master+Slave多进程模型，自身具有非常 稳定的子进程管理功能。在Master进程分配模式下，Master进程永远不进行业务处理，只是进行任务分发，从而达到Master进程的存活高可靠 性，Slave进程所有的业务信号都由主进程发出，Slave进程所有的超时任务都会被Master中止，属于非阻塞式任务模型。
+服务器IP存活检测是由Keepalived自己本身完成的，将2台服务器配置成Keepalived互为主辅关系，任意一方机器故障对方都能够将IP接 管过去。
+Keepalived的服务IP通过其配置文件进行管理，依靠其自身的进程去确定服务器的存活状态，如果在需要对服务器进程在线维护的情况下，只需要停掉 被维护机器的Keepalived服务进程，另外一台服务器就能够接管该台服务器的所有应用。
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx 安装与配置文件
+
+#cat /etc/nginx/nginx.conf
+
+#运行用户
+user www-data;    
+#启动进程,通常设置成和cpu的数量相等
+worker_processes  1;
+ 
+#全局错误日志及PID文件
+error_log  /var/log/nginx/error.log;
+pid        /var/run/nginx.pid;
+ 
+#工作模式及连接数上限
+events {
+    use   epoll;             #epoll是多路复用IO(I/O Multiplexing)中的一种方式,但是仅用于linux2.6以上内核,可以大大提高nginx的性能
+    worker_connections  1024;#单个后台worker process进程的最大并发链接数
+    # multi_accept on; 
+}
+ 
+#设定http服务器，利用它的反向代理功能提供负载均衡支持
+http {
+     #设定mime类型,类型由mime.type文件定义
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+    #设定日志格式
+    access_log    /var/log/nginx/access.log;
+ 
+    #sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，对于普通应用，
+    #必须设为 on,如果用来进行下载等应用磁盘IO重负载应用，可设置为 off，以平衡磁盘与网络I/O处理速度，降低系统的uptime.
+    sendfile        on;
+    #tcp_nopush     on;
+ 
+    #连接超时时间
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+    tcp_nodelay        on;
+    
+    #开启gzip压缩
+    gzip  on;
+    gzip_disable "MSIE [1-6]\.(?!.*SV1)";
+ 
+    #设定请求缓冲
+    client_header_buffer_size    1k;
+    large_client_header_buffers  4 4k;
+ 
+    include /etc/nginx/conf.d/*.conf;
+    include /etc/nginx/sites-enabled/*;
+ 
+    #设定负载均衡的服务器列表
+     upstream mysvr {
+    #weigth参数表示权值，权值越高被分配到的几率越大
+    #本机上的Squid开启3128端口
+    server 192.168.8.1:3128 weight=5;
+    server 192.168.8.2:80  weight=1;
+    server 192.168.8.3:80  weight=6;
+    }
+ 
+
+   server {
+    #侦听80端口
+        listen       80;
+        #定义使用www.xx.com访问
+        server_name  www.xx.com;
+ 
+        #设定本虚拟主机的访问日志
+        access_log  logs/www.xx.com.access.log  main;
+ 
+    #默认请求
+    location / {
+          root   /root;      #定义服务器的默认网站根目录位置
+          index index.php index.html index.htm;   #定义首页索引文件的名称
+ 
+          fastcgi_pass  www.xx.com;
+         fastcgi_param  SCRIPT_FILENAME  $document_root/$fastcgi_script_name; 脚本文件请求的路径
+          include /etc/nginx/fastcgi_params;
+        }
+ 
+    # 定义错误提示页面
+    error_page   500 502 503 504 /50x.html;  
+        location = /50x.html {
+        root   /root;
+    }
+ 
+    #静态文件，nginx自己处理
+    location ~ ^/(images|javascript|js|css|flash|media|static)/ {
+        root /var/www/virtual/htdocs;
+        #过期30天，静态文件不怎么更新，过期可以设大一点，如果频繁更新，则可以设置得小一点。
+        expires 30d;
+    }
+    #PHP 脚本请求全部转发到 FastCGI处理. 使用FastCGI默认配置.
+    location ~ \.php$ {
+        root /root;
+        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME /home/www/www$fastcgi_script_name;
+        include fastcgi_params;
+    }
+    #设定查看Nginx状态的地址
+    location /NginxStatus {
+        stub_status            on;
+        access_log              on;
+        auth_basic              "NginxStatus";
+        auth_basic_user_file  conf/htpasswd;
+    }
+    #禁止访问 .htxxx 文件
+    location ~ /\.ht {
+        deny all;
+    }
+     
+     }
+}
+ 
+以上是一些基本的配置,使用Nginx最大的好处就是负载均衡
+ 
+如果要使用负载均衡的话,可以修改配置http节点如下：
+ 
+
+#设定http服务器，利用它的反向代理功能提供负载均衡支持
+http {
+     #设定mime类型,类型由mime.type文件定义
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+    #设定日志格式
+    access_log    /var/log/nginx/access.log;
+ 
+    #省略上文有的一些配置节点
+ 
+    #。。。。。。。。。。
+ 
+    #设定负载均衡的服务器列表
+     upstream mysvr {
+    #weigth参数表示权值，权值越高被分配到的几率越大
+    server 192.168.8.1x:3128 weight=5;#本机上的Squid开启3128端口
+    server 192.168.8.2x:80  weight=1;
+    server 192.168.8.3x:80  weight=6;
+    }
+ 
+   upstream mysvr2 {
+    #weigth参数表示权值，权值越高被分配到的几率越大
+ 
+    server 192.168.8.x:80  weight=1;
+    server 192.168.8.x:80  weight=6;
+    }
+ 
+   #第一个虚拟服务器
+   server {
+    #侦听192.168.8.x的80端口
+        listen       80;
+        server_name  192.168.8.x;
+ 
+      #对aspx后缀的进行负载均衡请求
+    location ~ .*\.aspx$ {
+ 
+         root   /root;      #定义服务器的默认网站根目录位置
+          index index.php index.html index.htm;   #定义首页索引文件的名称
+ 
+          proxy_pass  http://mysvr ;#请求转向mysvr 定义的服务器列表
+ 
+          #以下是一些反向代理的配置可删除.
+ 
+          proxy_redirect off;
+ 
+          #后端的Web服务器可以通过X-Forwarded-For获取用户真实IP
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          client_max_body_size 10m;    #允许客户端请求的最大单文件字节数
+          client_body_buffer_size 128k;  #缓冲区代理缓冲用户端请求的最大字节数，
+          proxy_connect_timeout 90;  #nginx跟后端服务器连接超时时间(代理连接超时)
+          proxy_send_timeout 90;        #后端服务器数据回传时间(代理发送超时)
+          proxy_read_timeout 90;         #连接成功后，后端服务器响应时间(代理接收超时)
+          proxy_buffer_size 4k;             #设置代理服务器（nginx）保存用户头信息的缓冲区大小
+          proxy_buffers 4 32k;               #proxy_buffers缓冲区，网页平均在32k以下的话，这样设置
+          proxy_busy_buffers_size 64k;    #高负荷下缓冲大小（proxy_buffers*2）
+          proxy_temp_file_write_size 64k;  #设定缓存文件夹大小，大于这个值，将从upstream服务器传
+ 
+       }
+ 
+     }
+}
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+location [=|~|~*|^~|@] /uri/ {???}
+解释：
+[ = ]  精确匹配，如果找到，立即停止搜索，并立即处理请求（优先级最高）
+[ ~ ]  区分大小写
+[ ^~ ] 之匹配字符串，不匹配正则表达式
+[ ~*]  不区分大小写
+[ @ ]  指定一个命名的location，一般只用于内部重定向请求
+匹配过程
+首先对字符串进行匹配查询，最确切的匹配将被使用。然后，正则表达式的匹配查询开始，匹配第一个结果后会停止搜索，如果没有找到正则表达式，将使用字符串的搜索结果，如果字符串和正则都匹配，那么正则优先级较高。
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Nginx支持下表中的信号：
+
+信号名     作用描述
+
+TERM, INT       快速关闭程序，中止当前正在处理的请求
+
+QUIT             处理完当前请求后，关闭程序
+
+HUP             重新加载配置，并开启新的工作进程，关闭旧的进程，此操作不会中断请求
+
+USR1            重新打开日志文件，用于切换日志，例如每天生成一个新的日志文件
+
+USR2             平滑升级可执行程序
+
+WINCH            从容关闭工作进程
+
+
+
+examples:
+运行 killall –s HUP nginx 来让 Nginx 重新加载配置
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+location 对URL进行匹配.可以进行重定向或者进行新的代理 负载均衡
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx 基于主机头的多网站运行
+vim /etc/nginx/conf.d/virtual.conf
+server {
+    listen       80;
+    server_name  www.abc.com;
+
+    location / {
+        root   html/abc;
+        index  index.html index.htm index.php;
+
+    }
+}
+
+
+server {
+    listen       80;
+    server_name  www.cbd.com;
+
+    location / {
+        root   html/cbd;
+        index  index.html index.htm;
+    }
+}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx 代理与反向代理
+
+
+server {
+        listen        80;
+        server_name www.abc.com;
+        location / {
+            proxy_pass http://192.168.18.250;
+            
+          }
+}
+
+
+
+server {
+        listen        80;
+        server_name www.abc.com;
+        location ~ \.php$ {
+            proxy_pass http://192.168.18.250;
+            
+          }
+}
+
+数据包走向   client-->nginx---->server  nginx收到客户端的请求会替代客户端去找服务器下载到nginx，然后nginx在把数据交给客户端。客户端到服务器的数据包必须经过nginx
+
+Proxy参数
+
+client_max_body_size     300m;
+client_body_buffer_size  128k;
+proxy_connect_timeout    600;
+proxy_read_timeout       600;
+proxy_send_timeout       600;
+proxy_buffer_size        16k;
+proxy_buffers            4 32k;
+proxy_busy_buffers_size 64k;
+参数解释：
+#允许客户端请求的最大的单个文件字节数  
+client_max_body_size     300m;  
+ #缓冲区代理缓冲用户端请求的最大字节数 可以理解为先保存到本地再传给用户  
+client_body_buffer_size  128k;  
+ #跟后端服务器连接的超时时间_发起握手等候响应超时时间  
+proxy_connect_timeout    600;  
+ #连接成功后_等候后端服务器响应时间_其实已经进入后端的排队之中等候处理  
+proxy_read_timeout       600;  
+ #后端服务器数据回传时间_就是在规定时间之内后端服务器必须传完所有的数据  
+proxy_send_timeout       600;              
+ #代理请求缓存区_这个缓存区间会保存用户的头信息以供Nginx进行规则处理_一般只要能保存下头信息即可  
+proxy_buffer_size        16k;              
+ #同上 告诉Nginx保存单个用的几个Buffer 最大用多大空间  
+proxy_buffers            4 32k;               
+ #如果系统很忙的时候可以申请更大的proxy_buffers 官方推荐*2   
+ proxy_busy_buffers_size 64k; 
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+URL重定向
+server {
+        listen        80;
+        server_name www.abc.com;
+        location / {
+            rewrite ^/ http://192.168.18.250;
+            
+          }
+}
+
+数据包走向   client-->nginx nginx告诉客户端让服务器的新地址（真实服务器），客户端收到后再去找服务器 client--->server
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LNMP
+
+LNMP
+L linux
+N nginx
+M mysql
+P php
+
+fastcgi spawn-fcgi-1.6.3-1.el5.i386.rpm
+opcode加速      php-eaccelerator-0.9.5.2-2.el5.i386.rpm
+
+备注:nginx只能处理静态页面， php我们使用fastcgi来处理
+
+yum install php php-mysql php-pdo php-cli mysql mysql-server 
+[root@server1 nginx-rpm]# yum install *.rpm --nogpgcheck -y
+
+cp php_cgi /etc/init.d/
+chmod +x /etc/init.d/php_cgi 
+
+备注：和以前处理php的不同，以前apache＋libphp5.so模块不需要单独启动php的服务，现在使用fastcgi处理php需要单独启动服务，服务就是php_cgi这个脚步来控lib制！
+
+
+vim /etc/nginx/nginx.conf
+
+location ~ \.php$ {
+            root           html;
+            fastcgi_pass   127.0.0.1:9000;
+            fastcgi_index  index.php;
+            fastcgi_param  SCRIPT_FILENAME  /usr/share/nginx/html$fastcgi_script_name;
+            include        fastcgi_params;
+
+
+###打开#注释，修改为SCRIPT_FILENAME  /usr/share/nginx/html$fastcgi_script_name;
+
+
+启动相关服务
+[root@server1 nginx-rpm]# /etc/init.d/nginx start
+
+注意：apache 和nginx 都使用 80端口，默认只能开一个服务！
+
+nginx的DocumentRoot  /usr/share/nginx/html
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+upstream module
+
+nginx的upstream目前支持4种方式的分配
+
+1、轮询（默认）
+
+每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。
+
+2、weight
+
+指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。
+
+2、ip_hash
+
+每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session的问题。
+
+3、fair（第三方）
+
+按后端服务器的响应时间来分配请求，响应时间短的优先分配。
+
+4、url_hash（第三方）
+
+按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，后端服务器为缓存时比较有效。
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+负载均衡:
+
+只需要在http中增加
+
+upstream tgcluster {#定义负载均衡设备的Ip及设备状态
+
+ip_hash;
+
+server 127.0.0.1:9090 down;
+
+server 127.0.0.1:8080 weight=2;
+
+server 127.0.0.1:6060;
+
+server 127.0.0.1:7070 backup;
+
+}
+
+在需要使用负载均衡的server中增加
+
+proxy_pass http://tgcluster/;
+
+每个设备的状态设置为:
+
+1.down 表示单前的server暂时不参与负载
+
+2.weight 默认为1.weight越大，负载的权重就越大。
+
+3.max_fails ：允许请求失败的次数默认为1.当超过最大次数时，返回proxy_next_upstream 模块定义的错误
+
+4.fail_timeout:max_fails次失败后，暂停的时间。
+
+5.backup： 其它所有的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+代理
+
+可以让虚拟机基于不同端口来做网站，在虚拟主机配置文件做好后，只需在主配文件中定义location就可以，可以按照请求的不同分别将请求送到不同的虚拟主机。这样的虚拟主机只能基于用户访问的不同来定义。也可以直接按主机头来定义。
+
+只需要在nginx的配置文件中增加虚拟主机,然后加入
+
+proxy_pass http://localhost:8000;
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx 分发器设置
+默认采用RR算法，如果想采用其他算法，如ip_hash类似于LVS sh,例子
+
+upstream apache {
+        ip_hash;
+        server 192.168.18.187;
+        server 192.168.18.116;
+}
+
+
+  server {
+        listen 80;
+        server_name www.abc.com;
+        location / {
+        proxy_pass http://apache;
+                }
+   }
+
+ip_hash算法能够保证来自同样源地址的请求，都分发到同一台主机
+
+
+url_hash
+http://ip/a.html 
+需要自己重新编译nginx
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+基于http协议主机头的分发
+
+http ｛
+ 	upstream tomcat {
+ 		server 192.168.18.254:8080;
+	}
+	
+
+	server {
+        listen 80;
+        server_name www.tomcat.com;
+        location / {
+        proxy_pass http://tomcat;
+		＃root  /tmp/xiaoxuebiye/;
+                }
+        }
+｝
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+基于权重
+
+upstream apache {
+        server 192.168.18.187 weight=1;
+        server 192.168.18.116 weight=2;   
+}
+   server {
+        listen 80;
+        server_name www.tomcat.com;
+        location / {
+        proxy_pass http://apache;
+                }
+   }
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+RS故障检测
+
+upstream apache {
+        server 192.168.18.187 weight=1 fail_timeout=1s;
+        server 192.168.18.116 weight=2 fail_timeout=1s;   
+}
+   server {
+        listen 80;
+        server_name www.tomcat.com;
+        location / {
+        proxy_pass http://apache;
+                }
+   }
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+限速设置(本案例是针对虚拟主机)
+limit_zone one $binary_remote_addr 10M; 总带宽10M
+server {
+                listen 80;
+                server_name www.domain.com;
+                location / {
+                        root /tmp/186;
+                        index index.html;
+               
+                        limit_rate 10k;  下载速度
+ #                      limit_rate_after 3m;
+                        limit_conn one 1;  允许一个IP同时链接多少次
+ }
+
+
+2.limit_rate
+
+   是指定向客户端传输数据的速度，单位是每秒传输的字节数
+
+   该限制只针对一个连接的设定，如果同时两个连接数，那么速度是设置值的两倍
+
+3.limit_rate_after
+
+   当一个客户端连接后，将以最快的速度下载多大文件，然后在以限制速度下载文件
+
+   该指令是下载字节量的大小值，而不是时间值
+当一个客户端连接后，将以最快的速度下载3M，然后再以大约10k的速度下载
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+基于语言的分发
+要求各位完成php，jsp分发的基础上实现负载均衡
+
+
+http { 
+
+		  upstream apachephp {
+        	server 192.168.18.187;
+		}
+
+
+ upstream apachejsp {
+        	server 192.168.18.188;
+		}
+
+
+		server {
+		  location ~* \.php$ {
+        proxy_pass http://apachephp;
+			}
+		}
+
+
+
+		  location ~* \.jsp$ {
+        proxy_pass http://apachejsp;
+			}
+		
+}
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+基于浏览器分发
+
+server {
+                listen 80;
+                server_name www.domain.com;
+                
+location / {
+  proxy_pass http://192.168.18.241;
+    
+       if ( $http_user_agent ~* Elinks ) {
+         proxy_pass http://192.168.18.245;
+     }
+        
+      if ( $http_user_agent ~* Mozilla ) {
+         proxy_pass http://192.168.18.246;
+     }
+  }
+}
+
+
+思考如果其他浏览器呢？  去访问/tmp/186文件夹下的网站。  elinks浏览器去访问245  firefox访问246
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+基于源地址分发（类似于ACL DNS）
+编译
+./configure --with-http_geoip_module
+
+
+upstream bj.server {
+        server 192.168.18.245;
+ }
+upstream sh.server {
+        server 192.168.18.244;
+ }
+
+upstream default.server {
+        server 192.168.18.242;
+ }
+
+geo $geo {
+        default default;
+        192.168.18.241/32 bj;
+        192.168.18.242/32 sh;
+}
+
+
+location / {
+             proxy_pass http://$geo.server$request_uri;
+
+        }
+
+
+241---access result is 245
+242---access result is 244
+其他机器访问到时242页面
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1首先要排除 daolian.jpg
+location ~ daolian\.jpg${
+			}
+
+2.如果不是你的网站链过来的，就显示daolian.jpg这个图片
+location ~* .(gif|jpg|png|swf|flv)$ {
+	 root /tmp/4;
+valid_referers none blocked www.domain.com *.domain.com;
+if ($invalid_referer) {
+#rewrite ^/ http://www.domain.com/daolian.jpg;
+return 403;
+	}
+}
+
+
+
+        server {
+                listen 80;
+                server_name www.domain.com;
+                location / {
+                        root /tmp/186;
+                        index index.html;
+                }
+
+                location ~ daolian.jpg {
+                        root /tmp/186;
+                        }
+                location ~* .(gif|jpg|png|swf|flv)$ {
+                        root /tmp/186;
+                        valid_referers none blocked www.domain.com *.domain.com;
+                        if ($invalid_referer) {
+                        rewrite ^/ http://www.domain.com/daolian.jpg;
+                        }
+                }
+        }
+
+一，针对后缀实行防盗链
+location ~* \.(gif|jpg|jpeg|png|bmp|txt|zip|jar|swf)$ {
+valid_referers none blocled *.mynginx.com;
+if ($invalid_referer) {
+rewrite ^/  http://www.mynginx.com/daolian.gif;
+#return 403;
+}
+
+}
+
+二，针对图片目录实行防盗链
+location /images/ {
+alias /data/images/;
+valid_referers none blocked *.mynginx.com;
+if ($invalid_referer) {
+rewrite ^/  http://www.mynginx.com/daolian.gif;
+#return 403;
+}
+}
+
+需要注意的是，这二段防盗链的配置要放在正确的server里，也就是要放在图片url所在的server_name里。其次
+rewrite也要写正确，否则可能造成重复rewrite，可以用firefox的插件Firebug来查看。如果不想重写到某个url，
+可以直接返回403。
+
+q
+
+附上有关Referer的解释：
+
+当一个请求头的Referer字段中包含一些非正确的字段，这个模块可以禁止这个请求访问站点。
+这个头可以随意的伪造，因此，使用这个模块并不能100%的阻止这些请求，绝大多数拒绝的请求来自一些典型的浏览器，
+可以认为这些典型的浏览器并不能提供一个”Referer”头，甚至是那些正确的请求。
+
+指令：valid_referers
+
+语法：valid_referers [none|blocked|server_names] …
+默认值：none
+使用字段：server, location
+这个指令在referer头的基础上为 $invalid_referer 变量赋值，其值为0或1。
+可以使用这个指令来实现防盗链功能，如果valid_referers列表中没有Referer头的值， $invalid_referer将被设置为1（
+
+参照前例）。
+参数可以使如下形式：
+
+none意为不存在的Referer头
+blocked意为根据防火墙伪装Referer头，如：“Referer: XXXXXXX”。
+server_names为一个或多个服务器的列表，0.5.33版本以后可以在名称中使用“*”通配符。
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+做过测试的。  referers 去看抓包文件http   html 文件时a.html
+
+location ~* \.(png|jpg|gif)$ {
+             valid_referers none 192.168.18.241;
+               if ($invalid_referer) {
+                  return 403;
+                  }
+           }
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+keepalived+nginx
+注意：keepalived是来控制nginx服务器虚拟IP的。他不能管理分发，分发只能由nginx来做，所以keepalived只负责管理虚IP，不用在keepaliced配置文件中定义RS服务器，只需要定义VIP。
+      nginx服务器通过upstream模块来定义分发。
+
+
+
+主服务器设置
+安装nginx 
+安装keepalived
+
+编辑keepalived主配文件
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+vim /etc/keepalived/keepalived.conf
+
+
+! Configuration File for keepalived
+
+global_defs {
+   router_id LVS_DEVEL
+}
+
+vrrp_script check_nginx {
+        script sh /etc/keepalived/nginx_pid.sh
+        interval 2
+        fail 1
+}
+
+
+vrrp_instance nginx {
+    state MASTER
+    interface eth0
+    virtual_router_id 51
+    priority 100
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass 1111
+    }
+    virtual_ipaddress {
+        192.168.18.250
+    }
+
+track_script {
+                check_nginx
+        }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+设置nginx监控脚本，如果发现nginx服务宕机，立刻重新启动；如果启动不了就关闭keepalived服务，让辅助的接手分发工作。
+vim /etc/keepalived/nginx_pid.sh
+
+
+#!/bin/bash
+while :
+do
+nginxpid=`ps -C nginx --no-header |wc -l`
+if [ $nginxpid -eq 0 ];then
+   /etc/init.d/nginx restart
+      sleep 5
+        nginxpid=`ps -C nginx --no-header |wc -l`
+          if [ $nginxpid -eq 0 ];then
+              /etc/init.d/keepalived stop
+          fi
+fi
+sleep 5
+done
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+后台启动监控脚本
+注意使用方法
+&  和 nohup...&
+
+root用户如果使用&则root退出后则后台程序退出。如果使用nohup..&就不会退出，nohup就是永远不退出的意思（no hand up 永远不挂）
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+启动
+service nginx restart
+service keepalived restart
+nohup sh /etc/keepalived/nginx_pid.sh &
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+备份keepalived主机设置
+
+安装nginx,keepalived
+
+编辑配置文件
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+! Configuration File for keepalived
+
+global_defs {
+   router_id LVS_DEVEL
+}
+
+
+vrrp_script check_nginx {
+        script sh /etc/keepalived/nginx_pid.sh
+        interval 2
+        fail 1
+}
+
+vrrp_instance nginx {
+    state BACKUP
+    interface eth0
+    virtual_router_id 51
+    priority 90
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass 1111
+    }
+    virtual_ipaddress {
+        192.168.18.250
+    }
+
+
+track_script {
+                check_nginx
+        }
+}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+设置nginx监控脚本  nginx_pid.sh   同上 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+启动
+service nginx restart
+service keepalived restart
+nohup sh /etc/keepalived/nginx_pid.sh &
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+test keepalived
+在主keepalived上关闭nginx
+在主从keepalived服务器上滚动日志，查看是否切换
+service nginx stop（一个劲重复执行，保证其关闭2秒以上。【interval 2   主从之间检测时间为2S】 ），
+或则直接关闭keepalived
+
+
+
+(主keepalived)
+tailf /var/log/mess
+Apr  6 03:28:47 rhel5 Keepalived: Terminating on signal
+Apr  6 03:28:47 rhel5 Keepalived: Stopping Keepalived v1.1.17 (04/06,2013) 
+Apr  6 03:28:47 rhel5 Keepalived_vrrp: Terminating VRRP child process on signal
+Apr  6 03:28:47 rhel5 Keepalived_healthcheckers: Terminating Healthchecker child process on signal
+Apr  6 03:28:47 rhel5 Keepalived_vrrp: VRRP_Instance(nginx) removing protocol VIPs.
+Apr  6 03:28:47 rhel5 avahi-daemon[3313]: Withdrawing address record for 192.168.18.250 on eth0.
+Apr  6 03:43:04 rhel5 smartd[3345]: Device: /dev/sdb, No such device, open() failed 
+
+
+
+tailf /var/message  (辅助keepalived)
+Apr  5 15:28:48 server Keepalived_vrrp: VRRP_Instance(nginx) Transition to MASTER STATE
+Apr  5 15:28:49 server Keepalived_vrrp: VRRP_Instance(nginx) Entering MASTER STATE
+Apr  5 15:28:49 server Keepalived_vrrp: VRRP_Instance(nginx) setting protocol VIPs.
+Apr  5 15:28:49 server Keepalived_vrrp: VRRP_Instance(nginx) Sending gratuitous ARPs on eth0 for 192.168.18.250
+Apr  5 15:28:49 server Keepalived_vrrp: Netlink reflector reports IP 192.168.18.250 added
+Apr  5 15:28:49 server Keepalived_healthcheckers: Netlink reflector reports IP 192.168.18.250 added
+Apr  5 15:28:49 server avahi-daemon[3256]: Registering new address record for 192.168.18.250 on eth0.
+Apr  5 15:28:54 server Keepalived_vrrp: VRRP_Instance(nginx) Sending gratuitous ARPs on eth0 for 192.168.18.250
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+注意：可加可不加，看下图片keepalived.png确定加到什么地方
+mcast_src_ip 192.168.9.155 <==辅nginx的IP地址
+mcast_src_ip 192.168.9.154 <==主nginx的IP的地址
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+该架构的缺点是keepalived也需要监控，一旦keepalived宕机了，或则服务意外宕了，那么虽然备份（辅助）keepalived可以接手工作，但是管理员不知道，所以nagios一定要监控好keepalived服务，一旦有问题立马解决，当解决问题后，启动keepalived后自然辅助就交出分发权限了。
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx主配文件 apache组，
+sed -i '/#/d' nginx.conf 删除带#的行   sed -i '/^#/d' nginx.conf
+#####定义分发
+user              nginx;
+worker_processes  1;
+error_log         /var/log/nginx/error.log;
+pid               /var/run/nginx.pid;
+events {
+    worker_connections  1024;
+}
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] $request '
+                      '"$status" $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  /var/log/nginx/access.log  main;
+    sendfile        on;
+    keepalive_timeout  65;
+    upstream apache {
+                server 192.168.18.244 fail_timeout=1s;
+                server 192.168.18.245 fail_timeout=1s;
+                }
+    include /etc/nginx/conf.d/*.conf;
+    server {
+        listen       80;
+        server_name  _;
+        location / {
+              proxy_pass http://apache;
+        }
+        error_page  404              /404.html;
+        location = /404.html {
+            root   /usr/share/nginx/html;
+        }
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   /usr/share/nginx/html;
+        }
+    }
+}
+
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+日志截断
+mv access.log access.log.0
+ killall -USR1 `cat master.nginx.pid`
+ sleep 1
+ gzip access.log.0
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+注意做这个实验的时候要求
+1.本网段中只能讲课的机器开启keepalived  如果学生也开启就会造成组播泛滥，特别是学生和你使用一样密码。
+2.要求主副keepalived配置相同时间
+
+
+另外如果使用脚本健康检查nginx keepalived配置文件中可以不加  
+vrrp_script check_nginx {
+        script sh /etc/keepalived/nginx_pid.sh
+        interval 2
+        fail 1
+}         
+
+track_script {
+                check_nginx
+        }
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ngx_pagespeed
+ngx_pagespeed 是一个 Nginx 的扩展模块，可以加速你的网站，减少页面加载时间，它会自动将一些提升web性能的实践应用到网页和相关的资源（CSS、JS和图片）上，无需你修改内容和流程。
+ngx_pagespeed 提供的功能包括：
+1、图像优化：剥离元数据、动态调整，重新压缩
+2、CSS 和 JavaScript 压缩、级联、内联
+3、小资源内联
+4、延迟图像和 JavaScript 加载
+5、HTML 重写
+6、缓存周期延长
+
+reference
+https://github.com/pagespeed/ngx_pagespeed
+
+
+
+How to use
+
+In your nginx.conf, add to the main or server block:
+
+pagespeed on;
+pagespeed FileCachePath /var/ngx_pagespeed_cache;  # Use tmpfs for best results.
+In every server block where pagespeed is enabled add:
+
+#  Ensure requests for pagespeed optimized resources go to the pagespeed
+#  handler and no extraneous headers get set.
+location ~ "\.pagespeed\.([a-z]\.)?[a-z]{2}\.[^.]{10}\.[^.]+" { add_header "" ""; }
+location ~ "^/ngx_pagespeed_static/" { }
+location ~ "^/ngx_pagespeed_beacon$" { }
+location /ngx_pagespeed_statistics { allow 127.0.0.1; deny all; }
+location /ngx_pagespeed_global_statistics { allow 127.0.0.1; deny all; }
+location /ngx_pagespeed_message { allow 127.0.0.1; deny all; }
+location /pagespeed_console { allow 127.0.0.1; deny all; }

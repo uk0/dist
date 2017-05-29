@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Kubernetes集群安全配置案例[link]。 &mdash; 会飞的胖子。</title>
+    <link rel="stylesheet" href="/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="/assets/css/components/collection.css">
+    <link rel="stylesheet" href="/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="/assets/css/globals/common.css">
+    <link rel="stylesheet" href="/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2016/12/07/nginx-Kubernetes%E9%9B%86%E7%BE%A4%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E6%A1%88%E4%BE%8B/">
+    <link rel="alternate" type="application/atom+xml" title="会飞的胖子。" href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="Kubernetes集群安全配置案例[link]。">
+      
+    <meta name="keywords" content="Java, GitHub Pages">
+    <meta name="og:keywords" content="Java, GitHub Pages">
+      
+    <meta name="description" content="Kubernetes集群安全配置案例。">
+    <meta name="og:description" content="Kubernetes集群安全配置案例。">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2016/12/07/nginx-Kubernetes%E9%9B%86%E7%BE%A4%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E6%A1%88%E4%BE%8B/">
+    <meta property="og:site_name" content="会飞的胖子。">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2016-12-07">
+    
+    <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="会飞的胖子。"><span class="octicon octicon-mark-github"></span> 会飞的胖子。</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="首页">首页</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="分类">分类</a>
+                
+                <a href="/open-source/" class=" site-header-nav-item" target="" title="开源">开源</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="维基">维基</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="链接">链接</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="Kubernetes集群安全配">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">Kubernetes集群安全配置案例[link]。</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2016/12/07
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#GitHub" title="GitHub">GitHub</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <p>Kubernetes集群安全配置案例。</p>
+
+<p>## 文章</p>
+
+<p>###Kubernetes 系统提供了三种认证方式：CA 认证、Token 认证 和 Base 认证。安全功能是一把双刃剑，它保护系统不被攻击，但是也带来额外的性能损耗。集群内的各组件访问 API Server 时，由于它们与 API Server 同时处于同一局域网内，所以建议用非安全的方式访问 API Server 效率更高。</p>
+
+<p>####接下来对集群的双向认证配置和简单认证配置过程进行详细说明。</p>
+
+<p>####双向认证配置</p>
+
+<p>####双向认证方式是最为严格和安全的集群安全配置方式，主要配置流程如下：</p>
+
+<ul>
+  <li>生成根证书、API Server 服务端证书、服务端私钥、各个组件所用的客户端证书和客户端私钥。</li>
+  <li>修改 Kubernetes 各个服务进程的启动参数，启用双向认证模式。</li>
+  <li>详细的配置操作流程如下：</li>
+</ul>
+
+<p>####生成根证书</p>
+
+<p>#####用 openssl 工具生成 CA 证书，请注意将其中 subject 等参数改为用户所需的数据，CN 的值通常是域名、主机名或 IP 地址。</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code>$ cd /var/run/kubernetes
+$ openssl genrsa -out dd_ca.key 2048
+$ openssl req -x509 -new -nodes -key dd_ca.key -subj "/CN=YOUDOMAIN.COM" -days 5000 -out dd_ca.crt
+</code></pre>
+</div>
+<p>#####生成 API Server 服务端证书和私钥</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code>$ openssl genrsa -out dd_server.key 2048
+$ HN=`hostname`
+$ openssl req -new -key dd_server.key -subj "/CN=$HN" -out dd_server.csr
+$ openssl x509 -req -in dd_server.csr -CA dd_ca.crt -CAkey dd_ca.key -CAcreateserial-out dd_server.crt -days 5000
+</code></pre>
+</div>
+<p>#####生成 Controller Manager 与 Scheduler 进程共用的证书和私钥</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code>$ openssl genrsa -out dd_cs_client.key 2048
+$ openssl req -new -key dd_cs_client.key -subj "/CN=$HN" -out dd_cs_client.csr
+$ openssl x509 -req -in dd_cs_client.csr －CA dd_ca.crt -CAkey dd_ca.key -CAcreateserial -out dd_cs_client.crt -days 5000
+</code></pre>
+</div>
+<p>#####生成 Kubelet 所用的客户端证书和私钥
+######注意，这里假设 Kubelet 所在机器的 IP 地址为 192.168.1.129。</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code>$ openssl genrsa -out dd_kubelet_client.key 2048
+$ openssl req -new -key dd_kubelet_client.key -subj "/CN=192.168.1.129" -out dd_kubelet_client.csr
+$ openssl x509 -req -in dd_kubelet_client.csr -CA dd_ca.crt -CAkey dd_ca.key -CAcreateserial -out dd_kubelet_client.crt -days 5000
+</code></pre>
+</div>
+<p>#####修改 API Server 的启动参数
+#####增加 CA 根证书、Server 自身证书等参数并设置安全端口为 443.</p>
+
+<p>修改/etc/kubernetes/apiserver 配置文件的 KUBE_API_ARGS 参数：</p>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code>KUBE_API_ARGS="--log-dir=/var/log/kubernetes --secure-port=443 --client_ca_file=/var/run/kubernetes/dd_ca.crt --tls-private-key-file=/var/run/kubernetes/dd_server.key --tls-cert-file=/var/run/kubernetes/dd_server.crt"
+</code></pre>
+</div>
+<p>####重启 kube-apiserver 服务：
+####systemctl restart kube-apiserver
+####验证 API Server 的 HTTPS 服务。</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code>$ curl https://kubernetes-master:443/api/v1/nodes --cert /var/run/kubernetes/dd_cs_client.crt --key /var/run/kubernetes/dd_cs_client.key --cacert /var/run/kubernetes/dd_ca.crt
+修改 Controller Manager 的启动参数
+修改/etc/kubernetes/controller-manager 配置文件
+KUBE_CONTROLLER_MANAGER_ARGS="--log-dir=/var/log/kubernetes --service_account_private_key_file=/var/run/kubernetes/server.key --root-ca-file=/var/run/kubernetes/ca.crt --master=https://kubernetes-master:443 --kubeconfig=/etc/kubernetes/cmkubeconfig"
+</code></pre>
+</div>
+
+<ul>
+  <li>创建/etc/kubernetes/cmkubeconfig 文件，配置证书等相关参数，具体内容如下：</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code>apiVersion: v1
+kind: Config
+users
+- name: controllermanager
+  user:
+    client-certificate: /var/run/kubernetes/dd_cs_client.crt
+    client-key: /var/run/kubernetes/dd_cs_client.key
+clusters:
+- name: local
+  cluster:
+    certificate-authority: /var/run/kubernetes/dd_ca.crt
+contexts:
+- context:
+    cluster: local
+    user: controllermanager
+  name: my-context
+current-context: my-context
+</code></pre>
+</div>
+<p>重启 kube-controller-manager 服务：</p>
+
+<h1 id="systemctl-restart-kube-controller-manager">systemctl restart kube-controller-manager</h1>
+<ul>
+  <li>配置各个节点上的 Kubelet 进程</li>
+  <li>复制 Kubelet 的证书、私钥 与 CA 根证书到所有 Node 上。</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code>$ scp /var/run/kubernetes/dd_kubelet* root@kubernetes-minion1:/home
+$ scp /var/run/kubernetes/dd_ca.* root@kubernetes-minion:/home
+</code></pre>
+</div>
+
+<ul>
+  <li>在每个 Node 上创建/var/lib/kubelet/kubeconfig 文件，内容如下：</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>apiVersion: v1
+kind: Config
+users:
+- name: kubelet
+  user:
+    client-certificats: /home/dd_kubelet_client.crt
+    client-key: /home/dd_kubelet_client.key
+clusters:
+- name: local
+  cluster:
+    certificate-authority: /home/dd_ca.crt
+contexts:
+- context:
+    cluster: local
+    user: kubelet
+  name: my-context
+current-context: my-context
+</code></pre>
+</div>
+
+<ul>
+  <li>修改 Kubelet 的启动参数，以修改/etc/kubernetes/kubelet 配置文件为例：</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>KUBELET_API_SERVER="--api_servers=https://kubernetes-master:443"
+KUBELET_ARGS="--pod_infro_container_image=192.168.1.128:1180/google_containers/pause:latest --cluster_dns=10.2.0.100 --cluster_domain=cluster.local --kubeconfig=/var/lib/kubelet/kubeconfig"
+</code></pre>
+</div>
+<p>#重启 kubelet 服务：</p>
+
+<p>###systemctl restart kubelet</p>
+
+<ul>
+  <li>配置 kube-proxy</li>
+  <li>首先，创建/var/lib/kubeproxy/proxykubeconfig 文件，内容如下：</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>apiVersion: v1
+kind: Config
+users:
+- name: kubeproxy
+  user:
+    client-certificate: /home/dd_kubelet_client.crt
+    client-key: /home/dd_kubelet_client.key
+clusters:
+- name: local
+  cluster:
+    certificate-authority: /home/dd_ca.crt
+contexts:
+- context:
+    cluster: local
+    user: kubeproxy
+  name: my-context
+current-context: my-context
+</code></pre>
+</div>
+
+<ul>
+  <li>然后，修改 kube-proxy 的启动参数，引用上述文件并指明 API Server 在安全模式下的访问地址，以修改配置文件/etc/kubenetes/proxy 为例：</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>KUBE_PROXY_ARGS="--kubeconfig=/var/lib/kubeproxy/proxykubeconfig --master=https://kubenetes-master:443"
+</code></pre>
+</div>
+
+<ul>
+  <li>重启 kube-proxy 服务：</li>
+</ul>
+
+<h1 id="systemctl-restart-kube-proxy">systemctl restart kube-proxy</h1>
+
+<ul>
+  <li>至此，一个双向认证的 Kubernetes 集群环境就搭建完成了。</li>
+  <li>简单认证配置</li>
+  <li>除了双向认证方式，Kubernets 也提供了基于 Token 和 HTTP Base 的简单认证方式。通信方式仍然采用 HTTPS，但不使用数字证书。</li>
+  <li>采用基于 Token 和 HTTP Base 的简单认证方式时，API Server 对外暴露 HTTPS 端口，客户端提供 Token 或用户名、密码来完成认证过程。这里需要说明的一点是 Kubelet 比较特殊，它同时支持双向认证与简单认证两种模式，其他组件智能配置为双向认证或非安全模式。</li>
+</ul>
+
+<h4 id="api-server-基于-token-认证的配置过程如下">API Server 基于 Token 认证的配置过程如下</h4>
+
+<ul>
+  <li>建立包括用户名、密码和 UID 的文件 token_auth_file：</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ cat /root/token_auth_file
+dingmingk,dingmingk,1
+admin,admin,2
+system,system,3
+修改 API Server 的配置，采用上述文件进行安全认证
+$ vi /etc/kubernetes/apiserver
+KUBE_API_ARGS="--secure-port=443 --token_auth_file=/root/token_auth_file"
+重启 API Server 服务
+# systemctl restart kube-apiserver
+用 curl 验证连接 API Server
+$ curl https://kubenetes-master:443/version --header "Authorization: Bearer dingmingk" -k
+{
+  "major": "1",
+  "minor": "0",
+  "gitVersion": "v1.0.0",
+  "gitCommit": "xxxHASHCODE",
+  "gitTreeState": "clean"
+}
+</code></pre>
+</div>
+
+<ul>
+  <li>
+    <p>API Server 基于 HTTP Base 认证的配置过程如下</p>
+  </li>
+  <li>
+    <p>创建包括用户名、密码和 UID 的文件 basic_auth_file：</p>
+  </li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ cat /root/basic_auth_file
+dingmingk,dingmingk,1
+admin,admin,2
+system,system,3
+</code></pre>
+</div>
+
+<ul>
+  <li>修改 API Server 的配置，采用上述文件进行安全认证</li>
+</ul>
+
+<p><code class="highlighter-rouge">$ vi /etc/kubernetes/apiserver</code></p>
+
+<p><code class="highlighter-rouge">KUBE_API_ARGS="--secure-port=443 --basic_auth_file=/root/basic_auth_file"</code></p>
+
+<h3 id="重启-api-server-服务">重启 API Server 服务</h3>
+
+<h3 id="systemctl-restart-kube-apiserver">systemctl restart kube-apiserver</h3>
+<ul>
+  <li>用 curl 验证连接 API Server</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code>$ curl https://kubernetes-master:443/version --basic -u dingmingk:dingmingk -k
+{
+  "major": "1",
+  "minor": "0",
+  "gitVersion": "v1.0.0",
+  "gitCommit": "xxxHASHCODE",
+  "gitTreeState": "clean"
+}
+使用 Kubelet 时则需要指定用户名和密码来访问 API Server
+$ kubectl get nodes --server="https://kubernetes-master:443" --api-version="v1" --username="dingmingk" --password="dingmingk" --insecure-skip-tls-verify=true
+</code></pre>
+</div>
+
+<p>###kubectl config set-cluster
+####在kubeconfig配置文件中设置一个集群项。</p>
+
+<ul>
+  <li>摘要</li>
+  <li>在kubeconfig配置文件中设置一个集群项。 如果指定了一个已存在的名字，将合并新字段并覆盖旧字段。</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code>kubectl config set-cluster NAME [--server=server] [--certificate-authority=path/to/certficate/authority] [--insecure-skip-tls-verify=true]
+</code></pre>
+</div>
+<ul>
+  <li>示例
+    <h1 id="仅设置e2e集群项中的server字段不影响其他字段">仅设置e2e集群项中的server字段，不影响其他字段</h1>
+  </li>
+</ul>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code>kubectl config set-cluster e2e --server=https://1.2.3.4
+</code></pre>
+</div>
+<h1 id="向e2e集群项中添加认证鉴权数据">向e2e集群项中添加认证鉴权数据</h1>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code>kubectl config set-cluster e2e --certificate-authority=~/.kube/e2e/kubernetes.ca.crt
+</code></pre>
+</div>
+<p>####取消dev集群项中的证书检查</p>
+
+<p><code class="highlighter-rouge">html
+kubectl config set-cluster e2e --insecure-skip-tls-verify=true
+选项
+      --api-version="": 设置kuebconfig配置文件中集群选项中的api-version。
+      --certificate-authority="": 设置kuebconfig配置文件中集群选项中的certificate-authority路径。
+      --embed-certs[=false]: 在是否则kubeconfig配置文件中嵌入客户端证书/key。
+      --insecure-skip-tls-verify[=false]: 设置kuebconfig配置文件中集群选项中的insecure-skip-tls-verify开关。
+      --server="": 设置kuebconfig配置文件中集群选项中的server。
+继承自父命令的选项
+      --alsologtostderr[=false]: 同时输出日志到标准错误控制台和文件。
+      --certificate-authority="": 用以进行认证授权的.cert文件路径。
+      --client-certificate="": TLS使用的客户端证书路径。
+      --client-key="": TLS使用的客户端密钥路径。
+      --cluster="": 指定使用的kubeconfig配置文件中的集群名。
+      --context="": 指定使用的kubeconfig配置文件中的环境名。
+      --insecure-skip-tls-verify[=false]: 如果为true，将不会检查服务器凭证的有效性，这会导致你的HTTPS链接变得不安全。
+      --kubeconfig="": 命令行请求使用的配置文件路径。
+      --log-backtrace-at=:0: 当日志长度超过定义的行数时，忽略堆栈信息。
+      --log-dir="": 如果不为空，将日志文件写入此目录。
+      --log-flush-frequency=5s: 刷新日志的最大时间间隔。
+      --logtostderr[=true]: 输出日志到标准错误控制台，不输出到文件。
+      --match-server-version[=false]: 要求服务端和客户端版本匹配。
+      --namespace="": 如果不为空，命令将使用此namespace。
+      --password="": API Server进行简单认证使用的密码。
+  -s, --server="": Kubernetes API Server的地址和端口号。
+      --stderrthreshold=2: 高于此级别的日志将被输出到错误控制台。
+      --token="": 认证到API Server使用的令牌。
+      --user="": 指定使用的kubeconfig配置文件中的用户名。
+      --username="": API Server进行简单认证使用的用户名。
+      --v=0: 指定输出日志的级别。
+      --vmodule=: 指定输出日志的模块，格式如下：pattern=N，使用逗号分隔。
+     </code></p>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="/assets/css/modules/sidebar-search.css">
+<script src="/assets/js/lunr.min.js"></script>
+<script src="/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+
+<script src="/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="飞鱼">飞鱼</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/zmatsh/zmatsh.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="首页" target="">首页</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="分类" target="">分类</a>
+                </li>
+                
+                <li>
+                    <a href="/open-source/" title="开源" target="">开源</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="维基" target="">维基</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="链接" target="">链接</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="关于" target="">关于</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="/assets/js/geopattern.js"></script>
+    <script src="/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-80669434-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+    <script type="text/javascript" src="//rc.revolvermaps.com/0/0/8.js?i=21x1e27561g&amp;m=0&amp;s=341&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"></script>
+    <script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>
+</html>
