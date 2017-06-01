@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-05-30T05:18:36+08:00</updated><id>http://firsh.me/</id><title type="html">会飞的胖子。</title><subtitle>张建新个人博客</subtitle><author><name>飞鱼</name></author><entry><title type="html">CICD。</title><link href="http://firsh.me/2017/05/30/CICD%E6%88%90%E5%8A%9F%E9%83%A8%E7%BD%B2/" rel="alternate" type="text/html" title="CICD。" /><published>2017-05-30T00:00:00+08:00</published><updated>2017-05-30T00:00:00+08:00</updated><id>http://firsh.me/2017/05/30/CICD%E6%88%90%E5%8A%9F%E9%83%A8%E7%BD%B2</id><content type="html" xml:base="http://firsh.me/2017/05/30/CICD%E6%88%90%E5%8A%9F%E9%83%A8%E7%BD%B2/">&lt;p&gt;CICD (travis) for my blog Success Full&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-01T12:00:26+08:00</updated><id>http://firsh.me/</id><title type="html">会飞的胖子。</title><subtitle>张建新个人博客</subtitle><author><name>飞鱼</name></author><entry><title type="html">CrateDB数据目录发生变动启动故障。</title><link href="http://firsh.me/2017/05/31/crateDb%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95%E5%8F%91%E7%94%9F%E4%BF%AE%E6%94%B9/" rel="alternate" type="text/html" title="CrateDB数据目录发生变动启动故障。" /><published>2017-05-31T00:00:00+08:00</published><updated>2017-05-31T00:00:00+08:00</updated><id>http://firsh.me/2017/05/31/crateDb%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95%E5%8F%91%E7%94%9F%E4%BF%AE%E6%94%B9</id><content type="html" xml:base="http://firsh.me/2017/05/31/crateDb%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95%E5%8F%91%E7%94%9F%E4%BF%AE%E6%94%B9/">&lt;p&gt;CrateDB数据目录发生变动启动故障。&lt;/p&gt;
+
+&lt;h2 id=&quot;0x00&quot;&gt;0x00&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Crate Version 1.12
+Linux Core 4.8
+Node Number 5&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/QQ20170601-114658@2x.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;今天项目要求重新启动crate数据库，因为用户名称发生了变动，所以导致文件没有权限。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;1.查看了一番发现时文件的所属发生了变动&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-$xslt&quot;&gt;#用root用户执行
+chown -R admin:admin /home/tod/data
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2.修改完成重新启动。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-$xslt&quot;&gt;/crate -d H
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/QQ20170601-115231@2x.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3.确认启动成功&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-$xslt&quot;&gt;jps
+&lt;/code&gt;&lt;/pre&gt;</content><author><name>飞鱼</name></author><summary type="html">CrateDB数据目录发生变动启动故障。</summary></entry><entry><title type="html">CICD。</title><link href="http://firsh.me/2017/05/30/CICD%E6%88%90%E5%8A%9F%E9%83%A8%E7%BD%B2/" rel="alternate" type="text/html" title="CICD。" /><published>2017-05-30T00:00:00+08:00</published><updated>2017-05-30T00:00:00+08:00</updated><id>http://firsh.me/2017/05/30/CICD%E6%88%90%E5%8A%9F%E9%83%A8%E7%BD%B2</id><content type="html" xml:base="http://firsh.me/2017/05/30/CICD%E6%88%90%E5%8A%9F%E9%83%A8%E7%BD%B2/">&lt;p&gt;CICD (travis) for my blog Success Full&lt;/p&gt;
 
 &lt;h2 id=&quot;see&quot;&gt;See&lt;/h2&gt;
 
@@ -903,122 +936,4 @@ public class MetricsCore {
   &lt;li&gt;
     &lt;p&gt;遍历任何 Collection（例如 Map、Set 或 List）时要删除元素只能使用 Iterator 的 remove 方法。&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>飞鱼</name></author><summary type="html">这是一个 C++ 程序员自己总结的 Java 学习中应该注意的点。</summary></entry><entry><title type="html">在 Vim 里为 Markdown 文档展示导航窗格</title><link href="http://firsh.me/2016/08/03/add-outline-for-markdown-in-vim/" rel="alternate" type="text/html" title="在 Vim 里为 Markdown 文档展示导航窗格" /><published>2016-08-03T00:00:00+08:00</published><updated>2016-08-03T00:00:00+08:00</updated><id>http://firsh.me/2016/08/03/add-outline-for-markdown-in-vim</id><content type="html" xml:base="http://firsh.me/2016/08/03/add-outline-for-markdown-in-vim/">&lt;p&gt;假设我们正在 Vim 里编辑一个很长的 Markdown 文档，这时想跳转到另一个章节去查看或编辑内容，可以怎么做？&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;查找章节标题。&lt;/li&gt;
-  &lt;li&gt;上下翻页。&lt;/li&gt;
-  &lt;li&gt;记得行号，精确跳转（请收下我的膝盖）。&lt;/li&gt;
-  &lt;li&gt;…&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;不知你此时感受如何，反正我是无比想念 Word 的导航窗格，各种编程 IDE 的 Outline。&lt;/p&gt;
-
-&lt;p&gt;但等等，我们正在用编辑器之神 Vim 诶！无论想弄啥折腾折腾就有了。&lt;/p&gt;
-
-&lt;h2 id=&quot;最终效果&quot;&gt;最终效果&lt;/h2&gt;
-
-&lt;p&gt;我的完整 Vim 配置托管在 GitHub，可供参考：&lt;a href=&quot;https://github.com/mzlogin/config-files&quot;&gt;config-files&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/vim/vim-markdown-outline.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;实现步骤&quot;&gt;实现步骤&lt;/h2&gt;
-
-&lt;h3 id=&quot;安装-tagbar&quot;&gt;安装 tagbar&lt;/h3&gt;
-
-&lt;p&gt;这里我们借助于 tagbar 插件实现导航窗格。当然 tagbar 的功能远不限于此，可以为 C、C++、Python 和 Java 等很多语言提供类和方法列表视图等等，详见 &lt;a href=&quot;https://github.com/majutsushi/tagbar&quot;&gt;tagbar&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;推荐使用 &lt;a href=&quot;https://github.com/VundleVim/Vundle.vim&quot;&gt;Vundle&lt;/a&gt; 管理 Vim 插件，这样就可以简单几步安装插件了。&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;在 vimrc 文件里添加如下内容：&lt;/p&gt;
-
-    &lt;div class=&quot;language-viml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Plugin &lt;span class=&quot;s1&quot;&gt;'majutsushi/tagbar'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;:so $MYVIMRC&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;:PluginInstall&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;安装-exuberant-ctags&quot;&gt;安装 Exuberant ctags&lt;/h3&gt;
-
-&lt;p&gt;tagbar 正常工作依赖于 Vim 7.0+ 和 Exuberant ctags。&lt;/p&gt;
-
-&lt;p&gt;下载地址：&lt;a href=&quot;http://ctags.sourceforge.net/&quot;&gt;http://ctags.sourceforge.net/&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;下载后将 ctags 可执行文件放置到一个在 PATH 环境变量的文件夹里，或者 Vim 安装目录的 Vim74 文件夹下，比如我是将 ctags.exe 放在 &lt;code class=&quot;highlighter-rouge&quot;&gt;D:\Program Files (x86)\Vim\vim74&lt;/code&gt; 文件夹下。&lt;/p&gt;
-
-&lt;h3 id=&quot;配置-tagbar-显示-markdown-导航窗格&quot;&gt;配置 tagbar 显示 Markdown 导航窗格&lt;/h3&gt;
-
-&lt;p&gt;tagbar 默认并不支持 Markdown 文件，但配置一下就好了。&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;给 ~/.ctags 文件（Windows 下是 &lt;code class=&quot;highlighter-rouge&quot;&gt;C:\Users\&amp;lt;username&amp;gt;\.ctags&lt;/code&gt; 里增加如下内容，没有这个文件就新建一个：&lt;/p&gt;
-
-    &lt;div class=&quot;language-viml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;langdef&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;markdown
-&lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;langmap&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;markdown&lt;span class=&quot;p&quot;&gt;:.&lt;/span&gt;md
-&lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;regex&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;markdown&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/^#{1}[ \t]*([^#]+.*)/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt; \&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/h,headings/&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;regex&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;markdown&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/^#{2}[ \t]*([^#]+.*)/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;   \&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/h,headings/&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;regex&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;markdown&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/^#{3}[ \t]*([^#]+.*)/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;     \&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/h,headings/&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;regex&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;markdown&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/^#{4}[ \t]*([^#]+.*)/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;       \&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/h,headings/&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;regex&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;markdown&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/^#{5}[ \t]*([^#]+.*)/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;         \&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/h,headings/&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;regex&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;markdown&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/^#{6}[ \t]*([^#]+.*)/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;           \&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/h,headings/&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-
-    &lt;p&gt;这表示提取 Markdown 文件里的一到六级标题，并使用空格缩进表示层次。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;给你的 vimrc 文件里增加如下内容：&lt;/p&gt;
-
-    &lt;div class=&quot;language-viml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:tagbar_type_markdown&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;se&quot;&gt;        \&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'ctagstype'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'markdown'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;se&quot;&gt;        \&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'kinds'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-&lt;span class=&quot;se&quot;&gt;                \&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'h:headings'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;se&quot;&gt;        \&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-&lt;span class=&quot;se&quot;&gt;    \&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'sort'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
-&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-
-    &lt;p&gt;配置 tagbar 支持 Markdown。&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;更多自定义配置&quot;&gt;更多自定义配置&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;现在你可以使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;:TagbarToggle&amp;lt;CR&amp;gt;&lt;/code&gt; 来打开导航窗格了，但每次开关导航窗格都要敲这么长一串命令毕竟不够方便，配置快捷键来操作更顺手，在你的 vimrc 文件里增加一个映射：&lt;/p&gt;
-
-    &lt;div class=&quot;language-viml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nnoremap &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;leader&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;tb &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;TagbarToggle&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;CR&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-
-    &lt;p&gt;现在你可以使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;leader&amp;gt;tb&lt;/code&gt; 来随时开/关导航窗格了。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;导航窗格默认是在右边，如果你也像我一样喜欢它在左边，也想指定它的宽度，可以在你的 vimrc 文件里配置：&lt;/p&gt;
-
-    &lt;div class=&quot;language-viml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:tagbar_width&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;30&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:tagbar_left&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;至此，大功告成了！&lt;/p&gt;
-
-&lt;h2 id=&quot;参考链接&quot;&gt;参考链接&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/majutsushi/tagbar/issues/70&quot;&gt;majutsushi/tagbar#70&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/majutsushi/tagbar/wiki&quot;&gt;Support for additional filetypes&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>飞鱼</name></author><summary type="html">假设我们正在 Vim 里编辑一个很长的 Markdown 文档，这时想跳转到另一个章节去查看或编辑内容，可以怎么做？</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>飞鱼</name></author><summary type="html">这是一个 C++ 程序员自己总结的 Java 学习中应该注意的点。</summary></entry></feed>

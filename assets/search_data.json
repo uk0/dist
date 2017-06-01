@@ -1,5 +1,11 @@
 {
   
+  "2017-05-31-cratedb-e6-95-b0-e6-8d-ae-e7-9b-ae-e5-bd-95-e5-8f-91-e7-94-9f-e4-bf-ae-e6-94-b9": {
+    "title": "CrateDB数据目录发生变动启动故障。",
+    "url": " /2017/05/31/crateDb%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95%E5%8F%91%E7%94%9F%E4%BF%AE%E6%94%B9/",
+    "category": "Kubernetes,docker,travis"
+  },
+  
   "2017-05-30-cicd-e6-88-90-e5-8a-9f-e9-83-a8-e7-bd-b2": {
     "title": "CICD。",
     "url": " /2017/05/30/CICD%E6%88%90%E5%8A%9F%E9%83%A8%E7%BD%B2/",
@@ -219,6 +225,12 @@
   "2017-05-30-cicd-e6-88-90-e5-8a-9f-e9-83-a8-e7-bd-b2": {
     "title": "CICD。",
     "url": "/2017/05/30/CICD%E6%88%90%E5%8A%9F%E9%83%A8%E7%BD%B2/",
+    "category": "[&quot;Kubernetes,docker,travis&quot;]"
+  },
+  
+  "2017-05-31-cratedb-e6-95-b0-e6-8d-ae-e7-9b-ae-e5-bd-95-e5-8f-91-e7-94-9f-e4-bf-ae-e6-94-b9": {
+    "title": "CrateDB数据目录发生变动启动故障。",
+    "url": "/2017/05/31/crateDb%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95%E5%8F%91%E7%94%9F%E4%BF%AE%E6%94%B9/",
     "category": "[&quot;Kubernetes,docker,travis&quot;]"
   },
   
