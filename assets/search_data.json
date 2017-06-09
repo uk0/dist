@@ -6,6 +6,12 @@
     "category": "jenkins"
   },
   
+  "2017-06-06-kargo-k8s-1-6-4": {
+    "title": "kargo kubernetes 1.6.4",
+    "url": " /2017/06/06/kargo-k8s-1.6.4/",
+    "category": "docker"
+  },
+  
   "2017-05-31-cratedb-e6-95-b0-e6-8d-ae-e7-9b-ae-e5-bd-95-e5-8f-91-e7-94-9f-e4-bf-ae-e6-94-b9": {
     "title": "CrateDB数据目录发生变动启动故障。",
     "url": " /2017/05/31/crateDb%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95%E5%8F%91%E7%94%9F%E4%BF%AE%E6%94%B9/",
@@ -78,6 +84,12 @@
     "category": "GitHub"
   },
   
+  "2016-05-30-nginx-ip": {
+    "title": "Nginx 后端服务器获取前端用户真实IP",
+    "url": " /2016/05/30/Nginx-IP/",
+    "category": "Nginx"
+  },
+  
   "2016-05-21-enable-https-for-github-pages": {
     "title": "为绑定域名的 GitHub Pages 启用 HTTPS",
     "url": " /2016/05/21/enable-https-for-github-pages/",
@@ -148,6 +160,8 @@
   
   
   
+  
+  
 
   
   "2015-10-25-without-internet": {
@@ -166,6 +180,12 @@
     "title": "为绑定域名的 GitHub Pages 启用 HTTPS",
     "url": "/2016/05/21/enable-https-for-github-pages/",
     "category": "[&quot;GitHub&quot;]"
+  },
+  
+  "2016-05-30-nginx-ip": {
+    "title": "Nginx 后端服务器获取前端用户真实IP",
+    "url": "/2016/05/30/Nginx-IP/",
+    "category": "[&quot;Nginx&quot;]"
   },
   
   "2016-07-11-remove-https": {
@@ -238,6 +258,12 @@
     "title": "CrateDB数据目录发生变动启动故障。",
     "url": "/2017/05/31/crateDb%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95%E5%8F%91%E7%94%9F%E4%BF%AE%E6%94%B9/",
     "category": "[&quot;Kubernetes,docker,travis&quot;]"
+  },
+  
+  "2017-06-06-kargo-k8s-1-6-4": {
+    "title": "kargo kubernetes 1.6.4",
+    "url": "/2017/06/06/kargo-k8s-1.6.4/",
+    "category": "[&quot;docker&quot;]"
   },
   
   "2017-06-06-jenkins-docker-kubectl-same-master": {
