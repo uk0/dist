@@ -1,4 +1,193 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-01T12:56:46+08:00</updated><id>http://firsh.me/</id><title type="html">会飞的胖子。</title><subtitle>张建新个人博客</subtitle><author><name>飞鱼</name></author><entry><title type="html">CrateDB数据目录发生变动启动故障。</title><link href="http://firsh.me/2017/05/31/crateDb%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95%E5%8F%91%E7%94%9F%E4%BF%AE%E6%94%B9/" rel="alternate" type="text/html" title="CrateDB数据目录发生变动启动故障。" /><published>2017-05-31T00:00:00+08:00</published><updated>2017-05-31T00:00:00+08:00</updated><id>http://firsh.me/2017/05/31/crateDb%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95%E5%8F%91%E7%94%9F%E4%BF%AE%E6%94%B9</id><content type="html" xml:base="http://firsh.me/2017/05/31/crateDb%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95%E5%8F%91%E7%94%9F%E4%BF%AE%E6%94%B9/">&lt;p&gt;CrateDB数据目录发生变动启动故障。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-09T17:08:15+08:00</updated><id>http://firsh.me/</id><title type="html">会飞的胖子。</title><subtitle>张建新个人博客</subtitle><author><name>飞鱼</name></author><entry><title type="html">jenkins + docker + git 持续集成</title><link href="http://firsh.me/2017/06/06/Jenkins-docker-kubectl-same-master/" rel="alternate" type="text/html" title="jenkins + docker + git 持续集成" /><published>2017-06-06T00:00:00+08:00</published><updated>2017-06-06T00:00:00+08:00</updated><id>http://firsh.me/2017/06/06/Jenkins-docker-kubectl-same-master</id><content type="html" xml:base="http://firsh.me/2017/06/06/Jenkins-docker-kubectl-same-master/">&lt;blockquote&gt;
+  &lt;p&gt;git push 以后， jenkins 自动触发 代码打包，生成docker image , docker push 到 仓库，发布到环境里。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;安装jenkins&quot;&gt;安装jenkins&lt;/h1&gt;
+
+&lt;p&gt;这里不建议用 Docker 镜像，因为下面 Jenkins 自身会需要调用 Docker 来启动任务。&lt;/p&gt;
+
+&lt;p&gt;Jenkins + Docker + kubectl + git + Blue Ocean。&lt;/p&gt;
+
+&lt;h2 id=&quot;导入-jenkins-源&quot;&gt;导入 jenkins 源&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins.io/redhat-stable/jenkins.repo
+rpm --import http://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+
+yum -y install jenkins 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;修改jenkins配置&quot;&gt;修改jenkins配置&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vi /etc/sysconfig/jenkins
+
+# 修改jenkins 目录
+JENKINS_HOME=&quot;/opt/jenkins&quot;
+
+# 修改jenkins 端口
+JENKINS_PORT=&quot;9999&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;移动目录&quot;&gt;移动目录&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# 将目录移动过来，否则程序报错
+mv /var/lib/jenkins /opt/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;启动服务&quot;&gt;启动服务&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;systemctl start jenkins
+systemctl enable jenkins
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;访问web-ui&quot;&gt;访问WEB UI&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://myip:9999/ 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;生成密钥&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# 切换用户
+su jenkins
+
+
+# 生成key
+ssh-keygen -t rsa -b 4096 -C &quot;jenkins@git&quot;
+
+# 查看key信息
+cat /home/jenkins/.ssh/id_rsa.pub
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;jenkins-后台配置&quot;&gt;jenkins 后台配置&lt;/h2&gt;
+
+&lt;p&gt;进入 jenkins –&amp;gt; Credentials –&amp;gt; Add Credentials
+&lt;img src=&quot;http://jicki.me/images/posts/jenkins/4.png&quot; alt=&quot;此处输入图片的描述&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;选择 系统管理 – &amp;gt; 管理插件&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;添加 Gradle Plugin 插件&lt;/li&gt;
+  &lt;li&gt;添加 Git plugin 插件&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;常用插件
+
+Build WIth Parameters   # 执行 构建 前手工输入参数
+
+pipeline
+
+Deploy Plugin   # build war 包以后部署
+
+Email Extension Plugin  # 邮件发送
+
+Multiple SCMs Plugin #多项目构建工具
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;下载慢可直接下载 hpi 文件，通过高级 导入插件安装&lt;/p&gt;
+
+&lt;p&gt;选择 系统管理 – &amp;gt; Global Tool Configuration&lt;/p&gt;
+
+&lt;p&gt;安装JDK&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jicki.me/images/posts/jenkins/1.png&quot; alt=&quot;描述&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;安装 Gradle&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jicki.me/images/posts/jenkins/2.png&quot; alt=&quot;此处输入图片的描述&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;安装 Git&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jicki.me/images/posts/jenkins/3.png&quot; alt=&quot;此处输入图片的描述&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;创建项目  选择 自由风格 的项目&lt;/p&gt;
+
+&lt;p&gt;源码管理选择 Git&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jicki.me/images/posts/jenkins/5.png&quot; alt=&quot;此处输入图片的描述&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;构建 选择  Invoke Gradle script&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jicki.me/images/posts/jenkins/6.png&quot; alt=&quot;此处输入图片的描述&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;构建触发器&quot;&gt;构建触发器&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# 勾选 Poll SCM
+
+# 每两分钟检查一次git代码是否有更新
+H/2 * * * *
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;配置-邮件&quot;&gt;配置 邮件&lt;/h2&gt;
+
+&lt;p&gt;首先必须安装 Email Extension Plugin 插件&lt;/p&gt;
+
+&lt;p&gt;系统管理 –&amp;gt; 系统设置 – &amp;gt; Jenkins Location&lt;/p&gt;
+
+&lt;p&gt;配置系统管理员邮件地址 — &amp;gt;  xxx@163.com&lt;/p&gt;
+
+&lt;p&gt;配置 Extended E-mail Notification&lt;/p&gt;
+
+&lt;p&gt;SMTP Server =&lt;/p&gt;
+
+&lt;p&gt;点击高级&lt;/p&gt;
+
+&lt;p&gt;勾选 Use SMTP Authentication&lt;/p&gt;
+
+&lt;p&gt;输入 发送 用户 与 密码&lt;/p&gt;
+
+&lt;p&gt;填写 SMTP port&lt;/p&gt;
+
+&lt;p&gt;Default Content Type 选择 HTML (text/html)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Default Subject =  构建通知:$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!
+
+
+Default Content = 
+
+&amp;lt;b style=&quot;font-size:12px&quot;&amp;gt;(本邮件是程序自动下发的，请勿回复，&amp;lt;span style=&quot;color:red&quot;&amp;gt;请相关人员fix it,重新提交到git 构建&amp;lt;/span&amp;gt;)&amp;lt;br&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;hr&amp;gt;
+
+&amp;lt;b style=&quot;font-size: 12px;&quot;&amp;gt;项目名称：$PROJECT_NAME&amp;lt;br&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;hr&amp;gt;
+
+&amp;lt;b style=&quot;font-size: 12px;&quot;&amp;gt;构建编号：$BUILD_NUMBER&amp;lt;br&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;hr&amp;gt;
+
+&amp;lt;b style=&quot;font-size: 12px;&quot;&amp;gt;GIT版本号：${GIT_REVISION}&amp;lt;br&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;hr&amp;gt;
+
+&amp;lt;b style=&quot;font-size: 12px;&quot;&amp;gt;构建状态：$BUILD_STATUS&amp;lt;br&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;hr&amp;gt;
+
+&amp;lt;b style=&quot;font-size: 12px;&quot;&amp;gt;触发原因：${CAUSE}&amp;lt;br&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;hr&amp;gt;
+
+&amp;lt;b style=&quot;font-size: 12px;&quot;&amp;gt;构建日志地址：&amp;lt;a href=&quot;${BUILD_URL}console&quot;&amp;gt;${BUILD_URL}console&amp;lt;/a&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;hr&amp;gt;
+
+&amp;lt;b style=&quot;font-size: 12px;&quot;&amp;gt;构建地址：&amp;lt;a href=&quot;$BUILD_URL&quot;&amp;gt;$BUILD_URL&amp;lt;/a&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;hr&amp;gt;
+
+&amp;lt;b style=&quot;font-size: 12px;&quot;&amp;gt;变更集:${JELLY_SCRIPT,template=&quot;html&quot;}&amp;lt;br&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;hr&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jicki.me/images/posts/jenkins/8.png&quot; alt=&quot;此处输入图片的描述&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;项目 – &amp;gt; 构建后操作 — &amp;gt; 添加 Editable Email Notification&lt;/p&gt;
+
+&lt;p&gt;拉到最下面 — &amp;gt; 点击 Advanced Settings…&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jicki.me/images/posts/jenkins/9.png&quot; alt=&quot;此处输入图片的描述&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Recipient List 添加 收件邮箱 多个邮件以空格 隔开&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jicki.me/images/posts/jenkins/10.png&quot; alt=&quot;此处输入图片的描述&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;原文作者 &lt;a href=&quot;https://jicki.me/&quot; title=&quot;Title&quot;&gt;小炒肉&lt;/a&gt; .&lt;/p&gt;</content><author><name>飞鱼</name></author><summary type="html">git push 以后， jenkins 自动触发 代码打包，生成docker image , docker push 到 仓库，发布到环境里。</summary></entry><entry><title type="html">CrateDB数据目录发生变动启动故障。</title><link href="http://firsh.me/2017/05/31/crateDb%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95%E5%8F%91%E7%94%9F%E4%BF%AE%E6%94%B9/" rel="alternate" type="text/html" title="CrateDB数据目录发生变动启动故障。" /><published>2017-05-31T00:00:00+08:00</published><updated>2017-05-31T00:00:00+08:00</updated><id>http://firsh.me/2017/05/31/crateDb%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95%E5%8F%91%E7%94%9F%E4%BF%AE%E6%94%B9</id><content type="html" xml:base="http://firsh.me/2017/05/31/crateDb%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95%E5%8F%91%E7%94%9F%E4%BF%AE%E6%94%B9/">&lt;p&gt;CrateDB数据目录发生变动启动故障。&lt;/p&gt;
 
 &lt;h2 id=&quot;0x00&quot;&gt;0x00&lt;/h2&gt;
 
@@ -826,114 +1015,4 @@ public class MetricsCore {
   &lt;li&gt;&lt;a href=&quot;https://www.zhihu.com/question/50801791/answer/122769426&quot;&gt;放开那女孩 的回答&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.zhihu.com/question/50801791/answer/122863062&quot;&gt;穷小子 的回答&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.zhihu.com/question/50801791/answer/122795854&quot;&gt;caiwei 的回答&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>飞鱼</name></author><summary type="html">这是一个源自知乎的话题，原贴链接：一道百度的面试题，有大神会嘛？</summary></entry><entry><title type="html">C++ 程序员的 Java 指南</title><link href="http://firsh.me/2016/08/30/java-guide-to-cpp-programmers/" rel="alternate" type="text/html" title="C++ 程序员的 Java 指南" /><published>2016-08-30T00:00:00+08:00</published><updated>2016-08-30T00:00:00+08:00</updated><id>http://firsh.me/2016/08/30/java-guide-to-cpp-programmers</id><content type="html" xml:base="http://firsh.me/2016/08/30/java-guide-to-cpp-programmers/">&lt;p&gt;这是一个 C++ 程序员自己总结的 Java 学习中应该注意的点。&lt;/p&gt;
-
-&lt;h2 id=&quot;缘起&quot;&gt;缘起&lt;/h2&gt;
-
-&lt;p&gt;因工作原因从 Windows 客户端开发转为 Android 客户端开发，所以主要的开发语言也由 C++ 变为了 Java，在学习 Java 的过程中，即享受到 Java 的自带程序库的丰富带来的便捷，也遇到一些与 C++ 里的习惯不符需要注意的地方。&lt;/p&gt;
-
-&lt;p&gt;初学时的计划是看完一本 Java 教材，过程中整理 C++ 程序员学习 Java 需要注意的点，然后对照写一篇《C++ 程序员的 Java 指南》，但最后懒癌犯了，只整理了一部分不同点，要形成一份「指南」还有很长的路要走，暂且把这个坑挖在这里，如果哪天心血来潮就填上。&lt;/p&gt;
-
-&lt;p&gt;一个知乎问答下有我的答案，与本篇文章内容同步：&lt;a href=&quot;https://www.zhihu.com/question/49770330/answer/118395115?from=profile_answer_card&quot;&gt;习惯写C++的人突然转去写Java，会有什么样的坑？&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;注意点&quot;&gt;注意点&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;char 是两个字节（字符及字符串默认都是 utf-16）。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;浮点数默认是 double，所以要写成 float f = (float)5.0 或 5.0f，不然会报错。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;整数除整数可能导致除零异常，而浮点数不会。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;break 和 continue 能够使用 flag 来跳出和继续指定循环。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;boolean 值只能是 true 和 false，不能从整形等其它值转换而来。用于字符串连接的时候会自动转换成「true」和「false」。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;if 里只能接受 boolean 值，所以 C++ 里的好习惯 if (5 == var) 在 Java 里不再必要，少写了一个 = 的时候 IDE 和编译器都会提示你。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;new Person(); 必须有 ()，否则编译不过。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;数组的声明方式推荐 int[] nArray = new int[4]; 或者 int[] nArray = {1,2,3};，第一种称为动态初始化，第二种称为静态初始化。动态初始化时，系统按如下规则分配初始值：整形为 0，浮点型为 0.0，字符型为’\u0000’，布尔型为 false，引用类型为 null。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;当系统加载类或创建该类的实例时，系统自动为成员变量分配内存空间，并在分配内存空间后，自动为成员变量指定初始值。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;局部变量定义后，必须经过显式初始化后才能使用，系统不会为局部变量执行初始化。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;访问控制符有 private、default、protected、public。private 只能在同一个类中访问，default 能在同一个类、同一个包中访问，protected 能在同一个类、同一个包、子类中访问，public 能在全局范围内访问。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;在构造器中可以使用 this(params) 来调用本类的其它构造器，使用 super(params) 来调用父类构造器，只能书写在本构造器第一行，所以它们不能同时出现。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;使用 super 调用父类中的实例方法，使用父类类名调用父类中的类方法。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;如果父类方法具有 private 访问权限，则该方法对其子类是隐藏的，因此其子类无法访问和重写该方法。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;java 中有 instanceof 运算符，c++ 中对应的 RTTI 方式是（typeid）？instanceof 运算符的前一个操作数通常是一个引用类型的变量，后一个操作数通常是一个类（也可以是接口，可以把接口理解成一种特殊的类），它用于判断前面的对象是否是后面的类，或者其子类、实现类的实例。如果是，则返回 true，否则返回 false。判断是否是同一个类的实例时应使用 obj1.getClass()==obj2.getClass()。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;初始化块和声明属性时指定初始值，这些按源程序中排列顺序执行。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;java 中只有值传递。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;对 private 方法，即使它使用 final 修饰，在子类中也可以定义一个相同的，因为这是子类定义了一个新方法，并非重写。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;final 和 abstract 永远不能同时使用；static 和 abstrace 不能同时修饰某个方法；private 和 abstrace 不能同时修饰某个方法。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;java 中的 abstract 方法不能有方法体，c++ 中的 pure virtual 函数可以有实现。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;interface 的方法只能是 public abstract 的，属性只能是 public static final 的，使用 private 等修饰编译会报错。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;从内部类里引用外部类的属性或者方法时，可以用命 OuterClass.this.。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;非静态内部类里不能有静态成员。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;内部类可以使用 static 修饰，外部类不行。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;从外部类外创建内部非静态类的语法：OuterClass.InnerClass varName = OuterInstance.new InnerConstructor();
-从外部类外创建内部静态类的语法：OuterClass.InnerClass varName = new OuterClass.InnerConstructor();&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;内部类不可能被外部类的子类中重写，因为命名空间不同。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;纠误一处：《疯狂 Java 讲义》P214 讲道「如果匿名内部类需要访问外部类的局部变量，则必须使用 final 修饰符来修饰外部类的局部变量，否则系统将报错。经验证，只要这个局部变量在后续不改变其值，即使它不以 final 修饰，但实际表现是有效的 final 时，在 Java 8 环境下编译后会自动为它加上 final，不报错。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;switch 表达式可以使用整形或者枚举类实例（从 Java 7 开始，可以使用 String 对象了，参考：&lt;a href=&quot;http://docs.oracle.com/javase/7/docs/technotes/guides/language/strings-switch.html&quot;&gt;Strings in switch Statements&lt;/a&gt;）。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Set 判断两个对象是否相同不是使用 == 运算符，而是根据 equals 方法。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;HashSet 判断两个元素相等的标准是两个对象通过 equals 方法比较相等，并且两个对象的 hashCode() 方法返回值也相等。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;foreach 循环仅适用于实现了 Iterable 接口的 Java array 和 Collection 类。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;遍历任何 Collection（例如 Map、Set 或 List）时要删除元素只能使用 Iterator 的 remove 方法。&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>飞鱼</name></author><summary type="html">这是一个 C++ 程序员自己总结的 Java 学习中应该注意的点。</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>飞鱼</name></author><summary type="html">这是一个源自知乎的话题，原贴链接：一道百度的面试题，有大神会嘛？</summary></entry></feed>
