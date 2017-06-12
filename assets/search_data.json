@@ -102,18 +102,6 @@
     "category": "GitHub"
   },
   
-  "2016-03-14-show-chump": {
-    "title": "不藏拙的人生",
-    "url": " /2016/03/14/show-chump/",
-    "category": "Blog"
-  },
-  
-  "2015-10-25-without-internet": {
-    "title": "断网之后",
-    "url": " /2015/10/25/without-internet/",
-    "category": "Blog"
-  },
-  
 
   
   
@@ -169,18 +157,6 @@
   
   
 
-  
-  "2015-10-25-without-internet": {
-    "title": "断网之后",
-    "url": "/2015/10/25/without-internet/",
-    "category": "[&quot;Blog&quot;]"
-  },
-  
-  "2016-03-14-show-chump": {
-    "title": "不藏拙的人生",
-    "url": "/2016/03/14/show-chump/",
-    "category": "[&quot;Blog&quot;]"
-  },
   
   "2016-05-21-enable-https-for-github-pages": {
     "title": "为绑定域名的 GitHub Pages 启用 HTTPS",
