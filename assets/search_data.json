@@ -1,5 +1,11 @@
 {
   
+  "2017-06-13-npm-ocr-nodejs": {
+    "title": "nodejs package ocr",
+    "url": " /2017/06/13/npm-ocr-nodejs/",
+    "category": "docker"
+  },
+  
   "2017-06-13-docker-mac-clear-up": {
     "title": "docker clear up for mac",
     "url": " /2017/06/13/docker-mac-clear-up/",
@@ -269,6 +275,12 @@
   "2017-06-13-docker-mac-clear-up": {
     "title": "docker clear up for mac",
     "url": "/2017/06/13/docker-mac-clear-up/",
+    "category": "[&quot;docker&quot;]"
+  },
+  
+  "2017-06-13-npm-ocr-nodejs": {
+    "title": "nodejs package ocr",
+    "url": "/2017/06/13/npm-ocr-nodejs/",
     "category": "[&quot;docker&quot;]"
   },
   
