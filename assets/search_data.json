@@ -1,5 +1,11 @@
 {
   
+  "2017-06-13-travis-ci-myblog": {
+    "title": "使用travis-ci 来持续集成jekyll静态博客。",
+    "url": " /2017/06/13/travis-ci-myblog/",
+    "category": "Kubernetes,docker,travis"
+  },
+  
   "2017-06-13-npm-ocr-nodejs": {
     "title": "nodejs package ocr",
     "url": " /2017/06/13/npm-ocr-nodejs/",
@@ -282,6 +288,12 @@
     "title": "nodejs package ocr",
     "url": "/2017/06/13/npm-ocr-nodejs/",
     "category": "[&quot;docker&quot;]"
+  },
+  
+  "2017-06-13-travis-ci-myblog": {
+    "title": "使用travis-ci 来持续集成jekyll静态博客。",
+    "url": "/2017/06/13/travis-ci-myblog/",
+    "category": "[&quot;Kubernetes,docker,travis&quot;]"
   },
   
   "wiki-android-studio": {
