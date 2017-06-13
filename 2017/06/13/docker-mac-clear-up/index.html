@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Eclipse &mdash; 会飞的胖子。</title>
+    <title>docker clear up for mac &mdash; 会飞的胖子。</title>
     <link rel="stylesheet" href="/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="/assets/vendor/octicons/octicons/octicons.css">
@@ -21,23 +21,23 @@
     
 
     
-    <link rel="canonical" href="http://firsh.me/wiki/eclipse/">
+    <link rel="canonical" href="http://firsh.me/2017/06/13/docker-mac-clear-up/">
     <link rel="alternate" type="application/atom+xml" title="会飞的胖子。" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="Eclipse">
+    <meta property="og:title" content="docker clear up for mac">
       
-    <meta name="keywords" content="Eclipse">
-    <meta name="og:keywords" content="Eclipse">
+    <meta name="keywords" content="docker">
+    <meta name="og:keywords" content="docker">
       
-    <meta name="description" content="快捷键">
-    <meta name="og:description" content="快捷键">
+    <meta name="description" content="1、Main">
+    <meta name="og:description" content="1、Main">
       
     
     
         
     
-    <meta property="og:url" content="http://firsh.me/wiki/eclipse/">
+    <meta property="og:url" content="http://firsh.me/2017/06/13/docker-mac-clear-up/">
     <meta property="og:site_name" content="会飞的胖子。">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -85,12 +85,25 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="Eclipse">
+    <section class="collection-head small geopattern" data-pattern-id="docker clear up">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">Eclipse</h1>
+        <h1 class="collection-header">docker clear up for mac</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/06/13
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#docker" title="docker">docker</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
@@ -101,151 +114,99 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <h3 id="快捷键">快捷键</h3>
+    <h1 id="1main">1、Main</h1>
 
-<p>C –&gt; Ctrl</p>
+<blockquote>
+  <p>清理mac上Docker占用的磁盘空间</p>
+</blockquote>
 
-<p>S –&gt; Shift</p>
+<h2 id="11内容">1.1、内容：</h2>
 
-<p>A –&gt; Alt</p>
+<div class="language-text highlighter-rouge"><pre class="highlight"><code>Docker依赖Linux系统的cgroup实现，在mac系统中运行的时候，Docker会启动一个虚拟机中的Linux内核，并在硬盘上放一个 qcow2 格式的磁盘镜像文件。这个文件会随着Docker的使用不断膨胀，即使删除不用的Docker Image和Container也不会缩小。我在测试完一个自动化工具的Dockerfile改写之后，Docker.qcow2文件就达到42GB了。
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">功能</th>
-      <th style="text-align: left">快捷键</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">显示所有快捷键</td>
-      <td style="text-align: left">C-S-l</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">开/关注释</td>
-      <td style="text-align: left">C-/</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">显示 outline</td>
-      <td style="text-align: left">C-o</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">当前打开的文件列表</td>
-      <td style="text-align: left">C-e</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">快速查找打开文件</td>
-      <td style="text-align: left">C-S-r</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">查找</td>
-      <td style="text-align: left">C-h</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">查找后跳到下一处</td>
-      <td style="text-align: left">C-.</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Undo</td>
-      <td style="text-align: left">C-z</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Redo</td>
-      <td style="text-align: left">C-y</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">跳到指定行</td>
-      <td style="text-align: left">C-l</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">自动补全</td>
-      <td style="text-align: left">A-/</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">自动解决导入包问题</td>
-      <td style="text-align: left">C-S-o</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">返回</td>
-      <td style="text-align: left">A-Left</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">反返回</td>
-      <td style="text-align: left">A-Right</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">步进</td>
-      <td style="text-align: left">F5</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">单步</td>
-      <td style="text-align: left">F6</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">执行到返回</td>
-      <td style="text-align: left">F7</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">继续执行</td>
-      <td style="text-align: left">F8</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">删除当前行</td>
-      <td style="text-align: left">C-d</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">删除前一个词</td>
-      <td style="text-align: left">C-Backspace</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">删除后一个词</td>
-      <td style="text-align: left">C-Delete</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">缩进</td>
-      <td style="text-align: left">Tab</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">减少缩进</td>
-      <td style="text-align: left">S-Tab</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">在下面新起一行</td>
-      <td style="text-align: left">S-Enter</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">在上面新起一行</td>
-      <td style="text-align: left">C-S-Enter</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="qa">Q&amp;A</h3>
-
-<ol>
-  <li>
-    <p>如何解决 Mac OS X 下安装的是 Java 1.8，运行 Eclipse 时提示「您需要安装旧 Java SE 6 运行环境才能打开「Eclipse.app」。」的问题？</p>
-
-    <p><img src="/images/wiki/eclipse-need-java6.png" alt="" /></p>
-
-    <p>更改 /Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Info.plist 文件里的 JVMCapabilities 段如下（默认只有 <code class="highlighter-rouge">CommandLine</code>）：</p>
-
-    <div class="highlighter-rouge"><pre class="highlight"><code> &lt;key&gt;JVMCapabilities&lt;/key&gt;
-            &lt;array&gt;
-                    &lt;string&gt;JNI&lt;/string&gt;
-                    &lt;string&gt;BundledApp&lt;/string&gt;
-                    &lt;string&gt;WebStart&lt;/string&gt;
-                    &lt;string&gt;Applets&lt;/string&gt;
-                    &lt;string&gt;CommandLine&lt;/string&gt;
-            &lt;/array&gt;
+Google搜了一圏发现一个叫Théo Chamley的法国人写了一个脚本释放Docker.qcow2文件占用的空间。基本原理是用 docker save 命令保存要保留的image，然后关闭Docker，删除Docker.qcow2，再启动Docker，它会自动重建，最后用 docker load 命令恢复保留的image。
 </code></pre>
-    </div>
+</div>
 
-    <p>然后重启电脑。</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<span class="c">#!/bin/bash</span>
+<span class="c"># Copyright 2017 Théo Chamley</span>
+<span class="c"># Permission is hereby granted, free of charge, to any person obtaining a copy of </span>
+<span class="c"># this software and associated documentation files (the "Software"), to deal in the Software</span>
+<span class="c"># without restriction, including without limitation the rights to use, copy, modify, merge,</span>
+<span class="c"># publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons</span>
+<span class="c"># to whom the Software is furnished to do so, subject to the following conditions:</span>
+<span class="c">#</span>
+<span class="c"># The above copyright notice and this permission notice shall be included in all copies or</span>
+<span class="c"># substantial portions of the Software.</span>
+<span class="c">#</span>
+<span class="c"># THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING</span>
+<span class="c"># BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
+<span class="c"># NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,</span>
+<span class="c"># DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
 
-    <p>没有找到为何这样改的解释，按名称猜想应该是说在这几种环境下启动 Java 具有跨版本的兼容性吧。</p>
-  </li>
-</ol>
+<span class="nv">IMAGES</span><span class="o">=</span><span class="nv">$@</span>
+
+<span class="nb">echo</span> <span class="s2">"This will remove all your current containers and images except for:"</span>
+<span class="nb">echo</span> <span class="k">${</span><span class="nv">IMAGES</span><span class="k">}</span>
+<span class="nb">read</span> -p <span class="s2">"Are you sure? [yes/NO] "</span> -n 1 -r
+<span class="nb">echo</span>    <span class="c"># (optional) move to a new line</span>
+<span class="k">if</span> <span class="o">[[</span> ! <span class="nv">$REPLY</span> <span class="o">=</span>~ ^[Yy]<span class="nv">$ </span><span class="o">]]</span>
+<span class="k">then
+    </span><span class="nb">exit </span>1
+<span class="k">fi
+
+
+</span><span class="nv">TMP_DIR</span><span class="o">=</span><span class="k">$(</span>mktemp -d<span class="k">)</span>
+
+<span class="nb">pushd</span> <span class="nv">$TMP_DIR</span> &gt;/dev/null
+
+open -a Docker
+<span class="nb">echo</span> <span class="s2">"=&gt; Saving the specified images"</span>
+<span class="k">for </span>image <span class="k">in</span> <span class="k">${</span><span class="nv">IMAGES</span><span class="k">}</span>; <span class="k">do
+    </span><span class="nb">echo</span> <span class="s2">"==&gt; Saving </span><span class="k">${</span><span class="nv">image</span><span class="k">}</span><span class="s2">"</span>
+    <span class="nv">tar</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> -n <span class="k">${</span><span class="nv">image</span><span class="k">}</span> | base64<span class="k">)</span>
+    docker save -o <span class="k">${</span><span class="nv">tar</span><span class="k">}</span>.tar <span class="k">${</span><span class="nv">image</span><span class="k">}</span>
+    <span class="nb">echo</span> <span class="s2">"==&gt; Done."</span>
+<span class="k">done
+
+</span><span class="nb">echo</span> <span class="s2">"=&gt; Cleaning up"</span>
+<span class="nb">echo</span> -n <span class="s2">"==&gt; Quiting Docker"</span>
+osascript -e <span class="s1">'quit app "Docker"'</span>
+<span class="k">while </span>docker info &gt;/dev/null 2&gt;&amp;1; <span class="k">do
+    </span><span class="nb">echo</span> -n <span class="s2">"."</span>
+    sleep 1
+<span class="k">done</span>;
+<span class="nb">echo</span> <span class="s2">""</span>
+
+<span class="nb">echo</span> <span class="s2">"==&gt; Removing Docker.qcow2 file"</span>
+rm ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/Docker.qcow2
+
+<span class="nb">echo</span> <span class="s2">"==&gt; Launching Docker"</span>
+open -a Docker
+<span class="nb">echo</span> -n <span class="s2">"==&gt; Waiting for Docker to start"</span>
+<span class="k">until </span>docker info &gt;/dev/null 2&gt;&amp;1; <span class="k">do
+    </span><span class="nb">echo</span> -n <span class="s2">"."</span>
+    sleep 1
+<span class="k">done</span>;
+<span class="nb">echo</span> <span class="s2">""</span>
+
+<span class="nb">echo</span> <span class="s2">"=&gt; Done."</span>
+
+<span class="nb">echo</span> <span class="s2">"=&gt; Loading saved images"</span>
+<span class="k">for </span>image <span class="k">in</span> <span class="k">${</span><span class="nv">IMAGES</span><span class="k">}</span>; <span class="k">do
+    </span><span class="nb">echo</span> <span class="s2">"==&gt; Loading </span><span class="k">${</span><span class="nv">image</span><span class="k">}</span><span class="s2">"</span>
+    <span class="nv">tar</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> -n <span class="k">${</span><span class="nv">image</span><span class="k">}</span> | base64<span class="k">)</span>
+    docker load -q -i <span class="k">${</span><span class="nv">tar</span><span class="k">}</span>.tar <span class="o">||</span> <span class="nb">exit </span>1
+    <span class="nb">echo</span> <span class="s2">"==&gt; Done."</span>
+<span class="k">done
+
+</span><span class="nb">popd</span> &gt;/dev/null
+rm -r <span class="k">${</span><span class="nv">TMP_DIR</span><span class="k">}</span>
+
+</code></pre>
+</div>
+
 
     </article>
     <div class="share">

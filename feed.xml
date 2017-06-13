@@ -1,4 +1,95 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-12T18:14:33+08:00</updated><id>http://firsh.me/</id><title type="html">会飞的胖子。</title><subtitle>张建新个人博客</subtitle><author><name>飞鱼</name></author><entry><title type="html">jenkins + docker + git 持续集成</title><link href="http://firsh.me/2017/06/06/Jenkins-docker-kubectl-same-master/" rel="alternate" type="text/html" title="jenkins + docker + git 持续集成" /><published>2017-06-06T00:00:00+08:00</published><updated>2017-06-06T00:00:00+08:00</updated><id>http://firsh.me/2017/06/06/Jenkins-docker-kubectl-same-master</id><content type="html" xml:base="http://firsh.me/2017/06/06/Jenkins-docker-kubectl-same-master/">&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-13T23:39:56+08:00</updated><id>http://firsh.me/</id><title type="html">会飞的胖子。</title><subtitle>张建新个人博客</subtitle><author><name>飞鱼</name></author><entry><title type="html">docker clear up for mac</title><link href="http://firsh.me/2017/06/13/docker-mac-clear-up/" rel="alternate" type="text/html" title="docker clear up for mac" /><published>2017-06-13T00:00:00+08:00</published><updated>2017-06-13T00:00:00+08:00</updated><id>http://firsh.me/2017/06/13/docker-mac-clear-up</id><content type="html" xml:base="http://firsh.me/2017/06/13/docker-mac-clear-up/">&lt;h1 id=&quot;1main&quot;&gt;1、Main&lt;/h1&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;清理mac上Docker占用的磁盘空间&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;11内容&quot;&gt;1.1、内容：&lt;/h2&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Docker依赖Linux系统的cgroup实现，在mac系统中运行的时候，Docker会启动一个虚拟机中的Linux内核，并在硬盘上放一个 qcow2 格式的磁盘镜像文件。这个文件会随着Docker的使用不断膨胀，即使删除不用的Docker Image和Container也不会缩小。我在测试完一个自动化工具的Dockerfile改写之后，Docker.qcow2文件就达到42GB了。
+
+Google搜了一圏发现一个叫Théo Chamley的法国人写了一个脚本释放Docker.qcow2文件占用的空间。基本原理是用 docker save 命令保存要保留的image，然后关闭Docker，删除Docker.qcow2，再启动Docker，它会自动重建，最后用 docker load 命令恢复保留的image。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Copyright 2017 Théo Chamley&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Permission is hereby granted, free of charge, to any person obtaining a copy of &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# this software and associated documentation files (the &quot;Software&quot;), to deal in the Software&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# without restriction, including without limitation the rights to use, copy, modify, merge,&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# to whom the Software is furnished to do so, subject to the following conditions:&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# The above copyright notice and this permission notice shall be included in all copies or&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# substantial portions of the Software.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;IMAGES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$@&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;This will remove all your current containers and images except for:&quot;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;IMAGES&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;read&lt;/span&gt; -p &lt;span class=&quot;s2&quot;&gt;&quot;Are you sure? [yes/NO] &quot;&lt;/span&gt; -n 1 -r
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt;    &lt;span class=&quot;c&quot;&gt;# (optional) move to a new line&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; ! &lt;span class=&quot;nv&quot;&gt;$REPLY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;~ ^[Yy]&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;then
+    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;1
+&lt;span class=&quot;k&quot;&gt;fi
+
+
+&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;TMP_DIR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;mktemp -d&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;pushd&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$TMP_DIR&lt;/span&gt; &amp;gt;/dev/null
+
+open -a Docker
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;=&amp;gt; Saving the specified images&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;image &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;IMAGES&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;do
+    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;==&amp;gt; Saving &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;tar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -n &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; | base64&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+    docker save -o &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;tar&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;.tar &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;==&amp;gt; Done.&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;done
+
+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;=&amp;gt; Cleaning up&quot;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -n &lt;span class=&quot;s2&quot;&gt;&quot;==&amp;gt; Quiting Docker&quot;&lt;/span&gt;
+osascript -e &lt;span class=&quot;s1&quot;&gt;'quit app &quot;Docker&quot;'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;while &lt;/span&gt;docker info &amp;gt;/dev/null 2&amp;gt;&amp;amp;1; &lt;span class=&quot;k&quot;&gt;do
+    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -n &lt;span class=&quot;s2&quot;&gt;&quot;.&quot;&lt;/span&gt;
+    sleep 1
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;;
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;==&amp;gt; Removing Docker.qcow2 file&quot;&lt;/span&gt;
+rm ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/Docker.qcow2
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;==&amp;gt; Launching Docker&quot;&lt;/span&gt;
+open -a Docker
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -n &lt;span class=&quot;s2&quot;&gt;&quot;==&amp;gt; Waiting for Docker to start&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;until &lt;/span&gt;docker info &amp;gt;/dev/null 2&amp;gt;&amp;amp;1; &lt;span class=&quot;k&quot;&gt;do
+    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -n &lt;span class=&quot;s2&quot;&gt;&quot;.&quot;&lt;/span&gt;
+    sleep 1
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;;
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;=&amp;gt; Done.&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;=&amp;gt; Loading saved images&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;image &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;IMAGES&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;do
+    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;==&amp;gt; Loading &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;tar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -n &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; | base64&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+    docker load -q -i &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;tar&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;.tar &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;1
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;==&amp;gt; Done.&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;done
+
+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;popd&lt;/span&gt; &amp;gt;/dev/null
+rm -r &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;TMP_DIR&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><author><name>飞鱼</name></author><summary type="html">1、Main</summary></entry><entry><title type="html">jenkins + docker + git 持续集成</title><link href="http://firsh.me/2017/06/06/Jenkins-docker-kubectl-same-master/" rel="alternate" type="text/html" title="jenkins + docker + git 持续集成" /><published>2017-06-06T00:00:00+08:00</published><updated>2017-06-06T00:00:00+08:00</updated><id>http://firsh.me/2017/06/06/Jenkins-docker-kubectl-same-master</id><content type="html" xml:base="http://firsh.me/2017/06/06/Jenkins-docker-kubectl-same-master/">&lt;blockquote&gt;
   &lt;p&gt;git push 以后， jenkins 自动触发 代码打包，生成docker image , docker push 到 仓库，发布到环境里。&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -1442,216 +1533,4 @@ kubectl config set-cluster e2e --insecure-skip-tls-verify=true
 &lt;/code&gt;&lt;/pre&gt;
     &lt;/div&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>飞鱼</name></author><summary type="html">对博客的保护，以及原创的文章图片进行防盗链设置。</summary></entry><entry><title type="html">Java metrics</title><link href="http://firsh.me/2016/12/04/Java-metrics/" rel="alternate" type="text/html" title="Java metrics" /><published>2016-12-04T00:00:00+08:00</published><updated>2016-12-04T00:00:00+08:00</updated><id>http://firsh.me/2016/12/04/Java-metrics</id><content type="html" xml:base="http://firsh.me/2016/12/04/Java-metrics/">&lt;p&gt;项目中有对程序的一个健康检查，以及TPS,QPS等。&lt;/p&gt;
-
-&lt;h2 id=&quot;文档&quot;&gt;文档&lt;/h2&gt;
-
-&lt;p&gt;*Maven&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-code&quot;&gt; &amp;lt;!--  metrics * --&amp;gt;
-    &amp;lt;dependency&amp;gt;
-        &amp;lt;groupId&amp;gt;io.dropwizard.metrics&amp;lt;/groupId&amp;gt;
-        &amp;lt;artifactId&amp;gt;metrics-core&amp;lt;/artifactId&amp;gt;
-        &amp;lt;version&amp;gt;3.1.0&amp;lt;/version&amp;gt;
-    &amp;lt;/dependency&amp;gt;
-    &amp;lt;dependency&amp;gt;
-        &amp;lt;groupId&amp;gt;io.dropwizard.metrics&amp;lt;/groupId&amp;gt;
-        &amp;lt;artifactId&amp;gt;metrics-servlets&amp;lt;/artifactId&amp;gt;
-        &amp;lt;version&amp;gt;3.1.0&amp;lt;/version&amp;gt;
-    &amp;lt;/dependency&amp;gt;
-    &amp;lt;dependency&amp;gt;
-        &amp;lt;groupId&amp;gt;com.codahale.metrics&amp;lt;/groupId&amp;gt;
-        &amp;lt;artifactId&amp;gt;metrics-healthchecks&amp;lt;/artifactId&amp;gt;
-        &amp;lt;version&amp;gt;3.0.1&amp;lt;/version&amp;gt;
-    &amp;lt;/dependency&amp;gt;
-    &amp;lt;dependency&amp;gt;
-        &amp;lt;groupId&amp;gt;com.github.davidb&amp;lt;/groupId&amp;gt;
-        &amp;lt;artifactId&amp;gt;metrics-influxdb&amp;lt;/artifactId&amp;gt;
-        &amp;lt;version&amp;gt;0.8.2&amp;lt;/version&amp;gt;
-    &amp;lt;/dependency&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-  &lt;li&gt;核心工具类&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import com.codahale.metrics.*;
-import com.ktyh.think.filter.prometheus.DropwizardExportSetUp;
-import io.prometheus.client.CollectorRegistry;
-import metrics_influxdb.InfluxdbReporter;
-import metrics_influxdb.api.protocols.InfluxdbProtocols;
-import org.slf4j.LoggerFactory;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import java.util.concurrent.TimeUnit;
-/**
- * Created by zhangjianxin on 2016/11/3.
- * metrics core config and static void formart
- */
-public class MetricsCore {
-    /**
-     * 因数据存在争议，改为单例模式。
-     */
-    private static final MetricRegistry METRIC_REGISTRY = new MetricRegistry();
-    private static String HOST_IP_ADDRESS;
-    private static String USERNAME;
-    private static String PASSWORD;
-    private static String DATABASE;
-    private static int PORT;
-    private static ServletRequest ARG_REQ;
-    private static ServletResponse ARG_RESP;
-    /**
-     * @author 内存使用程度MB
-     */
-    Gauge&lt;span class=&quot;nt&quot;&gt;&amp;lt;Long&amp;gt;&lt;/span&gt; getFreeMemory = () -&amp;gt; toMb(Runtime.getRuntime().freeMemory());
-    Gauge&lt;span class=&quot;nt&quot;&gt;&amp;lt;Long&amp;gt;&lt;/span&gt; getTotalMemory = () -&amp;gt; toMb(Runtime.getRuntime().totalMemory());
-
-    public static synchronized MetricRegistry getInstance() {
-        return METRIC_REGISTRY;
-    }
-
-    public static ScheduledReporter influxdbReporter(MetricRegistry metrics) {
-        InitInfluxdbConfig();//初始化
-        return InfluxdbReporter.forRegistry(metrics)
-                .protocol(InfluxdbProtocols.http(HOST_IP_ADDRESS, PORT, USERNAME, PASSWORD, DATABASE))
-                .convertRatesTo(TimeUnit.SECONDS)
-                .convertDurationsTo(TimeUnit.MILLISECONDS)
-                .filter(MetricFilter.ALL)
-                .skipIdleMetrics(false)
-                .build();
-    }
-
-
-    public static void freeMemoryForJvm(MetricRegistry metrics) {
-        metrics.register(MetricRegistry.name(&quot;memory_free_mb_size&quot;), new Gauge&lt;span class=&quot;nt&quot;&gt;&amp;lt;Long&amp;gt;&lt;/span&gt;() {
-            @Override
-            public Long getValue() {
-                return toMb(Runtime.getRuntime().freeMemory());
-            }
-        });
-    }
-
-    public static void totalMemoryForJvm(MetricRegistry metrics) {
-        metrics.register(MetricRegistry.name(&quot;memory_total_mb_size&quot;), new Gauge&lt;span class=&quot;nt&quot;&gt;&amp;lt;Long&amp;gt;&lt;/span&gt;() {
-            @Override
-            public Long getValue() {
-                return toMb(Runtime.getRuntime().totalMemory());
-            }
-        });
-    }
-
-    //转换为MB
-    private static long toMb(long bytes) {
-        return bytes / 1024 / 1024;
-    }
-
-    /**
-     * 初始化时序数据库配置，可以通过反射进行更改
-     **/
-
-    public static void InitInfluxdbConfig() {
-        PORT = 8085;
-        HOST_IP_ADDRESS = &quot;192.168.1.102&quot;;
-        USERNAME = &quot;root&quot;;
-        PASSWORD = &quot;root&quot;;
-        // DATABASE = &quot;Metrics&quot;;
-        DATABASE = &quot;_internal&quot;;
-    }
-
-    /**
-     * 传递初始化参数，用单例去回调
-     *
-     * @param &quot;Servlet request and respone&quot;
-     */
-
-    public static void requestFullArgs(ServletRequest req, ServletResponse resp) {
-        ARG_REQ = req;
-        ARG_RESP = resp;
-    }
-
-    /**
-     * Reporter 数据的展现位置
-     *
-     * @param metrics
-     * @return
-     */
-
-    public ConsoleReporter consoleReporter(MetricRegistry metrics) {
-        return ConsoleReporter.forRegistry(metrics)
-                .convertRatesTo(TimeUnit.SECONDS)
-                .convertDurationsTo(TimeUnit.MILLISECONDS)
-                .build();
-    }
-
-    public Slf4jReporter slf4jReporter(MetricRegistry metrics) {
-        return Slf4jReporter.forRegistry(metrics)
-                .outputTo(LoggerFactory.getLogger(&quot;demo.metrics&quot;))
-                .convertRatesTo(TimeUnit.SECONDS)
-                .convertDurationsTo(TimeUnit.MILLISECONDS)
-                .build();
-    }
-
-    public JmxReporter jmxReporter(MetricRegistry metrics, String doMain) {
-        return JmxReporter.forRegistry(metrics)
-                .inDomain(doMain)
-                .convertRatesTo(TimeUnit.SECONDS)
-                .convertDurationsTo(TimeUnit.MILLISECONDS)
-                .filter(MetricFilter.ALL).build();
-    }
-
-    /**
-     * Meters会将最近1分钟，5分钟，15分钟的TPS（每秒处理的request数）给打印出来，还有所有时间的TPS。
-     *
-     * @param metrics
-     * @return
-     */
-    public Meter requestMeter(MetricRegistry metrics, String arg) {
-        return metrics.meter(MetricRegistry.name(&quot;meter_event_&quot; + arg));
-    }
-
-    /**
-     * 直方图
-     *
-     * @param metrics
-     * @return
-     */
-
-    public Histogram responseSizes(MetricRegistry metrics, String arg) {
-        return metrics.histogram(MetricRegistry.name(&quot;size_histogram_&quot; + arg));
-    }
-
-    /**
-     * 计数器
-     *
-     * @param metrics
-     * @return
-     */
-
-    public Counter pendingJobs(MetricRegistry metrics, String arg) {
-        return metrics.counter(MetricRegistry.name(&quot;counter_Job_&quot; + arg));
-    }
-
-    /**
-     * 计时器
-     *
-     * @param metrics
-     * @return
-     */
-
-    public Timer responsesExecureTime(MetricRegistry metrics, String arg) {
-        return metrics.timer(MetricRegistry.name(&quot;response_timer_&quot; + arg));
-    }
-
-    public Meter requestURLCount(MetricRegistry metrics, String arg) {
-        return metrics.meter(MetricRegistry.name(&quot;request_URL_&quot; + arg));
-    }
-}
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;##目前这种方式只是将数据推送到influxdb ，以及prometheus 。&lt;/p&gt;
-
-&lt;p&gt;1 数据采集&lt;/p&gt;
-
-&lt;p&gt;2 采集点(Filter,Controller,Service)&lt;/p&gt;
-
-&lt;p&gt;3 数据推送(influxdb,primetheus,jmx,console,cvs等。)&lt;/p&gt;</content><author><name>飞鱼</name></author><summary type="html">项目中有对程序的一个健康检查，以及TPS,QPS等。</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>飞鱼</name></author><summary type="html">对博客的保护，以及原创的文章图片进行防盗链设置。</summary></entry></feed>

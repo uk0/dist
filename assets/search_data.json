@@ -1,5 +1,11 @@
 {
   
+  "2017-06-13-docker-mac-clear-up": {
+    "title": "docker clear up for mac",
+    "url": " /2017/06/13/docker-mac-clear-up/",
+    "category": "docker"
+  },
+  
   "2017-06-06-jenkins-docker-kubectl-same-master": {
     "title": "jenkins + docker + git 持续集成",
     "url": " /2017/06/06/Jenkins-docker-kubectl-same-master/",
@@ -258,6 +264,12 @@
     "title": "jenkins + docker + git 持续集成",
     "url": "/2017/06/06/Jenkins-docker-kubectl-same-master/",
     "category": "[&quot;jenkins&quot;, &quot;docker&quot;]"
+  },
+  
+  "2017-06-13-docker-mac-clear-up": {
+    "title": "docker clear up for mac",
+    "url": "/2017/06/13/docker-mac-clear-up/",
+    "category": "[&quot;docker&quot;]"
   },
   
   "wiki-android-studio": {
