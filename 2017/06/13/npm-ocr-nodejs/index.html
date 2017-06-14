@@ -30,8 +30,8 @@
     <meta name="keywords" content="nodejs,npm">
     <meta name="og:keywords" content="nodejs,npm">
       
-    <meta name="description" content="n-ocr">
-    <meta name="og:description" content="n-ocr">
+    <meta name="description" content="ng-ocr">
+    <meta name="og:description" content="ng-ocr">
       
     
     
@@ -114,16 +114,16 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <h1 id="n-ocr">n-ocr</h1>
+    <h1 id="ng-ocr">ng-ocr</h1>
 
 <p><a href="https://travis-ci.org/zmatsh/OCR-NODEJS"><img src="https://travis-ci.org/zmatsh/OCR-NODEJS.svg?branch=master" alt="Build Status" /></a></p>
 
-<p>n-ocr is an OCR library pure JavaScript for node.js.
+<p>Ngocr is an OCR library pure JavaScript for node.js.
 We use <a href="https://github.com/antimatter15/ocrad.js/">ocrad.js</a>.</p>
 
 <h2 id="install">Install</h2>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>npm install n-ocr -S
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>npm install ng-ocr -S
 </code></pre>
 </div>
 
@@ -133,8 +133,8 @@ We use <a href="https://github.com/antimatter15/ocrad.js/">ocrad.js</a>.</p>
 
 <p>Simple :</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">okrabyte</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"n-ocr"</span><span class="p">);</span>
-<span class="nx">okrabyte</span><span class="p">.</span><span class="nx">decodeFile</span><span class="p">(</span><span class="s2">"test/fixture/hello_world.png"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">){</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Ngocr</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"Ngocr"</span><span class="p">);</span>
+<span class="nx">Ngocr</span><span class="p">.</span><span class="nx">decodeFile</span><span class="p">(</span><span class="s2">"test/fixture/hello_world.png"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">){</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span> <span class="c1">// Hello World!</span>
 <span class="p">});</span>
 </code></pre>
@@ -142,10 +142,10 @@ We use <a href="https://github.com/antimatter15/ocrad.js/">ocrad.js</a>.</p>
 
 <p>From Buffer:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">okrabyte</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"n-ocr"</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Ngocr</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"Ngocr"</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"fs"</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">buffer</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s2">"test/fixture/hello_world.png"</span><span class="p">);</span>
-<span class="nx">okrabyte</span><span class="p">.</span><span class="nx">decodeBuffer</span><span class="p">(</span><span class="nx">buffer</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">){</span>
+<span class="nx">Ngocr</span><span class="p">.</span><span class="nx">decodeBuffer</span><span class="p">(</span><span class="nx">buffer</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">){</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span> <span class="c1">// Hello World!</span>
 <span class="p">});</span>
 </code></pre>
@@ -153,10 +153,10 @@ We use <a href="https://github.com/antimatter15/ocrad.js/">ocrad.js</a>.</p>
 
 <p>From Stream:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">okrabyte</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"n-ocr"</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Ngocr</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"Ngocr"</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"fs"</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">stream</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">(</span><span class="s2">"test/fixture/hello_world.png"</span><span class="p">);</span>
-<span class="nx">okrabyte</span><span class="p">.</span><span class="nx">decodeStream</span><span class="p">(</span><span class="nx">stream</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">){</span>
+<span class="nx">Ngocr</span><span class="p">.</span><span class="nx">decodeStream</span><span class="p">(</span><span class="nx">stream</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">){</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span> <span class="c1">// Hello World!</span>
 <span class="p">});</span>
 </code></pre>
