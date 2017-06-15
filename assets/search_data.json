@@ -1,5 +1,11 @@
 {
   
+  "2017-06-15-npm-node-version-q": {
+    "title": "nodejs + npm 版本切换(Mac/Windows/Linux)",
+    "url": " /2017/06/15/npm-node-version-q/",
+    "category": "nodejs,npm,mac"
+  },
+  
   "2017-06-13-travis-ci-myblog": {
     "title": "使用travis-ci 来持续集成jekyll静态博客。",
     "url": " /2017/06/13/travis-ci-myblog/",
@@ -294,6 +300,12 @@
     "title": "使用travis-ci 来持续集成jekyll静态博客。",
     "url": "/2017/06/13/travis-ci-myblog/",
     "category": "[&quot;Kubernetes,docker,travis&quot;]"
+  },
+  
+  "2017-06-15-npm-node-version-q": {
+    "title": "nodejs + npm 版本切换(Mac/Windows/Linux)",
+    "url": "/2017/06/15/npm-node-version-q/",
+    "category": "[&quot;nodejs,npm,mac&quot;]"
   },
   
   "wiki-android-studio": {
