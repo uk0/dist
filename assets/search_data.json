@@ -1,5 +1,11 @@
 {
   
+  "2017-06-19-mianshi-java-development": {
+    "title": "面试题 java Development。",
+    "url": " /2017/06/19/mianshi-Java-development/",
+    "category": "GitHub"
+  },
+  
   "2017-06-15-npm-node-version-q": {
     "title": "nodejs + npm 版本切换(Mac/Windows/Linux)",
     "url": " /2017/06/15/npm-node-version-q/",
@@ -306,6 +312,12 @@
     "title": "nodejs + npm 版本切换(Mac/Windows/Linux)",
     "url": "/2017/06/15/npm-node-version-q/",
     "category": "[&quot;nodejs,npm,mac&quot;]"
+  },
+  
+  "2017-06-19-mianshi-java-development": {
+    "title": "面试题 java Development。",
+    "url": "/2017/06/19/mianshi-Java-development/",
+    "category": "[&quot;GitHub&quot;]"
   },
   
   "wiki-android-studio": {

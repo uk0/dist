@@ -1,4 +1,490 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-18T03:26:19+08:00</updated><id>http://firsh.me/</id><title type="html">飞鱼。</title><subtitle>张建新个人博客</subtitle><author><name>飞鱼</name></author><entry><title type="html">nodejs + npm 版本切换(Mac/Windows/Linux)</title><link href="http://firsh.me/2017/06/15/npm-node-version-q/" rel="alternate" type="text/html" title="nodejs + npm 版本切换(Mac/Windows/Linux)" /><published>2017-06-15T00:00:00+08:00</published><updated>2017-06-15T00:00:00+08:00</updated><id>http://firsh.me/2017/06/15/npm-node-version-q</id><content type="html" xml:base="http://firsh.me/2017/06/15/npm-node-version-q/">&lt;p&gt;因项目需求需要多次切换npm以及nodejs，所写出这个文章以供参考。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-19T00:24:11+08:00</updated><id>http://firsh.me/</id><title type="html">飞鱼。</title><subtitle>张建新个人博客</subtitle><author><name>飞鱼</name></author><entry><title type="html">面试题 java Development。</title><link href="http://firsh.me/2017/06/19/mianshi-Java-development/" rel="alternate" type="text/html" title="面试题 java Development。" /><published>2017-06-19T00:00:00+08:00</published><updated>2017-06-19T00:00:00+08:00</updated><id>http://firsh.me/2017/06/19/mianshi-Java-development</id><content type="html" xml:base="http://firsh.me/2017/06/19/mianshi-Java-development/">&lt;h2 id=&quot;说明&quot;&gt;说明&lt;/h2&gt;
+
+&lt;p&gt;这篇文章翻译自一位外国友人的关于面试后端程序员的文章，我比较喜爱这篇文章。一是因为它极大的拓宽了我的视角，另一方面是其中的一些问题非常具有启发性。不仅对于面试者，对于面试官来说也是个不错的参考。于是迫不及待的翻译了一下，给各位看官做个参考。&lt;/p&gt;
+
+&lt;p&gt;这篇文章中，许多问题我并没有完全理解，所以翻译可能存在不准确的地方。如果有读者发现有一些翻译有误或者不好的地方，请不吝赐教。&lt;/p&gt;
+
+&lt;p&gt;原文参见 &lt;a href=&quot;https://github.com/arialdomartini&quot;&gt;@arialdomartini&lt;/a&gt;的: &lt;a href=&quot;https://github.com/arialdomartini/Back-End-Developer-Interview-Questions&quot;&gt;Back-End Developer Interview Questions&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;以下是原文翻译。&lt;/p&gt;
+
+&lt;h1 id=&quot;后端开发面试题&quot;&gt;后端开发面试题&lt;/h1&gt;
+
+&lt;p&gt;在面试的时候，我并不特别喜欢问一些技术性的问题。我更喜欢的方式是这样的: 和面试者坐在一起，看一些实际的代码，解决一些实际的问题。并且用一整天的时间，让团队所有成员轮流和面试者进行结对编程。虽然如此，但是一些技术问题仍然可以用来很好地启动一段有深度的谈话，能够让面试者和面试官相互都有更加深入的了解。&lt;/p&gt;
+
+&lt;p&gt;这个仓库包含了可以用来考核面试者的一系列后端面试题。但绝不是说，面试官必须用每个面试题来考核面试者（这样可能要耗费好几个小时）。根据你期望面试者拥有的技能，从这个列表中有选择的挑一些题目，可以帮助你在特定技能上考核面试者。&lt;/p&gt;
+
+&lt;p&gt;应当承认的是，这个项目的灵感来自于&lt;a href=&quot;https://github.com/darcyclarke&quot;&gt;@darcyclarke&lt;/a&gt;的文章&lt;a href=&quot;https://github.com/darcyclarke/Front-end-Developer-Interview-Questions&quot;&gt;Front-end Job Interview Questions&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;注意:&lt;/strong&gt; 请记住，这些面试题中有许多问题是开放式的，能引导讨论一些有趣的问题。相比那些有直接答案的问题来说，这种问题能够让你对面试者的能力有更多的了解。再一次强调，我认为仅仅是问问题是不够的。要通过与面试者较长时间的结对编程来完成面试: 这是你们相互了解对方的风格和方法、让面试者了解未来工作的最佳手段之一。&lt;/p&gt;
+
+&lt;h2 id=&quot;目录&quot;&gt;&lt;a name=&quot;toc&quot;&gt;目录&lt;/a&gt;&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;#general&quot;&gt;通用问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#open&quot;&gt;开放式问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#patterns&quot;&gt;设计模式相关问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#design&quot;&gt;代码设计相关问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#languages&quot;&gt;语言相关问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#web&quot;&gt;Web相关问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#databases&quot;&gt;数据库相关问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#nosql&quot;&gt;非关系型数据库相关问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#codeversioning&quot;&gt;代码版本管理相关问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#concurrency&quot;&gt;并发问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#distributed&quot;&gt;分布式系统相关问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#management&quot;&gt;软件生命周期和团队管理相关问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#algorithms&quot;&gt;逻辑和算法相关问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#architecture&quot;&gt;软件架构相关问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#soa&quot;&gt;面向服务架构(SOA)和微服务(Microservice)相关问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#security&quot;&gt;安全相关问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#billgates&quot;&gt;比尔盖茨式问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#snippets&quot;&gt;代码示例问题&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;####&lt;a href=&quot;#toc&quot;&gt;[↑]&lt;/a&gt; &lt;a name=&quot;general&quot;&gt;通用问题:&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;语言设计中空引用(&lt;a href=&quot;http://programmers.stackexchange.com/questions/12777/are-null-references-really-a-bad-thing&quot;&gt;null reference&lt;/a&gt;)的存在有什么问题？假设你想要将空引用的概念从你的首选语言中移除，可能导致什么结果？&lt;/li&gt;
+  &lt;li&gt;为什么函数式编程重要？什么时候适用函数式语言？&lt;/li&gt;
+  &lt;li&gt;设计(design)、架构(architecture)、功能(functionality)和美学(aesthetic)之间有什么区别？讨论一下。&lt;/li&gt;
+  &lt;li&gt;微软、谷歌、欧朋(opera)和火狐这类公司是如何从他们的浏览器中获利的？&lt;/li&gt;
+  &lt;li&gt;为什么打开TCP套接字有很大的开销？&lt;/li&gt;
+  &lt;li&gt;封装的重要性体现在哪儿？&lt;/li&gt;
+  &lt;li&gt;什么是实时系统？它与普通系统有什么区别？&lt;/li&gt;
+  &lt;li&gt;实时语言(real-time language)和堆内存分配(heap memory allocation)之间的关系是什么？&lt;/li&gt;
+  &lt;li&gt;不变性(Immutability)是指: (变量的)值只能在创建的时候被设置一次，之后就不能被改变。为什么不变性对写更加安全的代码有帮助？&lt;/li&gt;
+  &lt;li&gt;可变值(mutable values)和不可变值(immutable values)有哪些优缺点？&lt;/li&gt;
+  &lt;li&gt;什么是O/R阻抗失衡(Object-Relational impedence mismatch)？&lt;/li&gt;
+  &lt;li&gt;如果你需要使用缓存，你使用哪些原则来确定缓存的大小？&lt;/li&gt;
+  &lt;li&gt;TCP和HTTP有什么区别？&lt;/li&gt;
+  &lt;li&gt;在客户端渲染(client-side rendering)和服务端渲染(server-side rendering)之间，你是如何权衡的？&lt;/li&gt;
+  &lt;li&gt;如何在一个不可靠的协议之上构建一个可靠的通信协议？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;####&lt;a href=&quot;#toc&quot;&gt;[↑]&lt;/a&gt; &lt;a name=&quot;open&quot;&gt;开放式问题:&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;为什么人们会抵制变化？&lt;/li&gt;
+  &lt;li&gt;如何向你的祖母解释什么是线程？&lt;/li&gt;
+  &lt;li&gt;作为一个软件工程师，你想要既要有创新力，又要产出具有可预测性。采用什么策略才能使这两个目标可以共存呢？&lt;/li&gt;
+  &lt;li&gt;什么是好的代码？&lt;/li&gt;
+  &lt;li&gt;解释什么是流(Streaming)和如何实现一个流？&lt;/li&gt;
+  &lt;li&gt;假设你的公司给你一周的时间，用来改善你和同事的生活: 你将如何使用这一周？&lt;/li&gt;
+  &lt;li&gt;本周你学了什么？&lt;/li&gt;
+  &lt;li&gt;所有的设计中都会有美学元素(aesthetic element)的存在。问题是，你认为美学元素是你的朋友还是敌人？&lt;/li&gt;
+  &lt;li&gt;列出最近你读过的5本书。&lt;/li&gt;
+  &lt;li&gt;假设目前有个大型公司（非常有钱），他们的开发流程是瀑布式流程（Waterfall），如果需要你在他们公司引入持续交付（&lt;a href=&quot;https://en.wikipedia.org/wiki/Continuous_delivery&quot;&gt;Continue Devivery&lt;/a&gt;），你会怎么做？&lt;/li&gt;
+  &lt;li&gt;我们来谈谈”&lt;em&gt;重复造轮子&lt;/em&gt;”,”&lt;em&gt;非我发明症&lt;/em&gt;”, “&lt;em&gt;吃自己做出来的狗粮&lt;/em&gt;“的这些做法吧。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;(注: 重复造轮子: Reinventing the wheel; 非我发明症:Not Invented Here Syndrome; 吃自己做出来的狗粮: Eating Your Own Dog Food)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;在你当前的工作流中，什么事情是你计划下一步需要自动化的？&lt;/li&gt;
+  &lt;li&gt;为什么写软件是困难的？是什么使软件的维护变得困难？&lt;/li&gt;
+  &lt;li&gt;你更喜欢在全新项目（Green Field Project）上工作还是在已有项目(Brown Field Project)基础上工作？为什么？&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/alex/what-happens-when&quot;&gt;当你在浏览器地址栏输入google.com回车之后都发生了什么?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;当操作系统CPU处于空闲的时候，它可能在处理哪些事情？&lt;/li&gt;
+  &lt;li&gt;如何向一个5岁的孩子解释什么是Unicode/数据库事务？&lt;/li&gt;
+  &lt;li&gt;如何维护单体架构(monolithic architecture)？&lt;/li&gt;
+  &lt;li&gt;一个”专业的开发者”意味着什么？&lt;/li&gt;
+  &lt;li&gt;软件开发是艺术、是技艺还是工程？你的观点是什么？&lt;/li&gt;
+  &lt;li&gt;“喜欢这个的人也喜欢…“，如何在一个电子商务商店里实现这种功能？&lt;/li&gt;
+  &lt;li&gt;为什么在创新上，企业会比创业公司慢些？&lt;/li&gt;
+  &lt;li&gt;为什么说，你不应该尝试应用自己发明或者设计的密码学？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;####&lt;a href=&quot;#toc&quot;&gt;[↑]&lt;/a&gt; &lt;a name=&quot;patterns&quot;&gt;设计模式相关问题:&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;请用一个例子表明，全局对象是邪恶的存在。&lt;/li&gt;
+  &lt;li&gt;假设你工作的系统不支持事务性，你会如何从头开始实现它？&lt;/li&gt;
+  &lt;li&gt;什么是好莱坞原则（Hollywood Principles）？&lt;/li&gt;
+  &lt;li&gt;关于迪米特法则(最少知识原则): 写一段代码违反它, 然后修复它。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;（注: 迪米特法则：the Law of Demeter, 最少知识原则： the Principle of Least Knowledge）&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Active-Record模式有什么限制和缺陷？&lt;/li&gt;
+  &lt;li&gt;Data-Mapper模式和Active-Record模式有什么区别？&lt;/li&gt;
+  &lt;li&gt;空对象模式(Null Object Pattern)的目的是什么？&lt;/li&gt;
+  &lt;li&gt;为什么组合(Composition)比继承(Inheritance)更好？&lt;/li&gt;
+  &lt;li&gt;什么是反腐败层(Anti-corruption Layer)?&lt;/li&gt;
+  &lt;li&gt;你可以写一个线程安全的单例(Singleton)类吗？&lt;/li&gt;
+  &lt;li&gt;数据抽象(Data Abstraction)能力是指能改变实现而不影响客户端的这种能力。请构造一个一个例子，违反这个特性，并且尝试修复它。&lt;/li&gt;
+  &lt;li&gt;你是如何处理依赖关系地狱(Dependency Hell)的？&lt;/li&gt;
+  &lt;li&gt;为什么说goto语句是恶魔般的存在？&lt;/li&gt;
+  &lt;li&gt;健壮性是进行软件设计时的一个通用原则，它建议 &lt;em&gt;“发送时要保守，接收时要开放”&lt;/em&gt;。这也经常被写成，“做一个有耐心的读者，做一个谨慎的作者”。你能解释一些这背后的逻辑吗？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;译者注： “发送时要保守，接收时要开发”的原文是： “Be conservative in what you send, be liberal in what you accept”，有点类似于“严于律己，宽于待人”的意味。&lt;/p&gt;
+
+&lt;p&gt;####&lt;a href=&quot;#toc&quot;&gt;[↑]&lt;/a&gt; &lt;a name=&quot;design&quot;&gt;代码设计相关问题:&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;你在进行软件设计时会考虑软件测试吗？软件测试是如何影响软件设计的？&lt;/li&gt;
+  &lt;li&gt;内聚和耦合的区别是什么？&lt;/li&gt;
+  &lt;li&gt;重构在哪些场景下有用？&lt;/li&gt;
+  &lt;li&gt;代码中的注释有用吗？&lt;/li&gt;
+  &lt;li&gt;设计和架构有什么区别？&lt;/li&gt;
+  &lt;li&gt;为什么在测试驱动开发(TDD)中是先写测试，再写代码？&lt;/li&gt;
+  &lt;li&gt;C++支持多继承，Java允许类实现多个接口。这些特性对正交性有什么影响？使用多继承和使用多接口有区别吗？[这个问题来自Andrew .Hunt 和 David Thomas写的《程序员修炼之道》]&lt;/li&gt;
+  &lt;li&gt;在存储过程（Stored Procedures）中写业务逻辑有什么优缺点？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;####&lt;a href=&quot;#toc&quot;&gt;[↑]&lt;/a&gt; &lt;a name=&quot;languages&quot;&gt;语言相关问题:&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;告诉我你的首选语言的三个最坏的缺陷。&lt;/li&gt;
+  &lt;li&gt;为什么现在函数式编程这么越来越受关注？&lt;/li&gt;
+  &lt;li&gt;闭包是什么？它有什么用途？闭包和类有什么共同点？&lt;/li&gt;
+  &lt;li&gt;泛型有什么用途？&lt;/li&gt;
+  &lt;li&gt;什么是高阶函数？有什么用途？用你的首选语言写个例子出来。&lt;/li&gt;
+  &lt;li&gt;讨论一下，如何写一个循环，然后把它转换成递归函数，要避免易变性。&lt;/li&gt;
+  &lt;li&gt;有些语言将函数视为第一公民，这是什么意思？&lt;/li&gt;
+  &lt;li&gt;用一个例子说明匿名函数是有用的。&lt;/li&gt;
+  &lt;li&gt;什么是动态方法调度(Dynamic Method Dispatch)？&lt;/li&gt;
+  &lt;li&gt;名字空间(Namespace)有什么用？有什么可以替代它的吗？&lt;/li&gt;
+  &lt;li&gt;谈谈Java和C#之间的互操作性(Interoperability) (任选其他两门语言都行)&lt;/li&gt;
+  &lt;li&gt;为什么很多软件工程师不喜欢Java？&lt;/li&gt;
+  &lt;li&gt;你认为好的语言好在哪里？差的语言差在哪里？&lt;/li&gt;
+  &lt;li&gt;写两个函数，一个是”引用透明的(Referentially Transparent)”，另一个是”引用不透明的(Referentially Opaque)”。讨论之。&lt;/li&gt;
+  &lt;li&gt;什么是栈？什么是堆？&lt;/li&gt;
+  &lt;li&gt;为什么一个语言中，”函数是第一公民”是很重要的？&lt;/li&gt;
+  &lt;li&gt;模式匹配(Pattern Matching)和Switch语句(Switch clauses)的区别在哪儿？&lt;/li&gt;
+  &lt;li&gt;为什么有些语言设计上没有异常机制？这有什么优缺点？&lt;/li&gt;
+  &lt;li&gt;如果&lt;code class=&quot;highlighter-rouge&quot;&gt;Cat&lt;/code&gt;是一个&lt;code class=&quot;highlighter-rouge&quot;&gt;Animal&lt;/code&gt;, 那么&lt;code class=&quot;highlighter-rouge&quot;&gt;TaskCare&amp;lt;Cat&amp;gt;&lt;/code&gt;是一个&lt;code class=&quot;highlighter-rouge&quot;&gt;TakeCare&amp;lt;Animal&amp;gt;&lt;/code&gt;吗？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;####&lt;a href=&quot;#toc&quot;&gt;[↑]&lt;/a&gt; &lt;a name=&quot;web&quot;&gt;web相关问题:&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;为什么”第一方cookie(first-party cookie)”和”第三方cookie(third-party cookie)”被如此不同的对待？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;####&lt;a href=&quot;#toc&quot;&gt;[↑]&lt;/a&gt; &lt;a name=&quot;databases&quot;&gt;数据库相关问题:&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;如果要你将一个项目从MySQL迁移至PostgreSQL中，你会如何迁移？&lt;/li&gt;
+  &lt;li&gt;为什么&lt;code class=&quot;highlighter-rouge&quot;&gt;SELECT * FROM table WHERE field = null&lt;/code&gt;不能匹配空的字段？&lt;/li&gt;
+  &lt;li&gt;什么是ACID(原子性，一致性，隔离性，持久性)原则？&lt;/li&gt;
+  &lt;li&gt;你是如何进行数据库模式(Database schema)迁移的？&lt;/li&gt;
+  &lt;li&gt;延迟加载(lazy loading)是如何实现的？什么场景下有用？他有什么缺陷？&lt;/li&gt;
+  &lt;li&gt;什么是N+1问题？&lt;/li&gt;
+  &lt;li&gt;如何找出应用中开销最大的查询？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;####&lt;a href=&quot;#toc&quot;&gt;[↑]&lt;/a&gt; &lt;a name=&quot;nosql&quot;&gt;非关系型数据库相关问题:&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;什么是最终一致性(Eventual Consistency)？&lt;/li&gt;
+  &lt;li&gt;关于CAP理论，举一些CP、AP、CA系统的例子。&lt;/li&gt;
+  &lt;li&gt;NoSQL是如何解决可伸缩性的挑战的？&lt;/li&gt;
+  &lt;li&gt;什么情况下你会使用类似于MongoDB的文档数据库而不是关系型数据库（如Mysql或者PostgreSQL）？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;####&lt;a href=&quot;#toc&quot;&gt;[↑]&lt;/a&gt; &lt;a name=&quot;codeversioning&quot;&gt;代码版本管理相关问题:&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;为什么在Mercurial或者git中(管理)分支比SVN容易？&lt;/li&gt;
+  &lt;li&gt;分散式版本控制系统（比如git），相比集中式版本控制系统（如svn）有哪些优势和劣势？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;(注:集中式版本控制系统: Centralized Version Control Systems；分散式版本控制系统: Distributed Version Control Systems)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;能描述一下什么是GitHubFlow和GitFlow工作流吗？&lt;/li&gt;
+  &lt;li&gt;什么是rebase？&lt;/li&gt;
+  &lt;li&gt;为什么合并操作(merge)在Mercurial和git中比在SVN和CVS中容易？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;####&lt;a href=&quot;#toc&quot;&gt;[↑]&lt;/a&gt; &lt;a name=&quot;concurrency&quot;&gt;并发问题:&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;为什么我们需要并发呢？解释一下。&lt;/li&gt;
+  &lt;li&gt;为什么测试多线程/并发代码这么困难？&lt;/li&gt;
+  &lt;li&gt;什么是竞争条件（Race Condition）？用任何一个语言写一个例子。&lt;/li&gt;
+  &lt;li&gt;什么是死锁？用代码解释一下。&lt;/li&gt;
+  &lt;li&gt;什么是饿死？&lt;/li&gt;
+  &lt;li&gt;什么是Wait-Free算法？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;####&lt;a href=&quot;#toc&quot;&gt;[↑]&lt;/a&gt; &lt;a name=&quot;distributed&quot;&gt;分布式系统相关问题:&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;怎么测试一个分布式系统？&lt;/li&gt;
+  &lt;li&gt;什么场景下你会在两个系统中采用异步通信机制？&lt;/li&gt;
+  &lt;li&gt;远程过程调用的通用缺点是什么？&lt;/li&gt;
+  &lt;li&gt;如果你为了可扩展性和鲁棒性而构建一个分布式的系统，分别在封闭安全的网络环境情况下，和地理上的位置不同但是网络环境不是封闭和安全的情况下，你会考虑什么不同的事情？&lt;/li&gt;
+  &lt;li&gt;在Web应用中如何管理容错性？在桌面端呢？&lt;/li&gt;
+  &lt;li&gt;在分布式系统中，如何处理故障？&lt;/li&gt;
+  &lt;li&gt;让我们来谈谈网络分裂(network partitions)后有的几种恢复的手段吧。&lt;/li&gt;
+  &lt;li&gt;你认为分布式计算中有哪些谬论？&lt;/li&gt;
+  &lt;li&gt;你在什么时候会使用Request/Response模式，什么时候使用Publish/Subscribe模式？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;####&lt;a href=&quot;#toc&quot;&gt;[↑]&lt;/a&gt; &lt;a name=&quot;management&quot;&gt;软件生命周期和团队管理相关问题:&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;什么是敏捷（Agility）？&lt;/li&gt;
+  &lt;li&gt;你是如何处理遗留代码（Legacy Code）的？&lt;/li&gt;
+  &lt;li&gt;假设我是你们公司的CEO，请向我解释什么是看板，并且说服我在它上面投资。&lt;/li&gt;
+  &lt;li&gt;敏捷（Agility）和瀑布（Waterfall）之间的最大区别是什么？&lt;/li&gt;
+  &lt;li&gt;作为团队管理者，你对会议太多这个问题是如何处理的？&lt;/li&gt;
+  &lt;li&gt;你会如何处理延期很长时间了的项目？&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;“&lt;em&gt;个体与交互重于过程和工具&lt;/em&gt;“和”&lt;em&gt;客户协作重于合同谈判&lt;/em&gt;“占了敏捷宣言（Agile Manifesto）的一半，谈论一下这两个观念。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;如果你是你们公司的CTO，你会采取什么样的决策？&lt;/li&gt;
+  &lt;li&gt;你觉得项目经理有用吗？&lt;/li&gt;
+  &lt;li&gt;如果要你组织一个弹性工作制的开发团队（即没有强制工作时间的要求），并且假期制度是”按需休假”，你会如何做？&lt;/li&gt;
+  &lt;li&gt;你会如何管理一个人员流动非常高的团队？如何在不加薪的条件下说服团队成员不要离开？&lt;/li&gt;
+  &lt;li&gt;除了代码之外，你最关注你的同事的哪3项素质？&lt;/li&gt;
+  &lt;li&gt;关于代码，你最希望非技术人员能知道的的三件事是什么？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;####&lt;a href=&quot;#toc&quot;&gt;[↑]&lt;/a&gt; &lt;a name=&quot;algorithms&quot;&gt;逻辑和算法相关问题:&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;只用LIFO栈如何构造一个FIFO队列？只用FIFO队列如何构造一个LIFO栈？&lt;/li&gt;
+  &lt;li&gt;写一段有栈溢出的代码。&lt;/li&gt;
+  &lt;li&gt;写一个尾递归版本的阶乘函数。&lt;/li&gt;
+  &lt;li&gt;使用任何一个语言，写一个REPL，功能是echo你输入的字符串。然后将它演化成一个逆波兰表达式的计算器。&lt;/li&gt;
+  &lt;li&gt;如果需要你设计一个文件系统磁盘碎片整理程序，你会如何设计？&lt;/li&gt;
+  &lt;li&gt;写一个生成随机迷宫的程序。&lt;/li&gt;
+  &lt;li&gt;写一段有内存泄漏的示例代码。&lt;/li&gt;
+  &lt;li&gt;随机生成一个的数字序列，里面每个数字都不同。&lt;/li&gt;
+  &lt;li&gt;写一个简单的垃圾回收系统。&lt;/li&gt;
+  &lt;li&gt;使用任何一门语言，写一个基本的消息代理。&lt;/li&gt;
+  &lt;li&gt;写一个基础的web服务器，然后画一张线路图，展示你将来还想要实现的功能。&lt;/li&gt;
+  &lt;li&gt;如何对一个10GB的文件进行排序？如果是10TB的数据，你会采用什么方法？&lt;/li&gt;
+  &lt;li&gt;请实现&lt;code class=&quot;highlighter-rouge&quot;&gt;rnd()&lt;/code&gt;函数&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;####&lt;a href=&quot;#toc&quot;&gt;[↑]&lt;/a&gt; &lt;a name=&quot;architecture&quot;&gt;软件架构相关问题:&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;什么情况下缓存是没用的，甚至是危险的？&lt;/li&gt;
+  &lt;li&gt;为什么事件驱动的架构能提高可扩展性(scalability)？&lt;/li&gt;
+  &lt;li&gt;什么样的代码是可读性强的代码？&lt;/li&gt;
+  &lt;li&gt;紧急设计(Emergent Design)和演化架构(Evolutionary Architecture)之间的区别是什么？&lt;/li&gt;
+  &lt;li&gt;横向扩展(scale out) vs 纵向扩展(scale up): 有什么区别？分别在什么场景下使用？&lt;/li&gt;
+  &lt;li&gt;分布式系统中如何处理”故障切换(failover)”和”用户会话(user session)”？&lt;/li&gt;
+  &lt;li&gt;什么是CQRS(Command Query Responsibility Segregation)?他和最早的Command-Query Separation原则有什么区别？&lt;/li&gt;
+  &lt;li&gt;什么是三层架构？&lt;/li&gt;
+  &lt;li&gt;如何设计一个可扩展性高的系统？&lt;/li&gt;
+  &lt;li&gt;处理C10k问题的策略有哪些？&lt;/li&gt;
+  &lt;li&gt;如果让你来设计一个去中心化的P2P系统，你会如何设计？&lt;/li&gt;
+  &lt;li&gt;为什么CGI的扩展性不好？&lt;/li&gt;
+  &lt;li&gt;在设计系统时，你如何防止供应商依赖(&lt;a href=&quot;https://sourcemaking.com/antipatterns/vendor-lock-in&quot;&gt;Vendor Lock-in&lt;/a&gt;)？&lt;/li&gt;
+  &lt;li&gt;在可扩展性上，发布/订阅(Publish-Subscribe)模式有什么缺点？&lt;/li&gt;
+  &lt;li&gt;80年代以后，CPU有哪些变化？这些变化，对编程产生了什么影响？&lt;/li&gt;
+  &lt;li&gt;性能生命周期(performace lifecycle)中，你认为哪个部分是需要考虑进去的？ 如何管理？&lt;/li&gt;
+  &lt;li&gt;除了恶意攻击造成的拒绝服务现象以外，哪些设计或者架构上的问题会导致拒绝服务？&lt;/li&gt;
+  &lt;li&gt;性能和可扩展性之间有什么关系？&lt;/li&gt;
+  &lt;li&gt;什么时候紧耦合是OK的？&lt;/li&gt;
+  &lt;li&gt;一个系统要有什么特征才能适配云计算环境(Cloud Ready)？&lt;/li&gt;
+  &lt;li&gt;Does unity of design imply an aristocracy of architects?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;####&lt;a href=&quot;#toc&quot;&gt;[↑]&lt;/a&gt; &lt;a name=&quot;soa&quot;&gt;面向服务架构(SOA)和微服务(Microservice)相关问题:&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;在SOA中，为什么长期存活的事务(Long-lived transation)不被看好，而Saga却被看好？&lt;/li&gt;
+  &lt;li&gt;SOA和MicroService之间有什么区别？&lt;/li&gt;
+  &lt;li&gt;我们来谈谈Web服务的版本管理、版本兼容性、重大变更管理这些事情吧.&lt;/li&gt;
+  &lt;li&gt;在saga中事务和补偿操作(compensation operation)之间的区别是什么？在SOA中呢？&lt;/li&gt;
+  &lt;li&gt;微服务不能做得太”微”，你认为什么时候微服务太”微”了？&lt;/li&gt;
+  &lt;li&gt;MicroService架构的优劣是什么？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;####&lt;a href=&quot;#toc&quot;&gt;[↑]&lt;/a&gt; &lt;a name=&quot;security&quot;&gt;安全相关问题:&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;什么是双因素认证(Two Factor Authentication)？在一个已有的Web应用中，你如何实现这种机制？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;####&lt;a href=&quot;#toc&quot;&gt;[↑]&lt;/a&gt; &lt;a name=&quot;billgates&quot;&gt;比尔盖茨式问题:&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;如果你把一面镜子放在扫描仪上，会发生什么？&lt;/li&gt;
+  &lt;li&gt;假设有一个和你完全一样的克隆人，而他是你的上司，你愿意和他工作吗？&lt;/li&gt;
+  &lt;li&gt;现在请你面试一下我。&lt;/li&gt;
+  &lt;li&gt;为什么Quora上的回答会比Yahoo Answer上的回答好？&lt;/li&gt;
+  &lt;li&gt;对手是现代语言，你的任务是要为Cobol辩护，你会如何进行？&lt;/li&gt;
+  &lt;li&gt;10年后的你是什么样子？&lt;/li&gt;
+  &lt;li&gt;假设你是我老板，我被解雇了。你会如何通知我？&lt;/li&gt;
+  &lt;li&gt;我想要重构一个系统，而你想要从头重写。我们来争论一下该怎么弄吧。然后我们反转角色，再争论一下。&lt;/li&gt;
+  &lt;li&gt;老板要你对公司撒谎，你的反应是什么？&lt;/li&gt;
+  &lt;li&gt;如果你可以穿越到以前，你会给年轻时候的你什么建议？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;####&lt;a href=&quot;#toc&quot;&gt;[↑]&lt;/a&gt; &lt;a name=&quot;snippets&quot;&gt;代码示例问题:&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;这段Javascript函数的输出是什么？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;hookupevents&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;button&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;click&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+        &lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; 
+      &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;关于类型擦除(Type Erasure)，这段Java代码的输出是什么？为什么？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;li&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Float&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Float&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;();&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;li&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getClass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getClass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// evaluates to true&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Equal&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;你能指出哪儿有内存泄漏吗？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Stack&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;elements&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DEFAULT_INITIAL_CAPACITY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;elements&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DEFAULT_INITIAL_CAPACITY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;ensureCapacity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;elements&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+   
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;EmptyStackException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;elements&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;cm&quot;&gt;/**
+     * Ensure space for at least one more element, roughly
+     * doubling the capacity each time the array needs to grow.
+     */&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ensureCapacity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;elements&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;elements&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Arrays&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;copyOf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;elements&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt;语句，或者更加通用点，条件表达式通常是过程式编程/命令式编程的形式。你能去掉这段代码中的&lt;code class=&quot;highlighter-rouge&quot;&gt;switch&lt;/code&gt;语句，用面向对象的方式来修改这段代码吗？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Formatter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Service&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;service&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Formatter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Service&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;service&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;service&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;service&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;doTheJob&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;theInput&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;service&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;askForPermission&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;switch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;FAIL&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;OK&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%s%s&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;theInput&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;theInput&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;你能去掉这里的&lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt;语句，将它改成更加面向对象吗？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TheService&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FileHandler&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FooRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fooRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;TheService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FileHandler&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FooRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fooRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fileHandler&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fooRepository&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fooRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Execute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+        &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rewrittenUrl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getXmlFileFromFileName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;executionId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getExecutionIdFromFileName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;executionId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rewrittenUrl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;Foo&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;knownFoo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fooRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getFooByXmlFileName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rewrittenUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;knownFoo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;knownFoo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;DoThat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;如何重构这段代码？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;HRESULT&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;S_OK&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;SUCCEEDED&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Operation1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;SUCCEEDED&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Operation2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()))&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;SUCCEEDED&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Operation3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()))&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;SUCCEEDED&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Operation4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()))&lt;/span&gt;
+                &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+                &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;OPERATION4FAILED&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;OPERATION3FAILED&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;OPERATION2FAILED&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;OPERATION1FAILED&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><author><name>飞鱼</name></author><summary type="html">说明</summary></entry><entry><title type="html">nodejs + npm 版本切换(Mac/Windows/Linux)</title><link href="http://firsh.me/2017/06/15/npm-node-version-q/" rel="alternate" type="text/html" title="nodejs + npm 版本切换(Mac/Windows/Linux)" /><published>2017-06-15T00:00:00+08:00</published><updated>2017-06-15T00:00:00+08:00</updated><id>http://firsh.me/2017/06/15/npm-node-version-q</id><content type="html" xml:base="http://firsh.me/2017/06/15/npm-node-version-q/">&lt;p&gt;因项目需求需要多次切换npm以及nodejs，所写出这个文章以供参考。&lt;/p&gt;
 
 &lt;h1 id=&quot;使用npm-n进行版本切换对nodejs的版本控制&quot;&gt;使用npm n进行版本切换，对nodejs的版本控制。&lt;/h1&gt;
 
@@ -1312,21 +1798,4 @@ chown -R admin:admin /home/tod/data
 
 &lt;blockquote&gt;
   &lt;p&gt;使用jekyll搭建的一个免费博客，作为镜像托管在Github上&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>飞鱼</name></author><summary type="html">CICD (travis) for my blog Success Full</summary></entry><entry><title type="html">Kubernetes 1.5.1 版本升级。</title><link href="http://firsh.me/2016/12/21/kubernetes-1.5.1/" rel="alternate" type="text/html" title="Kubernetes 1.5.1 版本升级。" /><published>2016-12-21T00:00:00+08:00</published><updated>2016-12-21T00:00:00+08:00</updated><id>http://firsh.me/2016/12/21/kubernetes-1.5.1</id><content type="html" xml:base="http://firsh.me/2016/12/21/kubernetes-1.5.1/">&lt;p&gt;Kubernetes 1.5.1 版本升级！&lt;/p&gt;
-
-&lt;h2 id=&quot;main&quot;&gt;Main&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG.md#server-binaries&quot;&gt;kubernetes1.5.1&lt;/a&gt;
-  &lt;a href=&quot;http://kubernetes.io/kubernetes/third_party/swagger-ui/#!/api%2Fv1/createNamespacedPodTemplate&quot;&gt;swagger-ui&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;工作太忙稍后补上步骤。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;升级为替换docker镜像即可。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;替换kube-apiserver,kube-controller-manager,kube-scheduler镜像，替换kubectl kubelet kube-proxy&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>飞鱼</name></author><summary type="html">Kubernetes 1.5.1 版本升级！</summary></entry></feed>
+&lt;/blockquote&gt;</content><author><name>飞鱼</name></author><summary type="html">CICD (travis) for my blog Success Full</summary></entry></feed>
