@@ -60,6 +60,18 @@
     "category": "Kubernetes,docker,travis"
   },
   
+  "2017-05-09-kubernetes-ceph-rbd": {
+    "title": "kubernetes Ceph RBD",
+    "url": " /2017/05/09/kubernetes-ceph-rbd/",
+    "category": "kubernetes"
+  },
+  
+  "2016-12-26-traefik-load-balancing": {
+    "title": "traefik 负载均衡",
+    "url": " /2016/12/26/Traefik-load-balancing/",
+    "category": "docker"
+  },
+  
   "2016-12-21-kubernetes-1-5-1": {
     "title": "Kubernetes 1.5.1 版本升级。",
     "url": " /2016/12/21/kubernetes-1.5.1/",
@@ -258,6 +270,18 @@
     "title": "Kubernetes 1.5.1 版本升级。",
     "url": "/2016/12/21/kubernetes-1.5.1/",
     "category": "[&quot;Kubernetes&quot;]"
+  },
+  
+  "2016-12-26-traefik-load-balancing": {
+    "title": "traefik 负载均衡",
+    "url": "/2016/12/26/Traefik-load-balancing/",
+    "category": "[&quot;docker&quot;]"
+  },
+  
+  "2017-05-09-kubernetes-ceph-rbd": {
+    "title": "kubernetes Ceph RBD",
+    "url": "/2017/05/09/kubernetes-ceph-rbd/",
+    "category": "[&quot;kubernetes&quot;]"
   },
   
   "2017-05-30-cicd-e6-88-90-e5-8a-9f-e9-83-a8-e7-bd-b2": {
