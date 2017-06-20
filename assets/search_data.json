@@ -1,5 +1,11 @@
 {
   
+  "2017-06-20-ngrok-docker": {
+    "title": "Ngrok做内网穿透。",
+    "url": " /2017/06/20/ngrok-docker/",
+    "category": "Kubernetes,docker,Ngrok"
+  },
+  
   "2017-06-19-mianshi-java-development": {
     "title": "面试题 java Development。",
     "url": " /2017/06/19/mianshi-Java-development/",
@@ -198,6 +204,8 @@
   
   
   
+  
+  
 
   
   "2016-05-21-enable-https-for-github-pages": {
@@ -342,6 +350,12 @@
     "title": "面试题 java Development。",
     "url": "/2017/06/19/mianshi-Java-development/",
     "category": "[&quot;GitHub&quot;]"
+  },
+  
+  "2017-06-20-ngrok-docker": {
+    "title": "Ngrok做内网穿透。",
+    "url": "/2017/06/20/ngrok-docker/",
+    "category": "[&quot;Kubernetes,docker,Ngrok&quot;]"
   },
   
   "wiki-android-studio": {

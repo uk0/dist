@@ -1,4 +1,107 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-19T15:37:28+08:00</updated><id>http://firsh.me/</id><title type="html">飞鱼。</title><subtitle>张建新个人博客</subtitle><author><name>飞鱼</name></author><entry><title type="html">面试题 java Development。</title><link href="http://firsh.me/2017/06/19/mianshi-Java-development/" rel="alternate" type="text/html" title="面试题 java Development。" /><published>2017-06-19T00:00:00+08:00</published><updated>2017-06-19T00:00:00+08:00</updated><id>http://firsh.me/2017/06/19/mianshi-Java-development</id><content type="html" xml:base="http://firsh.me/2017/06/19/mianshi-Java-development/">&lt;h2 id=&quot;说明&quot;&gt;说明&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-20T16:17:20+08:00</updated><id>http://firsh.me/</id><title type="html">飞鱼。</title><subtitle>张建新个人博客</subtitle><author><name>飞鱼</name></author><entry><title type="html">Ngrok做内网穿透。</title><link href="http://firsh.me/2017/06/20/ngrok-docker/" rel="alternate" type="text/html" title="Ngrok做内网穿透。" /><published>2017-06-20T00:00:00+08:00</published><updated>2017-06-20T00:00:00+08:00</updated><id>http://firsh.me/2017/06/20/ngrok-docker</id><content type="html" xml:base="http://firsh.me/2017/06/20/ngrok-docker/">&lt;p&gt;Ngrok for Docker Server and client&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://microbadger.com/images/wernight/ngrok&quot; title=&quot;Get your own image badge on microbadger.com&quot;&gt;&lt;img src=&quot;https://images.microbadger.com/badges/image/wernight/ngrok.svg&quot; alt=&quot;&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://beta.codenvy.com/f?url=https://github.com/wernight/docker-ngrok&quot; title=&quot;Start development on Codenvy&quot;&gt;&lt;img src=&quot;http://beta.codenvy.com/factory/resources/codenvy-contribute.svg&quot; alt=&quot;Codenvy badge&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;A &lt;a href=&quot;https://www.docker.io/&quot;&gt;Docker&lt;/a&gt; image for &lt;a href=&quot;https://ngrok.com/&quot;&gt;ngrok&lt;/a&gt; v2, introspected tunnels to localhost.
+It’s based on the excellent work of &lt;a href=&quot;https://registry.hub.docker.com/u/wizardapps/ngrok/&quot;&gt;wizardapps/ngrok&lt;/a&gt; and &lt;a href=&quot;https://registry.hub.docker.com/u/fnichol/ngrok/&quot;&gt;fnichol/ngrok&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;features&quot;&gt;Features&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Small&lt;/strong&gt;: Built using &lt;a href=&quot;https://registry.hub.docker.com/_/busybox&quot;&gt;busybox&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Simple&lt;/strong&gt;: Just link as &lt;code class=&quot;highlighter-rouge&quot;&gt;http&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;https&lt;/code&gt; in most cases, see below; exposes ngrok server &lt;code class=&quot;highlighter-rouge&quot;&gt;4040&lt;/code&gt; port.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Secure&lt;/strong&gt;: Runs as non-root user with a random UID &lt;code class=&quot;highlighter-rouge&quot;&gt;6737&lt;/code&gt; (to avoid mapping to an existing UID).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;configuration&quot;&gt;Configuration&lt;/h2&gt;
+
+&lt;p&gt;To see command-line options, run &lt;code class=&quot;highlighter-rouge&quot;&gt;docker run --rm wernight/ngrok ngrok --help&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;usage&quot;&gt;Usage&lt;/h2&gt;
+
+&lt;p&gt;Supposing you’ve an Apache or Nginx Docker container named &lt;code class=&quot;highlighter-rouge&quot;&gt;web_service_container&lt;/code&gt; listening on port 80:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ docker run --rm -it --link web_service_container wernight/ngrok ngrok http web_service_container:80
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;environment-variables&quot;&gt;Environment variables&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Please consider using directly the command-line arguments of Ngrok.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;If you use the default &lt;code class=&quot;highlighter-rouge&quot;&gt;CMD&lt;/code&gt; (i.e. don’t specify the ngrok command-line but only &lt;code class=&quot;highlighter-rouge&quot;&gt;wernight/ngrok&lt;/code&gt;),
+then you can use instead envrionment variables magic below.&lt;/p&gt;
+
+&lt;p&gt;You simply have to link the Ngrok container to the application under the &lt;code class=&quot;highlighter-rouge&quot;&gt;app&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;http&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;https&lt;/code&gt; aliases, and all of the configuration will be done for you by default.&lt;/p&gt;
+
+&lt;p&gt;Additionally, you can specify one of several environment variable (via &lt;code class=&quot;highlighter-rouge&quot;&gt;-e&lt;/code&gt;) to configure your Ngrok tunnel:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NGROK_AUTH&lt;/code&gt; - Authentication key for your Ngrok account. This is needed for custom subdomains, custom domains, and HTTP authentication.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NGROK_SUBDOMAIN&lt;/code&gt; - Name of the custom subdomain to use for your tunnel. You must also provide the authentication token.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NGROK_HOSTNAME&lt;/code&gt; - Paying Ngrok customers can specify a custom domain. Only one subdomain or domain can be specified, with the domain taking priority.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NGROK_USERNAME&lt;/code&gt; - Username to use for HTTP authentication on the tunnel. You must also specify an authentication token.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NGROK_PASSWORD&lt;/code&gt; - Password to use for HTTP authentication on the tunnel. You must also specify an authentication token.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NGROK_PROTOCOL&lt;/code&gt; - Can either be &lt;code class=&quot;highlighter-rouge&quot;&gt;HTTP&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;TCP&lt;/code&gt;, and it defaults to &lt;code class=&quot;highlighter-rouge&quot;&gt;HTTP&lt;/code&gt; if not specified. If set to &lt;code class=&quot;highlighter-rouge&quot;&gt;TCP&lt;/code&gt;, Ngrok will allocate a port instead of a subdomain and proxy TCP requests directly to your application.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NGROK_PORT&lt;/code&gt; - Port to expose (defaults to &lt;code class=&quot;highlighter-rouge&quot;&gt;80&lt;/code&gt; for &lt;code class=&quot;highlighter-rouge&quot;&gt;HTTP&lt;/code&gt; protocol).&lt;/li&gt;
+  &lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;full-example&quot;&gt;Full example&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;We’ll set up a simple example HTTP server in a docker container named &lt;code class=&quot;highlighter-rouge&quot;&gt;www&lt;/code&gt;:&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ docker run -v /usr/share/nginx/html --name www_data busybox true
+$ docker run --rm --volumes-from www_data busybox /bin/sh -c 'echo &quot;&amp;lt;h1&amp;gt;Yo&amp;lt;/h1&amp;gt;&quot; &amp;gt; /usr/share/nginx/html/index.html'
+$ docker run -d -p 80 --volumes-from www_data --name www nginx
+$ curl $(docker port www 80)
+&amp;lt;h1&amp;gt;Yo&amp;lt;/h1&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Now we’ll link that HTTP server into an ngrok container to expose it on the internet:&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ docker run -d -p 4040 --link www:http --name www_ngrok wernight/ngrok
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;You can now access the &lt;a href=&quot;https://ngrok.com/docs#client-api&quot;&gt;API&lt;/a&gt; to find the assigned domain:&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ curl $(docker port www_ngrok 4040)/api/tunnels
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;or access the web UI to see requests and responses:&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ xdg-open http://$(docker port www_ngrok 4040)
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;helper&quot;&gt;Helper&lt;/h3&gt;
+
+&lt;p&gt;For common cases you may want to create an alias in your &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.profile&lt;/code&gt; (or &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.bashrc&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.zshrc&lt;/code&gt;, or equivalent):&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function docker-ngrok() {
+  docker run --rm -it --link &quot;$1&quot;:http wernight/ngrok ngrok http http:80
+}
+# For ZSH with Oh-My-Zsh! and 'docker' plugin enabled, you can also enable auto-completion:
+#compdef __docker_containers docker-ngrok
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then to the simple example just do &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-ngrok web_service_container&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;feedbacks&quot;&gt;Feedbacks&lt;/h2&gt;
+
+&lt;p&gt;Report issues/questions/feature requests on &lt;a href=&quot;https://github.com/wernight/docker-ngrok/issues&quot;&gt;GitHub Issues&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Pull requests are very welcome!&lt;/p&gt;</content><author><name>飞鱼</name></author><summary type="html">Ngrok for Docker Server and client</summary></entry><entry><title type="html">面试题 java Development。</title><link href="http://firsh.me/2017/06/19/mianshi-Java-development/" rel="alternate" type="text/html" title="面试题 java Development。" /><published>2017-06-19T00:00:00+08:00</published><updated>2017-06-19T00:00:00+08:00</updated><id>http://firsh.me/2017/06/19/mianshi-Java-development</id><content type="html" xml:base="http://firsh.me/2017/06/19/mianshi-Java-development/">&lt;h2 id=&quot;说明&quot;&gt;说明&lt;/h2&gt;
 
 &lt;p&gt;这篇文章翻译自一位外国友人的关于面试后端程序员的文章，我比较喜爱这篇文章。一是因为它极大的拓宽了我的视角，另一方面是其中的一些问题非常具有启发性。不仅对于面试者，对于面试官来说也是个不错的参考。于是迫不及待的翻译了一下，给各位看官做个参考。&lt;/p&gt;
 
@@ -1790,12 +1893,4 @@ chown -R admin:admin /home/tod/data
 &lt;p&gt;3.确认启动成功&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-$xslt&quot;&gt;jps
-&lt;/code&gt;&lt;/pre&gt;</content><author><name>飞鱼</name></author><summary type="html">CrateDB数据目录发生变动启动故障。</summary></entry><entry><title type="html">CICD。</title><link href="http://firsh.me/2017/05/30/CICD%E6%88%90%E5%8A%9F%E9%83%A8%E7%BD%B2/" rel="alternate" type="text/html" title="CICD。" /><published>2017-05-30T00:00:00+08:00</published><updated>2017-05-30T00:00:00+08:00</updated><id>http://firsh.me/2017/05/30/CICD%E6%88%90%E5%8A%9F%E9%83%A8%E7%BD%B2</id><content type="html" xml:base="http://firsh.me/2017/05/30/CICD%E6%88%90%E5%8A%9F%E9%83%A8%E7%BD%B2/">&lt;p&gt;CICD (travis) for my blog Success Full&lt;/p&gt;
-
-&lt;h2 id=&quot;see&quot;&gt;See&lt;/h2&gt;
-
-&lt;h2 id=&quot;travis-ci-&quot;&gt;Travis CI &lt;a href=&quot;https://travis-ci.org/zmatsh/zmatsh.github.io&quot;&gt;&lt;img src=&quot;https://travis-ci.org/zmatsh/zmatsh.github.io.svg?branch=master&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt;&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;使用jekyll搭建的一个免费博客，作为镜像托管在Github上&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>飞鱼</name></author><summary type="html">CICD (travis) for my blog Success Full</summary></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;</content><author><name>飞鱼</name></author><summary type="html">CrateDB数据目录发生变动启动故障。</summary></entry></feed>
