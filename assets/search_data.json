@@ -1,5 +1,11 @@
 {
   
+  "2017-06-21-kubernetes-1-6": {
+    "title": "Kubernetes 项目学习笔记。",
+    "url": " /2017/06/21/kubernetes-1.6/",
+    "category": "nodejs,nodejs,学习笔记"
+  },
+  
   "2017-06-21-javascript-leaning": {
     "title": "Javascript or nodejs 学习笔记。",
     "url": " /2017/06/21/javascript-leaning/",
@@ -367,6 +373,12 @@
   "2017-06-21-javascript-leaning": {
     "title": "Javascript or nodejs 学习笔记。",
     "url": "/2017/06/21/javascript-leaning/",
+    "category": "[&quot;nodejs,nodejs,学习笔记&quot;]"
+  },
+  
+  "2017-06-21-kubernetes-1-6": {
+    "title": "Kubernetes 项目学习笔记。",
+    "url": "/2017/06/21/kubernetes-1.6/",
     "category": "[&quot;nodejs,nodejs,学习笔记&quot;]"
   },
   
