@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-21T22:25:15+08:00</updated><id>http://firsh.me/</id><title type="html">飞鱼。</title><subtitle>张建新个人博客</subtitle><author><name>飞鱼</name></author><entry><title type="html">Kubernetes 项目学习笔记。</title><link href="http://firsh.me/2017/06/21/kubernetes-1.6/" rel="alternate" type="text/html" title="Kubernetes 项目学习笔记。" /><published>2017-06-21T00:00:00+08:00</published><updated>2017-06-21T00:00:00+08:00</updated><id>http://firsh.me/2017/06/21/kubernetes-1.6</id><content type="html" xml:base="http://firsh.me/2017/06/21/kubernetes-1.6/">&lt;p&gt;这一篇学习笔记，记录了kubernetes 容器编排框架的实战，以及模拟线上负载均衡等功能。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-21T22:26:41+08:00</updated><id>http://firsh.me/</id><title type="html">飞鱼。</title><subtitle>张建新个人博客</subtitle><author><name>飞鱼</name></author><entry><title type="html">Kubernetes 项目学习笔记。</title><link href="http://firsh.me/2017/06/21/kubernetes-1.6/" rel="alternate" type="text/html" title="Kubernetes 项目学习笔记。" /><published>2017-06-21T00:00:00+08:00</published><updated>2017-06-21T00:00:00+08:00</updated><id>http://firsh.me/2017/06/21/kubernetes-1.6</id><content type="html" xml:base="http://firsh.me/2017/06/21/kubernetes-1.6/">&lt;p&gt;这一篇学习笔记，记录了kubernetes 容器编排框架的实战，以及模拟线上负载均衡等功能。&lt;/p&gt;
 
 &lt;h2 id=&quot;介绍&quot;&gt;介绍&lt;/h2&gt;
 
@@ -10,11 +10,11 @@
 
 &lt;p&gt;##架构图&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;images/kubernetes1.6.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/kubernetes1.6.jpg&quot; alt=&quot;请添加描述&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;高可用架构图&quot;&gt;高可用架构图&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;images/gaokeyong.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;</content><author><name>飞鱼</name></author><summary type="html">这一篇学习笔记，记录了kubernetes 容器编排框架的实战，以及模拟线上负载均衡等功能。</summary></entry><entry><title type="html">Javascript or nodejs 学习笔记。</title><link href="http://firsh.me/2017/06/21/javascript-leaning/" rel="alternate" type="text/html" title="Javascript or nodejs 学习笔记。" /><published>2017-06-21T00:00:00+08:00</published><updated>2017-06-21T00:00:00+08:00</updated><id>http://firsh.me/2017/06/21/javascript-leaning</id><content type="html" xml:base="http://firsh.me/2017/06/21/javascript-leaning/">&lt;p&gt;这一篇学习笔记，记录了今日所学的一些关于Javascript的高级用法。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/gaokeyong.png&quot; alt=&quot;请添加描述&quot; /&gt;&lt;/p&gt;</content><author><name>飞鱼</name></author><summary type="html">这一篇学习笔记，记录了kubernetes 容器编排框架的实战，以及模拟线上负载均衡等功能。</summary></entry><entry><title type="html">Javascript or nodejs 学习笔记。</title><link href="http://firsh.me/2017/06/21/javascript-leaning/" rel="alternate" type="text/html" title="Javascript or nodejs 学习笔记。" /><published>2017-06-21T00:00:00+08:00</published><updated>2017-06-21T00:00:00+08:00</updated><id>http://firsh.me/2017/06/21/javascript-leaning</id><content type="html" xml:base="http://firsh.me/2017/06/21/javascript-leaning/">&lt;p&gt;这一篇学习笔记，记录了今日所学的一些关于Javascript的高级用法。&lt;/p&gt;
 
 &lt;h2 id=&quot;main&quot;&gt;Main&lt;/h2&gt;
 
