@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>IDA Pro &mdash; 飞鱼。</title>
+    <title>Javascript or nodejs 学习笔记。 &mdash; 飞鱼。</title>
     <link rel="stylesheet" href="/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="/assets/vendor/octicons/octicons/octicons.css">
@@ -21,23 +21,23 @@
     
 
     
-    <link rel="canonical" href="http://firsh.me/wiki/ida-pro/">
+    <link rel="canonical" href="http://firsh.me/2017/06/21/javascript-leaning/">
     <link rel="alternate" type="application/atom+xml" title="飞鱼。" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="IDA Pro">
+    <meta property="og:title" content="Javascript or nodejs 学习笔记。">
       
-    <meta name="keywords" content="debug, IDA Pro">
-    <meta name="og:keywords" content="debug, IDA Pro">
+    <meta name="keywords" content="Javascript, nodejs">
+    <meta name="og:keywords" content="Javascript, nodejs">
       
-    <meta name="description" content="快捷键">
-    <meta name="og:description" content="快捷键">
+    <meta name="description" content="这一篇学习笔记，记录了今日所学的一些关于Javascript的高级用法。">
+    <meta name="og:description" content="这一篇学习笔记，记录了今日所学的一些关于Javascript的高级用法。">
       
     
     
         
     
-    <meta property="og:url" content="http://firsh.me/wiki/ida-pro/">
+    <meta property="og:url" content="http://firsh.me/2017/06/21/javascript-leaning/">
     <meta property="og:site_name" content="飞鱼。">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -85,12 +85,25 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="IDA Pro">
+    <section class="collection-head small geopattern" data-pattern-id="Javascript or n">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">IDA Pro</h1>
+        <h1 class="collection-header">Javascript or nodejs 学习笔记。</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/06/21
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#nodejs,nodejs,学习笔记" title="nodejs,nodejs,学习笔记">nodejs,nodejs,学习笔记</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
@@ -101,46 +114,111 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <h3 id="快捷键">快捷键</h3>
+    <p>这一篇学习笔记，记录了今日所学的一些关于Javascript的高级用法。</p>
 
-<p>C –&gt; Ctrl</p>
+<h2 id="main">Main</h2>
 
-<p>S –&gt; Shift</p>
+<ul>
+  <li>
+    <p>今天主要学习的是Javascript的原型，闭包，以及this指针。</p>
+  </li>
+  <li>
+    <p>废话不多直接上代码；</p>
+  </li>
+</ul>
 
-<p>M –&gt; Alt</p>
+<h2 id="javascript闭包">Javascript闭包</h2>
 
-<p>Cmd –&gt; Command</p>
+<p>```javascript 1.6
+/**</p>
+<ul>
+  <li>Created by zhangjianxin on 2017/6/21.
+ */</li>
+</ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>功能</th>
-      <th>快捷键</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>搜索文本</td>
-      <td>M-t</td>
-    </tr>
-    <tr>
-      <td>返回上一个位置</td>
-      <td>Esc</td>
-    </tr>
-    <tr>
-      <td>前进到下一位置</td>
-      <td>C-Enter</td>
-    </tr>
-    <tr>
-      <td>显示伪 C 代码</td>
-      <td>F5</td>
-    </tr>
-    <tr>
-      <td>跳转到地址</td>
-      <td>g</td>
-    </tr>
-  </tbody>
-</table>
+<p>function a(){
+    var tmp=1;
+    return function a_sub(x){
+        console.log(x+(tmp++));
+    }
+}</p>
+
+<p>var b = a;      //此处a和b是一模一样的,b是从a拷贝了一份过去
+var c1 = a();   //此处a加上了括号，于是c1的函数其实就是 a中return回来的函数（此函数可以调用a外面的变量tmp）
+var c2 = b();   //为了证明a和b是同样的功能，且是复制了一份
+c1(3);    //输出4
+c1(3);    //输出5,——说明a并内存并未释放</p>
+
+<p>c2(3);    //输出4——说明a和b是复制关系(两个独立的对象)，内存中互相独立
+//另外一个例子<strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong>***** * *
+var test = (function(){
+    var tmp=1;
+    return function(x){
+        console.log(tmp+x);
+    }
+})
+var d = test();     //var objname = function(){…}和 function objname(){…}定义是一样的效果
+d(3)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+## Javascript this指针问题
+
+```javascript
+/**
+ * Created by zhangjianxin on 2017/6/21.
+ */
+
+
+
+var fuckthis = {
+    var1:"asdasd",
+
+    func1:function () {
+        var f1 = "1";
+        console.log("func1"+ this.var1)
+    },
+    func2:function () {
+        var f2 = "2";
+        console.log("func2"+f2)
+    },
+
+    func3:function () {
+        this.func1();
+    }
+}
+
+fuckthis.func3();
+
+</code></pre>
+</div>
+
+<h2 id="javascript-圆型">Javascript 圆型</h2>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
+<span class="cm">/**
+ * Created by zhangjianxin on 2017/6/21.
+ */</span>
+
+
+<span class="kd">function</span> <span class="nx">preson</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"preson"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">preson</span><span class="p">();</span>
+
+<span class="nx">preson</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">fuck</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"fuck prototype"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">preson</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">fuck2</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"fuck prototype 2222"</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="nx">p</span><span class="p">.</span><span class="nx">fuck2</span><span class="p">();</span>
+
+</code></pre>
+</div>
 
     </article>
     <div class="share">
@@ -157,9 +235,9 @@
           <div id="disqus_thread"></div>
           <script>
             var disqus_config = function () {
-              this.page.url = 'http://firsh.me/wiki/ida-pro/';
-              this.page.identifier = '/wiki/ida-pro/';
-              this.page.title = 'IDA Pro';
+              this.page.url = 'http://firsh.me/2017/06/21/javascript-leaning/';
+              this.page.identifier = '/2017/06/21/javascript-leaning/';
+              this.page.title = 'Javascript or nodejs 学习笔记。';
             };
             (function() { // DON'T EDIT BELOW THIS LINE
               var d = document, s = d.createElement('script');

@@ -1,5 +1,11 @@
 {
   
+  "2017-06-21-javascript-leaning": {
+    "title": "Javascript or nodejs 学习笔记。",
+    "url": " /2017/06/21/javascript-leaning/",
+    "category": "nodejs,nodejs,学习笔记"
+  },
+  
   "2017-06-20-ngrok-docker": {
     "title": "Ngrok做内网穿透。",
     "url": " /2017/06/20/ngrok-docker/",
@@ -356,6 +362,12 @@
     "title": "Ngrok做内网穿透。",
     "url": "/2017/06/20/ngrok-docker/",
     "category": "[&quot;Kubernetes,docker,Ngrok&quot;]"
+  },
+  
+  "2017-06-21-javascript-leaning": {
+    "title": "Javascript or nodejs 学习笔记。",
+    "url": "/2017/06/21/javascript-leaning/",
+    "category": "[&quot;nodejs,nodejs,学习笔记&quot;]"
   },
   
   "wiki-android-studio": {
