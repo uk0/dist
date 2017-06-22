@@ -1,9 +1,9 @@
 {
   
-  "2017-06-23-2017-06-22-sshd-error": {
-    "title": "",
-    "url": " /2017/06/23/2017-06-22-sshd-error/",
-    "category": ""
+  "2017-06-22-sshd-error": {
+    "title": "ssh链接报错 Unable to negotiate with IP",
+    "url": " /2017/06/22/sshd-error/",
+    "category": "linux,sshd,ssh"
   },
   
   "2017-06-21-kubernetes-1-6": {
@@ -388,10 +388,10 @@
     "category": "[&quot;nodejs,nodejs,学习笔记&quot;]"
   },
   
-  "2017-06-23-2017-06-22-sshd-error": {
-    "title": "",
-    "url": "/2017/06/23/2017-06-22-sshd-error/",
-    "category": "[]"
+  "2017-06-22-sshd-error": {
+    "title": "ssh链接报错 Unable to negotiate with IP",
+    "url": "/2017/06/22/sshd-error/",
+    "category": "[&quot;linux,sshd,ssh&quot;]"
   },
   
   "wiki-android-studio": {
