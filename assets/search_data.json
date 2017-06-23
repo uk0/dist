@@ -6,6 +6,12 @@
     "category": "linux,sshd,ssh"
   },
   
+  "2017-06-22-kubernetes-v-nfs": {
+    "title": "Kubernetes部分Volume类型介绍及yaml示例",
+    "url": " /2017/06/22/kubernetes-v-nfs/",
+    "category": "linux,Volume,yaml"
+  },
+  
   "2017-06-21-kubernetes-1-6": {
     "title": "Kubernetes 项目学习笔记。",
     "url": " /2017/06/21/kubernetes-1.6/",
@@ -386,6 +392,12 @@
     "title": "Kubernetes 项目学习笔记。",
     "url": "/2017/06/21/kubernetes-1.6/",
     "category": "[&quot;nodejs,nodejs,学习笔记&quot;]"
+  },
+  
+  "2017-06-22-kubernetes-v-nfs": {
+    "title": "Kubernetes部分Volume类型介绍及yaml示例",
+    "url": "/2017/06/22/kubernetes-v-nfs/",
+    "category": "[&quot;linux,Volume,yaml&quot;]"
   },
   
   "2017-06-22-sshd-error": {

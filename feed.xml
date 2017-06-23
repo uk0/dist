@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-23T11:21:14+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>张建新个人博客</subtitle><author><name>张建新</name></author><entry><title type="html">ssh链接报错 Unable to negotiate with IP</title><link href="http://firsh.me/2017/06/22/sshd-error/" rel="alternate" type="text/html" title="ssh链接报错 Unable to negotiate with IP" /><published>2017-06-22T00:00:00+08:00</published><updated>2017-06-22T00:00:00+08:00</updated><id>http://firsh.me/2017/06/22/sshd-error</id><content type="html" xml:base="http://firsh.me/2017/06/22/sshd-error/">&lt;p&gt;ssh Unable to negotiate with 182.158.68.5 port 22: no matching host key type found. Their offer: ssh-dss&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-23T21:59:59+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>张建新个人博客</subtitle><author><name>张建新</name></author><entry><title type="html">ssh链接报错 Unable to negotiate with IP</title><link href="http://firsh.me/2017/06/22/sshd-error/" rel="alternate" type="text/html" title="ssh链接报错 Unable to negotiate with IP" /><published>2017-06-22T00:00:00+08:00</published><updated>2017-06-22T00:00:00+08:00</updated><id>http://firsh.me/2017/06/22/sshd-error</id><content type="html" xml:base="http://firsh.me/2017/06/22/sshd-error/">&lt;p&gt;ssh Unable to negotiate with 182.158.68.5 port 22: no matching host key type found. Their offer: ssh-dss&lt;/p&gt;
 
 &lt;h2 id=&quot;介绍&quot;&gt;介绍&lt;/h2&gt;
 
@@ -29,7 +29,142 @@ The authenticity of host &lt;span class=&quot;s1&quot;&gt;'182.158.68.55 (182.15
 DSA key fingerprint is SHA256:LVWhbgb8q5TdW2QEsFjOVNp8ekW8UqPVE/KCbMOI4CM.
 Are you sure you want to continue connecting (yes/no)? 
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>张建新</name></author><summary type="html">ssh Unable to negotiate with 182.158.68.5 port 22: no matching host key type found. Their offer: ssh-dss</summary></entry><entry><title type="html">Kubernetes 项目学习笔记。</title><link href="http://firsh.me/2017/06/21/kubernetes-1.6/" rel="alternate" type="text/html" title="Kubernetes 项目学习笔记。" /><published>2017-06-21T00:00:00+08:00</published><updated>2017-06-21T00:00:00+08:00</updated><id>http://firsh.me/2017/06/21/kubernetes-1.6</id><content type="html" xml:base="http://firsh.me/2017/06/21/kubernetes-1.6/">&lt;p&gt;这一篇学习笔记，记录了kubernetes 容器编排框架的实战，以及模拟线上负载均衡等功能。&lt;/p&gt;
+&lt;/div&gt;</content><author><name>张建新</name></author><summary type="html">ssh Unable to negotiate with 182.158.68.5 port 22: no matching host key type found. Their offer: ssh-dss</summary></entry><entry><title type="html">Kubernetes部分Volume类型介绍及yaml示例</title><link href="http://firsh.me/2017/06/22/kubernetes-v-nfs/" rel="alternate" type="text/html" title="Kubernetes部分Volume类型介绍及yaml示例" /><published>2017-06-22T00:00:00+08:00</published><updated>2017-06-22T00:00:00+08:00</updated><id>http://firsh.me/2017/06/22/kubernetes-v-nfs</id><content type="html" xml:base="http://firsh.me/2017/06/22/kubernetes-v-nfs/">&lt;p&gt;Kubernetes部分Volume类型介绍及yaml示例&lt;/p&gt;
+
+&lt;h2 id=&quot;1emptydir本地数据卷&quot;&gt;1、EmptyDir（本地数据卷&lt;/h2&gt;
+
+&lt;p&gt;　EmptyDir类型的volume创建于pod被调度到某个宿主机上的时候，而同一个pod内的容器都能读写EmptyDir中的同一个文件。一旦这个pod离开了这个宿主机，EmptyDirr中的数据就会被永久删除。所以目前EmptyDir类型的volume主要用作临时空间，比如Web服务器写日志或者tmp文件需要的临时目录。yaml示例如下：&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@k8s-master demon2]# cat &lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt;-emptypath.yaml 
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Pod&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;test-emptypath&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;role&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;test-emptypath&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;containers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;test-emptypath&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;registry:5000/back_demon:1.0&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;volumeMounts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+       &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;log-storage&lt;/span&gt;
+         &lt;span class=&quot;s&quot;&gt;mountPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/home/laizy/test/&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/run.sh&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;log-storage&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;emptyDir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;{}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;2hostdir本地数据卷&quot;&gt;2、HostDir（本地数据卷&lt;/h2&gt;
+&lt;p&gt;　HostDir属性的volume使得对应的容器能够访问当前宿主机上的指定目录。例如，需要运行一个访问Docker系统目录的容器，那么就使用/var/lib/docker目录作为一个HostDir类型的volume；或者要在一个容器内部运行CAdvisor，那么就使用/dev/cgroups目录作为一个HostDir类型的volume。一旦这个pod离开了这个宿主机，HostDir中的数据虽然不会被永久删除，但数据也不会随pod迁移到其他宿主机上。因此，需要注意的是，由于各个宿主机上的文件系统结构和内容并不一定完全相同，所以相同pod的HostDir可能会在不同的宿主机上表现出不同的行为。yaml示例如下：&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@k8s-master demon2]# cat &lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt;-hostpath.yaml 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Pod&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;test-hostpath&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;role&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;test-hostpath&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;containers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;test-hostpath&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;registry:5000/back_demon:1.0&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;volumeMounts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+       &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ssl-certs&lt;/span&gt;
+         &lt;span class=&quot;s&quot;&gt;mountPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/home/laizy/test/cert&lt;/span&gt;
+         &lt;span class=&quot;s&quot;&gt;readOnly&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/run.sh&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ssl-certs&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;hostPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+     &lt;span class=&quot;s&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/etc/ssl/certs&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id=&quot;3nfs网络数据卷&quot;&gt;3、NFS（网络数据卷）&lt;/h2&gt;
+
+&lt;p&gt;NFS类型的volume。允许一块现有的网络硬盘在同一个pod内的容器间共享。yaml示例如下：&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@k8s-master demon2]# cat &lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt;-nfspath.yaml 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Pod&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;test-nfspath&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;role&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;test-nfspath&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;containers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;test-nfspath&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;registry:5000/back_demon:1.0&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;volumeMounts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+       &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nfs-storage&lt;/span&gt;
+         &lt;span class=&quot;s&quot;&gt;mountPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/home/laizy/test/&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/run.sh&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nfs-storage&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;nfs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+     &lt;span class=&quot;s&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;192.168.20.47&lt;/span&gt;
+     &lt;span class=&quot;s&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/data/disk1&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id=&quot;4secret信息数据卷&quot;&gt;4、Secret（信息数据卷）&lt;/h2&gt;
+
+&lt;p&gt;　Kubemetes提供了Secret来处理敏感数据，比如密码、Token和密钥，相比于直接将敏感数据配置在Pod的定义或者镜像中，Secret提供了更加安全的机制（Base64加密），防止数据泄露。Secret的创建是独立于Pod的，以数据卷的形式挂载到Pod中，Secret的数据将以文件的形式保存，容器通过读取文件可以获取需要的数据。yaml示例如下：&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@k8s-master demon2]# cat secret.yaml 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Secret&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+ &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mysecret&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Opaque&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+ &lt;span class=&quot;s&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;emhlbnl1&lt;/span&gt;
+ &lt;span class=&quot;s&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eWFvZGlkaWFv&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@k8s-master demon2]# cat &lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt;-secret.yaml 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Pod&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;test-secret&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;role&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;test-secret&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;containers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;test-secret&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;registry:5000/back_demon:1.0&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;volumeMounts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+       &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;secret&lt;/span&gt;
+         &lt;span class=&quot;s&quot;&gt;mountPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/home/laizy/secret&lt;/span&gt;
+         &lt;span class=&quot;s&quot;&gt;readOnly&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/run.sh&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;secret&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;secret&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+     &lt;span class=&quot;s&quot;&gt;secretName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mysecret&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><author><name>张建新</name></author><summary type="html">Kubernetes部分Volume类型介绍及yaml示例</summary></entry><entry><title type="html">Kubernetes 项目学习笔记。</title><link href="http://firsh.me/2017/06/21/kubernetes-1.6/" rel="alternate" type="text/html" title="Kubernetes 项目学习笔记。" /><published>2017-06-21T00:00:00+08:00</published><updated>2017-06-21T00:00:00+08:00</updated><id>http://firsh.me/2017/06/21/kubernetes-1.6</id><content type="html" xml:base="http://firsh.me/2017/06/21/kubernetes-1.6/">&lt;p&gt;这一篇学习笔记，记录了kubernetes 容器编排框架的实战，以及模拟线上负载均衡等功能。&lt;/p&gt;
 
 &lt;h2 id=&quot;介绍&quot;&gt;介绍&lt;/h2&gt;
 
@@ -982,193 +1117,4 @@ open -a Docker
 rm -r &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;TMP_DIR&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>张建新</name></author><summary type="html">1、Main</summary></entry><entry><title type="html">jenkins + docker + git 持续集成</title><link href="http://firsh.me/2017/06/06/Jenkins-docker-kubectl-same-master/" rel="alternate" type="text/html" title="jenkins + docker + git 持续集成" /><published>2017-06-06T00:00:00+08:00</published><updated>2017-06-06T00:00:00+08:00</updated><id>http://firsh.me/2017/06/06/Jenkins-docker-kubectl-same-master</id><content type="html" xml:base="http://firsh.me/2017/06/06/Jenkins-docker-kubectl-same-master/">&lt;blockquote&gt;
-  &lt;p&gt;git push 以后， jenkins 自动触发 代码打包，生成docker image , docker push 到 仓库，发布到环境里。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;安装jenkins&quot;&gt;安装jenkins&lt;/h1&gt;
-
-&lt;p&gt;这里不建议用 Docker 镜像，因为下面 Jenkins 自身会需要调用 Docker 来启动任务。&lt;/p&gt;
-
-&lt;p&gt;Jenkins + Docker + kubectl + git + Blue Ocean。&lt;/p&gt;
-
-&lt;h2 id=&quot;导入-jenkins-源&quot;&gt;导入 jenkins 源&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins.io/redhat-stable/jenkins.repo
-rpm --import http://pkg.jenkins.io/redhat-stable/jenkins.io.key
-
-
-yum -y install jenkins 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;修改jenkins配置&quot;&gt;修改jenkins配置&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vi /etc/sysconfig/jenkins
-
-# 修改jenkins 目录
-JENKINS_HOME=&quot;/opt/jenkins&quot;
-
-# 修改jenkins 端口
-JENKINS_PORT=&quot;9999&quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;移动目录&quot;&gt;移动目录&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# 将目录移动过来，否则程序报错
-mv /var/lib/jenkins /opt/
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;启动服务&quot;&gt;启动服务&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;systemctl start jenkins
-systemctl enable jenkins
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;访问web-ui&quot;&gt;访问WEB UI&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://myip:9999/ 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;生成密钥&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# 切换用户
-su jenkins
-
-
-# 生成key
-ssh-keygen -t rsa -b 4096 -C &quot;jenkins@git&quot;
-
-# 查看key信息
-cat /home/jenkins/.ssh/id_rsa.pub
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;jenkins-后台配置&quot;&gt;jenkins 后台配置&lt;/h2&gt;
-
-&lt;p&gt;进入 jenkins –&amp;gt; Credentials –&amp;gt; Add Credentials
-&lt;img src=&quot;http://jicki.me/images/posts/jenkins/4.png&quot; alt=&quot;此处输入图片的描述&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;选择 系统管理 – &amp;gt; 管理插件&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;添加 Gradle Plugin 插件&lt;/li&gt;
-  &lt;li&gt;添加 Git plugin 插件&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;常用插件
-
-Build WIth Parameters   # 执行 构建 前手工输入参数
-
-pipeline
-
-Deploy Plugin   # build war 包以后部署
-
-Email Extension Plugin  # 邮件发送
-
-Multiple SCMs Plugin #多项目构建工具
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;下载慢可直接下载 hpi 文件，通过高级 导入插件安装&lt;/p&gt;
-
-&lt;p&gt;选择 系统管理 – &amp;gt; Global Tool Configuration&lt;/p&gt;
-
-&lt;p&gt;安装JDK&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://jicki.me/images/posts/jenkins/1.png&quot; alt=&quot;描述&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;安装 Gradle&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://jicki.me/images/posts/jenkins/2.png&quot; alt=&quot;此处输入图片的描述&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;安装 Git&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://jicki.me/images/posts/jenkins/3.png&quot; alt=&quot;此处输入图片的描述&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;创建项目  选择 自由风格 的项目&lt;/p&gt;
-
-&lt;p&gt;源码管理选择 Git&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://jicki.me/images/posts/jenkins/5.png&quot; alt=&quot;此处输入图片的描述&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;构建 选择  Invoke Gradle script&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://jicki.me/images/posts/jenkins/6.png&quot; alt=&quot;此处输入图片的描述&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;构建触发器&quot;&gt;构建触发器&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# 勾选 Poll SCM
-
-# 每两分钟检查一次git代码是否有更新
-H/2 * * * *
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;配置-邮件&quot;&gt;配置 邮件&lt;/h2&gt;
-
-&lt;p&gt;首先必须安装 Email Extension Plugin 插件&lt;/p&gt;
-
-&lt;p&gt;系统管理 –&amp;gt; 系统设置 – &amp;gt; Jenkins Location&lt;/p&gt;
-
-&lt;p&gt;配置系统管理员邮件地址 — &amp;gt;  xxx@163.com&lt;/p&gt;
-
-&lt;p&gt;配置 Extended E-mail Notification&lt;/p&gt;
-
-&lt;p&gt;SMTP Server =&lt;/p&gt;
-
-&lt;p&gt;点击高级&lt;/p&gt;
-
-&lt;p&gt;勾选 Use SMTP Authentication&lt;/p&gt;
-
-&lt;p&gt;输入 发送 用户 与 密码&lt;/p&gt;
-
-&lt;p&gt;填写 SMTP port&lt;/p&gt;
-
-&lt;p&gt;Default Content Type 选择 HTML (text/html)&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Default Subject =  构建通知:$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!
-
-
-Default Content = 
-
-&amp;lt;b style=&quot;font-size:12px&quot;&amp;gt;(本邮件是程序自动下发的，请勿回复，&amp;lt;span style=&quot;color:red&quot;&amp;gt;请相关人员fix it,重新提交到git 构建&amp;lt;/span&amp;gt;)&amp;lt;br&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;hr&amp;gt;
-
-&amp;lt;b style=&quot;font-size: 12px;&quot;&amp;gt;项目名称：$PROJECT_NAME&amp;lt;br&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;hr&amp;gt;
-
-&amp;lt;b style=&quot;font-size: 12px;&quot;&amp;gt;构建编号：$BUILD_NUMBER&amp;lt;br&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;hr&amp;gt;
-
-&amp;lt;b style=&quot;font-size: 12px;&quot;&amp;gt;GIT版本号：${GIT_REVISION}&amp;lt;br&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;hr&amp;gt;
-
-&amp;lt;b style=&quot;font-size: 12px;&quot;&amp;gt;构建状态：$BUILD_STATUS&amp;lt;br&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;hr&amp;gt;
-
-&amp;lt;b style=&quot;font-size: 12px;&quot;&amp;gt;触发原因：${CAUSE}&amp;lt;br&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;hr&amp;gt;
-
-&amp;lt;b style=&quot;font-size: 12px;&quot;&amp;gt;构建日志地址：&amp;lt;a href=&quot;${BUILD_URL}console&quot;&amp;gt;${BUILD_URL}console&amp;lt;/a&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;hr&amp;gt;
-
-&amp;lt;b style=&quot;font-size: 12px;&quot;&amp;gt;构建地址：&amp;lt;a href=&quot;$BUILD_URL&quot;&amp;gt;$BUILD_URL&amp;lt;/a&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;hr&amp;gt;
-
-&amp;lt;b style=&quot;font-size: 12px;&quot;&amp;gt;变更集:${JELLY_SCRIPT,template=&quot;html&quot;}&amp;lt;br&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;hr&amp;gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://jicki.me/images/posts/jenkins/8.png&quot; alt=&quot;此处输入图片的描述&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;项目 – &amp;gt; 构建后操作 — &amp;gt; 添加 Editable Email Notification&lt;/p&gt;
-
-&lt;p&gt;拉到最下面 — &amp;gt; 点击 Advanced Settings…&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://jicki.me/images/posts/jenkins/9.png&quot; alt=&quot;此处输入图片的描述&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Recipient List 添加 收件邮箱 多个邮件以空格 隔开&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://jicki.me/images/posts/jenkins/10.png&quot; alt=&quot;此处输入图片的描述&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;原文作者 &lt;a href=&quot;https://jicki.me/&quot; title=&quot;Title&quot;&gt;小炒肉&lt;/a&gt; .&lt;/p&gt;</content><author><name>张建新</name></author><summary type="html">git push 以后， jenkins 自动触发 代码打包，生成docker image , docker push 到 仓库，发布到环境里。</summary></entry></feed>
+&lt;/div&gt;</content><author><name>张建新</name></author><summary type="html">1、Main</summary></entry></feed>
