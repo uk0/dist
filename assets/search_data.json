@@ -1,5 +1,17 @@
 {
   
+  "2017-06-24-java-development-v-desc": {
+    "title": "IDEA Java注释模板设置详解",
+    "url": " /2017/06/24/java-development-v-desc/",
+    "category": "IDEA,java,mac"
+  },
+  
+  "2017-06-24-java-development-b-desc": {
+    "title": "java 开发代码规范，命名规范",
+    "url": " /2017/06/24/java-development-b-desc/",
+    "category": "IDEA,java,mac"
+  },
+  
   "2017-06-22-sshd-error": {
     "title": "ssh链接报错 Unable to negotiate with IP",
     "url": " /2017/06/22/sshd-error/",
@@ -404,6 +416,18 @@
     "title": "ssh链接报错 Unable to negotiate with IP",
     "url": "/2017/06/22/sshd-error/",
     "category": "[&quot;linux,sshd,ssh&quot;]"
+  },
+  
+  "2017-06-24-java-development-b-desc": {
+    "title": "java 开发代码规范，命名规范",
+    "url": "/2017/06/24/java-development-b-desc/",
+    "category": "[&quot;IDEA,java,mac&quot;]"
+  },
+  
+  "2017-06-24-java-development-v-desc": {
+    "title": "IDEA Java注释模板设置详解",
+    "url": "/2017/06/24/java-development-v-desc/",
+    "category": "[&quot;IDEA,java,mac&quot;]"
   },
   
   "wiki-android-studio": {

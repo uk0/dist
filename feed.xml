@@ -1,4 +1,197 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-23T21:59:59+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>张建新个人博客</subtitle><author><name>张建新</name></author><entry><title type="html">ssh链接报错 Unable to negotiate with IP</title><link href="http://firsh.me/2017/06/22/sshd-error/" rel="alternate" type="text/html" title="ssh链接报错 Unable to negotiate with IP" /><published>2017-06-22T00:00:00+08:00</published><updated>2017-06-22T00:00:00+08:00</updated><id>http://firsh.me/2017/06/22/sshd-error</id><content type="html" xml:base="http://firsh.me/2017/06/22/sshd-error/">&lt;p&gt;ssh Unable to negotiate with 182.158.68.5 port 22: no matching host key type found. Their offer: ssh-dss&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-25T01:00:15+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>张建新个人博客</subtitle><author><name>张建新</name></author><entry><title type="html">IDEA Java注释模板设置详解</title><link href="http://firsh.me/2017/06/24/java-development-v-desc/" rel="alternate" type="text/html" title="IDEA Java注释模板设置详解" /><published>2017-06-24T00:00:00+08:00</published><updated>2017-06-24T00:00:00+08:00</updated><id>http://firsh.me/2017/06/24/java-development-v-desc</id><content type="html" xml:base="http://firsh.me/2017/06/24/java-development-v-desc/">&lt;p&gt;IDEA Java注释模板设置详解
+设置注释模板的入口： Window-&amp;gt;Preference-&amp;gt;Java-&amp;gt;Code Style-&amp;gt;Code Template 然后展开Comments节点就是所有需设置注释的元素啦。现就每一个元素逐一介绍：&lt;/p&gt;
+
+&lt;h2 id=&quot;1文件files注释标签&quot;&gt;1、文件(Files)注释标签：&lt;/h2&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;cm&quot;&gt;/**   
+* @Title: ${file_name}
+* @Package ${package_name}
+* @Description: ${todo}(用一句话描述该文件做什么)
+* @author A18ccms A18ccms_gmail_com   
+* @date ${date} ${time}
+* @version V1.0   
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;2类型types注释标签类的注释&quot;&gt;2.类型(Types)注释标签（类的注释）：&lt;/h2&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/**
+* @ClassName: ${type_name}
+* @Description: ${todo}(这里用一句话描述这个类的作用)
+* @author A18ccms a18ccms_gmail_com
+* @date ${date} ${time}
+* 
+* ${tags}
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;3字段fields注释标签&quot;&gt;3.字段(Fields)注释标签：&lt;/h2&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/**
+* @Fields ${field} : ${todo}(用一句话描述这个变量表示什么)
+*/&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;构造函数标签：&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;/**
+* &amp;lt;p&amp;gt;Title: &amp;lt;/p&amp;gt;
+* &amp;lt;p&amp;gt;Description: &amp;lt;/p&amp;gt;
+* ${tags}
+*/&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;4方法constructor--methods标签&quot;&gt;4.方法(Constructor &amp;amp; Methods)标签：&lt;/h2&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/**
+* @Title: ${enclosing_method}
+* @Description: ${todo}(这里用一句话描述这个方法的作用)
+* @param ${tags}    设定文件
+* @return ${return_type}    返回类型
+* @throws
+*/&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id=&quot;5覆盖方法overriding-methods标签&quot;&gt;5.覆盖方法(Overriding Methods)标签：&lt;/h2&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;cm&quot;&gt;/* (非 Javadoc)
+* &amp;lt;p&amp;gt;Title: ${enclosing_method}&amp;lt;/p&amp;gt;
+* &amp;lt;p&amp;gt;Description: &amp;lt;/p&amp;gt;
+* ${tags}
+* ${see_to_overridden}
+*/&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;6-代表方法delegate-methods标签&quot;&gt;6. 代表方法(Delegate Methods)标签：&lt;/h2&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/**
+* ${tags}
+* ${see_to_target}
+*/&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;getter&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;方法标签：&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;/**
+* @return ${bare_field_name}
+*/&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;setter&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;方法标签：&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;/**
+* @param ${param} 要设置的 ${bare_field_name}
+*/&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><author><name>张建新</name></author><summary type="html">IDEA Java注释模板设置详解 设置注释模板的入口： Window-&amp;gt;Preference-&amp;gt;Java-&amp;gt;Code Style-&amp;gt;Code Template 然后展开Comments节点就是所有需设置注释的元素啦。现就每一个元素逐一介绍：</summary></entry><entry><title type="html">java 开发代码规范，命名规范</title><link href="http://firsh.me/2017/06/24/java-development-b-desc/" rel="alternate" type="text/html" title="java 开发代码规范，命名规范" /><published>2017-06-24T00:00:00+08:00</published><updated>2017-06-24T00:00:00+08:00</updated><id>http://firsh.me/2017/06/24/java-development-b-desc</id><content type="html" xml:base="http://firsh.me/2017/06/24/java-development-b-desc/">&lt;p&gt;Java 代码书写规范，以及部分注释。&lt;/p&gt;
+
+&lt;h2 id=&quot;1java-规范很重要&quot;&gt;1、Java 规范很重要：&lt;/h2&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;代码书写规范
+                                                             
+一、           命名规范（所有命名均要求有意义）
+
+项目命名规范
+       所有工程名全部为小写单词，要求有意义，能代表所做的是什么项目
+       
+包命名规范
+       所有的包命名全部由小写英文单词
+       以下的 | 符号代表或者取其一的意思
+       我们采用com|org|edu|net.公司名|组织名|学校名|网站名.项目名称.分层文件夹名
+       例如：项目中采用 com.osiit.shopping.servlet
+
+类命名规范
+       所有Java类采取大写字母开头，如果类名称由多个单词组成，则每个单词的首字母均应为大 写例如AdminBean；如果类名称中包含单词缩写，则这个所写词的每个字母均应大写，如：XMLExample,还有一点命名技巧就是由于类是设计用来 代表对象的，所以在命名类时应尽量选择名词。    　　   
+方法命名规范
+驼峰命名法
+方法名的第一个单词应以小写字母作为开头，后面的每一个单词的首字母则用大写字母开头。
+例如:getParameter();
+
+变量，参数命名规范
+驼峰命名法
+变量名|参数名的第一个单词应以小写字母作为开头，后面的每一个单词的首字母则用大写开头。
+例如：pageContext.
+
+常量命名方法（即final类型的变量命名规则）
+       单词的所有字母全部用大写字母进行命名，如果涉及到多个单词那么要用 _ 分开
+       例如:MAX_VALUE
+
+
+
+二、           注释规范
+
+文件注释规范：写在所有类的文件的最上边的注释
+/*
+* 文 件 名： 
+* 版权(c) 2009-xxx公司 xxx项目组：
+* 版 本 号： 
+*/
+
+       类 | 接口 | 抽象类 注释规范：写在类声明的上边，包名的下边
+/**                     
+* Project:  项目工程名                                          
+* Module ID:  (模块)类编号，可以引用系统设计中的类编号    
+* Comments:  对此类的描述，可以引用系统设计中的描述                                                                                             
+* @author： 作者名称     
+* @author： 作者名称
+* @version 1.0 , 2009-5-20 
+* @since  JDK版本号                   
+* @see 一些相应的参考类，没有的话可以不加
+* @see          
+* Modified By： 修改人姓名(如果有其他人修改时增加这三项)                   
+* Modified Date: 修改日期                                   
+* Why &amp;amp; What is modified  修改原因描述 
+*/
+
+构造方法注释规范：写在所要注释的构造方法前
+/** 
+* Description ：  构造函数的描述, 
+* @param：  参数名
+*/
+
+方法注释规范：写在所要注释的方法前
+/** 
+* 方法描述： 
+* @param：  参数名
+* @param：  参数名(解释：@param后面空格后跟着参数的变量名字 
+*            （不是类型），空格后跟着对该参数的描述。)* 
+* @return:    类型 &amp;lt;说明&amp;gt; ,如果返回不同的值有不同的意义要加以说明。
+*@throws : 抛出的异常  
+*/
+
+成员变量 | 成员常量注释规范：写到需要进行注释的变量或者常量的上边
+/** 变量或者常量的描述 */
+
+局部变量注释规范：在每个局部变量上边即可。
+//
+
+三、           格式规范
+
+所有的类代码文件要求都有统一的缩进对齐
+
+四、           页面书写规范
+1.       Jsp页面上方增加统一的页面注释，例如：
+&amp;lt;!--*********** 增加商品页面 *************** --&amp;gt;
+&amp;lt;!--
+        作者:XXX
+        创建日期：XXX
+--&amp;gt;
+
+2.       如果是像网站首页那样的大页面,遍历数据的开始到结束都建议加上注释，方便以后检查,例如
+&amp;lt;!-- *******************遍历商品列表开始********************--&amp;gt;
+        中间是遍历的代码部分
+&amp;lt;!-- *******************遍历商品列表结束********************--&amp;gt;
+       
+五、           页面注释规范
+尽可能按照规范的html标签的写法，详细参见xhtml书写规则。 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;感谢孙浩大哥提醒代码规范的重要性。&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>张建新</name></author><summary type="html">Java 代码书写规范，以及部分注释。</summary></entry><entry><title type="html">ssh链接报错 Unable to negotiate with IP</title><link href="http://firsh.me/2017/06/22/sshd-error/" rel="alternate" type="text/html" title="ssh链接报错 Unable to negotiate with IP" /><published>2017-06-22T00:00:00+08:00</published><updated>2017-06-22T00:00:00+08:00</updated><id>http://firsh.me/2017/06/22/sshd-error</id><content type="html" xml:base="http://firsh.me/2017/06/22/sshd-error/">&lt;p&gt;ssh Unable to negotiate with 182.158.68.5 port 22: no matching host key type found. Their offer: ssh-dss&lt;/p&gt;
 
 &lt;h2 id=&quot;介绍&quot;&gt;介绍&lt;/h2&gt;
 
@@ -971,150 +1164,4 @@ travis encrypt-file id_rsa --add
 
 &lt;ul&gt;
   &lt;li&gt;转载请注明出处：https://firsh.me/2017/06/13/travis-ci-myblog/&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>张建新</name></author><summary type="html">CICD (travis) for my blog</summary></entry><entry><title type="html">nodejs package ocr</title><link href="http://firsh.me/2017/06/13/npm-ocr-nodejs/" rel="alternate" type="text/html" title="nodejs package ocr" /><published>2017-06-13T00:00:00+08:00</published><updated>2017-06-13T00:00:00+08:00</updated><id>http://firsh.me/2017/06/13/npm-ocr-nodejs</id><content type="html" xml:base="http://firsh.me/2017/06/13/npm-ocr-nodejs/">&lt;h1 id=&quot;ng-ocr&quot;&gt;ng-ocr&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://travis-ci.org/zmatsh/OCR-NODEJS&quot;&gt;&lt;img src=&quot;https://travis-ci.org/zmatsh/OCR-NODEJS.svg?branch=master&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Ngocr is an OCR library pure JavaScript for node.js.
-We use &lt;a href=&quot;https://github.com/antimatter15/ocrad.js/&quot;&gt;ocrad.js&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;install&quot;&gt;Install&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;npm install ng-ocr -S
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;how-to-use&quot;&gt;How to use&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;test/fixture/hello_world.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Simple :&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Ngocr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Ngocr&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;Ngocr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;decodeFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;test/fixture/hello_world.png&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Hello World!&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;From Buffer:&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Ngocr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Ngocr&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;fs&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;buffer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readFileSync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;test/fixture/hello_world.png&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;Ngocr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;decodeBuffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Hello World!&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;From Stream:&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Ngocr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Ngocr&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;fs&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;stream&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createReadStream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;test/fixture/hello_world.png&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;Ngocr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;decodeStream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Hello World!&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;todo&quot;&gt;Todo&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;JPG support&lt;/li&gt;
-  &lt;li&gt;gif support&lt;/li&gt;
-  &lt;li&gt;stream interface (i love pipe)&lt;/li&gt;
-  &lt;li&gt;https://www.npmjs.com/package/n-ocr&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>张建新</name></author><summary type="html">ng-ocr</summary></entry><entry><title type="html">docker clear up for mac</title><link href="http://firsh.me/2017/06/13/docker-mac-clear-up/" rel="alternate" type="text/html" title="docker clear up for mac" /><published>2017-06-13T00:00:00+08:00</published><updated>2017-06-13T00:00:00+08:00</updated><id>http://firsh.me/2017/06/13/docker-mac-clear-up</id><content type="html" xml:base="http://firsh.me/2017/06/13/docker-mac-clear-up/">&lt;h1 id=&quot;1main&quot;&gt;1、Main&lt;/h1&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;清理mac上Docker占用的磁盘空间&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;11内容&quot;&gt;1.1、内容：&lt;/h2&gt;
-
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Docker依赖Linux系统的cgroup实现，在mac系统中运行的时候，Docker会启动一个虚拟机中的Linux内核，并在硬盘上放一个 qcow2 格式的磁盘镜像文件。这个文件会随着Docker的使用不断膨胀，即使删除不用的Docker Image和Container也不会缩小。我在测试完一个自动化工具的Dockerfile改写之后，Docker.qcow2文件就达到42GB了。
-
-Google搜了一圏发现一个叫Théo Chamley的法国人写了一个脚本释放Docker.qcow2文件占用的空间。基本原理是用 docker save 命令保存要保留的image，然后关闭Docker，删除Docker.qcow2，再启动Docker，它会自动重建，最后用 docker load 命令恢复保留的image。
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# Copyright 2017 Théo Chamley&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# Permission is hereby granted, free of charge, to any person obtaining a copy of &lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# this software and associated documentation files (the &quot;Software&quot;), to deal in the Software&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# without restriction, including without limitation the rights to use, copy, modify, merge,&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# to whom the Software is furnished to do so, subject to the following conditions:&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# The above copyright notice and this permission notice shall be included in all copies or&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# substantial portions of the Software.&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,&lt;/span&gt;
-
-&lt;span class=&quot;nv&quot;&gt;IMAGES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$@&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;This will remove all your current containers and images except for:&quot;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;IMAGES&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;read&lt;/span&gt; -p &lt;span class=&quot;s2&quot;&gt;&quot;Are you sure? [yes/NO] &quot;&lt;/span&gt; -n 1 -r
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt;    &lt;span class=&quot;c&quot;&gt;# (optional) move to a new line&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; ! &lt;span class=&quot;nv&quot;&gt;$REPLY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;~ ^[Yy]&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;then
-    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;1
-&lt;span class=&quot;k&quot;&gt;fi
-
-
-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;TMP_DIR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;mktemp -d&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;pushd&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$TMP_DIR&lt;/span&gt; &amp;gt;/dev/null
-
-open -a Docker
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;=&amp;gt; Saving the specified images&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;image &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;IMAGES&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;do
-    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;==&amp;gt; Saving &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;tar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -n &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; | base64&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-    docker save -o &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;tar&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;.tar &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;==&amp;gt; Done.&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;done
-
-&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;=&amp;gt; Cleaning up&quot;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -n &lt;span class=&quot;s2&quot;&gt;&quot;==&amp;gt; Quiting Docker&quot;&lt;/span&gt;
-osascript -e &lt;span class=&quot;s1&quot;&gt;'quit app &quot;Docker&quot;'&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;while &lt;/span&gt;docker info &amp;gt;/dev/null 2&amp;gt;&amp;amp;1; &lt;span class=&quot;k&quot;&gt;do
-    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -n &lt;span class=&quot;s2&quot;&gt;&quot;.&quot;&lt;/span&gt;
-    sleep 1
-&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;==&amp;gt; Removing Docker.qcow2 file&quot;&lt;/span&gt;
-rm ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/Docker.qcow2
-
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;==&amp;gt; Launching Docker&quot;&lt;/span&gt;
-open -a Docker
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -n &lt;span class=&quot;s2&quot;&gt;&quot;==&amp;gt; Waiting for Docker to start&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;until &lt;/span&gt;docker info &amp;gt;/dev/null 2&amp;gt;&amp;amp;1; &lt;span class=&quot;k&quot;&gt;do
-    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -n &lt;span class=&quot;s2&quot;&gt;&quot;.&quot;&lt;/span&gt;
-    sleep 1
-&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;=&amp;gt; Done.&quot;&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;=&amp;gt; Loading saved images&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;image &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;IMAGES&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;do
-    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;==&amp;gt; Loading &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;tar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -n &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; | base64&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-    docker load -q -i &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;tar&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;.tar &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;1
-    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;==&amp;gt; Done.&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;done
-
-&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;popd&lt;/span&gt; &amp;gt;/dev/null
-rm -r &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;TMP_DIR&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>张建新</name></author><summary type="html">1、Main</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>张建新</name></author><summary type="html">CICD (travis) for my blog</summary></entry></feed>
