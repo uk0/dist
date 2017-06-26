@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-26T11:50:46+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>张建新个人博客</subtitle><author><name>张建新</name></author><entry><title type="html">大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]</title><link href="http://firsh.me/2017/06/26/java-flink-v-desc/" rel="alternate" type="text/html" title="大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]" /><published>2017-06-26T00:00:00+08:00</published><updated>2017-06-26T00:00:00+08:00</updated><id>http://firsh.me/2017/06/26/java-flink-v-desc</id><content type="html" xml:base="http://firsh.me/2017/06/26/java-flink-v-desc/">&lt;p&gt;Apache Flink是一个高效、分布式、基于Java实现的通用大数据分析引擎，它具有分布式 MapReduce一类平台的高效性、灵活性和扩展性以及并行数据库查询优化方案，它支持批量和基于流的数据分析，且提供了基于Java和Scala的API&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-26T18:52:30+08:00</updated><id>http://firsh.me/</id><title type="html">会飞的胖子.</title><subtitle>胖子个人博客</subtitle><author><name>zmatsh</name></author><entry><title type="html">大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]</title><link href="http://firsh.me/2017/06/26/java-flink-v-desc/" rel="alternate" type="text/html" title="大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]" /><published>2017-06-26T00:00:00+08:00</published><updated>2017-06-26T00:00:00+08:00</updated><id>http://firsh.me/2017/06/26/java-flink-v-desc</id><content type="html" xml:base="http://firsh.me/2017/06/26/java-flink-v-desc/">&lt;p&gt;Apache Flink是一个高效、分布式、基于Java实现的通用大数据分析引擎，它具有分布式 MapReduce一类平台的高效性、灵活性和扩展性以及并行数据库查询优化方案，它支持批量和基于流的数据分析，且提供了基于Java和Scala的API&lt;/p&gt;
 
 &lt;p&gt;从Flink官网得知，其具有如下主要特征：&lt;/p&gt;
 
@@ -34,7 +34,7 @@ Flink主要包括基于Java和Scala的用于批量和基于流数据分析的API
 &lt;blockquote&gt;
   &lt;p&gt;logo
 &lt;img src=&quot;/images/flink-header-logo.svg&quot; alt=&quot;Flink&quot; /&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>张建新</name></author><summary type="html">Apache Flink是一个高效、分布式、基于Java实现的通用大数据分析引擎，它具有分布式 MapReduce一类平台的高效性、灵活性和扩展性以及并行数据库查询优化方案，它支持批量和基于流的数据分析，且提供了基于Java和Scala的API</summary></entry><entry><title type="html">IDEA Java注释模板设置详解</title><link href="http://firsh.me/2017/06/24/java-development-v-desc/" rel="alternate" type="text/html" title="IDEA Java注释模板设置详解" /><published>2017-06-24T00:00:00+08:00</published><updated>2017-06-24T00:00:00+08:00</updated><id>http://firsh.me/2017/06/24/java-development-v-desc</id><content type="html" xml:base="http://firsh.me/2017/06/24/java-development-v-desc/">&lt;p&gt;IDEA Java注释模板设置详解
+&lt;/blockquote&gt;</content><author><name>zmatsh</name></author><summary type="html">Apache Flink是一个高效、分布式、基于Java实现的通用大数据分析引擎，它具有分布式 MapReduce一类平台的高效性、灵活性和扩展性以及并行数据库查询优化方案，它支持批量和基于流的数据分析，且提供了基于Java和Scala的API</summary></entry><entry><title type="html">IDEA Java注释模板设置详解</title><link href="http://firsh.me/2017/06/24/java-development-v-desc/" rel="alternate" type="text/html" title="IDEA Java注释模板设置详解" /><published>2017-06-24T00:00:00+08:00</published><updated>2017-06-24T00:00:00+08:00</updated><id>http://firsh.me/2017/06/24/java-development-v-desc</id><content type="html" xml:base="http://firsh.me/2017/06/24/java-development-v-desc/">&lt;p&gt;IDEA Java注释模板设置详解
 设置注释模板的入口： Window-&amp;gt;Preference-&amp;gt;Java-&amp;gt;Code Style-&amp;gt;Code Template 然后展开Comments节点就是所有需设置注释的元素啦。现就每一个元素逐一介绍：&lt;/p&gt;
 
 &lt;h2 id=&quot;1文件files注释标签&quot;&gt;1、文件(Files)注释标签：&lt;/h2&gt;
@@ -122,7 +122,7 @@ Flink主要包括基于Java和Scala的用于批量和基于流数据分析的API
 */&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>张建新</name></author><summary type="html">IDEA Java注释模板设置详解 设置注释模板的入口： Window-&amp;gt;Preference-&amp;gt;Java-&amp;gt;Code Style-&amp;gt;Code Template 然后展开Comments节点就是所有需设置注释的元素啦。现就每一个元素逐一介绍：</summary></entry><entry><title type="html">java 开发代码规范，命名规范</title><link href="http://firsh.me/2017/06/24/java-development-b-desc/" rel="alternate" type="text/html" title="java 开发代码规范，命名规范" /><published>2017-06-24T00:00:00+08:00</published><updated>2017-06-24T00:00:00+08:00</updated><id>http://firsh.me/2017/06/24/java-development-b-desc</id><content type="html" xml:base="http://firsh.me/2017/06/24/java-development-b-desc/">&lt;p&gt;Java 代码书写规范，以及部分注释。&lt;/p&gt;
+&lt;/div&gt;</content><author><name>zmatsh</name></author><summary type="html">IDEA Java注释模板设置详解 设置注释模板的入口： Window-&amp;gt;Preference-&amp;gt;Java-&amp;gt;Code Style-&amp;gt;Code Template 然后展开Comments节点就是所有需设置注释的元素啦。现就每一个元素逐一介绍：</summary></entry><entry><title type="html">java 开发代码规范，命名规范</title><link href="http://firsh.me/2017/06/24/java-development-b-desc/" rel="alternate" type="text/html" title="java 开发代码规范，命名规范" /><published>2017-06-24T00:00:00+08:00</published><updated>2017-06-24T00:00:00+08:00</updated><id>http://firsh.me/2017/06/24/java-development-b-desc</id><content type="html" xml:base="http://firsh.me/2017/06/24/java-development-b-desc/">&lt;p&gt;Java 代码书写规范，以及部分注释。&lt;/p&gt;
 
 &lt;h2 id=&quot;1java-规范很重要&quot;&gt;1、Java 规范很重要：&lt;/h2&gt;
 
@@ -212,7 +212,7 @@ Flink主要包括基于Java和Scala的用于批量和基于流数据分析的API
 &lt;/div&gt;
 &lt;ul&gt;
   &lt;li&gt;感谢孙浩大哥提醒代码规范的重要性。&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>张建新</name></author><summary type="html">Java 代码书写规范，以及部分注释。</summary></entry><entry><title type="html">ssh链接报错 Unable to negotiate with IP</title><link href="http://firsh.me/2017/06/22/sshd-error/" rel="alternate" type="text/html" title="ssh链接报错 Unable to negotiate with IP" /><published>2017-06-22T00:00:00+08:00</published><updated>2017-06-22T00:00:00+08:00</updated><id>http://firsh.me/2017/06/22/sshd-error</id><content type="html" xml:base="http://firsh.me/2017/06/22/sshd-error/">&lt;p&gt;ssh Unable to negotiate with 182.158.68.5 port 22: no matching host key type found. Their offer: ssh-dss&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>zmatsh</name></author><summary type="html">Java 代码书写规范，以及部分注释。</summary></entry><entry><title type="html">ssh链接报错 Unable to negotiate with IP</title><link href="http://firsh.me/2017/06/22/sshd-error/" rel="alternate" type="text/html" title="ssh链接报错 Unable to negotiate with IP" /><published>2017-06-22T00:00:00+08:00</published><updated>2017-06-22T00:00:00+08:00</updated><id>http://firsh.me/2017/06/22/sshd-error</id><content type="html" xml:base="http://firsh.me/2017/06/22/sshd-error/">&lt;p&gt;ssh Unable to negotiate with 182.158.68.5 port 22: no matching host key type found. Their offer: ssh-dss&lt;/p&gt;
 
 &lt;h2 id=&quot;介绍&quot;&gt;介绍&lt;/h2&gt;
 
@@ -243,7 +243,7 @@ The authenticity of host &lt;span class=&quot;s1&quot;&gt;'182.158.68.55 (182.15
 DSA key fingerprint is SHA256:LVWhbgb8q5TdW2QEsFjOVNp8ekW8UqPVE/KCbMOI4CM.
 Are you sure you want to continue connecting (yes/no)? 
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>张建新</name></author><summary type="html">ssh Unable to negotiate with 182.158.68.5 port 22: no matching host key type found. Their offer: ssh-dss</summary></entry><entry><title type="html">Kubernetes部分Volume类型介绍及yaml示例</title><link href="http://firsh.me/2017/06/22/kubernetes-v-nfs/" rel="alternate" type="text/html" title="Kubernetes部分Volume类型介绍及yaml示例" /><published>2017-06-22T00:00:00+08:00</published><updated>2017-06-22T00:00:00+08:00</updated><id>http://firsh.me/2017/06/22/kubernetes-v-nfs</id><content type="html" xml:base="http://firsh.me/2017/06/22/kubernetes-v-nfs/">&lt;p&gt;Kubernetes部分Volume类型介绍及yaml示例&lt;/p&gt;
+&lt;/div&gt;</content><author><name>zmatsh</name></author><summary type="html">ssh Unable to negotiate with 182.158.68.5 port 22: no matching host key type found. Their offer: ssh-dss</summary></entry><entry><title type="html">Kubernetes部分Volume类型介绍及yaml示例</title><link href="http://firsh.me/2017/06/22/kubernetes-v-nfs/" rel="alternate" type="text/html" title="Kubernetes部分Volume类型介绍及yaml示例" /><published>2017-06-22T00:00:00+08:00</published><updated>2017-06-22T00:00:00+08:00</updated><id>http://firsh.me/2017/06/22/kubernetes-v-nfs</id><content type="html" xml:base="http://firsh.me/2017/06/22/kubernetes-v-nfs/">&lt;p&gt;Kubernetes部分Volume类型介绍及yaml示例&lt;/p&gt;
 
 &lt;h2 id=&quot;1emptydir本地数据卷&quot;&gt;1、EmptyDir（本地数据卷&lt;/h2&gt;
 
@@ -378,7 +378,7 @@ Are you sure you want to continue connecting (yes/no)?
     &lt;span class=&quot;s&quot;&gt;secret&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
      &lt;span class=&quot;s&quot;&gt;secretName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mysecret&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>张建新</name></author><summary type="html">Kubernetes部分Volume类型介绍及yaml示例</summary></entry><entry><title type="html">Kubernetes 项目学习笔记。</title><link href="http://firsh.me/2017/06/21/kubernetes-1.6/" rel="alternate" type="text/html" title="Kubernetes 项目学习笔记。" /><published>2017-06-21T00:00:00+08:00</published><updated>2017-06-21T00:00:00+08:00</updated><id>http://firsh.me/2017/06/21/kubernetes-1.6</id><content type="html" xml:base="http://firsh.me/2017/06/21/kubernetes-1.6/">&lt;p&gt;这一篇学习笔记，记录了kubernetes 容器编排框架的实战，以及模拟线上负载均衡等功能。&lt;/p&gt;
+&lt;/div&gt;</content><author><name>zmatsh</name></author><summary type="html">Kubernetes部分Volume类型介绍及yaml示例</summary></entry><entry><title type="html">Kubernetes 项目学习笔记。</title><link href="http://firsh.me/2017/06/21/kubernetes-1.6/" rel="alternate" type="text/html" title="Kubernetes 项目学习笔记。" /><published>2017-06-21T00:00:00+08:00</published><updated>2017-06-21T00:00:00+08:00</updated><id>http://firsh.me/2017/06/21/kubernetes-1.6</id><content type="html" xml:base="http://firsh.me/2017/06/21/kubernetes-1.6/">&lt;p&gt;这一篇学习笔记，记录了kubernetes 容器编排框架的实战，以及模拟线上负载均衡等功能。&lt;/p&gt;
 
 &lt;h2 id=&quot;介绍&quot;&gt;介绍&lt;/h2&gt;
 
@@ -394,7 +394,7 @@ Are you sure you want to continue connecting (yes/no)?
 
 &lt;h2 id=&quot;高可用架构图&quot;&gt;高可用架构图&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/gaokeyong.png&quot; alt=&quot;请添加描述&quot; /&gt;&lt;/p&gt;</content><author><name>张建新</name></author><summary type="html">这一篇学习笔记，记录了kubernetes 容器编排框架的实战，以及模拟线上负载均衡等功能。</summary></entry><entry><title type="html">Javascript or nodejs 学习笔记。</title><link href="http://firsh.me/2017/06/21/javascript-leaning/" rel="alternate" type="text/html" title="Javascript or nodejs 学习笔记。" /><published>2017-06-21T00:00:00+08:00</published><updated>2017-06-21T00:00:00+08:00</updated><id>http://firsh.me/2017/06/21/javascript-leaning</id><content type="html" xml:base="http://firsh.me/2017/06/21/javascript-leaning/">&lt;p&gt;这一篇学习笔记，记录了今日所学的一些关于Javascript的高级用法。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/gaokeyong.png&quot; alt=&quot;请添加描述&quot; /&gt;&lt;/p&gt;</content><author><name>zmatsh</name></author><summary type="html">这一篇学习笔记，记录了kubernetes 容器编排框架的实战，以及模拟线上负载均衡等功能。</summary></entry><entry><title type="html">Javascript or nodejs 学习笔记。</title><link href="http://firsh.me/2017/06/21/javascript-leaning/" rel="alternate" type="text/html" title="Javascript or nodejs 学习笔记。" /><published>2017-06-21T00:00:00+08:00</published><updated>2017-06-21T00:00:00+08:00</updated><id>http://firsh.me/2017/06/21/javascript-leaning</id><content type="html" xml:base="http://firsh.me/2017/06/21/javascript-leaning/">&lt;p&gt;这一篇学习笔记，记录了今日所学的一些关于Javascript的高级用法。&lt;/p&gt;
 
 &lt;h2 id=&quot;main&quot;&gt;Main&lt;/h2&gt;
 
@@ -496,7 +496,7 @@ Are you sure you want to continue connecting (yes/no)?
 &lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fuck2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>张建新</name></author><summary type="html">这一篇学习笔记，记录了今日所学的一些关于Javascript的高级用法。</summary></entry><entry><title type="html">Ngrok做内网穿透。</title><link href="http://firsh.me/2017/06/20/ngrok-docker/" rel="alternate" type="text/html" title="Ngrok做内网穿透。" /><published>2017-06-20T00:00:00+08:00</published><updated>2017-06-20T00:00:00+08:00</updated><id>http://firsh.me/2017/06/20/ngrok-docker</id><content type="html" xml:base="http://firsh.me/2017/06/20/ngrok-docker/">&lt;p&gt;Ngrok for Docker Server and client&lt;/p&gt;
+&lt;/div&gt;</content><author><name>zmatsh</name></author><summary type="html">这一篇学习笔记，记录了今日所学的一些关于Javascript的高级用法。</summary></entry><entry><title type="html">Ngrok做内网穿透。</title><link href="http://firsh.me/2017/06/20/ngrok-docker/" rel="alternate" type="text/html" title="Ngrok做内网穿透。" /><published>2017-06-20T00:00:00+08:00</published><updated>2017-06-20T00:00:00+08:00</updated><id>http://firsh.me/2017/06/20/ngrok-docker</id><content type="html" xml:base="http://firsh.me/2017/06/20/ngrok-docker/">&lt;p&gt;Ngrok for Docker Server and client&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://microbadger.com/images/wernight/ngrok&quot; title=&quot;Get your own image badge on microbadger.com&quot;&gt;&lt;img src=&quot;https://images.microbadger.com/badges/image/wernight/ngrok.svg&quot; alt=&quot;&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://beta.codenvy.com/f?url=https://github.com/wernight/docker-ngrok&quot; title=&quot;Start development on Codenvy&quot;&gt;&lt;img src=&quot;http://beta.codenvy.com/factory/resources/codenvy-contribute.svg&quot; alt=&quot;Codenvy badge&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -599,7 +599,7 @@ $ curl $(docker port www 80)
 
 &lt;p&gt;Report issues/questions/feature requests on &lt;a href=&quot;https://github.com/wernight/docker-ngrok/issues&quot;&gt;GitHub Issues&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Pull requests are very welcome!&lt;/p&gt;</content><author><name>张建新</name></author><summary type="html">Ngrok for Docker Server and client</summary></entry><entry><title type="html">面试题 java Development。</title><link href="http://firsh.me/2017/06/19/mianshi-Java-development/" rel="alternate" type="text/html" title="面试题 java Development。" /><published>2017-06-19T00:00:00+08:00</published><updated>2017-06-19T00:00:00+08:00</updated><id>http://firsh.me/2017/06/19/mianshi-Java-development</id><content type="html" xml:base="http://firsh.me/2017/06/19/mianshi-Java-development/">&lt;h2 id=&quot;说明&quot;&gt;说明&lt;/h2&gt;
+&lt;p&gt;Pull requests are very welcome!&lt;/p&gt;</content><author><name>zmatsh</name></author><summary type="html">Ngrok for Docker Server and client</summary></entry><entry><title type="html">面试题 java Development。</title><link href="http://firsh.me/2017/06/19/mianshi-Java-development/" rel="alternate" type="text/html" title="面试题 java Development。" /><published>2017-06-19T00:00:00+08:00</published><updated>2017-06-19T00:00:00+08:00</updated><id>http://firsh.me/2017/06/19/mianshi-Java-development</id><content type="html" xml:base="http://firsh.me/2017/06/19/mianshi-Java-development/">&lt;h2 id=&quot;说明&quot;&gt;说明&lt;/h2&gt;
 
 &lt;p&gt;这篇文章翻译自一位外国友人的关于面试后端程序员的文章，我比较喜爱这篇文章。一是因为它极大的拓宽了我的视角，另一方面是其中的一些问题非常具有启发性。不仅对于面试者，对于面试官来说也是个不错的参考。于是迫不及待的翻译了一下，给各位看官做个参考。&lt;/p&gt;
 
@@ -1085,7 +1085,7 @@ $ curl $(docker port www 80)
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>张建新</name></author><summary type="html">说明</summary></entry><entry><title type="html">nodejs + npm 版本切换(Mac/Windows/Linux)</title><link href="http://firsh.me/2017/06/15/npm-node-version-q/" rel="alternate" type="text/html" title="nodejs + npm 版本切换(Mac/Windows/Linux)" /><published>2017-06-15T00:00:00+08:00</published><updated>2017-06-15T00:00:00+08:00</updated><id>http://firsh.me/2017/06/15/npm-node-version-q</id><content type="html" xml:base="http://firsh.me/2017/06/15/npm-node-version-q/">&lt;p&gt;因项目需求需要多次切换npm以及nodejs，所写出这个文章以供参考。&lt;/p&gt;
+&lt;/div&gt;</content><author><name>zmatsh</name></author><summary type="html">说明</summary></entry><entry><title type="html">nodejs + npm 版本切换(Mac/Windows/Linux)</title><link href="http://firsh.me/2017/06/15/npm-node-version-q/" rel="alternate" type="text/html" title="nodejs + npm 版本切换(Mac/Windows/Linux)" /><published>2017-06-15T00:00:00+08:00</published><updated>2017-06-15T00:00:00+08:00</updated><id>http://firsh.me/2017/06/15/npm-node-version-q</id><content type="html" xml:base="http://firsh.me/2017/06/15/npm-node-version-q/">&lt;p&gt;因项目需求需要多次切换npm以及nodejs，所写出这个文章以供参考。&lt;/p&gt;
 
 &lt;h1 id=&quot;使用npm-n进行版本切换对nodejs的版本控制&quot;&gt;使用npm n进行版本切换，对nodejs的版本控制。&lt;/h1&gt;
 
@@ -1119,4 +1119,4 @@ $ sudo n （用上下选择版本会车切换版本）
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;/images/QQ20170615-214859@2x.png&quot; alt=&quot;此处输入图片的描述&quot; /&gt;&lt;/p&gt;</content><author><name>张建新</name></author><summary type="html">因项目需求需要多次切换npm以及nodejs，所写出这个文章以供参考。</summary></entry></feed>
+&lt;p&gt;&lt;img src=&quot;/images/QQ20170615-214859@2x.png&quot; alt=&quot;此处输入图片的描述&quot; /&gt;&lt;/p&gt;</content><author><name>zmatsh</name></author><summary type="html">因项目需求需要多次切换npm以及nodejs，所写出这个文章以供参考。</summary></entry></feed>
