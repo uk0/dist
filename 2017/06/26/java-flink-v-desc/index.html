@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Swimming &mdash; 张建新</title>
+    <title>大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中] &mdash; 张建新</title>
     <link rel="stylesheet" href="/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="/assets/vendor/octicons/octicons/octicons.css">
@@ -21,23 +21,23 @@
     
 
     
-    <link rel="canonical" href="http://firsh.me/wiki/swimming/">
+    <link rel="canonical" href="http://firsh.me/2017/06/26/java-flink-v-desc/">
     <link rel="alternate" type="application/atom+xml" title="张建新" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="Swimming">
+    <meta property="og:title" content="大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]">
       
-    <meta name="keywords" content="游泳, 蛙泳">
-    <meta name="og:keywords" content="游泳, 蛙泳">
+    <meta name="keywords" content="Java, Scala,Hadoop,Flink">
+    <meta name="og:keywords" content="Java, Scala,Hadoop,Flink">
       
-    <meta name="description" content="蛙泳">
-    <meta name="og:description" content="蛙泳">
+    <meta name="description" content="Apache Flink是一个高效、分布式、基于Java实现的通用大数据分析引擎，它具有分布式 MapReduce一类平台的高效性、灵活性和扩展性以及并行数据库查询优化方案，它支持批量和基于流的数据分析，且提供了基于Java和Scala的API">
+    <meta name="og:description" content="Apache Flink是一个高效、分布式、基于Java实现的通用大数据分析引擎，它具有分布式 MapReduce一类平台的高效性、灵活性和扩展性以及并行数据库查询优化方案，它支持批量和基于流的数据分析，且提供了基于Java和Scala的API">
       
     
     
         
     
-    <meta property="og:url" content="http://firsh.me/wiki/swimming/">
+    <meta property="og:url" content="http://firsh.me/2017/06/26/java-flink-v-desc/">
     <meta property="og:site_name" content="张建新">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -85,12 +85,30 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="Swimming">
+    <section class="collection-head small geopattern" data-pattern-id="大数据分析引擎Apache F">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">Swimming</h1>
+        <h1 class="collection-header">大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/06/26
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#Java," title="Java,">Java,</a>
+          </span>
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#Scala,Hadoop,Flink" title="Scala,Hadoop,Flink">Scala,Hadoop,Flink</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
@@ -101,37 +119,38 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <h2 id="蛙泳">蛙泳</h2>
+    <p>Apache Flink是一个高效、分布式、基于Java实现的通用大数据分析引擎，它具有分布式 MapReduce一类平台的高效性、灵活性和扩展性以及并行数据库查询优化方案，它支持批量和基于流的数据分析，且提供了基于Java和Scala的API</p>
 
-<p>我目前能游出最远距离的泳姿。</p>
+<p>从Flink官网得知，其具有如下主要特征：</p>
 
-<h3 id="视频">视频</h3>
+<h2 id="1-快速">1. 快速</h2>
 
-<ul>
-  <li><a href="http://v.youku.com/v_show/id_XMjgwOTA4OTI0.html?from=s1.8-1-1.2">蛙泳教学完整版</a></li>
-</ul>
+<p>Flink利用基于内存的数据流并将迭代处理算法深度集成到了系统的运行时中，这就使得系统能够以极快的速度来处理数据密集型和迭代任务。</p>
 
-<h3 id="动作时序图">动作时序图</h3>
+<h2 id="2-可靠性和扩展性">2. 可靠性和扩展性</h2>
 
-<p><img src="/images/wiki/breaststroke.png" alt="" /></p>
+<p>当服务器内存被耗尽时，Flink也能够很好的运行，这是因为Flink包含自己的内存管理组件、序列化框架和类型推理引擎。</p>
 
-<h3 id="要领">要领</h3>
+<h2 id="3-表现力">3. 表现力</h2>
 
-<ul>
-  <li>先划手，后收腿，先伸胳膊后蹬腿。</li>
-  <li>腿部动作时一定要勾脚，大腿不要收太多。</li>
-  <li>收腿放松，蹬腿用力，蹬完一定要漂一会，把握好节奏，不要快蹬快收。</li>
-  <li>手部划水动作不要过大，不要超过肩部。</li>
-  <li>两手开始外分时就抬头吸气。</li>
-</ul>
+<p>利用Java或者Scala语言能够编写出漂亮、类型安全和可为核心的代码，并能够在集群上运行所写程序。开发者可以在无需额外处理就使用Java和Scala数据类型</p>
 
-<h2 id="自由泳">自由泳</h2>
+<h2 id="4-易用性">4. 易用性</h2>
 
-<h3 id="视频-1">视频</h3>
+<p>在无需进行任何配置的情况下，Flink内置的优化器就能够以最高效的方式在各种环境中执行程序。此外，Flink只需要三个命令就可以运行在Hadoop的新MapReduce框架Yarn上，</p>
 
-<ul>
-  <li><a href="http://v.youku.com/v_show/id_XNzIxMTkwOTY0.html?beta&amp;from=s1.8-1-2.999&amp;f=18195375&amp;sf=10102&amp;spm=0.0.0.0.lMFhS6">值得一看的自由泳教学视频</a></li>
-</ul>
+<h2 id="5-完全兼容hadoop">5. 完全兼容Hadoop</h2>
+
+<p>Flink支持所有的Hadoop所有的输入/输出格式和数据类型，这就使得开发者无需做任何修改就能够利用Flink运行历史遗留的MapReduce操作 
+Flink主要包括基于Java和Scala的用于批量和基于流数据分析的API、优化器和具有自定义内存管理功能的分布式运行时等，其主要架构如下：</p>
+
+<blockquote>
+  <p>架构图</p>
+</blockquote>
+
+<p><img src="/images/flink.png" alt="Flink" /></p>
+
+<p><img src="/images/flink-home-graphic-update.svg" alt="Flink" /></p>
 
     </article>
     <div class="share">
@@ -148,9 +167,9 @@
           <div id="disqus_thread"></div>
           <script>
             var disqus_config = function () {
-              this.page.url = 'http://firsh.me/wiki/swimming/';
-              this.page.identifier = '/wiki/swimming/';
-              this.page.title = 'Swimming';
+              this.page.url = 'http://firsh.me/2017/06/26/java-flink-v-desc/';
+              this.page.identifier = '/2017/06/26/java-flink-v-desc/';
+              this.page.title = '大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]';
             };
             (function() { // DON'T EDIT BELOW THIS LINE
               var d = document, s = d.createElement('script');

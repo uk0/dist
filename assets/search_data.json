@@ -1,5 +1,11 @@
 {
   
+  "2017-06-26-java-flink-v-desc": {
+    "title": "大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]",
+    "url": " /2017/06/26/java-flink-v-desc/",
+    "category": "Java,"
+  },
+  
   "2017-06-24-java-development-v-desc": {
     "title": "IDEA Java注释模板设置详解",
     "url": " /2017/06/24/java-development-v-desc/",
@@ -428,6 +434,12 @@
     "title": "IDEA Java注释模板设置详解",
     "url": "/2017/06/24/java-development-v-desc/",
     "category": "[&quot;IDEA,java,mac&quot;]"
+  },
+  
+  "2017-06-26-java-flink-v-desc": {
+    "title": "大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]",
+    "url": "/2017/06/26/java-flink-v-desc/",
+    "category": "[&quot;Java,&quot;, &quot;Scala,Hadoop,Flink&quot;]"
   },
   
   "wiki-android-studio": {

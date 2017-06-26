@@ -1,4 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-25T01:00:15+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>张建新个人博客</subtitle><author><name>张建新</name></author><entry><title type="html">IDEA Java注释模板设置详解</title><link href="http://firsh.me/2017/06/24/java-development-v-desc/" rel="alternate" type="text/html" title="IDEA Java注释模板设置详解" /><published>2017-06-24T00:00:00+08:00</published><updated>2017-06-24T00:00:00+08:00</updated><id>http://firsh.me/2017/06/24/java-development-v-desc</id><content type="html" xml:base="http://firsh.me/2017/06/24/java-development-v-desc/">&lt;p&gt;IDEA Java注释模板设置详解
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-26T11:48:57+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>张建新个人博客</subtitle><author><name>张建新</name></author><entry><title type="html">大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]</title><link href="http://firsh.me/2017/06/26/java-flink-v-desc/" rel="alternate" type="text/html" title="大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]" /><published>2017-06-26T00:00:00+08:00</published><updated>2017-06-26T00:00:00+08:00</updated><id>http://firsh.me/2017/06/26/java-flink-v-desc</id><content type="html" xml:base="http://firsh.me/2017/06/26/java-flink-v-desc/">&lt;p&gt;Apache Flink是一个高效、分布式、基于Java实现的通用大数据分析引擎，它具有分布式 MapReduce一类平台的高效性、灵活性和扩展性以及并行数据库查询优化方案，它支持批量和基于流的数据分析，且提供了基于Java和Scala的API&lt;/p&gt;
+
+&lt;p&gt;从Flink官网得知，其具有如下主要特征：&lt;/p&gt;
+
+&lt;h2 id=&quot;1-快速&quot;&gt;1. 快速&lt;/h2&gt;
+
+&lt;p&gt;Flink利用基于内存的数据流并将迭代处理算法深度集成到了系统的运行时中，这就使得系统能够以极快的速度来处理数据密集型和迭代任务。&lt;/p&gt;
+
+&lt;h2 id=&quot;2-可靠性和扩展性&quot;&gt;2. 可靠性和扩展性&lt;/h2&gt;
+
+&lt;p&gt;当服务器内存被耗尽时，Flink也能够很好的运行，这是因为Flink包含自己的内存管理组件、序列化框架和类型推理引擎。&lt;/p&gt;
+
+&lt;h2 id=&quot;3-表现力&quot;&gt;3. 表现力&lt;/h2&gt;
+
+&lt;p&gt;利用Java或者Scala语言能够编写出漂亮、类型安全和可为核心的代码，并能够在集群上运行所写程序。开发者可以在无需额外处理就使用Java和Scala数据类型&lt;/p&gt;
+
+&lt;h2 id=&quot;4-易用性&quot;&gt;4. 易用性&lt;/h2&gt;
+
+&lt;p&gt;在无需进行任何配置的情况下，Flink内置的优化器就能够以最高效的方式在各种环境中执行程序。此外，Flink只需要三个命令就可以运行在Hadoop的新MapReduce框架Yarn上，&lt;/p&gt;
+
+&lt;h2 id=&quot;5-完全兼容hadoop&quot;&gt;5. 完全兼容Hadoop&lt;/h2&gt;
+
+&lt;p&gt;Flink支持所有的Hadoop所有的输入/输出格式和数据类型，这就使得开发者无需做任何修改就能够利用Flink运行历史遗留的MapReduce操作 
+Flink主要包括基于Java和Scala的用于批量和基于流数据分析的API、优化器和具有自定义内存管理功能的分布式运行时等，其主要架构如下：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;架构图&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/flink.png&quot; alt=&quot;Flink&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/flink-home-graphic-update.svg&quot; alt=&quot;Flink&quot; /&gt;&lt;/p&gt;</content><author><name>张建新</name></author><summary type="html">Apache Flink是一个高效、分布式、基于Java实现的通用大数据分析引擎，它具有分布式 MapReduce一类平台的高效性、灵活性和扩展性以及并行数据库查询优化方案，它支持批量和基于流的数据分析，且提供了基于Java和Scala的API</summary></entry><entry><title type="html">IDEA Java注释模板设置详解</title><link href="http://firsh.me/2017/06/24/java-development-v-desc/" rel="alternate" type="text/html" title="IDEA Java注释模板设置详解" /><published>2017-06-24T00:00:00+08:00</published><updated>2017-06-24T00:00:00+08:00</updated><id>http://firsh.me/2017/06/24/java-development-v-desc</id><content type="html" xml:base="http://firsh.me/2017/06/24/java-development-v-desc/">&lt;p&gt;IDEA Java注释模板设置详解
 设置注释模板的入口： Window-&amp;gt;Preference-&amp;gt;Java-&amp;gt;Code Style-&amp;gt;Code Template 然后展开Comments节点就是所有需设置注释的元素啦。现就每一个元素逐一介绍：&lt;/p&gt;
 
 &lt;h2 id=&quot;1文件files注释标签&quot;&gt;1、文件(Files)注释标签：&lt;/h2&gt;
@@ -101,7 +132,7 @@
        所有的包命名全部由小写英文单词
        以下的 | 符号代表或者取其一的意思
        我们采用com|org|edu|net.公司名|组织名|学校名|网站名.项目名称.分层文件夹名
-       例如：项目中采用 com.osiit.shopping.servlet
+       例如：项目中采用 com.tod.code.gen
 
 类命名规范
        所有Java类采取大写字母开头，如果类名称由多个单词组成，则每个单词的首字母均应为大 写例如AdminBean；如果类名称中包含单词缩写，则这个所写词的每个字母均应大写，如：XMLExample,还有一点命名技巧就是由于类是设计用来 代表对象的，所以在命名类时应尽量选择名词。    　　   
@@ -126,7 +157,7 @@
 文件注释规范：写在所有类的文件的最上边的注释
 /*
 * 文 件 名： 
-* 版权(c) 2009-xxx公司 xxx项目组：
+* 版权(c) 2017-xxx公司 xxx项目组：
 * 版 本 号： 
 */
 
@@ -137,7 +168,7 @@
 * Comments:  对此类的描述，可以引用系统设计中的描述                                                                                             
 * @author： 作者名称     
 * @author： 作者名称
-* @version 1.0 , 2009-5-20 
+* @version 1.0 , 2017-06-24
 * @since  JDK版本号                   
 * @see 一些相应的参考类，没有的话可以不加
 * @see          
@@ -172,21 +203,6 @@
 
 所有的类代码文件要求都有统一的缩进对齐
 
-四、           页面书写规范
-1.       Jsp页面上方增加统一的页面注释，例如：
-&amp;lt;!--*********** 增加商品页面 *************** --&amp;gt;
-&amp;lt;!--
-        作者:XXX
-        创建日期：XXX
---&amp;gt;
-
-2.       如果是像网站首页那样的大页面,遍历数据的开始到结束都建议加上注释，方便以后检查,例如
-&amp;lt;!-- *******************遍历商品列表开始********************--&amp;gt;
-        中间是遍历的代码部分
-&amp;lt;!-- *******************遍历商品列表结束********************--&amp;gt;
-       
-五、           页面注释规范
-尽可能按照规范的html标签的写法，详细参见xhtml书写规则。 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;ul&gt;
@@ -1098,70 +1114,4 @@ $ sudo n （用上下选择版本会车切换版本）
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;/images/QQ20170615-214859@2x.png&quot; alt=&quot;此处输入图片的描述&quot; /&gt;&lt;/p&gt;</content><author><name>张建新</name></author><summary type="html">因项目需求需要多次切换npm以及nodejs，所写出这个文章以供参考。</summary></entry><entry><title type="html">使用travis-ci 来持续集成jekyll静态博客。</title><link href="http://firsh.me/2017/06/13/travis-ci-myblog/" rel="alternate" type="text/html" title="使用travis-ci 来持续集成jekyll静态博客。" /><published>2017-06-13T00:00:00+08:00</published><updated>2017-06-13T00:00:00+08:00</updated><id>http://firsh.me/2017/06/13/travis-ci-myblog</id><content type="html" xml:base="http://firsh.me/2017/06/13/travis-ci-myblog/">&lt;p&gt;CICD (travis) for my blog&lt;/p&gt;
-
-&lt;h1 id=&quot;使用travis-ci-来持续集成jekyll静态博客&quot;&gt;使用travis-ci 来持续集成jekyll静态博客.&lt;/h1&gt;
-
-&lt;p&gt;##简介
-Travis CI提供一个在线的持续集成服务，用来构建托管在github上的代码。
-许多知名的开源项目使用它来自动构建测试代码,它支持hexo的运行环境node.js。
-原理很简单，Travis会在你每一次在github上提交代码后，生成一个Linux虚拟机来运行你配置好的任务,
-生成和部署hexo只需要一个命令 hexo gd ，但是Travis CI需要有我们的github项目上传代码的权限，
-所以我们需要使用SSH key来使Travis CI拥有权限。还有一些其他的问题也都参开hexo作者的博文解决了，
-用Travis CI自动部署网站到Github。&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#安装travis-ci的命令行工具&lt;/span&gt;
-
-gem install travis
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#登录Travis CI&lt;/span&gt;
-travis login --auto &lt;span class=&quot;c&quot;&gt;#这里可以用token登录。&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#使用travis命令行工具加密私钥&lt;/span&gt;
-travis encrypt-file id_rsa --add
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#travis CI解密配置,这部分内容需要配置在 .travis.yml 里,注意修改秘钥&lt;/span&gt;
-
-- openssl aes-256-cbc -K &lt;span class=&quot;nv&quot;&gt;$encrypted_26b4962af0e7_key&lt;/span&gt; -iv &lt;span class=&quot;nv&quot;&gt;$encrypted_26b4962af0e7_iv&lt;/span&gt;
-  -in id_rsa.enc -out ~/.ssh/id_rsa -d
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;.travis.yml&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;s&quot;&gt;language&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;node_js&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;node_js&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;4.1'&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;before_install&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;openssl aes-256-cbc -K $encrypted_26b4962af0e7_key -iv $encrypted_26b4962af0e7_iv&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;-in id_rsa.enc -out ~/.ssh/id_rsa -d&lt;/span&gt;
-&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;chmod 600 ~/.ssh/id_rsa&lt;/span&gt;
-&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eval $(ssh-agent)&lt;/span&gt;
-&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ssh-add ~/.ssh/id_rsa&lt;/span&gt;
-&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cp ssh_config ~/.ssh/config&lt;/span&gt;
-&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;git config --global user.name &quot;pangjian&quot;&lt;/span&gt;
-&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;git config --global user.email &quot;pangjian1010@gmail.com&quot;&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;install&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;npm install hexo-cli -g&lt;/span&gt;
-&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;npm install&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hexo -version&lt;/span&gt;
-&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hexo clean&lt;/span&gt;
-&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hexo g&lt;/span&gt;
-&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hexo deploy&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;转载请注明出处：https://firsh.me/2017/06/13/travis-ci-myblog/&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>张建新</name></author><summary type="html">CICD (travis) for my blog</summary></entry></feed>
+&lt;p&gt;&lt;img src=&quot;/images/QQ20170615-214859@2x.png&quot; alt=&quot;此处输入图片的描述&quot; /&gt;&lt;/p&gt;</content><author><name>张建新</name></author><summary type="html">因项目需求需要多次切换npm以及nodejs，所写出这个文章以供参考。</summary></entry></feed>
