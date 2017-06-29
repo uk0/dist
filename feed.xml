@@ -1,4 +1,61 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-27T18:39:31+08:00</updated><id>http://firsh.me/</id><title type="html">会飞的胖子.</title><subtitle>胖子个人博客</subtitle><author><name>zmatsh</name></author><entry><title type="html">大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]</title><link href="http://firsh.me/2017/06/26/java-flink-v-desc/" rel="alternate" type="text/html" title="大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]" /><published>2017-06-26T00:00:00+08:00</published><updated>2017-06-26T00:00:00+08:00</updated><id>http://firsh.me/2017/06/26/java-flink-v-desc</id><content type="html" xml:base="http://firsh.me/2017/06/26/java-flink-v-desc/">&lt;p&gt;Apache Flink是一个高效、分布式、基于Java实现的通用大数据分析引擎，它具有分布式 MapReduce一类平台的高效性、灵活性和扩展性以及并行数据库查询优化方案，它支持批量和基于流的数据分析，且提供了基于Java和Scala的API&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-29T11:21:47+08:00</updated><id>http://firsh.me/</id><title type="html">会飞的胖子.</title><subtitle>胖子个人博客</subtitle><author><name>zmatsh</name></author><entry><title type="html">Kubernetes命名空间资源限制[原创]</title><link href="http://firsh.me/2017/06/29/Kubernetes-namespace-limits/" rel="alternate" type="text/html" title="Kubernetes命名空间资源限制[原创]" /><published>2017-06-29T00:00:00+08:00</published><updated>2017-06-29T00:00:00+08:00</updated><id>http://firsh.me/2017/06/29/Kubernetes-namespace-limits</id><content type="html" xml:base="http://firsh.me/2017/06/29/Kubernetes-namespace-limits/">&lt;p&gt;Kubernetes命名空间资源限制主要是为了多个团队一起开发来区分资源使用情况。&lt;/p&gt;
+
+&lt;h2 id=&quot;1-resourcequota&quot;&gt;1. ResourceQuota&lt;/h2&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;s&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ResourceQuota&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;compute-resources&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;test&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;hard&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;requests.cpu&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;1&quot;&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;requests.memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;2Gi&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;limits.cpu&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;4&quot;&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;limits.memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;12Gi&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;2-limitrange&quot;&gt;2. LimitRange&lt;/h2&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;s&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;LimitRange&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;limits&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;limits&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;4&quot;&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;2Gi&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;200m&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;6Mi&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;maxLimitRequestRatio&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;3&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;2&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Pod&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;300m&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;200Mi&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;defaultRequest&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;200m&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;100Mi&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;2&quot;&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1Gi&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;100m&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;3Mi&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;maxLimitRequestRatio&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;5&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;4&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Container&lt;/span&gt;
+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><author><name>zmatsh</name></author><summary type="html">Kubernetes命名空间资源限制主要是为了多个团队一起开发来区分资源使用情况。</summary></entry><entry><title type="html">大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]</title><link href="http://firsh.me/2017/06/26/java-flink-v-desc/" rel="alternate" type="text/html" title="大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]" /><published>2017-06-26T00:00:00+08:00</published><updated>2017-06-26T00:00:00+08:00</updated><id>http://firsh.me/2017/06/26/java-flink-v-desc</id><content type="html" xml:base="http://firsh.me/2017/06/26/java-flink-v-desc/">&lt;p&gt;Apache Flink是一个高效、分布式、基于Java实现的通用大数据分析引擎，它具有分布式 MapReduce一类平台的高效性、灵活性和扩展性以及并行数据库查询优化方案，它支持批量和基于流的数据分析，且提供了基于Java和Scala的API&lt;/p&gt;
 
 &lt;p&gt;从Flink官网得知，其具有如下主要特征：&lt;/p&gt;
 
@@ -1085,38 +1142,4 @@ $ curl $(docker port www 80)
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>zmatsh</name></author><summary type="html">说明</summary></entry><entry><title type="html">nodejs + npm 版本切换(Mac/Windows/Linux)</title><link href="http://firsh.me/2017/06/15/npm-node-version-q/" rel="alternate" type="text/html" title="nodejs + npm 版本切换(Mac/Windows/Linux)" /><published>2017-06-15T00:00:00+08:00</published><updated>2017-06-15T00:00:00+08:00</updated><id>http://firsh.me/2017/06/15/npm-node-version-q</id><content type="html" xml:base="http://firsh.me/2017/06/15/npm-node-version-q/">&lt;p&gt;因项目需求需要多次切换npm以及nodejs，所写出这个文章以供参考。&lt;/p&gt;
-
-&lt;h1 id=&quot;使用npm-n进行版本切换对nodejs的版本控制&quot;&gt;使用npm n进行版本切换，对nodejs的版本控制。&lt;/h1&gt;
-
-&lt;h2 id=&quot;安装n控制器&quot;&gt;安装N控制器。&lt;/h2&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo npm install -g n
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;h2 id=&quot;安装nodejs的最新版本&quot;&gt;安装nodejs的最新版本&lt;/h2&gt;
-
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-$ n 5.4.1  --&amp;gt;（安装node.js 5.4.1版本）
-
-$ n latest  --&amp;gt;（安装node.js最新版本）
-
-$ n stable   --&amp;gt;（安装node.js稳定版本）
-
-$ n rm 4.0.0   --&amp;gt;（删除某个版本）
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;h2 id=&quot;如图&quot;&gt;如图&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/blog/QQ20170615-215055@2x.png&quot; alt=&quot;此处输入图片的描述&quot; /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-$ sudo n （用上下选择版本会车切换版本）
-
-#以笔者装的为例，输入以上代码后会出现
-    node/4.4.7
-    node/6.5.0
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;/images/QQ20170615-214859@2x.png&quot; alt=&quot;此处输入图片的描述&quot; /&gt;&lt;/p&gt;</content><author><name>zmatsh</name></author><summary type="html">因项目需求需要多次切换npm以及nodejs，所写出这个文章以供参考。</summary></entry></feed>
+&lt;/div&gt;</content><author><name>zmatsh</name></author><summary type="html">说明</summary></entry></feed>

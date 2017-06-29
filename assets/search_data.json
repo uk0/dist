@@ -1,5 +1,11 @@
 {
   
+  "2017-06-29-kubernetes-namespace-limits": {
+    "title": "Kubernetes命名空间资源限制[原创]",
+    "url": " /2017/06/29/Kubernetes-namespace-limits/",
+    "category": "Java,"
+  },
+  
   "2017-06-26-java-flink-v-desc": {
     "title": "大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]",
     "url": " /2017/06/26/java-flink-v-desc/",
@@ -248,6 +254,8 @@
   
   
   
+  
+  
 
   
   "2016-05-21-enable-https-for-github-pages": {
@@ -439,6 +447,12 @@
   "2017-06-26-java-flink-v-desc": {
     "title": "大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]",
     "url": "/2017/06/26/java-flink-v-desc/",
+    "category": "[&quot;Java,&quot;, &quot;Scala,Hadoop,Flink&quot;]"
+  },
+  
+  "2017-06-29-kubernetes-namespace-limits": {
+    "title": "Kubernetes命名空间资源限制[原创]",
+    "url": "/2017/06/29/Kubernetes-namespace-limits/",
     "category": "[&quot;Java,&quot;, &quot;Scala,Hadoop,Flink&quot;]"
   },
   
