@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-29T11:21:47+08:00</updated><id>http://firsh.me/</id><title type="html">会飞的胖子.</title><subtitle>胖子个人博客</subtitle><author><name>zmatsh</name></author><entry><title type="html">Kubernetes命名空间资源限制[原创]</title><link href="http://firsh.me/2017/06/29/Kubernetes-namespace-limits/" rel="alternate" type="text/html" title="Kubernetes命名空间资源限制[原创]" /><published>2017-06-29T00:00:00+08:00</published><updated>2017-06-29T00:00:00+08:00</updated><id>http://firsh.me/2017/06/29/Kubernetes-namespace-limits</id><content type="html" xml:base="http://firsh.me/2017/06/29/Kubernetes-namespace-limits/">&lt;p&gt;Kubernetes命名空间资源限制主要是为了多个团队一起开发来区分资源使用情况。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-29T11:25:35+08:00</updated><id>http://firsh.me/</id><title type="html">会飞的胖子.</title><subtitle>胖子个人博客</subtitle><author><name>zmatsh</name></author><entry><title type="html">Kubernetes命名空间资源限制[学习]</title><link href="http://firsh.me/2017/06/29/Kubernetes-namespace-limits/" rel="alternate" type="text/html" title="Kubernetes命名空间资源限制[学习]" /><published>2017-06-29T00:00:00+08:00</published><updated>2017-06-29T00:00:00+08:00</updated><id>http://firsh.me/2017/06/29/Kubernetes-namespace-limits</id><content type="html" xml:base="http://firsh.me/2017/06/29/Kubernetes-namespace-limits/">&lt;p&gt;Kubernetes命名空间资源限制主要是为了多个团队一起开发来区分资源使用情况。&lt;/p&gt;
 
 &lt;h2 id=&quot;1-resourcequota&quot;&gt;1. ResourceQuota&lt;/h2&gt;
 &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
@@ -55,7 +55,11 @@
 
 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>zmatsh</name></author><summary type="html">Kubernetes命名空间资源限制主要是为了多个团队一起开发来区分资源使用情况。</summary></entry><entry><title type="html">大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]</title><link href="http://firsh.me/2017/06/26/java-flink-v-desc/" rel="alternate" type="text/html" title="大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]" /><published>2017-06-26T00:00:00+08:00</published><updated>2017-06-26T00:00:00+08:00</updated><id>http://firsh.me/2017/06/26/java-flink-v-desc</id><content type="html" xml:base="http://firsh.me/2017/06/26/java-flink-v-desc/">&lt;p&gt;Apache Flink是一个高效、分布式、基于Java实现的通用大数据分析引擎，它具有分布式 MapReduce一类平台的高效性、灵活性和扩展性以及并行数据库查询优化方案，它支持批量和基于流的数据分析，且提供了基于Java和Scala的API&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;感谢企业服务部牛总提供的解决方案&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>zmatsh</name></author><summary type="html">Kubernetes命名空间资源限制主要是为了多个团队一起开发来区分资源使用情况。</summary></entry><entry><title type="html">大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]</title><link href="http://firsh.me/2017/06/26/java-flink-v-desc/" rel="alternate" type="text/html" title="大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]" /><published>2017-06-26T00:00:00+08:00</published><updated>2017-06-26T00:00:00+08:00</updated><id>http://firsh.me/2017/06/26/java-flink-v-desc</id><content type="html" xml:base="http://firsh.me/2017/06/26/java-flink-v-desc/">&lt;p&gt;Apache Flink是一个高效、分布式、基于Java实现的通用大数据分析引擎，它具有分布式 MapReduce一类平台的高效性、灵活性和扩展性以及并行数据库查询优化方案，它支持批量和基于流的数据分析，且提供了基于Java和Scala的API&lt;/p&gt;
 
 &lt;p&gt;从Flink官网得知，其具有如下主要特征：&lt;/p&gt;
 
