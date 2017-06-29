@@ -1,5 +1,11 @@
 {
   
+  "2017-06-29-ffmpeg-mov-gif-mac": {
+    "title": "ffmpeg转换GIF图片参数,MOV转GIF[常用]",
+    "url": " /2017/06/29/ffmpeg-mov-gif-mac/",
+    "category": "Java,"
+  },
+  
   "2017-06-29-kubernetes-namespace-limits": {
     "title": "Kubernetes命名空间资源限制[学习]",
     "url": " /2017/06/29/Kubernetes-namespace-limits/",
@@ -453,6 +459,12 @@
   "2017-06-29-kubernetes-namespace-limits": {
     "title": "Kubernetes命名空间资源限制[学习]",
     "url": "/2017/06/29/Kubernetes-namespace-limits/",
+    "category": "[&quot;Java,&quot;, &quot;Scala,Hadoop,Flink&quot;]"
+  },
+  
+  "2017-06-29-ffmpeg-mov-gif-mac": {
+    "title": "ffmpeg转换GIF图片参数,MOV转GIF[常用]",
+    "url": "/2017/06/29/ffmpeg-mov-gif-mac/",
     "category": "[&quot;Java,&quot;, &quot;Scala,Hadoop,Flink&quot;]"
   },
   
