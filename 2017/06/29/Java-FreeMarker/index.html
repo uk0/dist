@@ -284,77 +284,78 @@
 </div>
 
 <ul>
-  <li>3、实体模型类 Entity.java
-```java
-import java.util.List;</li>
+  <li>3、实体模型类 Entity.java</li>
 </ul>
 
-<p>/**</p>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>  
+  
+<span class="cm">/** 
+ * 实体类 
+ * @author github.com/zmatsh 
+ * 
+ */</span>  
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Entity</span> <span class="o">{</span>  
+    <span class="c1">// 实体所在的包名  </span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">javaPackage</span><span class="o">;</span>  
+    <span class="c1">// 实体类名  </span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">className</span><span class="o">;</span>  
+    <span class="c1">// 父类名  </span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">superclass</span><span class="o">;</span>  
+    <span class="c1">// 属性集合  </span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Property</span><span class="o">&gt;</span> <span class="n">properties</span><span class="o">;</span>  
+    <span class="c1">// 是否有构造函数  </span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">constructors</span><span class="o">;</span>     
+      
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getJavaPackage</span><span class="o">()</span> <span class="o">{</span>  
+        <span class="k">return</span> <span class="n">javaPackage</span><span class="o">;</span>  
+    <span class="o">}</span>  
+      
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setJavaPackage</span><span class="o">(</span><span class="n">String</span> <span class="n">javaPackage</span><span class="o">)</span> <span class="o">{</span>  
+        <span class="k">this</span><span class="o">.</span><span class="na">javaPackage</span> <span class="o">=</span> <span class="n">javaPackage</span><span class="o">;</span>  
+    <span class="o">}</span>  
+      
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getClassName</span><span class="o">()</span> <span class="o">{</span>  
+        <span class="k">return</span> <span class="n">className</span><span class="o">;</span>  
+    <span class="o">}</span>  
+      
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setClassName</span><span class="o">(</span><span class="n">String</span> <span class="n">className</span><span class="o">)</span> <span class="o">{</span>  
+        <span class="k">this</span><span class="o">.</span><span class="na">className</span> <span class="o">=</span> <span class="n">className</span><span class="o">;</span>  
+    <span class="o">}</span>  
+      
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getSuperclass</span><span class="o">()</span> <span class="o">{</span>  
+        <span class="k">return</span> <span class="n">superclass</span><span class="o">;</span>  
+    <span class="o">}</span>  
+      
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSuperclass</span><span class="o">(</span><span class="n">String</span> <span class="n">superclass</span><span class="o">)</span> <span class="o">{</span>  
+        <span class="k">this</span><span class="o">.</span><span class="na">superclass</span> <span class="o">=</span> <span class="n">superclass</span><span class="o">;</span>  
+    <span class="o">}</span>  
+      
+    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Property</span><span class="o">&gt;</span> <span class="nf">getProperties</span><span class="o">()</span> <span class="o">{</span>  
+        <span class="k">return</span> <span class="n">properties</span><span class="o">;</span>  
+    <span class="o">}</span>  
+      
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setProperties</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Property</span><span class="o">&gt;</span> <span class="n">properties</span><span class="o">)</span> <span class="o">{</span>  
+        <span class="k">this</span><span class="o">.</span><span class="na">properties</span> <span class="o">=</span> <span class="n">properties</span><span class="o">;</span>  
+    <span class="o">}</span>  
+      
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isConstructors</span><span class="o">()</span> <span class="o">{</span>  
+        <span class="k">return</span> <span class="n">constructors</span><span class="o">;</span>  
+    <span class="o">}</span>  
+      
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setConstructors</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">constructors</span><span class="o">)</span> <span class="o">{</span>  
+        <span class="k">this</span><span class="o">.</span><span class="na">constructors</span> <span class="o">=</span> <span class="n">constructors</span><span class="o">;</span>  
+    <span class="o">}</span>     
+  
+<span class="o">}</span>  
+</code></pre>
+</div>
+
 <ul>
-  <li>实体类</li>
-  <li>@author github.com/zmatsh</li>
-  <li>
-    <p>*/<br />
-public class Entity {<br />
-// 实体所在的包名<br />
-private String javaPackage;<br />
-// 实体类名<br />
-private String className;<br />
-// 父类名<br />
-private String superclass;<br />
-// 属性集合<br />
-List<Property> properties;  
-// 是否有构造函数  
-private boolean constructors;</Property></p>
-
-    <p>public String getJavaPackage() {<br />
-    return javaPackage;<br />
-}</p>
-
-    <p>public void setJavaPackage(String javaPackage) {<br />
-    this.javaPackage = javaPackage;<br />
-}</p>
-
-    <p>public String getClassName() {<br />
-    return className;<br />
-}</p>
-
-    <p>public void setClassName(String className) {<br />
-    this.className = className;<br />
-}</p>
-
-    <p>public String getSuperclass() {<br />
-    return superclass;<br />
-}</p>
-
-    <p>public void setSuperclass(String superclass) {<br />
-    this.superclass = superclass;<br />
-}</p>
-
-    <p>public List<Property> getProperties() {  
-    return properties;  
-}</Property></p>
-
-    <p>public void setProperties(List<Property> properties) {  
-    this.properties = properties;  
-}</Property></p>
-
-    <p>public boolean isConstructors() {<br />
-    return constructors;<br />
-}</p>
-
-    <p>public void setConstructors(boolean constructors) {<br />
-    this.constructors = constructors;<br />
-}</p>
-  </li>
+  <li>4、在项目根目录下新建”template”文件夹，用来存放我们的Template file, 新建实体模板entity.ftl 内容如下：</li>
 </ul>
 
-<p>}</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>
-*   4、在项目根目录下新建"template"文件夹，用来存放我们的Template file, 新建实体模板entity.ftl 内容如下：
-
-```text
-package ${entity.javaPackage};  
+<div class="language-text highlighter-rouge"><pre class="highlight"><code>package ${entity.javaPackage};  
   
 /**  
  * This code is generated by FreeMarker  
