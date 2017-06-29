@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Java RESTfull状态码以及返回码Enum实现[学习] &mdash; 会飞的胖子.</title>
+    <link rel="stylesheet" href="/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="/assets/css/components/collection.css">
+    <link rel="stylesheet" href="/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="/assets/css/globals/common.css">
+    <link rel="stylesheet" href="/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2017/06/29/Java-Enum-returncode/">
+    <link rel="alternate" type="application/atom+xml" title="会飞的胖子." href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="Java RESTfull状态码以及返回码Enum实现[学习]">
+      
+    <meta name="keywords" content="Java,Enum">
+    <meta name="og:keywords" content="Java,Enum">
+      
+    <meta name="description" content="Java RESTfull 开发中利用枚举类来记录错误码和错误码对应的错误信息，效果很棒。">
+    <meta name="og:description" content="Java RESTfull 开发中利用枚举类来记录错误码和错误码对应的错误信息，效果很棒。">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2017/06/29/Java-Enum-returncode/">
+    <meta property="og:site_name" content="会飞的胖子.">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2017-06-29">
+    
+    <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="会飞的胖子."><span class="octicon octicon-mark-github"></span> 会飞的胖子.</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="首页">首页</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="分类">分类</a>
+                
+                <a href="/open-source/" class=" site-header-nav-item" target="" title="开源">开源</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="维基">维基</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="链接">链接</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="Java RESTfull状态">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">Java RESTfull状态码以及返回码Enum实现[学习]</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/06/29
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#Java," title="Java,">Java,</a>
+          </span>
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#RESTfull,Enum" title="RESTfull,Enum">RESTfull,Enum</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <p>Java RESTfull 开发中利用枚举类来记录错误码和错误码对应的错误信息，效果很棒。</p>
+
+<h2 id="1-java中枚举类可以用于记录错误码和错误码对应的错误信息其实现的技巧如下">1. Java中枚举类可以用于记录错误码和错误码对应的错误信息，其实现的技巧如下：</h2>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">todcloud</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Enum</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Created by zhangjianxin on 2017/6/29.
+ */</span>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="n">ResponseInfo</span> <span class="o">{</span>
+    <span class="n">SERVER_ERROR</span><span class="o">(</span><span class="s">"返回码异常"</span><span class="o">,</span> <span class="s">"6666"</span><span class="o">),</span>
+    <span class="n">SUCCESS</span><span class="o">(</span><span class="s">"success"</span><span class="o">,</span> <span class="s">"200"</span><span class="o">),</span> <span class="n">ERROR</span><span class="o">(</span><span class="s">"Not Fount"</span><span class="o">,</span> <span class="s">"404"</span><span class="o">),</span> <span class="n">GATEWAY</span><span class="o">(</span><span class="s">"Fuck Server"</span><span class="o">,</span> <span class="s">"502"</span><span class="o">),</span> <span class="n">CREATE</span><span class="o">(</span><span class="s">"Created"</span><span class="o">,</span> <span class="s">"201"</span><span class="o">);</span>
+
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">code</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">msg</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nf">ResponseInfo</span><span class="o">(</span><span class="n">String</span> <span class="n">code</span><span class="o">,</span> <span class="n">String</span> <span class="n">msg</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">code</span> <span class="o">=</span> <span class="n">code</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getReturnCode</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">code</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getReturnMsg</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">msg</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">getResponseMsg</span><span class="o">(</span><span class="n">String</span> <span class="n">code</span><span class="o">){</span>
+        <span class="k">for</span><span class="o">(</span><span class="n">ResponseInfo</span> <span class="nl">responseInfo:</span><span class="n">ResponseInfo</span><span class="o">.</span><span class="na">values</span><span class="o">()){</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">code</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">responseInfo</span><span class="o">.</span><span class="na">getReturnCode</span><span class="o">())){</span>
+                <span class="k">return</span> <span class="n">responseInfo</span><span class="o">.</span><span class="na">getReturnMsg</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">SERVER_ERROR</span><span class="o">.</span><span class="na">getReturnMsg</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre>
+</div>
+
+<h2 id="2-调用测试">2. 调用测试</h2>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">todcloud</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Enum</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Created by zhangjianxin on 2017/6/29.
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ResponseInfoTest</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">ResponseInfo</span><span class="o">.</span><span class="na">SUCCESS</span><span class="o">.</span><span class="na">getReturnCode</span><span class="o">());</span>
+        <span class="n">String</span> <span class="n">code</span> <span class="o">=</span> <span class="n">ResponseInfo</span><span class="o">.</span><span class="na">SUCCESS</span><span class="o">.</span><span class="na">getReturnCode</span><span class="o">();</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">ResponseInfo</span><span class="o">.</span><span class="na">getResponseMsg</span><span class="o">(</span><span class="n">code</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+
+</code></pre>
+</div>
+
+<blockquote>
+  <p>通过复习Java中的Enum来完成这个功能。</p>
+</blockquote>
+
+<h2 id="3失败案例">3.失败案例</h2>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">todcloud</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Enum</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Created by zhangjianxin on 2017/6/29.
+ */</span>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="n">ReturnCode</span> <span class="o">{</span>
+    <span class="n">SUCCESS</span><span class="o">(</span><span class="s">"success"</span><span class="o">,</span> <span class="mi">200</span><span class="o">),</span> <span class="n">ERROR</span><span class="o">(</span><span class="s">"Not Fount"</span><span class="o">,</span> <span class="mi">404</span><span class="o">),</span> <span class="n">GATEWAY</span><span class="o">(</span><span class="s">"Fuck Server"</span><span class="o">,</span> <span class="mi">502</span><span class="o">),</span> <span class="n">CREATE</span><span class="o">(</span><span class="s">"Created"</span><span class="o">,</span> <span class="mi">201</span><span class="o">);</span>
+     <span class="cm">/** 成员变量 */</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">CodeData</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">CodeIndex</span><span class="o">;</span>
+    <span class="cm">/**     构造方法*/</span>
+    <span class="kd">private</span> <span class="nf">ReturnCode</span><span class="o">(</span><span class="n">String</span> <span class="n">CodeData</span><span class="o">,</span> <span class="kt">int</span> <span class="n">CodeIndex</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">CodeData</span> <span class="o">=</span> <span class="n">CodeData</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">CodeIndex</span> <span class="o">=</span> <span class="n">CodeIndex</span><span class="o">;</span>
+    <span class="o">}</span>
+     <span class="cm">/** 普通方法*/</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">getCodeData</span><span class="o">(</span><span class="kt">int</span> <span class="n">CodeIndex</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">ReturnCode</span> <span class="n">c</span> <span class="o">:</span> <span class="n">ReturnCode</span><span class="o">.</span><span class="na">values</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">c</span><span class="o">.</span><span class="na">getCodeIndex</span><span class="o">()</span> <span class="o">==</span> <span class="n">CodeIndex</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="n">c</span><span class="o">.</span><span class="na">CodeData</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+     <span class="cm">/** get set 方法*/</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getCodeData</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">CodeData</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCodeData</span><span class="o">(</span><span class="n">String</span> <span class="n">CodeData</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">CodeData</span> <span class="o">=</span> <span class="n">CodeData</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getCodeIndex</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">CodeIndex</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCodeIndex</span><span class="o">(</span><span class="kt">int</span> <span class="n">CodeIndex</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">CodeIndex</span> <span class="o">=</span> <span class="n">CodeIndex</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">todcloud</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Enum</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.alibaba.fastjson.JSONObject</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.print.attribute.standard.MediaSize</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Created by zhangjianxin on 2017/6/29.
+ */</span>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="n">ReturnCode2</span> <span class="kd">implements</span> <span class="n">ReturnCodeIns</span><span class="o">{</span>
+    <span class="n">SUCCESS</span><span class="o">(</span><span class="s">"success"</span><span class="o">,</span> <span class="mi">200</span><span class="o">),</span> <span class="n">ERROR</span><span class="o">(</span><span class="s">"Not Fount"</span><span class="o">,</span> <span class="mi">404</span><span class="o">),</span> <span class="n">GATEWAY</span><span class="o">(</span><span class="s">"Fuck Server"</span><span class="o">,</span> <span class="mi">502</span><span class="o">),</span> <span class="n">CREATE</span><span class="o">(</span><span class="s">"Created"</span><span class="o">,</span> <span class="mi">201</span><span class="o">);</span>
+    <span class="cm">/** 成员变量*/</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">index</span><span class="o">;</span>
+     <span class="cm">/** 构造方法*/</span>
+    <span class="kd">private</span> <span class="nf">ReturnCode2</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">index</span> <span class="o">=</span> <span class="n">index</span><span class="o">;</span>
+    <span class="o">}</span>
+     <span class="cm">/**接口方法*/</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">JSONObject</span> <span class="nf">getInfo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">QueryData</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
+    <span class="o">}</span>
+     <span class="cm">/**接口方法*/</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">index</span><span class="o">+</span><span class="s">":"</span><span class="o">+</span><span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">JSONObject</span> <span class="nf">QueryData</span><span class="o">(</span><span class="n">String</span> <span class="n">Name</span><span class="o">){</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Name</span><span class="o">);</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">todcloud</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Enum</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.alibaba.fastjson.JSON</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.alibaba.fastjson.JSONObject</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Created by zhangjianxin on 2017/6/29.
+ */</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ReturnCodeIns</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">print</span><span class="o">();</span>
+    <span class="n">JSONObject</span> <span class="nf">getInfo</span><span class="o">();</span>
+<span class="o">}</span>
+
+</code></pre>
+</div>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">todcloud</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Enum</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Created by zhangjianxin on 2017/6/29.
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReturnCodeMain</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">ReturnCode</span><span class="o">.</span><span class="na">getCodeData</span><span class="o">(</span><span class="mi">200</span><span class="o">));</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre>
+</div>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+      
+        
+        <!-- Disqus Protection, see https://github.com/mzlogin/mzlogin.github.io/issues/2 -->
+        
+        
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'http://firsh.me/2017/06/29/Java-Enum-returncode/';
+              this.page.identifier = '/2017/06/29/Java-Enum-returncode/';
+              this.page.title = 'Java RESTfull状态码以及返回码Enum实现[学习]';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+
+              s.type = 'text/javascript';
+              s.async = true;
+              var shortname = 'zmatsh';
+
+              s.src = '//' + shortname + '.disqus.com/embed.js';
+
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        
+        
+      
+    
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="/assets/css/modules/sidebar-search.css">
+<script src="/assets/js/lunr.min.js"></script>
+<script src="/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+
+<script src="/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="zmatsh">zmatsh</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/zmatsh/zmatsh.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="首页" target="">首页</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="分类" target="">分类</a>
+                </li>
+                
+                <li>
+                    <a href="/open-source/" title="开源" target="">开源</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="维基" target="">维基</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="链接" target="">链接</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="关于" target="">关于</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="/assets/js/geopattern.js"></script>
+    <script src="/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-80669434-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+    <script type="text/javascript" src="//rc.revolvermaps.com/0/0/8.js?i=21x1e27561g&amp;m=0&amp;s=341&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"></script>
+    <script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>
+</html>

@@ -18,6 +18,12 @@
     "category": "Java,"
   },
   
+  "2017-06-29-java-enum-returncode": {
+    "title": "Java RESTfull状态码以及返回码Enum实现[学习]",
+    "url": " /2017/06/29/Java-Enum-returncode/",
+    "category": "Java,"
+  },
+  
   "2017-06-26-java-flink-v-desc": {
     "title": "大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]",
     "url": " /2017/06/26/java-flink-v-desc/",
@@ -460,6 +466,12 @@
     "title": "大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]",
     "url": "/2017/06/26/java-flink-v-desc/",
     "category": "[&quot;Java,&quot;, &quot;Scala,Hadoop,Flink&quot;]"
+  },
+  
+  "2017-06-29-java-enum-returncode": {
+    "title": "Java RESTfull状态码以及返回码Enum实现[学习]",
+    "url": "/2017/06/29/Java-Enum-returncode/",
+    "category": "[&quot;Java,&quot;, &quot;RESTfull,Enum&quot;]"
   },
   
   "2017-06-29-java-freemarker": {
