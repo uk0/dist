@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Java进阶之 如何自动生成代码[学习] &mdash; 会飞的胖子.</title>
+    <link rel="stylesheet" href="/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="/assets/css/components/collection.css">
+    <link rel="stylesheet" href="/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="/assets/css/globals/common.css">
+    <link rel="stylesheet" href="/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2017/06/29/Java-FreeMarker/">
+    <link rel="alternate" type="application/atom+xml" title="会飞的胖子." href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="Java进阶之 如何自动生成代码[学习]">
+      
+    <meta name="keywords" content="Java, FreeMarker">
+    <meta name="og:keywords" content="Java, FreeMarker">
+      
+    <meta name="description" content="什么样的场景和代码适合用自动生成这种方式呢？ 做过Java服务端的朋友一定都知道代码中我们需要编写与数据库表映射的Java实体类（Entity）、 需要编写与实体对应的DAO类（XxDao.java类中有包含对应实体的增、删、改、查基本操作）。在这些实体类中通常都是一些属性方法以及属性对应的get/set方法、而实体对应的DAO类中也基本会包含有增、删、改、查这些与数据库操作相关的方法。在编写了那么多的实体类和Dao类的过程中 你是否发现了这些代码中有很多地方都相似或者差不多、只是名字不同而已呢？对、那么这个时候其实我们可以定义一个模板、通过模板我们来让代码自动生成去吧。">
+    <meta name="og:description" content="什么样的场景和代码适合用自动生成这种方式呢？ 做过Java服务端的朋友一定都知道代码中我们需要编写与数据库表映射的Java实体类（Entity）、 需要编写与实体对应的DAO类（XxDao.java类中有包含对应实体的增、删、改、查基本操作）。在这些实体类中通常都是一些属性方法以及属性对应的get/set方法、而实体对应的DAO类中也基本会包含有增、删、改、查这些与数据库操作相关的方法。在编写了那么多的实体类和Dao类的过程中 你是否发现了这些代码中有很多地方都相似或者差不多、只是名字不同而已呢？对、那么这个时候其实我们可以定义一个模板、通过模板我们来让代码自动生成去吧。">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2017/06/29/Java-FreeMarker/">
+    <meta property="og:site_name" content="会飞的胖子.">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2017-06-29">
+    
+    <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="会飞的胖子."><span class="octicon octicon-mark-github"></span> 会飞的胖子.</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="首页">首页</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="分类">分类</a>
+                
+                <a href="/open-source/" class=" site-header-nav-item" target="" title="开源">开源</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="维基">维基</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="链接">链接</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="Java进阶之 如何自动生成代">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">Java进阶之 如何自动生成代码[学习]</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/06/29
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#Java," title="Java,">Java,</a>
+          </span>
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#FreeMarker" title="FreeMarker">FreeMarker</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <p>什么样的场景和代码适合用自动生成这种方式呢？
+ 做过Java服务端的朋友一定都知道代码中我们需要编写与数据库表映射的Java实体类（Entity）、
+ 需要编写与实体对应的DAO类（XxDao.java类中有包含对应实体的增、删、改、查基本操作）。在这些实体类中通常都是一些属性方法以及属性对应的get/set方法、而实体对应的DAO类中也基本会包含有增、删、改、查这些与数据库操作相关的方法。在编写了那么多的实体类和Dao类的过程中 你是否发现了这些代码中有很多地方都相似或者差不多、只是名字不同而已呢？对、那么这个时候其实我们可以定义一个模板、通过模板我们来让代码自动生成去吧。</p>
+
+<h2 id="一前言为什么要有代码的自动生成">一、前言：为什么要有代码的自动生成？</h2>
+<div class="language-text highlighter-rouge"><pre class="highlight"><code>  对于这个问题 最简洁直接的回答就是：代替手动编写代码、提高工作效率。
+</code></pre>
+</div>
+<h2 id="二freemarker的简单介绍">二、FreeMarker的简单介绍</h2>
+<p>在进入正文前，让我们首先简单、快速了解一下FreeMarker。
+  （做过Web开发的朋友肯定都是相当熟悉的、小吕当时 也是在做Web开发的时候第一次接触了FreeMarker）</p>
+<ul>
+  <li>1、概述：FreeMarker是一款模板引擎：即一种基于模板、用来生成输出文本的通用工具。更多的是被用来设计生成HTML页面。
+ 简单说就是：FreeMarker是使用模板生成文本页面来呈现已经准备好的数据。如下图表述</li>
+</ul>
+
+<p><img src="/images/posts/java/20141227152045529.png" alt="描述" /></p>
+
+<p>FreeMarker官网：http://freemarker.org/</p>
+<ul>
+  <li>2通过一个简单的例子来展示如何使用FreeMarker定义模板、绑定模型数据、生成最终显示的Html页面：
+2.1.新建项目 在项目根目录下新建”template”文件夹，用来存放我们的Template file,
+ 如我们新建模板文件test.ftl  内容如下：
+    <div class="language-html highlighter-rouge"><pre class="highlight"><code> <span class="nt">&lt;html&gt;</span>  
+ <span class="nt">&lt;head&gt;</span>  
+ <span class="nt">&lt;title&gt;</span>Welcome!<span class="nt">&lt;/title&gt;</span>  
+ <span class="nt">&lt;/head&gt;</span>  
+ <span class="nt">&lt;body&gt;</span>  
+ <span class="nt">&lt;h1&gt;</span>  
+ Welcome ${user}<span class="err">&lt;</span>#if user == "Big Joe"&gt;, our beloved leader<span class="err">&lt;</span>/#if&gt;!  
+ <span class="nt">&lt;/h1&gt;</span>  
+ <span class="nt">&lt;p&gt;</span>Our latest product:  
+ <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"${latestProduct.url}"</span><span class="nt">&gt;</span>${latestProduct.name}<span class="nt">&lt;/a&gt;</span>!  
+ <span class="nt">&lt;/body&gt;</span>  
+ <span class="nt">&lt;/html&gt;</span>
+</code></pre>
+    </div>
+    <p>2.2.项目引入freemarker.jar（下载地址：https://jarfiles.pandaidea.com/freemarker.html），
+    在Java类中使用FreeMarker API方法引用模板文件、创建数据模型、合并数据模型与模板文件最终输入，
+ 代码如下：</p>
+    <div class="language-java highlighter-rouge"><pre class="highlight"><code> <span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>  
+ <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>  
+ <span class="kn">import</span> <span class="nn">java.io.OutputStreamWriter</span><span class="o">;</span>  
+ <span class="kn">import</span> <span class="nn">java.io.Writer</span><span class="o">;</span>  
+ <span class="kn">import</span> <span class="nn">java.util.HashMap</span><span class="o">;</span>  
+ <span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>  
+     
+ <span class="kn">import</span> <span class="nn">freemarker.template.Configuration</span><span class="o">;</span>  
+ <span class="kn">import</span> <span class="nn">freemarker.template.DefaultObjectWrapper</span><span class="o">;</span>  
+ <span class="kn">import</span> <span class="nn">freemarker.template.Template</span><span class="o">;</span>  
+ <span class="kn">import</span> <span class="nn">freemarker.template.TemplateException</span><span class="o">;</span>  
+     
+ <span class="kd">public</span> <span class="kd">class</span> <span class="nc">HtmlGeneratorClient</span> <span class="o">{</span>  
+     
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>  
+         <span class="k">try</span> <span class="o">{</span>  
+             <span class="n">Configuration</span> <span class="n">cfg</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Configuration</span><span class="o">();</span>  
+             <span class="cm">/* 指定模板文件从何处加载的数据源，这里设置成一个文件目录   */</span>
+             <span class="n">cfg</span><span class="o">.</span><span class="na">setDirectoryForTemplateLoading</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">"./template"</span><span class="o">));</span>  
+             <span class="n">cfg</span><span class="o">.</span><span class="na">setObjectWrapper</span><span class="o">(</span><span class="k">new</span> <span class="n">DefaultObjectWrapper</span><span class="o">());</span>  
+                 
+             <span class="cm">/* 获取或创建模板   */</span>
+             <span class="n">Template</span> <span class="n">template</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="na">getTemplate</span><span class="o">(</span><span class="s">"test.ftl"</span><span class="o">);</span>  
+                 
+             <span class="cm">/* 创建数据模型   */</span>
+             <span class="n">Map</span> <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">();</span>  
+             <span class="n">root</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"user"</span><span class="o">,</span> <span class="s">"Big Joe"</span><span class="o">);</span>          
+             <span class="n">Map</span> <span class="n">latest</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">();</span>  
+             <span class="n">root</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"latestProduct"</span><span class="o">,</span> <span class="n">latest</span><span class="o">);</span>  
+             <span class="n">latest</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"url"</span><span class="o">,</span> <span class="s">"products/greenmouse.html"</span><span class="o">);</span>  
+             <span class="n">latest</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"green mouse"</span><span class="o">);</span>  
+                 
+             <span class="cm">/* 将模板和数据模型合并 输出到Console  */</span>
+             <span class="n">Writer</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputStreamWriter</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">);</span>  
+             <span class="n">template</span><span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="n">out</span><span class="o">);</span>  
+             <span class="n">out</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span>  
+                 
+         <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>  
+             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>  
+         <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">TemplateException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>  
+             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>  
+         <span class="o">}</span>  
+     
+     <span class="o">}</span>  
+     
+ <span class="o">}</span>  
+</code></pre>
+    </div>
+
+    <p>2.3.最终生成的HTML的页面代码如下：</p>
+    <div class="language-html highlighter-rouge"><pre class="highlight"><code> <span class="nt">&lt;html&gt;</span>  
+ <span class="nt">&lt;head&gt;</span>  
+ <span class="nt">&lt;title&gt;</span>Welcome!<span class="nt">&lt;/title&gt;</span>  
+ <span class="nt">&lt;/head&gt;</span>  
+ <span class="nt">&lt;body&gt;</span>  
+ <span class="nt">&lt;h1&gt;</span>  
+ Welcome Big Joe, our beloved leader!  
+ <span class="nt">&lt;/h1&gt;</span>  
+ <span class="nt">&lt;p&gt;</span>Our latest product:  
+ <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"products/greenmouse.html"</span><span class="nt">&gt;</span>green mouse<span class="nt">&lt;/a&gt;</span>!  
+ <span class="nt">&lt;/body&gt;</span>  
+ <span class="nt">&lt;/html&gt;</span>
+</code></pre>
+    </div>
+    <h2 id="三如何使用freemerker完成java类代码的自动生成">三、如何使用FreeMerker完成Java类代码的自动生成</h2>
+  </li>
+  <li>
+    <p>1、属性类型的枚举类 PropertyType.java</p>
+
+    <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="cm">/** 
+   * 属性类型枚举类 
+   * @author github.com/zmatsh 
+   * 
+   */</span>  
+  <span class="kd">public</span> <span class="kd">enum</span> <span class="n">PropertyType</span> <span class="o">{</span>  
+      <span class="n">Byte</span><span class="o">,</span> <span class="n">Short</span><span class="o">,</span> <span class="n">Int</span><span class="o">,</span> <span class="n">Long</span><span class="o">,</span> <span class="n">Boolean</span><span class="o">,</span> <span class="n">Float</span><span class="o">,</span> <span class="n">Double</span><span class="o">,</span> <span class="n">String</span><span class="o">,</span> <span class="n">ByteArray</span><span class="o">,</span> <span class="n">Date</span>  
+  <span class="o">}</span> 
+</code></pre>
+    </div>
+  </li>
+  <li>2、实体对应的字段属性类 Property.java</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="cm">/** 
+ * 实体对应的属性类 
+ * @author github.com/zmatsh 
+ * 
+ */</span>  
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Property</span> <span class="o">{</span>  
+    <span class="c1">// 属性数据类型  </span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">javaType</span><span class="o">;</span>  
+    <span class="c1">// 属性名称  </span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">propertyName</span><span class="o">;</span>  
+      
+    <span class="kd">private</span> <span class="n">PropertyType</span> <span class="n">propertyType</span><span class="o">;</span>  
+      
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getJavaType</span><span class="o">()</span> <span class="o">{</span>  
+        <span class="k">return</span> <span class="n">javaType</span><span class="o">;</span>  
+    <span class="o">}</span>  
+  
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setJavaType</span><span class="o">(</span><span class="n">String</span> <span class="n">javaType</span><span class="o">)</span> <span class="o">{</span>  
+        <span class="k">this</span><span class="o">.</span><span class="na">javaType</span> <span class="o">=</span> <span class="n">javaType</span><span class="o">;</span>  
+    <span class="o">}</span>  
+  
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getPropertyName</span><span class="o">()</span> <span class="o">{</span>  
+        <span class="k">return</span> <span class="n">propertyName</span><span class="o">;</span>  
+    <span class="o">}</span>  
+  
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPropertyName</span><span class="o">(</span><span class="n">String</span> <span class="n">propertyName</span><span class="o">)</span> <span class="o">{</span>  
+        <span class="k">this</span><span class="o">.</span><span class="na">propertyName</span> <span class="o">=</span> <span class="n">propertyName</span><span class="o">;</span>  
+    <span class="o">}</span>  
+  
+    <span class="kd">public</span> <span class="n">PropertyType</span> <span class="nf">getPropertyType</span><span class="o">()</span> <span class="o">{</span>  
+        <span class="k">return</span> <span class="n">propertyType</span><span class="o">;</span>  
+    <span class="o">}</span>  
+  
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPropertyType</span><span class="o">(</span><span class="n">PropertyType</span> <span class="n">propertyType</span><span class="o">)</span> <span class="o">{</span>  
+        <span class="k">this</span><span class="o">.</span><span class="na">propertyType</span> <span class="o">=</span> <span class="n">propertyType</span><span class="o">;</span>  
+    <span class="o">}</span>  
+          
+<span class="o">}</span>  
+</code></pre>
+</div>
+
+<ul>
+  <li>3、实体模型类 Entity.java
+```java
+import java.util.List;</li>
+</ul>
+
+<p>/**</p>
+<ul>
+  <li>实体类</li>
+  <li>@author github.com/zmatsh</li>
+  <li>
+    <p>*/<br />
+public class Entity {<br />
+// 实体所在的包名<br />
+private String javaPackage;<br />
+// 实体类名<br />
+private String className;<br />
+// 父类名<br />
+private String superclass;<br />
+// 属性集合<br />
+List<Property> properties;  
+// 是否有构造函数  
+private boolean constructors;</Property></p>
+
+    <p>public String getJavaPackage() {<br />
+    return javaPackage;<br />
+}</p>
+
+    <p>public void setJavaPackage(String javaPackage) {<br />
+    this.javaPackage = javaPackage;<br />
+}</p>
+
+    <p>public String getClassName() {<br />
+    return className;<br />
+}</p>
+
+    <p>public void setClassName(String className) {<br />
+    this.className = className;<br />
+}</p>
+
+    <p>public String getSuperclass() {<br />
+    return superclass;<br />
+}</p>
+
+    <p>public void setSuperclass(String superclass) {<br />
+    this.superclass = superclass;<br />
+}</p>
+
+    <p>public List<Property> getProperties() {  
+    return properties;  
+}</Property></p>
+
+    <p>public void setProperties(List<Property> properties) {  
+    this.properties = properties;  
+}</Property></p>
+
+    <p>public boolean isConstructors() {<br />
+    return constructors;<br />
+}</p>
+
+    <p>public void setConstructors(boolean constructors) {<br />
+    this.constructors = constructors;<br />
+}</p>
+  </li>
+</ul>
+
+<p>}</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+*   4、在项目根目录下新建"template"文件夹，用来存放我们的Template file, 新建实体模板entity.ftl 内容如下：
+
+```text
+package ${entity.javaPackage};  
+  
+/**  
+ * This code is generated by FreeMarker  
+ * @authorgithub.com/zmatsh  
+ *  
+ */  
+public class ${entity.className}&lt;#if entity.superclass?has_content&gt; extends ${entity.superclass} &lt;/#if&gt;  
+{  
+    /********** attribute ***********/  
+&lt;#list entity.properties as property&gt;  
+    private ${property.javaType} ${property.propertyName};  
+      
+&lt;/#list&gt;  
+    /********** constructors ***********/  
+&lt;#if entity.constructors&gt;  
+    public ${entity.className}() {  
+      
+    }  
+  
+    public ${entity.className}(&lt;#list entity.properties as property&gt;${property.javaType} ${property.propertyName}&lt;#if property_has_next&gt;, &lt;/#if&gt;&lt;/#list&gt;) {  
+    &lt;#list entity.properties as property&gt;  
+        this.${property.propertyName} = ${property.propertyName};  
+    &lt;/#list&gt;  
+    }  
+&lt;/#if&gt;  
+  
+    /********** get/set ***********/  
+&lt;#list entity.properties as property&gt;  
+    public ${property.javaType} get${property.propertyName?cap_first}() {  
+        return ${property.propertyName};  
+    }  
+  
+    public void set${property.propertyName?cap_first}(${property.javaType} ${property.propertyName}) {  
+        this.${property.propertyName} = ${property.propertyName};  
+    }  
+      
+&lt;/#list&gt;  
+}  
+</code></pre>
+</div>
+
+<ul>
+  <li>5、自动生成实体类 客户端代码 EntityGeneratorClient.java</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">java.io.FileWriter</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">java.io.OutputStreamWriter</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">java.io.Writer</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">java.util.HashMap</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>  
+  
+<span class="kn">import</span> <span class="nn">freemarker.template.Configuration</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">freemarker.template.DefaultObjectWrapper</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">freemarker.template.Template</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">freemarker.template.TemplateException</span><span class="o">;</span>  
+<span class="cm">/** 
+ * 自动生成实体类客户端 
+ * @authorgithub.com/zmatsh 
+ * 
+ */</span>  
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EntityGeneratorClient</span> <span class="o">{</span>  
+      
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">File</span> <span class="n">javaFile</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>  
+  
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>  
+        <span class="n">Configuration</span> <span class="n">cfg</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Configuration</span><span class="o">();</span>      
+        <span class="k">try</span> <span class="o">{</span>   
+            <span class="c1">// 步骤一：指定 模板文件从何处加载的数据源，这里设置一个文件目录  </span>
+            <span class="n">cfg</span><span class="o">.</span><span class="na">setDirectoryForTemplateLoading</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">"./template"</span><span class="o">));</span>  
+            <span class="n">cfg</span><span class="o">.</span><span class="na">setObjectWrapper</span><span class="o">(</span><span class="k">new</span> <span class="n">DefaultObjectWrapper</span><span class="o">());</span>  
+              
+            <span class="c1">// 步骤二：获取 模板文件  </span>
+            <span class="n">Template</span> <span class="n">template</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="na">getTemplate</span><span class="o">(</span><span class="s">"entity.ftl"</span><span class="o">);</span>  
+              
+            <span class="c1">// 步骤三：创建 数据模型  </span>
+            <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">root</span> <span class="o">=</span> <span class="n">createDataModel</span><span class="o">();</span>  
+              
+            <span class="c1">// 步骤四：合并 模板 和 数据模型  </span>
+            <span class="c1">// 创建.java类文件  </span>
+            <span class="k">if</span><span class="o">(</span><span class="n">javaFile</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">){</span>  
+                <span class="n">Writer</span> <span class="n">javaWriter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileWriter</span><span class="o">(</span><span class="n">javaFile</span><span class="o">);</span>  
+                <span class="n">template</span><span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="n">javaWriter</span><span class="o">);</span>  
+                <span class="n">javaWriter</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span>  
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"文件生成路径："</span> <span class="o">+</span> <span class="n">javaFile</span><span class="o">.</span><span class="na">getCanonicalPath</span><span class="o">());</span>  
+                  
+                <span class="n">javaWriter</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>  
+            <span class="o">}</span>  
+            <span class="c1">// 输出到Console控制台  </span>
+            <span class="n">Writer</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputStreamWriter</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">);</span>  
+            <span class="n">template</span><span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="n">out</span><span class="o">);</span>  
+            <span class="n">out</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span>  
+            <span class="n">out</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>  
+              
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>  
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>  
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">TemplateException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>  
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>  
+        <span class="o">}</span>  
+  
+    <span class="o">}</span>  
+  
+      
+    <span class="cm">/** 
+     * 创建数据模型 
+     * @return 
+     */</span>  
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="nf">createDataModel</span><span class="o">()</span> <span class="o">{</span>  
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>  
+        <span class="n">Entity</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Entity</span><span class="o">();</span>  
+        <span class="n">user</span><span class="o">.</span><span class="na">setJavaPackage</span><span class="o">(</span><span class="s">"com.study.entity"</span><span class="o">);</span> <span class="c1">// 创建包名  </span>
+        <span class="n">user</span><span class="o">.</span><span class="na">setClassName</span><span class="o">(</span><span class="s">"User"</span><span class="o">);</span>  <span class="c1">// 创建类名  </span>
+        <span class="n">user</span><span class="o">.</span><span class="na">setConstructors</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> <span class="c1">// 是否创建构造函数  </span>
+        <span class="c1">// user.setSuperclass("person");  </span>
+          
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Property</span><span class="o">&gt;</span> <span class="n">propertyList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Property</span><span class="o">&gt;();</span>  
+          
+        <span class="c1">// 创建实体属性一   </span>
+        <span class="n">Property</span> <span class="n">attribute1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Property</span><span class="o">();</span>  
+        <span class="n">attribute1</span><span class="o">.</span><span class="na">setJavaType</span><span class="o">(</span><span class="s">"String"</span><span class="o">);</span>  
+        <span class="n">attribute1</span><span class="o">.</span><span class="na">setPropertyName</span><span class="o">(</span><span class="s">"name"</span><span class="o">);</span>  
+        <span class="n">attribute1</span><span class="o">.</span><span class="na">setPropertyType</span><span class="o">(</span><span class="n">PropertyType</span><span class="o">.</span><span class="na">String</span><span class="o">);</span>  
+          
+        <span class="c1">// 创建实体属性二  </span>
+        <span class="n">Property</span> <span class="n">attribute2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Property</span><span class="o">();</span>  
+        <span class="n">attribute2</span><span class="o">.</span><span class="na">setJavaType</span><span class="o">(</span><span class="s">"int"</span><span class="o">);</span>  
+        <span class="n">attribute2</span><span class="o">.</span><span class="na">setPropertyName</span><span class="o">(</span><span class="s">"age"</span><span class="o">);</span>  
+        <span class="n">attribute2</span><span class="o">.</span><span class="na">setPropertyType</span><span class="o">(</span><span class="n">PropertyType</span><span class="o">.</span><span class="na">Int</span><span class="o">);</span>  
+          
+        <span class="n">propertyList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">attribute1</span><span class="o">);</span>  
+        <span class="n">propertyList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">attribute2</span><span class="o">);</span>  
+          
+        <span class="c1">// 将属性集合添加到实体对象中  </span>
+        <span class="n">user</span><span class="o">.</span><span class="na">setProperties</span><span class="o">(</span><span class="n">propertyList</span><span class="o">);</span>  
+          
+        <span class="c1">// 创建.java类文件  </span>
+        <span class="n">File</span> <span class="n">outDirFile</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">"./src-template"</span><span class="o">);</span>  
+        <span class="k">if</span><span class="o">(!</span><span class="n">outDirFile</span><span class="o">.</span><span class="na">exists</span><span class="o">()){</span>  
+            <span class="n">outDirFile</span><span class="o">.</span><span class="na">mkdir</span><span class="o">();</span>  
+        <span class="o">}</span>  
+          
+        <span class="n">javaFile</span> <span class="o">=</span> <span class="n">toJavaFilename</span><span class="o">(</span><span class="n">outDirFile</span><span class="o">,</span> <span class="n">user</span><span class="o">.</span><span class="na">getJavaPackage</span><span class="o">(),</span> <span class="n">user</span><span class="o">.</span><span class="na">getClassName</span><span class="o">());</span>  
+          
+        <span class="n">root</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"entity"</span><span class="o">,</span> <span class="n">user</span><span class="o">);</span>  
+        <span class="k">return</span> <span class="n">root</span><span class="o">;</span>  
+    <span class="o">}</span>  
+      
+      
+    <span class="cm">/** 
+     * 创建.java文件所在路径 和 返回.java文件File对象 
+     * @param outDirFile 生成文件路径 
+     * @param javaPackage java包名 
+     * @param javaClassName java类名 
+     * @return 
+     */</span>  
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">File</span> <span class="nf">toJavaFilename</span><span class="o">(</span><span class="n">File</span> <span class="n">outDirFile</span><span class="o">,</span> <span class="n">String</span> <span class="n">javaPackage</span><span class="o">,</span> <span class="n">String</span> <span class="n">javaClassName</span><span class="o">)</span> <span class="o">{</span>  
+        <span class="n">String</span> <span class="n">packageSubPath</span> <span class="o">=</span> <span class="n">javaPackage</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="sc">'.'</span><span class="o">,</span> <span class="sc">'/'</span><span class="o">);</span>  
+        <span class="n">File</span> <span class="n">packagePath</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">outDirFile</span><span class="o">,</span> <span class="n">packageSubPath</span><span class="o">);</span>  
+        <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">packagePath</span><span class="o">,</span> <span class="n">javaClassName</span> <span class="o">+</span> <span class="s">".java"</span><span class="o">);</span>  
+        <span class="k">if</span><span class="o">(!</span><span class="n">packagePath</span><span class="o">.</span><span class="na">exists</span><span class="o">()){</span>  
+            <span class="n">packagePath</span><span class="o">.</span><span class="na">mkdirs</span><span class="o">();</span>  
+        <span class="o">}</span>  
+        <span class="k">return</span> <span class="n">file</span><span class="o">;</span>  
+    <span class="o">}</span>  
+  
+<span class="o">}</span>  
+
+</code></pre>
+</div>
+
+<h1 id="四背后的思考">四、背后的思考</h1>
+<p>通过上面两个简单的示例我们了解到所谓的自动生成代码其实就是：
+  1、定义java类模板文件 2、定义模板数据  3、引用模板文件（.ftl）与模板数据合并生成Java类。
+  上面的示例中 有的朋友可能会问不就是要编写一个实体对象吗？干嘛搞那么麻烦、又建.ftl文件、又写了那么多类、定义模板数据的过程也是那么麻烦、我还不如手动去写、声明几个属性、set/get快捷键一下子就编写好啦。 真的是这样吗？
+  从一个辅助工具和软件架构的方面去思考，假设做成一个开发的辅助工具或是插件去完成实体类和对应DAO类的自动生成。假设需要建10个实体类和对应含有增删改查基本操作的DAO类。我在C/S客户端上填写包名、类名、属性字段等信息 然后一键生成，想想那是多么爽、多么痛快的一件事（当然 前提是你的模板类要编写的非常强大、通用），而你也许还在不停的 Ctrl+C、Ctrl+V。</p>
+
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+      
+        
+        <!-- Disqus Protection, see https://github.com/mzlogin/mzlogin.github.io/issues/2 -->
+        
+        
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'http://firsh.me/2017/06/29/Java-FreeMarker/';
+              this.page.identifier = '/2017/06/29/Java-FreeMarker/';
+              this.page.title = 'Java进阶之 如何自动生成代码[学习]';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+
+              s.type = 'text/javascript';
+              s.async = true;
+              var shortname = 'zmatsh';
+
+              s.src = '//' + shortname + '.disqus.com/embed.js';
+
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        
+        
+      
+    
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="/assets/css/modules/sidebar-search.css">
+<script src="/assets/js/lunr.min.js"></script>
+<script src="/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+
+<script src="/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="zmatsh">zmatsh</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/zmatsh/zmatsh.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="首页" target="">首页</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="分类" target="">分类</a>
+                </li>
+                
+                <li>
+                    <a href="/open-source/" title="开源" target="">开源</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="维基" target="">维基</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="链接" target="">链接</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="关于" target="">关于</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="/assets/js/geopattern.js"></script>
+    <script src="/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-80669434-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+    <script type="text/javascript" src="//rc.revolvermaps.com/0/0/8.js?i=21x1e27561g&amp;m=0&amp;s=341&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"></script>
+    <script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>
+</html>

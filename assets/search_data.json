@@ -12,6 +12,12 @@
     "category": "Java,"
   },
   
+  "2017-06-29-java-freemarker": {
+    "title": "Java进阶之 如何自动生成代码[学习]",
+    "url": " /2017/06/29/Java-FreeMarker/",
+    "category": "Java,"
+  },
+  
   "2017-06-26-java-flink-v-desc": {
     "title": "大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]",
     "url": " /2017/06/26/java-flink-v-desc/",
@@ -454,6 +460,12 @@
     "title": "大数据分析引擎Apache Flink 初见 Apache顶级项目[学习中]",
     "url": "/2017/06/26/java-flink-v-desc/",
     "category": "[&quot;Java,&quot;, &quot;Scala,Hadoop,Flink&quot;]"
+  },
+  
+  "2017-06-29-java-freemarker": {
+    "title": "Java进阶之 如何自动生成代码[学习]",
+    "url": "/2017/06/29/Java-FreeMarker/",
+    "category": "[&quot;Java,&quot;, &quot;FreeMarker&quot;]"
   },
   
   "2017-06-29-kubernetes-namespace-limits": {
