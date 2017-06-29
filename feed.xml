@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-29T11:25:35+08:00</updated><id>http://firsh.me/</id><title type="html">会飞的胖子.</title><subtitle>胖子个人博客</subtitle><author><name>zmatsh</name></author><entry><title type="html">Kubernetes命名空间资源限制[学习]</title><link href="http://firsh.me/2017/06/29/Kubernetes-namespace-limits/" rel="alternate" type="text/html" title="Kubernetes命名空间资源限制[学习]" /><published>2017-06-29T00:00:00+08:00</published><updated>2017-06-29T00:00:00+08:00</updated><id>http://firsh.me/2017/06/29/Kubernetes-namespace-limits</id><content type="html" xml:base="http://firsh.me/2017/06/29/Kubernetes-namespace-limits/">&lt;p&gt;Kubernetes命名空间资源限制主要是为了多个团队一起开发来区分资源使用情况。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-06-29T14:54:29+08:00</updated><id>http://firsh.me/</id><title type="html">会飞的胖子.</title><subtitle>胖子个人博客</subtitle><author><name>zmatsh</name></author><entry><title type="html">Kubernetes命名空间资源限制[学习]</title><link href="http://firsh.me/2017/06/29/Kubernetes-namespace-limits/" rel="alternate" type="text/html" title="Kubernetes命名空间资源限制[学习]" /><published>2017-06-29T00:00:00+08:00</published><updated>2017-06-29T00:00:00+08:00</updated><id>http://firsh.me/2017/06/29/Kubernetes-namespace-limits</id><content type="html" xml:base="http://firsh.me/2017/06/29/Kubernetes-namespace-limits/">&lt;p&gt;Kubernetes命名空间资源限制主要是为了多个团队一起开发来区分资源使用情况。&lt;/p&gt;
 
 &lt;h2 id=&quot;1-resourcequota&quot;&gt;1. ResourceQuota&lt;/h2&gt;
 &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
@@ -83,6 +83,10 @@
 
 &lt;p&gt;Flink支持所有的Hadoop所有的输入/输出格式和数据类型，这就使得开发者无需做任何修改就能够利用Flink运行历史遗留的MapReduce操作 
 Flink主要包括基于Java和Scala的用于批量和基于流数据分析的API、优化器和具有自定义内存管理功能的分布式运行时等，其主要架构如下：&lt;/p&gt;
+
+&lt;h2 id=&quot;6-demo&quot;&gt;6. DEMO&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/flink/demo.gif&quot; alt=&quot;Flink&quot; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;架构图&lt;/p&gt;
