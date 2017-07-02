@@ -1,5 +1,11 @@
 {
   
+  "2017-07-02-linux-ls-wc": {
+    "title": "Linux/Mac下统计当前文件夹下的文件个数、目录个数",
+    "url": " /2017/07/02/linux-ls-wc/",
+    "category": "ls,wc"
+  },
+  
   "2017-07-01-kcp-usb3-demo": {
     "title": "K2P 加 USB 2.0 3.0 过程 -- 改造成功，【3.0未实现】[转载]",
     "url": " /2017/07/01/kcp-usb3-demo/",
@@ -504,6 +510,12 @@
     "title": "K2P 加 USB 2.0 3.0 过程 -- 改造成功，【3.0未实现】[转载]",
     "url": "/2017/07/01/kcp-usb3-demo/",
     "category": "[&quot;K2P,&quot;, &quot;路由器&quot;]"
+  },
+  
+  "2017-07-02-linux-ls-wc": {
+    "title": "Linux/Mac下统计当前文件夹下的文件个数、目录个数",
+    "url": "/2017/07/02/linux-ls-wc/",
+    "category": "[&quot;ls,wc&quot;]"
   },
   
   "wiki-android-studio": {
