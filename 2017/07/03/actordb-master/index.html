@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Qt Creator &mdash; 然儿dada(Firsh.me).</title>
+    <title>ActorDB/linux下搭建，可以搭建集群模式。 &mdash; 然儿dada(Firsh.me).</title>
     <link rel="stylesheet" href="/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="/assets/vendor/octicons/octicons/octicons.css">
@@ -21,23 +21,23 @@
     
 
     
-    <link rel="canonical" href="http://firsh.me/wiki/qt-creator/">
+    <link rel="canonical" href="http://firsh.me/2017/07/03/actordb-master/">
     <link rel="alternate" type="application/atom+xml" title="然儿dada(Firsh.me)." href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="Qt Creator">
+    <meta property="og:title" content="ActorDB/linux下搭建，可以搭建集群模式。">
       
-    <meta name="keywords" content="Qt, Qt Creator">
-    <meta name="og:keywords" content="Qt, Qt Creator">
+    <meta name="keywords" content="ActorDB, linux,kubernetes">
+    <meta name="og:keywords" content="ActorDB, linux,kubernetes">
       
-    <meta name="description" content="快捷键（for mac）">
-    <meta name="og:description" content="快捷键（for mac）">
+    <meta name="description" content="发这个贴的原因，是因为@#¥%……UIO@！#*……！（@">
+    <meta name="og:description" content="发这个贴的原因，是因为@#¥%……UIO@！#*……！（@">
       
     
     
         
     
-    <meta property="og:url" content="http://firsh.me/wiki/qt-creator/">
+    <meta property="og:url" content="http://firsh.me/2017/07/03/actordb-master/">
     <meta property="og:site_name" content="然儿dada(Firsh.me).">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -85,12 +85,25 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="Qt Creator">
+    <section class="collection-head small geopattern" data-pattern-id="ActorDB/linux下搭">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">Qt Creator</h1>
+        <h1 class="collection-header">ActorDB/linux下搭建，可以搭建集群模式。</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/07/03
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#ActorDB,linux" title="ActorDB,linux">ActorDB,linux</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
@@ -101,88 +114,46 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <h3 id="快捷键for-mac">快捷键（for mac）</h3>
+    <p>发这个贴的原因，是因为@#¥%……UIO@！#*……！（@</p>
 
-<p>参考：<a href="http://doc.qt.io/qtcreator/creator-keyboard-shortcuts.html">http://doc.qt.io/qtcreator/creator-keyboard-shortcuts.html</a></p>
+<h2 id="actordb安装以及集群部署集群采用kubernetes">ActorDB安装以及集群部署(集群采用kubernetes)</h2>
+<p>ActorDB</p>
 
-<p>C –&gt; Ctrl</p>
+<p>现在版本：0.10.21</p>
 
-<p>S –&gt; Shift</p>
+<h2 id="1-安装部署">1. 安装部署</h2>
+<h3 id="11-官网下载linux版本安装包rpm包上传至服务器并使用rpm--ivh进行安装">1.1. 官网下载linux版本安装包（rpm包），上传至服务器并使用<code class="highlighter-rouge">rpm -ivh</code>进行安装</h3>
+<h3 id="12-安装好后会自动创建-个文件夹">1.2. 安装好后，会自动创建 个文件夹：</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>/etc/actordb		----	配置文件
+/var/log/actordb	----	默认日志目录
+/var/lib/actordb	----	默认数据存储目录 ### 1.3. 修改配置文件`app.config`以变更数据目录、日志目录以及thrift和Mysql监听的端口等配置信息
+ 修改配置文件`vm.args`中`-name`的内容指定当前节点的node名称，格式为：&lt;名称&gt;@&lt;ip地址&gt;
+ 在`vm.args`中增加 `+S 8` 来限制Erlang的Scheduler只能使用8核，否则可能无法正常启动。 ###  1.4. 执行 `actordb start` 启动ActorDB ###  1.5. 修改初始化脚本'init.sql' ### 1.5.1. `use config` # 使用config库 ### 1.5.2. `insert into groups values ('dscnCluster','cluster')` # 在groups表里增加名为dscnCluster的cluster ### 1.5.3. `insert into nodes values ('&lt;名称&gt;@&lt;ip地址&gt;', 'dscnCluster')` # 向dscnCluster组内增加成员 ### 1.5.4. 重复3.5.2和3.5.3，直到所有的节点都添加至集群中 ### 1.5.5. `CREATE USER 'root' IDENTIFIED BY '&lt;pwd&gt;'` # 创建root用户，并设置其密码为&lt;pwd&gt; ### 1.5.6. `commit` # 提交 ### 1.6. 执行初始化脚本 `actordb_console -f /etc/actordb/init.sql` 完成初始化 ### 1.7. 建立库表 ### 1.7.1. `use schema` ### 1.7.2. `actor &lt;dbName&gt; [kv]` ### 1.7.3. `create table &lt;tableName&gt; (field type [constraint], field2 type2 [constraint2].....)` # 与传统DDL相同
+</code></pre>
+</div>
 
-<p>M –&gt; Alt</p>
+<h2 id="2-服务实例">2. 服务实例</h2>
+<h3 id="21-clusteractordb集群中可定义多个cluster各cluster间数据是独立的相当于数据分片">2.1. Cluster：ActorDB集群中可定义多个Cluster，各Cluster间数据是独立的，相当于数据分片</h3>
+<h3 id="22-node每个cluster中包含多个node即actordb实例一个cluster中的所有node互为副本数据同步">2.2. Node：每个Cluster中包含多个Node（即ActorDB实例），一个Cluster中的所有Node互为副本，数据同步。</h3>
 
-<p>Cmd –&gt; Command</p>
+<h2 id="3-存储">3. 存储</h2>
+<h3 id="31-所有的表操作都必须经由某一个insert可以是多个actor而所有的actor都有一个所属的actortype">3.1. 所有的表操作都必须经由某一个（insert可以是多个）Actor，而所有的Actor都有一个所属的ActorType。</h3>
+<h3 id="32-用户在定义actortype时可以定义该actortype所使用的表结构与传统数据库一样并可以创建该type的actor数量不限">3.2. 用户在定义ActorType时，可以定义该ActorType所使用的表结构（与传统数据库一样），并可以创建该Type的Actor（数量不限）</h3>
+<h3 id="33-一个actortype中的所有actor共享相同的表结构和表关系actortype中的所有actor都只能访问自己actor中的数据">3.3. 一个ActorType中的所有actor共享相同的表结构和表关系，ActorType中的所有actor都只能访问自己actor中的数据</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>就像微信的收藏功能一样，不用用户共享同样的收藏夹结构，但无法看到其他人收藏的内容。 ### 3.4. Actor拥有过多的数据会影响性能，官网建议每个Actor拥有的数据最好控制在1G一下，每个Actor的操作TPS最好低于1000/s ### 3.5. 可以使用user、filename或其他可识别的内容对某一ActorType中的数据在逻辑上做进一步的分割 ### 3.6. 操作示例：
+`actor &lt;dbName&gt;(&lt;userName&gt;) create;`
+`insert into &lt;tableName&gt; values(&lt;val1&gt;,&lt;val2&gt;......);`
+`commit`
+</code></pre>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">功能</th>
-      <th style="text-align: left">快捷键</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">自动完成</td>
-      <td style="text-align: left">C-Space</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">显示/隐藏侧边栏</td>
-      <td style="text-align: left">Cmd-0</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">切换已打开的文件</td>
-      <td style="text-align: left">M-Tab</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">上/下一行</td>
-      <td style="text-align: left">C-p/C-n</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">前进/后退一个字符</td>
-      <td style="text-align: left">C-f/C-b</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">删除一个单词</td>
-      <td style="text-align: left">M-Del</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">构建</td>
-      <td style="text-align: left">Cmd-b</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">运行</td>
-      <td style="text-align: left">Cmd-r</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">调试</td>
-      <td style="text-align: left">Cmd-y</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">注释</td>
-      <td style="text-align: left">Cmd-/</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">换行</td>
-      <td style="text-align: left">Cmd-Return</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">跳到定义</td>
-      <td style="text-align: left">F2</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">切换头文件与源文件</td>
-      <td style="text-align: left">F4</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">前进/后退</td>
-      <td style="text-align: left">M-Cmd-Left/Right</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">打开定位器</td>
-      <td style="text-align: left">Cmd-k</td>
-    </tr>
-  </tbody>
-</table>
+<h2 id="4-thrift客户端连接">4. Thrift客户端连接</h2>
+<h3 id="41-在actordb的github中下载thrift接口生成种子adbtthrift使用thrift官网的生成工具生成实现thrift接口的类及相关类">4.1. 在actordb的github中下载thrift接口生成种子：adbt.thrift，使用thrift官网的生成工具生成实现thrift接口的类及相关类</h3>
+<h3 id="42-使用thrift客户端进行连接客户端使用详见thrift官网">4.2. 使用Thrift客户端进行连接，客户端使用详见thrift官网。</h3>
+<h3 id="43-使用生成的类作为client调用sql方法直接执行sql举例如actor-metadatalcyselect-count-from-confapi包括了同步和异步的接口">4.3. 使用生成的类作为Client，调用sql方法直接执行（sql举例如：”actor metadata(lcy);select count(*) from conf”）。API包括了同步和异步的接口。</h3>
+<blockquote>
+  <p>Over</p>
+</blockquote>
 
     </article>
     <div class="share">
@@ -199,9 +170,9 @@
           <div id="disqus_thread"></div>
           <script>
             var disqus_config = function () {
-              this.page.url = 'http://firsh.me/wiki/qt-creator/';
-              this.page.identifier = '/wiki/qt-creator/';
-              this.page.title = 'Qt Creator';
+              this.page.url = 'http://firsh.me/2017/07/03/actordb-master/';
+              this.page.identifier = '/2017/07/03/actordb-master/';
+              this.page.title = 'ActorDB/linux下搭建，可以搭建集群模式。';
             };
             (function() { // DON'T EDIT BELOW THIS LINE
               var d = document, s = d.createElement('script');

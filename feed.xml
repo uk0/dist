@@ -1,4 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-07-02T23:30:33+08:00</updated><id>http://firsh.me/</id><title type="html">然儿dada(Firsh.me).</title><subtitle>然erDADA，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术。</subtitle><author><name>zmatsh</name></author><entry><title type="html">Linux/Mac下统计当前文件夹下的文件个数、目录个数</title><link href="http://firsh.me/2017/07/02/linux-ls-wc/" rel="alternate" type="text/html" title="Linux/Mac下统计当前文件夹下的文件个数、目录个数" /><published>2017-07-02T00:00:00+08:00</published><updated>2017-07-02T00:00:00+08:00</updated><id>http://firsh.me/2017/07/02/linux-ls-wc</id><content type="html" xml:base="http://firsh.me/2017/07/02/linux-ls-wc/">&lt;p&gt;发这个贴的原因，是因为今天写了一个爬虫，爬下来的图片存储起来了，没办法看已经有多少张图片了。
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-07-03T17:50:29+08:00</updated><id>http://firsh.me/</id><title type="html">然儿dada(Firsh.me).</title><subtitle>然erDADA，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术。</subtitle><author><name>zmatsh</name></author><entry><title type="html">ActorDB/linux下搭建，可以搭建集群模式。</title><link href="http://firsh.me/2017/07/03/actordb-master/" rel="alternate" type="text/html" title="ActorDB/linux下搭建，可以搭建集群模式。" /><published>2017-07-03T00:00:00+08:00</published><updated>2017-07-03T00:00:00+08:00</updated><id>http://firsh.me/2017/07/03/actordb-master</id><content type="html" xml:base="http://firsh.me/2017/07/03/actordb-master/">&lt;p&gt;发这个贴的原因，是因为@#¥%……UIO@！#*……！（@&lt;/p&gt;
+
+&lt;h2 id=&quot;actordb安装以及集群部署集群采用kubernetes&quot;&gt;ActorDB安装以及集群部署(集群采用kubernetes)&lt;/h2&gt;
+&lt;p&gt;ActorDB&lt;/p&gt;
+
+&lt;p&gt;现在版本：0.10.21&lt;/p&gt;
+
+&lt;h2 id=&quot;1-安装部署&quot;&gt;1. 安装部署&lt;/h2&gt;
+&lt;h3 id=&quot;11-官网下载linux版本安装包rpm包上传至服务器并使用rpm--ivh进行安装&quot;&gt;1.1. 官网下载linux版本安装包（rpm包），上传至服务器并使用&lt;code class=&quot;highlighter-rouge&quot;&gt;rpm -ivh&lt;/code&gt;进行安装&lt;/h3&gt;
+&lt;h3 id=&quot;12-安装好后会自动创建-个文件夹&quot;&gt;1.2. 安装好后，会自动创建 个文件夹：&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/etc/actordb		----	配置文件
+/var/log/actordb	----	默认日志目录
+/var/lib/actordb	----	默认数据存储目录 ### 1.3. 修改配置文件`app.config`以变更数据目录、日志目录以及thrift和Mysql监听的端口等配置信息
+ 修改配置文件`vm.args`中`-name`的内容指定当前节点的node名称，格式为：&amp;lt;名称&amp;gt;@&amp;lt;ip地址&amp;gt;
+ 在`vm.args`中增加 `+S 8` 来限制Erlang的Scheduler只能使用8核，否则可能无法正常启动。 ###  1.4. 执行 `actordb start` 启动ActorDB ###  1.5. 修改初始化脚本'init.sql' ### 1.5.1. `use config` # 使用config库 ### 1.5.2. `insert into groups values ('dscnCluster','cluster')` # 在groups表里增加名为dscnCluster的cluster ### 1.5.3. `insert into nodes values ('&amp;lt;名称&amp;gt;@&amp;lt;ip地址&amp;gt;', 'dscnCluster')` # 向dscnCluster组内增加成员 ### 1.5.4. 重复3.5.2和3.5.3，直到所有的节点都添加至集群中 ### 1.5.5. `CREATE USER 'root' IDENTIFIED BY '&amp;lt;pwd&amp;gt;'` # 创建root用户，并设置其密码为&amp;lt;pwd&amp;gt; ### 1.5.6. `commit` # 提交 ### 1.6. 执行初始化脚本 `actordb_console -f /etc/actordb/init.sql` 完成初始化 ### 1.7. 建立库表 ### 1.7.1. `use schema` ### 1.7.2. `actor &amp;lt;dbName&amp;gt; [kv]` ### 1.7.3. `create table &amp;lt;tableName&amp;gt; (field type [constraint], field2 type2 [constraint2].....)` # 与传统DDL相同
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;2-服务实例&quot;&gt;2. 服务实例&lt;/h2&gt;
+&lt;h3 id=&quot;21-clusteractordb集群中可定义多个cluster各cluster间数据是独立的相当于数据分片&quot;&gt;2.1. Cluster：ActorDB集群中可定义多个Cluster，各Cluster间数据是独立的，相当于数据分片&lt;/h3&gt;
+&lt;h3 id=&quot;22-node每个cluster中包含多个node即actordb实例一个cluster中的所有node互为副本数据同步&quot;&gt;2.2. Node：每个Cluster中包含多个Node（即ActorDB实例），一个Cluster中的所有Node互为副本，数据同步。&lt;/h3&gt;
+
+&lt;h2 id=&quot;3-存储&quot;&gt;3. 存储&lt;/h2&gt;
+&lt;h3 id=&quot;31-所有的表操作都必须经由某一个insert可以是多个actor而所有的actor都有一个所属的actortype&quot;&gt;3.1. 所有的表操作都必须经由某一个（insert可以是多个）Actor，而所有的Actor都有一个所属的ActorType。&lt;/h3&gt;
+&lt;h3 id=&quot;32-用户在定义actortype时可以定义该actortype所使用的表结构与传统数据库一样并可以创建该type的actor数量不限&quot;&gt;3.2. 用户在定义ActorType时，可以定义该ActorType所使用的表结构（与传统数据库一样），并可以创建该Type的Actor（数量不限）&lt;/h3&gt;
+&lt;h3 id=&quot;33-一个actortype中的所有actor共享相同的表结构和表关系actortype中的所有actor都只能访问自己actor中的数据&quot;&gt;3.3. 一个ActorType中的所有actor共享相同的表结构和表关系，ActorType中的所有actor都只能访问自己actor中的数据&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;就像微信的收藏功能一样，不用用户共享同样的收藏夹结构，但无法看到其他人收藏的内容。 ### 3.4. Actor拥有过多的数据会影响性能，官网建议每个Actor拥有的数据最好控制在1G一下，每个Actor的操作TPS最好低于1000/s ### 3.5. 可以使用user、filename或其他可识别的内容对某一ActorType中的数据在逻辑上做进一步的分割 ### 3.6. 操作示例：
+`actor &amp;lt;dbName&amp;gt;(&amp;lt;userName&amp;gt;) create;`
+`insert into &amp;lt;tableName&amp;gt; values(&amp;lt;val1&amp;gt;,&amp;lt;val2&amp;gt;......);`
+`commit`
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;4-thrift客户端连接&quot;&gt;4. Thrift客户端连接&lt;/h2&gt;
+&lt;h3 id=&quot;41-在actordb的github中下载thrift接口生成种子adbtthrift使用thrift官网的生成工具生成实现thrift接口的类及相关类&quot;&gt;4.1. 在actordb的github中下载thrift接口生成种子：adbt.thrift，使用thrift官网的生成工具生成实现thrift接口的类及相关类&lt;/h3&gt;
+&lt;h3 id=&quot;42-使用thrift客户端进行连接客户端使用详见thrift官网&quot;&gt;4.2. 使用Thrift客户端进行连接，客户端使用详见thrift官网。&lt;/h3&gt;
+&lt;h3 id=&quot;43-使用生成的类作为client调用sql方法直接执行sql举例如actor-metadatalcyselect-count-from-confapi包括了同步和异步的接口&quot;&gt;4.3. 使用生成的类作为Client，调用sql方法直接执行（sql举例如：”actor metadata(lcy);select count(*) from conf”）。API包括了同步和异步的接口。&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Over&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>zmatsh</name></author><summary type="html">发这个贴的原因，是因为@#¥%……UIO@！#*……！（@</summary></entry><entry><title type="html">Linux/Mac下统计当前文件夹下的文件个数、目录个数</title><link href="http://firsh.me/2017/07/02/linux-ls-wc/" rel="alternate" type="text/html" title="Linux/Mac下统计当前文件夹下的文件个数、目录个数" /><published>2017-07-02T00:00:00+08:00</published><updated>2017-07-02T00:00:00+08:00</updated><id>http://firsh.me/2017/07/02/linux-ls-wc</id><content type="html" xml:base="http://firsh.me/2017/07/02/linux-ls-wc/">&lt;p&gt;发这个贴的原因，是因为今天写了一个爬虫，爬下来的图片存储起来了，没办法看已经有多少张图片了。
 于是下面的事情发生了…..&lt;/p&gt;
 
 &lt;p&gt;这篇文章主要介绍了Linux下统计当前文件夹下的文件个数、目录个数,本文使用ls命令配合管理、grep命令实现统计需求,需要的朋友可以参考下
@@ -14,11 +53,11 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;##3、 统计当前文件夹下文件的个数，包括子文件夹里的&lt;/p&gt;
+&lt;h2 id=&quot;3-统计当前文件夹下文件的个数包括子文件夹里的&quot;&gt;3、 统计当前文件夹下文件的个数，包括子文件夹里的&lt;/h2&gt;
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    ls -lR|grep &lt;span class=&quot;s2&quot;&gt;&quot;^-&quot;&lt;/span&gt;|wc -l
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;##4、统计文件夹下目录的个数，包括子文件夹里的&lt;/p&gt;
+&lt;h2 id=&quot;4统计文件夹下目录的个数包括子文件夹里的&quot;&gt;4、统计文件夹下目录的个数，包括子文件夹里的&lt;/h2&gt;
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   ls -lR|grep &lt;span class=&quot;s2&quot;&gt;&quot;^d&quot;&lt;/span&gt;|wc -l
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -225,7 +264,7 @@ ffmpeg -i A.gif   -vf &lt;span class=&quot;s2&quot;&gt;&quot;ass=test.ass&quot;&
 &lt;/div&gt;
 &lt;h2 id=&quot;二freemarker的简单介绍&quot;&gt;二、FreeMarker的简单介绍&lt;/h2&gt;
 &lt;p&gt;在进入正文前，让我们首先简单、快速了解一下FreeMarker。
-  （做过Web开发的朋友肯定都是相当熟悉的、小吕当时 也是在做Web开发的时候第一次接触了FreeMarker）&lt;/p&gt;
+  （做过Web开发的朋友肯定都是相当熟悉的 我当时 也是在做Web开发的时候第一次接触了FreeMarker）&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;1、概述：FreeMarker是一款模板引擎：即一种基于模板、用来生成输出文本的通用工具。更多的是被用来设计生成HTML页面。
  简单说就是：FreeMarker是使用模板生成文本页面来呈现已经准备好的数据。如下图表述&lt;/li&gt;
@@ -1020,35 +1059,4 @@ Flink主要包括基于Java和Scala的用于批量和基于流数据分析的API
 &lt;/div&gt;
 &lt;ul&gt;
   &lt;li&gt;感谢孙浩大哥提醒代码规范的重要性。&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>zmatsh</name></author><summary type="html">Java 代码书写规范，以及部分注释。</summary></entry><entry><title type="html">ssh链接报错 Unable to negotiate with IP</title><link href="http://firsh.me/2017/06/22/sshd-error/" rel="alternate" type="text/html" title="ssh链接报错 Unable to negotiate with IP" /><published>2017-06-22T00:00:00+08:00</published><updated>2017-06-22T00:00:00+08:00</updated><id>http://firsh.me/2017/06/22/sshd-error</id><content type="html" xml:base="http://firsh.me/2017/06/22/sshd-error/">&lt;p&gt;ssh Unable to negotiate with 182.158.68.5 port 22: no matching host key type found. Their offer: ssh-dss&lt;/p&gt;
-
-&lt;h2 id=&quot;介绍&quot;&gt;介绍&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;今天帮别人部署东西，远程连接服务器的时候发现发生了错误：。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Unable to negotiate with 182.158.68.5 port 22: no matching host key &lt;span class=&quot;nb&quot;&gt;type &lt;/span&gt;found. Their offer: ssh-dss
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;解决方案&quot;&gt;解决方案&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;The version of OpenSSH included in 16.04 disables ssh-dss. There’s a neat page with legacy information that includes this issue: http://www.openssh.com/legacy.html
-In a nutshell, you should add the option -oHostKeyAlgorithms=+ssh-dss to the SSH command:&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh -oHostKeyAlgorithms&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;+ssh-dss root@182.158.68.5
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;成功登录&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;➜  ~ ssh -oHostKeyAlgorithms&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;+ssh-dss root@182.158.68.5
-The authenticity of host &lt;span class=&quot;s1&quot;&gt;'182.158.68.55 (182.158.68.5)'&lt;/span&gt; can&lt;span class=&quot;s1&quot;&gt;'t be established.
-DSA key fingerprint is SHA256:LVWhbgb8q5TdW2QEsFjOVNp8ekW8UqPVE/KCbMOI4CM.
-Are you sure you want to continue connecting (yes/no)? 
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>zmatsh</name></author><summary type="html">ssh Unable to negotiate with 182.158.68.5 port 22: no matching host key type found. Their offer: ssh-dss</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>zmatsh</name></author><summary type="html">Java 代码书写规范，以及部分注释。</summary></entry></feed>
