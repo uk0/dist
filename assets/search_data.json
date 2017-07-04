@@ -1,5 +1,23 @@
 {
   
+  "2017-07-04-tensorflow-play-game-demo": {
+    "title": "用Tensorflow基于Deep Q Learning DQN 玩Flappy Bird",
+    "url": " /2017/07/04/tensorflow-play-game-demo/",
+    "category": "Machine"
+  },
+  
+  "2017-07-04-tensorflow-node-2": {
+    "title": "TensorFlow学习笔记2：构建CNN模型",
+    "url": " /2017/07/04/tensorflow-node-2/",
+    "category": "Machine"
+  },
+  
+  "2017-07-04-tensorflow-node-1": {
+    "title": "TensorFlow学习笔记1：入门",
+    "url": " /2017/07/04/tensorflow-node-1/",
+    "category": "TensorFlow,"
+  },
+  
   "2017-07-03-jekyll-emoji": {
     "title": "Jekyll-emoji-表情大全。",
     "url": " /2017/07/03/jekyll-emoji/",
@@ -554,6 +572,24 @@
     "title": "Jekyll-emoji-表情大全。",
     "url": "/2017/07/03/jekyll-emoji/",
     "category": "[&quot;Jekyll,emoji&quot;]"
+  },
+  
+  "2017-07-04-tensorflow-node-1": {
+    "title": "TensorFlow学习笔记1：入门",
+    "url": "/2017/07/04/tensorflow-node-1/",
+    "category": "[&quot;TensorFlow,&quot;, &quot;python,opencv&quot;]"
+  },
+  
+  "2017-07-04-tensorflow-node-2": {
+    "title": "TensorFlow学习笔记2：构建CNN模型",
+    "url": "/2017/07/04/tensorflow-node-2/",
+    "category": "[&quot;Machine&quot;, &quot;Learning&quot;]"
+  },
+  
+  "2017-07-04-tensorflow-play-game-demo": {
+    "title": "用Tensorflow基于Deep Q Learning DQN 玩Flappy Bird",
+    "url": "/2017/07/04/tensorflow-play-game-demo/",
+    "category": "[&quot;Machine&quot;, &quot;Learning&quot;]"
   },
   
   "wiki-android-studio": {

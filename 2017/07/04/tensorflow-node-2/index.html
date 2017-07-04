@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>TensorFlow学习笔记2：构建CNN模型 &mdash; 然儿dada(Firsh.me).</title>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2017/07/04/tensorflow-node-2/">
+    <link rel="alternate" type="application/atom+xml" title="然儿dada(Firsh.me)." href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="TensorFlow学习笔记2：构建CNN模型">
+      
+    <meta name="keywords" content="TensorFlow, python,opencv">
+    <meta name="og:keywords" content="TensorFlow, python,opencv">
+      
+    <meta name="description" content="发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。">
+    <meta name="og:description" content="发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2017/07/04/tensorflow-node-2/">
+    <meta property="og:site_name" content="然儿dada(Firsh.me).">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2017-07-04">
+    
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="然儿dada(Firsh.me)."><span class="octicon octicon-mark-github"></span> 然儿dada(Firsh.me).</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="首页">首页</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="分类">分类</a>
+                
+                <a href="/open-source/" class=" site-header-nav-item" target="" title="开源">开源</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="维基">维基</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="链接">链接</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="TensorFlow学习笔记2">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">TensorFlow学习笔记2：构建CNN模型</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/07/04
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#Machine" title="Machine">Machine</a>
+          </span>
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#Learning" title="Learning">Learning</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <p>发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。</p>
+
+<p><a href="https://firsh.me/2017/07/04/tensorflow-node-1"><strong>上篇博文</strong></a>主要是TensorFlow的一个简单入门，并介绍了如何实现Softmax Regression模型，来对MNIST数据集中的数字手写体进行识别。</p>
+
+<p>然而，由于Softmax Regression模型相对简单，所以最终的识别准确率并不高。下面将针对MNIST数据集构建更加复杂精巧的模型，以进一步提高识别准确率。</p>
+
+<hr />
+
+<h2 id="深度学习模型">深度学习模型</h2>
+
+<p>TensorFlow很适合用来进行大规模的数值计算，其中也包括实现和训练深度神经网络模型。下面将介绍TensorFlow中模型的基本组成部分，同时将构建一个CNN模型来对MNIST数据集中的数字手写体进行识别。</p>
+
+<h3 id="基本设置">基本设置</h3>
+
+<p>在我们构建模型之前，我们首先加载MNIST数据集，然后开启一个TensorFlow会话(session)。</p>
+
+<h3 id="加载mnist数据集">加载MNIST数据集</h3>
+
+<p>TensorFlow中已经有相关脚本，来自动下载和加载MNIST数据集。（脚本会自动创建MNIST_data文件夹来存储数据集）。下面是脚本程序：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>from tensorflow.examples.tutorials.mnist import input_data
+mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
+</code></pre>
+</div>
+
+<p>这里<code class="highlighter-rouge">mnist</code>是一个轻量级的类文件，存储了NumPy格式的训练集、验证集和测试集，它同样提供了数据中mini-batch迭代的功能。</p>
+
+<h3 id="开启tensorflow会话">开启TensorFlow会话</h3>
+
+<p>TensorFlow后台计算依赖于高效的C++，与后台的连接称为一个会话(session)。TensorFlow中的程序使用，通常都是先创建一个图(graph)，然后在一个会话(session)里运行它。</p>
+
+<p>这里我们使用了一个更为方便的类，<code class="highlighter-rouge">InteractiveSession </code>，这能让你在构建代码时更加灵活。<code class="highlighter-rouge">InteractiveSession </code>允许你做一些交互操作，通过创建一个计算流图(<a href="https://www.tensorflow.org/versions/r0.7/get_started/basic_usage.html#the-computation-graph">computation graph</a>)来部分地运行图计算。当你在一些交互环境（例如IPython）中使用时将更加方便。如果你不是使用<code class="highlighter-rouge">InteractiveSession </code>，那么你要在启动一个会话和运行图计算前，创建一个整体的计算流图。</p>
+
+<p>下面是如何创建一个<code class="highlighter-rouge">InteractiveSession </code>：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>import tensorflow as tf
+sess = tf.InteractiveSession()
+</code></pre>
+</div>
+
+<h3 id="计算流图computation-graph">计算流图(Computation Graph)</h3>
+
+<p>为了在Python中实现高效的数值运算，通常会使用一些Python以外的库函数，如NumPy。但是，这样做会造成转换Python操作的开销，尤其是在GPUs和分布式计算的环境下。TensorFlow在这一方面（指转化操作）做了优化，它让我们能够在Python之外描述一个包含各种交互计算操作的整体流图，而不是每次都独立地在Python之外运行一个单独的计算，避免了许多的转换开销。这样的优化方法同样用在了<code class="highlighter-rouge">Theano</code>和<code class="highlighter-rouge">Torch</code>上。</p>
+
+<p>所以，以上这样的Python代码的作用是简历一个完整的计算流图，然后指定图中的哪些部分需要运行。关于计算流图的更多具体使用见<a href="https://www.tensorflow.org/versions/r0.7/get_started/basic_usage.html#the-computation-graph">这里</a>。</p>
+
+<h3 id="softmax-regression模型">Softmax Regression模型</h3>
+
+<p>见<a href="http://www.jeyzhang.com/tensorflow-learning-notes.html"><strong>上篇博文</strong></a>。</p>
+
+<h3 id="cnn模型">CNN模型</h3>
+
+<p>Softmax Regression模型在MNIST数据集上91%的准确率，其实还是比较低的。下面我们将使用一个更加精巧的模型，一个简单的卷积神经网络模型(CNN)。这个模型能够达到99.2%的准确率，尽管这不是最高的，但已经足够接受了。</p>
+
+<h4 id="权值初始化">权值初始化</h4>
+
+<p>为了建立模型，我们需要先创建一些权值(w)和偏置(b)等参数，这些参数的初始化过程中需要加入一小部分的<code class="highlighter-rouge">噪声</code>以破坏参数整体的对称性，同时避免梯度为0.由于我们使用<code class="highlighter-rouge">ReLU</code>激活函数（<a href="https://en.wikipedia.org/wiki/Rectifier_(neural_networks)"><strong>详细介绍</strong></a>），所以我们通常将这些参数初始化为很小的正值。为了避免重复的初始化操作，我们可以创建下面两个函数：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>def weight_variable(shape):
+  initial = tf.truncated_normal(shape, stddev=0.1)
+  return tf.Variable(initial)
+
+def bias_variable(shape):
+  initial = tf.constant(0.1, shape=shape)
+  return tf.Variable(initial)
+</code></pre>
+</div>
+
+<h4 id="卷积convolution和池化pooling">卷积(Convolution)和池化(Pooling)</h4>
+
+<p>TensorFlow同样提供了方便的卷积和池化计算。怎样处理边界元素？怎样设置卷积窗口大小？在这个例子中，我们始终使用<code class="highlighter-rouge">vanilla</code>版本。这里的卷积操作仅使用了滑动步长为1的窗口，使用0进行填充，所以输出规模和输入的一致；而池化操作是在2 * 2的窗口内采用最大池化技术(max-pooling)。为了使代码简洁，同样将这些操作抽象为函数形式：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>def conv2d(x, W):
+  return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding='SAME')
+
+def max_pool_2x2(x):
+  return tf.nn.max_pool(x, ksize=[1, 2, 2, 1],
+                        strides=[1, 2, 2, 1], padding='SAME')
+</code></pre>
+</div>
+
+<p>其中，<code class="highlighter-rouge">padding='SAME'</code>表示通过填充0，使得输入和输出的形状一致。</p>
+
+<h4 id="第一层卷积层">第一层：卷积层</h4>
+
+<p>第一层是卷积层，卷积层将要计算出32个特征映射(feature map)，对每个5 * 5的patch。它的权值tensor的大小为[5, 5, 1, 32]. 前两维是patch的大小，第三维时输入通道的数目，最后一维是输出通道的数目。我们对每个输出通道加上了偏置(bias)。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>W_conv1 = weight_variable([5, 5, 1, 32])
+b_conv1 = bias_variable([32])
+</code></pre>
+</div>
+
+<p>为了使得图片与计算层匹配，我们首先<code class="highlighter-rouge">reshape</code>输入图像<code class="highlighter-rouge">x</code>为4维的tensor，第2、3维对应图片的宽和高，最后一维对应颜色通道的数目。（<strong>？第1维为什么是-1？</strong>）</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>x_image = tf.reshape(x, [-1,28,28,1])
+</code></pre>
+</div>
+
+<p>然后，使用<code class="highlighter-rouge">weight tensor</code>对<code class="highlighter-rouge">x_image</code>进行卷积计算，加上<code class="highlighter-rouge">bias</code>，再应用到一个<code class="highlighter-rouge">ReLU</code>激活函数，最终采用最大池化。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)
+h_pool1 = max_pool_2x2(h_conv1)
+</code></pre>
+</div>
+
+<h4 id="第二层卷积层">第二层：卷积层</h4>
+
+<p>为了使得网络有足够深度，我们重复堆积一些相同类型的层。第二层将会有64个特征，对应每个5 * 5的patch。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>W_conv2 = weight_variable([5, 5, 32, 64])
+b_conv2 = bias_variable([64])
+
+h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)
+h_pool2 = max_pool_2x2(h_conv2)
+</code></pre>
+</div>
+
+<h4 id="全连接层">全连接层</h4>
+
+<p>到目前为止，图像的尺寸被缩减为7 * 7，我们最后加入一个神经元数目为1024的全连接层来处理所有的图像上。接着，将最后的pooling层的输出reshape为一个一维向量，与权值相乘，加上偏置，再通过一个<code class="highlighter-rouge">ReLu</code>函数。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>W_fc1 = weight_variable([7 * 7 * 64, 1024])
+b_fc1 = bias_variable([1024])
+
+h_pool2_flat = tf.reshape(h_pool2, [-1, 7*7*64])
+h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, W_fc1) + b_fc1)
+</code></pre>
+</div>
+
+<p>整个CNN的网络结构如下图：</p>
+
+<p><img src="http://i.imgur.com/nfd2j9s.jpg" alt="" /></p>
+
+<h4 id="dropout">Dropout</h4>
+
+<p>为了减少过拟合程度，在输出层之前应用<code class="highlighter-rouge">dropout</code>技术（即丢弃某些神经元的输出结果）。我们创建一个<code class="highlighter-rouge">placeholder</code>来表示一个神经元的输出在<code class="highlighter-rouge">dropout</code>时不被丢弃的概率。<code class="highlighter-rouge">Dropout</code>能够在训练过程中使用，而在测试过程中不使用。TensorFlow中的<code class="highlighter-rouge">tf.nn.dropout</code>操作能够利用<code class="highlighter-rouge">mask</code>技术处理各种规模的神经元输出。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>keep_prob = tf.placeholder(tf.float32)
+h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)
+</code></pre>
+</div>
+
+<h4 id="输出层">输出层</h4>
+
+<p>最终，我们用一个<code class="highlighter-rouge">softmax</code>层，得到类别上的概率分布。（与之前的<code class="highlighter-rouge">Softmax Regression</code>模型相同）。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>W_fc2 = weight_variable([1024, 10])
+b_fc2 = bias_variable([10])
+
+y_conv=tf.nn.softmax(tf.matmul(h_fc1_drop, W_fc2) + b_fc2)
+</code></pre>
+</div>
+
+<h4 id="模型训练和测试">模型训练和测试</h4>
+
+<p>为了测试模型的性能，需要先对模型进行训练，然后应用在测试集上。和之前<code class="highlighter-rouge">Softmax Regression</code>模型中的训练、测试过程类似。区别在于：</p>
+
+<ol>
+  <li>用更复杂的<code class="highlighter-rouge">ADAM</code>最优化方法代替了之前的梯度下降；</li>
+  <li>增了额外的参数<code class="highlighter-rouge">keep_prob</code>在<code class="highlighter-rouge">feed_dict</code>中，以控制<code class="highlighter-rouge">dropout</code>的几率；</li>
+  <li>在训练过程中，增加了log输出功能（每100次迭代输出一次）。</li>
+</ol>
+
+<p>下面是程序：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>cross_entropy = -tf.reduce_sum(y_*tf.log(y_conv))
+train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
+correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1))
+accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+sess.run(tf.initialize_all_variables())
+for i in range(20000):
+  batch = mnist.train.next_batch(50)
+  if i%100 == 0:
+    train_accuracy = accuracy.eval(feed_dict={
+        x:batch[0], y_: batch[1], keep_prob: 1.0})
+    print("step %d, training accuracy %g"%(i, train_accuracy))
+  train_step.run(feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
+
+print("test accuracy %g"%accuracy.eval(feed_dict={
+    x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}))
+</code></pre>
+</div>
+
+<p>最终，模型在测试集上的准确率大概为99.2%，性能上要优于之前的<code class="highlighter-rouge">Softmax Regression</code>模型。</p>
+
+<h4 id="完整代码及运行结果">完整代码及运行结果</h4>
+
+<p>利用CNN模型实现手写体识别的完整代码如下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>__author__ = 'chapter'
+
+import tensorflow as tf
+from tensorflow.examples.tutorials.mnist import input_data
+
+def weight_varible(shape):
+    initial = tf.truncated_normal(shape, stddev=0.1)
+    return tf.Variable(initial)
+
+def bias_variable(shape):
+    initial = tf.constant(0.1, shape=shape)
+    return tf.Variable(initial)
+
+def conv2d(x, W):
+    return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding='SAME')
+
+def max_pool_2x2(x):
+    return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
+
+
+mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
+print("Download Done!")
+
+sess = tf.InteractiveSession()
+
+# paras
+W_conv1 = weight_varible([5, 5, 1, 32])
+b_conv1 = bias_variable([32])
+
+# conv layer-1
+x = tf.placeholder(tf.float32, [None, 784])
+x_image = tf.reshape(x, [-1, 28, 28, 1])
+
+h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)
+h_pool1 = max_pool_2x2(h_conv1)
+
+# conv layer-2
+W_conv2 = weight_varible([5, 5, 32, 64])
+b_conv2 = bias_variable([64])
+
+h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)
+h_pool2 = max_pool_2x2(h_conv2)
+
+# full connection
+W_fc1 = weight_varible([7 * 7 * 64, 1024])
+b_fc1 = bias_variable([1024])
+
+h_pool2_flat = tf.reshape(h_pool2, [-1, 7 * 7 * 64])
+h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, W_fc1) + b_fc1)
+
+# dropout
+keep_prob = tf.placeholder(tf.float32)
+h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)
+
+# output layer: softmax
+W_fc2 = weight_varible([1024, 10])
+b_fc2 = bias_variable([10])
+
+y_conv = tf.nn.softmax(tf.matmul(h_fc1_drop, W_fc2) + b_fc2)
+y_ = tf.placeholder(tf.float32, [None, 10])
+
+# model training
+cross_entropy = -tf.reduce_sum(y_ * tf.log(y_conv))
+train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
+
+correct_prediction = tf.equal(tf.arg_max(y_conv, 1), tf.arg_max(y_, 1))
+accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+
+sess.run(tf.initialize_all_variables())
+
+for i in range(20000):
+    batch = mnist.train.next_batch(50)
+
+    if i % 100 == 0:
+        train_accuacy = accuracy.eval(feed_dict={x: batch[0], y_: batch[1], keep_prob: 1.0})
+        print("step %d, training accuracy %g"%(i, train_accuacy))
+    train_step.run(feed_dict = {x: batch[0], y_: batch[1], keep_prob: 0.5})
+
+# accuacy on test
+print("test accuracy %g"%(accuracy.eval(feed_dict={x: mnist.test.images, y: mnist.test.labels, keep_prob: 1.0})))
+</code></pre>
+</div>
+
+<p>运行结果如下图：</p>
+
+<p><img src="http://i.imgur.com/KIep4sT.png" alt="" /></p>
+
+<hr />
+
+<p>本文结束，感谢欣赏。</p>
+
+<p><strong>欢迎转载，请注明本文的链接地址：</strong></p>
+
+<p>https://firsh.me/2017/07/04/tensorflow-node-2</p>
+
+<p><strong>参考资料</strong></p>
+
+<p><a href="https://www.tensorflow.org/versions/r0.7/tutorials/mnist/pros/index.html#deep-mnist-for-experts">TensorFlow: Deep MNIST for Experts</a></p>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+      
+        
+        <!-- Disqus Protection, see https://github.com/mzlogin/mzlogin.github.io/issues/2 -->
+        
+        
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'http://firsh.me/2017/07/04/tensorflow-node-2/';
+              this.page.identifier = '/2017/07/04/tensorflow-node-2/';
+              this.page.title = 'TensorFlow学习笔记2：构建CNN模型';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+
+              s.type = 'text/javascript';
+              s.async = true;
+              var shortname = 'zmatsh';
+
+              s.src = '//' + shortname + '.disqus.com/embed.js';
+
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        
+        
+      
+    
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="https://zmatsh.b0.upaiyun.com/assets/css/modules/sidebar-search.css">
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="zmatsh">zmatsh</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/zmatsh/zmatsh.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="首页" target="">首页</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="分类" target="">分类</a>
+                </li>
+                
+                <li>
+                    <a href="/open-source/" title="开源" target="">开源</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="维基" target="">维基</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="链接" target="">链接</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="关于" target="">关于</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-80669434-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+    <script type="text/javascript" src="//rc.revolvermaps.com/0/0/8.js?i=21x1e27561g&amp;m=0&amp;s=341&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"></script>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>

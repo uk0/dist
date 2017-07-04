@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>用Tensorflow基于Deep Q Learning DQN 玩Flappy Bird &mdash; 然儿dada(Firsh.me).</title>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2017/07/04/tensorflow-play-game-demo/">
+    <link rel="alternate" type="application/atom+xml" title="然儿dada(Firsh.me)." href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="用Tensorflow基于Deep Q Learning DQN 玩Flappy Bird">
+      
+    <meta name="keywords" content="TensorFlow, python,opencv">
+    <meta name="og:keywords" content="TensorFlow, python,opencv">
+      
+    <meta name="description" content="发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。">
+    <meta name="og:description" content="发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2017/07/04/tensorflow-play-game-demo/">
+    <meta property="og:site_name" content="然儿dada(Firsh.me).">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2017-07-04">
+    
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="然儿dada(Firsh.me)."><span class="octicon octicon-mark-github"></span> 然儿dada(Firsh.me).</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="首页">首页</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="分类">分类</a>
+                
+                <a href="/open-source/" class=" site-header-nav-item" target="" title="开源">开源</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="维基">维基</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="链接">链接</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="用Tensorflow基于De">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">用Tensorflow基于Deep Q Learning DQN 玩Flappy Bird</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/07/04
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#Machine" title="Machine">Machine</a>
+          </span>
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#Learning" title="Learning">Learning</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <p>发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。</p>
+
+<p><a href="https://firsh.me/2017/07/04/tensorflow-node-2"><strong>上篇博文</strong></a>主要是TensorFlow的一个简单入门.</p>
+
+<h2 id="前言-tensorflow-通过深度学习自己去玩游戏">前言 TensorFlow 通过深度学习自己去玩游戏，</h2>
+
+<p>游戏图:
+ <img src="https://zmatsh.b0.upaiyun.com/tensorflow/tensorflow-game-bird.gif" alt="" /></p>
+
+<p>整体思路：
+ <img src="https://zmatsh.b0.upaiyun.com/tensorflow/network.png" alt="" /></p>
+
+<p>处理图：
+ <img src="https://zmatsh.b0.upaiyun.com/tensorflow/preprocess.png" alt="" /></p>
+
+<h2 id="后语">后语</h2>
+
+<p>能否使用DQN来实现通过屏幕学习玩Flappy Bird是一个有意思的挑战。（话说本人和朋友在前段时间也考虑了这个idea，但当时由于不知道如何截取游戏屏幕只能使用具体位置来学习，不过其实也成功了）</p>
+
+<h2 id="部分代码">部分代码</h2>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code> <span class="c">#!/usr/bin/env python</span>
+ <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+ 
+ <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+ <span class="kn">import</span> <span class="nn">cv2</span>
+ <span class="kn">import</span> <span class="nn">sys</span>
+ <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">"game/"</span><span class="p">)</span>
+ <span class="kn">import</span> <span class="nn">wrapped_flappy_bird</span> <span class="kn">as</span> <span class="nn">game</span>
+ <span class="kn">import</span> <span class="nn">random</span>
+ <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+ <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+ 
+ <span class="n">GAME</span> <span class="o">=</span> <span class="s">'bird'</span> <span class="c"># the name of the game being played for log files</span>
+ <span class="n">ACTIONS</span> <span class="o">=</span> <span class="mi">2</span> <span class="c"># number of valid actions</span>
+ <span class="n">GAMMA</span> <span class="o">=</span> <span class="mf">0.99</span> <span class="c"># decay rate of past observations</span>
+ <span class="n">OBSERVE</span> <span class="o">=</span> <span class="mf">100000.</span> <span class="c"># timesteps to observe before training</span>
+ <span class="n">EXPLORE</span> <span class="o">=</span> <span class="mf">2000000.</span> <span class="c"># frames over which to anneal epsilon</span>
+ <span class="n">FINAL_EPSILON</span> <span class="o">=</span> <span class="mf">0.0001</span> <span class="c"># final value of epsilon</span>
+ <span class="n">INITIAL_EPSILON</span> <span class="o">=</span> <span class="mf">0.0001</span> <span class="c"># starting value of epsilon</span>
+ <span class="n">REPLAY_MEMORY</span> <span class="o">=</span> <span class="mi">50000</span> <span class="c"># number of previous transitions to remember</span>
+ <span class="n">BATCH</span> <span class="o">=</span> <span class="mi">32</span> <span class="c"># size of minibatch</span>
+ <span class="n">FRAME_PER_ACTION</span> <span class="o">=</span> <span class="mi">1</span>
+ 
+ <span class="k">def</span> <span class="nf">weight_variable</span><span class="p">(</span><span class="n">shape</span><span class="p">):</span>
+     <span class="n">initial</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">)</span>
+     <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
+ 
+ <span class="k">def</span> <span class="nf">bias_variable</span><span class="p">(</span><span class="n">shape</span><span class="p">):</span>
+     <span class="n">initial</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="n">shape</span><span class="p">)</span>
+     <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
+ 
+ <span class="k">def</span> <span class="nf">conv2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">stride</span><span class="p">):</span>
+     <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span> <span class="o">=</span> <span class="s">"SAME"</span><span class="p">)</span>
+ 
+ <span class="k">def</span> <span class="nf">max_pool_2x2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+     <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">max_pool</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ksize</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span> <span class="o">=</span> <span class="s">"SAME"</span><span class="p">)</span>
+ 
+ <span class="k">def</span> <span class="nf">createNetwork</span><span class="p">():</span>
+     <span class="c"># network weights</span>
+     <span class="n">W_conv1</span> <span class="o">=</span> <span class="n">weight_variable</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">32</span><span class="p">])</span>
+     <span class="n">b_conv1</span> <span class="o">=</span> <span class="n">bias_variable</span><span class="p">([</span><span class="mi">32</span><span class="p">])</span>
+ 
+     <span class="n">W_conv2</span> <span class="o">=</span> <span class="n">weight_variable</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">])</span>
+     <span class="n">b_conv2</span> <span class="o">=</span> <span class="n">bias_variable</span><span class="p">([</span><span class="mi">64</span><span class="p">])</span>
+ 
+     <span class="n">W_conv3</span> <span class="o">=</span> <span class="n">weight_variable</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">])</span>
+     <span class="n">b_conv3</span> <span class="o">=</span> <span class="n">bias_variable</span><span class="p">([</span><span class="mi">64</span><span class="p">])</span>
+ 
+     <span class="n">W_fc1</span> <span class="o">=</span> <span class="n">weight_variable</span><span class="p">([</span><span class="mi">1600</span><span class="p">,</span> <span class="mi">512</span><span class="p">])</span>
+     <span class="n">b_fc1</span> <span class="o">=</span> <span class="n">bias_variable</span><span class="p">([</span><span class="mi">512</span><span class="p">])</span>
+ 
+     <span class="n">W_fc2</span> <span class="o">=</span> <span class="n">weight_variable</span><span class="p">([</span><span class="mi">512</span><span class="p">,</span> <span class="n">ACTIONS</span><span class="p">])</span>
+     <span class="n">b_fc2</span> <span class="o">=</span> <span class="n">bias_variable</span><span class="p">([</span><span class="n">ACTIONS</span><span class="p">])</span>
+ 
+     <span class="c"># input layer</span>
+     <span class="n">s</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+ 
+     <span class="c"># hidden layers</span>
+     <span class="n">h_conv1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">conv2d</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">W_conv1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_conv1</span><span class="p">)</span>
+     <span class="n">h_pool1</span> <span class="o">=</span> <span class="n">max_pool_2x2</span><span class="p">(</span><span class="n">h_conv1</span><span class="p">)</span>
+ 
+     <span class="n">h_conv2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">conv2d</span><span class="p">(</span><span class="n">h_pool1</span><span class="p">,</span> <span class="n">W_conv2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_conv2</span><span class="p">)</span>
+     <span class="c">#h_pool2 = max_pool_2x2(h_conv2)</span>
+ 
+     <span class="n">h_conv3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">conv2d</span><span class="p">(</span><span class="n">h_conv2</span><span class="p">,</span> <span class="n">W_conv3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_conv3</span><span class="p">)</span>
+     <span class="c">#h_pool3 = max_pool_2x2(h_conv3)</span>
+ 
+     <span class="c">#h_pool3_flat = tf.reshape(h_pool3, [-1, 256])</span>
+     <span class="n">h_conv3_flat</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">h_conv3</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1600</span><span class="p">])</span>
+ 
+     <span class="n">h_fc1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">h_conv3_flat</span><span class="p">,</span> <span class="n">W_fc1</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_fc1</span><span class="p">)</span>
+ 
+     <span class="c"># readout layer</span>
+     <span class="n">readout</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">h_fc1</span><span class="p">,</span> <span class="n">W_fc2</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_fc2</span>
+ 
+     <span class="k">return</span> <span class="n">s</span><span class="p">,</span> <span class="n">readout</span><span class="p">,</span> <span class="n">h_fc1</span>
+ 
+ <span class="k">def</span> <span class="nf">trainNetwork</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">readout</span><span class="p">,</span> <span class="n">h_fc1</span><span class="p">,</span> <span class="n">sess</span><span class="p">):</span>
+     <span class="c"># define the cost function</span>
+     <span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="n">ACTIONS</span><span class="p">])</span>
+     <span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">])</span>
+     <span class="n">readout_action</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">readout</span><span class="p">,</span> <span class="n">a</span><span class="p">),</span> <span class="n">reduction_indices</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+     <span class="n">cost</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">readout_action</span><span class="p">))</span>
+     <span class="n">train_step</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+ 
+     <span class="c"># open up a game state to communicate with emulator</span>
+     <span class="n">game_state</span> <span class="o">=</span> <span class="n">game</span><span class="o">.</span><span class="n">GameState</span><span class="p">()</span>
+ 
+     <span class="c"># store the previous observations in replay memory</span>
+     <span class="n">D</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+ 
+     <span class="c"># printing</span>
+     <span class="n">a_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"logs_"</span> <span class="o">+</span> <span class="n">GAME</span> <span class="o">+</span> <span class="s">"/readout.txt"</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
+     <span class="n">h_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"logs_"</span> <span class="o">+</span> <span class="n">GAME</span> <span class="o">+</span> <span class="s">"/hidden.txt"</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
+ 
+     <span class="c"># get the first state by doing nothing and preprocess the image to 80x80x4</span>
+     <span class="n">do_nothing</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ACTIONS</span><span class="p">)</span>
+     <span class="n">do_nothing</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+     <span class="n">x_t</span><span class="p">,</span> <span class="n">r_0</span><span class="p">,</span> <span class="n">terminal</span> <span class="o">=</span> <span class="n">game_state</span><span class="o">.</span><span class="n">frame_step</span><span class="p">(</span><span class="n">do_nothing</span><span class="p">)</span>
+     <span class="n">x_t</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">x_t</span><span class="p">,</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">)),</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+     <span class="n">ret</span><span class="p">,</span> <span class="n">x_t</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">x_t</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span>
+     <span class="n">s_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">((</span><span class="n">x_t</span><span class="p">,</span> <span class="n">x_t</span><span class="p">,</span> <span class="n">x_t</span><span class="p">,</span> <span class="n">x_t</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+ 
+     <span class="c"># saving and loading networks</span>
+     <span class="n">saver</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Saver</span><span class="p">()</span>
+     <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">initialize_all_variables</span><span class="p">())</span>
+     <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">get_checkpoint_state</span><span class="p">(</span><span class="s">"saved_networks"</span><span class="p">)</span>
+     <span class="k">if</span> <span class="n">checkpoint</span> <span class="ow">and</span> <span class="n">checkpoint</span><span class="o">.</span><span class="n">model_checkpoint_path</span><span class="p">:</span>
+         <span class="n">saver</span><span class="o">.</span><span class="n">restore</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="n">checkpoint</span><span class="o">.</span><span class="n">model_checkpoint_path</span><span class="p">)</span>
+         <span class="k">print</span><span class="p">(</span><span class="s">"Successfully loaded:"</span><span class="p">,</span> <span class="n">checkpoint</span><span class="o">.</span><span class="n">model_checkpoint_path</span><span class="p">)</span>
+     <span class="k">else</span><span class="p">:</span>
+         <span class="k">print</span><span class="p">(</span><span class="s">"Could not find old network weights"</span><span class="p">)</span>
+ 
+     <span class="c"># start training</span>
+     <span class="n">epsilon</span> <span class="o">=</span> <span class="n">INITIAL_EPSILON</span>
+     <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+     <span class="k">while</span> <span class="s">"flappy bird"</span> <span class="o">!=</span> <span class="s">"angry bird"</span><span class="p">:</span>
+         <span class="c"># choose an action epsilon greedily</span>
+         <span class="n">readout_t</span> <span class="o">=</span> <span class="n">readout</span><span class="o">.</span><span class="nb">eval</span><span class="p">(</span><span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">s</span> <span class="p">:</span> <span class="p">[</span><span class="n">s_t</span><span class="p">]})[</span><span class="mi">0</span><span class="p">]</span>
+         <span class="n">a_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">ACTIONS</span><span class="p">])</span>
+         <span class="n">action_index</span> <span class="o">=</span> <span class="mi">0</span>
+         <span class="k">if</span> <span class="n">t</span> <span class="o">%</span> <span class="n">FRAME_PER_ACTION</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+             <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="n">epsilon</span><span class="p">:</span>
+                 <span class="k">print</span><span class="p">(</span><span class="s">"----------Random Action----------"</span><span class="p">)</span>
+                 <span class="n">action_index</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="n">ACTIONS</span><span class="p">)</span>
+                 <span class="n">a_t</span><span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="n">ACTIONS</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
+             <span class="k">else</span><span class="p">:</span>
+                 <span class="n">action_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">readout_t</span><span class="p">)</span>
+                 <span class="n">a_t</span><span class="p">[</span><span class="n">action_index</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+         <span class="k">else</span><span class="p">:</span>
+             <span class="n">a_t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c"># do nothing</span>
+ 
+         <span class="c"># scale down epsilon</span>
+         <span class="k">if</span> <span class="n">epsilon</span> <span class="o">&gt;</span> <span class="n">FINAL_EPSILON</span> <span class="ow">and</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="n">OBSERVE</span><span class="p">:</span>
+             <span class="n">epsilon</span> <span class="o">-=</span> <span class="p">(</span><span class="n">INITIAL_EPSILON</span> <span class="o">-</span> <span class="n">FINAL_EPSILON</span><span class="p">)</span> <span class="o">/</span> <span class="n">EXPLORE</span>
+ 
+         <span class="c"># run the selected action and observe next state and reward</span>
+         <span class="n">x_t1_colored</span><span class="p">,</span> <span class="n">r_t</span><span class="p">,</span> <span class="n">terminal</span> <span class="o">=</span> <span class="n">game_state</span><span class="o">.</span><span class="n">frame_step</span><span class="p">(</span><span class="n">a_t</span><span class="p">)</span>
+         <span class="n">x_t1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">x_t1_colored</span><span class="p">,</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">)),</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+         <span class="n">ret</span><span class="p">,</span> <span class="n">x_t1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">x_t1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span>
+         <span class="n">x_t1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_t1</span><span class="p">,</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+         <span class="c">#s_t1 = np.append(x_t1, s_t[:,:,1:], axis = 2)</span>
+         <span class="n">s_t1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_t1</span><span class="p">,</span> <span class="n">s_t</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+ 
+         <span class="c"># store the transition in D</span>
+         <span class="n">D</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">s_t</span><span class="p">,</span> <span class="n">a_t</span><span class="p">,</span> <span class="n">r_t</span><span class="p">,</span> <span class="n">s_t1</span><span class="p">,</span> <span class="n">terminal</span><span class="p">))</span>
+         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">D</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">REPLAY_MEMORY</span><span class="p">:</span>
+             <span class="n">D</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+ 
+         <span class="c"># only train if done observing</span>
+         <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="n">OBSERVE</span><span class="p">:</span>
+             <span class="c"># sample a minibatch to train on</span>
+             <span class="n">minibatch</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">BATCH</span><span class="p">)</span>
+ 
+             <span class="c"># get the batch variables</span>
+             <span class="n">s_j_batch</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">minibatch</span><span class="p">]</span>
+             <span class="n">a_batch</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">minibatch</span><span class="p">]</span>
+             <span class="n">r_batch</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">minibatch</span><span class="p">]</span>
+             <span class="n">s_j1_batch</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">minibatch</span><span class="p">]</span>
+ 
+             <span class="n">y_batch</span> <span class="o">=</span> <span class="p">[]</span>
+             <span class="n">readout_j1_batch</span> <span class="o">=</span> <span class="n">readout</span><span class="o">.</span><span class="nb">eval</span><span class="p">(</span><span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">s</span> <span class="p">:</span> <span class="n">s_j1_batch</span><span class="p">})</span>
+             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">minibatch</span><span class="p">)):</span>
+                 <span class="n">terminal</span> <span class="o">=</span> <span class="n">minibatch</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span>
+                 <span class="c"># if terminal, only equals reward</span>
+                 <span class="k">if</span> <span class="n">terminal</span><span class="p">:</span>
+                     <span class="n">y_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r_batch</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                 <span class="k">else</span><span class="p">:</span>
+                     <span class="n">y_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r_batch</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">GAMMA</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="nb">max</span><span class="p">(</span><span class="n">readout_j1_batch</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+ 
+             <span class="c"># perform gradient step</span>
+             <span class="n">train_step</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span>
+                 <span class="n">y</span> <span class="p">:</span> <span class="n">y_batch</span><span class="p">,</span>
+                 <span class="n">a</span> <span class="p">:</span> <span class="n">a_batch</span><span class="p">,</span>
+                 <span class="n">s</span> <span class="p">:</span> <span class="n">s_j_batch</span><span class="p">}</span>
+             <span class="p">)</span>
+ 
+         <span class="c"># update the old values</span>
+         <span class="n">s_t</span> <span class="o">=</span> <span class="n">s_t1</span>
+         <span class="n">t</span> <span class="o">+=</span> <span class="mi">1</span>
+ 
+         <span class="c"># save progress every 10000 iterations</span>
+         <span class="k">if</span> <span class="n">t</span> <span class="o">%</span> <span class="mi">10000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+             <span class="n">saver</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="s">'saved_networks/'</span> <span class="o">+</span> <span class="n">GAME</span> <span class="o">+</span> <span class="s">'-dqn'</span><span class="p">,</span> <span class="n">global_step</span> <span class="o">=</span> <span class="n">t</span><span class="p">)</span>
+ 
+         <span class="c"># print info</span>
+         <span class="n">state</span> <span class="o">=</span> <span class="s">""</span>
+         <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="n">OBSERVE</span><span class="p">:</span>
+             <span class="n">state</span> <span class="o">=</span> <span class="s">"observe"</span>
+         <span class="k">elif</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="n">OBSERVE</span> <span class="ow">and</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="n">OBSERVE</span> <span class="o">+</span> <span class="n">EXPLORE</span><span class="p">:</span>
+             <span class="n">state</span> <span class="o">=</span> <span class="s">"explore"</span>
+         <span class="k">else</span><span class="p">:</span>
+             <span class="n">state</span> <span class="o">=</span> <span class="s">"train"</span>
+ 
+         <span class="k">print</span><span class="p">(</span><span class="s">"TIMESTEP"</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="s">"/ STATE"</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> \
+             <span class="s">"/ EPSILON"</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="s">"/ ACTION"</span><span class="p">,</span> <span class="n">action_index</span><span class="p">,</span> <span class="s">"/ REWARD"</span><span class="p">,</span> <span class="n">r_t</span><span class="p">,</span> \
+             <span class="s">"/ Q_MAX </span><span class="si">%</span><span class="s">e"</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="nb">max</span><span class="p">(</span><span class="n">readout_t</span><span class="p">))</span>
+         <span class="c"># write info to files</span>
+         <span class="s">'''
+         if t </span><span class="si">% 10000</span><span class="s"> &lt;= 100:
+             a_file.write(",".join([str(x) for x in readout_t]) + '</span><span class="se">\n</span><span class="s">')
+             h_file.write(",".join([str(x) for x in h_fc1.eval(feed_dict={s:[s_t]})[0]]) + '</span><span class="se">\n</span><span class="s">')
+             cv2.imwrite("logs_tetris/frame" + str(t) + ".png", x_t1)
+         '''</span>
+ 
+ <span class="k">def</span> <span class="nf">playGame</span><span class="p">():</span>
+     <span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">InteractiveSession</span><span class="p">()</span>
+     <span class="n">s</span><span class="p">,</span> <span class="n">readout</span><span class="p">,</span> <span class="n">h_fc1</span> <span class="o">=</span> <span class="n">createNetwork</span><span class="p">()</span>
+     <span class="n">trainNetwork</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">readout</span><span class="p">,</span> <span class="n">h_fc1</span><span class="p">,</span> <span class="n">sess</span><span class="p">)</span>
+ 
+ <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+     <span class="n">playGame</span><span class="p">()</span>
+ 
+ <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+     <span class="n">main</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>一切的学习都是为了以前吹过的牛皮啊～</p>
+</blockquote>
+
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+      
+        
+        <!-- Disqus Protection, see https://github.com/mzlogin/mzlogin.github.io/issues/2 -->
+        
+        
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'http://firsh.me/2017/07/04/tensorflow-play-game-demo/';
+              this.page.identifier = '/2017/07/04/tensorflow-play-game-demo/';
+              this.page.title = '用Tensorflow基于Deep Q Learning DQN 玩Flappy Bird';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+
+              s.type = 'text/javascript';
+              s.async = true;
+              var shortname = 'zmatsh';
+
+              s.src = '//' + shortname + '.disqus.com/embed.js';
+
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        
+        
+      
+    
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="https://zmatsh.b0.upaiyun.com/assets/css/modules/sidebar-search.css">
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="zmatsh">zmatsh</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/zmatsh/zmatsh.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="首页" target="">首页</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="分类" target="">分类</a>
+                </li>
+                
+                <li>
+                    <a href="/open-source/" title="开源" target="">开源</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="维基" target="">维基</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="链接" target="">链接</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="关于" target="">关于</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-80669434-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+    <script type="text/javascript" src="//rc.revolvermaps.com/0/0/8.js?i=21x1e27561g&amp;m=0&amp;s=341&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"></script>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>
