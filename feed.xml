@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-07-03T18:26:52+08:00</updated><id>http://firsh.me/</id><title type="html">然儿dada(Firsh.me).</title><subtitle>然erDADA，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术。</subtitle><author><name>zmatsh</name></author><entry><title type="html">Jekyll-emoji-表情大全。</title><link href="http://firsh.me/2017/07/03/jekyll-emoji/" rel="alternate" type="text/html" title="Jekyll-emoji-表情大全。" /><published>2017-07-03T00:00:00+08:00</published><updated>2017-07-03T00:00:00+08:00</updated><id>http://firsh.me/2017/07/03/jekyll-emoji</id><content type="html" xml:base="http://firsh.me/2017/07/03/jekyll-emoji/">&lt;p&gt;发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-07-04T13:40:08+08:00</updated><id>http://firsh.me/</id><title type="html">然儿dada(Firsh.me).</title><subtitle>然erDADA，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术。</subtitle><author><name>zmatsh</name></author><entry><title type="html">Jekyll-emoji-表情大全。</title><link href="http://firsh.me/2017/07/03/jekyll-emoji/" rel="alternate" type="text/html" title="Jekyll-emoji-表情大全。" /><published>2017-07-03T00:00:00+08:00</published><updated>2017-07-03T00:00:00+08:00</updated><id>http://firsh.me/2017/07/03/jekyll-emoji</id><content type="html" xml:base="http://firsh.me/2017/07/03/jekyll-emoji/">&lt;p&gt;发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。&lt;/p&gt;
 
 &lt;h1 id=&quot;people&quot;&gt;People&lt;/h1&gt;
 
@@ -906,7 +906,7 @@
 
 &lt;h2 id=&quot;1-安装部署&quot;&gt;1. 安装部署&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/posts/arangodb/WX20170703-180430@2x.png&quot; alt=&quot;arangodb&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/posts/arangodb/WX20170703-180430@2x.png&quot; alt=&quot;arangodb&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;2使用介绍-building-your-own-arangodb-image&quot;&gt;2.使用介绍 （Building your own ArangoDB image）&lt;/h2&gt;
 
@@ -1112,7 +1112,7 @@ U盘的如下：    ![](http://www.right.com.cn/forum/data/attachment/forum/2017
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/posts/ffmpeg/QQ20170629-151034@2x.png&quot; alt=&quot;描述&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/posts/ffmpeg/QQ20170629-151034@2x.png&quot; alt=&quot;描述&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;3频率限制&quot;&gt;3.频率限制&lt;/h2&gt;
 &lt;p&gt;限制GIF体积大小&lt;/p&gt;
@@ -1217,7 +1217,7 @@ ffmpeg -i A.gif   -vf &lt;span class=&quot;s2&quot;&gt;&quot;ass=test.ass&quot;&
  简单说就是：FreeMarker是使用模板生成文本页面来呈现已经准备好的数据。如下图表述&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/posts/java/20141227152045529.png&quot; alt=&quot;描述&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/posts/java/20141227152045529.png&quot; alt=&quot;描述&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;FreeMarker官网：http://freemarker.org/&lt;/p&gt;
 &lt;ul&gt;
@@ -1815,17 +1815,17 @@ Flink主要包括基于Java和Scala的用于批量和基于流数据分析的API
 
 &lt;h2 id=&quot;6-demo&quot;&gt;6. DEMO&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/posts/flink/flink-demo.gif&quot; alt=&quot;Flink&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/posts/flink/flink-demo.gif&quot; alt=&quot;Flink&quot; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;架构图&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/flink.png&quot; alt=&quot;Flink&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/flink.png&quot; alt=&quot;Flink&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/flink-home-graphic-update.svg&quot; alt=&quot;Flink&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/flink-home-graphic-update.svg&quot; alt=&quot;Flink&quot; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;logo
-&lt;img src=&quot;/images/flink-header-logo.svg&quot; alt=&quot;Flink&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/flink-header-logo.svg&quot; alt=&quot;Flink&quot; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</content><author><name>zmatsh</name></author><summary type="html">Apache Flink是一个高效、分布式、基于Java实现的通用大数据分析引擎，它具有分布式 MapReduce一类平台的高效性、灵活性和扩展性以及并行数据库查询优化方案，它支持批量和基于流的数据分析，且提供了基于Java和Scala的API</summary></entry></feed>
