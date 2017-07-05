@@ -1,5 +1,11 @@
 {
   
+  "2017-07-05-gitolite-centos": {
+    "title": "centos7 安装 gitolite （git服务器）",
+    "url": " /2017/07/05/gitolite-centos/",
+    "category": "Install"
+  },
+  
   "2017-07-04-tensorflow-play-game-demo": {
     "title": "用Tensorflow基于Deep Q Learning DQN 玩Flappy Bird",
     "url": " /2017/07/04/tensorflow-play-game-demo/",
@@ -590,6 +596,12 @@
     "title": "用Tensorflow基于Deep Q Learning DQN 玩Flappy Bird",
     "url": "/2017/07/04/tensorflow-play-game-demo/",
     "category": "[&quot;Machine&quot;, &quot;Learning&quot;]"
+  },
+  
+  "2017-07-05-gitolite-centos": {
+    "title": "centos7 安装 gitolite （git服务器）",
+    "url": "/2017/07/05/gitolite-centos/",
+    "category": "[&quot;Install&quot;, &quot;gitolite&quot;, &quot;SuccessFull&quot;]"
   },
   
   "wiki-android-studio": {

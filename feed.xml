@@ -1,4 +1,134 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-07-04T17:54:00+08:00</updated><id>http://firsh.me/</id><title type="html">然儿dada(Firsh.me).</title><subtitle>然erDADA，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术。</subtitle><author><name>zmatsh</name></author><entry><title type="html">用Tensorflow基于Deep Q Learning DQN 玩Flappy Bird</title><link href="http://firsh.me/2017/07/04/tensorflow-play-game-demo/" rel="alternate" type="text/html" title="用Tensorflow基于Deep Q Learning DQN 玩Flappy Bird" /><published>2017-07-04T00:00:00+08:00</published><updated>2017-07-04T00:00:00+08:00</updated><id>http://firsh.me/2017/07/04/tensorflow-play-game-demo</id><content type="html" xml:base="http://firsh.me/2017/07/04/tensorflow-play-game-demo/">&lt;p&gt;发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-07-05T10:57:22+08:00</updated><id>http://firsh.me/</id><title type="html">然儿dada(Firsh.me).</title><subtitle>然erDADA，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术。</subtitle><author><name>zmatsh</name></author><entry><title type="html">centos7 安装 gitolite （git服务器）</title><link href="http://firsh.me/2017/07/05/gitolite-centos/" rel="alternate" type="text/html" title="centos7 安装 gitolite （git服务器）" /><published>2017-07-05T00:00:00+08:00</published><updated>2017-07-05T00:00:00+08:00</updated><id>http://firsh.me/2017/07/05/gitolite-centos</id><content type="html" xml:base="http://firsh.me/2017/07/05/gitolite-centos/">&lt;p&gt;发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。&lt;/p&gt;
+
+&lt;h2 id=&quot;搭建轻量级git服务器程序解决了git权限管理的问题&quot;&gt;搭建轻量级git服务器程序，解决了git权限管理的问题。&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;轻量级git服务器程序，解决了git权限管理的问题。（git是一个分布式版本控制系统，就是说每个人作为客户端的同时又是服务器）
+项目GitHub地址：https://github.com/sitaramc/gitolite
+项目官方文档：http://gitolite.com/gitolite/
+当前环境：centos 7
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;安装前准备&quot;&gt;安装前准备&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 在客户端机器安装git,并生成秘钥
+ 各操作系统安装方法均很简单，请自行安装。
+ 使用git安装目录下的 usr/bin/ssh-keygen生成rsa秘钥:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh-keygen -t rsa 
+&lt;span class=&quot;c&quot;&gt;#然后一路回车到结束。(生成秘钥默认在当前用户目录的.ssh目录下，下面要用）&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;安装没有安装的依赖包&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; yum install -y gcc gcc-c++ pcre pcre-devel zlib zlib-devel openssl openssl-devel perl&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; git
+ &lt;span class=&quot;c&quot;&gt;# 需要注意：gitolite对以上软件版本有一定的要求，如果报错，升级软件即可。&lt;/span&gt;
+ yum update -y  Softname
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;创建用户&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; useradd git
+ passwd git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;! 如果已有用户，请确认
+       * &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.ssh/authorized_keys&lt;/code&gt; 文件是空的或者不存在
+       * 客户机ssh-keygen生成的id_rsa.pub公钥已经拷贝到：&lt;code class=&quot;highlighter-rouge&quot;&gt;~/YourName.pub &lt;/code&gt;，改成自己的名字，为了多人协作时便于区分，并不是硬性规定&lt;/p&gt;
+
+&lt;h2 id=&quot;开始安装&quot;&gt;开始安装&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; su git  &lt;span class=&quot;c&quot;&gt;# 切换到git用户&lt;/span&gt;
+ git clone git://github.com/sitaramc/gitolite
+ mkdir -p ~/bin   &lt;span class=&quot;c&quot;&gt;#一定要创建bin文件夹 &lt;/span&gt;
+ ~/gitolite/install -to ~/bin
+ ~/bin/gitolite setup -pk YourName.pub &lt;span class=&quot;c&quot;&gt;#生成下面所要用的管理库gitolite-admin和测试用库testing&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;添加用户和仓库&quot;&gt;添加用户和仓库&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; git clone git@host:gitolite-admin.git
+    &lt;span class=&quot;c&quot;&gt;#记得修改host&lt;/span&gt;
+    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;打开看到两个文件夹：
+    &lt;ul&gt;
+      &lt;li&gt;conf：存放配置文件（授权文件）&lt;/li&gt;
+      &lt;li&gt;keyDir：存放所有客户端用户的公钥&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;打开conf/gitolite.conf 配置如下：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  @webgroup       =   zhangsan lisi
+  @androidgroup           =   lisi
+  @iosgroup       =   wangwu
+  
+  &amp;lt;!-- 设置管理员的地方 --&amp;gt;
+  repo gitolite-admin
+      RW+     =   lisi
+  
+  &amp;lt;!-- 可以用来学习使用 --&amp;gt;
+  repo testing
+      RW+     =   @all
+      
+  repo web
+      RW+     =   @webgroup
+      R       =   fengshuang
+      
+  repo android
+      RW+     =   @androidgroup
+      
+  repo ios
+      RW+     =   @iosgroup
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;表示新建三个分组：@webgroup、@androidgroup、@iosgroup，新建三个仓库：web、android、ios，RW分别代表读写，可以通过人所属组给人赋权，也可以直接给人赋权，组前记得加@
+将以上配置人间中的人的公钥复制到keyDir文件夹
+然后回到仓库根目录gitolite-admin下，使用以下命令提交修改：&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git add .
+git commit -m &lt;span class=&quot;s2&quot;&gt;&quot;add users and repos&quot;&lt;/span&gt;
+git push
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;##  【注意】：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;开发人员可以git clone仓库的前提是在这个配置文件中进行了授权提交，并且其公钥已经交由管理员提交到keyDir目录中。&lt;/li&gt;
+  &lt;li&gt;简单的权限管理及这么多，基本上够项目使用，更加负责的权限配置，请参阅官方文档。http://gitolite.com/gitolite/&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;## 开发人员下载仓库&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;这里以张三下载web仓库为例&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; git clone git@host:web.git  &lt;span class=&quot;c&quot;&gt;#别忘了后面的.git&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;# 转载请注明出处!&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;一切的学习都是为了以前吹过的牛皮啊～&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>zmatsh</name></author><summary type="html">发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。</summary></entry><entry><title type="html">用Tensorflow基于Deep Q Learning DQN 玩Flappy Bird</title><link href="http://firsh.me/2017/07/04/tensorflow-play-game-demo/" rel="alternate" type="text/html" title="用Tensorflow基于Deep Q Learning DQN 玩Flappy Bird" /><published>2017-07-04T00:00:00+08:00</published><updated>2017-07-04T00:00:00+08:00</updated><id>http://firsh.me/2017/07/04/tensorflow-play-game-demo</id><content type="html" xml:base="http://firsh.me/2017/07/04/tensorflow-play-game-demo/">&lt;p&gt;发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://firsh.me/2017/07/04/tensorflow-node-2&quot;&gt;&lt;strong&gt;上篇博文&lt;/strong&gt;&lt;/a&gt;主要是TensorFlow的一个简单入门.&lt;/p&gt;
 
@@ -2211,65 +2341,4 @@ ffmpeg -i A.wmv -s 320x240  -r 10 B.gif
 ffmpeg -i A.gif   -vf &lt;span class=&quot;s2&quot;&gt;&quot;ass=test.ass&quot;&lt;/span&gt;   B.gif
 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>zmatsh</name></author><summary type="html">ffmpeg转换GIF图片参数,这里介绍的是MOV转为GIF来方便放到Blog上。</summary></entry><entry><title type="html">Kubernetes命名空间资源限制[学习]</title><link href="http://firsh.me/2017/06/29/Kubernetes-namespace-limits/" rel="alternate" type="text/html" title="Kubernetes命名空间资源限制[学习]" /><published>2017-06-29T00:00:00+08:00</published><updated>2017-06-29T00:00:00+08:00</updated><id>http://firsh.me/2017/06/29/Kubernetes-namespace-limits</id><content type="html" xml:base="http://firsh.me/2017/06/29/Kubernetes-namespace-limits/">&lt;p&gt;Kubernetes命名空间资源限制主要是为了多个团队一起开发来区分资源使用情况。&lt;/p&gt;
-
-&lt;h2 id=&quot;1-resourcequota&quot;&gt;1. ResourceQuota&lt;/h2&gt;
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;s&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ResourceQuota&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;compute-resources&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;test&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;hard&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;requests.cpu&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;1&quot;&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;requests.memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;2Gi&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;limits.cpu&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;4&quot;&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;limits.memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;12Gi&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;2-limitrange&quot;&gt;2. LimitRange&lt;/h2&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;s&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;LimitRange&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;limits&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;limits&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;4&quot;&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;2Gi&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;200m&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;6Mi&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;maxLimitRequestRatio&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;3&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;2&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Pod&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;300m&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;200Mi&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;defaultRequest&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;200m&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;100Mi&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;2&quot;&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1Gi&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;100m&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;3Mi&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;maxLimitRequestRatio&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;5&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;4&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Container&lt;/span&gt;
-
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;感谢企业服务部牛总提供的解决方案&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>zmatsh</name></author><summary type="html">Kubernetes命名空间资源限制主要是为了多个团队一起开发来区分资源使用情况。</summary></entry></feed>
+&lt;/div&gt;</content><author><name>zmatsh</name></author><summary type="html">ffmpeg转换GIF图片参数,这里介绍的是MOV转为GIF来方便放到Blog上。</summary></entry></feed>
