@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Ajax封装类,所有的Ajax都需要通过此方法进行发送 以便进行相应的Ajax方式管理 &mdash; 然儿dada(Firsh.me).</title>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2017/07/06/ajax-html-core/">
+    <link rel="alternate" type="application/atom+xml" title="然儿dada(Firsh.me)." href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="Ajax封装类,所有的Ajax都需要通过此方法进行发送 以便进行相应的Ajax方式管理">
+      
+    <meta name="keywords" content="javascript, ajax">
+    <meta name="og:keywords" content="javascript, ajax">
+      
+    <meta name="description" content="发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。">
+    <meta name="og:description" content="发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2017/07/06/ajax-html-core/">
+    <meta property="og:site_name" content="然儿dada(Firsh.me).">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2017-07-06">
+    
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="然儿dada(Firsh.me)."><span class="octicon octicon-mark-github"></span> 然儿dada(Firsh.me).</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="首页">首页</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="分类">分类</a>
+                
+                <a href="/open-source/" class=" site-header-nav-item" target="" title="开源">开源</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="维基">维基</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="链接">链接</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="Ajax封装类,所有的Ajax">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">Ajax封装类,所有的Ajax都需要通过此方法进行发送 以便进行相应的Ajax方式管理</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/07/06
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#ajax,httprequest" title="ajax,httprequest">ajax,httprequest</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <p>发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。</p>
+
+<h2 id="代码">代码</h2>
+
+<p>```javascript 1.8
+/**</p>
+<ul>
+  <li>@author 第一作者：张建新</li>
+  <li>Ajax封装类,所有的Ajax都需要通过此方法进行发送 以便进行相应的Ajax方式管理</li>
+  <li>注意 $.support.cors = true; 用来解决Ajax跨域问题，此方法需要和后台数据接口相配合</li>
+  <li>successFun,errorFun,beforeSendFun,completeFun</li>
+  <li>示例写法</li>
+  <li>var successFun = function functionName(data)</li>
+  <li>{</li>
+  <li>对Ajax解析过来的数据进行渲染</li>
+  <li>}</li>
+  <li>将successFun作为参数传入方法中</li>
+  <li>@param {Object} actionUrl 数据请求地址</li>
+  <li>@param {Object} parems Ajax参数列表</li>
+  <li>@param {Object} sendMethod 发送方式</li>
+  <li>@param {Object} successFun 请求成功后回调函数</li>
+  <li>@param {Object} errorFun 请求错误时回调函数</li>
+  <li>@param {Object} beforeSendFun 在发送请求之前回调函数</li>
+  <li>@param {Object} completeFun 请求完成后回调函数 (请求成功或失败之后均调用)
+ */
+function ajaxLoad(actionUrl,parems,sendMethod,successFun,errorFun,beforeSendFun,completeFun){
+ //解决ajax跨域问题
+ $.support.cors = true;
+ $.ajax( {
+     url :actionUrl, //请求的url地址
+     dataType : “json”, //返回格式为json
+     async : true,//请求是否异步，默认为异步，这也是ajax重要特性 
+     data : parems, //参数值
+     type :sendMethod, //请求方式
+     // 状态
+     beforeSend :beforeSendFun,
+     success : successFun,
+     complete : completeFun,
+     error :errorFun
+ });
+}</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+
+## Toast显示框
+
+```javascript 1.8
+/*
+ * 是否正在Toast通知
+ */
+var isToasting = false;
+/*
+ * Toast通知
+ */
+function Toast(toastText){
+	/*如果正在显示通知*/
+	if(isToasting){
+		/*延时3秒回调方法*/
+		setTimeout(function(){
+			Toast(toastText)
+		},3000);
+	}else{
+		/*设置正在显示通知*/
+		isToasting = true;
+		/*创建通知控件*/
+		var toast = document.createElement("div");
+		/*设置通知文本*/
+		toast.innerHTML = toastText;
+		/*设置通知样式*/
+		toast.className = "Toast";
+		/*延时3秒销毁控件*/
+		setTimeout(function(){	
+			document.body.removeChild(toast);
+			isToasting = false;
+		},3000);
+		/*显示控件*/
+		document.body.appendChild(toast);
+	}
+}
+
+</code></pre>
+</div>
+
+<h2 id="echart-echarts-utils">Echart echarts-utils</h2>
+
+<p>```javascript 1.8
+/**</p>
+<ul>
+  <li>参数列表</li>
+  <li>title 雷达图标题 字符串</li>
+  <li>subTitle 雷达图子标题 字符串</li>
+  <li>analyzeItems 分析项目 字符串数组 如分析北京 上海 广州 的农业林业牧业副业渔业 [‘北京’,’上海’,’广州’]</li>
+  <li>kindItems 雷达图对比分类 如事故分类 农业 林业 牧业 副业 渔业    [‘农业’, ‘林业’, ‘牧业’, ‘副业’, ‘渔业’]</li>
+  <li>
+    <p>datas对应行业的参数的二维数组，注意父数组长度对应对比分类 子数组长度应与分析项目长度相同，对应相应的对比项目下的分类的参数 如[[10,20,50],[30,80,100],[500,600,200],[700,800,900],[100,200,300]]
+ */
+function initRaderMap(title,
+ analyzeItems,
+ datas, drawPictureDiv,pictrueType,yTitle) {
+ var myChart = echarts.init(document.getElementById(drawPictureDiv));</p>
+
+    <p>option = {
+     title: {
+         text: title,
+         x: ‘center’
+     },
+     tooltip: {
+         trigger: ‘axis’
+     },
+     legend: {
+         orient: ‘horizontal’,//默认为 水平布局，垂直布局为 ‘vertical
+         padding: 3,
+         data: analyzeItems,
+         x: ‘center’,
+         y: ‘bottom’
+     },
+     toolbox: {
+         show: true,
+         feature: {
+             mark: {
+                 show: true
+             },
+             dataView: {
+                 show: false,
+                 readOnly: false
+             },
+             magicType: {
+                 show: true,
+                 type: [‘line’, ‘bar’, ‘stack’, ‘tiled’]
+             },
+             restore: {
+                 show: false
+             },
+             saveAsImage: {
+                 show: true
+             }
+         }
+     },
+     calculable: true, //启用拖拽重计算特性
+     xAxis: [{
+         type: ‘category’,
+//			boundaryGap: false,
+         data: getXAxisData(datas)
+     }],
+     yAxis: [{
+         type: ‘value’,
+         name:yTitle,
+         axisLabel : {
+             formatter: ‘{value}’    <br />
+         }
+     }],
+     series : getSeriesData(analyzeItems, datas, pictrueType)
+ };
+ myChart.setOption(option);
+}
+/**</p>
+  </li>
+  <li>获取分析指标参数</li>
+  <li>@param {Object} kindItems 雷达图对比分类 如事故分类 农业 林业 牧业 副业 渔业    [‘农业’, ‘林业’, ‘牧业’, ‘副业’, ‘渔业’]</li>
+  <li>@param {Object} datas datas对应行业的参数的二维数组，注意父数组长度对应对比分类 子数组长度应与分析项目长度相同，对应相应的对比项目下的分类的参数 如[[10,20,50],[30,80,100],[500,600,200],[700,800,900],[100,200,300]]
+ */
+function getXAxisData(datas) {
+ var indicatorArray = new Array(datas.length);
+ for (var i = 0; i &lt; indicatorArray.length; i++) {
+     indicatorArray[i] = datas[i][0];
+     datas[i].splice(0, 1);
+ }
+ return indicatorArray;
+}
+/**</li>
+  <li>获取数据封装参数</li>
+  <li>@param {Object} analyzeItems 分析项目 字符串数组 如分析北京 上海 广州 的农业林业牧业副业渔业 [‘北京’,’上海’,’广州’]</li>
+  <li>@param {Object} datas对应行业的参数的二维数组，注意父数组长度对应对比分类 子数组长度应与分析项目长度相同，对应相应的对比项目下的分类的参数 如[[10,20,50],[30,80,100],[500,600,200],[700,800,900],[100,200,300]]
+ <em>/
+function getSeriesData(analyzeItems, datas, pictrueType) {
+ var seriesData = new Array(analyzeItems.length);
+ for (var i = 0; i &lt; analyzeItems.length; i++) {
+     var dataItem = new Object();
+     dataItem.data = getAnalyzeItem(i, datas);
+     dataItem.name = analyzeItems[i];
+     dataItem.type = pictrueType;
+     dataItem.smooth = true;
+     //					dataItem.itemStyle = {normal: {areaStyle: {type: ‘default’}}};
+     seriesData[i] = dataItem;
+ }
+ /</em>此函数不支持IE8 暂时注释*/
+ //console.log(JSON.stringify(seriesData));
+ return seriesData;
+}
+/**</li>
+  <li>获取指定索引的所有分类数据</li>
+  <li>@param {Object} index 指定的索引</li>
+  <li>
+    <p>@param {Object} datas对应行业的参数的二维数组，注意父数组长度对应对比分类 子数组长度应与分析项目长度相同，对应相应的对比项目下的分类的参数 如[[10,20,50],[30,80,100],[500,600,200],[700,800,900],[100,200,300]]
+ */
+function getAnalyzeItem(index, datas) {
+ var value = new Array(datas.length);
+ for (var i = 0; i &lt; value.length; i++) {
+     value[i] = datas[i][index];
+ }
+ return value;
+}
+function drawPiePicture(drawPictureDiv, title, analyzeItems, datas) {
+ // 基于准备好的dom，初始化echarts图表
+ myChart = echarts.init(document.getElementById(drawPictureDiv));
+ var option = {
+     title: {
+         text: title,
+         x: ‘center’,
+         textStyle:{
+             color: ‘#333’,
+             fontStyle: ‘normal’,
+             fontWeight: ‘normal’,
+             fontFamily: ‘sans-serief’,
+             fontSize: 25
+         }
+     },
+     tooltip: {
+         trigger: ‘item’,
+         formatter: “{a} <br />{b} : {c} ({d}%)”
+     },
+     legend: {
+         orient: ‘vertical’,
+         x: ‘left’,
+         data: analyzeItems,
+         textStyle:{
+             fontStyle: ‘normal’,
+             fontWeight: ‘normal’,
+             fontFamily: ‘sans-serief’,
+             fontSize: 15
+         }
+     },
+     toolbox: {
+         show: true,
+         feature: {
+             mark: {
+                 show: true
+             },
+             dataView: {
+                 show: true,
+                 readOnly: false
+             },
+             magicType: {
+                 show: true,
+                 type: [‘pie’, ‘funnel’],
+                 option: {
+                     funnel: {
+                         x: ‘25%’,
+                         width: ‘50%’,
+                         funnelAlign: ‘left’,
+                         max: 1548
+                     }
+                 }
+             },
+             restore: {
+                 show: true
+             },
+             saveAsImage: {
+                 show: true
+             }
+         }
+     },
+     calculable: true,
+     series: [{
+         type: ‘pie’,
+         radius: ‘55%’,
+         center: [‘50%’, ‘60%’],
+         data: datas,
+         itemStyle: {
+             normal: {
+                 label: {
+                     show: true,
+                     formatter: ‘{b} : {c}’ + ‘吨标煤’ + ‘ ({d}%)’,
+                     textStyle:{
+                         fontStyle: ‘normal’,
+                         fontWeight: ‘normal’,
+                         fontFamily: ‘sans-serief’,
+                         fontSize: 15
+                     }
+                 },
+                 labelLine: {
+                     show: true
+                 }
+             }
+         }
+     }]
+ };
+ // 为echarts对象加载数据 
+ myChart.setOption(option);
+}
+function drawColummnPicture(echartsTitle, drawPictureDiv, analyzeItems) {
+ // 基于准备好的dom，初始化echarts图表
+ myChart = echarts.init(document.getElementById(drawPictureDiv));;
+ // 指定图表的配置项和数据
+ var option = {
+     title: {
+         text: echartsTitle,
+         x: ‘center’
+     },
+     tooltip: {
+         trigger: ‘axis’
+     },
+     legend: {
+         orient: ‘horizontal’,
+         padding: 3,
+         data: analyzeItems,
+         x: ‘center’,
+         y: ‘bottom’
+     },
+     xAxis: [{
+         type: ‘category’,
+         data: [‘系统效率’]
+     }],
+     yAxis: [{
+         type: ‘value’
+     }],
+     series: [{
+         name: ‘’,
+         type: ‘bar’,
+         data: []
+     }]
+ };
+ // 为echarts对象加载数据 
+ myChart.setOption(option);
+}
+function drawColummnMap(title,
+                     analyzeItems,
+                     datas, 
+                     drawPictureDiv,
+                     yTitle) {
+ var myChart = echarts.init(document.getElementById(drawPictureDiv));</p>
+
+    <p>option = {
+     title: {
+         text: title,
+         x: ‘center’
+     },
+     tooltip: {
+         trigger: ‘axis’
+     },
+     legend: {
+         orient: ‘horizontal’,
+         padding: 1,
+         data: analyzeItems,
+         x: ‘center’,
+         y: ‘bottom’,
+         itemWidth: 10,             // 图例图形宽度
+     	itemHeight: 5,  		   // 图例图形高度
+     	textStyle: {
+         	fontSize:7                // 图例文字大小
+     	}
+     },
+     toolbox: {
+         show: true,
+         feature: {
+             mark: {
+                 show: true
+             },
+             dataView: {
+                 show: false,
+                 readOnly: false
+             },
+             magicType: {
+                 show: true,
+                 type: [‘line’, ‘bar’, ‘stack’, ‘tiled’]
+             },
+             restore: {
+                 show: false
+             },
+             saveAsImage: {
+                 show: true
+             }
+         }
+     },
+     calculable: true, //启用拖拽重计算特性
+     xAxis: [{
+         type: ‘category’,
+         data: getXAxisDataOne(datas)
+     }],
+     yAxis: [{
+         type: ‘value’,
+         name:yTitle
+     }],
+     series: getSeriesDataOne(analyzeItems, datas)
+ };
+ myChart.setOption(option);
+}
+         function getXAxisDataOne(pictrueDatas) {
+             var indicatorArray = new Array(pictrueDatas.length);
+             for (var i = 0; i &lt; indicatorArray.length; i++) {
+                 indicatorArray[i] = pictrueDatas[i][0];
+                 pictrueDatas[i].splice(0, 1);
+             }
+             return indicatorArray;
+         }
+         function getSeriesDataOne(testAnalyzeItems, pictrueDatas) {
+             var seriesData = new Array(testAnalyzeItems.length);
+             for (var i = 0; i &lt; testAnalyzeItems.length; i++) {
+                 var dataItem = new Object();
+                 dataItem.data = getAnalyzeItem(i, pictrueDatas);
+                 dataItem.name = testAnalyzeItems[i];
+                 dataItem.type = ‘bar’;
+                 dataItem.smooth = true;
+                 seriesData[i] = dataItem;
+             }
+             return seriesData;
+         }
+         function testAnalyzeItems(index, pictrueDatas) {
+             var value = new Array(pictrueDatas.length);
+             for (var i = 0; i &lt; value.length; i++) {
+                 value[i] = datas[i][index];
+             }
+             return value;
+         }
+```</p>
+  </li>
+</ul>
+
+<h2 id="alertwin-早期作品">alertWin 早期作品</h2>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>    <span class="cm">/**
+     * @author 作者：张建新
+     *弹窗封装类 alertWin(title, msg, w, h)
+     * 示例写法：alertWin('提示信息','数据库修改失败',200,200);
+     * @param {Object} title 标题
+     * @param {Object} msg 错误信息以及提示信息
+     * @param {Object} w 宽度
+     * @param {Object} h 高度
+     **/</span>
+    <span class="kd">function</span> <span class="nx">alertWin</span><span class="p">(</span><span class="nx">title</span><span class="p">,</span> <span class="nx">msg</span><span class="p">,</span> <span class="nx">w</span><span class="p">,</span> <span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">titleheight</span> <span class="o">=</span> <span class="s2">"22px"</span><span class="p">;</span> <span class="c1">// 提示窗口标题高度 </span>
+        <span class="kd">var</span> <span class="nx">bordercolor</span> <span class="o">=</span> <span class="s2">"#364751"</span><span class="p">;</span> <span class="c1">// 提示窗口的边框颜色 </span>
+        <span class="kd">var</span> <span class="nx">titlecolor</span> <span class="o">=</span> <span class="s2">"#FFFFFF"</span><span class="p">;</span> <span class="c1">// 提示窗口的标题颜色 </span>
+        <span class="kd">var</span> <span class="nx">titlebgcolor</span> <span class="o">=</span> <span class="s2">"#364751"</span><span class="p">;</span> <span class="c1">// 提示窗口的标题背景色 </span>
+        <span class="kd">var</span> <span class="nx">bgcolor</span> <span class="o">=</span> <span class="s2">"#FFFFFF"</span><span class="p">;</span> <span class="c1">// 提示内容的背景色 </span>
+    
+        <span class="kd">var</span> <span class="nx">iWidth</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientWidth</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">iHeight</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientHeight</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">bgObj</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"div"</span><span class="p">);</span>
+        <span class="nx">bgObj</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">=</span> <span class="s2">"position:absolute;left:0px;top:0px;width:"</span> <span class="o">+</span> <span class="nx">iWidth</span> <span class="o">+</span> <span class="s2">"px;height:"</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">clientHeight</span><span class="p">,</span> <span class="nx">iHeight</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"px;filter:Alpha(Opacity=30);opacity:0.3;background-color:#000000;z-index:101;"</span><span class="p">;</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">bgObj</span><span class="p">);</span>
+    
+        <span class="kd">var</span> <span class="nx">msgObj</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"div"</span><span class="p">);</span>
+        <span class="nx">msgObj</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">=</span> <span class="s2">"position:absolute;font:11px '宋体';top:"</span> <span class="o">+</span> <span class="p">(</span><span class="nx">iHeight</span> <span class="o">-</span> <span class="nx">h</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="s2">"px;left:"</span> <span class="o">+</span> <span class="p">(</span><span class="nx">iWidth</span> <span class="o">-</span> <span class="nx">w</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="s2">"px;width:"</span> <span class="o">+</span> <span class="nx">w</span> <span class="o">+</span> <span class="s2">"px;height:"</span> <span class="o">+</span> <span class="nx">h</span> <span class="o">+</span> <span class="s2">"px;text-align:center;border:1px solid "</span> <span class="o">+</span> <span class="nx">bordercolor</span> <span class="o">+</span> <span class="s2">";background-color:"</span> <span class="o">+</span> <span class="nx">bgcolor</span> <span class="o">+</span> <span class="s2">";line-height:22px;z-index:102;"</span><span class="p">;</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">msgObj</span><span class="p">);</span>
+    
+        <span class="kd">var</span> <span class="nx">table</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"table"</span><span class="p">);</span> <span class="c1">// </span>
+        <span class="nx">msgObj</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">table</span><span class="p">);</span>
+        <span class="nx">table</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">=</span> <span class="s2">"margin:0px;border:0px;padding:0px;"</span><span class="p">;</span>
+        <span class="nx">table</span><span class="p">.</span><span class="nx">cellSpacing</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">tr</span> <span class="o">=</span> <span class="nx">table</span><span class="p">.</span><span class="nx">insertRow</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">titleBar</span> <span class="o">=</span> <span class="nx">tr</span><span class="p">.</span><span class="nx">insertCell</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+        <span class="nx">titleBar</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">=</span> <span class="s2">"width:100%;height:"</span> <span class="o">+</span> <span class="nx">titleheight</span> <span class="o">+</span> <span class="s2">"px;text-align:left;padding:3px;margin:0px;font:bold 13px '宋体';color:"</span> <span class="o">+</span> <span class="nx">titlecolor</span> <span class="o">+</span> <span class="s2">";border:1px solid "</span> <span class="o">+</span> <span class="nx">bordercolor</span> <span class="o">+</span> <span class="s2">";cursor:move;background-color:"</span> <span class="o">+</span> <span class="nx">titlebgcolor</span><span class="p">;</span>
+        <span class="nx">titleBar</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">paddingLeft</span> <span class="o">=</span> <span class="s2">"10px"</span><span class="p">;</span>
+        <span class="nx">titleBar</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">title</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">moveX</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">moveY</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">moveTop</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">moveLeft</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">moveable</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">docMouseMoveEvent</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">onmousemove</span><span class="p">;</span> 
+        <span class="kd">var</span> <span class="nx">docMouseUpEvent</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">onmouseup</span><span class="p">;</span>
+        <span class="nx">titleBar</span><span class="p">.</span><span class="nx">onmousedown</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">evt</span> <span class="o">=</span> <span class="nx">getEvent</span><span class="p">();</span>
+            <span class="nx">moveable</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="nx">moveX</span> <span class="o">=</span> <span class="nx">evt</span><span class="p">.</span><span class="nx">clientX</span><span class="p">;</span>
+            <span class="nx">moveY</span> <span class="o">=</span> <span class="nx">evt</span><span class="p">.</span><span class="nx">clientY</span><span class="p">;</span>
+            <span class="nx">moveTop</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">msgObj</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">top</span><span class="p">);</span>
+            <span class="nx">moveLeft</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">msgObj</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span><span class="p">);</span>
+    
+            <span class="nb">document</span><span class="p">.</span><span class="nx">onmousemove</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">moveable</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="kd">var</span> <span class="nx">evt</span> <span class="o">=</span> <span class="nx">getEvent</span><span class="p">();</span>
+                    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">moveLeft</span> <span class="o">+</span> <span class="nx">evt</span><span class="p">.</span><span class="nx">clientX</span> <span class="o">-</span> <span class="nx">moveX</span><span class="p">;</span> <span class="c1">//</span>
+                    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">moveTop</span> <span class="o">+</span> <span class="nx">evt</span><span class="p">.</span><span class="nx">clientY</span> <span class="o">-</span> <span class="nx">moveY</span><span class="p">;</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">w</span> <span class="o">&lt;</span> <span class="nx">iWidth</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">y</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">y</span> <span class="o">+</span> <span class="nx">h</span> <span class="o">&lt;</span> <span class="nx">iHeight</span><span class="p">))</span> <span class="p">{</span>
+                        <span class="nx">msgObj</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">+</span> <span class="s2">"px"</span><span class="p">;</span>
+                        <span class="nx">msgObj</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="nx">y</span> <span class="o">+</span> <span class="s2">"px"</span><span class="p">;</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">};</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">onmouseup</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">moveable</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nb">document</span><span class="p">.</span><span class="nx">onmousemove</span> <span class="o">=</span> <span class="nx">docMouseMoveEvent</span><span class="p">;</span> <span class="c1">// </span>
+                    <span class="nb">document</span><span class="p">.</span><span class="nx">onmouseup</span> <span class="o">=</span> <span class="nx">docMouseUpEvent</span><span class="p">;</span>
+                    <span class="nx">moveable</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+                    <span class="nx">moveX</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                    <span class="nx">moveY</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                    <span class="nx">moveTop</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                    <span class="nx">moveLeft</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">};</span>
+        <span class="p">}</span>
+    
+        <span class="kd">var</span> <span class="nx">closeBtn</span> <span class="o">=</span> <span class="nx">tr</span><span class="p">.</span><span class="nx">insertCell</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+        <span class="nx">closeBtn</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">=</span> <span class="s2">"cursor:pointer; padding:2px;background-color:"</span> <span class="o">+</span> <span class="nx">titlebgcolor</span><span class="p">;</span>
+        <span class="nx">closeBtn</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">"&lt;span style='font-size:15pt; color:"</span> <span class="o">+</span> <span class="nx">titlecolor</span> <span class="o">+</span> <span class="s2">";'&gt;×&lt;/span&gt;"</span><span class="p">;</span>
+        <span class="nx">closeBtn</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">bgObj</span><span class="p">);</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">msgObj</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="kd">var</span> <span class="nx">msgBox</span> <span class="o">=</span> <span class="nx">table</span><span class="p">.</span><span class="nx">insertRow</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">).</span><span class="nx">insertCell</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+        <span class="nx">msgBox</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">=</span> <span class="s2">"font:10pt '宋体';"</span><span class="p">;</span>
+        <span class="nx">msgBox</span><span class="p">.</span><span class="nx">colSpan</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="nx">msgBox</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">;</span>
+        <span class="cm">/**
+        获得事件Event对象，用于兼容IE和FireFox 
+        * 为了兼容 Ie 进行获取ie 浏览器窗口的操作控制
+        */</span>
+        <span class="kd">function</span> <span class="nx">getEvent</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nb">window</span><span class="p">.</span><span class="nx">event</span> <span class="o">||</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">.</span><span class="nx">caller</span><span class="p">.</span><span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+      
+        
+        <!-- Disqus Protection, see https://github.com/mzlogin/mzlogin.github.io/issues/2 -->
+        
+        
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'http://firsh.me/2017/07/06/ajax-html-core/';
+              this.page.identifier = '/2017/07/06/ajax-html-core/';
+              this.page.title = 'Ajax封装类,所有的Ajax都需要通过此方法进行发送 以便进行相应的Ajax方式管理';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+
+              s.type = 'text/javascript';
+              s.async = true;
+              var shortname = 'zmatsh';
+
+              s.src = '//' + shortname + '.disqus.com/embed.js';
+
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        
+        
+      
+    
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="https://zmatsh.b0.upaiyun.com/assets/css/modules/sidebar-search.css">
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="zmatsh">zmatsh</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/zmatsh/zmatsh.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="首页" target="">首页</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="分类" target="">分类</a>
+                </li>
+                
+                <li>
+                    <a href="/open-source/" title="开源" target="">开源</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="维基" target="">维基</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="链接" target="">链接</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="关于" target="">关于</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-80669434-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+    <script type="text/javascript" src="//rc.revolvermaps.com/0/0/8.js?i=21x1e27561g&amp;m=0&amp;s=341&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"></script>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>

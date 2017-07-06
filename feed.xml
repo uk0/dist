@@ -1,4 +1,519 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-07-05T10:57:22+08:00</updated><id>http://firsh.me/</id><title type="html">然儿dada(Firsh.me).</title><subtitle>然erDADA，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术。</subtitle><author><name>zmatsh</name></author><entry><title type="html">centos7 安装 gitolite （git服务器）</title><link href="http://firsh.me/2017/07/05/gitolite-centos/" rel="alternate" type="text/html" title="centos7 安装 gitolite （git服务器）" /><published>2017-07-05T00:00:00+08:00</published><updated>2017-07-05T00:00:00+08:00</updated><id>http://firsh.me/2017/07/05/gitolite-centos</id><content type="html" xml:base="http://firsh.me/2017/07/05/gitolite-centos/">&lt;p&gt;发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-07-06T20:06:08+08:00</updated><id>http://firsh.me/</id><title type="html">然儿dada(Firsh.me).</title><subtitle>然erDADA，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术。</subtitle><author><name>zmatsh</name></author><entry><title type="html">Ajax封装类,所有的Ajax都需要通过此方法进行发送 以便进行相应的Ajax方式管理</title><link href="http://firsh.me/2017/07/06/ajax-html-core/" rel="alternate" type="text/html" title="Ajax封装类,所有的Ajax都需要通过此方法进行发送 以便进行相应的Ajax方式管理" /><published>2017-07-06T00:00:00+08:00</published><updated>2017-07-06T00:00:00+08:00</updated><id>http://firsh.me/2017/07/06/ajax-html-core</id><content type="html" xml:base="http://firsh.me/2017/07/06/ajax-html-core/">&lt;p&gt;发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。&lt;/p&gt;
+
+&lt;h2 id=&quot;代码&quot;&gt;代码&lt;/h2&gt;
+
+&lt;p&gt;```javascript 1.8
+/**&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;@author 第一作者：张建新&lt;/li&gt;
+  &lt;li&gt;Ajax封装类,所有的Ajax都需要通过此方法进行发送 以便进行相应的Ajax方式管理&lt;/li&gt;
+  &lt;li&gt;注意 $.support.cors = true; 用来解决Ajax跨域问题，此方法需要和后台数据接口相配合&lt;/li&gt;
+  &lt;li&gt;successFun,errorFun,beforeSendFun,completeFun&lt;/li&gt;
+  &lt;li&gt;示例写法&lt;/li&gt;
+  &lt;li&gt;var successFun = function functionName(data)&lt;/li&gt;
+  &lt;li&gt;{&lt;/li&gt;
+  &lt;li&gt;对Ajax解析过来的数据进行渲染&lt;/li&gt;
+  &lt;li&gt;}&lt;/li&gt;
+  &lt;li&gt;将successFun作为参数传入方法中&lt;/li&gt;
+  &lt;li&gt;@param {Object} actionUrl 数据请求地址&lt;/li&gt;
+  &lt;li&gt;@param {Object} parems Ajax参数列表&lt;/li&gt;
+  &lt;li&gt;@param {Object} sendMethod 发送方式&lt;/li&gt;
+  &lt;li&gt;@param {Object} successFun 请求成功后回调函数&lt;/li&gt;
+  &lt;li&gt;@param {Object} errorFun 请求错误时回调函数&lt;/li&gt;
+  &lt;li&gt;@param {Object} beforeSendFun 在发送请求之前回调函数&lt;/li&gt;
+  &lt;li&gt;@param {Object} completeFun 请求完成后回调函数 (请求成功或失败之后均调用)
+ */
+function ajaxLoad(actionUrl,parems,sendMethod,successFun,errorFun,beforeSendFun,completeFun){
+ //解决ajax跨域问题
+ $.support.cors = true;
+ $.ajax( {
+     url :actionUrl, //请求的url地址
+     dataType : “json”, //返回格式为json
+     async : true,//请求是否异步，默认为异步，这也是ajax重要特性 
+     data : parems, //参数值
+     type :sendMethod, //请求方式
+     // 状态
+     beforeSend :beforeSendFun,
+     success : successFun,
+     complete : completeFun,
+     error :errorFun
+ });
+}&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+
+## Toast显示框
+
+```javascript 1.8
+/*
+ * 是否正在Toast通知
+ */
+var isToasting = false;
+/*
+ * Toast通知
+ */
+function Toast(toastText){
+	/*如果正在显示通知*/
+	if(isToasting){
+		/*延时3秒回调方法*/
+		setTimeout(function(){
+			Toast(toastText)
+		},3000);
+	}else{
+		/*设置正在显示通知*/
+		isToasting = true;
+		/*创建通知控件*/
+		var toast = document.createElement(&quot;div&quot;);
+		/*设置通知文本*/
+		toast.innerHTML = toastText;
+		/*设置通知样式*/
+		toast.className = &quot;Toast&quot;;
+		/*延时3秒销毁控件*/
+		setTimeout(function(){	
+			document.body.removeChild(toast);
+			isToasting = false;
+		},3000);
+		/*显示控件*/
+		document.body.appendChild(toast);
+	}
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;echart-echarts-utils&quot;&gt;Echart echarts-utils&lt;/h2&gt;
+
+&lt;p&gt;```javascript 1.8
+/**&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;参数列表&lt;/li&gt;
+  &lt;li&gt;title 雷达图标题 字符串&lt;/li&gt;
+  &lt;li&gt;subTitle 雷达图子标题 字符串&lt;/li&gt;
+  &lt;li&gt;analyzeItems 分析项目 字符串数组 如分析北京 上海 广州 的农业林业牧业副业渔业 [‘北京’,’上海’,’广州’]&lt;/li&gt;
+  &lt;li&gt;kindItems 雷达图对比分类 如事故分类 农业 林业 牧业 副业 渔业    [‘农业’, ‘林业’, ‘牧业’, ‘副业’, ‘渔业’]&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;datas对应行业的参数的二维数组，注意父数组长度对应对比分类 子数组长度应与分析项目长度相同，对应相应的对比项目下的分类的参数 如[[10,20,50],[30,80,100],[500,600,200],[700,800,900],[100,200,300]]
+ */
+function initRaderMap(title,
+ analyzeItems,
+ datas, drawPictureDiv,pictrueType,yTitle) {
+ var myChart = echarts.init(document.getElementById(drawPictureDiv));&lt;/p&gt;
+
+    &lt;p&gt;option = {
+     title: {
+         text: title,
+         x: ‘center’
+     },
+     tooltip: {
+         trigger: ‘axis’
+     },
+     legend: {
+         orient: ‘horizontal’,//默认为 水平布局，垂直布局为 ‘vertical
+         padding: 3,
+         data: analyzeItems,
+         x: ‘center’,
+         y: ‘bottom’
+     },
+     toolbox: {
+         show: true,
+         feature: {
+             mark: {
+                 show: true
+             },
+             dataView: {
+                 show: false,
+                 readOnly: false
+             },
+             magicType: {
+                 show: true,
+                 type: [‘line’, ‘bar’, ‘stack’, ‘tiled’]
+             },
+             restore: {
+                 show: false
+             },
+             saveAsImage: {
+                 show: true
+             }
+         }
+     },
+     calculable: true, //启用拖拽重计算特性
+     xAxis: [{
+         type: ‘category’,
+//			boundaryGap: false,
+         data: getXAxisData(datas)
+     }],
+     yAxis: [{
+         type: ‘value’,
+         name:yTitle,
+         axisLabel : {
+             formatter: ‘{value}’    &lt;br /&gt;
+         }
+     }],
+     series : getSeriesData(analyzeItems, datas, pictrueType)
+ };
+ myChart.setOption(option);
+}
+/**&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;获取分析指标参数&lt;/li&gt;
+  &lt;li&gt;@param {Object} kindItems 雷达图对比分类 如事故分类 农业 林业 牧业 副业 渔业    [‘农业’, ‘林业’, ‘牧业’, ‘副业’, ‘渔业’]&lt;/li&gt;
+  &lt;li&gt;@param {Object} datas datas对应行业的参数的二维数组，注意父数组长度对应对比分类 子数组长度应与分析项目长度相同，对应相应的对比项目下的分类的参数 如[[10,20,50],[30,80,100],[500,600,200],[700,800,900],[100,200,300]]
+ */
+function getXAxisData(datas) {
+ var indicatorArray = new Array(datas.length);
+ for (var i = 0; i &amp;lt; indicatorArray.length; i++) {
+     indicatorArray[i] = datas[i][0];
+     datas[i].splice(0, 1);
+ }
+ return indicatorArray;
+}
+/**&lt;/li&gt;
+  &lt;li&gt;获取数据封装参数&lt;/li&gt;
+  &lt;li&gt;@param {Object} analyzeItems 分析项目 字符串数组 如分析北京 上海 广州 的农业林业牧业副业渔业 [‘北京’,’上海’,’广州’]&lt;/li&gt;
+  &lt;li&gt;@param {Object} datas对应行业的参数的二维数组，注意父数组长度对应对比分类 子数组长度应与分析项目长度相同，对应相应的对比项目下的分类的参数 如[[10,20,50],[30,80,100],[500,600,200],[700,800,900],[100,200,300]]
+ &lt;em&gt;/
+function getSeriesData(analyzeItems, datas, pictrueType) {
+ var seriesData = new Array(analyzeItems.length);
+ for (var i = 0; i &amp;lt; analyzeItems.length; i++) {
+     var dataItem = new Object();
+     dataItem.data = getAnalyzeItem(i, datas);
+     dataItem.name = analyzeItems[i];
+     dataItem.type = pictrueType;
+     dataItem.smooth = true;
+     //					dataItem.itemStyle = {normal: {areaStyle: {type: ‘default’}}};
+     seriesData[i] = dataItem;
+ }
+ /&lt;/em&gt;此函数不支持IE8 暂时注释*/
+ //console.log(JSON.stringify(seriesData));
+ return seriesData;
+}
+/**&lt;/li&gt;
+  &lt;li&gt;获取指定索引的所有分类数据&lt;/li&gt;
+  &lt;li&gt;@param {Object} index 指定的索引&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;@param {Object} datas对应行业的参数的二维数组，注意父数组长度对应对比分类 子数组长度应与分析项目长度相同，对应相应的对比项目下的分类的参数 如[[10,20,50],[30,80,100],[500,600,200],[700,800,900],[100,200,300]]
+ */
+function getAnalyzeItem(index, datas) {
+ var value = new Array(datas.length);
+ for (var i = 0; i &amp;lt; value.length; i++) {
+     value[i] = datas[i][index];
+ }
+ return value;
+}
+function drawPiePicture(drawPictureDiv, title, analyzeItems, datas) {
+ // 基于准备好的dom，初始化echarts图表
+ myChart = echarts.init(document.getElementById(drawPictureDiv));
+ var option = {
+     title: {
+         text: title,
+         x: ‘center’,
+         textStyle:{
+             color: ‘#333’,
+             fontStyle: ‘normal’,
+             fontWeight: ‘normal’,
+             fontFamily: ‘sans-serief’,
+             fontSize: 25
+         }
+     },
+     tooltip: {
+         trigger: ‘item’,
+         formatter: “{a} &lt;br /&gt;{b} : {c} ({d}%)”
+     },
+     legend: {
+         orient: ‘vertical’,
+         x: ‘left’,
+         data: analyzeItems,
+         textStyle:{
+             fontStyle: ‘normal’,
+             fontWeight: ‘normal’,
+             fontFamily: ‘sans-serief’,
+             fontSize: 15
+         }
+     },
+     toolbox: {
+         show: true,
+         feature: {
+             mark: {
+                 show: true
+             },
+             dataView: {
+                 show: true,
+                 readOnly: false
+             },
+             magicType: {
+                 show: true,
+                 type: [‘pie’, ‘funnel’],
+                 option: {
+                     funnel: {
+                         x: ‘25%’,
+                         width: ‘50%’,
+                         funnelAlign: ‘left’,
+                         max: 1548
+                     }
+                 }
+             },
+             restore: {
+                 show: true
+             },
+             saveAsImage: {
+                 show: true
+             }
+         }
+     },
+     calculable: true,
+     series: [{
+         type: ‘pie’,
+         radius: ‘55%’,
+         center: [‘50%’, ‘60%’],
+         data: datas,
+         itemStyle: {
+             normal: {
+                 label: {
+                     show: true,
+                     formatter: ‘{b} : {c}’ + ‘吨标煤’ + ‘ ({d}%)’,
+                     textStyle:{
+                         fontStyle: ‘normal’,
+                         fontWeight: ‘normal’,
+                         fontFamily: ‘sans-serief’,
+                         fontSize: 15
+                     }
+                 },
+                 labelLine: {
+                     show: true
+                 }
+             }
+         }
+     }]
+ };
+ // 为echarts对象加载数据 
+ myChart.setOption(option);
+}
+function drawColummnPicture(echartsTitle, drawPictureDiv, analyzeItems) {
+ // 基于准备好的dom，初始化echarts图表
+ myChart = echarts.init(document.getElementById(drawPictureDiv));;
+ // 指定图表的配置项和数据
+ var option = {
+     title: {
+         text: echartsTitle,
+         x: ‘center’
+     },
+     tooltip: {
+         trigger: ‘axis’
+     },
+     legend: {
+         orient: ‘horizontal’,
+         padding: 3,
+         data: analyzeItems,
+         x: ‘center’,
+         y: ‘bottom’
+     },
+     xAxis: [{
+         type: ‘category’,
+         data: [‘系统效率’]
+     }],
+     yAxis: [{
+         type: ‘value’
+     }],
+     series: [{
+         name: ‘’,
+         type: ‘bar’,
+         data: []
+     }]
+ };
+ // 为echarts对象加载数据 
+ myChart.setOption(option);
+}
+function drawColummnMap(title,
+                     analyzeItems,
+                     datas, 
+                     drawPictureDiv,
+                     yTitle) {
+ var myChart = echarts.init(document.getElementById(drawPictureDiv));&lt;/p&gt;
+
+    &lt;p&gt;option = {
+     title: {
+         text: title,
+         x: ‘center’
+     },
+     tooltip: {
+         trigger: ‘axis’
+     },
+     legend: {
+         orient: ‘horizontal’,
+         padding: 1,
+         data: analyzeItems,
+         x: ‘center’,
+         y: ‘bottom’,
+         itemWidth: 10,             // 图例图形宽度
+     	itemHeight: 5,  		   // 图例图形高度
+     	textStyle: {
+         	fontSize:7                // 图例文字大小
+     	}
+     },
+     toolbox: {
+         show: true,
+         feature: {
+             mark: {
+                 show: true
+             },
+             dataView: {
+                 show: false,
+                 readOnly: false
+             },
+             magicType: {
+                 show: true,
+                 type: [‘line’, ‘bar’, ‘stack’, ‘tiled’]
+             },
+             restore: {
+                 show: false
+             },
+             saveAsImage: {
+                 show: true
+             }
+         }
+     },
+     calculable: true, //启用拖拽重计算特性
+     xAxis: [{
+         type: ‘category’,
+         data: getXAxisDataOne(datas)
+     }],
+     yAxis: [{
+         type: ‘value’,
+         name:yTitle
+     }],
+     series: getSeriesDataOne(analyzeItems, datas)
+ };
+ myChart.setOption(option);
+}
+         function getXAxisDataOne(pictrueDatas) {
+             var indicatorArray = new Array(pictrueDatas.length);
+             for (var i = 0; i &amp;lt; indicatorArray.length; i++) {
+                 indicatorArray[i] = pictrueDatas[i][0];
+                 pictrueDatas[i].splice(0, 1);
+             }
+             return indicatorArray;
+         }
+         function getSeriesDataOne(testAnalyzeItems, pictrueDatas) {
+             var seriesData = new Array(testAnalyzeItems.length);
+             for (var i = 0; i &amp;lt; testAnalyzeItems.length; i++) {
+                 var dataItem = new Object();
+                 dataItem.data = getAnalyzeItem(i, pictrueDatas);
+                 dataItem.name = testAnalyzeItems[i];
+                 dataItem.type = ‘bar’;
+                 dataItem.smooth = true;
+                 seriesData[i] = dataItem;
+             }
+             return seriesData;
+         }
+         function testAnalyzeItems(index, pictrueDatas) {
+             var value = new Array(pictrueDatas.length);
+             for (var i = 0; i &amp;lt; value.length; i++) {
+                 value[i] = datas[i][index];
+             }
+             return value;
+         }
+```&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;alertwin-早期作品&quot;&gt;alertWin 早期作品&lt;/h2&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;cm&quot;&gt;/**
+     * @author 作者：张建新
+     *弹窗封装类 alertWin(title, msg, w, h)
+     * 示例写法：alertWin('提示信息','数据库修改失败',200,200);
+     * @param {Object} title 标题
+     * @param {Object} msg 错误信息以及提示信息
+     * @param {Object} w 宽度
+     * @param {Object} h 高度
+     **/&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;alertWin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;titleheight&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;22px&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 提示窗口标题高度 &lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bordercolor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#364751&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 提示窗口的边框颜色 &lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;titlecolor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#FFFFFF&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 提示窗口的标题颜色 &lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;titlebgcolor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#364751&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 提示窗口的标题背景色 &lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bgcolor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#FFFFFF&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 提示内容的背景色 &lt;/span&gt;
+    
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;iWidth&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;documentElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;iHeight&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;documentElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientHeight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bgObj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;div&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;bgObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cssText&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;position:absolute;left:0px;top:0px;width:&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;iWidth&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;px;height:&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientHeight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;iHeight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;px;filter:Alpha(Opacity=30);opacity:0.3;background-color:#000000;z-index:101;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;appendChild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bgObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;msgObj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;div&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;msgObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cssText&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;position:absolute;font:11px '宋体';top:&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;iHeight&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;px;left:&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;iWidth&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;px;width:&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;px;height:&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;px;text-align:center;border:1px solid &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bordercolor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;;background-color:&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bgcolor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;;line-height:22px;z-index:102;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;appendChild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;msgObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;table&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;table&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// &lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;msgObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;appendChild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cssText&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;margin:0px;border:0px;padding:0px;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cellSpacing&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;insertRow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;titleBar&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;insertCell&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;titleBar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cssText&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;width:100%;height:&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;titleheight&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;px;text-align:left;padding:3px;margin:0px;font:bold 13px '宋体';color:&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;titlecolor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;;border:1px solid &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bordercolor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;;cursor:move;background-color:&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;titlebgcolor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;titleBar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;paddingLeft&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;10px&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;titleBar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;innerHTML&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;moveX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;moveY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;moveTop&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;moveLeft&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;moveable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;docMouseMoveEvent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onmousemove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;docMouseUpEvent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onmouseup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;titleBar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onmousedown&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;evt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;moveable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;moveX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;evt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;moveY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;evt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;moveTop&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;parseInt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;msgObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;moveLeft&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;parseInt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;msgObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    
+            &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onmousemove&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;moveable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;evt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+                    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;moveLeft&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;evt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;moveX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//&lt;/span&gt;
+                    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;moveTop&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;evt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;moveY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;iWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;iHeight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                        &lt;span class=&quot;nx&quot;&gt;msgObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;px&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                        &lt;span class=&quot;nx&quot;&gt;msgObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;px&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+                &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+            &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onmouseup&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;moveable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onmousemove&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;docMouseMoveEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// &lt;/span&gt;
+                    &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onmouseup&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;docMouseUpEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                    &lt;span class=&quot;nx&quot;&gt;moveable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                    &lt;span class=&quot;nx&quot;&gt;moveX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                    &lt;span class=&quot;nx&quot;&gt;moveY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                    &lt;span class=&quot;nx&quot;&gt;moveTop&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                    &lt;span class=&quot;nx&quot;&gt;moveLeft&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;closeBtn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;insertCell&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;closeBtn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cssText&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;cursor:pointer; padding:2px;background-color:&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;titlebgcolor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;closeBtn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;innerHTML&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;span style='font-size:15pt; color:&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;titlecolor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;;'&amp;gt;×&amp;lt;/span&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;closeBtn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onclick&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;removeChild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bgObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;removeChild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;msgObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;msgBox&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;insertRow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;insertCell&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;msgBox&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cssText&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;font:10pt '宋体';&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;msgBox&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;colSpan&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;msgBox&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;innerHTML&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;cm&quot;&gt;/**
+        获得事件Event对象，用于兼容IE和FireFox 
+        * 为了兼容 Ie 进行获取ie 浏览器窗口的操作控制
+        */&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;callee&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;caller&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><author><name>zmatsh</name></author><summary type="html">发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。</summary></entry><entry><title type="html">centos7 安装 gitolite （git服务器）</title><link href="http://firsh.me/2017/07/05/gitolite-centos/" rel="alternate" type="text/html" title="centos7 安装 gitolite （git服务器）" /><published>2017-07-05T00:00:00+08:00</published><updated>2017-07-05T00:00:00+08:00</updated><id>http://firsh.me/2017/07/05/gitolite-centos</id><content type="html" xml:base="http://firsh.me/2017/07/05/gitolite-centos/">&lt;p&gt;发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。&lt;/p&gt;
 
 &lt;h2 id=&quot;搭建轻量级git服务器程序解决了git权限管理的问题&quot;&gt;搭建轻量级git服务器程序，解决了git权限管理的问题。&lt;/h2&gt;
 
@@ -2299,46 +2814,4 @@ U盘的如下：    ![](http://www.right.com.cn/forum/data/attachment/forum/2017
 
 &lt;blockquote&gt;
   &lt;p&gt;至此，K2P 加装 USB 完美结束（可惜由于USB3.0的干扰问，没有继续）。&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>zmatsh</name></author><summary type="html">发这个贴的原因，只是想跟大家一起探讨一下，也可以为想加USB的朋友们做个参考，同时也欢迎大家来陶侃吐槽。 由于时间的原因，所以，加USB的过程，可能要几天来完成，请大家理解。。。 首先，吐槽一下某东，618凌晨撸的K2P，623晚10点才收到，那个心情捉急啊，某东，我对你太失望了。</summary></entry><entry><title type="html">ffmpeg转换GIF图片参数,MOV转GIF[常用]</title><link href="http://firsh.me/2017/06/29/ffmpeg-mov-gif-mac/" rel="alternate" type="text/html" title="ffmpeg转换GIF图片参数,MOV转GIF[常用]" /><published>2017-06-29T00:00:00+08:00</published><updated>2017-06-29T00:00:00+08:00</updated><id>http://firsh.me/2017/06/29/ffmpeg-mov-gif-mac</id><content type="html" xml:base="http://firsh.me/2017/06/29/ffmpeg-mov-gif-mac/">&lt;p&gt;ffmpeg转换GIF图片参数,这里介绍的是MOV转为GIF来方便放到Blog上。&lt;/p&gt;
-
-&lt;h2 id=&quot;1-介绍&quot;&gt;1. 介绍&lt;/h2&gt;
-
-&lt;p&gt;ffmpeg除了在音视频方面牛叉之外，在转换gif动态图片方面也是不弱的，修改分辨率，改变帧率，颜色模式，添加水印字幕等等均不在话下；&lt;/p&gt;
-
-&lt;p&gt;下面几个操作命令是我这几天一一测试过，有需要的拿去，ffmpeg真的超级强大，轻而易举就能实现想要的效果；&lt;/p&gt;
-
-&lt;h2 id=&quot;2-从视频第三十秒处开始截取视频截取十秒钟片段&quot;&gt;2. 从视频第三十秒处开始截取视频，截取十秒钟片段&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ffmpeg -ss 0 -t 150 -i Flinkdemo.mov  -s 800x600 -f gif -r 1 b.gif
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/posts/ffmpeg/QQ20170629-151034@2x.png&quot; alt=&quot;描述&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;3频率限制&quot;&gt;3.频率限制&lt;/h2&gt;
-&lt;p&gt;限制GIF体积大小&lt;/p&gt;
-
-&lt;p&gt;直接输出的gif体积会相对比较大，压缩不是很厉害，像在QQ中发送gif体积不能大于6M，所以要使用参数来降低gif图片体积大小；&lt;/p&gt;
-
-&lt;p&gt;-s 输出分辨率
--r 帧率&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-ffmpeg -i A.wmv -s 320x240  -r 10 B.gif
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;4rgb颜色限制输出rgb24位颜色gif图片&quot;&gt;4.RGB颜色限制,输出RGB24位颜色gif图片&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ffmpeg -i A.wmv -pix_fmt rgb24   B.gif
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;5给gif动态图片添加字幕&quot;&gt;5.给gif动态图片添加字幕&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-ffmpeg -i A.gif   -vf &lt;span class=&quot;s2&quot;&gt;&quot;ass=test.ass&quot;&lt;/span&gt;   B.gif
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>zmatsh</name></author><summary type="html">ffmpeg转换GIF图片参数,这里介绍的是MOV转为GIF来方便放到Blog上。</summary></entry></feed>
+&lt;/blockquote&gt;</content><author><name>zmatsh</name></author><summary type="html">发这个贴的原因，只是想跟大家一起探讨一下，也可以为想加USB的朋友们做个参考，同时也欢迎大家来陶侃吐槽。 由于时间的原因，所以，加USB的过程，可能要几天来完成，请大家理解。。。 首先，吐槽一下某东，618凌晨撸的K2P，623晚10点才收到，那个心情捉急啊，某东，我对你太失望了。</summary></entry></feed>

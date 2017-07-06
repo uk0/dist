@@ -1,5 +1,11 @@
 {
   
+  "2017-07-06-ajax-html-core": {
+    "title": "Ajax封装类,所有的Ajax都需要通过此方法进行发送 以便进行相应的Ajax方式管理",
+    "url": " /2017/07/06/ajax-html-core/",
+    "category": "ajax,httprequest"
+  },
+  
   "2017-07-05-gitolite-centos": {
     "title": "centos7 安装 gitolite （git服务器）",
     "url": " /2017/07/05/gitolite-centos/",
@@ -602,6 +608,12 @@
     "title": "centos7 安装 gitolite （git服务器）",
     "url": "/2017/07/05/gitolite-centos/",
     "category": "[&quot;Install&quot;, &quot;gitolite&quot;, &quot;SuccessFull&quot;]"
+  },
+  
+  "2017-07-06-ajax-html-core": {
+    "title": "Ajax封装类,所有的Ajax都需要通过此方法进行发送 以便进行相应的Ajax方式管理",
+    "url": "/2017/07/06/ajax-html-core/",
+    "category": "[&quot;ajax,httprequest&quot;]"
   },
   
   "wiki-android-studio": {
