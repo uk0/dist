@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Handtable封装类,所有的Table都需要通过此工具操作表格 &mdash; 然儿dada(Firsh.me).</title>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2017/07/06/HandtableTools-core/">
+    <link rel="alternate" type="application/atom+xml" title="然儿dada(Firsh.me)." href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="Handtable封装类,所有的Table都需要通过此工具操作表格">
+      
+    <meta name="keywords" content="javascript, Handtable">
+    <meta name="og:keywords" content="javascript, Handtable">
+      
+    <meta name="description" content="发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。">
+    <meta name="og:description" content="发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2017/07/06/HandtableTools-core/">
+    <meta property="og:site_name" content="然儿dada(Firsh.me).">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2017-07-06">
+    
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="然儿dada(Firsh.me)."><span class="octicon octicon-mark-github"></span> 然儿dada(Firsh.me).</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="首页">首页</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="分类">分类</a>
+                
+                <a href="/open-source/" class=" site-header-nav-item" target="" title="开源">开源</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="维基">维基</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="链接">链接</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="Handtable封装类,所有">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">Handtable封装类,所有的Table都需要通过此工具操作表格</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/07/06
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#Handtable,HandtableExcel" title="Handtable,HandtableExcel">Handtable,HandtableExcel</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <p>发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。</p>
+
+<h2 id="代码">代码</h2>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="cm">/**
+ * @author 张建新
+ * @数据表格加载
+ * @callback 无
+ * @DataType tableTools.init(@Coulnms) &lt;-调用方式
+ * @Coulnms List&lt;Map[CID,TYPE]&gt; result
+ * (@所在div,@列数据(以及类型),@表格装载数据,@表头数据(中文),@是否激活右键菜单(右键可以开启只读模式),@是否表格只读)
+ **/</span>
+<span class="kd">var</span> <span class="nx">HandtableTools</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="cm">/**
+	 * HandtableTools 工具初始化方法
+	 * @param {Object} tableContainerDiv 表格载体Div
+	 * @param {Object} tableColumnInfo 表格列信息
+	 * @param {Object} contextMenuFlag 是否显示右键列表
+	 * @param {Object} readOnlyFlag 表格是否只读
+	 */</span>
+	<span class="na">initColumnsType</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">tableContainerDiv</span><span class="p">,</span> <span class="nx">tableColumnInfo</span><span class="p">,</span> <span class="nx">contextMenuFlag</span><span class="p">,</span> <span class="nx">readOnlyFlag</span><span class="p">)</span> <span class="p">{</span>
+		<span class="cm">/*初始化表格基本信息*/</span>
+		<span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">tableContainerDiv</span> <span class="o">=</span> <span class="nx">tableContainerDiv</span><span class="p">;</span>
+		<span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">tableColumnInfo</span> <span class="o">=</span> <span class="nx">tableColumnInfo</span><span class="p">;</span>
+		<span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">contextMenuFlag</span> <span class="o">=</span> <span class="nx">contextMenuFlag</span><span class="p">;</span>
+		<span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">readOnlyFlag</span> <span class="o">=</span> <span class="nx">readOnlyFlag</span><span class="p">;</span>
+	<span class="p">},</span>
+	<span class="cm">/**
+	 * 当前表格容器Div
+	 */</span>
+	<span class="na">tableContainerDiv</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+	<span class="cm">/**
+	 * 当前表格列基本信息
+	 */</span>
+	<span class="na">tableColumnInfo</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+	<span class="cm">/**
+	 * 是否显示右键列表
+	 */</span>
+	<span class="na">contextMenuFlag</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+	<span class="cm">/**
+	 * 表是否只读
+	 */</span>
+	<span class="na">readOnlyFlag</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+	<span class="cm">/*
+	 * 最终插入的数据 
+	 */</span>
+	<span class="na">insertData</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+	<span class="cm">/**
+	 * 表格控制器
+	 */</span>
+	<span class="na">handsontableControl</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+	<span class="cm">/**
+	 *初始化表格数据 
+	 * @param {Object} gridData
+	 */</span>
+	<span class="na">initTableData</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">gridData</span><span class="p">)</span> <span class="p">{</span>
+		<span class="cm">/**
+		 * 表格列信息
+		 */</span>
+		<span class="kd">var</span> <span class="nx">columnsInfo</span> <span class="o">=</span> <span class="p">[];</span>
+		<span class="cm">/**
+		 * 表头中文信息
+		 */</span>
+		<span class="kd">var</span> <span class="nx">columnsHeadersInfo</span> <span class="o">=</span> <span class="p">[];</span>
+		<span class="cm">/**
+		 * 初始化插入数据
+		 */</span>
+		<span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">insertData</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+		<span class="cm">/**
+		 * 遍历表格数据 加载到插入数据
+		 */</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">gridData</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">insertData</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span>
+			<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">tableColumnInfo</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+				<span class="cm">/**eval('HandtableTools.insertData[' + i +'].' + HandtableTools.tableColumnInfo[j].fieid + "=null");*/</span>
+				<span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">insertData</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">tableColumnInfo</span><span class="p">[</span><span class="nx">j</span><span class="p">].</span><span class="nx">fieid</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="cm">/**
+		 * 设置表格列信息
+		 */</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">tableColumnInfo</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">columnsInfo</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+				<span class="na">data</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span><span class="cm">/**真实列名*/</span>
+				<span class="na">type</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span><span class="cm">/**数据类型*/</span>
+				<span class="na">readOnly</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span><span class="cm">/**列只读*/</span>
+				<span class="na">comment</span><span class="p">:</span><span class="s1">''</span><span class="cm">/**注释*/</span>
+			
+			<span class="p">});</span>
+		<span class="p">}</span>
+		<span class="cm">/**清空数据*/</span>
+		<span class="nx">columnsHeadersInfo</span><span class="p">.</span><span class="nx">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="cm">/**解析表格列信息 标注中文列名*/</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">c</span> <span class="o">&lt;</span> <span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">tableColumnInfo</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">c</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="cm">/**标注中文列名*/</span>
+			<span class="nx">columnsHeadersInfo</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">tableColumnInfo</span><span class="p">[</span><span class="nx">c</span><span class="p">].</span><span class="nx">alias</span><span class="p">);</span>
+		<span class="p">}</span>
+		
+		<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">c</span> <span class="o">&lt;</span> <span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">tableColumnInfo</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">c</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="cm">/**设置列真实Data*/</span>
+			<span class="nx">columnsInfo</span><span class="p">[</span><span class="nx">c</span><span class="p">][</span><span class="s1">'data'</span><span class="p">]</span> <span class="o">=</span> <span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">tableColumnInfo</span><span class="p">[</span><span class="nx">c</span><span class="p">].</span><span class="nx">fieid</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">();</span>
+			<span class="cm">/**设置列类型*/</span>
+			<span class="nx">columnsInfo</span><span class="p">[</span><span class="nx">c</span><span class="p">][</span><span class="s1">'type'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">""</span> <span class="o">+</span> <span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">tableColumnInfo</span><span class="p">[</span><span class="nx">c</span><span class="p">].</span><span class="nx">genre</span> <span class="o">+</span> <span class="s2">""</span><span class="p">;</span>
+			<span class="cm">/**设置comments*/</span>
+			<span class="nx">columnsInfo</span><span class="p">[</span><span class="nx">c</span><span class="p">][</span><span class="s1">'comment'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">""</span> <span class="o">+</span> <span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">tableColumnInfo</span><span class="p">[</span><span class="nx">c</span><span class="p">].</span><span class="nx">comat</span> <span class="o">+</span> <span class="s2">""</span><span class="p">;</span>
+			<span class="cm">/**判断是否是主键 如果是主键不允许修改*/</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">tableColumnInfo</span><span class="p">[</span><span class="nx">c</span><span class="p">].</span><span class="nx">ispk</span> <span class="o">==</span> <span class="s2">"t"</span> <span class="o">&amp;&amp;</span> <span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">tableColumnInfo</span><span class="p">[</span><span class="nx">c</span><span class="p">].</span><span class="nx">ispk</span> <span class="o">!=</span> <span class="s2">""</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">columnsInfo</span><span class="p">[</span><span class="nx">c</span><span class="p">][</span><span class="s1">'readOnly'</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> <span class="cm">/**可以修改列*/</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+				<span class="nx">columnsInfo</span><span class="p">[</span><span class="nx">c</span><span class="p">][</span><span class="s1">'readOnly'</span><span class="p">]</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span> <span class="cm">/**列不能修改*/</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">tableContainerDiv</span><span class="p">);</span>
+		<span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">obs</span> <span class="o">=</span> <span class="nx">columnsInfo</span><span class="p">;</span>
+		<span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">handsontableControl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Handsontable</span><span class="p">(</span><span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">tableContainerDiv</span><span class="p">,</span> <span class="p">{</span>
+			<span class="na">colHeaders</span><span class="p">:</span> <span class="nx">columnsHeadersInfo</span><span class="p">,</span> <span class="cm">/**显示列数据中文列名*/</span>
+			<span class="na">rowHeaders</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="cm">/**显示行号*/</span>
+			<span class="cm">/**minSpareRows: 1,/**预留行*/</span>
+			<span class="na">stretchH</span><span class="p">:</span> <span class="s1">'all'</span><span class="p">,</span> <span class="cm">/**自适应*/</span>
+			<span class="na">columnSorting</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="cm">/**序列化*/</span>
+			<span class="cm">/**contextMenu: contextMenu_flag,/**是否开启右键*/</span>
+			<span class="na">contextMenu</span><span class="p">:</span><span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">contextMenuFlag</span><span class="p">,</span>
+			<span class="na">comments</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="cm">/**开启单个表格注解*/</span>
+			<span class="na">readOnly</span><span class="p">:</span> <span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">readOnlyFlag</span><span class="p">,</span> <span class="cm">/**表格是否只读*/</span>
+			<span class="na">className</span><span class="p">:</span> <span class="s2">"htCenter htMiddle"</span><span class="p">,</span> <span class="cm">/**基本样式*/</span>
+			<span class="na">removeRowPlugin</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="cm">/**删除行插件*/</span>
+			<span class="na">fixedColumnsLeft</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span><span class="cm">/**设置固定列*/</span>
+			<span class="na">autoColumnSize</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span> <span class="cm">/**自适应列*/</span>
+			<span class="na">manualColumnMove</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="cm">/**左右移动*/</span>
+			<span class="na">manualRowMove</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>	<span class="cm">/**数据跟随移动*/</span>
+			<span class="na">columns</span><span class="p">:</span> <span class="nx">columnsInfo</span><span class="cm">/**表格列信息*/</span>
+		<span class="p">});</span>
+		<span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">handsontableControl</span><span class="p">.</span><span class="nx">clear</span><span class="p">;</span><span class="cm">/**清除数据*/</span>
+		<span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">handsontableControl</span><span class="p">.</span><span class="nx">destroy</span><span class="p">;</span><span class="cm">/**清除DOM对象*/</span>
+		<span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">handsontableControl</span><span class="p">.</span><span class="nx">loadData</span><span class="p">(</span><span class="nx">gridData</span><span class="p">);</span> <span class="cm">/**表格加载数据*/</span>
+	<span class="p">},</span>
+	<span class="na">obs</span><span class="p">:</span> <span class="p">[],</span>
+	<span class="na">objData</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">tempData</span> <span class="o">=</span> <span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">handsontableControl</span><span class="p">.</span><span class="nx">getData</span><span class="p">();</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">tempData</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">obs</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">if</span><span class="p">(</span><span class="nx">tempData</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span><span class="o">==</span><span class="kc">null</span><span class="o">||</span><span class="nx">tempData</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span><span class="o">==</span><span class="s1">''</span><span class="p">){</span>
+					<span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">insertData</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">obs</span><span class="p">[</span><span class="nx">j</span><span class="p">][</span><span class="s2">"data"</span><span class="p">].</span><span class="nx">toUpperCase</span><span class="p">()]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+				<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+					<span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">insertData</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">HandtableTools</span><span class="p">.</span><span class="nx">obs</span><span class="p">[</span><span class="nx">j</span><span class="p">][</span><span class="s2">"data"</span><span class="p">].</span><span class="nx">toUpperCase</span><span class="p">()]</span> <span class="o">=</span> <span class="nx">tempData</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">];</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+      
+        
+        <!-- Disqus Protection, see https://github.com/mzlogin/mzlogin.github.io/issues/2 -->
+        
+        
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'http://firsh.me/2017/07/06/HandtableTools-core/';
+              this.page.identifier = '/2017/07/06/HandtableTools-core/';
+              this.page.title = 'Handtable封装类,所有的Table都需要通过此工具操作表格';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+
+              s.type = 'text/javascript';
+              s.async = true;
+              var shortname = 'zmatsh';
+
+              s.src = '//' + shortname + '.disqus.com/embed.js';
+
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        
+        
+      
+    
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="https://zmatsh.b0.upaiyun.com/assets/css/modules/sidebar-search.css">
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="zmatsh">zmatsh</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/zmatsh/zmatsh.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="首页" target="">首页</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="分类" target="">分类</a>
+                </li>
+                
+                <li>
+                    <a href="/open-source/" title="开源" target="">开源</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="维基" target="">维基</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="链接" target="">链接</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="关于" target="">关于</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-80669434-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+    <script type="text/javascript" src="//rc.revolvermaps.com/0/0/8.js?i=21x1e27561g&amp;m=0&amp;s=341&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"></script>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>

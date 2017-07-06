@@ -1,9 +1,21 @@
 {
   
+  "2017-07-06-esay-table-tools-core": {
+    "title": "简易Table封装类,所有的Table都需要通过此工具操作合并col，row",
+    "url": " /2017/07/06/esay-table-Tools-core/",
+    "category": "Handtable,HandtableExcel"
+  },
+  
   "2017-07-06-ajax-html-core": {
     "title": "Ajax封装类,所有的Ajax都需要通过此方法进行发送 以便进行相应的Ajax方式管理",
     "url": " /2017/07/06/ajax-html-core/",
     "category": "ajax,httprequest"
+  },
+  
+  "2017-07-06-handtabletools-core": {
+    "title": "Handtable封装类,所有的Table都需要通过此工具操作表格",
+    "url": " /2017/07/06/HandtableTools-core/",
+    "category": "Handtable,HandtableExcel"
   },
   
   "2017-07-05-gitolite-centos": {
@@ -610,10 +622,22 @@
     "category": "[&quot;Install&quot;, &quot;gitolite&quot;, &quot;SuccessFull&quot;]"
   },
   
+  "2017-07-06-handtabletools-core": {
+    "title": "Handtable封装类,所有的Table都需要通过此工具操作表格",
+    "url": "/2017/07/06/HandtableTools-core/",
+    "category": "[&quot;Handtable,HandtableExcel&quot;]"
+  },
+  
   "2017-07-06-ajax-html-core": {
     "title": "Ajax封装类,所有的Ajax都需要通过此方法进行发送 以便进行相应的Ajax方式管理",
     "url": "/2017/07/06/ajax-html-core/",
     "category": "[&quot;ajax,httprequest&quot;]"
+  },
+  
+  "2017-07-06-esay-table-tools-core": {
+    "title": "简易Table封装类,所有的Table都需要通过此工具操作合并col，row",
+    "url": "/2017/07/06/esay-table-Tools-core/",
+    "category": "[&quot;Handtable,HandtableExcel&quot;]"
   },
   
   "wiki-android-studio": {
