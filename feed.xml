@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-07-06T20:19:14+08:00</updated><id>http://firsh.me/</id><title type="html">然儿dada(Firsh.me).</title><subtitle>然erDADA，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术。</subtitle><author><name>zmatsh</name></author><entry><title type="html">简易Table封装类,所有的Table都需要通过此工具操作合并col，row</title><link href="http://firsh.me/2017/07/06/esay-table-Tools-core/" rel="alternate" type="text/html" title="简易Table封装类,所有的Table都需要通过此工具操作合并col，row" /><published>2017-07-06T00:00:00+08:00</published><updated>2017-07-06T00:00:00+08:00</updated><id>http://firsh.me/2017/07/06/esay-table-Tools-core</id><content type="html" xml:base="http://firsh.me/2017/07/06/esay-table-Tools-core/">&lt;p&gt;发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-07-06T20:19:22+08:00</updated><id>http://firsh.me/</id><title type="html">然儿dada(Firsh.me).</title><subtitle>然erDADA，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术。</subtitle><author><name>zmatsh</name></author><entry><title type="html">简易Table封装类,所有的Table都需要通过此工具操作合并col，row</title><link href="http://firsh.me/2017/07/06/esay-table-Tools-core/" rel="alternate" type="text/html" title="简易Table封装类,所有的Table都需要通过此工具操作合并col，row" /><published>2017-07-06T00:00:00+08:00</published><updated>2017-07-06T00:00:00+08:00</updated><id>http://firsh.me/2017/07/06/esay-table-Tools-core</id><content type="html" xml:base="http://firsh.me/2017/07/06/esay-table-Tools-core/">&lt;p&gt;发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。&lt;/p&gt;
 
 &lt;h2 id=&quot;代码&quot;&gt;代码&lt;/h2&gt;
 
@@ -120,420 +120,414 @@
 
 &lt;h2 id=&quot;代码&quot;&gt;代码&lt;/h2&gt;
 
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/**
+ * @author 第一作者：张建新
+ * Ajax封装类,所有的Ajax都需要通过此方法进行发送 以便进行相应的Ajax方式管理
+ * 注意 $.support.cors = true; 用来解决Ajax跨域问题，此方法需要和后台数据接口相配合
+ * successFun,errorFun,beforeSendFun,completeFun
+ * 示例写法
+ * var successFun = function functionName(data)
+ * {
+ * 		对Ajax解析过来的数据进行渲染
+ * }
+ * 将successFun作为参数传入方法中
+ * @param {Object} actionUrl 数据请求地址
+ * @param {Object} parems Ajax参数列表
+ * @param {Object} sendMethod 发送方式
+ * @param {Object} successFun 请求成功后回调函数
+ * @param {Object} errorFun 请求错误时回调函数
+ * @param {Object} beforeSendFun 在发送请求之前回调函数
+ * @param {Object} completeFun 请求完成后回调函数 (请求成功或失败之后均调用)
+ */&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ajaxLoad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;actionUrl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parems&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sendMethod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;successFun&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;errorFun&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;beforeSendFun&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;completeFun&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;cm&quot;&gt;/**解决ajax跨域问题*/&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;support&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cors&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ajax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;na&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;actionUrl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/**请求的url地址*/&lt;/span&gt;
+		&lt;span class=&quot;na&quot;&gt;dataType&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;json&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/**返回格式为json*/&lt;/span&gt;
+		&lt;span class=&quot;na&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;cm&quot;&gt;/**请求是否异步，默认为异步，这也是ajax重要特性 */&lt;/span&gt;
+		&lt;span class=&quot;na&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;parems&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/**参数值*/&lt;/span&gt;
+		&lt;span class=&quot;na&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sendMethod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/**请求方式*/&lt;/span&gt;
+		&lt;span class=&quot;cm&quot;&gt;/** 状态*/&lt;/span&gt;
+		&lt;span class=&quot;na&quot;&gt;beforeSend&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;beforeSendFun&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+		&lt;span class=&quot;na&quot;&gt;success&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;successFun&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+		&lt;span class=&quot;na&quot;&gt;complete&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;completeFun&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+		&lt;span class=&quot;na&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;errorFun&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;toast显示框&quot;&gt;Toast显示框&lt;/h2&gt;
+
 &lt;p&gt;```javascript 1.8
-/**&lt;/p&gt;
+/*&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;@author 第一作者：张建新&lt;/li&gt;
-  &lt;li&gt;Ajax封装类,所有的Ajax都需要通过此方法进行发送 以便进行相应的Ajax方式管理&lt;/li&gt;
-  &lt;li&gt;注意 $.support.cors = true; 用来解决Ajax跨域问题，此方法需要和后台数据接口相配合&lt;/li&gt;
-  &lt;li&gt;successFun,errorFun,beforeSendFun,completeFun&lt;/li&gt;
-  &lt;li&gt;示例写法&lt;/li&gt;
-  &lt;li&gt;var successFun = function functionName(data)&lt;/li&gt;
-  &lt;li&gt;{&lt;/li&gt;
-  &lt;li&gt;对Ajax解析过来的数据进行渲染&lt;/li&gt;
-  &lt;li&gt;}&lt;/li&gt;
-  &lt;li&gt;将successFun作为参数传入方法中&lt;/li&gt;
-  &lt;li&gt;@param {Object} actionUrl 数据请求地址&lt;/li&gt;
-  &lt;li&gt;@param {Object} parems Ajax参数列表&lt;/li&gt;
-  &lt;li&gt;@param {Object} sendMethod 发送方式&lt;/li&gt;
-  &lt;li&gt;@param {Object} successFun 请求成功后回调函数&lt;/li&gt;
-  &lt;li&gt;@param {Object} errorFun 请求错误时回调函数&lt;/li&gt;
-  &lt;li&gt;@param {Object} beforeSendFun 在发送请求之前回调函数&lt;/li&gt;
-  &lt;li&gt;@param {Object} completeFun 请求完成后回调函数 (请求成功或失败之后均调用)
- */
-function ajaxLoad(actionUrl,parems,sendMethod,successFun,errorFun,beforeSendFun,completeFun){
- //解决ajax跨域问题
- $.support.cors = true;
- $.ajax( {
-     url :actionUrl, //请求的url地址
-     dataType : “json”, //返回格式为json
-     async : true,//请求是否异步，默认为异步，这也是ajax重要特性 
-     data : parems, //参数值
-     type :sendMethod, //请求方式
-     // 状态
-     beforeSend :beforeSendFun,
-     success : successFun,
-     complete : completeFun,
-     error :errorFun
- });
+  &lt;li&gt;是否正在Toast通知
+ &lt;em&gt;/
+var isToasting = false;
+/&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;Toast通知
+ &lt;em&gt;/
+function Toast(toastText){
+ /&lt;/em&gt;如果正在显示通知&lt;em&gt;/
+ if(isToasting){
+     /&lt;/em&gt;延时3秒回调方法&lt;em&gt;/
+     setTimeout(function(){
+         Toast(toastText)
+     },3000);
+ }else{
+     /&lt;/em&gt;设置正在显示通知&lt;em&gt;/
+     isToasting = true;
+     /&lt;/em&gt;创建通知控件&lt;em&gt;/
+     var toast = document.createElement(“div”);
+     /&lt;/em&gt;设置通知文本&lt;em&gt;/
+     toast.innerHTML = toastText;
+     /&lt;/em&gt;设置通知样式&lt;em&gt;/
+     toast.className = “Toast”;
+     /&lt;/em&gt;延时3秒销毁控件&lt;em&gt;/
+     setTimeout(function(){	
+         document.body.removeChild(toast);
+         isToasting = false;
+     },3000);
+     /&lt;/em&gt;显示控件*/
+     document.body.appendChild(toast);
+ }
 }&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 
-## Toast显示框
+## Echart echarts-utils
 
-```javascript 1.8
+```javascript
 /*
- * 是否正在Toast通知
- */
-var isToasting = false;
-/*
- * Toast通知
- */
-function Toast(toastText){
-	/*如果正在显示通知*/
-	if(isToasting){
-		/*延时3秒回调方法*/
-		setTimeout(function(){
-			Toast(toastText)
-		},3000);
-	}else{
-		/*设置正在显示通知*/
-		isToasting = true;
-		/*创建通知控件*/
-		var toast = document.createElement(&quot;div&quot;);
-		/*设置通知文本*/
-		toast.innerHTML = toastText;
-		/*设置通知样式*/
-		toast.className = &quot;Toast&quot;;
-		/*延时3秒销毁控件*/
-		setTimeout(function(){	
-			document.body.removeChild(toast);
-			isToasting = false;
-		},3000);
-		/*显示控件*/
-		document.body.appendChild(toast);
-	}
-}
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;echart-echarts-utils&quot;&gt;Echart echarts-utils&lt;/h2&gt;
-
-&lt;p&gt;```javascript 1.8
-/**&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;参数列表&lt;/li&gt;
-  &lt;li&gt;title 雷达图标题 字符串&lt;/li&gt;
-  &lt;li&gt;subTitle 雷达图子标题 字符串&lt;/li&gt;
-  &lt;li&gt;analyzeItems 分析项目 字符串数组 如分析北京 上海 广州 的农业林业牧业副业渔业 [‘北京’,’上海’,’广州’]&lt;/li&gt;
-  &lt;li&gt;kindItems 雷达图对比分类 如事故分类 农业 林业 牧业 副业 渔业    [‘农业’, ‘林业’, ‘牧业’, ‘副业’, ‘渔业’]&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;datas对应行业的参数的二维数组，注意父数组长度对应对比分类 子数组长度应与分析项目长度相同，对应相应的对比项目下的分类的参数 如[[10,20,50],[30,80,100],[500,600,200],[700,800,900],[100,200,300]]
+ * 参数列表
+ * title 雷达图标题 字符串
+ * subTitle 雷达图子标题 字符串
+ * analyzeItems 分析项目 字符串数组 如分析北京 上海 广州 的农业林业牧业副业渔业 ['北京','上海','广州']
+ * kindItems 雷达图对比分类 如事故分类 农业 林业 牧业 副业 渔业    ['农业', '林业', '牧业', '副业', '渔业']
+ * datas对应行业的参数的二维数组，注意父数组长度对应对比分类 子数组长度应与分析项目长度相同，对应相应的对比项目下的分类的参数 如[[10,20,50],[30,80,100],[500,600,200],[700,800,900],[100,200,300]]
  */
 function initRaderMap(title,
- analyzeItems,
- datas, drawPictureDiv,pictrueType,yTitle) {
- var myChart = echarts.init(document.getElementById(drawPictureDiv));&lt;/p&gt;
+	analyzeItems,
+	datas, drawPictureDiv,pictrueType,yTitle) {
+	var myChart = echarts.init(document.getElementById(drawPictureDiv));
 
-    &lt;p&gt;option = {
-     title: {
-         text: title,
-         x: ‘center’
-     },
-     tooltip: {
-         trigger: ‘axis’
-     },
-     legend: {
-         orient: ‘horizontal’,//默认为 水平布局，垂直布局为 ‘vertical
-         padding: 3,
-         data: analyzeItems,
-         x: ‘center’,
-         y: ‘bottom’
-     },
-     toolbox: {
-         show: true,
-         feature: {
-             mark: {
-                 show: true
-             },
-             dataView: {
-                 show: false,
-                 readOnly: false
-             },
-             magicType: {
-                 show: true,
-                 type: [‘line’, ‘bar’, ‘stack’, ‘tiled’]
-             },
-             restore: {
-                 show: false
-             },
-             saveAsImage: {
-                 show: true
-             }
-         }
-     },
-     calculable: true, //启用拖拽重计算特性
-     xAxis: [{
-         type: ‘category’,
-//			boundaryGap: false,
-         data: getXAxisData(datas)
-     }],
-     yAxis: [{
-         type: ‘value’,
-         name:yTitle,
-         axisLabel : {
-             formatter: ‘{value}’    &lt;br /&gt;
-         }
-     }],
-     series : getSeriesData(analyzeItems, datas, pictrueType)
- };
- myChart.setOption(option);
+	option = {
+		title: {
+			text: title,
+			x: 'center'
+		},
+		tooltip: {
+			trigger: 'axis'
+		},
+		legend: {
+			orient: 'horizontal',/**默认为 水平布局，垂直布局为 'vertical*/
+			padding: 3,
+			data: analyzeItems,
+			x: 'center',
+			y: 'bottom'
+		},
+		toolbox: {
+			show: true,
+			feature: {
+				mark: {
+					show: true
+				},
+				dataView: {
+					show: false,
+					readOnly: false
+				},
+				magicType: {
+					show: true,
+					type: ['line', 'bar', 'stack', 'tiled']
+				},
+				restore: {
+					show: false
+				},
+				saveAsImage: {
+					show: true
+				}
+			}
+		},
+		calculable: true, /**启用拖拽重计算特性*/
+		xAxis: [{
+			type: 'category',
+           /**	boundaryGap: false,*/
+			data: getXAxisData(datas)
+		}],
+		yAxis: [{
+			type: 'value',
+			name:yTitle,
+			axisLabel : {
+                formatter: '{value}'      
+            }
+		}],
+		series : getSeriesData(analyzeItems, datas, pictrueType)
+	};
+	myChart.setOption(option);
 }
-/**&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;获取分析指标参数&lt;/li&gt;
-  &lt;li&gt;@param {Object} kindItems 雷达图对比分类 如事故分类 农业 林业 牧业 副业 渔业    [‘农业’, ‘林业’, ‘牧业’, ‘副业’, ‘渔业’]&lt;/li&gt;
-  &lt;li&gt;@param {Object} datas datas对应行业的参数的二维数组，注意父数组长度对应对比分类 子数组长度应与分析项目长度相同，对应相应的对比项目下的分类的参数 如[[10,20,50],[30,80,100],[500,600,200],[700,800,900],[100,200,300]]
+/**
+ * 获取分析指标参数
+ * @param {Object} kindItems 雷达图对比分类 如事故分类 农业 林业 牧业 副业 渔业    ['农业', '林业', '牧业', '副业', '渔业']
+ * @param {Object} datas datas对应行业的参数的二维数组，注意父数组长度对应对比分类 子数组长度应与分析项目长度相同，对应相应的对比项目下的分类的参数 如[[10,20,50],[30,80,100],[500,600,200],[700,800,900],[100,200,300]]
  */
 function getXAxisData(datas) {
- var indicatorArray = new Array(datas.length);
- for (var i = 0; i &amp;lt; indicatorArray.length; i++) {
-     indicatorArray[i] = datas[i][0];
-     datas[i].splice(0, 1);
- }
- return indicatorArray;
+	var indicatorArray = new Array(datas.length);
+	for (var i = 0; i &amp;lt; indicatorArray.length; i++) {
+		indicatorArray[i] = datas[i][0];
+		datas[i].splice(0, 1);
+	}
+	return indicatorArray;
 }
-/**&lt;/li&gt;
-  &lt;li&gt;获取数据封装参数&lt;/li&gt;
-  &lt;li&gt;@param {Object} analyzeItems 分析项目 字符串数组 如分析北京 上海 广州 的农业林业牧业副业渔业 [‘北京’,’上海’,’广州’]&lt;/li&gt;
-  &lt;li&gt;@param {Object} datas对应行业的参数的二维数组，注意父数组长度对应对比分类 子数组长度应与分析项目长度相同，对应相应的对比项目下的分类的参数 如[[10,20,50],[30,80,100],[500,600,200],[700,800,900],[100,200,300]]
- &lt;em&gt;/
+/**
+ * 获取数据封装参数
+ * @param {Object} analyzeItems 分析项目 字符串数组 如分析北京 上海 广州 的农业林业牧业副业渔业 ['北京','上海','广州']
+ * @param {Object} datas对应行业的参数的二维数组，注意父数组长度对应对比分类 子数组长度应与分析项目长度相同，对应相应的对比项目下的分类的参数 如[[10,20,50],[30,80,100],[500,600,200],[700,800,900],[100,200,300]]
+ */
 function getSeriesData(analyzeItems, datas, pictrueType) {
- var seriesData = new Array(analyzeItems.length);
- for (var i = 0; i &amp;lt; analyzeItems.length; i++) {
-     var dataItem = new Object();
-     dataItem.data = getAnalyzeItem(i, datas);
-     dataItem.name = analyzeItems[i];
-     dataItem.type = pictrueType;
-     dataItem.smooth = true;
-     //					dataItem.itemStyle = {normal: {areaStyle: {type: ‘default’}}};
-     seriesData[i] = dataItem;
- }
- /&lt;/em&gt;此函数不支持IE8 暂时注释*/
- //console.log(JSON.stringify(seriesData));
- return seriesData;
+	var seriesData = new Array(analyzeItems.length);
+	for (var i = 0; i &amp;lt; analyzeItems.length; i++) {
+		var dataItem = new Object();
+		dataItem.data = getAnalyzeItem(i, datas);
+		dataItem.name = analyzeItems[i];
+		dataItem.type = pictrueType;
+		dataItem.smooth = true;
+		/**	dataItem.itemStyle = {normal: {areaStyle: {type: 'default'}}};*/
+		seriesData[i] = dataItem;
+	}
+	/*此函数不支持IE8 暂时注释*/
+	/**console.log(JSON.stringify(seriesData));*/
+	return seriesData;
 }
-/**&lt;/li&gt;
-  &lt;li&gt;获取指定索引的所有分类数据&lt;/li&gt;
-  &lt;li&gt;@param {Object} index 指定的索引&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;@param {Object} datas对应行业的参数的二维数组，注意父数组长度对应对比分类 子数组长度应与分析项目长度相同，对应相应的对比项目下的分类的参数 如[[10,20,50],[30,80,100],[500,600,200],[700,800,900],[100,200,300]]
+/**
+ * 获取指定索引的所有分类数据
+ * @param {Object} index 指定的索引
+ * @param {Object} datas对应行业的参数的二维数组，注意父数组长度对应对比分类 子数组长度应与分析项目长度相同，对应相应的对比项目下的分类的参数 如[[10,20,50],[30,80,100],[500,600,200],[700,800,900],[100,200,300]]
  */
 function getAnalyzeItem(index, datas) {
- var value = new Array(datas.length);
- for (var i = 0; i &amp;lt; value.length; i++) {
-     value[i] = datas[i][index];
- }
- return value;
+	var value = new Array(datas.length);
+	for (var i = 0; i &amp;lt; value.length; i++) {
+		value[i] = datas[i][index];
+	}
+	return value;
 }
 function drawPiePicture(drawPictureDiv, title, analyzeItems, datas) {
- // 基于准备好的dom，初始化echarts图表
- myChart = echarts.init(document.getElementById(drawPictureDiv));
- var option = {
-     title: {
-         text: title,
-         x: ‘center’,
-         textStyle:{
-             color: ‘#333’,
-             fontStyle: ‘normal’,
-             fontWeight: ‘normal’,
-             fontFamily: ‘sans-serief’,
-             fontSize: 25
-         }
-     },
-     tooltip: {
-         trigger: ‘item’,
-         formatter: “{a} &lt;br /&gt;{b} : {c} ({d}%)”
-     },
-     legend: {
-         orient: ‘vertical’,
-         x: ‘left’,
-         data: analyzeItems,
-         textStyle:{
-             fontStyle: ‘normal’,
-             fontWeight: ‘normal’,
-             fontFamily: ‘sans-serief’,
-             fontSize: 15
-         }
-     },
-     toolbox: {
-         show: true,
-         feature: {
-             mark: {
-                 show: true
-             },
-             dataView: {
-                 show: true,
-                 readOnly: false
-             },
-             magicType: {
-                 show: true,
-                 type: [‘pie’, ‘funnel’],
-                 option: {
-                     funnel: {
-                         x: ‘25%’,
-                         width: ‘50%’,
-                         funnelAlign: ‘left’,
-                         max: 1548
-                     }
-                 }
-             },
-             restore: {
-                 show: true
-             },
-             saveAsImage: {
-                 show: true
-             }
-         }
-     },
-     calculable: true,
-     series: [{
-         type: ‘pie’,
-         radius: ‘55%’,
-         center: [‘50%’, ‘60%’],
-         data: datas,
-         itemStyle: {
-             normal: {
-                 label: {
-                     show: true,
-                     formatter: ‘{b} : {c}’ + ‘吨标煤’ + ‘ ({d}%)’,
-                     textStyle:{
-                         fontStyle: ‘normal’,
-                         fontWeight: ‘normal’,
-                         fontFamily: ‘sans-serief’,
-                         fontSize: 15
-                     }
-                 },
-                 labelLine: {
-                     show: true
-                 }
-             }
-         }
-     }]
- };
- // 为echarts对象加载数据 
- myChart.setOption(option);
+	/** 基于准备好的dom，初始化echarts图表*/
+	myChart = echarts.init(document.getElementById(drawPictureDiv));
+	var option = {
+		title: {
+			text: title,
+			x: 'center',
+			textStyle:{
+				color: '#333',
+				fontStyle: 'normal',
+				fontWeight: 'normal',
+				fontFamily: 'sans-serief',
+				fontSize: 25
+			}
+		},
+		tooltip: {
+			trigger: 'item',
+			formatter: &quot;{a} &amp;lt;br/&amp;gt;{b} : {c} ({d}%)&quot;
+		},
+		legend: {
+			orient: 'vertical',
+			x: 'left',
+			data: analyzeItems,
+			textStyle:{
+				fontStyle: 'normal',
+				fontWeight: 'normal',
+				fontFamily: 'sans-serief',
+				fontSize: 15
+			}
+		},
+		toolbox: {
+			show: true,
+			feature: {
+				mark: {
+					show: true
+				},
+				dataView: {
+					show: true,
+					readOnly: false
+				},
+				magicType: {
+					show: true,
+					type: ['pie', 'funnel'],
+					option: {
+						funnel: {
+							x: '25%',
+							width: '50%',
+							funnelAlign: 'left',
+							max: 1548
+						}
+					}
+				},
+				restore: {
+					show: true
+				},
+				saveAsImage: {
+					show: true
+				}
+			}
+		},
+		calculable: true,
+		series: [{
+			type: 'pie',
+			radius: '55%',
+			center: ['50%', '60%'],
+			data: datas,
+			itemStyle: {
+				normal: {
+					label: {
+						show: true,
+						formatter: '{b} : {c}' + '吨标煤' + ' ({d}%)',
+						textStyle:{
+							fontStyle: 'normal',
+							fontWeight: 'normal',
+							fontFamily: 'sans-serief',
+							fontSize: 15
+						}
+					},
+					labelLine: {
+						show: true
+					}
+				}
+			}
+		}]
+	};
+	/** 为echarts对象加载数据 */
+	myChart.setOption(option);
 }
 function drawColummnPicture(echartsTitle, drawPictureDiv, analyzeItems) {
- // 基于准备好的dom，初始化echarts图表
- myChart = echarts.init(document.getElementById(drawPictureDiv));;
- // 指定图表的配置项和数据
- var option = {
-     title: {
-         text: echartsTitle,
-         x: ‘center’
-     },
-     tooltip: {
-         trigger: ‘axis’
-     },
-     legend: {
-         orient: ‘horizontal’,
-         padding: 3,
-         data: analyzeItems,
-         x: ‘center’,
-         y: ‘bottom’
-     },
-     xAxis: [{
-         type: ‘category’,
-         data: [‘系统效率’]
-     }],
-     yAxis: [{
-         type: ‘value’
-     }],
-     series: [{
-         name: ‘’,
-         type: ‘bar’,
-         data: []
-     }]
- };
- // 为echarts对象加载数据 
- myChart.setOption(option);
+	/** 基于准备好的dom，初始化echarts图表*/
+	myChart = echarts.init(document.getElementById(drawPictureDiv));;
+	/** 指定图表的配置项和数据*/
+	var option = {
+		title: {
+			text: echartsTitle,
+			x: 'center'
+		},
+		tooltip: {
+			trigger: 'axis'
+		},
+		legend: {
+			orient: 'horizontal',
+			padding: 3,
+			data: analyzeItems,
+			x: 'center',
+			y: 'bottom'
+		},
+		xAxis: [{
+			type: 'category',
+			data: ['系统效率']
+		}],
+		yAxis: [{
+			type: 'value'
+		}],
+		series: [{
+			name: '',
+			type: 'bar',
+			data: []
+		}]
+	};
+	/** 为echarts对象加载数据 */
+	myChart.setOption(option);
 }
 function drawColummnMap(title,
-                     analyzeItems,
-                     datas, 
-                     drawPictureDiv,
-                     yTitle) {
- var myChart = echarts.init(document.getElementById(drawPictureDiv));&lt;/p&gt;
+						analyzeItems,
+						datas, 
+						drawPictureDiv,
+						yTitle) {
+	var myChart = echarts.init(document.getElementById(drawPictureDiv));
 
-    &lt;p&gt;option = {
-     title: {
-         text: title,
-         x: ‘center’
-     },
-     tooltip: {
-         trigger: ‘axis’
-     },
-     legend: {
-         orient: ‘horizontal’,
-         padding: 1,
-         data: analyzeItems,
-         x: ‘center’,
-         y: ‘bottom’,
-         itemWidth: 10,             // 图例图形宽度
-     	itemHeight: 5,  		   // 图例图形高度
-     	textStyle: {
-         	fontSize:7                // 图例文字大小
-     	}
-     },
-     toolbox: {
-         show: true,
-         feature: {
-             mark: {
-                 show: true
-             },
-             dataView: {
-                 show: false,
-                 readOnly: false
-             },
-             magicType: {
-                 show: true,
-                 type: [‘line’, ‘bar’, ‘stack’, ‘tiled’]
-             },
-             restore: {
-                 show: false
-             },
-             saveAsImage: {
-                 show: true
-             }
-         }
-     },
-     calculable: true, //启用拖拽重计算特性
-     xAxis: [{
-         type: ‘category’,
-         data: getXAxisDataOne(datas)
-     }],
-     yAxis: [{
-         type: ‘value’,
-         name:yTitle
-     }],
-     series: getSeriesDataOne(analyzeItems, datas)
- };
- myChart.setOption(option);
+	option = {
+		title: {
+			text: title,
+			x: 'center'
+		},
+		tooltip: {
+			trigger: 'axis'
+		},
+		legend: {
+			orient: 'horizontal',
+			padding: 1,
+			data: analyzeItems,
+			x: 'center',
+			y: 'bottom',
+			itemWidth: 10,             /** 图例图形宽度*/
+        	itemHeight: 5,  		   /** 图例图形高度*/
+        	textStyle: {
+            	fontSize:7                /** 图例文字大小*/
+        	}
+		},
+		toolbox: {
+			show: true,
+			feature: {
+				mark: {
+					show: true
+				},
+				dataView: {
+					show: false,
+					readOnly: false
+				},
+				magicType: {
+					show: true,
+					type: ['line', 'bar', 'stack', 'tiled']
+				},
+				restore: {
+					show: false
+				},
+				saveAsImage: {
+					show: true
+				}
+			}
+		},
+		calculable: true, /**启用拖拽重计算特性*/
+		xAxis: [{
+			type: 'category',
+			data: getXAxisDataOne(datas)
+		}],
+		yAxis: [{
+			type: 'value',
+			name:yTitle
+		}],
+		series: getSeriesDataOne(analyzeItems, datas)
+	};
+	myChart.setOption(option);
 }
-         function getXAxisDataOne(pictrueDatas) {
-             var indicatorArray = new Array(pictrueDatas.length);
-             for (var i = 0; i &amp;lt; indicatorArray.length; i++) {
-                 indicatorArray[i] = pictrueDatas[i][0];
-                 pictrueDatas[i].splice(0, 1);
-             }
-             return indicatorArray;
-         }
-         function getSeriesDataOne(testAnalyzeItems, pictrueDatas) {
-             var seriesData = new Array(testAnalyzeItems.length);
-             for (var i = 0; i &amp;lt; testAnalyzeItems.length; i++) {
-                 var dataItem = new Object();
-                 dataItem.data = getAnalyzeItem(i, pictrueDatas);
-                 dataItem.name = testAnalyzeItems[i];
-                 dataItem.type = ‘bar’;
-                 dataItem.smooth = true;
-                 seriesData[i] = dataItem;
-             }
-             return seriesData;
-         }
-         function testAnalyzeItems(index, pictrueDatas) {
-             var value = new Array(pictrueDatas.length);
-             for (var i = 0; i &amp;lt; value.length; i++) {
-                 value[i] = datas[i][index];
-             }
-             return value;
-         }
-```&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+			function getXAxisDataOne(pictrueDatas) {
+				var indicatorArray = new Array(pictrueDatas.length);
+				for (var i = 0; i &amp;lt; indicatorArray.length; i++) {
+					indicatorArray[i] = pictrueDatas[i][0];
+					pictrueDatas[i].splice(0, 1);
+				}
+				return indicatorArray;
+			}
+			function getSeriesDataOne(testAnalyzeItems, pictrueDatas) {
+				var seriesData = new Array(testAnalyzeItems.length);
+				for (var i = 0; i &amp;lt; testAnalyzeItems.length; i++) {
+					var dataItem = new Object();
+					dataItem.data = getAnalyzeItem(i, pictrueDatas);
+					dataItem.name = testAnalyzeItems[i];
+					dataItem.type = 'bar';
+					dataItem.smooth = true;
+					seriesData[i] = dataItem;
+				}
+				return seriesData;
+			}
+			function testAnalyzeItems(index, pictrueDatas) {
+				var value = new Array(pictrueDatas.length);
+				for (var i = 0; i &amp;lt; value.length; i++) {
+					value[i] = datas[i][index];
+				}
+				return value;
+			}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;h2 id=&quot;alertwin-早期作品&quot;&gt;alertWin 早期作品&lt;/h2&gt;
 
@@ -547,11 +541,11 @@ function drawColummnMap(title,
      * @param {Object} h 高度
      **/&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;alertWin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;titleheight&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;22px&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 提示窗口标题高度 &lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bordercolor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#364751&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 提示窗口的边框颜色 &lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;titlecolor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#FFFFFF&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 提示窗口的标题颜色 &lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;titlebgcolor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#364751&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 提示窗口的标题背景色 &lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bgcolor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#FFFFFF&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 提示内容的背景色 &lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;titleheight&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;22px&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/** 提示窗口标题高度 */&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bordercolor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#364751&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/** 提示窗口的边框颜色 */&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;titlecolor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#FFFFFF&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/** 提示窗口的标题颜色 */&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;titlebgcolor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#364751&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/** 提示窗口的标题背景色 */&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bgcolor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#FFFFFF&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/** 提示内容的背景色 */&lt;/span&gt;
     
         &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;iWidth&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;documentElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
         &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;iHeight&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;documentElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientHeight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -563,7 +557,7 @@ function drawColummnMap(title,
         &lt;span class=&quot;nx&quot;&gt;msgObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cssText&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;position:absolute;font:11px '宋体';top:&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;iHeight&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;px;left:&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;iWidth&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;px;width:&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;px;height:&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;px;text-align:center;border:1px solid &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bordercolor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;;background-color:&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bgcolor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;;line-height:22px;z-index:102;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
         &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;appendChild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;msgObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
     
-        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;table&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;table&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// &lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;table&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;table&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/** */&lt;/span&gt;
         &lt;span class=&quot;nx&quot;&gt;msgObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;appendChild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
         &lt;span class=&quot;nx&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cssText&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;margin:0px;border:0px;padding:0px;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
         &lt;span class=&quot;nx&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cellSpacing&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -590,7 +584,7 @@ function drawColummnMap(title,
             &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onmousemove&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
                 &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;moveable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
                     &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;evt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-                    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;moveLeft&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;evt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;moveX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//&lt;/span&gt;
+                    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;moveLeft&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;evt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;moveX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/***/&lt;/span&gt;
                     &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;moveTop&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;evt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;moveY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
                     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;iWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;iHeight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
                         &lt;span class=&quot;nx&quot;&gt;msgObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;px&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -600,7 +594,7 @@ function drawColummnMap(title,
             &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
             &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onmouseup&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
                 &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;moveable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onmousemove&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;docMouseMoveEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// &lt;/span&gt;
+                    &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onmousemove&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;docMouseMoveEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/** */&lt;/span&gt;
                     &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onmouseup&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;docMouseUpEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
                     &lt;span class=&quot;nx&quot;&gt;moveable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
                     &lt;span class=&quot;nx&quot;&gt;moveX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
