@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Wiki Template &mdash; 然儿dada(Firsh.me).</title>
+    <title>Mavne jar包去重以及升级,[来自项目中的经历] &mdash; 然儿dada(Firsh.me).</title>
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
@@ -21,28 +21,28 @@
     
 
     
-    <link rel="canonical" href="http://firsh.me/wiki/template/">
+    <link rel="canonical" href="http://firsh.me/2017/07/07/maven-jar-qq/">
     <link rel="alternate" type="application/atom+xml" title="然儿dada(Firsh.me)." href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="Wiki Template">
+    <meta property="og:title" content="Mavne jar包去重以及升级,[来自项目中的经历]">
       
-    <meta name="keywords" content="keyword1, keyword2">
-    <meta name="og:keywords" content="keyword1, keyword2">
+    <meta name="keywords" content="Mavne, java">
+    <meta name="og:keywords" content="Mavne, java">
       
-    <meta name="description" content="Content here">
-    <meta name="og:description" content="Content here">
+    <meta name="description" content="发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。">
+    <meta name="og:description" content="发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。">
       
     
     
         
     
-    <meta property="og:url" content="http://firsh.me/wiki/template/">
+    <meta property="og:url" content="http://firsh.me/2017/07/07/maven-jar-qq/">
     <meta property="og:site_name" content="然儿dada(Firsh.me).">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
     
-    <meta property="article:published_time" content="2017-07-08">
+    <meta property="article:published_time" content="2017-07-07">
     
     <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
     <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
@@ -85,12 +85,25 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="Wiki Template">
+    <section class="collection-head small geopattern" data-pattern-id="Mavne jar包去重以及升">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">Wiki Template</h1>
+        <h1 class="collection-header">Mavne jar包去重以及升级,[来自项目中的经历]</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/07/07
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#Mavne,java" title="Mavne,java">Mavne,java</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
@@ -101,7 +114,80 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <p>Content here</p>
+    <p>发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。</p>
+
+<h2 id="错误描述">错误描述</h2>
+
+<div class="language-text highlighter-rouge"><pre class="highlight"><code>  因为项目中用到ActorDB所以有了以下的故事，当maven中引入多个jar包，那么避免不了会发生重复的包存在。
+ 
+</code></pre>
+</div>
+<ul>
+  <li>如图所示，成功的倒入了·<code class="highlighter-rouge">org.apache.thrift</code>
+但是工具里面没有找到 <code class="highlighter-rouge">clearBit</code>，<code class="highlighter-rouge">setBit</code>等方法。</li>
+</ul>
+
+<p><img src="https://zmatsh.b0.upaiyun.com/blog/QQ20170708-002142@2x.png" alt="" /></p>
+
+<ul>
+  <li>经过查证，的确没有，那么为什么会发生这个事情。</li>
+</ul>
+
+<p><img src="https://zmatsh.b0.upaiyun.com/blog/error.png" alt="" /></p>
+
+<ul>
+  <li>揭开迷雾</li>
+</ul>
+
+<p><img src="https://zmatsh.b0.upaiyun.com/blog/success-geterror.png" alt="" /></p>
+
+<ul>
+  <li>发现了存在的包竟然是MSF4J的包。
+于是找到了解决方案代码如下：</li>
+</ul>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code>   <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.wso2.msf4j<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>msf4j-all<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>2.1.0<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;exclusions&gt;</span>
+          <span class="nt">&lt;exclusion&gt;</span>
+              <span class="nt">&lt;artifactId&gt;</span>libthrift<span class="nt">&lt;/artifactId&gt;</span>
+              <span class="nt">&lt;groupId&gt;</span>org.apache.thrift<span class="nt">&lt;/groupId&gt;</span>
+          <span class="nt">&lt;/exclusion&gt;</span>
+      <span class="nt">&lt;/exclusions&gt;</span>
+  <span class="nt">&lt;/dependency&gt;</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>通过这种方式进行包的摘除，(结果还不是很理想，还是有问题。)
+    <ul>
+      <li>于是仔细查看pom.xml文件的内容，发现了问题，怀疑Maven加载包的顺序是有优先级的(从上到下)</li>
+      <li>于是将 <code class="highlighter-rouge">org.apache.thrift</code> 放到了MSF4J包的上面。</li>
+      <li>成功解决问题：
+<img src="https://zmatsh.b0.upaiyun.com/blog/th3.png" alt="" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="总结">总结</h2>
+<p>学习了Mavne的加载顺序，以及排错方式：</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#查找依赖所在的地方</span>
+ mvn dependency:tree -Dverbose -Dincludes<span class="o">=</span>org.apache.thrift:libthrift
+</code></pre>
+</div>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!--去除依赖，在外部加载--&gt;</span>
+<span class="nt">&lt;exclusions&gt;</span>
+      <span class="nt">&lt;exclusion&gt;</span>
+          <span class="nt">&lt;artifactId&gt;</span>libthrift<span class="nt">&lt;/artifactId&gt;</span>
+          <span class="nt">&lt;groupId&gt;</span>org.apache.thrift<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;/exclusion&gt;</span>
+  <span class="nt">&lt;/exclusions&gt;</span>
+</code></pre>
+</div>
+
 
     </article>
     <div class="share">
@@ -118,9 +204,9 @@
           <div id="disqus_thread"></div>
           <script>
             var disqus_config = function () {
-              this.page.url = 'http://firsh.me/wiki/template/';
-              this.page.identifier = '/wiki/template/';
-              this.page.title = 'Wiki Template';
+              this.page.url = 'http://firsh.me/2017/07/07/maven-jar-qq/';
+              this.page.identifier = '/2017/07/07/maven-jar-qq/';
+              this.page.title = 'Mavne jar包去重以及升级,[来自项目中的经历]';
             };
             (function() { // DON'T EDIT BELOW THIS LINE
               var d = document, s = d.createElement('script');

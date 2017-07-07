@@ -1,5 +1,11 @@
 {
   
+  "2017-07-07-maven-jar-qq": {
+    "title": "Mavne jar包去重以及升级,[来自项目中的经历]",
+    "url": " /2017/07/07/maven-jar-qq/",
+    "category": "Mavne,java"
+  },
+  
   "2017-07-06-esay-table-tools-core": {
     "title": "简易Table封装类,所有的Table都需要通过此工具操作合并col，row",
     "url": " /2017/07/06/esay-table-Tools-core/",
@@ -350,6 +356,8 @@
   
   
   
+  
+  
 
   
   "2016-05-21-enable-https-for-github-pages": {
@@ -638,6 +646,12 @@
     "title": "简易Table封装类,所有的Table都需要通过此工具操作合并col，row",
     "url": "/2017/07/06/esay-table-Tools-core/",
     "category": "[&quot;Handtable,HandtableExcel&quot;]"
+  },
+  
+  "2017-07-07-maven-jar-qq": {
+    "title": "Mavne jar包去重以及升级,[来自项目中的经历]",
+    "url": "/2017/07/07/maven-jar-qq/",
+    "category": "[&quot;Mavne,java&quot;]"
   },
   
   "wiki-android-studio": {
