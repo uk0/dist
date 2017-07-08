@@ -1,5 +1,11 @@
 {
   
+  "2017-07-09-idea-plugin-star": {
+    "title": "Idea 插件推荐 [来自项目中的经历]",
+    "url": " /2017/07/09/idea-plugin-star/",
+    "category": "Idea,java"
+  },
+  
   "2017-07-07-maven-jar-qq": {
     "title": "Mavne jar包去重以及升级,[来自项目中的经历]",
     "url": " /2017/07/07/maven-jar-qq/",
@@ -652,6 +658,12 @@
     "title": "Mavne jar包去重以及升级,[来自项目中的经历]",
     "url": "/2017/07/07/maven-jar-qq/",
     "category": "[&quot;Mavne,java&quot;]"
+  },
+  
+  "2017-07-09-idea-plugin-star": {
+    "title": "Idea 插件推荐 [来自项目中的经历]",
+    "url": "/2017/07/09/idea-plugin-star/",
+    "category": "[&quot;Idea,java&quot;]"
   },
   
   "wiki-android-studio": {

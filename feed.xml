@@ -1,4 +1,44 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-07-08T00:55:29+08:00</updated><id>http://firsh.me/</id><title type="html">然儿dada(Firsh.me).</title><subtitle>然erDADA，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术。</subtitle><author><name>zmatsh</name></author><entry><title type="html">Mavne jar包去重以及升级,[来自项目中的经历]</title><link href="http://firsh.me/2017/07/07/maven-jar-qq/" rel="alternate" type="text/html" title="Mavne jar包去重以及升级,[来自项目中的经历]" /><published>2017-07-07T00:00:00+08:00</published><updated>2017-07-07T00:00:00+08:00</updated><id>http://firsh.me/2017/07/07/maven-jar-qq</id><content type="html" xml:base="http://firsh.me/2017/07/07/maven-jar-qq/">&lt;p&gt;发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-07-09T02:51:04+08:00</updated><id>http://firsh.me/</id><title type="html">然儿dada(Firsh.me).</title><subtitle>然erDADA，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术。</subtitle><author><name>zmatsh</name></author><entry><title type="html">Idea 插件推荐 [来自项目中的经历]</title><link href="http://firsh.me/2017/07/09/idea-plugin-star/" rel="alternate" type="text/html" title="Idea 插件推荐 [来自项目中的经历]" /><published>2017-07-09T00:00:00+08:00</published><updated>2017-07-09T00:00:00+08:00</updated><id>http://firsh.me/2017/07/09/idea-plugin-star</id><content type="html" xml:base="http://firsh.me/2017/07/09/idea-plugin-star/">&lt;p&gt;发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。&lt;/p&gt;
+
+&lt;h2 id=&quot;摘要-记录下自己目前使用的插件&quot;&gt;摘要: 记录下自己目前使用的插件&lt;/h2&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  先上图，毕竟是无图无真相的时代：
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;https://static.oschina.net/uploads/img/201608/31143358_lGqO.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;.ignore
+&lt;code class=&quot;highlighter-rouge&quot;&gt;一个针对各种忽略文件的插件，比如最常用的git（其他还有npm，csv，jshint等）。插件会根据工程的类型添加一些常规的忽略文件或文件夹，比如一个idea的java工程就会忽略掉target文件夹。&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;AceJump
+&lt;code class=&quot;highlighter-rouge&quot;&gt;有了这个插件，写代码的时候可以不需要鼠标了，你只需要按下“ctrl+;”，然后看着屏幕输入你想要光标去哪的字母就行了，就这么简单。&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;CamelCase
+&lt;code class=&quot;highlighter-rouge&quot;&gt;将变量名的格式在[CamelCase, camelCase, snake_case and SNAKE_CASE]之间切换，什么？你问快捷键？安装之后就知道啦？&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;CheckStyle-IDEA
+&lt;code class=&quot;highlighter-rouge&quot;&gt;这个插件是检查java的编码风格，可以自定义采用不同的检查配置文件。&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;FindBugs-IDEA
+&lt;code class=&quot;highlighter-rouge&quot;&gt;检查代码隐藏的bug&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;IdeaVim
+&lt;code class=&quot;highlighter-rouge&quot;&gt;使Idea提供了vim功能，又一个让鼠标退休的插件&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Ini4Idea
+&lt;code class=&quot;highlighter-rouge&quot;&gt;.ini文件支持&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;intellij-translation
+&lt;code class=&quot;highlighter-rouge&quot;&gt;翻译插件，选中单词，然后“F10”，瞬间明了了，英语大神略过&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;JavaDoc
+&lt;code class=&quot;highlighter-rouge&quot;&gt;自动为java方法添加注释&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;JRebel for Intellij
+&lt;code class=&quot;highlighter-rouge&quot;&gt;代码热部署插件，从此再也不用在重启中煎熬了&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;JVM Debugger Memory View
+&lt;code class=&quot;highlighter-rouge&quot;&gt;显示JVM heap中的对象个数&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Key promoter
+&lt;code class=&quot;highlighter-rouge&quot;&gt;idea 快捷键提示插件&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Lombok Plugin
+&lt;code class=&quot;highlighter-rouge&quot;&gt;使idea支持Lombok，Lombok是一个简化java代码的工具&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Markdown support
+&lt;code class=&quot;highlighter-rouge&quot;&gt;markdown语法支持&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Maven Helper
+&lt;code class=&quot;highlighter-rouge&quot;&gt;maven 依赖包帮助插件&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>zmatsh</name></author><summary type="html">发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。</summary></entry><entry><title type="html">Mavne jar包去重以及升级,[来自项目中的经历]</title><link href="http://firsh.me/2017/07/07/maven-jar-qq/" rel="alternate" type="text/html" title="Mavne jar包去重以及升级,[来自项目中的经历]" /><published>2017-07-07T00:00:00+08:00</published><updated>2017-07-07T00:00:00+08:00</updated><id>http://firsh.me/2017/07/07/maven-jar-qq</id><content type="html" xml:base="http://firsh.me/2017/07/07/maven-jar-qq/">&lt;p&gt;发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。&lt;/p&gt;
 
 &lt;h2 id=&quot;错误描述&quot;&gt;错误描述&lt;/h2&gt;
 
@@ -2942,55 +2982,4 @@ print(&quot;Accuarcy on Test-dataset: &quot;, sess.run(accuracy, feed_dict={x: m
 
 &lt;blockquote&gt;
   &lt;p&gt;lalallalalalalalalalallalalalalalallalala～&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>zmatsh</name></author><summary type="html">发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。</summary></entry><entry><title type="html">arangodb/linux下搭建，可以搭建集群模式。</title><link href="http://firsh.me/2017/07/03/arangodb-master/" rel="alternate" type="text/html" title="arangodb/linux下搭建，可以搭建集群模式。" /><published>2017-07-03T00:00:00+08:00</published><updated>2017-07-03T00:00:00+08:00</updated><id>http://firsh.me/2017/07/03/arangodb-master</id><content type="html" xml:base="http://firsh.me/2017/07/03/arangodb-master/">&lt;p&gt;发这个贴的原因，是因为 圈叉三角方块 ，圈叉三角方块 。&lt;/p&gt;
-
-&lt;h2 id=&quot;arangodb安装以及集群部署集群采用kubernetesdocker&quot;&gt;arangodb安装以及集群部署(集群采用kubernetes，Docker)&lt;/h2&gt;
-&lt;p&gt;Arangodb&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;https://github.com/arangodb&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;现在版本：3.1.23&lt;/p&gt;
-
-&lt;p&gt;:smile:&lt;/p&gt;
-
-&lt;h2 id=&quot;1-安装部署&quot;&gt;1. 安装部署&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/posts/arangodb/WX20170703-180430@2x.png&quot; alt=&quot;arangodb&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;2使用介绍-building-your-own-arangodb-image&quot;&gt;2.使用介绍 （Building your own ArangoDB image）&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://registry.hub.docker.com/_/arangodb/&quot;&gt;&lt;img src=&quot;http://dockeri.co/image/_/arangodb&quot; alt=&quot;dockeri.co&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;We are auto generating docker images via our build system so the Dockerfile is a template. To build your own ArangoDB image:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cp Dockerfile.templ Dockerfile
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Adjust @VERSION@ in the Dockerfile to the version of arangodb you want to have and issue:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker build -t arangodb .
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;This will create an image named &lt;code class=&quot;highlighter-rouge&quot;&gt;arangodb&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;reference-documentation&quot;&gt;Reference documentation&lt;/h2&gt;
-
-&lt;p&gt;For user documentation please refer to our official docker hub documentation:&lt;/p&gt;
-
-&lt;p&gt;https://hub.docker.com/_/arangodb/&lt;/p&gt;
-
-&lt;h1 id=&quot;3docker-compose-mini-集群启动方式&quot;&gt;3.docker-compose mini 集群启动方式&lt;/h1&gt;
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt; 各位稍等，稍后整理一并奉上。&lt;/code&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;大体思路,Docker-Compose 通过link进行docker容器的内部链接，来实现集群模式。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Over&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>zmatsh</name></author><summary type="html">发这个贴的原因，是因为 圈叉三角方块 ，圈叉三角方块 。</summary></entry></feed>
+&lt;/blockquote&gt;</content><author><name>zmatsh</name></author><summary type="html">发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。</summary></entry></feed>
