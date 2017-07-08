@@ -6,6 +6,12 @@
     "category": "Idea,java"
   },
   
+  "2017-07-09-idea-plugin-jrebel": {
+    "title": "IntelliJ IDEA使用教程 热部署插件 JRebel 安装激活及使用 [来自项目中的经历]",
+    "url": " /2017/07/09/idea-plugin-jrebel/",
+    "category": "Idea,java"
+  },
+  
   "2017-07-07-maven-jar-qq": {
     "title": "Mavne jar包去重以及升级,[来自项目中的经历]",
     "url": " /2017/07/07/maven-jar-qq/",
@@ -658,6 +664,12 @@
     "title": "Mavne jar包去重以及升级,[来自项目中的经历]",
     "url": "/2017/07/07/maven-jar-qq/",
     "category": "[&quot;Mavne,java&quot;]"
+  },
+  
+  "2017-07-09-idea-plugin-jrebel": {
+    "title": "IntelliJ IDEA使用教程 热部署插件 JRebel 安装激活及使用 [来自项目中的经历]",
+    "url": "/2017/07/09/idea-plugin-jrebel/",
+    "category": "[&quot;Idea,java&quot;]"
   },
   
   "2017-07-09-idea-plugin-star": {
