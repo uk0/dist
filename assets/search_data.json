@@ -1,5 +1,11 @@
 {
   
+  "2017-07-10-maven-import-jar-local": {
+    "title": "Maven引入本地Jar包进行编译项目 [来自项目中的经历]",
+    "url": " /2017/07/10/maven-import-jar-local/",
+    "category": "Idea,java"
+  },
+  
   "2017-07-09-idea-plugin-star": {
     "title": "Idea 插件推荐 [来自项目中的经历]",
     "url": " /2017/07/09/idea-plugin-star/",
@@ -675,6 +681,12 @@
   "2017-07-09-idea-plugin-star": {
     "title": "Idea 插件推荐 [来自项目中的经历]",
     "url": "/2017/07/09/idea-plugin-star/",
+    "category": "[&quot;Idea,java&quot;]"
+  },
+  
+  "2017-07-10-maven-import-jar-local": {
+    "title": "Maven引入本地Jar包进行编译项目 [来自项目中的经历]",
+    "url": "/2017/07/10/maven-import-jar-local/",
     "category": "[&quot;Idea,java&quot;]"
   },
   

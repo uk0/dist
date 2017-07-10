@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>IDA Pro &mdash; Raner diudiudiu～.</title>
+    <title>Maven引入本地Jar包进行编译项目 [来自项目中的经历] &mdash; Raner diudiudiu～.</title>
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
@@ -21,23 +21,23 @@
     
 
     
-    <link rel="canonical" href="http://firsh.me/wiki/ida-pro/">
+    <link rel="canonical" href="http://firsh.me/2017/07/10/maven-import-jar-local/">
     <link rel="alternate" type="application/atom+xml" title="Raner diudiudiu～." href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="IDA Pro">
+    <meta property="og:title" content="Maven引入本地Jar包进行编译项目 [来自项目中的经历]">
       
-    <meta name="keywords" content="debug, IDA Pro">
-    <meta name="og:keywords" content="debug, IDA Pro">
+    <meta name="keywords" content="Idea, java，Mavne">
+    <meta name="og:keywords" content="Idea, java，Mavne">
       
-    <meta name="description" content="快捷键">
-    <meta name="og:description" content="快捷键">
+    <meta name="description" content="发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。">
+    <meta name="og:description" content="发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。">
       
     
     
         
     
-    <meta property="og:url" content="http://firsh.me/wiki/ida-pro/">
+    <meta property="og:url" content="http://firsh.me/2017/07/10/maven-import-jar-local/">
     <meta property="og:site_name" content="Raner diudiudiu～.">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -85,12 +85,25 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="IDA Pro">
+    <section class="collection-head small geopattern" data-pattern-id="Maven引入本地Jar包进行">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">IDA Pro</h1>
+        <h1 class="collection-header">Maven引入本地Jar包进行编译项目 [来自项目中的经历]</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/07/10
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#Idea,java" title="Idea,java">Idea,java</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
@@ -101,46 +114,25 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <h3 id="快捷键">快捷键</h3>
+    <p>发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。</p>
 
-<p>C –&gt; Ctrl</p>
+<h2 id="摘要-记录下自己遇到的问题和解决办法">摘要: 记录下自己遇到的问题，和解决办法</h2>
 
-<p>S –&gt; Shift</p>
+<div class="language-text highlighter-rouge"><pre class="highlight"><code>  先上图，毕竟是无图无真相的时代：
+</code></pre>
+</div>
+<p><img src="https://zmatsh.b0.upaiyun.com/blog/tmp/maven-import-jar.png" alt="" /></p>
 
-<p>M –&gt; Alt</p>
+<p><img src="https://zmatsh.b0.upaiyun.com/blog/tmp/maven-import-jar-2.png" alt="" /></p>
 
-<p>Cmd –&gt; Command</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>功能</th>
-      <th>快捷键</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>搜索文本</td>
-      <td>M-t</td>
-    </tr>
-    <tr>
-      <td>返回上一个位置</td>
-      <td>Esc</td>
-    </tr>
-    <tr>
-      <td>前进到下一位置</td>
-      <td>C-Enter</td>
-    </tr>
-    <tr>
-      <td>显示伪 C 代码</td>
-      <td>F5</td>
-    </tr>
-    <tr>
-      <td>跳转到地址</td>
-      <td>g</td>
-    </tr>
-  </tbody>
-</table>
+<ul>
+  <li>
+    <p>上图已经标注出两个需要修改的位置。</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">maven clean package</code> 会加载到这个jar包。用普通的引入方式<code class="highlighter-rouge">Maven</code>打包会失败。</p>
+  </li>
+</ul>
 
     </article>
     <div class="share">
@@ -157,9 +149,9 @@
           <div id="disqus_thread"></div>
           <script>
             var disqus_config = function () {
-              this.page.url = 'http://firsh.me/wiki/ida-pro/';
-              this.page.identifier = '/wiki/ida-pro/';
-              this.page.title = 'IDA Pro';
+              this.page.url = 'http://firsh.me/2017/07/10/maven-import-jar-local/';
+              this.page.identifier = '/2017/07/10/maven-import-jar-local/';
+              this.page.title = 'Maven引入本地Jar包进行编译项目 [来自项目中的经历]';
             };
             (function() { // DON'T EDIT BELOW THIS LINE
               var d = document, s = d.createElement('script');
