@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Kubernetes 1.5.1 版本升级。 &mdash; HappyFramework,幸福与贫富无关，与内心相连 :)！</title>
+    <title>Flink Graph Vertex[来自项目中的经历] &mdash; HappyFramework,幸福与贫富无关，与内心相连 :)！</title>
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
@@ -21,28 +21,28 @@
     
 
     
-    <link rel="canonical" href="http://firsh.me/2016/12/21/kubernetes-1.5.1/">
+    <link rel="canonical" href="http://firsh.me/2017/07/16/Graph-lennring/">
     <link rel="alternate" type="application/atom+xml" title="HappyFramework,幸福与贫富无关，与内心相连 :)！" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="Kubernetes 1.5.1 版本升级。">
+    <meta property="og:title" content="Flink Graph Vertex[来自项目中的经历]">
       
-    <meta name="keywords" content="Java, GitHub Pages">
-    <meta name="og:keywords" content="Java, GitHub Pages">
+    <meta name="keywords" content="Flink, Graph，StreamGraph">
+    <meta name="og:keywords" content="Flink, Graph，StreamGraph">
       
-    <meta name="description" content="Kubernetes 1.5.1 版本升级！">
-    <meta name="og:description" content="Kubernetes 1.5.1 版本升级！">
+    <meta name="description" content="发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。">
+    <meta name="og:description" content="发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。">
       
     
     
         
     
-    <meta property="og:url" content="http://firsh.me/2016/12/21/kubernetes-1.5.1/">
+    <meta property="og:url" content="http://firsh.me/2017/07/16/Graph-lennring/">
     <meta property="og:site_name" content="HappyFramework,幸福与贫富无关，与内心相连 :)！">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
     
-    <meta property="article:published_time" content="2016-12-21">
+    <meta property="article:published_time" content="2017-07-16">
     
     <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
     <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
@@ -85,22 +85,22 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="Kubernetes 1.5.">
+    <section class="collection-head small geopattern" data-pattern-id="Flink Graph Ver">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">Kubernetes 1.5.1 版本升级。</h1>
+        <h1 class="collection-header">Flink Graph Vertex[来自项目中的经历]</h1>
         <div class="collection-info">
           
           <span class="meta-info">
-            <span class="octicon octicon-calendar"></span> 2016/12/21
+            <span class="octicon octicon-calendar"></span> 2017/07/16
           </span>
           
           
           <span class="meta-info">
             <span class="octicon octicon-file-directory"></span>
-            <a href="/categories/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            <a href="/categories/#Idea,java" title="Idea,java">Idea,java</a>
           </span>
           
         </div>
@@ -121,24 +121,17 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <p>Kubernetes 1.5.1 版本升级！</p>
+    <p>发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。</p>
 
-<h2 id="main">Main</h2>
-
-<p><a href="https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG.md#server-binaries">kubernetes1.5.1</a>
-  <a href="http://kubernetes.io/kubernetes/third_party/swagger-ui/#!/api%2Fv1/createNamespacedPodTemplate">swagger-ui</a></p>
-
+<h2 id="摘要-graph构建">摘要: Graph构建</h2>
 <ul>
-  <li>
-    <p>工作太忙稍后补上步骤。</p>
-  </li>
-  <li>
-    <p>升级为替换docker镜像即可。</p>
-  </li>
-  <li>
-    <p>替换kube-apiserver,kube-controller-manager,kube-scheduler镜像，替换kubectl kubelet kube-proxy</p>
-  </li>
+  <li><code class="highlighter-rouge">Graph</code>对象是用户的操作入口，主要包含<code class="highlighter-rouge">edge</code>和<code class="highlighter-rouge">vertex</code>两部分。边是由点组成，所以边中所有的点就是点的全集，但这个全集包含了重复的点，去重后就是<code class="highlighter-rouge">VertexRDD</code>。</li>
 </ul>
+
+<h2 id="spark-graphx-简单理解方便学习flink">Spark GraphX 简单理解(方便学习Flink)</h2>
+
+<h2 id="flink-graph-图计算的优势">Flink Graph 图计算的优势。</h2>
+
 
     </article>
     <div class="share">
@@ -155,9 +148,9 @@
           <div id="disqus_thread"></div>
           <script>
             var disqus_config = function () {
-              this.page.url = 'http://firsh.me/2016/12/21/kubernetes-1.5.1/';
-              this.page.identifier = '/2016/12/21/kubernetes-1.5.1/';
-              this.page.title = 'Kubernetes 1.5.1 版本升级。';
+              this.page.url = 'http://firsh.me/2017/07/16/Graph-lennring/';
+              this.page.identifier = '/2017/07/16/Graph-lennring/';
+              this.page.title = 'Flink Graph Vertex[来自项目中的经历]';
             };
             (function() { // DON'T EDIT BELOW THIS LINE
               var d = document, s = d.createElement('script');
