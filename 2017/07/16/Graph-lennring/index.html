@@ -125,12 +125,247 @@
 
 <h2 id="摘要-graph构建">摘要: Graph构建</h2>
 <ul>
-  <li><code class="highlighter-rouge">Graph</code>对象是用户的操作入口，主要包含<code class="highlighter-rouge">edge</code>和<code class="highlighter-rouge">vertex</code>两部分。边是由点组成，所以边中所有的点就是点的全集，但这个全集包含了重复的点，去重后就是<code class="highlighter-rouge">VertexRDD</code>。</li>
+  <li><code class="highlighter-rouge">Graph</code>对象是用户的操作入口，主要包含<code class="highlighter-rouge">edge</code>和<code class="highlighter-rouge">vertex</code>两部分。边是由点组成，所以边中所有的点就是点的全集，但这个全集包含了重复的点，去重后就是<code class="highlighter-rouge">Vertex</code>。</li>
 </ul>
 
-<h2 id="spark-graphx-简单理解方便学习flink">Spark GraphX 简单理解(方便学习Flink)</h2>
+<h2 id="flink-graph-demo">Flink Graph Demo</h2>
 
-<h2 id="flink-graph-图计算的优势">Flink Graph 图计算的优势。</h2>
+<ul>
+  <li>ConnectedComponentsData</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">todcloud</span><span class="o">.</span><span class="na">flink</span><span class="o">.</span><span class="na">StreamGraph</span><span class="o">.</span><span class="na">utils</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Created by zhangjianxin on 2017/7/14.
+ */</span>
+<span class="kn">import</span> <span class="nn">org.apache.flink.api.java.DataSet</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.flink.api.java.ExecutionEnvironment</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.flink.api.java.tuple.Tuple2</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.LinkedList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Provides the default data sets used for the Connected Components example program.
+ * The default data sets are used, if no parameters are given to the program.
+ *
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ConnectedComponentsData</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span><span class="o">[]</span> <span class="n">VERTICES</span>  <span class="o">=</span> <span class="k">new</span> <span class="kt">long</span><span class="o">[]</span> <span class="o">{</span>
+            <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">11</span><span class="o">,</span> <span class="mi">12</span><span class="o">,</span> <span class="mi">13</span><span class="o">,</span> <span class="mi">14</span><span class="o">,</span> <span class="mi">15</span><span class="o">,</span> <span class="mi">16</span><span class="o">};</span>
+    <span class="cm">/**至高点*/</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">DataSet</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span> <span class="nf">getDefaultVertexDataSet</span><span class="o">(</span><span class="n">ExecutionEnvironment</span> <span class="n">env</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span> <span class="n">verticesList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">long</span> <span class="n">vertexId</span> <span class="o">:</span> <span class="n">VERTICES</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">verticesList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">vertexId</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">env</span><span class="o">.</span><span class="na">fromCollection</span><span class="o">(</span><span class="n">verticesList</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="cm">/**边缘*/</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Object</span><span class="o">[][]</span> <span class="n">EDGES</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[][]</span> <span class="o">{</span>
+            <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="mi">1L</span><span class="o">,</span> <span class="mi">2L</span><span class="o">},</span>
+            <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="mi">2L</span><span class="o">,</span> <span class="mi">3L</span><span class="o">},</span>
+            <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="mi">2L</span><span class="o">,</span> <span class="mi">4L</span><span class="o">},</span>
+            <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="mi">3L</span><span class="o">,</span> <span class="mi">5L</span><span class="o">},</span>
+            <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="mi">6L</span><span class="o">,</span> <span class="mi">7L</span><span class="o">},</span>
+            <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="mi">8L</span><span class="o">,</span> <span class="mi">9L</span><span class="o">},</span>
+            <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="mi">8L</span><span class="o">,</span> <span class="mi">10L</span><span class="o">},</span>
+            <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="mi">5L</span><span class="o">,</span> <span class="mi">11L</span><span class="o">},</span>
+            <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="mi">11L</span><span class="o">,</span> <span class="mi">12L</span><span class="o">},</span>
+            <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="mi">10L</span><span class="o">,</span> <span class="mi">13L</span><span class="o">},</span>
+            <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="mi">9L</span><span class="o">,</span> <span class="mi">14L</span><span class="o">},</span>
+            <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="mi">13L</span><span class="o">,</span> <span class="mi">14L</span><span class="o">},</span>
+            <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="mi">1L</span><span class="o">,</span> <span class="mi">15L</span><span class="o">},</span>
+            <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="mi">16L</span><span class="o">,</span> <span class="mi">1L</span><span class="o">}</span>
+    <span class="o">};</span>
+    <span class="cm">/**制造数据采集*/</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">DataSet</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="nf">getDefaultEdgeDataSet</span><span class="o">(</span><span class="n">ExecutionEnvironment</span> <span class="n">env</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">edgeList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Object</span><span class="o">[]</span> <span class="n">edge</span> <span class="o">:</span> <span class="n">EDGES</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">edgeList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;((</span><span class="n">Long</span><span class="o">)</span> <span class="n">edge</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="o">(</span><span class="n">Long</span><span class="o">)</span> <span class="n">edge</span><span class="o">[</span><span class="mi">1</span><span class="o">]));</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">env</span><span class="o">.</span><span class="na">fromCollection</span><span class="o">(</span><span class="n">edgeList</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>ConnectedComponents</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">todcloud</span><span class="o">.</span><span class="na">flink</span><span class="o">.</span><span class="na">StreamGraph</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Created by zhangjianxin on 2017/7/14.
+ */</span>
+<span class="kn">import</span> <span class="nn">com.todcloud.flink.StreamGraph.utils.ConnectedComponentsData</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.flink.api.common.functions.FlatJoinFunction</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.flink.api.common.functions.FlatMapFunction</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.flink.api.common.functions.JoinFunction</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.flink.api.common.functions.MapFunction</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.flink.api.java.DataSet</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.flink.api.java.ExecutionEnvironment</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.flink.api.java.aggregation.Aggregations</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.flink.api.java.functions.FunctionAnnotation.ForwardedFields</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.flink.api.java.functions.FunctionAnnotation.ForwardedFieldsFirst</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.flink.api.java.functions.FunctionAnnotation.ForwardedFieldsSecond</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.flink.api.java.operators.DeltaIteration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.flink.api.java.tuple.Tuple1</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.flink.api.java.tuple.Tuple2</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.flink.api.java.utils.ParameterTool</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.flink.util.Collector</span><span class="o">;</span>
+
+<span class="cm">/**
+ *使用增量迭代实现连接的组件算法
+ *
+ * &lt;p&gt;最初，算法为每个顶点分配一个惟一的ID. 在每一步中，顶点选择自己ID的最小值
+ *邻居的I Ds，作为它的新ID，并告诉它的邻居它的新ID。算法完成后，同一组件中的所有顶点将具有相同的ID
+ *
+ * &lt;p&gt;一个顶点的组件 ID没有改变，不需要在下一步传播它的信息 的一步。正因为如此,
+ */</span>
+<span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">"serial"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ConnectedComponents</span> <span class="o">{</span>
+
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">...</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+
+        <span class="cm">/** 检查输入参数 */</span>
+        <span class="kd">final</span> <span class="n">ParameterTool</span> <span class="n">params</span> <span class="o">=</span> <span class="n">ParameterTool</span><span class="o">.</span><span class="na">fromArgs</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
+
+        <span class="cm">/** 建立执行环境 */</span>
+        <span class="n">ExecutionEnvironment</span> <span class="n">env</span> <span class="o">=</span> <span class="n">ExecutionEnvironment</span><span class="o">.</span><span class="na">getExecutionEnvironment</span><span class="o">();</span>
+
+        <span class="kd">final</span> <span class="kt">int</span> <span class="n">maxIterations</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span><span class="s">"iterations"</span><span class="o">,</span> <span class="mi">10</span><span class="o">);</span>
+
+        <span class="cm">/** 在web接口中提供可用的参数 */</span>
+        <span class="n">env</span><span class="o">.</span><span class="na">getConfig</span><span class="o">().</span><span class="na">setGlobalJobParameters</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
+
+        <span class="cm">/** 顶点和边读数据 */</span>
+        <span class="n">DataSet</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span> <span class="n">vertices</span> <span class="o">=</span> <span class="n">getVertexDataSet</span><span class="o">(</span><span class="n">env</span><span class="o">,</span> <span class="n">params</span><span class="o">);</span>
+        <span class="n">DataSet</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">edges</span> <span class="o">=</span> <span class="n">getEdgeDataSet</span><span class="o">(</span><span class="n">env</span><span class="o">,</span> <span class="n">params</span><span class="o">).</span><span class="na">flatMap</span><span class="o">(</span><span class="k">new</span> <span class="n">UndirectEdge</span><span class="o">());</span>
+
+        <span class="cm">/** 分配初始组件(等于顶点id) */</span>
+        <span class="n">DataSet</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">verticesWithInitialId</span> <span class="o">=</span> <span class="n">vertices</span><span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="k">new</span> <span class="n">DuplicateValue</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;());</span>
+
+        <span class="cm">/**打开一个增量迭代 */</span>
+        <span class="n">DeltaIteration</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;,</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">iteration</span> <span class="o">=</span>
+                <span class="n">verticesWithInitialId</span><span class="o">.</span><span class="na">iterateDelta</span><span class="o">(</span><span class="n">verticesWithInitialId</span><span class="o">,</span> <span class="n">maxIterations</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+
+        <span class="cm">/** 应用步骤逻辑 */</span>
+        <span class="cm">/** 加入边缘，选择最小的邻居 */</span>
+        <span class="cm">/** 如果候选的组件较小，则更新 */</span>
+        <span class="n">DataSet</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">changes</span> <span class="o">=</span> <span class="n">iteration</span><span class="o">.</span><span class="na">getWorkset</span><span class="o">().</span><span class="na">join</span><span class="o">(</span><span class="n">edges</span><span class="o">).</span><span class="na">where</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">equalTo</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">with</span><span class="o">(</span><span class="k">new</span> <span class="n">NeighborWithComponentIDJoin</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">groupBy</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">aggregate</span><span class="o">(</span><span class="n">Aggregations</span><span class="o">.</span><span class="na">MIN</span><span class="o">,</span> <span class="mi">1</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="n">iteration</span><span class="o">.</span><span class="na">getSolutionSet</span><span class="o">()).</span><span class="na">where</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">equalTo</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="k">new</span> <span class="n">ComponentIdFilter</span><span class="o">());</span>
+
+        <span class="cm">/**关闭增量迭代(增量和新工作集是相同的) */</span>
+        <span class="n">DataSet</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">iteration</span><span class="o">.</span><span class="na">closeWith</span><span class="o">(</span><span class="n">changes</span><span class="o">,</span> <span class="n">changes</span><span class="o">);</span>
+
+        <span class="cm">/**排放结果 */</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">params</span><span class="o">.</span><span class="na">has</span><span class="o">(</span><span class="s">"output"</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">result</span><span class="o">.</span><span class="na">writeAsCsv</span><span class="o">(</span><span class="n">params</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"output"</span><span class="o">),</span> <span class="s">"\n"</span><span class="o">,</span> <span class="s">" "</span><span class="o">);</span>
+
+            <span class="n">env</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="s">"连接组件的DEMO"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"打印输出到stdout. Use --output to specify output path."</span><span class="o">);</span>
+            <span class="n">result</span><span class="o">.</span><span class="na">print</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+
+    <span class="cm">/**
+     * 函数将值转换为两个字段的值
+     */</span>
+    <span class="nd">@ForwardedFields</span><span class="o">(</span><span class="s">"*-&gt;f0"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">DuplicateValue</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">MapFunction</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">{</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="nf">map</span><span class="o">(</span><span class="n">T</span> <span class="n">vertex</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;(</span><span class="n">vertex</span><span class="o">,</span> <span class="n">vertex</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     *
+     通过向每个输入边缘发射输入边本身和一个反向的版本，以无定向的边缘
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">UndirectEdge</span> <span class="kd">implements</span> <span class="n">FlatMapFunction</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;,</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="o">{</span>
+        <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">invertedEdge</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;();</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">flatMap</span><span class="o">(</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">edge</span><span class="o">,</span> <span class="n">Collector</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">out</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">invertedEdge</span><span class="o">.</span><span class="na">f0</span> <span class="o">=</span> <span class="n">edge</span><span class="o">.</span><span class="na">f1</span><span class="o">;</span>
+            <span class="n">invertedEdge</span><span class="o">.</span><span class="na">f1</span> <span class="o">=</span> <span class="n">edge</span><span class="o">.</span><span class="na">f0</span><span class="o">;</span>
+            <span class="n">out</span><span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">edge</span><span class="o">);</span>
+            <span class="n">out</span><span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">invertedEdge</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * UDF that joins a (Vertex-ID, Component-ID) pair that represents the current component that
+     * a vertex is associated with, with a (Source-Vertex-ID, Target-VertexID) edge. The function
+     * produces a (Target-vertex-ID, Component-ID) pair.
+     */</span>
+    <span class="nd">@ForwardedFieldsFirst</span><span class="o">(</span><span class="s">"f1-&gt;f1"</span><span class="o">)</span>
+    <span class="nd">@ForwardedFieldsSecond</span><span class="o">(</span><span class="s">"f1-&gt;f0"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">NeighborWithComponentIDJoin</span> <span class="kd">implements</span> <span class="n">JoinFunction</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;,</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;,</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="o">{</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="nf">join</span><span class="o">(</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">vertexWithComponent</span><span class="o">,</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">edge</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;(</span><span class="n">edge</span><span class="o">.</span><span class="na">f1</span><span class="o">,</span> <span class="n">vertexWithComponent</span><span class="o">.</span><span class="na">f1</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Emit the candidate (Vertex-ID, Component-ID) pair if and only if the
+     * candidate component ID is less than the vertex's current component ID.
+     */</span>
+    <span class="nd">@ForwardedFieldsFirst</span><span class="o">(</span><span class="s">"*"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">ComponentIdFilter</span> <span class="kd">implements</span> <span class="n">FlatJoinFunction</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;,</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;,</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="o">{</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">join</span><span class="o">(</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">candidate</span><span class="o">,</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">old</span><span class="o">,</span> <span class="n">Collector</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">out</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">candidate</span><span class="o">.</span><span class="na">f1</span> <span class="o">&lt;</span> <span class="n">old</span><span class="o">.</span><span class="na">f1</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">out</span><span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">candidate</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**  UTIL 研究方法  */</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">DataSet</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span> <span class="nf">getVertexDataSet</span><span class="o">(</span><span class="n">ExecutionEnvironment</span> <span class="n">env</span><span class="o">,</span> <span class="n">ParameterTool</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">params</span><span class="o">.</span><span class="na">has</span><span class="o">(</span><span class="s">"vertices"</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">env</span><span class="o">.</span><span class="na">readCsvFile</span><span class="o">(</span><span class="n">params</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"vertices"</span><span class="o">)).</span><span class="na">types</span><span class="o">(</span><span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">map</span><span class="o">(</span>
+                    <span class="k">new</span> <span class="n">MapFunction</span><span class="o">&lt;</span><span class="n">Tuple1</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;,</span> <span class="n">Long</span><span class="o">&gt;()</span> <span class="o">{</span>
+                        <span class="kd">public</span> <span class="n">Long</span> <span class="nf">map</span><span class="o">(</span><span class="n">Tuple1</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="na">f0</span><span class="o">;</span>
+                        <span class="o">}</span>
+                    <span class="o">});</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Executing Connected Components example with default vertices data set."</span><span class="o">);</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Use --vertices to specify file input."</span><span class="o">);</span>
+            <span class="k">return</span> <span class="n">ConnectedComponentsData</span><span class="o">.</span><span class="na">getDefaultVertexDataSet</span><span class="o">(</span><span class="n">env</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">DataSet</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="nf">getEdgeDataSet</span><span class="o">(</span><span class="n">ExecutionEnvironment</span> <span class="n">env</span><span class="o">,</span> <span class="n">ParameterTool</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">params</span><span class="o">.</span><span class="na">has</span><span class="o">(</span><span class="s">"edges"</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">env</span><span class="o">.</span><span class="na">readCsvFile</span><span class="o">(</span><span class="n">params</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"edges"</span><span class="o">)).</span><span class="na">fieldDelimiter</span><span class="o">(</span><span class="s">" "</span><span class="o">).</span><span class="na">types</span><span class="o">(</span><span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Executing Connected Components example with default edges data set."</span><span class="o">);</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Use --edges to specify file input."</span><span class="o">);</span>
+            <span class="k">return</span> <span class="n">ConnectedComponentsData</span><span class="o">.</span><span class="na">getDefaultEdgeDataSet</span><span class="o">(</span><span class="n">env</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
 
 
     </article>
