@@ -1,4 +1,214 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-07-17T14:26:41+08:00</updated><id>http://firsh.me/</id><title type="html">HappyFramework :)</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>zmatsh</name></author><entry><title type="html">Positive Script 正则表达式[来自项目中的经历]</title><link href="http://firsh.me/2017/07/17/Positive-Script/" rel="alternate" type="text/html" title="Positive Script 正则表达式[来自项目中的经历]" /><published>2017-07-17T00:00:00+08:00</published><updated>2017-07-17T00:00:00+08:00</updated><id>http://firsh.me/2017/07/17/Positive-Script</id><content type="html" xml:base="http://firsh.me/2017/07/17/Positive-Script/">&lt;p&gt;发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-07-18T00:19:32+08:00</updated><id>http://firsh.me/</id><title type="html">HappyFramework :)</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>zmatsh</name></author><entry><title type="html">CPS 王垠 大佬的代码[测试过]</title><link href="http://firsh.me/2017/07/17/cps-transformer/" rel="alternate" type="text/html" title="CPS 王垠 大佬的代码[测试过]" /><published>2017-07-17T00:00:00+08:00</published><updated>2017-07-17T00:00:00+08:00</updated><id>http://firsh.me/2017/07/17/cps-transformer</id><content type="html" xml:base="http://firsh.me/2017/07/17/cps-transformer/">&lt;p&gt;发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。&lt;/p&gt;
+
+&lt;h2 id=&quot;摘要-cpsscm-pmatchscm&quot;&gt;摘要: &lt;code class=&quot;highlighter-rouge&quot;&gt;CPS.scm&lt;/code&gt; ,&lt;code class=&quot;highlighter-rouge&quot;&gt;pmatch.scm&lt;/code&gt;&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;scheme&lt;/code&gt;代码。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;stat&quot;&gt;Stat&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;CPS.scm&lt;/code&gt; Code&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;pmatch.scm&lt;/code&gt; Code&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;CPS
+```scheme
+;; A simple CPS transformer which does proper tail-call and does not
+;; duplicate contexts for if-expressions.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;;; author: Yin Wang (yw21@cs.indiana.edu)&lt;/p&gt;
+
+&lt;p&gt;(load “pmatch.scm”)&lt;/p&gt;
+
+&lt;p&gt;(define cps
+(lambda (exp)
+(letrec
+([trivial? (lambda (x) (memq x ‘(zero? add1 sub1)))]
+[id (lambda (v) v)]
+[ctx0 (lambda (v) &lt;code class=&quot;highlighter-rouge&quot;&gt;(k ,v))] ; tail context
+[fv (let ([n -1])
+(lambda ()
+(set! n (+ 1 n))
+(string-&amp;gt;symbol (string-append &quot;v&quot; (number-&amp;gt;string n)))))]
+[cps1
+(lambda (exp ctx)
+(pmatch exp
+[,x (guard (not (pair? x))) (ctx x)]
+[(if ,test ,conseq ,alt)
+(cps1 test
+(lambda (t)
+(cond
+[(memq ctx (list ctx0 id))
+&lt;/code&gt;(if ,t ,(cps1 conseq ctx) ,(cps1 alt ctx))]
+[else
+(let ([u (fv)])
+&lt;code class=&quot;highlighter-rouge&quot;&gt;(let ([k (lambda (,u) ,(ctx u))])
+(if ,t ,(cps1 conseq ctx0) ,(cps1 alt ctx0))))])))]
+[(lambda (,x) ,body)
+(ctx &lt;/code&gt;(lambda (,x k) ,(cps1 body ctx0)))]
+[(,op ,a ,b)
+(cps1 a (lambda (v1)
+(cps1 b (lambda (v2)
+(ctx &lt;code class=&quot;highlighter-rouge&quot;&gt;(,op ,v1 ,v2))))))]
+[(,rator ,rand)
+(cps1 rator
+(lambda (r)
+(cps1 rand
+(lambda (d)
+(cond
+[(trivial? r) (ctx &lt;/code&gt;(,r ,d))]
+[(eq? ctx ctx0) &lt;code class=&quot;highlighter-rouge&quot;&gt;(,r ,d k)] ; tail call
+[else
+(let ([u (fv)])
+&lt;/code&gt;(,r ,d (lambda (,u) ,(ctx u))))])))))]))])
+(cps1 exp id))))%&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+
+* pmatch
+
+```scheme
+;;; Code written by Oleg Kiselyov
+;; (http://pobox.com/~oleg/ftp/)
+;;;
+;;; Taken from leanTAP.scm
+;;; http://kanren.cvs.sourceforge.net/kanren/kanren/mini/leanTAP.scm?view=log
+
+; A simple linear pattern matcher
+; It is efficient (generates code at macro-expansion time) and simple:
+; it should work on any R5RS Scheme system.
+
+; (pmatch exp &amp;lt;clause&amp;gt; ...[&amp;lt;else-clause&amp;gt;])
+; &amp;lt;clause&amp;gt; ::= (&amp;lt;pattern&amp;gt; &amp;lt;guard&amp;gt; exp ...)
+; &amp;lt;else-clause&amp;gt; ::= (else exp ...)
+; &amp;lt;guard&amp;gt; ::= boolean exp | ()
+; &amp;lt;pattern&amp;gt; :: =
+;        ,var  -- matches always and binds the var
+;                 pattern must be linear! No check is done
+;         _    -- matches always
+;        'exp  -- comparison with exp (using equal?)
+;        exp   -- comparison with exp (using equal?)
+;        (&amp;lt;pattern1&amp;gt; &amp;lt;pattern2&amp;gt; ...) -- matches the list of patterns
+;        (&amp;lt;pattern1&amp;gt; . &amp;lt;pattern2&amp;gt;)  -- ditto
+;        ()    -- matches the empty list
+
+(define-syntax pmatch
+  (syntax-rules (else guard)
+    ((_ (rator rand ...) cs ...)
+     (let ((v (rator rand ...)))
+       (pmatch v cs ...)))
+    ((_ v) (error 'pmatch &quot;failed: ~s&quot; v))
+    ((_ v (else e0 e ...)) (begin e0 e ...))
+    ((_ v (pat (guard g ...) e0 e ...) cs ...)
+     (let ((fk (lambda () (pmatch v cs ...))))
+       (ppat v pat (if (and g ...) (begin e0 e ...) (fk)) (fk))))
+    ((_ v (pat e0 e ...) cs ...)
+     (let ((fk (lambda () (pmatch v cs ...))))
+       (ppat v pat (begin e0 e ...) (fk))))))
+
+(define-syntax ppat
+  (syntax-rules (_ quote unquote)
+    ((_ v _ kt kf) kt)
+    ((_ v () kt kf) (if (null? v) kt kf))
+    ((_ v (quote lit) kt kf) (if (equal? v (quote lit)) kt kf))
+    ((_ v (unquote var) kt kf) (let ((var v)) kt))
+    ((_ v (x . y) kt kf)
+     (if (pair? v)
+       (let ((vx (car v)) (vy (cdr v)))
+	 (ppat vx x (ppat vy y kt kf) kf))
+       kf))
+    ((_ v lit kt kf) (if (equal? v (quote lit)) kt kf))))
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;test&quot;&gt;test&lt;/h2&gt;
+
+&lt;div class=&quot;language-scheme highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;;;; tests&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;;; var&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cps&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;'x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cps&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cps&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;
+
+
+&lt;span class=&quot;c1&quot;&gt;;; no lambda (will generate identity functions to return to the toplevel)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cps&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cps&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+
+&lt;span class=&quot;c1&quot;&gt;;; if stand-alone (tail)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cps&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;
+
+
+&lt;span class=&quot;c1&quot;&gt;;; if inside if-test (non-tail)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cps&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;
+
+
+&lt;span class=&quot;c1&quot;&gt;;; both branches are trivial, should do some more optimizations&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cps&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;zero?&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;
+
+
+&lt;span class=&quot;c1&quot;&gt;;; if inside if-branch (tail)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cps&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;
+
+
+&lt;span class=&quot;c1&quot;&gt;;; if inside if-branch, but again inside another if-test (non-tail)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cps&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;
+
+
+&lt;span class=&quot;c1&quot;&gt;;; if as operand (non-tail)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cps&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))))&lt;/span&gt;
+
+
+&lt;span class=&quot;c1&quot;&gt;;; if as operator (non-tail)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cps&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;
+
+
+&lt;span class=&quot;c1&quot;&gt;;; why we need more than two names&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cps&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(((&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;g&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;g&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))))&lt;/span&gt;
+
+
+
+&lt;span class=&quot;c1&quot;&gt;;; factorial&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;define&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;fact-cps&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cps&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;fact&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;fact&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;fact&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;fact&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;zero?&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;fact&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;fact&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;sub1&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))))))))))&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;;; print out CPSed function&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pretty-print&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;fact-cps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;;; =&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;;; '(lambda (n k)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;;; ((lambda (fact k) (fact fact (lambda (v0) (v0 n k))))&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;;; (lambda (fact k)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;;; (k&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;;; (lambda (n k)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;;; (if (zero? n)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;;; (k 1)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;;; (fact&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;;; fact&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;;; (lambda (v1) (v1 (sub1 n) (lambda (v2) (k (* n v2))))))))))&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;;; k))&lt;/span&gt;
+
+
+&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;fact-cps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;;; =&amp;gt; 120&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;大佬的代码解析&quot;&gt;大佬的代码解析&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/blog/tmp/cps.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/blog/tmp/cps-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;</content><author><name>zmatsh</name></author><summary type="html">发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。</summary></entry><entry><title type="html">Positive Script 正则表达式[来自项目中的经历]</title><link href="http://firsh.me/2017/07/17/Positive-Script/" rel="alternate" type="text/html" title="Positive Script 正则表达式[来自项目中的经历]" /><published>2017-07-17T00:00:00+08:00</published><updated>2017-07-17T00:00:00+08:00</updated><id>http://firsh.me/2017/07/17/Positive-Script</id><content type="html" xml:base="http://firsh.me/2017/07/17/Positive-Script/">&lt;p&gt;发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。&lt;/p&gt;
 
 &lt;h2 id=&quot;摘要-positive&quot;&gt;摘要: Positive&lt;/h2&gt;
 &lt;ul&gt;
@@ -1251,134 +1461,4 @@ $ 匹配输入字符串的结束位置。如果设置了 `RegExp` 对象的Multi
 	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>zmatsh</name></author><summary type="html">发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。</summary></entry><entry><title type="html">centos7 安装 gitolite （git服务器）</title><link href="http://firsh.me/2017/07/05/gitolite-centos/" rel="alternate" type="text/html" title="centos7 安装 gitolite （git服务器）" /><published>2017-07-05T00:00:00+08:00</published><updated>2017-07-05T00:00:00+08:00</updated><id>http://firsh.me/2017/07/05/gitolite-centos</id><content type="html" xml:base="http://firsh.me/2017/07/05/gitolite-centos/">&lt;p&gt;发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。&lt;/p&gt;
-
-&lt;h2 id=&quot;搭建轻量级git服务器程序解决了git权限管理的问题&quot;&gt;搭建轻量级git服务器程序，解决了git权限管理的问题。&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;轻量级git服务器程序，解决了git权限管理的问题。（git是一个分布式版本控制系统，就是说每个人作为客户端的同时又是服务器）
-项目GitHub地址：https://github.com/sitaramc/gitolite
-项目官方文档：http://gitolite.com/gitolite/
-当前环境：centos 7
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;安装前准备&quot;&gt;安装前准备&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 在客户端机器安装git,并生成秘钥
- 各操作系统安装方法均很简单，请自行安装。
- 使用git安装目录下的 usr/bin/ssh-keygen生成rsa秘钥:
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh-keygen -t rsa 
-&lt;span class=&quot;c&quot;&gt;#然后一路回车到结束。(生成秘钥默认在当前用户目录的.ssh目录下，下面要用）&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;安装没有安装的依赖包&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; yum install -y gcc gcc-c++ pcre pcre-devel zlib zlib-devel openssl openssl-devel perl&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; git
- &lt;span class=&quot;c&quot;&gt;# 需要注意：gitolite对以上软件版本有一定的要求，如果报错，升级软件即可。&lt;/span&gt;
- yum update -y  Softname
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;创建用户&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; useradd git
- passwd git
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;! 如果已有用户，请确认
-       * &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.ssh/authorized_keys&lt;/code&gt; 文件是空的或者不存在
-       * 客户机ssh-keygen生成的id_rsa.pub公钥已经拷贝到：&lt;code class=&quot;highlighter-rouge&quot;&gt;~/YourName.pub &lt;/code&gt;，改成自己的名字，为了多人协作时便于区分，并不是硬性规定&lt;/p&gt;
-
-&lt;h2 id=&quot;开始安装&quot;&gt;开始安装&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; su git  &lt;span class=&quot;c&quot;&gt;# 切换到git用户&lt;/span&gt;
- git clone git://github.com/sitaramc/gitolite
- mkdir -p ~/bin   &lt;span class=&quot;c&quot;&gt;#一定要创建bin文件夹 &lt;/span&gt;
- ~/gitolite/install -to ~/bin
- ~/bin/gitolite setup -pk YourName.pub &lt;span class=&quot;c&quot;&gt;#生成下面所要用的管理库gitolite-admin和测试用库testing&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;添加用户和仓库&quot;&gt;添加用户和仓库&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; git clone git@host:gitolite-admin.git
-    &lt;span class=&quot;c&quot;&gt;#记得修改host&lt;/span&gt;
-    
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;打开看到两个文件夹：
-    &lt;ul&gt;
-      &lt;li&gt;conf：存放配置文件（授权文件）&lt;/li&gt;
-      &lt;li&gt;keyDir：存放所有客户端用户的公钥&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;打开conf/gitolite.conf 配置如下：&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  @webgroup       =   zhangsan lisi
-  @androidgroup           =   lisi
-  @iosgroup       =   wangwu
-  
-  &amp;lt;!-- 设置管理员的地方 --&amp;gt;
-  repo gitolite-admin
-      RW+     =   lisi
-  
-  &amp;lt;!-- 可以用来学习使用 --&amp;gt;
-  repo testing
-      RW+     =   @all
-      
-  repo web
-      RW+     =   @webgroup
-      R       =   fengshuang
-      
-  repo android
-      RW+     =   @androidgroup
-      
-  repo ios
-      RW+     =   @iosgroup
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;表示新建三个分组：@webgroup、@androidgroup、@iosgroup，新建三个仓库：web、android、ios，RW分别代表读写，可以通过人所属组给人赋权，也可以直接给人赋权，组前记得加@
-将以上配置人间中的人的公钥复制到keyDir文件夹
-然后回到仓库根目录gitolite-admin下，使用以下命令提交修改：&lt;/p&gt;
-
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git add .
-git commit -m &lt;span class=&quot;s2&quot;&gt;&quot;add users and repos&quot;&lt;/span&gt;
-git push
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;##  【注意】：&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;开发人员可以git clone仓库的前提是在这个配置文件中进行了授权提交，并且其公钥已经交由管理员提交到keyDir目录中。&lt;/li&gt;
-  &lt;li&gt;简单的权限管理及这么多，基本上够项目使用，更加负责的权限配置，请参阅官方文档。http://gitolite.com/gitolite/&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;## 开发人员下载仓库&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;这里以张三下载web仓库为例&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; git clone git@host:web.git  &lt;span class=&quot;c&quot;&gt;#别忘了后面的.git&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;# 转载请注明出处!&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;一切的学习都是为了以前吹过的牛皮啊～&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>zmatsh</name></author><summary type="html">发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。</summary></entry></feed>
+&lt;/div&gt;</content><author><name>zmatsh</name></author><summary type="html">发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。</summary></entry></feed>

@@ -1,5 +1,11 @@
 {
   
+  "2017-07-17-cps-transformer": {
+    "title": "CPS 王垠 大佬的代码[测试过]",
+    "url": " /2017/07/17/cps-transformer/",
+    "category": "lisp,cps"
+  },
+  
   "2017-07-17-positive-script": {
     "title": "Positive Script 正则表达式[来自项目中的经历]",
     "url": " /2017/07/17/Positive-Script/",
@@ -712,6 +718,12 @@
     "title": "Positive Script 正则表达式[来自项目中的经历]",
     "url": "/2017/07/17/Positive-Script/",
     "category": "[&quot;Positive,正则表达式&quot;]"
+  },
+  
+  "2017-07-17-cps-transformer": {
+    "title": "CPS 王垠 大佬的代码[测试过]",
+    "url": "/2017/07/17/cps-transformer/",
+    "category": "[&quot;lisp,cps&quot;]"
   },
   
   "wiki-android-studio": {

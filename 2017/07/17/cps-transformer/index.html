@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>CPS 王垠 大佬的代码[测试过] &mdash; HappyFramework :)</title>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2017/07/17/cps-transformer/">
+    <link rel="alternate" type="application/atom+xml" title="HappyFramework :)" href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="CPS 王垠 大佬的代码[测试过]">
+      
+    <meta name="keywords" content="lisp, Script">
+    <meta name="og:keywords" content="lisp, Script">
+      
+    <meta name="description" content="发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。">
+    <meta name="og:description" content="发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2017/07/17/cps-transformer/">
+    <meta property="og:site_name" content="HappyFramework :)">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2017-07-17">
+    
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="HappyFramework :)"><span class="octicon octicon-mark-github"></span> HappyFramework :)</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="首页">首页</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="分类">分类</a>
+                
+                <a href="/open-source/" class=" site-header-nav-item" target="" title="开源">开源</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="维基">维基</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="链接">链接</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="CPS 王垠 大佬的代码[测试">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">CPS 王垠 大佬的代码[测试过]</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/07/17
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#lisp,cps" title="lisp,cps">lisp,cps</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <p>发这个贴的原因，是因为 是因为 是因为啥来着，忘了 那就是因为你，因为你 。</p>
+
+<h2 id="摘要-cpsscm-pmatchscm">摘要: <code class="highlighter-rouge">CPS.scm</code> ,<code class="highlighter-rouge">pmatch.scm</code></h2>
+<ul>
+  <li><code class="highlighter-rouge">scheme</code>代码。</li>
+</ul>
+
+<h2 id="stat">Stat</h2>
+
+<ul>
+  <li><code class="highlighter-rouge">CPS.scm</code> Code</li>
+  <li>
+    <p><code class="highlighter-rouge">pmatch.scm</code> Code</p>
+  </li>
+  <li>CPS
+```scheme
+;; A simple CPS transformer which does proper tail-call and does not
+;; duplicate contexts for if-expressions.</li>
+</ul>
+
+<p>;; author: Yin Wang (yw21@cs.indiana.edu)</p>
+
+<p>(load “pmatch.scm”)</p>
+
+<p>(define cps
+(lambda (exp)
+(letrec
+([trivial? (lambda (x) (memq x ‘(zero? add1 sub1)))]
+[id (lambda (v) v)]
+[ctx0 (lambda (v) <code class="highlighter-rouge">(k ,v))] ; tail context
+[fv (let ([n -1])
+(lambda ()
+(set! n (+ 1 n))
+(string-&gt;symbol (string-append "v" (number-&gt;string n)))))]
+[cps1
+(lambda (exp ctx)
+(pmatch exp
+[,x (guard (not (pair? x))) (ctx x)]
+[(if ,test ,conseq ,alt)
+(cps1 test
+(lambda (t)
+(cond
+[(memq ctx (list ctx0 id))
+</code>(if ,t ,(cps1 conseq ctx) ,(cps1 alt ctx))]
+[else
+(let ([u (fv)])
+<code class="highlighter-rouge">(let ([k (lambda (,u) ,(ctx u))])
+(if ,t ,(cps1 conseq ctx0) ,(cps1 alt ctx0))))])))]
+[(lambda (,x) ,body)
+(ctx </code>(lambda (,x k) ,(cps1 body ctx0)))]
+[(,op ,a ,b)
+(cps1 a (lambda (v1)
+(cps1 b (lambda (v2)
+(ctx <code class="highlighter-rouge">(,op ,v1 ,v2))))))]
+[(,rator ,rand)
+(cps1 rator
+(lambda (r)
+(cps1 rand
+(lambda (d)
+(cond
+[(trivial? r) (ctx </code>(,r ,d))]
+[(eq? ctx ctx0) <code class="highlighter-rouge">(,r ,d k)] ; tail call
+[else
+(let ([u (fv)])
+</code>(,r ,d (lambda (,u) ,(ctx u))))])))))]))])
+(cps1 exp id))))%</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+
+* pmatch
+
+```scheme
+;;; Code written by Oleg Kiselyov
+;; (http://pobox.com/~oleg/ftp/)
+;;;
+;;; Taken from leanTAP.scm
+;;; http://kanren.cvs.sourceforge.net/kanren/kanren/mini/leanTAP.scm?view=log
+
+; A simple linear pattern matcher
+; It is efficient (generates code at macro-expansion time) and simple:
+; it should work on any R5RS Scheme system.
+
+; (pmatch exp &lt;clause&gt; ...[&lt;else-clause&gt;])
+; &lt;clause&gt; ::= (&lt;pattern&gt; &lt;guard&gt; exp ...)
+; &lt;else-clause&gt; ::= (else exp ...)
+; &lt;guard&gt; ::= boolean exp | ()
+; &lt;pattern&gt; :: =
+;        ,var  -- matches always and binds the var
+;                 pattern must be linear! No check is done
+;         _    -- matches always
+;        'exp  -- comparison with exp (using equal?)
+;        exp   -- comparison with exp (using equal?)
+;        (&lt;pattern1&gt; &lt;pattern2&gt; ...) -- matches the list of patterns
+;        (&lt;pattern1&gt; . &lt;pattern2&gt;)  -- ditto
+;        ()    -- matches the empty list
+
+(define-syntax pmatch
+  (syntax-rules (else guard)
+    ((_ (rator rand ...) cs ...)
+     (let ((v (rator rand ...)))
+       (pmatch v cs ...)))
+    ((_ v) (error 'pmatch "failed: ~s" v))
+    ((_ v (else e0 e ...)) (begin e0 e ...))
+    ((_ v (pat (guard g ...) e0 e ...) cs ...)
+     (let ((fk (lambda () (pmatch v cs ...))))
+       (ppat v pat (if (and g ...) (begin e0 e ...) (fk)) (fk))))
+    ((_ v (pat e0 e ...) cs ...)
+     (let ((fk (lambda () (pmatch v cs ...))))
+       (ppat v pat (begin e0 e ...) (fk))))))
+
+(define-syntax ppat
+  (syntax-rules (_ quote unquote)
+    ((_ v _ kt kf) kt)
+    ((_ v () kt kf) (if (null? v) kt kf))
+    ((_ v (quote lit) kt kf) (if (equal? v (quote lit)) kt kf))
+    ((_ v (unquote var) kt kf) (let ((var v)) kt))
+    ((_ v (x . y) kt kf)
+     (if (pair? v)
+       (let ((vx (car v)) (vy (cdr v)))
+	 (ppat vx x (ppat vy y kt kf) kf))
+       kf))
+    ((_ v lit kt kf) (if (equal? v (quote lit)) kt kf))))
+
+</code></pre>
+</div>
+
+<h2 id="test">test</h2>
+
+<div class="language-scheme highlighter-rouge"><pre class="highlight"><code><span class="c1">;;; tests</span>
+
+<span class="c1">;; var</span>
+<span class="p">(</span><span class="nf">cps</span> <span class="ss">'x</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">cps</span> <span class="o">'</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nf">x</span><span class="p">)</span> <span class="nv">x</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">cps</span> <span class="o">'</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nf">x</span><span class="p">)</span> <span class="p">(</span><span class="nf">x</span> <span class="mi">1</span><span class="p">)))</span>
+
+
+<span class="c1">;; no lambda (will generate identity functions to return to the toplevel)</span>
+<span class="p">(</span><span class="nf">cps</span> <span class="o">'</span><span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nf">f</span> <span class="nv">x</span><span class="p">)</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">cps</span> <span class="o">'</span><span class="p">(</span><span class="k">if</span> <span class="nv">x</span> <span class="p">(</span><span class="nf">f</span> <span class="nv">a</span><span class="p">)</span> <span class="nv">b</span><span class="p">))</span>
+
+
+<span class="c1">;; if stand-alone (tail)</span>
+<span class="p">(</span><span class="nf">cps</span> <span class="o">'</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nf">x</span><span class="p">)</span> <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nf">f</span> <span class="nv">x</span><span class="p">)</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)))</span>
+
+
+<span class="c1">;; if inside if-test (non-tail)</span>
+<span class="p">(</span><span class="nf">cps</span> <span class="o">'</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nf">x</span><span class="p">)</span> <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="k">if</span> <span class="nv">x</span> <span class="p">(</span><span class="nf">f</span> <span class="nv">a</span><span class="p">)</span> <span class="nv">b</span><span class="p">)</span> <span class="nv">c</span> <span class="nv">d</span><span class="p">)))</span>
+
+
+<span class="c1">;; both branches are trivial, should do some more optimizations</span>
+<span class="p">(</span><span class="nf">cps</span> <span class="o">'</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nf">x</span><span class="p">)</span> <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="k">if</span> <span class="nv">x</span> <span class="p">(</span><span class="nb">zero?</span> <span class="nv">a</span><span class="p">)</span> <span class="nv">b</span><span class="p">)</span> <span class="nv">c</span> <span class="nv">d</span><span class="p">)))</span>
+
+
+<span class="c1">;; if inside if-branch (tail)</span>
+<span class="p">(</span><span class="nf">cps</span> <span class="o">'</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nf">x</span><span class="p">)</span> <span class="p">(</span><span class="k">if</span> <span class="nv">t</span> <span class="p">(</span><span class="k">if</span> <span class="nv">x</span> <span class="p">(</span><span class="nf">f</span> <span class="nv">a</span><span class="p">)</span> <span class="nv">b</span><span class="p">)</span> <span class="nv">c</span><span class="p">)))</span>
+
+
+<span class="c1">;; if inside if-branch, but again inside another if-test (non-tail)</span>
+<span class="p">(</span><span class="nf">cps</span> <span class="o">'</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nf">x</span><span class="p">)</span> <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="k">if</span> <span class="nv">t</span> <span class="p">(</span><span class="k">if</span> <span class="nv">x</span> <span class="p">(</span><span class="nf">f</span> <span class="nv">a</span><span class="p">)</span> <span class="nv">b</span><span class="p">)</span> <span class="nv">c</span><span class="p">)</span> <span class="nv">e</span> <span class="nv">w</span><span class="p">)))</span>
+
+
+<span class="c1">;; if as operand (non-tail)</span>
+<span class="p">(</span><span class="nf">cps</span> <span class="o">'</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nf">x</span><span class="p">)</span> <span class="p">(</span><span class="nf">h</span> <span class="p">(</span><span class="k">if</span> <span class="nv">x</span> <span class="p">(</span><span class="nf">f</span> <span class="nv">a</span><span class="p">)</span> <span class="nv">b</span><span class="p">))))</span>
+
+
+<span class="c1">;; if as operator (non-tail)</span>
+<span class="p">(</span><span class="nf">cps</span> <span class="o">'</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nf">x</span><span class="p">)</span> <span class="p">((</span><span class="k">if</span> <span class="nv">x</span> <span class="p">(</span><span class="nf">f</span> <span class="nv">g</span><span class="p">)</span> <span class="nv">h</span><span class="p">)</span> <span class="nv">c</span><span class="p">)))</span>
+
+
+<span class="c1">;; why we need more than two names</span>
+<span class="p">(</span><span class="nf">cps</span> <span class="o">'</span><span class="p">(((</span><span class="nf">f</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nf">g</span> <span class="nv">b</span><span class="p">))</span> <span class="p">((</span><span class="nf">f</span> <span class="nv">c</span><span class="p">)</span> <span class="p">(</span><span class="nf">g</span> <span class="nv">d</span><span class="p">))))</span>
+
+
+
+<span class="c1">;; factorial</span>
+<span class="p">(</span><span class="k">define</span> <span class="nv">fact-cps</span>
+<span class="p">(</span><span class="nf">cps</span>
+<span class="o">'</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nf">n</span><span class="p">)</span>
+<span class="p">((</span><span class="k">lambda</span> <span class="p">(</span><span class="nf">fact</span><span class="p">)</span>
+<span class="p">((</span><span class="nf">fact</span> <span class="nv">fact</span><span class="p">)</span> <span class="nv">n</span><span class="p">))</span>
+<span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nf">fact</span><span class="p">)</span>
+<span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nf">n</span><span class="p">)</span>
+<span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">zero?</span> <span class="nv">n</span><span class="p">)</span>
+<span class="mi">1</span>
+<span class="p">(</span><span class="nb">*</span> <span class="nv">n</span> <span class="p">((</span><span class="nf">fact</span> <span class="nv">fact</span><span class="p">)</span> <span class="p">(</span><span class="nf">sub1</span> <span class="nv">n</span><span class="p">))))))))))</span>
+
+<span class="c1">;; print out CPSed function</span>
+<span class="p">(</span><span class="nf">pretty-print</span> <span class="nv">fact-cps</span><span class="p">)</span>
+<span class="c1">;; =&gt;</span>
+<span class="c1">;; '(lambda (n k)</span>
+<span class="c1">;; ((lambda (fact k) (fact fact (lambda (v0) (v0 n k))))</span>
+<span class="c1">;; (lambda (fact k)</span>
+<span class="c1">;; (k</span>
+<span class="c1">;; (lambda (n k)</span>
+<span class="c1">;; (if (zero? n)</span>
+<span class="c1">;; (k 1)</span>
+<span class="c1">;; (fact</span>
+<span class="c1">;; fact</span>
+<span class="c1">;; (lambda (v1) (v1 (sub1 n) (lambda (v2) (k (* n v2))))))))))</span>
+<span class="c1">;; k))</span>
+
+
+<span class="p">((</span><span class="nb">eval</span> <span class="nv">fact-cps</span><span class="p">)</span> <span class="mi">5</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nf">v</span><span class="p">)</span> <span class="nv">v</span><span class="p">))</span>
+<span class="c1">;; =&gt; 120</span>
+</code></pre>
+</div>
+
+<h2 id="大佬的代码解析">大佬的代码解析</h2>
+
+<p><img src="https://zmatsh.b0.upaiyun.com/blog/tmp/cps.jpg" alt="" /></p>
+
+<p><img src="https://zmatsh.b0.upaiyun.com/blog/tmp/cps-1.png" alt="" /></p>
+
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+      
+        
+        <!-- Disqus Protection, see https://github.com/mzlogin/mzlogin.github.io/issues/2 -->
+        
+        
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'http://firsh.me/2017/07/17/cps-transformer/';
+              this.page.identifier = '/2017/07/17/cps-transformer/';
+              this.page.title = 'CPS 王垠 大佬的代码[测试过]';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+
+              s.type = 'text/javascript';
+              s.async = true;
+              var shortname = 'zmatsh';
+
+              s.src = '//' + shortname + '.disqus.com/embed.js';
+
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        
+        
+      
+    
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="https://zmatsh.b0.upaiyun.com/assets/css/modules/sidebar-search.css">
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="zmatsh">zmatsh</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/zmatsh/zmatsh.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="首页" target="">首页</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="分类" target="">分类</a>
+                </li>
+                
+                <li>
+                    <a href="/open-source/" title="开源" target="">开源</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="维基" target="">维基</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="链接" target="">链接</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="关于" target="">关于</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-80669434-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>
