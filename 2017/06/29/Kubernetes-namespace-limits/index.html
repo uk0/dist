@@ -185,6 +185,64 @@
 </code></pre>
 </div>
 
+<h2 id="3映射方案ceph-rbd">3.映射方案Ceph RBD</h2>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">ReplicationController</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">demo-app-server</span>
+  <span class="s">namespace</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">namespace</span><span class="pi">]</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">replicas</span><span class="pi">:</span> <span class="s">1</span>
+  <span class="s">selector</span><span class="pi">:</span>
+    <span class="s">app</span><span class="pi">:</span> <span class="s">demo-app-server</span>
+  <span class="s">template</span><span class="pi">:</span>
+    <span class="s">metadata</span><span class="pi">:</span>
+      <span class="s">labels</span><span class="pi">:</span>
+        <span class="s">app</span><span class="pi">:</span> <span class="s">demo-app-server</span>
+    <span class="s">spec</span><span class="pi">:</span>
+      <span class="s">containers</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">demo-app-server-container</span>
+          <span class="s">image</span><span class="pi">:</span> <span class="s">image.firsh.io/demo-base/appserver:latest</span>
+          <span class="s">imagePullPolicy</span><span class="pi">:</span> <span class="s">Always</span>
+          <span class="s">ports</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="s">containerPort</span><span class="pi">:</span> <span class="s">8080</span>
+          <span class="s">env</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">APP_HOME_CONF_DIR</span>
+              <span class="s">value</span><span class="pi">:</span> <span class="s">/home/demo-app/conf</span>
+          <span class="s">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">java"</span><span class="pi">,</span><span class="s2">"</span><span class="s">-jar"</span><span class="pi">,</span><span class="s2">"</span><span class="s">/home/demo-app/demoapp.jar"</span><span class="pi">]</span>
+          <span class="s">volumeMounts</span><span class="pi">:</span>
+                <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">config-volume</span>
+                  <span class="s">mountPath</span><span class="pi">:</span> <span class="s">/home/demo-app/conf</span>
+                <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">app-log</span>
+                  <span class="s">mountPath</span><span class="pi">:</span> <span class="s">/var/log/development</span>
+      <span class="s">volumes</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">config-volume</span>
+          <span class="s">configMap</span><span class="pi">:</span>
+            <span class="s">name</span><span class="pi">:</span> <span class="s">demo-app-server</span>
+        <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">app-log</span>
+          <span class="s">hostPath</span><span class="pi">:</span>
+            <span class="s">path</span><span class="pi">:</span> <span class="s">/kube/demo-apiserver/logs</span>
+
+<span class="nn">---</span>
+<span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">Service</span>
+<span class="s">metadata</span><span class="pi">:</span>
+ <span class="s">name</span><span class="pi">:</span> <span class="s">demo-app-service</span>
+ <span class="s">namespace</span><span class="pi">:</span> <span class="s">demo</span>
+<span class="s">spec</span><span class="pi">:</span>
+   <span class="c1">#type: ClusterIP</span>
+   <span class="s">ports</span><span class="pi">:</span>
+   <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">demo-app-out-in</span>
+     <span class="s">port</span><span class="pi">:</span> <span class="s">1000</span>
+     <span class="s">targetPort</span><span class="pi">:</span> <span class="s">8080</span>
+   <span class="s">externalIPs</span><span class="pi">:</span>
+   <span class="pi">-</span> <span class="pi">[</span><span class="nv">192.168.1.100</span><span class="pi">]</span>
+   <span class="s">selector</span><span class="pi">:</span>
+     <span class="s">app</span><span class="pi">:</span> <span class="s">demo-app-server</span>
+</code></pre>
+</div>
+
 <blockquote>
   <p>感谢企业服务部牛总提供的解决方案</p>
 </blockquote>
