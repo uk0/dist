@@ -1,5 +1,11 @@
 {
   
+  "2017-07-19-rocketmq-p-c": {
+    "title": "RocketMQ消息队列安装以及使用[原创精品]",
+    "url": " /2017/07/19/rocketmq-p-c/",
+    "category": "RocketMQ,Flink,MapReduce"
+  },
+  
   "2017-07-18-javascript-tcs": {
     "title": "javascript 实现的贪吃蛇 29line Code[瞎搞]",
     "url": " /2017/07/18/javascript-tcs/",
@@ -400,6 +406,8 @@
   
   
   
+  
+  
 
   
   "2016-05-21-enable-https-for-github-pages": {
@@ -736,6 +744,12 @@
     "title": "javascript 实现的贪吃蛇 29line Code[瞎搞]",
     "url": "/2017/07/18/javascript-tcs/",
     "category": "[&quot;javascript,贪吃蛇&quot;]"
+  },
+  
+  "2017-07-19-rocketmq-p-c": {
+    "title": "RocketMQ消息队列安装以及使用[原创精品]",
+    "url": "/2017/07/19/rocketmq-p-c/",
+    "category": "[&quot;RocketMQ,Flink,MapReduce&quot;]"
   },
   
   "wiki-android-studio": {

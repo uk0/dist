@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>RocketMQ消息队列安装以及使用[原创精品] &mdash; HappyFramework :)</title>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2017/07/19/rocketmq-p-c/">
+    <link rel="alternate" type="application/atom+xml" title="HappyFramework :)" href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="RocketMQ消息队列安装以及使用[原创精品]">
+      
+    <meta name="keywords" content="RocketMQ">
+    <meta name="og:keywords" content="RocketMQ">
+      
+    <meta name="description" content="RocketMQ消息队列安装以及使用，RocketMQ安装常见问题，以及解决方案。">
+    <meta name="og:description" content="RocketMQ消息队列安装以及使用，RocketMQ安装常见问题，以及解决方案。">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2017/07/19/rocketmq-p-c/">
+    <meta property="og:site_name" content="HappyFramework :)">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2017-07-19">
+    
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="HappyFramework :)"><span class="octicon octicon-mark-github"></span> HappyFramework :)</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="首页">首页</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="分类">分类</a>
+                
+                <a href="/open-source/" class=" site-header-nav-item" target="" title="开源">开源</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="维基">维基</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="链接">链接</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="RocketMQ消息队列安装以">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">RocketMQ消息队列安装以及使用[原创精品]</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/07/19
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#RocketMQ,Flink,MapReduce" title="RocketMQ,Flink,MapReduce">RocketMQ,Flink,MapReduce</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <p>RocketMQ消息队列安装以及使用，RocketMQ安装常见问题，以及解决方案。</p>
+
+<h2 id="摘要-我要装个rocketmq">摘要: 我要装个RocketMQ</h2>
+
+<h1 id="rocketmq-安装">rocketmq 安装</h1>
+<div class="highlighter-rouge"><pre class="highlight"><code>安装rocketmq需要环境：
+1、jdk1.7以上
+2、maven
+3、git
+</code></pre>
+</div>
+
+<p><em>jdk1.8</em></p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code> wget https://zmatsh.b0.upaiyun.com/blog/tmp/jdk-8u92-linux-x64.tar.gz
+</code></pre>
+</div>
+<p><em>maven下载：</em></p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>wget http://mirrors.hust.edu.cn/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+
+tar xf apache-maven-3.3.9-bin.tar.gz -C /opt/
+</code></pre>
+</div>
+<p><em>git下载：</em></p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>yum install git -y
+
+</code></pre>
+</div>
+<p><em>环境变量如下：</em></p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">export </span>PATH USER LOGNAME MAIL HOSTNAME HISTSIZE HISTCONTROL
+<span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/opt/jdk/jdk1.8.0_65
+<span class="nb">export </span><span class="nv">JRE_HOME</span><span class="o">=</span>/opt/jdk/jdk1.8.0_65/jre
+<span class="nb">export </span><span class="nv">CLASSPATH</span><span class="o">=</span>.:<span class="nv">$JAVA_HOME</span>/lib/dt.jar:<span class="nv">$JAVA_HOME</span>/lib/tools.jar:<span class="nv">$JRE_HOME</span>/lib:<span class="nv">$CLASSPATH</span>
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$JAVA_HOME</span>/bin/
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/go/bin
+<span class="nb">export </span><span class="nv">GOPATH</span><span class="o">=</span>/usr/local/
+<span class="nb">export </span><span class="nv">M2_HOME</span><span class="o">=</span>/opt/apache-maven-3.3.9
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$M2_HOME</span>/bin
+<span class="nb">export </span><span class="nv">ROCKETMQ_HOME</span><span class="o">=</span>/opt/RocketMQ-3.5.8/devenv
+<span class="nb">export </span><span class="nv">NAMESRV_ADDR</span><span class="o">=</span>127.0.0.1:9876
+</code></pre>
+</div>
+<p><em>使配置文件生效</em></p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">source</span> /etc/profile
+</code></pre>
+</div>
+<p><em>检测maven</em></p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@dscn1 ~]# mvn -v
+Apache Maven 3.3.9 <span class="o">(</span>bb52d8502b132ec0a5a3f4c09453c07478323dc5; 2015-11-11T00:41:47+08:00<span class="o">)</span>
+Maven home: /opt/apache-maven-3.3.9
+Java version: 1.8.0_65, vendor: Oracle Corporation
+Java home: /opt/jdk/jdk1.8.0_65/jre
+Default locale: zh_CN, platform encoding: UTF-8
+OS name: <span class="s2">"linux"</span>, version: <span class="s2">"2.6.32-573.22.1.el6.x86_64"</span>, arch: <span class="s2">"amd64"</span>, family: <span class="s2">"unix"</span>
+</code></pre>
+</div>
+
+<p>[toc]</p>
+
+<p>##一、正式开始安装rocketmq
+1、下载安装</p>
+
+<div class="language-text highlighter-rouge"><pre class="highlight"><code>a）wget https://github.com/alibaba/RocketMQ/archive/v3.5.8.tar.gz		###下载包
+b）tar -xf v3.5.8.tar.gz	 -C /opt/	###解压
+c）cd /opt/RocketMQ-3.5.8 	###进入解压后目录
+d）sh install.sh			###进行安装(下载国外的数据，时间较长)
+</code></pre>
+</div>
+<p>2、修改文件内存</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> /opt/RocketMQ-3.5.8/devenv/bin
+<span class="c">#vim修改runbroker.sh、runserver.sh两个文件</span>
+-------------------------------------
+<span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">JAVA_OPT</span><span class="k">}</span><span class="s2"> -server -Xms512m -Xmx512m -Xmn256m -XX:PermSize=128m -XX:MaxPermSize=320m"</span>		<span class="c">###Xms启动时内存，Xmx最大内存，Xmn最小内存</span>
+--------------------------------------
+</code></pre>
+</div>
+
+<p>3、启动<code class="highlighter-rouge">nameserver</code></p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>nohup sh  mqnamesrv &gt;/var/log/ns.log 2&gt;&amp;1 &amp;
+</code></pre>
+</div>
+<p>4、验证<code class="highlighter-rouge">nameserver</code>是否启动：</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>tail -f /var/log/ns.log   <span class="c">###查看日志有无错误信息</span>
+</code></pre>
+</div>
+<p>5、启动<code class="highlighter-rouge">broker</code>
+ 在启动<code class="highlighter-rouge">borker</code>之前需要指定<code class="highlighter-rouge">nameserver</code>地址：</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"export NAMESRV_ADDR=127.0.0.1:9876"</span> &gt;&gt; /etc/profile		<span class="c">###写入到环境变量，或者直接</span>
+-n来指定
+ nohup sh mqbroker -n 192.168.0.106:9876 <span class="nv">autoCreateTopicEnable</span><span class="o">=</span><span class="nb">true</span> &gt; /var/log/mq.log 2&gt;&amp;1 &amp;
+</code></pre>
+</div>
+<p>6、检验是否开启</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>tail -f /var/log/mq.log   <span class="c">###查看日志有无错误信息</span>
+</code></pre>
+</div>
+
+<p>7、关闭的命令：</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sh mqshutdown namesrv
+sh mqshutdown broker
+</code></pre>
+</div>
+<p>8、创建队列</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sh mqadmin updateTopic -b <span class="s2">"192.168.0.106:10911"</span> -t Topic1 -r 10 -w 10			<span class="c">###-b   broker的ip和端口	-t java程序中定义的名字</span>
+</code></pre>
+</div>
+<p>9、更改broker配置文件，更改ip,使外网可以访问</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sh mqadmin updateBrokerConfig -b 192.168.0.106:10911 -k brokerIP1 -v 192.168.0.106
+</code></pre>
+</div>
+<p>10、以此输入下面两个命令：</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bash tools.sh com.alibaba.rocketmq.example.quickstart.Producer		<span class="c">###生产者(生产队列)</span>
+
+bash tools.sh com.alibaba.rocketmq.example.quickstart.Consumer		<span class="c">###消费者（清理队列）</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>如果报错是内存不够，就改<code class="highlighter-rouge">runbroker.sh</code>、<code class="highlighter-rouge">runserver.sh</code>两个文件</p>
+
+  <p>如果启动报错是不知道主机：
+检查/etc/sysconfig/network 中的记录的hostname是否和/etc/hosts中的主机名绑定一致，如果不一致请确保一致
+在/etc/hosts中添加 192.168.1.118 hostname的名称(master01)跟/etc/sysconfig/network一样(master01)</p>
+</blockquote>
+
+<blockquote>
+  <p>开启9876rocketmq的nameserver端口  #vim /etc/sysconfig/iptables</p>
+</blockquote>
+
+<h2 id="二一主一从的配置">二、一主一从的配置</h2>
+<p>除了启动步骤不同。其余与上面一主的配置相同：
+1、修改/opt/RocketMQ-3.5.8/devenv/bin/runbroker.sh、runserver.sh两个文件：</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">JAVA_OPT</span><span class="k">}</span><span class="s2"> -server -Xms512m -Xmx512m -Xmn256m -XX:PermSize=128m -XX:MaxPermSize=320m"</span>		<span class="c">###Xms启动时内存，Xmx最大内存，Xmn最小内存</span>
+</code></pre>
+</div>
+<p>2、主的机器修改/opt/RocketMQ-3.5.8/devenv/conf/2m-2s-async/broker-a.properties</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nv">namesrvAddr</span><span class="o">=</span>192.168.0.106:9876;192.168.0.107:9876
+<span class="nv">brokerIP1</span><span class="o">=</span>192.168.0.106
+<span class="nv">brokerClusterName</span><span class="o">=</span>DefaultCluster
+<span class="nv">brokerName</span><span class="o">=</span>broker-a
+<span class="nv">brokerId</span><span class="o">=</span>0
+<span class="nv">deleteWhen</span><span class="o">=</span>04
+<span class="nv">fileReservedTime</span><span class="o">=</span>48
+<span class="nv">brokerRole</span><span class="o">=</span>ASYNC_MASTER
+<span class="nv">flushDiskType</span><span class="o">=</span>ASYNC_FLUSH
+<span class="nv">storePathRootDir</span><span class="o">=</span>/opt/RocketMQ-3.4.6
+<span class="nv">storePathCommitLog</span><span class="o">=</span>/opt/RocketMQ-3.4.6/log/commitlog
+</code></pre>
+</div>
+<p>3、从的机器修改/opt/RocketMQ-3.5.8/devenv/conf/2m-2s-async/broker-a-s.properties</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nv">namesrvAddr</span><span class="o">=</span>192.168.0.106:9876;192.168.0.107:9876
+<span class="nv">brokerIP1</span><span class="o">=</span>192.168.0.107
+<span class="nv">brokerClusterName</span><span class="o">=</span>DefaultCluster
+<span class="nv">brokerName</span><span class="o">=</span>broker-a
+<span class="nv">brokerId</span><span class="o">=</span>1
+<span class="nv">deleteWhen</span><span class="o">=</span>04
+<span class="nv">fileReservedTime</span><span class="o">=</span>48
+<span class="nv">brokerRole</span><span class="o">=</span>SLAVE
+<span class="nv">flushDiskType</span><span class="o">=</span>ASYNC_FLUSH
+<span class="nv">storePathRootDir</span><span class="o">=</span>/opt/RocketMQ-3.4.6
+<span class="nv">storePathCommitLog</span><span class="o">=</span>/opt/RocketMQ-3.4.6/log/commitlog
+</code></pre>
+</div>
+
+<blockquote>
+  <p>参考内容和解释如下：</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#所属集群名字</span>
+<span class="nv">brokerClusterName</span><span class="o">=</span>rocketmq-cluster
+<span class="c">#broker名字，注意此处不同的配置文件填写的不一样</span>
+<span class="nv">brokerName</span><span class="o">=</span>broker-a|broker-b
+<span class="c">#0 表示 Master， &gt;0 表示 Slave</span>
+<span class="nv">brokerId</span><span class="o">=</span>0
+<span class="c">#nameServer地址，分号分割</span>
+<span class="nv">namesrvAddr</span><span class="o">=</span>rocketmq-nameserver1:9876;rocketmq-nameserver2:9876
+<span class="c">#在发送消息时，自动创建服务器不存在的topic，默认创建的队列数</span>
+<span class="nv">defaultTopicQueueNums</span><span class="o">=</span>4
+<span class="c">#是否允许 Broker 自动创建Topic，建议线下开启，线上关闭</span>
+<span class="nv">autoCreateTopicEnable</span><span class="o">=</span><span class="nb">true</span>
+<span class="c">#是否允许 Broker 自动创建订阅组，建议线下开启，线上关闭</span>
+<span class="nv">autoCreateSubscriptionGroup</span><span class="o">=</span><span class="nb">true</span>
+<span class="c">#Broker 对外服务的监听端口</span>
+<span class="nv">listenPort</span><span class="o">=</span>10911
+<span class="c">#删除文件时间点，默认凌晨 0点</span>
+<span class="nv">deleteWhen</span><span class="o">=</span>00
+<span class="c">#文件保留时间，默认 48 小时</span>
+<span class="nv">fileReservedTime</span><span class="o">=</span>120
+<span class="c">#commitLog每个文件的大小默认1G</span>
+<span class="nv">mapedFileSizeCommitLog</span><span class="o">=</span>1073741824
+<span class="c">#ConsumeQueue每个文件默认存30W条，根据业务情况调整</span>
+<span class="nv">mapedFileSizeConsumeQueue</span><span class="o">=</span>300000
+<span class="c">#destroyMapedFileIntervalForcibly=120000</span>
+<span class="c">#redeleteHangedFileInterval=120000</span>
+<span class="c">#检测物理文件磁盘空间</span>
+<span class="nv">diskMaxUsedSpaceRatio</span><span class="o">=</span>88
+<span class="c">#存储路径</span>
+<span class="nv">storePathRootDir</span><span class="o">=</span>/opt/rocketmq/data
+<span class="c">#commitLog 存储路径</span>
+<span class="nv">storePathCommitLog</span><span class="o">=</span>/opt/rocketmq/data/commitlog
+<span class="c">#消费队列存储路径存储路径</span>
+<span class="nv">storePathConsumeQueue</span><span class="o">=</span>/opt/rocketmq/data/consumequeue
+<span class="c">#消息索引存储路径</span>
+<span class="nv">storePathIndex</span><span class="o">=</span>/opt/rocketmq/data/index
+<span class="c">#checkpoint 文件存储路径</span>
+<span class="nv">storeCheckpoint</span><span class="o">=</span>/opt/rocketmq/data/checkpoint
+<span class="c">#abort 文件存储路径</span>
+<span class="nv">abortFile</span><span class="o">=</span>/opt/rocketmq/data/abort
+<span class="c">#限制的消息大小</span>
+<span class="nv">maxMessageSize</span><span class="o">=</span>65536
+<span class="c">#flushCommitLogLeastPages=4</span>
+<span class="c">#flushConsumeQueueLeastPages=2</span>
+<span class="c">#flushCommitLogThoroughInterval=10000</span>
+<span class="c">#flushConsumeQueueThoroughInterval=60000</span>
+<span class="c">#Broker 的角色</span>
+<span class="c">#- ASYNC_MASTER 异步复制Master</span>
+<span class="c">#- SYNC_MASTER 同步双写Master</span>
+<span class="c">#- SLAVE</span>
+<span class="nv">brokerRole</span><span class="o">=</span>ASYNC_MASTER
+<span class="c">#刷盘方式</span>
+<span class="c">#- ASYNC_FLUSH 异步刷盘</span>
+<span class="c">#- SYNC_FLUSH 同步刷盘</span>
+<span class="nv">flushDiskType</span><span class="o">=</span>ASYNC_FLUSH
+<span class="c">#checkTransactionMessageEnable=false</span>
+<span class="c">#发消息线程池数量</span>
+<span class="c">#sendMessageThreadPoolNums=128</span>
+<span class="c">#拉消息线程池数量</span>
+<span class="c">#pullMessageThreadPoolNums=128</span>
+</code></pre>
+</div>
+
+<p>4、两个机器上都启动nameserver:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>nohup sh  mqnamesrv &gt;/var/log/ns.log 2&gt;&amp;1 &amp;
+</code></pre>
+</div>
+<p>5、主的机器启动broker：</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code> nohup sh mqbroker -c ../conf/2m-2s-async/broker-a.properties &gt; /var/log/mq.log 2&gt;&amp;1 &amp;
+</code></pre>
+</div>
+<p>6、从的机器启动broker：</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code> nohup sh mqbroker -c ../conf/2m-2s-async/broker-a-s.properties &gt; /var/log/mq.log 2&gt;&amp;1 &amp;
+</code></pre>
+</div>
+
+<h2 id="运行成功的图">运行成功的图！</h2>
+
+<p><img src="https://zmatsh.b0.upaiyun.com/blog/tmp/rocketmq-p.png" alt="" /></p>
+
+<p><img src="https://zmatsh.b0.upaiyun.com/blog/tmp/rocketmq-c.png" alt="" /></p>
+
+<h2 id="禁止转载盗版必究">禁止转载，盗版必究。</h2>
+
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+      
+        
+        <!-- Disqus Protection, see https://github.com/mzlogin/mzlogin.github.io/issues/2 -->
+        
+        
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'http://firsh.me/2017/07/19/rocketmq-p-c/';
+              this.page.identifier = '/2017/07/19/rocketmq-p-c/';
+              this.page.title = 'RocketMQ消息队列安装以及使用[原创精品]';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+
+              s.type = 'text/javascript';
+              s.async = true;
+              var shortname = 'zmatsh';
+
+              s.src = '//' + shortname + '.disqus.com/embed.js';
+
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        
+        
+      
+    
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="https://zmatsh.b0.upaiyun.com/assets/css/modules/sidebar-search.css">
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="zmatsh">zmatsh</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/zmatsh/zmatsh.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="首页" target="">首页</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="分类" target="">分类</a>
+                </li>
+                
+                <li>
+                    <a href="/open-source/" title="开源" target="">开源</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="维基" target="">维基</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="链接" target="">链接</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="关于" target="">关于</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-80669434-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>
