@@ -1,5 +1,11 @@
 {
   
+  "2017-07-18-javascript-tcs": {
+    "title": "javascript 实现的贪吃蛇 29line Code[瞎搞]",
+    "url": " /2017/07/18/javascript-tcs/",
+    "category": "javascript,贪吃蛇"
+  },
+  
   "2017-07-17-cps-transformer": {
     "title": "CPS 王垠 大佬的代码[测试过]",
     "url": " /2017/07/17/cps-transformer/",
@@ -724,6 +730,12 @@
     "title": "CPS 王垠 大佬的代码[测试过]",
     "url": "/2017/07/17/cps-transformer/",
     "category": "[&quot;lisp,cps&quot;]"
+  },
+  
+  "2017-07-18-javascript-tcs": {
+    "title": "javascript 实现的贪吃蛇 29line Code[瞎搞]",
+    "url": "/2017/07/18/javascript-tcs/",
+    "category": "[&quot;javascript,贪吃蛇&quot;]"
   },
   
   "wiki-android-studio": {
