@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Mongodb作为Flink 的 Sink &mdash; 山脚下的胖子.</title>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2017/08/02/Mongodb-flink-sink/">
+    <link rel="alternate" type="application/atom+xml" title="山脚下的胖子." href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="Mongodb作为Flink 的 Sink">
+      
+    <meta name="keywords" content="Mongodb,flink">
+    <meta name="og:keywords" content="Mongodb,flink">
+      
+    <meta name="description" content="因工作需求所整合Flink + Mongodb 作为一个Demo 帮助大家跳坑。Mongodb 采用集群主从模式。">
+    <meta name="og:description" content="因工作需求所整合Flink + Mongodb 作为一个Demo 帮助大家跳坑。Mongodb 采用集群主从模式。">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2017/08/02/Mongodb-flink-sink/">
+    <meta property="og:site_name" content="山脚下的胖子.">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2017-08-02">
+    
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="山脚下的胖子."><span class="octicon octicon-mark-github"></span> 山脚下的胖子.</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="Index">Index</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="categories">categories</a>
+                
+                <a href="/open-source/" class=" site-header-nav-item" target="" title="open-source">open-source</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="wiki">wiki</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="links">links</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="about">about</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="Mongodb作为Flink ">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">Mongodb作为Flink 的 Sink</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/08/02
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#Flink,Mongodb" title="Flink,Mongodb">Flink,Mongodb</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <p>因工作需求所整合Flink + Mongodb 作为一个Demo 帮助大家跳坑。
+Mongodb 采用集群主从模式。</p>
+
+<h1 id="mongosinkjava">MongoSink.Java</h1>
+<ul>
+  <li>继承RichSinkFunction，重写<code class="highlighter-rouge">open</code> 和 <code class="highlighter-rouge">invoke</code>方法，还有<code class="highlighter-rouge">close</code>。</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">e</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">sink</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.alibaba.fastjson.JSON</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.e.firs.spb.utils.Mongo.MongoService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.flink.configuration.Configuration</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.flink.streaming.api.functions.sink.RichSinkFunction</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.net.UnknownHostException</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Created by zhangjianxin on 2017/7/31.
+ */</span>
+<span class="kd">public</span>  <span class="kd">class</span> <span class="nc">MongoSink</span> <span class="kd">extends</span> <span class="n">RichSinkFunction</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span>  <span class="n">String</span> <span class="n">CollectionName</span> <span class="o">=</span> <span class="s">"collection-a"</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">MongoService</span> <span class="n">mongoService</span><span class="o">;</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">invoke</span><span class="o">(</span><span class="n">String</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">mongoService</span><span class="o">.</span><span class="na">saveJson</span><span class="o">(</span><span class="n">JSON</span><span class="o">.</span><span class="na">parseObject</span><span class="o">(</span><span class="n">t</span><span class="o">),</span><span class="n">CollectionName</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">UnknownHostException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">open</span><span class="o">(</span><span class="n">Configuration</span> <span class="n">config</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">mongoService</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MongoService</span><span class="o">();</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="kd">super</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">config</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">};</span>
+</code></pre>
+</div>
+<h1 id="mongoservicejava">MongoService.Java</h1>
+<ul>
+  <li>MongoDB Service 处理工具</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">e</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Mongo</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.alibaba.fastjson.JSONObject</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.net.UnknownHostException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Created by zhangjianxin on 2017/7/31.
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MongoService</span> <span class="o">{</span>
+
+
+
+    <span class="kd">private</span> <span class="n">EntryDao</span> <span class="n">EntryDao</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EntryDao</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * 保存
+     * @param saveJson
+     * @throws UnknownHostException
+     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">saveJson</span><span class="o">(</span><span class="n">JSONObject</span> <span class="n">saveJson</span><span class="o">,</span> <span class="n">String</span> <span class="n">CollectionName</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">UnknownHostException</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">EntryDao</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">CollectionName</span><span class="o">,</span><span class="n">saveJson</span><span class="o">,</span><span class="kc">true</span><span class="o">);</span>
+    <span class="o">}</span>
+
+
+
+
+    <span class="cm">/**
+     * 更新
+     * @param Entry
+     * @throws UnknownHostException
+     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">update</span><span class="o">(</span><span class="n">Entry</span> <span class="n">Entry</span><span class="o">,</span><span class="n">String</span> <span class="n">CollectionName</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">UnknownHostException</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">EntryDao</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">Entry</span><span class="o">,</span><span class="n">CollectionName</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * 查询所有
+     * @return
+     * @throws UnknownHostException
+     */</span>
+    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Entry</span><span class="o">&gt;</span> <span class="nf">findAll</span><span class="o">(</span><span class="n">String</span> <span class="n">CollectionName</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">UnknownHostException</span><span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">EntryDao</span><span class="o">.</span><span class="na">findAll</span><span class="o">(</span><span class="n">CollectionName</span><span class="o">);</span>
+    <span class="o">}</span>
+
+
+    <span class="cm">/**
+     * 删除操作
+     * @param id
+     * @throws UnknownHostException
+     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">remove</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">,</span><span class="n">String</span> <span class="n">CollectionName</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">UnknownHostException</span><span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">EntryDao</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">id</span><span class="o">,</span><span class="n">CollectionName</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre>
+</div>
+
+<h1 id="mongomanagerjava">MongoManager.Java</h1>
+<ul>
+  <li>获得mongodb链接池的工具类，获得某个DB的链接。</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">e</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Mongo</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Created by zhangjianxin on 2017/7/31.
+ */</span>
+<span class="kn">import</span> <span class="nn">com.mongodb.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.mongodb.client.MongoDatabase</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MongoManager</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Mongo</span> <span class="n">mongo</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">MongoClient</span> <span class="n">mongoClient</span><span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nf">MongoManager</span><span class="o">()</span> <span class="o">{</span> <span class="o">}</span>
+
+    <span class="kd">static</span> <span class="o">{</span>
+        <span class="n">initDBPrompties</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">DB</span> <span class="nf">getDB</span><span class="o">(</span><span class="n">String</span> <span class="n">dbName</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">mongo</span><span class="o">.</span><span class="na">getDB</span><span class="o">(</span><span class="n">dbName</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">MongoDatabase</span> <span class="nf">getDatabase</span><span class="o">(</span><span class="n">String</span> <span class="n">dbName</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">mongoClient</span><span class="o">.</span><span class="na">getDatabase</span><span class="o">(</span><span class="n">dbName</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * 初始化连接池
+     */</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">initDBPrompties</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+
+            <span class="n">MongoClientOptions</span><span class="o">.</span><span class="na">Builder</span> <span class="n">mcob</span> <span class="o">=</span> <span class="n">MongoClientOptions</span><span class="o">.</span><span class="na">builder</span><span class="o">();</span>
+            <span class="n">mcob</span><span class="o">.</span><span class="na">connectionsPerHost</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+            <span class="n">mcob</span><span class="o">.</span><span class="na">socketKeepAlive</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="n">mcob</span><span class="o">.</span><span class="na">readPreference</span><span class="o">(</span><span class="n">ReadPreference</span><span class="o">.</span><span class="na">secondaryPreferred</span><span class="o">());</span>
+            <span class="n">MongoClientOptions</span> <span class="n">mco</span> <span class="o">=</span> <span class="n">mcob</span><span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+            <span class="n">mongoClient</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MongoClient</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span>
+                    <span class="k">new</span> <span class="nf">ServerAddress</span><span class="o">(</span><span class="s">"127.0.0.1"</span><span class="o">,</span> <span class="mi">27017</span><span class="o">),</span>
+                    <span class="k">new</span> <span class="nf">ServerAddress</span><span class="o">(</span><span class="s">"127.0.0.1"</span><span class="o">,</span> <span class="mi">27017</span><span class="o">),</span>
+                    <span class="k">new</span> <span class="nf">ServerAddress</span><span class="o">(</span><span class="s">"127.0.0.1"</span><span class="o">,</span> <span class="mi">27017</span><span class="o">)),</span> <span class="n">mco</span><span class="o">);</span>
+
+
+            <span class="n">mongo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mongo</span><span class="o">(</span><span class="n">MongoDBConstant</span><span class="o">.</span><span class="na">HOST</span><span class="o">,</span> <span class="n">MongoDBConstant</span><span class="o">.</span><span class="na">PORT</span><span class="o">);</span>
+            <span class="n">MongoOptions</span> <span class="n">opt</span> <span class="o">=</span> <span class="n">mongo</span><span class="o">.</span><span class="na">getMongoOptions</span><span class="o">();</span>
+            <span class="n">opt</span><span class="o">.</span><span class="na">connectionsPerHost</span> <span class="o">=</span> <span class="n">MongoDBConstant</span><span class="o">.</span><span class="na">POOLSIZE</span><span class="o">;</span>
+            <span class="n">opt</span><span class="o">.</span><span class="na">threadsAllowedToBlockForConnectionMultiplier</span> <span class="o">=</span> <span class="n">MongoDBConstant</span><span class="o">.</span><span class="na">BLOCKSIZE</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">MongoException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre>
+</div>
+
+<h1 id="entrydaojava">EntryDao.java</h1>
+<ul>
+  <li>用来操作实体的工具类</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">e</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Mongo</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.UnknownHostException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.UUID</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.alibaba.fastjson.JSONObject</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.mongodb.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.mongodb.client.FindIterable</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.mongodb.client.MongoCollection</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.mongodb.client.MongoCursor</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.mongodb.client.MongoDatabase</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.mongodb.util.JSON</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.bson.Document</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Created by zhangjianxin on 2017/7/31.
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EntryDao</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * 删除操作
+     * @param id
+     * @throws UnknownHostException
+     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">remove</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">,</span><span class="n">String</span> <span class="n">CollectionName</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">UnknownHostException</span><span class="o">{</span>
+        <span class="n">MongoDatabase</span> <span class="n">mongo</span> <span class="o">=</span> <span class="n">MongoManager</span><span class="o">.</span><span class="na">getDatabase</span><span class="o">(</span><span class="n">MongoDBConstant</span><span class="o">.</span><span class="na">DB</span><span class="o">);</span>
+        <span class="n">MongoCollection</span> <span class="n">coll</span> <span class="o">=</span> <span class="n">mongo</span><span class="o">.</span><span class="na">getCollection</span><span class="o">(</span><span class="n">CollectionName</span><span class="o">);</span>
+
+
+        <span class="n">Document</span> <span class="n">baseDBO</span> <span class="o">=</span><span class="k">new</span> <span class="n">Document</span><span class="o">();</span>
+        <span class="n">baseDBO</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="n">id</span><span class="o">);</span>
+
+        <span class="c1">//删除某一条记录</span>
+        <span class="n">coll</span><span class="o">.</span><span class="na">deleteOne</span><span class="o">(</span><span class="n">baseDBO</span><span class="o">);</span>
+    <span class="o">}</span>
+
+
+    <span class="cm">/**
+     *
+     * @param CollectionName 集合名
+     * @param saveJson  待存入JSON
+     * @param useDefaultId  未传入_id时，若为true则使用MongoDB自动生成的_id。若为false则生成UUID作为主键
+     * @return
+     */</span>
+    <span class="kd">public</span> <span class="n">JSONObject</span> <span class="nf">save</span><span class="o">(</span><span class="n">String</span> <span class="n">CollectionName</span><span class="o">,</span> <span class="n">JSONObject</span> <span class="n">saveJson</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">useDefaultId</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">JSONObject</span> <span class="n">resp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JSONObject</span><span class="o">();</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">MongoDatabase</span> <span class="n">mongo</span> <span class="o">=</span> <span class="n">MongoManager</span><span class="o">.</span><span class="na">getDatabase</span><span class="o">(</span><span class="n">MongoDBConstant</span><span class="o">.</span><span class="na">DB</span><span class="o">);</span>
+            <span class="n">MongoCollection</span> <span class="n">coll</span> <span class="o">=</span> <span class="n">mongo</span><span class="o">.</span><span class="na">getCollection</span><span class="o">(</span><span class="n">CollectionName</span><span class="o">);</span>
+            <span class="n">Object</span> <span class="n">_id</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+           <span class="k">if</span> <span class="o">(!</span><span class="n">saveJson</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="s">"_id"</span><span class="o">)){</span>
+                <span class="k">if</span> <span class="o">(!</span><span class="n">useDefaultId</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">_id</span> <span class="o">=</span> <span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
+                    <span class="n">saveJson</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"Data"</span><span class="o">,</span> <span class="n">_id</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">saveJson</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="s">"_id"</span><span class="o">))</span>  <span class="o">{</span>
+                <span class="n">_id</span> <span class="o">=</span> <span class="n">saveJson</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"_id"</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="n">Document</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">saveJson</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+            <span class="n">coll</span><span class="o">.</span><span class="na">insertOne</span><span class="o">(</span><span class="n">doc</span><span class="o">);</span>
+            <span class="n">resp</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"Data"</span><span class="o">,</span> <span class="n">_id</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">MongoTimeoutException</span> <span class="n">e1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e1</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="n">resp</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"ReasonMessage"</span><span class="o">,</span><span class="n">e1</span><span class="o">.</span><span class="na">getClass</span><span class="o">()</span> <span class="o">+</span> <span class="s">":"</span> <span class="o">+</span> <span class="n">e1</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+            <span class="k">return</span> <span class="n">resp</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="n">resp</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"ReasonMessage"</span><span class="o">,</span><span class="n">e</span><span class="o">.</span><span class="na">getClass</span><span class="o">()</span> <span class="o">+</span> <span class="s">":"</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">resp</span><span class="o">;</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<h1 id="jsonutilsjava">JsonUtils.java</h1>
+
+<ul>
+  <li>JSON的小工具类</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">tod</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Mongo</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.OutputStream</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.codehaus.jackson.map.ObjectMapper</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.codehaus.jackson.type.TypeReference</span><span class="o">;</span>
+
+
+<span class="cm">/**
+ * Json转化工具，可以实现java对象和json字符串之间的互相转化&lt;br /&gt;
+ * Created by zhangjianxin on 2017/7/31.
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">JsonUtils</span> <span class="o">{</span>
+    <span class="kd">static</span> <span class="n">ObjectMapper</span> <span class="n">objectMapper</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ObjectMapper</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * java 对象转换为json 存入流中
+     *
+     * @param obj
+     * @return  s
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">toJson</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">s</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * java 对象转换为json 存入流中
+     *
+     * @param obj
+     * @param out
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">toJson</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">,</span> <span class="n">OutputStream</span> <span class="n">out</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">objectMapper</span><span class="o">.</span><span class="na">writeValue</span><span class="o">(</span><span class="n">out</span><span class="o">,</span> <span class="n">obj</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * json 转为java对象
+     *
+     * @param json
+     * @param obj
+     */</span>
+    <span class="nd">@SuppressWarnings</span><span class="o">({</span> <span class="s">"rawtypes"</span><span class="o">,</span> <span class="s">"unchecked"</span> <span class="o">})</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">fromJson</span><span class="o">(</span><span class="n">String</span> <span class="n">json</span><span class="o">,</span> <span class="n">Object</span> <span class="n">obj</span><span class="o">,</span> <span class="n">Class</span> <span class="n">valueType</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">readValue</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">valueType</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * json 转为java对象
+     * @param json
+     * @param obj
+     * @param valueTypeRef
+     */</span>
+    <span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">"rawtypes"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">fromJson</span><span class="o">(</span><span class="n">String</span> <span class="n">json</span><span class="o">,</span> <span class="n">Object</span> <span class="n">obj</span><span class="o">,</span> <span class="n">TypeReference</span> <span class="n">valueTypeRef</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">readValue</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">valueTypeRef</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * json 转为java对象
+     *
+     * @param json
+     * @return obj
+     */</span>
+    <span class="nd">@SuppressWarnings</span><span class="o">({</span> <span class="s">"rawtypes"</span><span class="o">,</span> <span class="s">"unchecked"</span> <span class="o">})</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Object</span> <span class="nf">fromJson</span><span class="o">(</span><span class="n">String</span> <span class="n">json</span><span class="o">,</span> <span class="n">Class</span> <span class="n">valueType</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Object</span> <span class="n">obj</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">readValue</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">valueType</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">obj</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * json 转为java对象
+     *
+     * @param json
+     * @return obj
+     * @param valueTypeRef
+     */</span>
+    <span class="nd">@SuppressWarnings</span><span class="o">({</span> <span class="s">"rawtypes"</span><span class="o">,</span> <span class="s">"hiding"</span> <span class="o">})</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">Object</span> <span class="nf">fromJson</span><span class="o">(</span><span class="n">String</span> <span class="n">json</span><span class="o">,</span> <span class="n">TypeReference</span> <span class="n">valueTypeRef</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Object</span> <span class="n">obj</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">readValue</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">valueTypeRef</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">obj</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre>
+</div>
+
+<h1 id="mongodbhelperjava">MongoDBHelper.java</h1>
+
+<ul>
+  <li>用来测试MongoDB链接成功</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>package com.tod.spb.utils.Mongo;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
+import java.net.UnknownHostException;
+
+
+/<span class="k">**</span>
+ <span class="k">*</span> Created by zhangjianxin on 2017/7/31.
+ <span class="k">*</span>/
+public class MongoDBHelper <span class="o">{</span>
+
+    public static  String CollectionName <span class="o">=</span> <span class="s2">"collection-a"</span>;
+    /<span class="k">**</span>
+     <span class="k">*</span> 保存
+     <span class="k">*</span> @param null
+     <span class="k">*</span> @throws UnknownHostException
+     <span class="k">*</span>/
+    private MongoService mongoService <span class="o">=</span> new MongoService<span class="o">()</span>;
+
+
+    public void save<span class="o">()</span> throws UnknownHostException<span class="o">{</span>
+        JSONObject data <span class="o">=</span> new JSONObject<span class="o">()</span>;
+        data.put<span class="o">(</span><span class="s2">"tableName"</span>,<span class="s2">"1"</span><span class="o">)</span>;
+        data.put<span class="o">(</span><span class="s2">"body"</span>,<span class="s2">"jsonobject"</span><span class="o">)</span>;
+        data.put<span class="o">(</span><span class="s2">"number"</span>,<span class="s2">"12345"</span><span class="o">)</span>;
+        this.mongoService.saveJson<span class="o">(</span>data,CollectionName<span class="o">)</span>;
+    <span class="o">}</span>
+
+
+
+    public static void main<span class="o">(</span>String[] args<span class="o">)</span> <span class="o">{</span>
+
+        try <span class="o">{</span>
+            MongoDBHelper mongoDBHelper <span class="o">=</span> new MongoDBHelper<span class="o">()</span>;
+            mongoDBHelper.save<span class="o">()</span>;
+        <span class="o">}</span> catch <span class="o">(</span>UnknownHostException e<span class="o">)</span> <span class="o">{</span>
+            e.printStackTrace<span class="o">()</span>;
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre>
+</div>
+<ul>
+  <li>Owner <code class="highlighter-rouge">breakEval13</code></li>
+  <li>https://github.com/breakEval13</li>
+</ul>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+      
+        
+        <!-- Disqus Protection, see https://github.com/mzlogin/mzlogin.github.io/issues/2 -->
+        
+        
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'http://firsh.me/2017/08/02/Mongodb-flink-sink/';
+              this.page.identifier = '/2017/08/02/Mongodb-flink-sink/';
+              this.page.title = 'Mongodb作为Flink 的 Sink';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+
+              s.type = 'text/javascript';
+              s.async = true;
+              var shortname = 'zmatsh';
+
+              s.src = '//' + shortname + '.disqus.com/embed.js';
+
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        
+        
+      
+    
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="https://zmatsh.b0.upaiyun.com/assets/css/modules/sidebar-search.css">
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="breakeval13">breakeval13</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/breakEval13/breakEval13.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="Index" target="">Index</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="categories" target="">categories</a>
+                </li>
+                
+                <li>
+                    <a href="/open-source/" title="open-source" target="">open-source</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="wiki" target="">wiki</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="links" target="">links</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="about" target="">about</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-80669434-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>

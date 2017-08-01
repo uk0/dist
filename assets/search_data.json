@@ -1,5 +1,23 @@
 {
   
+  "2017-08-02-hdfs-shell-bash": {
+    "title": "hadoop HDFS常用文件操作命令",
+    "url": " /2017/08/02/hdfs-shell-bash/",
+    "category": "shell,hadoop,hdfs"
+  },
+  
+  "2017-08-02-hdfs-flink-sink": {
+    "title": "hadoop HDFS作为Flink 的 Sink",
+    "url": " /2017/08/02/hdfs-flink-sink/",
+    "category": "shell,hadoop,hdfs"
+  },
+  
+  "2017-08-02-mongodb-flink-sink": {
+    "title": "Mongodb作为Flink 的 Sink",
+    "url": " /2017/08/02/Mongodb-flink-sink/",
+    "category": "Flink,Mongodb"
+  },
+  
   "2017-07-21-rocketmq-flink-crate": {
     "title": "Flink 消费RocketMQ 如何定义Source[原创精品]",
     "url": " /2017/07/21/rocketmq-flink-crate/",
@@ -762,6 +780,24 @@
     "title": "Flink 消费RocketMQ 如何定义Source[原创精品]",
     "url": "/2017/07/21/rocketmq-flink-crate/",
     "category": "[&quot;RocketMQ,Flink,MapReduce&quot;]"
+  },
+  
+  "2017-08-02-mongodb-flink-sink": {
+    "title": "Mongodb作为Flink 的 Sink",
+    "url": "/2017/08/02/Mongodb-flink-sink/",
+    "category": "[&quot;Flink,Mongodb&quot;]"
+  },
+  
+  "2017-08-02-hdfs-flink-sink": {
+    "title": "hadoop HDFS作为Flink 的 Sink",
+    "url": "/2017/08/02/hdfs-flink-sink/",
+    "category": "[&quot;shell,hadoop,hdfs&quot;]"
+  },
+  
+  "2017-08-02-hdfs-shell-bash": {
+    "title": "hadoop HDFS常用文件操作命令",
+    "url": "/2017/08/02/hdfs-shell-bash/",
+    "category": "[&quot;shell,hadoop,hdfs&quot;]"
   },
   
   "wiki-android-studio": {
