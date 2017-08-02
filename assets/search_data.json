@@ -12,6 +12,12 @@
     "category": "shell,hadoop,hdfs"
   },
   
+  "2017-08-02-docker-hdfs-sink": {
+    "title": "Docker Development HDFS for Flink  Sink",
+    "url": " /2017/08/02/docker-hdfs-sink/",
+    "category": "HDFS,Mongodb"
+  },
+  
   "2017-08-02-mongodb-flink-sink": {
     "title": "Mongodb作为Flink 的 Sink",
     "url": " /2017/08/02/Mongodb-flink-sink/",
@@ -786,6 +792,12 @@
     "title": "Mongodb作为Flink 的 Sink",
     "url": "/2017/08/02/Mongodb-flink-sink/",
     "category": "[&quot;Flink,Mongodb&quot;]"
+  },
+  
+  "2017-08-02-docker-hdfs-sink": {
+    "title": "Docker Development HDFS for Flink  Sink",
+    "url": "/2017/08/02/docker-hdfs-sink/",
+    "category": "[&quot;HDFS,Mongodb&quot;]"
   },
   
   "2017-08-02-hdfs-flink-sink": {
