@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Flink的自定义Source 如何给重写的open方法传递参数. &mdash; 山脚下的胖子.</title>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2017/08/04/RocketMQ-source-open/">
+    <link rel="alternate" type="application/atom+xml" title="山脚下的胖子." href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="Flink的自定义Source 如何给重写的open方法传递参数.">
+      
+    <meta name="keywords" content="flink,rocektmq">
+    <meta name="og:keywords" content="flink,rocektmq">
+      
+    <meta name="description" content="因工作需求所整合Flink + RocketMQ,中间遇到许多问题本文章将问题解决。">
+    <meta name="og:description" content="因工作需求所整合Flink + RocketMQ,中间遇到许多问题本文章将问题解决。">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2017/08/04/RocketMQ-source-open/">
+    <meta property="og:site_name" content="山脚下的胖子.">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2017-08-04">
+    
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="山脚下的胖子."><span class="octicon octicon-mark-github"></span> 山脚下的胖子.</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="Index">Index</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="categories">categories</a>
+                
+                <a href="/open-source/" class=" site-header-nav-item" target="" title="open-source">open-source</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="wiki">wiki</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="links">links</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="about">about</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="Flink的自定义Source">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">Flink的自定义Source 如何给重写的open方法传递参数.</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/08/04
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#Flink,rocektmq" title="Flink,rocektmq">Flink,rocektmq</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <p>因工作需求所整合Flink + RocketMQ,中间遇到许多问题本文章将问题解决。</p>
+
+<h1 id="部分代码">部分代码：</h1>
+<ul>
+  <li>Flink程序入口</li>
+  <li>继承RichSinkFunction，重写<code class="highlighter-rouge">open</code> 和 <code class="highlighter-rouge">invoke</code>方法，还有<code class="highlighter-rouge">close</code>。</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code> <span class="kd">final</span> <span class="n">ParameterTool</span> <span class="n">parameterTool</span> <span class="o">=</span> <span class="n">ParameterTool</span><span class="o">.</span><span class="na">fromArgs</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">parameterTool</span><span class="o">.</span><span class="na">getNumberOfParameters</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Missing parameters!"</span><span class="o">);</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\nUsage: RocketMQ \n"</span> <span class="o">+</span>
+                        <span class="s">"--topic &lt;topic&gt; \n"</span> <span class="o">+</span>
+                        <span class="s">"--cgroup &lt;consumerGroupName&gt; \n"</span> <span class="o">+</span>
+                        <span class="s">"--conf &lt;consumerGroupName&gt; \n"</span> <span class="o">+</span>
+                        <span class="s">"--hdfs &lt;hdfs path&gt;\n"</span>
+                <span class="o">);</span>
+                <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+            <span class="n">env</span><span class="o">.</span><span class="na">getConfig</span><span class="o">().</span><span class="na">enableSysoutLogging</span><span class="o">();</span>
+            <span class="n">env</span><span class="o">.</span><span class="na">getConfig</span><span class="o">().</span><span class="na">setRestartStrategy</span><span class="o">(</span><span class="n">RestartStrategies</span>
+                    <span class="o">.</span><span class="na">fixedDelayRestart</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="mi">100</span><span class="o">));</span>
+            <span class="n">env</span><span class="o">.</span><span class="na">enableCheckpointing</span><span class="o">(</span><span class="mi">5000</span><span class="o">);</span>
+            <span class="n">env</span><span class="o">.</span><span class="na">setMaxParallelism</span><span class="o">(</span><span class="mi">72</span><span class="o">);</span>
+               <span class="cm">/**创建 Configuration 对象**/</span>
+            <span class="n">Configuration</span> <span class="n">conf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Configuration</span><span class="o">();</span>
+            <span class="n">conf</span><span class="o">.</span><span class="na">setString</span><span class="o">(</span><span class="s">"topic"</span><span class="o">,</span><span class="n">parameterTool</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"topic"</span><span class="o">));</span>
+            <span class="n">conf</span><span class="o">.</span><span class="na">setString</span><span class="o">(</span><span class="s">"cgroup"</span><span class="o">,</span><span class="n">parameterTool</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"cgroup"</span><span class="o">));</span>
+            <span class="n">conf</span><span class="o">.</span><span class="na">setString</span><span class="o">(</span><span class="s">"conf"</span><span class="o">,</span><span class="n">parameterTool</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"conf"</span><span class="o">));</span>
+            <span class="n">conf</span><span class="o">.</span><span class="na">setString</span><span class="o">(</span><span class="s">"hdfs"</span><span class="o">,</span><span class="n">parameterTool</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"hdfs"</span><span class="o">));</span>
+            <span class="cm">/**将Configuration存入数据，放入全局执行环境内*/</span>
+            <span class="n">env</span><span class="o">.</span><span class="na">getConfig</span><span class="o">().</span><span class="na">setGlobalJobParameters</span><span class="o">(</span><span class="n">conf</span><span class="o">);</span>
+            <span class="n">RocketMQSource</span> <span class="n">rocketMQSource</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RocketMQSource</span><span class="o">();</span>
+            <span class="n">DataStream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">sourceStream</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="na">addSource</span><span class="o">(</span><span class="n">rocketMQSource</span><span class="o">);</span>
+</code></pre>
+</div>
+<h1 id="source-重点">Source [重点]</h1>
+<ul>
+  <li>MongoDB Service 处理工具</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code> <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">open</span><span class="o">(</span><span class="n">Configuration</span> <span class="n">parameters</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">parameters</span><span class="o">);</span>
+        <span class="cm">/**获取运行环境内的参数**/</span>
+        <span class="n">ExecutionConfig</span><span class="o">.</span><span class="na">GlobalJobParameters</span> <span class="n">globalParams</span> <span class="o">=</span> <span class="n">getRuntimeContext</span><span class="o">().</span><span class="na">getExecutionConfig</span><span class="o">().</span><span class="na">getGlobalJobParameters</span><span class="o">();</span>
+        <span class="cm">/**执行参数提取**/</span>
+        <span class="n">Configuration</span> <span class="n">globConf</span> <span class="o">=</span> <span class="o">(</span><span class="n">Configuration</span><span class="o">)</span> <span class="n">globalParams</span><span class="o">;</span>
+        <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedBlockingQueue</span><span class="o">&lt;&gt;(</span><span class="mi">1000</span><span class="o">);</span>
+        <span class="n">MQConfig</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">globConf</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"conf"</span><span class="o">,</span><span class="kc">null</span><span class="o">));</span>
+        <span class="cm">/**拿到存入参数，并且设置默认值**/</span>
+        <span class="n">consumer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultMQPushConsumer</span><span class="o">(</span> <span class="n">globConf</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"cgroup"</span><span class="o">,</span> <span class="kc">null</span><span class="o">));</span>
+        <span class="n">consumer</span><span class="o">.</span><span class="na">setNamesrvAddr</span><span class="o">(</span> <span class="n">MQConfig</span><span class="o">.</span><span class="na">getMQ</span><span class="o">());</span>
+        <span class="n">consumer</span><span class="o">.</span><span class="na">setInstanceName</span><span class="o">(</span><span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
+        <span class="n">consumer</span><span class="o">.</span><span class="na">setMessageModel</span><span class="o">(</span><span class="n">MessageModel</span><span class="o">.</span><span class="na">CLUSTERING</span><span class="o">);</span><span class="c1">// 消费模式</span>
+        <span class="n">consumer</span><span class="o">.</span><span class="na">setConsumeFromWhere</span><span class="o">(</span><span class="n">ConsumeFromWhere</span><span class="o">.</span><span class="na">CONSUME_FROM_FIRST_OFFSET</span><span class="o">);</span>
+        <span class="n">consumer</span><span class="o">.</span><span class="na">registerMessageListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="n">consumer</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="n">globConf</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"topic"</span><span class="o">,</span> <span class="kc">null</span><span class="o">),</span> <span class="s">"*"</span><span class="o">);</span>
+        <span class="n">consumer</span><span class="o">.</span><span class="na">setConsumeThreadMax</span><span class="o">(</span><span class="mi">64</span><span class="o">);</span>
+        <span class="n">consumer</span><span class="o">.</span><span class="na">setConsumeThreadMin</span><span class="o">(</span><span class="mi">8</span><span class="o">);</span>
+        <span class="n">consumer</span><span class="o">.</span><span class="na">setConsumeMessageBatchMaxSize</span><span class="o">(</span><span class="mi">8</span><span class="o">);</span><span class="c1">//消息数量每次读取的消息数量</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"启动线程"</span><span class="o">);</span>
+        <span class="n">consumer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"RocketMQ Started."</span><span class="o">);</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"consumeBatchSize:{} pullBatchSize:{} consumeThread:{}"</span><span class="o">,</span><span class="n">consumer</span><span class="o">.</span><span class="na">getConsumeMessageBatchMaxSize</span><span class="o">(),</span><span class="n">consumer</span><span class="o">.</span><span class="na">getPullBatchSize</span><span class="o">(),</span><span class="n">consumer</span><span class="o">.</span><span class="na">getConsumeThreadMax</span><span class="o">());</span>
+    <span class="o">}</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>以上代码经过验证可以直接拿去修改调用</li>
+  <li>Owner <code class="highlighter-rouge">breakEval13</code></li>
+  <li>https://github.com/breakEval13</li>
+</ul>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+      
+        
+        <!-- Disqus Protection, see https://github.com/mzlogin/mzlogin.github.io/issues/2 -->
+        
+        
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'http://firsh.me/2017/08/04/RocketMQ-source-open/';
+              this.page.identifier = '/2017/08/04/RocketMQ-source-open/';
+              this.page.title = 'Flink的自定义Source 如何给重写的open方法传递参数.';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+
+              s.type = 'text/javascript';
+              s.async = true;
+              var shortname = 'zmatsh';
+
+              s.src = '//' + shortname + '.disqus.com/embed.js';
+
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        
+        
+      
+    
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="https://zmatsh.b0.upaiyun.com/assets/css/modules/sidebar-search.css">
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="breakeval13">breakeval13</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/breakEval13/breakEval13.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="Index" target="">Index</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="categories" target="">categories</a>
+                </li>
+                
+                <li>
+                    <a href="/open-source/" title="open-source" target="">open-source</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="wiki" target="">wiki</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="links" target="">links</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="about" target="">about</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-80669434-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>

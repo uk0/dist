@@ -1,5 +1,11 @@
 {
   
+  "2017-08-04-rocketmq-source-open": {
+    "title": "Flink的自定义Source 如何给重写的open方法传递参数.",
+    "url": " /2017/08/04/RocketMQ-source-open/",
+    "category": "Flink,rocektmq"
+  },
+  
   "2017-08-02-hdfs-shell-bash": {
     "title": "hadoop HDFS常用文件操作命令",
     "url": " /2017/08/02/hdfs-shell-bash/",
@@ -810,6 +816,12 @@
     "title": "hadoop HDFS常用文件操作命令",
     "url": "/2017/08/02/hdfs-shell-bash/",
     "category": "[&quot;shell,hadoop,hdfs&quot;]"
+  },
+  
+  "2017-08-04-rocketmq-source-open": {
+    "title": "Flink的自定义Source 如何给重写的open方法传递参数.",
+    "url": "/2017/08/04/RocketMQ-source-open/",
+    "category": "[&quot;Flink,rocektmq&quot;]"
   },
   
   "wiki-android-studio": {
