@@ -1,5 +1,11 @@
 {
   
+  "2017-08-07-python-laladb": {
+    "title": "Python 写一个简易的数据库.",
+    "url": " /2017/08/07/python-laladb/",
+    "category": "Python,lambda"
+  },
+  
   "2017-08-04-rocketmq-source-open": {
     "title": "Flink的自定义Source 如何给重写的open方法传递参数.",
     "url": " /2017/08/04/RocketMQ-source-open/",
@@ -822,6 +828,12 @@
     "title": "Flink的自定义Source 如何给重写的open方法传递参数.",
     "url": "/2017/08/04/RocketMQ-source-open/",
     "category": "[&quot;Flink,rocektmq&quot;]"
+  },
+  
+  "2017-08-07-python-laladb": {
+    "title": "Python 写一个简易的数据库.",
+    "url": "/2017/08/07/python-laladb/",
+    "category": "[&quot;Python,lambda&quot;]"
   },
   
   "wiki-android-studio": {
