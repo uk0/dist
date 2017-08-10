@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>MPV &mdash; 山脚下的胖子.</title>
+    <title>Redis安装,For Centos6 &mdash; 山脚下的胖子.</title>
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
@@ -21,23 +21,23 @@
     
 
     
-    <link rel="canonical" href="http://firsh.me/wiki/mpv/">
+    <link rel="canonical" href="http://firsh.me/2017/08/10/redis-install/">
     <link rel="alternate" type="application/atom+xml" title="山脚下的胖子." href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="MPV">
+    <meta property="og:title" content="Redis安装,For Centos6">
       
-    <meta name="keywords" content="mpv">
-    <meta name="og:keywords" content="mpv">
+    <meta name="keywords" content="Redis,linxu,centos">
+    <meta name="og:keywords" content="Redis,linxu,centos">
       
-    <meta name="description" content="Mac OS X 下最好用的播放器，没有之一。">
-    <meta name="og:description" content="Mac OS X 下最好用的播放器，没有之一。">
+    <meta name="description" content="没事看看文章而已～">
+    <meta name="og:description" content="没事看看文章而已～">
       
     
     
         
     
-    <meta property="og:url" content="http://firsh.me/wiki/mpv/">
+    <meta property="og:url" content="http://firsh.me/2017/08/10/redis-install/">
     <meta property="og:site_name" content="山脚下的胖子.">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -85,181 +85,141 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="MPV">
+    <section class="collection-head small geopattern" data-pattern-id="Redis安装,For Cen">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">MPV</h1>
+        <h1 class="collection-header">Redis安装,For Centos6</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/08/10
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#Redis" title="Redis">Redis</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
 </div>
 </section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
 <!-- / .banner -->
 <section class="container content">
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <p>Mac OS X 下最好用的播放器，没有之一。</p>
+    <p>没事看看文章而已～</p>
 
-<h2 id="快捷键">快捷键</h2>
+<h1 id="redis安装">Redis安装</h1>
+<p>date：2016-11-15
+author：YangRaner</p>
 
-<p>参考：<a href="https://github.com/mpv-player/mpv/blob/master/etc/input.conf">mpv keybindings</a></p>
+<p>[TOC]</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>按键</th>
-      <th>功能</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>RIGHT</td>
-      <td>前进 5 秒</td>
-    </tr>
-    <tr>
-      <td>LEFT</td>
-      <td>后退 5 秒</td>
-    </tr>
-    <tr>
-      <td>UP</td>
-      <td>前进 60 秒</td>
-    </tr>
-    <tr>
-      <td>DOWN</td>
-      <td>后退 60 秒</td>
-    </tr>
-    <tr>
-      <td>[</td>
-      <td>0.9091 倍速播放</td>
-    </tr>
-    <tr>
-      <td>]</td>
-      <td>1.1 倍速播放</td>
-    </tr>
-    <tr>
-      <td>{</td>
-      <td>0.5 倍速播放</td>
-    </tr>
-    <tr>
-      <td>}</td>
-      <td>2.0 倍速播放</td>
-    </tr>
-    <tr>
-      <td>Backspace</td>
-      <td>还原到 1.0 倍速</td>
-    </tr>
-    <tr>
-      <td>Space 或 p</td>
-      <td>播放/暂停</td>
-    </tr>
-    <tr>
-      <td>.</td>
-      <td>下一帧</td>
-    </tr>
-    <tr>
-      <td>,</td>
-      <td>上一帧</td>
-    </tr>
-    <tr>
-      <td>9 或 /</td>
-      <td>音量 -2</td>
-    </tr>
-    <tr>
-      <td>0 或 *</td>
-      <td>音量 +2</td>
-    </tr>
-    <tr>
-      <td>f</td>
-      <td>切换是否全屏</td>
-    </tr>
-    <tr>
-      <td>v</td>
-      <td>显示/隐藏字幕</td>
-    </tr>
-    <tr>
-      <td>T</td>
-      <td>切换是否前端显示</td>
-    </tr>
-    <tr>
-      <td>s</td>
-      <td>截屏，有字幕</td>
-    </tr>
-    <tr>
-      <td>S</td>
-      <td>截屏，无字幕</td>
-    </tr>
-    <tr>
-      <td>o</td>
-      <td>显示进度条与时间，2 秒后消失</td>
-    </tr>
-    <tr>
-      <td>I (大写 i)</td>
-      <td>显示当前文件名</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>对比度 -1</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>对比度 +1</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>亮度 -1</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>亮度 +1</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>Gamma 值 -1</td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>Gamma 值 +1</td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td>饱和度 -1</td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td>饱和度 +1</td>
-    </tr>
-    <tr>
-      <td>l (小写 L)</td>
-      <td>设置/清除 A-B 循环点</td>
-    </tr>
-    <tr>
-      <td>j/J</td>
-      <td>选择字幕</td>
-    </tr>
-    <tr>
-      <td>#</td>
-      <td>切换声道</td>
-    </tr>
-    <tr>
-      <td>q</td>
-      <td>退出</td>
-    </tr>
-  </tbody>
-</table>
+<h1 id="1检查安装依赖程序">1.检查安装依赖程序</h1>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>yum install -y tcl gcc-c++ wget
+</code></pre>
+</div>
+<h1 id="2下载redis">2.下载Redis</h1>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mkdir /opt/redis/
+<span class="nb">cd</span> /opt/redis/
+wget http://download.redis.io/releases/redis-3.0.4.tar.gz
+</code></pre>
+</div>
+<h1 id="3解压redis">3.解压Redis</h1>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>tar -xzvf redis-3.0.4.tar.gz
+</code></pre>
+</div>
+<h1 id="4编译安装redis">4.编译安装Redis</h1>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd </span>redis-3.0.4
+make
+make install	
+-------------------------------------------------------------
+make install安装完成后，会在/usr/local/bin目录下生成下面几个可执行文件，它们的作用分别是：
+redis-server：Redis服务器端启动程序
+redis-cli：Redis客户端操作工具。也可以用telnet根据其纯文本协议来操作
+redis-benchmark：Redis性能测试工具
+redis-check-aof：数据修复工具
+redis-check-dump：检查导出工具
+</code></pre>
+</div>
+<h1 id="5配置redis">5.配置Redis</h1>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>cp redis.conf /etc/   复制配置文件到/etc/目录
+vim /etc/redis.conf    修改redis文件
+----------------------------------------------
+daemonize yes     修改daemonize配置项为yes，使Redis进程在后台运行
+requirepass Ejtone   <span class="c"># 设置密码，以提供远程登陆</span>
+</code></pre>
+</div>
+<h1 id="6启动redis">6.启动Redis</h1>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> /usr/local/bin		进入bin目录下
+./redis-server /etc/redis.conf		启动Redis
+ps -ef | grep redis			查看redis进程
+----------------------------------------------
+root  18443  1  0 13:05 ?    00:00:00 ./redis-server <span class="k">*</span>:6379 
 
-<h2 id="命令行参数">命令行参数</h2>
+</code></pre>
+</div>
+<h1 id="7添加开机启动项">7.添加开机启动项</h1>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># 让Redis在服务器重启后自动启动，需要将启动命令写入开机启动项</span>
+<span class="nb">echo</span> <span class="s2">"/usr/local/bin/redis-server /etc/redis.conf"</span> &gt;&gt;/etc/rc.local
+</code></pre>
+</div>
+<p><strong>以上完成安装</strong></p>
 
-<p>参考：<a href="https://github.com/mpv-player/mpv/blob/master/DOCS/man/options.rst">OPTIONS</a></p>
+<h1 id="8redis配置参数">8.Redis配置参数</h1>
+<blockquote>
+  <ul>
+    <li>在前面的操作中，我们用到了使Redis进程在后台运行的参数，下面介绍其它一些常用的Redis启动参数：**
+<code class="highlighter-rouge">daemonize</code>：是否以后台daemon方式运行
+<code class="highlighter-rouge">pidfile</code>：pid文件位置
+<code class="highlighter-rouge">port</code>：监听的端口号
+<code class="highlighter-rouge">timeout</code>：请求超时时间
+<code class="highlighter-rouge">loglevel</code>：log信息级别
+<code class="highlighter-rouge">logfile</code>：log文件位置
+<code class="highlighter-rouge">databases</code>：开启数据库的数量
+<code class="highlighter-rouge">save</code> * <em>：保存快照的频率，第一个</em>表示多长时间，第二个*表示执行多少次写操作。在一定时间内执行一定数量的写操作时，自动保存快照。可设置多个条件。
+<code class="highlighter-rouge">rdbcompression</code>：是否使用压缩
+<code class="highlighter-rouge">dbfilename</code>：数据快照文件名（只是文件名）
+<code class="highlighter-rouge">dir</code>：数据快照的保存目录（仅目录）
+<code class="highlighter-rouge">appendonly</code>：是否开启appendonlylog，开启的话每次写操作会记一条log，这会提高数据抗风险能力，但影响效率。
+<code class="highlighter-rouge">appendfsync</code>：appendonlylog如何同步到磁盘。三个选项，分别是每次写都强制调用fsync、每秒启用一次fsync、不调用fsync等待系统自己同步</li>
+  </ul>
+</blockquote>
 
-<h2 id="参考">参考</h2>
-
+<h1 id="9重启redis">9.重启Redis</h1>
 <ul>
-  <li><a href="https://segmentfault.com/a/1190000004533079">MPV使用小记</a></li>
+  <li>9.1如果Redis已经配置为service服务，可以通过以下方式重启：</li>
 </ul>
 
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>service redis restart
+</code></pre>
+</div>
+
+<ul>
+  <li>9.2如果Redis没有配置为service服务，可以通过以下方式重启：
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>/usr/local/bin/redis-cli shutdown
+/usr/local/bin/redis-server /etc/redis.conf
+</code></pre>
+    </div>
+  </li>
+  <li>以上代码经过验证可以直接拿去修改调用</li>
+  <li>Owner <code class="highlighter-rouge">breakEval13</code></li>
+  <li>https://github.com/breakEval13</li>
+</ul>
 
     </article>
     <div class="share">
@@ -276,9 +236,9 @@
           <div id="disqus_thread"></div>
           <script>
             var disqus_config = function () {
-              this.page.url = 'http://firsh.me/wiki/mpv/';
-              this.page.identifier = '/wiki/mpv/';
-              this.page.title = 'MPV';
+              this.page.url = 'http://firsh.me/2017/08/10/redis-install/';
+              this.page.identifier = '/2017/08/10/redis-install/';
+              this.page.title = 'Redis安装,For Centos6';
             };
             (function() { // DON'T EDIT BELOW THIS LINE
               var d = document, s = d.createElement('script');

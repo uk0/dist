@@ -1,5 +1,11 @@
 {
   
+  "2017-08-10-redis-install": {
+    "title": "Redis安装,For Centos6",
+    "url": " /2017/08/10/redis-install/",
+    "category": "Redis"
+  },
+  
   "2017-08-07-python-thread": {
     "title": "使用python进程与线程",
     "url": " /2017/08/07/python-thread/",
@@ -860,6 +866,12 @@
     "title": "使用python进程与线程",
     "url": "/2017/08/07/python-thread/",
     "category": "[&quot;Python,lambda&quot;]"
+  },
+  
+  "2017-08-10-redis-install": {
+    "title": "Redis安装,For Centos6",
+    "url": "/2017/08/10/redis-install/",
+    "category": "[&quot;Redis&quot;]"
   },
   
   "wiki-android-studio": {

@@ -1,4 +1,102 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-08-07T19:42:02+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">使用python进程与线程</title><link href="http://firsh.me/2017/08/07/python-thread/" rel="alternate" type="text/html" title="使用python进程与线程" /><published>2017-08-07T00:00:00+08:00</published><updated>2017-08-07T00:00:00+08:00</updated><id>http://firsh.me/2017/08/07/python-thread</id><content type="html" xml:base="http://firsh.me/2017/08/07/python-thread/">&lt;p&gt;没事看看文章而已～&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-08-10T12:14:59+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">Redis安装,For Centos6</title><link href="http://firsh.me/2017/08/10/redis-install/" rel="alternate" type="text/html" title="Redis安装,For Centos6" /><published>2017-08-10T00:00:00+08:00</published><updated>2017-08-10T00:00:00+08:00</updated><id>http://firsh.me/2017/08/10/redis-install</id><content type="html" xml:base="http://firsh.me/2017/08/10/redis-install/">&lt;p&gt;没事看看文章而已～&lt;/p&gt;
+
+&lt;h1 id=&quot;redis安装&quot;&gt;Redis安装&lt;/h1&gt;
+&lt;p&gt;date：2016-11-15
+author：YangRaner&lt;/p&gt;
+
+&lt;p&gt;[TOC]&lt;/p&gt;
+
+&lt;h1 id=&quot;1检查安装依赖程序&quot;&gt;1.检查安装依赖程序&lt;/h1&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;yum install -y tcl gcc-c++ wget
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h1 id=&quot;2下载redis&quot;&gt;2.下载Redis&lt;/h1&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkdir /opt/redis/
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /opt/redis/
+wget http://download.redis.io/releases/redis-3.0.4.tar.gz
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h1 id=&quot;3解压redis&quot;&gt;3.解压Redis&lt;/h1&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;tar -xzvf redis-3.0.4.tar.gz
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h1 id=&quot;4编译安装redis&quot;&gt;4.编译安装Redis&lt;/h1&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;redis-3.0.4
+make
+make install	
+-------------------------------------------------------------
+make install安装完成后，会在/usr/local/bin目录下生成下面几个可执行文件，它们的作用分别是：
+redis-server：Redis服务器端启动程序
+redis-cli：Redis客户端操作工具。也可以用telnet根据其纯文本协议来操作
+redis-benchmark：Redis性能测试工具
+redis-check-aof：数据修复工具
+redis-check-dump：检查导出工具
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h1 id=&quot;5配置redis&quot;&gt;5.配置Redis&lt;/h1&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cp redis.conf /etc/   复制配置文件到/etc/目录
+vim /etc/redis.conf    修改redis文件
+----------------------------------------------
+daemonize yes     修改daemonize配置项为yes，使Redis进程在后台运行
+requirepass Ejtone   &lt;span class=&quot;c&quot;&gt;# 设置密码，以提供远程登陆&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h1 id=&quot;6启动redis&quot;&gt;6.启动Redis&lt;/h1&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /usr/local/bin		进入bin目录下
+./redis-server /etc/redis.conf		启动Redis
+ps -ef | grep redis			查看redis进程
+----------------------------------------------
+root  18443  1  0 13:05 ?    00:00:00 ./redis-server &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;:6379 
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h1 id=&quot;7添加开机启动项&quot;&gt;7.添加开机启动项&lt;/h1&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 让Redis在服务器重启后自动启动，需要将启动命令写入开机启动项&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/usr/local/bin/redis-server /etc/redis.conf&quot;&lt;/span&gt; &amp;gt;&amp;gt;/etc/rc.local
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;以上完成安装&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;8redis配置参数&quot;&gt;8.Redis配置参数&lt;/h1&gt;
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;在前面的操作中，我们用到了使Redis进程在后台运行的参数，下面介绍其它一些常用的Redis启动参数：**
+&lt;code class=&quot;highlighter-rouge&quot;&gt;daemonize&lt;/code&gt;：是否以后台daemon方式运行
+&lt;code class=&quot;highlighter-rouge&quot;&gt;pidfile&lt;/code&gt;：pid文件位置
+&lt;code class=&quot;highlighter-rouge&quot;&gt;port&lt;/code&gt;：监听的端口号
+&lt;code class=&quot;highlighter-rouge&quot;&gt;timeout&lt;/code&gt;：请求超时时间
+&lt;code class=&quot;highlighter-rouge&quot;&gt;loglevel&lt;/code&gt;：log信息级别
+&lt;code class=&quot;highlighter-rouge&quot;&gt;logfile&lt;/code&gt;：log文件位置
+&lt;code class=&quot;highlighter-rouge&quot;&gt;databases&lt;/code&gt;：开启数据库的数量
+&lt;code class=&quot;highlighter-rouge&quot;&gt;save&lt;/code&gt; * &lt;em&gt;：保存快照的频率，第一个&lt;/em&gt;表示多长时间，第二个*表示执行多少次写操作。在一定时间内执行一定数量的写操作时，自动保存快照。可设置多个条件。
+&lt;code class=&quot;highlighter-rouge&quot;&gt;rdbcompression&lt;/code&gt;：是否使用压缩
+&lt;code class=&quot;highlighter-rouge&quot;&gt;dbfilename&lt;/code&gt;：数据快照文件名（只是文件名）
+&lt;code class=&quot;highlighter-rouge&quot;&gt;dir&lt;/code&gt;：数据快照的保存目录（仅目录）
+&lt;code class=&quot;highlighter-rouge&quot;&gt;appendonly&lt;/code&gt;：是否开启appendonlylog，开启的话每次写操作会记一条log，这会提高数据抗风险能力，但影响效率。
+&lt;code class=&quot;highlighter-rouge&quot;&gt;appendfsync&lt;/code&gt;：appendonlylog如何同步到磁盘。三个选项，分别是每次写都强制调用fsync、每秒启用一次fsync、不调用fsync等待系统自己同步&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;9重启redis&quot;&gt;9.重启Redis&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;9.1如果Redis已经配置为service服务，可以通过以下方式重启：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;service redis restart
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;9.2如果Redis没有配置为service服务，可以通过以下方式重启：
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/usr/local/bin/redis-cli shutdown
+/usr/local/bin/redis-server /etc/redis.conf
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;以上代码经过验证可以直接拿去修改调用&lt;/li&gt;
+  &lt;li&gt;Owner &lt;code class=&quot;highlighter-rouge&quot;&gt;breakEval13&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;https://github.com/breakEval13&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>breakeval13</name></author><summary type="html">没事看看文章而已～</summary></entry><entry><title type="html">使用python进程与线程</title><link href="http://firsh.me/2017/08/07/python-thread/" rel="alternate" type="text/html" title="使用python进程与线程" /><published>2017-08-07T00:00:00+08:00</published><updated>2017-08-07T00:00:00+08:00</updated><id>http://firsh.me/2017/08/07/python-thread</id><content type="html" xml:base="http://firsh.me/2017/08/07/python-thread/">&lt;p&gt;没事看看文章而已～&lt;/p&gt;
 
 &lt;h1 id=&quot;python进程线程协程详解&quot;&gt;Python进程、线程、协程详解&lt;/h1&gt;
 
@@ -2144,273 +2242,4 @@ public class MongoDBHelper &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h2 id=&quot;禁止转载盗版必究倒贴必须ddos你&quot;&gt;禁止转载，盗版必究。&lt;code class=&quot;highlighter-rouge&quot;&gt;倒贴必须DDOS你！&lt;/code&gt;&lt;/h2&gt;</content><author><name>breakeval13</name></author><summary type="html">RocketMQ消息队列整合Flink的解决方案。</summary></entry><entry><title type="html">RocketMQ消息队列安装以及使用[原创精品]</title><link href="http://firsh.me/2017/07/19/rocketmq-p-c/" rel="alternate" type="text/html" title="RocketMQ消息队列安装以及使用[原创精品]" /><published>2017-07-19T00:00:00+08:00</published><updated>2017-07-19T00:00:00+08:00</updated><id>http://firsh.me/2017/07/19/rocketmq-p-c</id><content type="html" xml:base="http://firsh.me/2017/07/19/rocketmq-p-c/">&lt;p&gt;RocketMQ消息队列安装以及使用，RocketMQ安装常见问题，以及解决方案。&lt;/p&gt;
-
-&lt;h2 id=&quot;摘要-我要装个rocketmq&quot;&gt;摘要: 我要装个RocketMQ&lt;/h2&gt;
-
-&lt;h1 id=&quot;rocketmq-安装&quot;&gt;rocketmq 安装&lt;/h1&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;安装rocketmq需要环境：
-1、jdk1.7以上
-2、maven
-3、git
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;jdk1.8&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; wget https://zmatsh.b0.upaiyun.com/blog/tmp/jdk-8u92-linux-x64.tar.gz
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;em&gt;maven下载：&lt;/em&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget http://mirrors.hust.edu.cn/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
-
-tar xf apache-maven-3.3.9-bin.tar.gz -C /opt/
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;em&gt;git下载：&lt;/em&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;yum install git -y
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;em&gt;环境变量如下：&lt;/em&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;PATH USER LOGNAME MAIL HOSTNAME HISTSIZE HISTCONTROL
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/jdk/jdk1.8.0_65
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JRE_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/jdk/jdk1.8.0_65/jre
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CLASSPATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;.:&lt;span class=&quot;nv&quot;&gt;$JAVA_HOME&lt;/span&gt;/lib/dt.jar:&lt;span class=&quot;nv&quot;&gt;$JAVA_HOME&lt;/span&gt;/lib/tools.jar:&lt;span class=&quot;nv&quot;&gt;$JRE_HOME&lt;/span&gt;/lib:&lt;span class=&quot;nv&quot;&gt;$CLASSPATH&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;:&lt;span class=&quot;nv&quot;&gt;$JAVA_HOME&lt;/span&gt;/bin/
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;:/usr/local/go/bin
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;GOPATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/local/
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;M2_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/apache-maven-3.3.9
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;:&lt;span class=&quot;nv&quot;&gt;$M2_HOME&lt;/span&gt;/bin
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ROCKETMQ_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/RocketMQ-3.5.8/devenv
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;NAMESRV_ADDR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;127.0.0.1:9876
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;em&gt;使配置文件生效&lt;/em&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; /etc/profile
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;em&gt;检测maven&lt;/em&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@dscn1 ~]# mvn -v
-Apache Maven 3.3.9 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;bb52d8502b132ec0a5a3f4c09453c07478323dc5; 2015-11-11T00:41:47+08:00&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-Maven home: /opt/apache-maven-3.3.9
-Java version: 1.8.0_65, vendor: Oracle Corporation
-Java home: /opt/jdk/jdk1.8.0_65/jre
-Default locale: zh_CN, platform encoding: UTF-8
-OS name: &lt;span class=&quot;s2&quot;&gt;&quot;linux&quot;&lt;/span&gt;, version: &lt;span class=&quot;s2&quot;&gt;&quot;2.6.32-573.22.1.el6.x86_64&quot;&lt;/span&gt;, arch: &lt;span class=&quot;s2&quot;&gt;&quot;amd64&quot;&lt;/span&gt;, family: &lt;span class=&quot;s2&quot;&gt;&quot;unix&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;[toc]&lt;/p&gt;
-
-&lt;p&gt;##一、正式开始安装rocketmq
-1、下载安装&lt;/p&gt;
-
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;a）wget https://github.com/alibaba/RocketMQ/archive/v3.5.8.tar.gz		###下载包
-b）tar -xf v3.5.8.tar.gz	 -C /opt/	###解压
-c）cd /opt/RocketMQ-3.5.8 	###进入解压后目录
-d）sh install.sh			###进行安装(下载国外的数据，时间较长)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;2、修改文件内存&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /opt/RocketMQ-3.5.8/devenv/bin
-&lt;span class=&quot;c&quot;&gt;#vim修改runbroker.sh、runserver.sh两个文件&lt;/span&gt;
--------------------------------------
-&lt;span class=&quot;nv&quot;&gt;JAVA_OPT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_OPT&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; -server -Xms512m -Xmx512m -Xmn256m -XX:PermSize=128m -XX:MaxPermSize=320m&quot;&lt;/span&gt;		&lt;span class=&quot;c&quot;&gt;###Xms启动时内存，Xmx最大内存，Xmn最小内存&lt;/span&gt;
---------------------------------------
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;3、启动&lt;code class=&quot;highlighter-rouge&quot;&gt;nameserver&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nohup sh  mqnamesrv &amp;gt;/var/log/ns.log 2&amp;gt;&amp;amp;1 &amp;amp;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;4、验证&lt;code class=&quot;highlighter-rouge&quot;&gt;nameserver&lt;/code&gt;是否启动：&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;tail -f /var/log/ns.log   &lt;span class=&quot;c&quot;&gt;###查看日志有无错误信息&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;5、启动&lt;code class=&quot;highlighter-rouge&quot;&gt;broker&lt;/code&gt;
- 在启动&lt;code class=&quot;highlighter-rouge&quot;&gt;borker&lt;/code&gt;之前需要指定&lt;code class=&quot;highlighter-rouge&quot;&gt;nameserver&lt;/code&gt;地址：&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;export NAMESRV_ADDR=127.0.0.1:9876&quot;&lt;/span&gt; &amp;gt;&amp;gt; /etc/profile		&lt;span class=&quot;c&quot;&gt;###写入到环境变量，或者直接&lt;/span&gt;
--n来指定
- nohup sh mqbroker -n 192.168.0.106:9876 &lt;span class=&quot;nv&quot;&gt;autoCreateTopicEnable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt; &amp;gt; /var/log/mq.log 2&amp;gt;&amp;amp;1 &amp;amp;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;6、检验是否开启&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;tail -f /var/log/mq.log   &lt;span class=&quot;c&quot;&gt;###查看日志有无错误信息&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;7、关闭的命令：&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sh mqshutdown namesrv
-sh mqshutdown broker
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;8、创建队列&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sh mqadmin updateTopic -b &lt;span class=&quot;s2&quot;&gt;&quot;192.168.0.106:10911&quot;&lt;/span&gt; -t Topic1 -r 10 -w 10			&lt;span class=&quot;c&quot;&gt;###-b   broker的ip和端口	-t java程序中定义的名字&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;9、更改broker配置文件，更改ip,使外网可以访问&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sh mqadmin updateBrokerConfig -b 192.168.0.106:10911 -k brokerIP1 -v 192.168.0.106
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;10、以此输入下面两个命令：&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bash tools.sh com.alibaba.rocketmq.example.quickstart.Producer		&lt;span class=&quot;c&quot;&gt;###生产者(生产队列)&lt;/span&gt;
-
-bash tools.sh com.alibaba.rocketmq.example.quickstart.Consumer		&lt;span class=&quot;c&quot;&gt;###消费者（清理队列）&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;如果报错是内存不够，就改&lt;code class=&quot;highlighter-rouge&quot;&gt;runbroker.sh&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;runserver.sh&lt;/code&gt;两个文件&lt;/p&gt;
-
-  &lt;p&gt;如果启动报错是不知道主机：
-检查/etc/sysconfig/network 中的记录的hostname是否和/etc/hosts中的主机名绑定一致，如果不一致请确保一致
-在/etc/hosts中添加 192.168.1.118 hostname的名称(master01)跟/etc/sysconfig/network一样(master01)&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;开启9876rocketmq的nameserver端口  #vim /etc/sysconfig/iptables&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;二一主一从的配置&quot;&gt;二、一主一从的配置&lt;/h2&gt;
-&lt;p&gt;除了启动步骤不同。其余与上面一主的配置相同：
-1、修改/opt/RocketMQ-3.5.8/devenv/bin/runbroker.sh、runserver.sh两个文件：&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_OPT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_OPT&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; -server -Xms512m -Xmx512m -Xmn256m -XX:PermSize=128m -XX:MaxPermSize=320m&quot;&lt;/span&gt;		&lt;span class=&quot;c&quot;&gt;###Xms启动时内存，Xmx最大内存，Xmn最小内存&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;2、主的机器修改/opt/RocketMQ-3.5.8/devenv/conf/2m-2s-async/broker-a.properties&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;namesrvAddr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;192.168.0.106:9876;192.168.0.107:9876
-&lt;span class=&quot;nv&quot;&gt;brokerIP1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;192.168.0.106
-&lt;span class=&quot;nv&quot;&gt;brokerClusterName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;DefaultCluster
-&lt;span class=&quot;nv&quot;&gt;brokerName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;broker-a
-&lt;span class=&quot;nv&quot;&gt;brokerId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0
-&lt;span class=&quot;nv&quot;&gt;deleteWhen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;04
-&lt;span class=&quot;nv&quot;&gt;fileReservedTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;48
-&lt;span class=&quot;nv&quot;&gt;brokerRole&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ASYNC_MASTER
-&lt;span class=&quot;nv&quot;&gt;flushDiskType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ASYNC_FLUSH
-&lt;span class=&quot;nv&quot;&gt;storePathRootDir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/RocketMQ-3.4.6
-&lt;span class=&quot;nv&quot;&gt;storePathCommitLog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/RocketMQ-3.4.6/log/commitlog
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;3、从的机器修改/opt/RocketMQ-3.5.8/devenv/conf/2m-2s-async/broker-a-s.properties&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;namesrvAddr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;192.168.0.106:9876;192.168.0.107:9876
-&lt;span class=&quot;nv&quot;&gt;brokerIP1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;192.168.0.107
-&lt;span class=&quot;nv&quot;&gt;brokerClusterName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;DefaultCluster
-&lt;span class=&quot;nv&quot;&gt;brokerName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;broker-a
-&lt;span class=&quot;nv&quot;&gt;brokerId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1
-&lt;span class=&quot;nv&quot;&gt;deleteWhen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;04
-&lt;span class=&quot;nv&quot;&gt;fileReservedTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;48
-&lt;span class=&quot;nv&quot;&gt;brokerRole&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;SLAVE
-&lt;span class=&quot;nv&quot;&gt;flushDiskType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ASYNC_FLUSH
-&lt;span class=&quot;nv&quot;&gt;storePathRootDir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/RocketMQ-3.4.6
-&lt;span class=&quot;nv&quot;&gt;storePathCommitLog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/RocketMQ-3.4.6/log/commitlog
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;参考内容和解释如下：&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#所属集群名字&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;brokerClusterName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;rocketmq-cluster
-&lt;span class=&quot;c&quot;&gt;#broker名字，注意此处不同的配置文件填写的不一样&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;brokerName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;broker-a|broker-b
-&lt;span class=&quot;c&quot;&gt;#0 表示 Master， &amp;gt;0 表示 Slave&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;brokerId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0
-&lt;span class=&quot;c&quot;&gt;#nameServer地址，分号分割&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;namesrvAddr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;rocketmq-nameserver1:9876;rocketmq-nameserver2:9876
-&lt;span class=&quot;c&quot;&gt;#在发送消息时，自动创建服务器不存在的topic，默认创建的队列数&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;defaultTopicQueueNums&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4
-&lt;span class=&quot;c&quot;&gt;#是否允许 Broker 自动创建Topic，建议线下开启，线上关闭&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;autoCreateTopicEnable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#是否允许 Broker 自动创建订阅组，建议线下开启，线上关闭&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;autoCreateSubscriptionGroup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#Broker 对外服务的监听端口&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;listenPort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;10911
-&lt;span class=&quot;c&quot;&gt;#删除文件时间点，默认凌晨 0点&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;deleteWhen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;00
-&lt;span class=&quot;c&quot;&gt;#文件保留时间，默认 48 小时&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;fileReservedTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;120
-&lt;span class=&quot;c&quot;&gt;#commitLog每个文件的大小默认1G&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;mapedFileSizeCommitLog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1073741824
-&lt;span class=&quot;c&quot;&gt;#ConsumeQueue每个文件默认存30W条，根据业务情况调整&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;mapedFileSizeConsumeQueue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;300000
-&lt;span class=&quot;c&quot;&gt;#destroyMapedFileIntervalForcibly=120000&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#redeleteHangedFileInterval=120000&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#检测物理文件磁盘空间&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;diskMaxUsedSpaceRatio&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;88
-&lt;span class=&quot;c&quot;&gt;#存储路径&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;storePathRootDir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/rocketmq/data
-&lt;span class=&quot;c&quot;&gt;#commitLog 存储路径&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;storePathCommitLog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/rocketmq/data/commitlog
-&lt;span class=&quot;c&quot;&gt;#消费队列存储路径存储路径&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;storePathConsumeQueue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/rocketmq/data/consumequeue
-&lt;span class=&quot;c&quot;&gt;#消息索引存储路径&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;storePathIndex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/rocketmq/data/index
-&lt;span class=&quot;c&quot;&gt;#checkpoint 文件存储路径&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;storeCheckpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/rocketmq/data/checkpoint
-&lt;span class=&quot;c&quot;&gt;#abort 文件存储路径&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;abortFile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/rocketmq/data/abort
-&lt;span class=&quot;c&quot;&gt;#限制的消息大小&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;maxMessageSize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;65536
-&lt;span class=&quot;c&quot;&gt;#flushCommitLogLeastPages=4&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#flushConsumeQueueLeastPages=2&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#flushCommitLogThoroughInterval=10000&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#flushConsumeQueueThoroughInterval=60000&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#Broker 的角色&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#- ASYNC_MASTER 异步复制Master&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#- SYNC_MASTER 同步双写Master&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#- SLAVE&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;brokerRole&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ASYNC_MASTER
-&lt;span class=&quot;c&quot;&gt;#刷盘方式&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#- ASYNC_FLUSH 异步刷盘&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#- SYNC_FLUSH 同步刷盘&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;flushDiskType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ASYNC_FLUSH
-&lt;span class=&quot;c&quot;&gt;#checkTransactionMessageEnable=false&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#发消息线程池数量&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#sendMessageThreadPoolNums=128&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#拉消息线程池数量&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#pullMessageThreadPoolNums=128&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;4、两个机器上都启动nameserver:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nohup sh  mqnamesrv &amp;gt;/var/log/ns.log 2&amp;gt;&amp;amp;1 &amp;amp;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;5、主的机器启动broker：&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; nohup sh mqbroker -c ../conf/2m-2s-async/broker-a.properties &amp;gt; /var/log/mq.log 2&amp;gt;&amp;amp;1 &amp;amp;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;6、从的机器启动broker：&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; nohup sh mqbroker -c ../conf/2m-2s-async/broker-a-s.properties &amp;gt; /var/log/mq.log 2&amp;gt;&amp;amp;1 &amp;amp;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;运行成功的图&quot;&gt;运行成功的图！&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/blog/tmp/rocketmq-p.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/blog/tmp/rocketmq-c.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;禁止转载盗版必究&quot;&gt;禁止转载，盗版必究。&lt;/h2&gt;</content><author><name>breakeval13</name></author><summary type="html">RocketMQ消息队列安装以及使用，RocketMQ安装常见问题，以及解决方案。</summary></entry></feed>
+&lt;h2 id=&quot;禁止转载盗版必究倒贴必须ddos你&quot;&gt;禁止转载，盗版必究。&lt;code class=&quot;highlighter-rouge&quot;&gt;倒贴必须DDOS你！&lt;/code&gt;&lt;/h2&gt;</content><author><name>breakeval13</name></author><summary type="html">RocketMQ消息队列整合Flink的解决方案。</summary></entry></feed>
