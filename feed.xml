@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-08-17T23:42:08+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">ArangoDB安装,For Centos7[原创]</title><link href="http://firsh.me/2017/08/17/arangodb-install-401/" rel="alternate" type="text/html" title="ArangoDB安装,For Centos7[原创]" /><published>2017-08-17T00:00:00+08:00</published><updated>2017-08-17T00:00:00+08:00</updated><id>http://firsh.me/2017/08/17/arangodb-install-401</id><content type="html" xml:base="http://firsh.me/2017/08/17/arangodb-install-401/">&lt;p&gt;ArangoDB安装，以及访问出现无权限，导致无法连接arangosh，的解决方法。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-08-17T23:48:00+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">ArangoDB安装,For Centos7[原创]</title><link href="http://firsh.me/2017/08/17/arangodb-install-401/" rel="alternate" type="text/html" title="ArangoDB安装,For Centos7[原创]" /><published>2017-08-17T00:00:00+08:00</published><updated>2017-08-17T00:00:00+08:00</updated><id>http://firsh.me/2017/08/17/arangodb-install-401</id><content type="html" xml:base="http://firsh.me/2017/08/17/arangodb-install-401/">&lt;p&gt;ArangoDB安装，以及访问出现无权限，导致无法连接arangosh，的解决方法。&lt;/p&gt;
 
 &lt;h1 id=&quot;arangodb安装&quot;&gt;ArangoDB安装&lt;/h1&gt;
 &lt;p&gt;date：2017-08-17
@@ -125,14 +125,10 @@ file &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; /var/log/arangodb3/arangod.l
 &lt;span class=&quot;c&quot;&gt;# encryption-keyfile=/your-encryption-file&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;h1 id=&quot;7添加开机启动项&quot;&gt;7.添加开机启动项&lt;/h1&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 让Redis在服务器重启后自动启动，需要将启动命令写入开机启动项&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/usr/local/bin/redis-server /etc/redis.conf&quot;&lt;/span&gt; &amp;gt;&amp;gt;/etc/rc.local
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+
 &lt;p&gt;&lt;strong&gt;以上完成安装&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;8访问测试&quot;&gt;8.访问测试&lt;/h1&gt;
+&lt;h1 id=&quot;7访问测试&quot;&gt;7.访问测试&lt;/h1&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;arangosh
 &lt;span class=&quot;c&quot;&gt;# 进入arangodb bash&lt;/span&gt;
@@ -140,7 +136,7 @@ file &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; /var/log/arangodb3/arangod.l
 &lt;/div&gt;
 &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/blog/20E4E40601E232AFEB557A2260F5BA20.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;9解决没有权限问题&quot;&gt;9.解决没有权限问题&lt;/h1&gt;
+&lt;h1 id=&quot;8解决没有权限问题&quot;&gt;8.解决没有权限问题&lt;/h1&gt;
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;c&quot;&gt;# 停止 `systemctl stop arangodb3`&lt;/span&gt;
  &lt;span class=&quot;c&quot;&gt;# 不启用授权启动arangodb&lt;/span&gt;
 /usr/sbin/arangod --server.authentication &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;

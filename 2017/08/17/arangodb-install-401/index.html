@@ -248,14 +248,10 @@ file <span class="o">=</span> /var/log/arangodb3/arangod.log
 <span class="c"># encryption-keyfile=/your-encryption-file</span>
 </code></pre>
 </div>
-<h1 id="7添加开机启动项">7.添加开机启动项</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># 让Redis在服务器重启后自动启动，需要将启动命令写入开机启动项</span>
-<span class="nb">echo</span> <span class="s2">"/usr/local/bin/redis-server /etc/redis.conf"</span> &gt;&gt;/etc/rc.local
-</code></pre>
-</div>
+
 <p><strong>以上完成安装</strong></p>
 
-<h1 id="8访问测试">8.访问测试</h1>
+<h1 id="7访问测试">7.访问测试</h1>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code>arangosh
 <span class="c"># 进入arangodb bash</span>
@@ -263,7 +259,7 @@ file <span class="o">=</span> /var/log/arangodb3/arangod.log
 </div>
 <p><img src="https://zmatsh.b0.upaiyun.com/blog/20E4E40601E232AFEB557A2260F5BA20.png" alt="" /></p>
 
-<h1 id="9解决没有权限问题">9.解决没有权限问题</h1>
+<h1 id="8解决没有权限问题">8.解决没有权限问题</h1>
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code> <span class="c"># 停止 `systemctl stop arangodb3`</span>
  <span class="c"># 不启用授权启动arangodb</span>
 /usr/sbin/arangod --server.authentication <span class="nb">false</span>
