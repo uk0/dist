@@ -1,5 +1,11 @@
 {
   
+  "2017-08-17-arangodb-install-401": {
+    "title": "ArangoDB安装,For Centos7[原创]",
+    "url": " /2017/08/17/arangodb-install-401/",
+    "category": "ArangoDB"
+  },
+  
   "2017-08-10-redis-install": {
     "title": "Redis安装,For Centos6",
     "url": " /2017/08/10/redis-install/",
@@ -872,6 +878,12 @@
     "title": "Redis安装,For Centos6",
     "url": "/2017/08/10/redis-install/",
     "category": "[&quot;Redis&quot;]"
+  },
+  
+  "2017-08-17-arangodb-install-401": {
+    "title": "ArangoDB安装,For Centos7[原创]",
+    "url": "/2017/08/17/arangodb-install-401/",
+    "category": "[&quot;ArangoDB&quot;]"
   },
   
   "wiki-android-studio": {

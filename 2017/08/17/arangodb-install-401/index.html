@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Eclipse &mdash; 山脚下的胖子.</title>
+    <title>ArangoDB安装,For Centos7[原创] &mdash; 山脚下的胖子.</title>
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
@@ -21,23 +21,23 @@
     
 
     
-    <link rel="canonical" href="http://firsh.me/wiki/eclipse/">
+    <link rel="canonical" href="http://firsh.me/2017/08/17/arangodb-install-401/">
     <link rel="alternate" type="application/atom+xml" title="山脚下的胖子." href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="Eclipse">
+    <meta property="og:title" content="ArangoDB安装,For Centos7[原创]">
       
-    <meta name="keywords" content="Eclipse">
-    <meta name="og:keywords" content="Eclipse">
+    <meta name="keywords" content="ArangoDB,linxu,centos">
+    <meta name="og:keywords" content="ArangoDB,linxu,centos">
       
-    <meta name="description" content="快捷键">
-    <meta name="og:description" content="快捷键">
+    <meta name="description" content="ArangoDB安装，以及访问出现无权限，导致无法连接arangosh，的解决方法。">
+    <meta name="og:description" content="ArangoDB安装，以及访问出现无权限，导致无法连接arangosh，的解决方法。">
       
     
     
         
     
-    <meta property="og:url" content="http://firsh.me/wiki/eclipse/">
+    <meta property="og:url" content="http://firsh.me/2017/08/17/arangodb-install-401/">
     <meta property="og:site_name" content="山脚下的胖子.">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -85,167 +85,223 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="Eclipse">
+    <section class="collection-head small geopattern" data-pattern-id="ArangoDB安装,For ">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">Eclipse</h1>
+        <h1 class="collection-header">ArangoDB安装,For Centos7[原创]</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/08/17
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#ArangoDB" title="ArangoDB">ArangoDB</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
 </div>
 </section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
 <!-- / .banner -->
 <section class="container content">
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <h3 id="快捷键">快捷键</h3>
+    <p>ArangoDB安装，以及访问出现无权限，导致无法连接arangosh，的解决方法。</p>
 
-<p>C –&gt; Ctrl</p>
+<h1 id="arangodb安装">ArangoDB安装</h1>
+<p>date：2017-08-17
+author：zhangjianxin</p>
 
-<p>S –&gt; Shift</p>
+<p>[TOC]</p>
 
-<p>A –&gt; Alt</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">功能</th>
-      <th style="text-align: left">快捷键</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">显示所有快捷键</td>
-      <td style="text-align: left">C-S-l</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">开/关注释</td>
-      <td style="text-align: left">C-/</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">显示 outline</td>
-      <td style="text-align: left">C-o</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">当前打开的文件列表</td>
-      <td style="text-align: left">C-e</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">快速查找打开文件</td>
-      <td style="text-align: left">C-S-r</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">查找</td>
-      <td style="text-align: left">C-h</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">查找后跳到下一处</td>
-      <td style="text-align: left">C-.</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Undo</td>
-      <td style="text-align: left">C-z</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Redo</td>
-      <td style="text-align: left">C-y</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">跳到指定行</td>
-      <td style="text-align: left">C-l</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">自动补全</td>
-      <td style="text-align: left">A-/</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">自动解决导入包问题</td>
-      <td style="text-align: left">C-S-o</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">返回</td>
-      <td style="text-align: left">A-Left</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">反返回</td>
-      <td style="text-align: left">A-Right</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">步进</td>
-      <td style="text-align: left">F5</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">单步</td>
-      <td style="text-align: left">F6</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">执行到返回</td>
-      <td style="text-align: left">F7</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">继续执行</td>
-      <td style="text-align: left">F8</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">删除当前行</td>
-      <td style="text-align: left">C-d</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">删除前一个词</td>
-      <td style="text-align: left">C-Backspace</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">删除后一个词</td>
-      <td style="text-align: left">C-Delete</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">缩进</td>
-      <td style="text-align: left">Tab</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">减少缩进</td>
-      <td style="text-align: left">S-Tab</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">在下面新起一行</td>
-      <td style="text-align: left">S-Enter</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">在上面新起一行</td>
-      <td style="text-align: left">C-S-Enter</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="qa">Q&amp;A</h3>
-
-<ol>
-  <li>
-    <p>如何解决 Mac OS X 下安装的是 Java 1.8，运行 Eclipse 时提示「您需要安装旧 Java SE 6 运行环境才能打开「Eclipse.app」。」的问题？</p>
-
-    <p><img src="/images/wiki/eclipse-need-java6.png" alt="" /></p>
-
-    <p>更改 /Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Info.plist 文件里的 JVMCapabilities 段如下（默认只有 <code class="highlighter-rouge">CommandLine</code>）：</p>
-
-    <div class="highlighter-rouge"><pre class="highlight"><code> &lt;key&gt;JVMCapabilities&lt;/key&gt;
-            &lt;array&gt;
-                    &lt;string&gt;JNI&lt;/string&gt;
-                    &lt;string&gt;BundledApp&lt;/string&gt;
-                    &lt;string&gt;WebStart&lt;/string&gt;
-                    &lt;string&gt;Applets&lt;/string&gt;
-                    &lt;string&gt;CommandLine&lt;/string&gt;
-            &lt;/array&gt;
+<h1 id="1下载arangodb-rpm">1.下载ArangoDB rpm</h1>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>wget https://zmatsh.b0.upaiyun.com/blog/arangodb3-3.2.0-1.x86_64.rpm
 </code></pre>
-    </div>
+</div>
+<h1 id="2install-arangodb">2.Install ArangoDB</h1>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>rpm -ivh arangodb3-3.2.0-1.x86_64.rpm
+</code></pre>
+</div>
+<h1 id="3start">3.start</h1>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>systemctl start arangodb3
+</code></pre>
+</div>
+<h1 id="4status">4.status</h1>
 
-    <p>然后重启电脑。</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+systemctl status arangodb3
+</code></pre>
+</div>
+<h1 id="5配置arangosh">5.配置arangosh</h1>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>/etc/arangodb3/arangosh.conf
+----------------------------------------------
+<span class="o">[</span>console]
+pretty-print <span class="o">=</span> <span class="nb">true</span>
 
-    <p>没有找到为何这样改的解释，按名称猜想应该是说在这几种环境下启动 Java 具有跨版本的兼容性吧。</p>
-  </li>
-</ol>
+<span class="o">[</span>server]
+endpoint <span class="o">=</span> tcp://127.0.0.1:8529
+authentication <span class="o">=</span> <span class="nb">true</span>
+<span class="c"># username = root</span>
+<span class="c"># password =</span>
+
+<span class="o">[</span>log]
+file <span class="o">=</span> -
+
+<span class="o">[</span>javascript]
+startup-directory <span class="o">=</span> /usr/share/arangodb3/js
+
+</code></pre>
+</div>
+<h1 id="6配置arangod">6.配置arangod</h1>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># ArangoDB configuration file</span>
+<span class="c">#</span>
+<span class="c"># Documentation:</span>
+<span class="c"># https://docs.arangodb.com/Manual/Administration/Configuration/</span>
+<span class="c">#</span>
+
+<span class="o">[</span>database]
+directory <span class="o">=</span> /var/lib/arangodb3
+
+<span class="c"># maximal-journal-size = 33554432</span>
+
+<span class="o">[</span>server]
+<span class="c"># Specify the endpoint for HTTP requests by clients.</span>
+<span class="c">#  tcp://ipv4-address:port</span>
+<span class="c">#  tcp://[ipv6-address]:port</span>
+<span class="c">#  ssl://ipv4-address:port</span>
+<span class="c">#  ssl://[ipv6-address]:port</span>
+<span class="c">#  unix:///path/to/socket</span>
+<span class="c">#</span>
+<span class="c"># Examples:</span>
+<span class="c">#   endpoint = tcp://0.0.0.0:8529</span>
+<span class="c">#   endpoint = tcp://127.0.0.1:8529</span>
+<span class="c">#   endpoint = tcp://localhost:8529</span>
+<span class="c">#   endpoint = tcp://myserver.arangodb.com:8529</span>
+<span class="c">#   endpoint = tcp://[::]:8529</span>
+<span class="c">#   endpoint = tcp://[fe80::21a:5df1:aede:98cf]:8529</span>
+<span class="c">#</span>
+endpoint <span class="o">=</span> tcp://[::]:8529
+storage-engine <span class="o">=</span> auto
+
+<span class="c"># reuse a port on restart or wait until it is freed by the operating system</span>
+<span class="c"># reuse-address = false</span>
+
+authentication <span class="o">=</span> <span class="nb">true</span>
+
+<span class="c"># number of server threads. use 0 to make arangod determine the</span>
+<span class="c"># number of threads automatically, based on available CPUs</span>
+<span class="c"># threads = 0</span>
+
+<span class="c"># gather server statistics</span>
+statistics <span class="o">=</span> <span class="nb">true</span>
+
+<span class="c"># the user and group are normally set in the start script</span>
+<span class="c"># uid = arangodb</span>
+<span class="c"># gid = arangodb</span>
+
+uid <span class="o">=</span> arangodb
+
+
+<span class="o">[</span>scheduler]
+<span class="c"># number of threads used for I/O, use 0 to make arangod determine</span>
+<span class="c"># the number of threads automatically</span>
+<span class="c"># threads = 0</span>
+
+<span class="o">[</span>javascript]
+startup-directory <span class="o">=</span> /usr/share/arangodb3/js
+app-path <span class="o">=</span> /var/lib/arangodb3-apps
+<span class="c"># app-path = //arangodb3/apps</span>
+
+<span class="c"># number of V8 contexts available for JavaScript execution. use 0 to</span>
+<span class="c"># make arangod determine the number of contexts automatically.</span>
+<span class="c"># v8-contexts = 0</span>
+
+<span class="o">[</span>foxx]
+<span class="c"># enable Foxx queues in the server</span>
+<span class="c"># queues = true</span>
+
+<span class="c"># interval (seconds) to use for polling jobs in Foxx queues</span>
+<span class="c"># queues-poll-interval = 1</span>
+
+<span class="o">[</span>log]
+level <span class="o">=</span> info
+file <span class="o">=</span> /var/log/arangodb3/arangod.log
+
+<span class="o">[</span>cluster]
+
+<span class="o">[</span>rocksdb]
+<span class="c"># encryption-keyfile=/your-encryption-file</span>
+</code></pre>
+</div>
+<h1 id="7添加开机启动项">7.添加开机启动项</h1>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># 让Redis在服务器重启后自动启动，需要将启动命令写入开机启动项</span>
+<span class="nb">echo</span> <span class="s2">"/usr/local/bin/redis-server /etc/redis.conf"</span> &gt;&gt;/etc/rc.local
+</code></pre>
+</div>
+<p><strong>以上完成安装</strong></p>
+
+<h1 id="8访问测试">8.访问测试</h1>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>arangosh
+<span class="c"># 进入arangodb bash</span>
+</code></pre>
+</div>
+<p><img src="https://zmatsh.b0.upaiyun.com/blog/20E4E40601E232AFEB557A2260F5BA20.png" alt="" /></p>
+
+<h1 id="9解决没有权限问题">9.解决没有权限问题</h1>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code> <span class="c"># 停止 `systemctl stop arangodb3`</span>
+ <span class="c"># 不启用授权启动arangodb</span>
+/usr/sbin/arangod --server.authentication <span class="nb">false</span>
+
+</code></pre>
+</div>
+
+<p><img src="https://zmatsh.b0.upaiyun.com/blog/WX20170817-231202@2x.png" alt="" /></p>
+<ul>
+  <li>注意启动以后开启另一个<code class="highlighter-rouge">shell</code>窗口,当前的不要结束，图上面是已经<code class="highlighter-rouge">Control + C </code>了，这一步在什么时候做下面会说。</li>
+  <li>接下来执行<code class="highlighter-rouge">arangosh</code> 它会让你输入密码，直接会车即可。</li>
+</ul>
+
+<p><img src="https://zmatsh.b0.upaiyun.com/blog/WX20170817-231311@2x.png" alt="" /></p>
+
+<ul>
+  <li>在出现的arangodb shell 里面执行如下命令。</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>require<span class="o">(</span><span class="s2">"@arangodb/users"</span><span class="o">)</span>.replace<span class="o">(</span><span class="s2">"root"</span>, <span class="s2">"new-password"</span><span class="o">)</span>;
+<span class="c">#通过他的客户端进行直接修改`root`密码</span>
+</code></pre>
+</div>
+<ul>
+  <li>输入完密码，进行退出<code class="highlighter-rouge">exit</code></li>
+  <li>退出后去第一个shell窗口执行 <code class="highlighter-rouge">Control + C </code>。</li>
+  <li>然后在任意shell窗口进行访问<code class="highlighter-rouge">arangosh</code>,并且输入修改后的密码,即可成功登录arangodb。</li>
+</ul>
+
+<p><img src="https://zmatsh.b0.upaiyun.com/blog/WX20170817-231323@2x.png" alt="" /></p>
+
+<h2 id="不推荐使用-arango-secure-installation进行修改root密码">不推荐使用<code class="highlighter-rouge"> arango-secure-installation</code>进行修改root密码。</h2>
+
+<ul>
+  <li>以上操作经过验证可以直接拿去。</li>
+  <li>Owner <code class="highlighter-rouge">breakEval13</code></li>
+  <li>https://github.com/breakEval13</li>
+</ul>
 
     </article>
     <div class="share">
@@ -262,9 +318,9 @@
           <div id="disqus_thread"></div>
           <script>
             var disqus_config = function () {
-              this.page.url = 'http://firsh.me/wiki/eclipse/';
-              this.page.identifier = '/wiki/eclipse/';
-              this.page.title = 'Eclipse';
+              this.page.url = 'http://firsh.me/2017/08/17/arangodb-install-401/';
+              this.page.identifier = '/2017/08/17/arangodb-install-401/';
+              this.page.title = 'ArangoDB安装,For Centos7[原创]';
             };
             (function() { // DON'T EDIT BELOW THIS LINE
               var d = document, s = d.createElement('script');
