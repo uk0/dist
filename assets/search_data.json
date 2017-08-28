@@ -1,5 +1,11 @@
 {
   
+  "2017-08-28-javascript-nb": {
+    "title": "Javascript 一行能装逼的JavaScript代码 [fork]",
+    "url": " /2017/08/28/javascript-nb/",
+    "category": "javascript"
+  },
+  
   "2017-08-18-java-map-cat-1": {
     "title": "Java ConcurrentBlockingQueue,For ME[原创]",
     "url": " /2017/08/18/java-map-cat-1/",
@@ -896,6 +902,12 @@
     "title": "Java ConcurrentBlockingQueue,For ME[原创]",
     "url": "/2017/08/18/java-map-cat-1/",
     "category": "[&quot;ConcurrentBlockingQueue&quot;]"
+  },
+  
+  "2017-08-28-javascript-nb": {
+    "title": "Javascript 一行能装逼的JavaScript代码 [fork]",
+    "url": "/2017/08/28/javascript-nb/",
+    "category": "[&quot;javascript&quot;]"
   },
   
   "wiki-android-studio": {

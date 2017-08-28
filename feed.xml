@@ -1,4 +1,108 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-08-20T00:34:53+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">Java ConcurrentBlockingQueue,For ME[原创]</title><link href="http://firsh.me/2017/08/18/java-map-cat-1/" rel="alternate" type="text/html" title="Java ConcurrentBlockingQueue,For ME[原创]" /><published>2017-08-18T00:00:00+08:00</published><updated>2017-08-18T00:00:00+08:00</updated><id>http://firsh.me/2017/08/18/java-map-cat-1</id><content type="html" xml:base="http://firsh.me/2017/08/18/java-map-cat-1/">&lt;p&gt;ConcurrentBlockingQueue，自己写了一份增加理解，很久之前写代码，很地方不工整不要在意。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-08-28T11:02:14+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">Javascript 一行能装逼的JavaScript代码 [fork]</title><link href="http://firsh.me/2017/08/28/javascript-nb/" rel="alternate" type="text/html" title="Javascript 一行能装逼的JavaScript代码 [fork]" /><published>2017-08-28T00:00:00+08:00</published><updated>2017-08-28T00:00:00+08:00</updated><id>http://firsh.me/2017/08/28/javascript-nb</id><content type="html" xml:base="http://firsh.me/2017/08/28/javascript-nb/">&lt;p&gt;一行能装逼的JavaScript代码。&lt;/p&gt;
+
+&lt;h1 id=&quot;代码学习&quot;&gt;代码学习&lt;/h1&gt;
+&lt;p&gt;date：2017-05-01
+author：zhangjianxin&lt;/p&gt;
+
+&lt;p&gt;[TOC]&lt;/p&gt;
+
+&lt;h1 id=&quot;1-一行神奇的js代码当时我就震惊了这不就是传说中的zb神奇么--哈哈&quot;&gt;1. 一行神奇的JS代码，当时我就震惊了，这不就是传说中的ZB神奇么… … 哈哈。&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;写本篇文章的缘由是之前看到了一段js代码，如下：&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;(!(~+[])+{})[–[~+””][+[]]&lt;em&gt;[~+[]] + ~~!+[]]+({}+[])[[~!+[]]&lt;/em&gt;~+[]]&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;然后让大家运行，出来的结果让人有点出乎意料，请看：&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/blog/66042438.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;太风骚了有木有！如果有人诋毁前端瞧不起JS的话，那就可以把这段代码发给他了~&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;* &amp;gt; 不过话说回来了，这到底是什么原理呢？为什么一堆符号运算结果竟然能是两个字符，而且恰巧还是个sb！
+
+* &amp;gt; 其实靠的是js的类型转化的一些基本原理，本篇就来揭密”sb”是如何炼成的。相信你如果能把这个理清楚了，以后遇到类型转化之类的题目，就可以瞬间秒杀了。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;一js运算符的优先级&quot;&gt;一、JS运算符的优先级&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;首先要运用到的第一个知识就是js运算符的优先级，因为这么长一段运算看的人眼花，我们必须得先根据优先级分成n小段，然后再各个击破。优先级的排列如下表：&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;优先级从高到低：
+   &lt;img src=&quot;https://zmatsh.b0.upaiyun.com/blog/-365094845.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;二根据此规则我们把这一串运算分为以下16个子表达式&quot;&gt;二、根据此规则，我们把这一串运算分为以下16个子表达式：&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/blog/-238288323.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;运算符用红色标出，有一点可能大家会意识不到，其实中括号[]也是一个运算符，用来通过索引访问数组项，另外也可以访问字符串的子字符，有点类似charAt方法，如：’abcd’[1] // 返回’b’。而且中括号的优先级还是最高的哦。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;三js的类型转化&quot;&gt;三、JS的类型转化&lt;/h1&gt;
+
+&lt;p&gt;预处理结束，接下来需要运用的就是javascript的类型转化知识了。我们先说说什么情况下需要进行类型转化。当操作符两边的操作数类型不一致或者不是基本类型（也叫原始类型）时，需要进行类型转化。先按运算符来分一下类：&lt;/p&gt;
+
+&lt;p&gt;减号-，乘号*，肯定是进行数学运算，所以操作数需转化为number类型。&lt;/p&gt;
+
+&lt;p&gt;加号+，可能是字符串拼接，也可能是数学运算，所以可能会转化为number或string&lt;/p&gt;
+
+&lt;p&gt;一元运算，如+[]，只有一个操作数的，转化为number类型&lt;/p&gt;
+
+&lt;p&gt;下面来看一下转化规则。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;对于非原始类型的，通过ToPrimitive() 将值转换成原始类型：
+ToPrimitive(input, PreferredType?)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;可选参数PreferredType是Number或者是String。返回值为任何原始值。如果PreferredType是Number，执行顺序如下：&lt;/p&gt;
+
+&lt;p&gt;如果input为primitive，返回&lt;/p&gt;
+
+&lt;p&gt;否则，input为Object。调用 obj.valueOf()。如果结果是primitive，返回。&lt;/p&gt;
+
+&lt;p&gt;否则，调用obj.toString(). 如果结果是primitive，返回&lt;/p&gt;
+
+&lt;p&gt;否则，抛出TypeError&lt;/p&gt;
+
+&lt;p&gt;如果 PreferredType是String，步骤2跟3互换，如果PreferredType没有，Date实例被设置成String，其他都是Number&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;通过ToNumber()把值转换成Number，直接看ECMA 9.3的表格
+规则如下：
+&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/blog/823282545.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;通过ToString()把值转化成字符串， 直接看ECMA 9.8的表格&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;规则如下：
+   &lt;img src=&quot;https://zmatsh.b0.upaiyun.com/blog/-376644909.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;以上操作经过验证可以直接拿去。&lt;/li&gt;
+  &lt;li&gt;Owner &lt;code class=&quot;highlighter-rouge&quot;&gt;breakEval13&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;https://github.com/breakEval13&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>breakeval13</name></author><summary type="html">一行能装逼的JavaScript代码。</summary></entry><entry><title type="html">Java ConcurrentBlockingQueue,For ME[原创]</title><link href="http://firsh.me/2017/08/18/java-map-cat-1/" rel="alternate" type="text/html" title="Java ConcurrentBlockingQueue,For ME[原创]" /><published>2017-08-18T00:00:00+08:00</published><updated>2017-08-18T00:00:00+08:00</updated><id>http://firsh.me/2017/08/18/java-map-cat-1</id><content type="html" xml:base="http://firsh.me/2017/08/18/java-map-cat-1/">&lt;p&gt;ConcurrentBlockingQueue，自己写了一份增加理解，很久之前写代码，很地方不工整不要在意。&lt;/p&gt;
 
 &lt;h1 id=&quot;java代码复习&quot;&gt;Java代码复习&lt;/h1&gt;
 &lt;p&gt;date：2017-02-01
@@ -2035,84 +2139,4 @@ HDFS 采用NS高可用模式。&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;https://ci.apache.org/projects/flink/flink-docs-release-1.4/dev/connectors/filesystem_sink.html&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>breakeval13</name></author><summary type="html">因工作需求，学习了Hdfs分布式文件存储系统，所整合Flink + HDFS 作为一个Demo 帮助大家跳坑。 HDFS 采用NS高可用模式。</summary></entry><entry><title type="html">Docker Development HDFS for Flink Sink</title><link href="http://firsh.me/2017/08/02/docker-hdfs-sink/" rel="alternate" type="text/html" title="Docker Development HDFS for Flink  Sink" /><published>2017-08-02T00:00:00+08:00</published><updated>2017-08-02T00:00:00+08:00</updated><id>http://firsh.me/2017/08/02/docker-hdfs-sink</id><content type="html" xml:base="http://firsh.me/2017/08/02/docker-hdfs-sink/">&lt;p&gt;因工作需求所整合Flink + HDFS 作为一个Demo 帮助大家跳坑。
-HDFS + Docker 采用集群主从模式。&lt;/p&gt;
-
-&lt;h1 id=&quot;hdfs-with-docker&quot;&gt;HDFS with Docker&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;Docker image for single &lt;code class=&quot;highlighter-rouge&quot;&gt;HDFS&lt;/code&gt; node.。&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Only for development purpose.&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;License: &lt;code class=&quot;highlighter-rouge&quot;&gt;MIT&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;start&quot;&gt;start&lt;/h1&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;* docker pull mdouchement/hdfs
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;local-build&quot;&gt;Local build&lt;/h1&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;docker build -t mdouchement/hdfs .
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;running-hdfs-container&quot;&gt;Running HDFS container&lt;/h1&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Running and get a Bash interpreter&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;docker run -p 22022:22 -p 8020:8020 -p 50010:50010 -p 50020:50020 -p 50070:50070 -p 50075:50075 -it mdouchement/hdfs
-
-&lt;span class=&quot;c&quot;&gt;# With NFS&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;docker run -p 22022:22 -p 8020:8020 -p 50010:50010 -p 50020:50020 -p 50070:50070 -p 50075:50075 -p 111:111 -p 2049:2049 -it mdouchement/hdfs
-
-&lt;span class=&quot;c&quot;&gt;# Running as daemon&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;docker run -p 22022:22 -p 8020:8020 -p 50010:50010 -p 50020:50020 -p 50070:50070 -p 50075:50075 -d mdouchement/hdfs
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Ports
-    &lt;ul&gt;
-      &lt;li&gt;Portmap -&amp;gt; 111&lt;/li&gt;
-      &lt;li&gt;NFS -&amp;gt; 2049&lt;/li&gt;
-      &lt;li&gt;HDFS namenode -&amp;gt; 8020 (hdfs://localhost:8020)&lt;/li&gt;
-      &lt;li&gt;HDFS datanode -&amp;gt; 50010&lt;/li&gt;
-      &lt;li&gt;HDFS datanode (ipc) -&amp;gt; 50020&lt;/li&gt;
-      &lt;li&gt;HDFS Web browser -&amp;gt; 50070&lt;/li&gt;
-      &lt;li&gt;HDFS datanode (http) -&amp;gt; 50075&lt;/li&gt;
-      &lt;li&gt;HDFS secondary namenode -&amp;gt; 50090&lt;/li&gt;
-      &lt;li&gt;SSH -&amp;gt; 22&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;contributing&quot;&gt;Contributing&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;All PRs are welcome.
-    &lt;ul&gt;
-      &lt;li&gt;1.Fork it ( https://github.com/[my-github-username]/gemsupport/fork )&lt;/li&gt;
-      &lt;li&gt;2.Create your feature branch (git checkout -b my-new-feature)&lt;/li&gt;
-      &lt;li&gt;3.Commit your changes (git commit -am ‘Add some feature’)&lt;/li&gt;
-      &lt;li&gt;4.Push to the branch (git push origin my-new-feature)&lt;/li&gt;
-      &lt;li&gt;5.Create a new Pull Request&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;dev&quot;&gt;dev&lt;/h1&gt;
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;cm&quot;&gt;/**HDFS Config*/&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;configuration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fs.default.name&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;hdfs://localhost:8020&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;docker这个是为了快速测试代码以及快速开发&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Docker&lt;/code&gt;这个是为了快速测试代码，以及快速开发。&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;真的很方便，用后直接销毁。&lt;/li&gt;
-  &lt;li&gt;也可以持久化储存数据。&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;详情请查看&lt;code class=&quot;highlighter-rouge&quot;&gt;Docker&lt;/code&gt; 官网。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Owner &lt;code class=&quot;highlighter-rouge&quot;&gt;breakEval13&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;https://github.com/breakEval13&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Docker&lt;/code&gt;  https://docker.com&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>breakeval13</name></author><summary type="html">因工作需求所整合Flink + HDFS 作为一个Demo 帮助大家跳坑。 HDFS + Docker 采用集群主从模式。</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>breakeval13</name></author><summary type="html">因工作需求，学习了Hdfs分布式文件存储系统，所整合Flink + HDFS 作为一个Demo 帮助大家跳坑。 HDFS 采用NS高可用模式。</summary></entry></feed>

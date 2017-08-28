@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Emacs &mdash; 山脚下的胖子.</title>
+    <title>Javascript 一行能装逼的JavaScript代码 [fork] &mdash; 山脚下的胖子.</title>
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
@@ -21,23 +21,23 @@
     
 
     
-    <link rel="canonical" href="http://firsh.me/wiki/emacs/">
+    <link rel="canonical" href="http://firsh.me/2017/08/28/javascript-nb/">
     <link rel="alternate" type="application/atom+xml" title="山脚下的胖子." href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="Emacs">
+    <meta property="og:title" content="Javascript 一行能装逼的JavaScript代码 [fork]">
       
-    <meta name="keywords" content="Emacs, 快捷键">
-    <meta name="og:keywords" content="Emacs, 快捷键">
+    <meta name="keywords" content="javascript,java">
+    <meta name="og:keywords" content="javascript,java">
       
-    <meta name="description" content="约定：C- 前缀表示 Ctrl，M- 前缀表示 Alt，S- 前缀表示 Shift，上档字符比如 @ 的实际按键应为 Shift+2。">
-    <meta name="og:description" content="约定：C- 前缀表示 Ctrl，M- 前缀表示 Alt，S- 前缀表示 Shift，上档字符比如 @ 的实际按键应为 Shift+2。">
+    <meta name="description" content="一行能装逼的JavaScript代码。">
+    <meta name="og:description" content="一行能装逼的JavaScript代码。">
       
     
     
         
     
-    <meta property="og:url" content="http://firsh.me/wiki/emacs/">
+    <meta property="og:url" content="http://firsh.me/2017/08/28/javascript-nb/">
     <meta property="og:site_name" content="山脚下的胖子.">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -85,328 +85,147 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="Emacs">
+    <section class="collection-head small geopattern" data-pattern-id="Javascript 一行能装">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">Emacs</h1>
+        <h1 class="collection-header">Javascript 一行能装逼的JavaScript代码 [fork]</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/08/28
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#javascript" title="javascript">javascript</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
 </div>
 </section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
 <!-- / .banner -->
 <section class="container content">
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <p>约定：<code class="highlighter-rouge">C-</code> 前缀表示 Ctrl，<code class="highlighter-rouge">M-</code> 前缀表示 Alt，<code class="highlighter-rouge">S-</code> 前缀表示 Shift，上档字符比如 <code class="highlighter-rouge">@</code> 的实际按键应为 <code class="highlighter-rouge">Shift+2</code>。</p>
+    <p>一行能装逼的JavaScript代码。</p>
 
-<p><strong>目录</strong></p>
+<h1 id="代码学习">代码学习</h1>
+<p>date：2017-05-01
+author：zhangjianxin</p>
 
-<ul id="markdown-toc">
-  <li><a href="#移动" id="markdown-toc-移动">移动</a></li>
-  <li><a href="#编辑" id="markdown-toc-编辑">编辑</a></li>
-  <li><a href="#缓冲区" id="markdown-toc-缓冲区">缓冲区</a></li>
-  <li><a href="#窗口" id="markdown-toc-窗口">窗口</a></li>
-  <li><a href="#文件" id="markdown-toc-文件">文件</a></li>
-  <li><a href="#代码" id="markdown-toc-代码">代码</a></li>
-  <li><a href="#命令" id="markdown-toc-命令">命令</a></li>
-  <li><a href="#重复" id="markdown-toc-重复">重复</a></li>
-  <li><a href="#外部命令" id="markdown-toc-外部命令">外部命令</a></li>
-  <li><a href="#模式" id="markdown-toc-模式">模式</a></li>
-  <li><a href="#显示" id="markdown-toc-显示">显示</a></li>
-  <li><a href="#搜索" id="markdown-toc-搜索">搜索</a></li>
-  <li><a href="#帮助" id="markdown-toc-帮助">帮助</a></li>
-  <li><a href="#右键菜单" id="markdown-toc-右键菜单">右键菜单</a></li>
-  <li><a href="#插件" id="markdown-toc-插件">插件</a>    <ul>
-      <li><a href="#evil-nerd-commenter" id="markdown-toc-evil-nerd-commenter">evil-nerd-commenter</a></li>
-      <li><a href="#function-args" id="markdown-toc-function-args">function-args</a></li>
-      <li><a href="#hexl-mode" id="markdown-toc-hexl-mode">hexl-mode</a></li>
-      <li><a href="#ido" id="markdown-toc-ido">ido</a></li>
-      <li><a href="#jedi" id="markdown-toc-jedi">jedi</a></li>
-      <li><a href="#projectile" id="markdown-toc-projectile">projectile</a></li>
-      <li><a href="#python" id="markdown-toc-python">python</a></li>
-      <li><a href="#package" id="markdown-toc-package">package</a></li>
-    </ul>
+<p>[TOC]</p>
+
+<h1 id="1-一行神奇的js代码当时我就震惊了这不就是传说中的zb神奇么--哈哈">1. 一行神奇的JS代码，当时我就震惊了，这不就是传说中的ZB神奇么… … 哈哈。</h1>
+
+<ul>
+  <li>
+    <p>写本篇文章的缘由是之前看到了一段js代码，如下：</p>
   </li>
-  <li><a href="#其它需求" id="markdown-toc-其它需求">其它需求</a>    <ul>
-      <li><a href="#统计字数" id="markdown-toc-统计字数">统计字数</a></li>
-    </ul>
+  <li>
+    <p>(!(~+[])+{})[–[~+””][+[]]<em>[~+[]] + ~~!+[]]+({}+[])[[~!+[]]</em>~+[]]</p>
+  </li>
+  <li>
+    <p>然后让大家运行，出来的结果让人有点出乎意料，请看：</p>
   </li>
 </ul>
 
-<h3 id="移动">移动</h3>
-
-<p>上 C-p</p>
-
-<p>下 C-n</p>
-
-<p>左 C-b</p>
-
-<p>右 C-f</p>
-
-<p>前一个词首 M-b</p>
-
-<p>后一个词尾 M-f</p>
-
-<p>跳到某一行 M-gg</p>
-
-<p>行首 C-a</p>
-
-<p>行尾 C-e</p>
-
-<p>句首/前一个句首 M-a</p>
-
-<p>名尾/前一个句尾 M-e</p>
-
-<p>向前一个段落 M-{</p>
-
-<p>向后一个段落 M-}</p>
-
-<p>下翻页 C-v</p>
-
-<p>上翻页 M-v</p>
-
-<p>跳到文首 M-&lt;</p>
-
-<p>跳到文尾 M-&gt;</p>
-
-<p>当前光标行移动到屏显上/中/下部 C-l</p>
-
-<h3 id="编辑">编辑</h3>
-
-<p>选取块 C-@</p>
-
-<p>复制 M-w</p>
-
-<p>剪切 C-w</p>
-
-<p>粘贴 C-y</p>
-
-<p>全选 C-x h</p>
-
-<p>切换只读/编辑模式 C-x C-q</p>
-
-<p>交换当前字符与前一字符 C-t</p>
-
-<p>交换当前单词与后一单词 M-t</p>
-
-<p>交换当前行与上一行 C-x C-t</p>
-
-<p>撤消 C-/ 或 C-x u</p>
-
-<p>撤消撤消 C-g C-/</p>
-
-<p>当前单全大写 M-u</p>
-
-<p>当前单词全小写 M-l</p>
-
-<h3 id="缓冲区">缓冲区</h3>
-
-<p>查看所有打开的缓冲区 C-x C-b</p>
-
-<p>切换缓冲区 C-x b</p>
-
-<p>关闭缓冲区 C-x k</p>
-
-<p>关闭 emacsclientw.exe 打开的缓冲区 C-x #</p>
-
-<h3 id="窗口">窗口</h3>
-
-<p>关闭其它窗口 C-x 1</p>
-
-<p>关闭当前窗口 C-x 0</p>
-
-<p>在下面分割出一个窗口 C-x 2</p>
-
-<p>在右边分割出一个窗口 C-x 3</p>
-
-<p>依次切换到其它窗口 C-x o</p>
-
-<h3 id="文件">文件</h3>
-
-<p>打开文件 C-x C-f</p>
-
-<p>保存文件 C-x C-s</p>
-
-<p>保存所有打开的文件 C-x s</p>
-
-<p>在当前位置插入某文件内容 C-x i</p>
-
-<h3 id="代码">代码</h3>
-
-<p>注释选中块 C-x r t</p>
-
-<p>反注释选中块 C-x r k</p>
-
-<p>注释/反注释 M-;</p>
-
-<p>格式化光标之前的代码 C-M-\</p>
-
-<p>与上一行合并 M-^</p>
-
-<p>带注释前缀换行 M-j</p>
-
-<p>解释运行当前 elisp 语句/函数 C-M-x</p>
-
-<h3 id="命令">命令</h3>
-
-<p>输入命令 M-x</p>
-
-<p>运行 SHELL shell</p>
-
-<p>运行 ESHELL eshell</p>
-
-<p>列出 elpa 上可用包 list-packages</p>
-
-<p>安装插件 package-install</p>
-
-<p>格式化输出 JSON json-pretty-print-buffer</p>
-
-<p>elisp 交互解释器 ielm</p>
-
-<p>解释运行当前 Buffer eval-buffer</p>
-
-<p>中止一个操作 C-g</p>
-
-<p>对选中区域执行命令 M-|</p>
-
-<h3 id="重复">重复</h3>
-
-<p>重复操作 50 次 M-50 命令</p>
-
-<h3 id="外部命令">外部命令</h3>
-
-<p>输入外部命令 M-!</p>
-
-<h3 id="模式">模式</h3>
-
-<p>打开/关闭某个模式 M-x 模式名</p>
-
-<h3 id="显示">显示</h3>
-
-<p>放大字体 C-x C-=</p>
-
-<p>缩小字体 C-x C–</p>
-
-<p>重置字体 C-x C-0</p>
-
-<p>自定义颜色 M-x customize-face <RETURN> default <RETURN></RETURN></RETURN></p>
-
-<h3 id="搜索">搜索</h3>
-
-<p>渐进的搜索 C-s</p>
-
-<p>往回搜索 C-r</p>
-
-<p>按了回车之后继续搜索 C-s C-s</p>
-
-<p>按了回车之后往回搜索 C-r C-r</p>
-
-<h3 id="帮助">帮助</h3>
-
-<p>查看变量的文档 C-h v</p>
-
-<p>查看函数的文档 C-h f</p>
-
-<p>查看某快捷键说明 C-h k</p>
-
-<p>打开 Tutorial C-h t</p>
-
-<p>打开帮助文档 C-h i</p>
-
-<h3 id="右键菜单">右键菜单</h3>
-
-<p>将如下代码命令为 .reg 文件，运行后可为鼠标右键添加菜单项「Edit with Emacs」（运行之前将 exe 路径先替换为自己的）。</p>
-
-<p>前提是在配置文件里添加了 <code class="highlighter-rouge">(server-start)</code>。</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>Windows Registry Editor Version 5.00
-
-[HKEY_CLASSES_ROOT\*\shell\Edit with Emacs]
-
-[HKEY_CLASSES_ROOT\*\shell\Edit with Emacs\command]
-@="\"D:\\emacs\\bin\\emacsclientw.exe\" -a \"D:\\emacs\\bin\\runemacs.exe\" \"%1\""
+<p><img src="https://zmatsh.b0.upaiyun.com/blog/66042438.jpg" alt="" /></p>
+
+<ul>
+  <li>
+    <blockquote>
+      <p>太风骚了有木有！如果有人诋毁前端瞧不起JS的话，那就可以把这段代码发给他了~</p>
+    </blockquote>
+  </li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>* &gt; 不过话说回来了，这到底是什么原理呢？为什么一堆符号运算结果竟然能是两个字符，而且恰巧还是个sb！
+
+* &gt; 其实靠的是js的类型转化的一些基本原理，本篇就来揭密”sb”是如何炼成的。相信你如果能把这个理清楚了，以后遇到类型转化之类的题目，就可以瞬间秒杀了。
 </code></pre>
 </div>
 
-<h3 id="插件">插件</h3>
+<h1 id="一js运算符的优先级">一、JS运算符的优先级</h1>
+<ul>
+  <li>
+    <p>首先要运用到的第一个知识就是js运算符的优先级，因为这么长一段运算看的人眼花，我们必须得先根据优先级分成n小段，然后再各个击破。优先级的排列如下表：</p>
+  </li>
+  <li>
+    <p>优先级从高到低：
+   <img src="https://zmatsh.b0.upaiyun.com/blog/-365094845.png" alt="" /></p>
+  </li>
+</ul>
 
-<h4 id="evil-nerd-commenter">evil-nerd-commenter</h4>
+<h1 id="二根据此规则我们把这一串运算分为以下16个子表达式">二、根据此规则，我们把这一串运算分为以下16个子表达式：</h1>
 
-<p>注释/反注释 M-;</p>
+<p><img src="https://zmatsh.b0.upaiyun.com/blog/-238288323.jpg" alt="" /></p>
 
-<p>注释多行 M-9 M-;</p>
+<ul>
+  <li>运算符用红色标出，有一点可能大家会意识不到，其实中括号[]也是一个运算符，用来通过索引访问数组项，另外也可以访问字符串的子字符，有点类似charAt方法，如：’abcd’[1] // 返回’b’。而且中括号的优先级还是最高的哦。</li>
+</ul>
 
-<h4 id="function-args">function-args</h4>
+<h1 id="三js的类型转化">三、JS的类型转化</h1>
 
-<p>提示函数参数 M-i</p>
+<p>预处理结束，接下来需要运用的就是javascript的类型转化知识了。我们先说说什么情况下需要进行类型转化。当操作符两边的操作数类型不一致或者不是基本类型（也叫原始类型）时，需要进行类型转化。先按运算符来分一下类：</p>
 
-<p>显示本文件大纲选择某项后跳转 C-M-j</p>
+<p>减号-，乘号*，肯定是进行数学运算，所以操作数需转化为number类型。</p>
 
-<p>跳转到函数定义（显示函数参数的时候有效） M-j</p>
+<p>加号+，可能是字符串拼接，也可能是数学运算，所以可能会转化为number或string</p>
 
-<h4 id="hexl-mode">hexl-mode</h4>
+<p>一元运算，如+[]，只有一个操作数的，转化为number类型</p>
 
-<p>进入十六进制模式 M-x hexl-mode</p>
-
-<p>退出十六进制模式 M-x hexl-mode-exit</p>
-
-<p>输入十六进制数 M-x hexl-insert-hex-char</p>
-
-<h4 id="ido">ido</h4>
-
-<p>切换到上一个选项 C-r</p>
-
-<p>切换到下一个选项 C-s</p>
-
-<h4 id="jedi">jedi</h4>
-
-<p>显示光标处 Python 模块或函数的文档 C-c ?</p>
-
-<h4 id="projectile">projectile</h4>
-
-<p>显示/刷新当前项目文件列表 C-c p f</p>
-
-<h4 id="python">python</h4>
-
-<p>打开 Python 交互式Shell C-c C-p</p>
-
-<h4 id="package">package</h4>
-
-<p>升级已安装的包 U</p>
-
-<p>标记要安装的包 i</p>
-
-<p>标记要删除的包 d</p>
-
-<p>取消标记 u</p>
-
-<p>执行操作 x</p>
-
-<p>上一行 p</p>
-
-<p>下一行 n</p>
-
-<p>刷新包列表 r</p>
-
-<p>重置缓冲区 g</p>
-
-<p>退出窗口 q</p>
-
-<h3 id="其它需求">其它需求</h3>
-
-<h4 id="统计字数">统计字数</h4>
-
-<p>（前提是 shell 下能运行 wc 程序）</p>
+<p>下面来看一下转化规则。</p>
 
 <ol>
-  <li>选中要统计区域</li>
-  <li>M-|</li>
-  <li>wc -c</li>
+  <li>对于非原始类型的，通过ToPrimitive() 将值转换成原始类型：
+ToPrimitive(input, PreferredType?)</li>
 </ol>
+
+<p>可选参数PreferredType是Number或者是String。返回值为任何原始值。如果PreferredType是Number，执行顺序如下：</p>
+
+<p>如果input为primitive，返回</p>
+
+<p>否则，input为Object。调用 obj.valueOf()。如果结果是primitive，返回。</p>
+
+<p>否则，调用obj.toString(). 如果结果是primitive，返回</p>
+
+<p>否则，抛出TypeError</p>
+
+<p>如果 PreferredType是String，步骤2跟3互换，如果PreferredType没有，Date实例被设置成String，其他都是Number</p>
+
+<ol>
+  <li>
+    <p>通过ToNumber()把值转换成Number，直接看ECMA 9.3的表格
+规则如下：
+<img src="https://zmatsh.b0.upaiyun.com/blog/823282545.png" alt="" /></p>
+  </li>
+  <li>
+    <p>通过ToString()把值转化成字符串， 直接看ECMA 9.8的表格</p>
+  </li>
+</ol>
+
+<p>规则如下：
+   <img src="https://zmatsh.b0.upaiyun.com/blog/-376644909.png" alt="" /></p>
+
+<ul>
+  <li>以上操作经过验证可以直接拿去。</li>
+  <li>Owner <code class="highlighter-rouge">breakEval13</code></li>
+  <li>https://github.com/breakEval13</li>
+</ul>
 
     </article>
     <div class="share">
@@ -423,9 +242,9 @@
           <div id="disqus_thread"></div>
           <script>
             var disqus_config = function () {
-              this.page.url = 'http://firsh.me/wiki/emacs/';
-              this.page.identifier = '/wiki/emacs/';
-              this.page.title = 'Emacs';
+              this.page.url = 'http://firsh.me/2017/08/28/javascript-nb/';
+              this.page.identifier = '/2017/08/28/javascript-nb/';
+              this.page.title = 'Javascript 一行能装逼的JavaScript代码 [fork]';
             };
             (function() { // DON'T EDIT BELOW THIS LINE
               var d = document, s = d.createElement('script');
