@@ -1,5 +1,11 @@
 {
   
+  "2017-08-28-javascript-nb2": {
+    "title": "如何读懂并写出装逼的函数式代码 [fork]",
+    "url": " /2017/08/28/javascript-nb2/",
+    "category": "javascript"
+  },
+  
   "2017-08-28-javascript-nb": {
     "title": "Javascript 一行能装逼的JavaScript代码 [fork]",
     "url": " /2017/08/28/javascript-nb/",
@@ -907,6 +913,12 @@
   "2017-08-28-javascript-nb": {
     "title": "Javascript 一行能装逼的JavaScript代码 [fork]",
     "url": "/2017/08/28/javascript-nb/",
+    "category": "[&quot;javascript&quot;]"
+  },
+  
+  "2017-08-28-javascript-nb2": {
+    "title": "如何读懂并写出装逼的函数式代码 [fork]",
+    "url": "/2017/08/28/javascript-nb2/",
     "category": "[&quot;javascript&quot;]"
   },
   

@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>如何读懂并写出装逼的函数式代码 [fork] &mdash; 山脚下的胖子.</title>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2017/08/28/javascript-nb2/">
+    <link rel="alternate" type="application/atom+xml" title="山脚下的胖子." href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="如何读懂并写出装逼的函数式代码 [fork]">
+      
+    <meta name="keywords" content="javascript,java">
+    <meta name="og:keywords" content="javascript,java">
+      
+    <meta name="description" content="一行能装逼的JavaScript代码,如何读懂并写出装逼的函数式代码">
+    <meta name="og:description" content="一行能装逼的JavaScript代码,如何读懂并写出装逼的函数式代码">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2017/08/28/javascript-nb2/">
+    <meta property="og:site_name" content="山脚下的胖子.">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2017-08-28">
+    
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="山脚下的胖子."><span class="octicon octicon-mark-github"></span> 山脚下的胖子.</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="Index">Index</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="categories">categories</a>
+                
+                <a href="/open-source/" class=" site-header-nav-item" target="" title="open-source">open-source</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="wiki">wiki</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="links">links</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="about">about</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="如何读懂并写出装逼的函数式代码">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">如何读懂并写出装逼的函数式代码 [fork]</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/08/28
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#javascript" title="javascript">javascript</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <p>一行能装逼的JavaScript代码,如何读懂并写出装逼的函数式代码</p>
+
+<h1 id="先看代码">先看代码</h1>
+<p>date：2017-05-01
+author：zhangjianxin</p>
+
+<p>[TOC]</p>
+
+<h1 id="这个代码平淡无奇就是从一个数组中找到一个数on的算法找不到就返回-null">这个代码平淡无奇，就是从一个数组中找到一个数，O(n)的算法，找不到就返回 null。</h1>
+
+<p>下面是正常的 old-school 的方式。不用多说。</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
+<span class="cm">/**正常的版本*/</span>
+<span class="kd">function</span> <span class="nx">find</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span> <span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">x</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="nx">x</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="nx">y</span> <span class="p">)</span> <span class="k">return</span> <span class="nx">i</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">find</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">find</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+</code></pre>
+</div>
+
+<ul>
+  <li>结果到了函数式成了下面这个样子（好像上面的那些代码在下面若影若现，不过又有点不太一样，为了消掉if语言，让其看上去更像一个表达式，动用了 ? 号表达式）：
+```javascript</li>
+</ul>
+
+<p>/<strong>函数式的版本</strong>/
+const find = ( f =&gt; f(f) ) ( f =&gt;
+  (next =&gt; (x, y, i = 0) =&gt;
+    ( i &gt;= x.length) ?  null :
+      ( x[i] == y ) ? i :
+        next(x, y, i+1))((…args) =&gt;
+          (f(f))(…args)))</p>
+
+<p>let arr = [0,1,2,3,4,5]
+console.log(find(arr, 2))
+console.log(find(arr, 8))</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+# 为了讲清这个代码，需要先补充一些知识。
+
+ &gt; Javascript的箭头函数
+    * 首先先简单说明一下，ECMAScript2015 引入的箭头表达式。箭头函数其实都是匿名函数，其基本语法如下：
+
+    ```javascript
+        param1, param2, …, paramN) =&gt; { statements }
+        (param1, param2, …, paramN) =&gt; expression
+             // 等于 :  =&gt; { return expression; }
+
+        // 只有一个参数时,括号才可以不加:
+        (singleParam) =&gt; { statements }
+        singleParam =&gt; { statements }
+
+        //如果没有参数,就一定要加括号:
+        () =&gt; { statements }
+
+    ```
+
+ &gt; 下面是一些示例：
+
+ ```javascript
+    var simple = a =&gt; a &gt; 15 ? 15 : a;
+    simple(16); // 15
+    simple(10); // 10
+
+    let max = (a, b) =&gt; a &gt; b ? a : b;
+
+    // Easy array filtering, mapping, ...
+
+    var arr = [5, 6, 13, 0, 1, 18, 23];
+    var sum = arr.reduce((a, b) =&gt; a + b);  // 66
+    var even = arr.filter(v =&gt; v % 2 == 0); // [6, 0, 18]
+    var double = arr.map(v =&gt; v * 2);       // [10, 12, 26, 0, 2, 36, 46]
+
+</code></pre>
+</div>
+
+<blockquote>
+  <p>看上去不复杂吧。不过，上面前两个 simple 和 max 的例子都把这箭头函数赋值给了一个变量，
+ 于是它就有了一个名字。有时候，某些函数在声明的时候就是调用的时候，尤其是函数式编程中，
+ 一个函数还对外返回函数的时候。比如下在这个例子：</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">MakePowerFn</span><span class="p">(</span><span class="nx">power</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kd">function</span> <span class="nx">PowerFn</span><span class="p">(</span><span class="nx">base</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="nx">base</span><span class="p">,</span> <span class="nx">power</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">power3</span> <span class="o">=</span> <span class="nx">MakePowerFn</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> <span class="c1">//制造一个X的3次方的函数</span>
+<span class="nx">power2</span> <span class="o">=</span> <span class="nx">MakePowerFn</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">//制造一个X的2次方的函数</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">power3</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span> <span class="c1">//10的3次方 = 1000</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">power2</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span> <span class="c1">//10的2次方 = 100</span>
+
+</code></pre>
+</div>
+
+<p>其实，在 MakePowerFn 函数里的那个 PowerFn 根本不需要命名，完全可以写成：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">MakePowerFn</span><span class="p">(</span><span class="nx">power</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">base</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="nx">base</span><span class="p">,</span> <span class="nx">power</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre>
+</div>
+
+<p>如果用箭头函数，可以写成：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
+<span class="nx">MakePowerFn</span> <span class="o">=</span> <span class="nx">power</span>  <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">base</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="nx">base</span><span class="p">,</span> <span class="nx">power</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>我们还可以写得更简洁（如果用表达式的话，就不需要 { 和 }， 以及 return 语句 ）：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">MakePowerFn</span> <span class="o">=</span> <span class="nx">power</span> <span class="o">=&gt;</span> <span class="nx">base</span> <span class="o">=&gt;</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="nx">base</span><span class="p">,</span> <span class="nx">power</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>我还是加上括号，和换行可能会更清楚一些：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">MakePowerFn</span> <span class="o">=</span> <span class="p">(</span><span class="nx">power</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">(</span><span class="nx">base</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="nx">base</span><span class="p">,</span> <span class="nx">power</span><span class="p">))</span>
+<span class="p">)</span>
+
+</code></pre>
+</div>
+
+<p>好了，有了上面的知识，我们就可以进入一个更高级的话题——匿名函数的递归。</p>
+
+<blockquote>
+  <p>匿名函数的递归</p>
+</blockquote>
+
+<p>函数式编程立志于用函数表达式消除有状态的函数，以及for/while循环，所以，在函数式编程的世界里是不应该用for/while循环的，而要改用递归（递归的性能很差，所以，一般是用尾递归来做优化，也就是把函数的计算的状态当成参数一层一层的往下传递，这样语言的编译器或解释器就不需要用函数栈来帮你保存函数的内部变量的状态了）。</p>
+
+<p>好了，那么，匿名函数的递归该怎么做？</p>
+
+<p>一般来说，递归的代码就是函数自己调用自己，比如我们求阶乘的代码：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">fact</span><span class="p">(</span><span class="nx">n</span><span class="p">){</span>
+  <span class="k">return</span> <span class="nx">n</span><span class="o">==</span><span class="mi">0</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span>  <span class="nx">n</span> <span class="o">*</span> <span class="nx">fact</span><span class="p">(</span><span class="nx">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="nx">result</span> <span class="o">=</span> <span class="nx">fact</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>在匿名函数下，这个递归该怎么写呢？对于匿名函数来说，<code class="highlighter-rouge">我们可以把匿名函数当成一个参数传给另外一个函数，因为函数的参数有名字，所以就可以调用自己了</code>。
+如下所示：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">combinator</span><span class="p">(</span><span class="nx">func</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">func</span><span class="p">(</span><span class="nx">func</span><span class="p">);</span>
+<span class="p">}</span>
+
+</code></pre>
+</div>
+
+<p>这个是不是有点作弊的嫌疑？Anyway，我们再往下，把上面这个函数整成箭头函数式的匿名函数的样子。</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="err">（</span><span class="nx">func</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">func</span><span class="p">(</span><span class="nx">func</span><span class="p">))</span>
+</code></pre>
+</div>
+
+<p>现在你似乎就不像作弊了吧。把上面那个求阶乘的函数套进来是这个样子：</p>
+
+<p>首先，先重构一下fact，把fact中自己调用自己的名字去掉：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
+<span class="kd">function</span> <span class="nx">fact</span><span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">n</span><span class="o">==</span><span class="mi">0</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span>  <span class="nx">n</span> <span class="o">*</span> <span class="nx">func</span><span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">fact</span><span class="p">(</span><span class="nx">fact</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span> <span class="c1">//输出120</span>
+</code></pre>
+</div>
+
+<p>然后，我们再把上面这个版本变成箭头函数的匿名函数版：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">fact</span> <span class="o">=</span> <span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span> <span class="nx">n</span><span class="o">==</span><span class="mi">0</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span>  <span class="nx">n</span> <span class="o">*</span> <span class="nx">func</span><span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span>
+<span class="nx">fact</span><span class="p">(</span><span class="nx">fact</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>这里，我们依然还要用一个fact来保存这个匿名函数，我们继续，我们要让匿名函数声明的时候，就自己调用自己。</p>
+
+<p>也就是说，我们要把</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span> <span class="nx">n</span><span class="o">==</span><span class="mi">0</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span>  <span class="nx">n</span> <span class="o">*</span> <span class="nx">func</span><span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span>
+</code></pre>
+</div>
+
+<p>这个函数当成调用参数，传给下面这个函数：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">func</span><span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>最终我们得到下面的代码：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="p">(</span> <span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">func</span><span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">)</span> <span class="p">(</span>  <span class="c1">//函数体</span>
+  <span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span> <span class="nx">n</span><span class="o">==</span><span class="mi">0</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span>  <span class="nx">n</span> <span class="o">*</span> <span class="nx">func</span><span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">),</span> <span class="c1">//第一个调用参数</span>
+  <span class="mi">5</span> <span class="c1">//第二调用参数</span>
+<span class="p">);</span>
+</code></pre>
+</div>
+<p>好像有点绕，anyway, 你看懂了吗？没事，我们继续。</p>
+
+<blockquote>
+  <p>动用高阶函数的递归</p>
+</blockquote>
+
+<p>但是上面这个递归的匿名函数在自己调用自己，所以，代码中有hard code的实参。我们想实参去掉，如何去掉呢？我们可以参考前面说过的那个 MakePowerFn 的例子，不过这回是递归版的高阶函数了。</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">HighOrderFact</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">func</span><span class="p">){</span>
+  <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">){</span>
+    <span class="k">return</span> <span class="nx">n</span><span class="o">==</span><span class="mi">0</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">func</span><span class="p">(</span><span class="nx">func</span><span class="p">)(</span><span class="nx">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+
+<p>我们可以看，上面的代码简单说来就是，需要一个函数做参数，然后返回这个函数的递归版本。那么，我们怎么调用呢？</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">fact</span> <span class="o">=</span> <span class="nx">HighOrderFact</span><span class="p">(</span><span class="nx">HighOrderFact</span><span class="p">);</span>
+<span class="nx">fact</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+</code></pre>
+</div>
+<p>连起来写就是：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">HighOrderFact</span> <span class="p">(</span> <span class="nx">HighOrderFact</span> <span class="p">)</span> <span class="p">(</span> <span class="mi">5</span> <span class="p">)</span>
+</code></pre>
+</div>
+
+<p>但是，这样让用户来调用很不爽，所以，以我们一个<code class="highlighter-rouge">函数</code>把 <code class="highlighter-rouge">HighOrderFact</code> ( <code class="highlighter-rouge">HighOrderFact</code> ) 给代理一下：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">fact</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">hifunc</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">hifunc</span> <span class="p">(</span> <span class="nx">hifunc</span> <span class="p">);</span>
+<span class="p">}</span> <span class="p">(</span>
+  <span class="c1">//调用参数是一个函数</span>
+  <span class="kd">function</span> <span class="p">(</span><span class="nx">func</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">){</span>
+      <span class="k">return</span> <span class="nx">n</span><span class="o">==</span><span class="mi">0</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">func</span><span class="p">(</span><span class="nx">func</span><span class="p">)(</span><span class="nx">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">};</span>
+  <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="nx">fact</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">//于是我们就可以直接使用了</span>
+
+</code></pre>
+</div>
+
+<p>用箭头函数重构一下，是不是简洁了一些？</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">fact</span> <span class="o">=</span> <span class="p">(</span><span class="nx">highfunc</span> <span class="o">=&gt;</span> <span class="nx">highfunc</span> <span class="p">(</span> <span class="nx">highfunc</span> <span class="p">)</span> <span class="p">)</span> <span class="p">(</span>
+  <span class="nx">func</span> <span class="o">=&gt;</span> <span class="nx">n</span> <span class="o">=&gt;</span>  <span class="nx">n</span><span class="o">==</span><span class="mi">0</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">func</span><span class="p">(</span><span class="nx">func</span><span class="p">)(</span><span class="nx">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">);</span>
+
+</code></pre>
+</div>
+
+<p>上面就是我们最终版的阶乘的函数式代码。</p>
+
+<blockquote>
+  <p>回顾之前的程序
+我们再来看那个查找数组的正常程序：</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">//正常的版本</span>
+<span class="kd">function</span> <span class="nx">find</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span> <span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">x</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="nx">x</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="nx">y</span> <span class="p">)</span> <span class="k">return</span> <span class="nx">i</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<p>先把for干掉，搞成递归版本：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">find</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">length</span> <span class="p">)</span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="nx">x</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="nx">y</span> <span class="p">)</span> <span class="k">return</span> <span class="nx">i</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">find</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<p>然后，写出带实参的匿名函数的版本（注：其中的if代码被重构成了 ？号表达式）：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="p">(</span> <span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">func</span><span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">)</span> <span class="p">(</span>  <span class="c1">//函数体</span>
+  <span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+      <span class="nx">i</span> <span class="o">&gt;=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">length</span> <span class="p">?</span>  <span class="kc">null</span> <span class="p">:</span>
+         <span class="nx">x</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="nx">y</span>  <span class="p">?</span>  <span class="nx">i</span> <span class="p">:</span> <span class="nx">func</span> <span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">),</span> <span class="c1">//第一个调用参数</span>
+  <span class="nx">arr</span><span class="p">,</span> <span class="c1">//第二调用参数</span>
+  <span class="mi">2</span> <span class="c1">//第三调用参数</span>
+<span class="p">)</span>
+
+</code></pre>
+</div>
+
+<p>最后，引入高阶函数，去除实参：</p>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">find</span> <span class="o">=</span> <span class="p">(</span> <span class="nx">highfunc</span> <span class="o">=&gt;</span> <span class="nx">highfunc</span><span class="p">(</span> <span class="nx">highfunc</span> <span class="p">)</span> <span class="p">)</span> <span class="p">(</span>
+   <span class="nx">func</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+     <span class="nx">i</span> <span class="o">&gt;=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">length</span> <span class="p">?</span>  <span class="kc">null</span> <span class="p">:</span>
+           <span class="nx">x</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="nx">y</span>  <span class="p">?</span>  <span class="nx">i</span> <span class="p">:</span> <span class="nx">func</span> <span class="p">(</span><span class="nx">func</span><span class="p">)</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+   <span class="p">)</span>
+<span class="p">);</span>
+
+</code></pre>
+</div>
+
+<ul>
+  <li>
+    <p>注：函数式编程装逼时一定要用const字符，这表示我写的函数里的状态是 immutable 的，天生骄傲！</p>
+  </li>
+  <li>再注：我写的这个比原来版的那个简单了很多，原来版本的那个又在函数中套了一套 next， 而且还动用了不定参数，当然，如果你想装逼装到天上的，理论上来说，你可以套N层，呵呵。
+现在，你可以体会到，如此逼装的是怎么来的了吧？。
+    <blockquote>
+      <p>其它你还别说这就是装逼，简单来说，我们可以使用数学的方式来完成对复杂问题的描述，那怕是递归。其实，这并不是新鲜的东西，这是Alonzo Church 和 Haskell Curry 上世纪30年代提出来的东西，这个就是 Y Combinator 的玩法，关于这个东西，你可以看看下面两篇文章：</p>
+    </blockquote>
+
+    <ul>
+      <li>
+        <p>《The Y Combinator (Slight Return)》，</p>
+      </li>
+      <li>
+        <p>《Wikipedia: Fixed-point combinator》</p>
+      </li>
+    </ul>
+  </li>
+  <li>以上操作经过验证可以直接拿去。</li>
+  <li>Owner <code class="highlighter-rouge">breakEval13</code></li>
+  <li>https://github.com/breakEval13</li>
+</ul>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+      
+        
+        <!-- Disqus Protection, see https://github.com/mzlogin/mzlogin.github.io/issues/2 -->
+        
+        
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'http://firsh.me/2017/08/28/javascript-nb2/';
+              this.page.identifier = '/2017/08/28/javascript-nb2/';
+              this.page.title = '如何读懂并写出装逼的函数式代码 [fork]';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+
+              s.type = 'text/javascript';
+              s.async = true;
+              var shortname = 'zmatsh';
+
+              s.src = '//' + shortname + '.disqus.com/embed.js';
+
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        
+        
+      
+    
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="https://zmatsh.b0.upaiyun.com/assets/css/modules/sidebar-search.css">
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="breakeval13">breakeval13</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/breakEval13/breakEval13.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="Index" target="">Index</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="categories" target="">categories</a>
+                </li>
+                
+                <li>
+                    <a href="/open-source/" title="open-source" target="">open-source</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="wiki" target="">wiki</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="links" target="">links</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="about" target="">about</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-80669434-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>
