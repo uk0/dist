@@ -1,5 +1,11 @@
 {
   
+  "2017-08-28-javascript-nb3": {
+    "title": "这些JavaScript编程黑科技，装逼指南，高逼格代码，让你惊叹不已 [fork]",
+    "url": " /2017/08/28/javascript-nb3/",
+    "category": "javascript"
+  },
+  
   "2017-08-28-javascript-nb2": {
     "title": "如何读懂并写出装逼的函数式代码 [fork]",
     "url": " /2017/08/28/javascript-nb2/",
@@ -919,6 +925,12 @@
   "2017-08-28-javascript-nb2": {
     "title": "如何读懂并写出装逼的函数式代码 [fork]",
     "url": "/2017/08/28/javascript-nb2/",
+    "category": "[&quot;javascript&quot;]"
+  },
+  
+  "2017-08-28-javascript-nb3": {
+    "title": "这些JavaScript编程黑科技，装逼指南，高逼格代码，让你惊叹不已 [fork]",
+    "url": "/2017/08/28/javascript-nb3/",
     "category": "[&quot;javascript&quot;]"
   },
   
