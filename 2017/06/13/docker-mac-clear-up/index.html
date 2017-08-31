@@ -207,6 +207,37 @@ rm -r <span class="k">${</span><span class="nv">TMP_DIR</span><span class="k">}<
 </code></pre>
 </div>
 
+<h2 id="貌似更好">貌似更好</h2>
+
+<ul>
+  <li>This patch fixes a bug which would prevent the online compaction from being enabled. Hopefully now it’s possible to turn it on again. I installed this version and then enabled experimental compaction by running the following script:</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="nb">cd</span> ~/Library/Containers/com.docker.docker/Data/database/
+git checkout master
+git reset --hard
+mkdir -p com.docker.driver.amd64-linux/disk
+<span class="nb">echo </span>262144 &gt; com.docker.driver.amd64-linux/disk/compact-after
+<span class="nb">echo </span>262144 &gt; com.docker.driver.amd64-linux/disk/keep-erased
+<span class="nb">echo</span> -n <span class="nb">true</span> &gt; com.docker.driver.amd64-linux/disk/trim
+<span class="c">#echo -n 'tcp:9090' &gt; com.docker.driver.amd64-linux/disk/stats</span>
+git add com.docker.driver.amd64-linux/disk/compact-after
+git add com.docker.driver.amd64-linux/disk/keep-erased
+git add com.docker.driver.amd64-linux/disk/trim
+<span class="c">#git add com.docker.driver.amd64-linux/disk/stats</span>
+git commit -s -m <span class="s1">'Enable on-line compaction'</span>
+</code></pre>
+</div>
+<ul>
+  <li>
+    <p>I then rebooted the app. I created a large temporary file in a container, deleted it, and around 15 minutes later an fstrim /var was triggered from cron and the file became smaller again. (It’s also possible to trigger fstrim immediately with a command like docker run –rm –net=host –pid=host –privileged -it justincormack/nsenter1 /sbin/fstrim /var)</p>
+  </li>
+  <li>
+    <p>In 17.07 (the upcoming edge release) I’m hoping to switch online compaction on by default. In 17.08 I’m hoping to automatically trigger fstrim when docker images are removed, instead of waiting for a cron job.</p>
+  </li>
+</ul>
 
     </article>
     <div class="share">
