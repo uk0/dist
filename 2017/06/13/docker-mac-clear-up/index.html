@@ -135,22 +135,16 @@ Google搜了一圏发现一个叫Théo Chamley的法国人写了一个脚本释
 </code></pre>
 </div>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
-<span class="c">#!/bin/bash</span>
-<span class="c"># Copyright 2017 Théo Chamley</span>
-<span class="c"># Permission is hereby granted, free of charge, to any person obtaining a copy of </span>
-<span class="c"># this software and associated documentation files (the "Software"), to deal in the Software</span>
-<span class="c"># without restriction, including without limitation the rights to use, copy, modify, merge,</span>
-<span class="c"># publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons</span>
-<span class="c"># to whom the Software is furnished to do so, subject to the following conditions:</span>
-<span class="c">#</span>
-<span class="c"># The above copyright notice and this permission notice shall be included in all copies or</span>
-<span class="c"># substantial portions of the Software.</span>
-<span class="c">#</span>
-<span class="c"># THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING</span>
-<span class="c"># BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
-<span class="c"># NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,</span>
-<span class="c"># DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<h2 id="命令行">命令行</h2>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo sh docker-clean.sh <span class="k">$(</span>docker images | awk <span class="s1">'NR&gt;1 {print $1":"$2}'</span><span class="k">)</span>
+</code></pre>
+</div>
+
+<h2 id="脚本">脚本</h2>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># sudo sh docker-clean.sh $(docker images | awk 'NR&gt;1 {print $1":"$2}')</span>
 
 <span class="nv">IMAGES</span><span class="o">=</span><span class="nv">$@</span>
 
@@ -171,18 +165,18 @@ Google搜了一圏发现一个叫Théo Chamley的法国人写了一个脚本释
 open -a Docker
 <span class="nb">echo</span> <span class="s2">"=&gt; Saving the specified images"</span>
 <span class="k">for </span>image <span class="k">in</span> <span class="k">${</span><span class="nv">IMAGES</span><span class="k">}</span>; <span class="k">do
-    </span><span class="nb">echo</span> <span class="s2">"==&gt; Saving </span><span class="k">${</span><span class="nv">image</span><span class="k">}</span><span class="s2">"</span>
-    <span class="nv">tar</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> -n <span class="k">${</span><span class="nv">image</span><span class="k">}</span> | base64<span class="k">)</span>
-    docker save -o <span class="k">${</span><span class="nv">tar</span><span class="k">}</span>.tar <span class="k">${</span><span class="nv">image</span><span class="k">}</span>
-    <span class="nb">echo</span> <span class="s2">"==&gt; Done."</span>
+	</span><span class="nb">echo</span> <span class="s2">"==&gt; Saving </span><span class="k">${</span><span class="nv">image</span><span class="k">}</span><span class="s2">"</span>
+	<span class="nv">tar</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> -n <span class="k">${</span><span class="nv">image</span><span class="k">}</span> | base64<span class="k">)</span>
+	docker save -o <span class="k">${</span><span class="nv">tar</span><span class="k">}</span>.tar <span class="k">${</span><span class="nv">image</span><span class="k">}</span>
+	<span class="nb">echo</span> <span class="s2">"==&gt; Done."</span>
 <span class="k">done
 
 </span><span class="nb">echo</span> <span class="s2">"=&gt; Cleaning up"</span>
 <span class="nb">echo</span> -n <span class="s2">"==&gt; Quiting Docker"</span>
 osascript -e <span class="s1">'quit app "Docker"'</span>
 <span class="k">while </span>docker info &gt;/dev/null 2&gt;&amp;1; <span class="k">do
-    </span><span class="nb">echo</span> -n <span class="s2">"."</span>
-    sleep 1
+	</span><span class="nb">echo</span> -n <span class="s2">"."</span>
+	sleep 1
 <span class="k">done</span>;
 <span class="nb">echo</span> <span class="s2">""</span>
 
@@ -193,8 +187,8 @@ rm ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/Doc
 open -a Docker
 <span class="nb">echo</span> -n <span class="s2">"==&gt; Waiting for Docker to start"</span>
 <span class="k">until </span>docker info &gt;/dev/null 2&gt;&amp;1; <span class="k">do
-    </span><span class="nb">echo</span> -n <span class="s2">"."</span>
-    sleep 1
+	</span><span class="nb">echo</span> -n <span class="s2">"."</span>
+	sleep 1
 <span class="k">done</span>;
 <span class="nb">echo</span> <span class="s2">""</span>
 
@@ -202,15 +196,14 @@ open -a Docker
 
 <span class="nb">echo</span> <span class="s2">"=&gt; Loading saved images"</span>
 <span class="k">for </span>image <span class="k">in</span> <span class="k">${</span><span class="nv">IMAGES</span><span class="k">}</span>; <span class="k">do
-    </span><span class="nb">echo</span> <span class="s2">"==&gt; Loading </span><span class="k">${</span><span class="nv">image</span><span class="k">}</span><span class="s2">"</span>
-    <span class="nv">tar</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> -n <span class="k">${</span><span class="nv">image</span><span class="k">}</span> | base64<span class="k">)</span>
-    docker load -q -i <span class="k">${</span><span class="nv">tar</span><span class="k">}</span>.tar <span class="o">||</span> <span class="nb">exit </span>1
-    <span class="nb">echo</span> <span class="s2">"==&gt; Done."</span>
+	</span><span class="nb">echo</span> <span class="s2">"==&gt; Loading </span><span class="k">${</span><span class="nv">image</span><span class="k">}</span><span class="s2">"</span>
+	<span class="nv">tar</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> -n <span class="k">${</span><span class="nv">image</span><span class="k">}</span> | base64<span class="k">)</span>
+	docker load -q -i <span class="k">${</span><span class="nv">tar</span><span class="k">}</span>.tar <span class="o">||</span> <span class="nb">exit </span>1
+	<span class="nb">echo</span> <span class="s2">"==&gt; Done."</span>
 <span class="k">done
 
 </span><span class="nb">popd</span> &gt;/dev/null
 rm -r <span class="k">${</span><span class="nv">TMP_DIR</span><span class="k">}</span>
-
 </code></pre>
 </div>
 
