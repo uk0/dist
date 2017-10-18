@@ -2,36 +2,52 @@
 <html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>一道在知乎很火的 Java 题——如何输出 ab — 山脚下的胖子.</title>
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
-<!-- Latest compiled and minified CSS --><link rel="canonical" href="http://firsh.me/2016/09/20/java-output-ab/">
-<link rel="alternate" type="application/atom+xml" title="山脚下的胖子." href="/feed.xml">
-<link rel="shortcut icon" href="/favicon.ico">
-<meta property="og:title" content="一道在知乎很火的 Java 题——如何输出 ab">
-<meta name="keywords" content="Java">
-<meta name="og:keywords" content="Java">
-<meta name="description" content="这是一个源自知乎的话题，原贴链接：一道百度的面试题，有大神会嘛？">
-<meta name="og:description" content="这是一个源自知乎的话题，原贴链接：一道百度的面试题，有大神会嘛？">
-<meta property="og:url" content="http://firsh.me/2016/09/20/java-output-ab/">
-<meta property="og:site_name" content="山脚下的胖子.">
-<meta property="og:type" content="article">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2016-09-20">
-<script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script><script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script><script type="text/javascript">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>一道在知乎很火的 Java 题——如何输出 ab — 山脚下的胖子.</title>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2016/09/20/java-output-ab/">
+    <link rel="alternate" type="application/atom+xml" title="山脚下的胖子." href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="一道在知乎很火的 Java 题——如何输出 ab">
+      
+    <meta name="keywords" content="Java">
+    <meta name="og:keywords" content="Java">
+      
+    <meta name="description" content="这是一个源自知乎的话题，原贴链接：一道百度的面试题，有大神会嘛？">
+    <meta name="og:description" content="这是一个源自知乎的话题，原贴链接：一道百度的面试题，有大神会嘛？">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2016/09/20/java-output-ab/">
+    <meta property="og:site_name" content="山脚下的胖子.">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN">
+    
+    <meta property="article:published_time" content="2016-09-20">
+    
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
     function toggleMenu() {
         var nav = document.getElementsByClassName("site-header-nav")[0];
         if (nav.style.display == "inline-flex") {
@@ -43,14 +59,17 @@
     </script>
 </head>
 <body class="" data-mz="">
-    <header class="site-header"><div class="container">
+    <header class="site-header">
+        <div class="container">
             <h1><a href="/" title="山脚下的胖子."><span class="octicon octicon-mark-github"></span> 山脚下的胖子.</a></h1>
             <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <nav class="site-header-nav" role="navigation"><a href="/" class=" site-header-nav-item" target="" title="Index">Index</a>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="Index">Index</a>
                 
                 <a href="/categories/" class=" site-header-nav-item" target="" title="categories">categories</a>
                 
@@ -63,8 +82,12 @@
                 <a href="/about/" class=" site-header-nav-item" target="" title="about">about</a>
                 
             </nav>
-</div>
-    </header><!-- / header --><section class="collection-head small geopattern" data-pattern-id="一道在知乎很火的 Java 题"><div class="container">
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="一道在知乎很火的 Java 题">
+<div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
@@ -86,14 +109,20 @@
     </div>
   </div>
 </div>
-</section><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>
+</section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
     (adsbygoogle = window.adsbygoogle || []).push({
         google_ad_client: "ca-pub-3969253077255521",
         enable_page_level_ads: true
     });
-</script><!-- / .banner --><section class="container content"><div class="columns">
+</script>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
   <div class="column three-fourths">
-    <article class="article-content markdown-body"><p>这是一个源自知乎的话题，原贴链接：<a href="https://www.zhihu.com/question/50801791">一道百度的面试题，有大神会嘛？</a></p>
+    <article class="article-content markdown-body">
+    <p>这是一个源自知乎的话题，原贴链接：<a href="https://www.zhihu.com/question/50801791">一道百度的面试题，有大神会嘛？</a></p>
 
 <p>虽然我不是大神，但我也点进去看了一下，思考了一会之后有了一些思路，然后去看其它人的答案的时候果然全都已经被各路大神们先想到并贴出来了，所以我就不去凑热闹写重复答案了，整理一下网友们的智慧在这里自娱自乐好了。</p>
 
@@ -137,29 +166,32 @@
 <p>我也想到能否使用 <code class="highlighter-rouge">System.out.print</code> 的返回值来做文章，但奈何并不记得它返回什么，首先让我们复习一下 <code class="highlighter-rouge">PrintStream</code> 的 <code class="highlighter-rouge">print</code>、<code class="highlighter-rouge">println</code> 和 <code class="highlighter-rouge">printf</code> 方法的区别：</p>
 
 <table>
-<thead><tr>
-<th>方法</th>
+  <thead>
+    <tr>
+      <th>方法</th>
       <th>功能</th>
       <th>返回值</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td>print</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>print</td>
       <td>打印一个值或者对象</td>
       <td>void</td>
     </tr>
-<tr>
-<td>println</td>
+    <tr>
+      <td>println</td>
       <td>打印并换行</td>
       <td>void</td>
     </tr>
-<tr>
-<td>printf</td>
+    <tr>
+      <td>printf</td>
       <td>格式化打印</td>
       <td>PrintStream</td>
     </tr>
-</tbody>
+  </tbody>
 </table>
+
 <p>所以适用的是 <code class="highlighter-rouge">printf</code>，它的返回值是 <code class="highlighter-rouge">PrintStream</code> 类型的 <code class="highlighter-rouge">System.out</code>，判它是否为空即可。</p>
 
 <p>填入内容 <code class="highlighter-rouge">System.out.printf("a") == null</code>。</p>
@@ -244,12 +276,15 @@
 <h2 id="参考">参考</h2>
 
 <ul>
-<li><a href="https://www.zhihu.com/question/50801791/answer/122781965">RednaxelaFX 的回答</a></li>
+  <li><a href="https://www.zhihu.com/question/50801791/answer/122781965">RednaxelaFX 的回答</a></li>
   <li><a href="https://www.zhihu.com/question/50801791/answer/122773831">仓鼠君 的回答</a></li>
   <li><a href="https://www.zhihu.com/question/50801791/answer/122769426">放开那女孩 的回答</a></li>
   <li><a href="https://www.zhihu.com/question/50801791/answer/122863062">穷小子 的回答</a></li>
   <li><a href="https://www.zhihu.com/question/50801791/answer/122795854">caiwei 的回答</a></li>
-</ul></article><div class="share">
+</ul>
+
+    </article>
+    <div class="share">
       <div class="share-component"></div>
     </div>
     <div class="comment">
@@ -279,7 +314,8 @@
               s.setAttribute('data-timestamp', +new Date());
               (d.head || d.body).appendChild(s);
             })();
-          </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
 </noscript>
         
         
@@ -293,19 +329,35 @@
     
 <h3>Search</h3>
 <div id="site_search">
-    <input type="text" id="search_box" placeholder="Search"><button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
 </div>
 
 <ul id="search_results"></ul>
+
 <link rel="stylesheet" type="text/css" href="https://zmatsh.b0.upaiyun.com/assets/css/modules/sidebar-search.css">
-<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script><script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script><h3>Post Directory</h3>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
 <div id="post-directory-module" class="mobile-hidden">
-  <section class="post-directory"><!-- Links that trigger the jumping --><!-- Added by javascript below --><dl></dl></section>
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
 </div>
 <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery.toc.js"></script>
+
+  </div>
 </div>
-</div>
-</section><!-- /section.content --><footer class="container"><div class="site-footer" role="contentinfo">
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
             <div class="copyright left mobile-block">
                     © 2015
                     <span title="breakeval13">breakeval13</span>
@@ -313,15 +365,16 @@
             </div>
 
             <ul class="site-footer-links right mobile-hidden">
-<li>
+                <li>
                     <a href="javascript:window.scrollTo(0,0)">TOP</a>
                 </li>
             </ul>
-<a href="http://github.com/breakEval13/breakEval13.github.io" target="_blank" aria-label="view source code">
+            <a href="http://github.com/breakEval13/breakEval13.github.io" target="_blank" aria-label="view source code">
                 <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
             </a>
             <ul class="site-footer-links mobile-hidden">
-<li>
+                
+                <li>
                     <a href="/" title="Index" target="">Index</a>
                 </li>
                 
@@ -347,9 +400,15 @@
                 
                 <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
             </ul>
-</div>
-    </footer><!-- / footer --><script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script><script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script><script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script><link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
-<script>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
+    <script>
       jQuery(document).ready(function($) {
         // geopattern
         $('.geopattern').each(function(){
@@ -357,7 +416,9 @@
         });
        // hljs.initHighlightingOnLoad();
       });
-    </script><div style="display:none">
+    </script>
+    
+    <div style="display:none">
       <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -368,9 +429,10 @@
         ga('send', 'pageview');
 
       </script>
-</div>
+    </div>
+    
 </body>
-<script>
+    <script>
         (function(){
             var bp = document.createElement('script');
             var curProtocol = window.location.protocol.split(':')[0];

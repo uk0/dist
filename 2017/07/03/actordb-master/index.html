@@ -2,36 +2,52 @@
 <html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>ActorDB/linux下搭建，可以搭建集群模式。 — 山脚下的胖子.</title>
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
-<link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
-<!-- Latest compiled and minified CSS --><link rel="canonical" href="http://firsh.me/2017/07/03/actordb-master/">
-<link rel="alternate" type="application/atom+xml" title="山脚下的胖子." href="/feed.xml">
-<link rel="shortcut icon" href="/favicon.ico">
-<meta property="og:title" content="ActorDB/linux下搭建，可以搭建集群模式。">
-<meta name="keywords" content="ActorDB, linux,kubernetes">
-<meta name="og:keywords" content="ActorDB, linux,kubernetes">
-<meta name="description" content="发这个贴的原因，是因为@#¥%……UIO@！#*……！（@">
-<meta name="og:description" content="发这个贴的原因，是因为@#¥%……UIO@！#*……！（@">
-<meta property="og:url" content="http://firsh.me/2017/07/03/actordb-master/">
-<meta property="og:site_name" content="山脚下的胖子.">
-<meta property="og:type" content="article">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2017-07-03">
-<script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script><script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script><script type="text/javascript">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>ActorDB/linux下搭建，可以搭建集群模式。 — 山脚下的胖子.</title>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2017/07/03/actordb-master/">
+    <link rel="alternate" type="application/atom+xml" title="山脚下的胖子." href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="ActorDB/linux下搭建，可以搭建集群模式。">
+      
+    <meta name="keywords" content="ActorDB, linux,kubernetes">
+    <meta name="og:keywords" content="ActorDB, linux,kubernetes">
+      
+    <meta name="description" content="发这个贴的原因，是因为@#¥%……UIO@！#*……！（@">
+    <meta name="og:description" content="发这个贴的原因，是因为@#¥%……UIO@！#*……！（@">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2017/07/03/actordb-master/">
+    <meta property="og:site_name" content="山脚下的胖子.">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN">
+    
+    <meta property="article:published_time" content="2017-07-03">
+    
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
     function toggleMenu() {
         var nav = document.getElementsByClassName("site-header-nav")[0];
         if (nav.style.display == "inline-flex") {
@@ -43,14 +59,17 @@
     </script>
 </head>
 <body class="" data-mz="">
-    <header class="site-header"><div class="container">
+    <header class="site-header">
+        <div class="container">
             <h1><a href="/" title="山脚下的胖子."><span class="octicon octicon-mark-github"></span> 山脚下的胖子.</a></h1>
             <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <nav class="site-header-nav" role="navigation"><a href="/" class=" site-header-nav-item" target="" title="Index">Index</a>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="Index">Index</a>
                 
                 <a href="/categories/" class=" site-header-nav-item" target="" title="categories">categories</a>
                 
@@ -63,8 +82,12 @@
                 <a href="/about/" class=" site-header-nav-item" target="" title="about">about</a>
                 
             </nav>
-</div>
-    </header><!-- / header --><section class="collection-head small geopattern" data-pattern-id="ActorDB/linux下搭"><div class="container">
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="ActorDB/linux下搭">
+<div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
@@ -86,14 +109,20 @@
     </div>
   </div>
 </div>
-</section><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>
+</section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
     (adsbygoogle = window.adsbygoogle || []).push({
         google_ad_client: "ca-pub-3969253077255521",
         enable_page_level_ads: true
     });
-</script><!-- / .banner --><section class="container content"><div class="columns">
+</script>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
   <div class="column three-fourths">
-    <article class="article-content markdown-body"><p>发这个贴的原因，是因为@#¥%……UIO@！#*……！（@</p>
+    <article class="article-content markdown-body">
+    <p>发这个贴的原因，是因为@#¥%……UIO@！#*……！（@</p>
 
 <h2 id="actordb安装以及集群部署集群采用kubernetes">ActorDB安装以及集群部署(集群采用kubernetes)</h2>
 
@@ -103,7 +132,7 @@
 
 <h2 id="1-安装部署">1. 安装部署</h2>
 <ul>
-<li>1.1. 官网下载linux版本安装包（rpm包），上传至服务器并使用<code class="highlighter-rouge">rpm -ivh</code>进行安装</li>
+  <li>1.1. 官网下载linux版本安装包（rpm包），上传至服务器并使用<code class="highlighter-rouge">rpm -ivh</code>进行安装</li>
   <li>1.2. 安装好后，会自动创建 个文件夹：
   <code class="highlighter-rouge">/etc/actordb</code>		—-	配置文件
   <code class="highlighter-rouge">/var/log/actordb</code>	—-	默认日志目录
@@ -114,7 +143,7 @@
   <li>1.4. 执行 <code class="highlighter-rouge">actordb start</code> 启动ActorDB</li>
   <li>1.5. 修改初始化脚本’init.sql’
     <ul>
-<li>1.5.1. <code class="highlighter-rouge">use config</code> # 使用config库</li>
+      <li>1.5.1. <code class="highlighter-rouge">use config</code> # 使用config库</li>
       <li>1.5.2. <code class="highlighter-rouge">insert into groups values ('dscnCluster','cluster')</code> # 在groups表里增加名为dscnCluster的cluster</li>
       <li>1.5.3. <code class="highlighter-rouge">insert into nodes values ('&lt;名称&gt;@&lt;ip地址&gt;', 'dscnCluster')</code> # 向dscnCluster组内增加成员</li>
       <li>1.5.4. 重复3.5.2和3.5.3，直到所有的节点都添加至集群中</li>
@@ -122,26 +151,28 @@
 </li>
       <li>1.5.6. <code class="highlighter-rouge">commit</code> # 提交</li>
     </ul>
-</li>
+  </li>
   <li>1.6. 执行初始化脚本 <code class="highlighter-rouge">actordb_console -f /etc/actordb/init.sql</code> 完成初始化</li>
   <li>1.7. 建立库表
     <ul>
-<li>1.7.1. <code class="highlighter-rouge">use schema</code>
+      <li>1.7.1. <code class="highlighter-rouge">use schema</code>
 </li>
       <li>1.7.2. <code class="highlighter-rouge">actor &lt;dbName&gt; [kv]</code>
 </li>
       <li>1.7.3. <code class="highlighter-rouge">create table &lt;tableName&gt; (field type [constraint], field2 type2 [constraint2].....)</code> # 与传统DDL相同</li>
     </ul>
-</li>
+  </li>
 </ul>
+
 <h2 id="2-服务实例">2. 服务实例</h2>
 <ul>
-<li>2.1. <code class="highlighter-rouge">Cluster</code>：ActorDB集群中可定义多个<code class="highlighter-rouge">Cluster</code>`，各Cluster间数据是独立的，相当于数据分片</li>
+  <li>2.1. <code class="highlighter-rouge">Cluster</code>：ActorDB集群中可定义多个<code class="highlighter-rouge">Cluster</code>`，各Cluster间数据是独立的，相当于数据分片</li>
   <li>2.2. <code class="highlighter-rouge">Node</code>：每个Cluster中包含多个Node（即ActorDB实例），一个Cluster中的所有Node互为副本，数据同步。</li>
 </ul>
+
 <h2 id="3-存储">3. 存储</h2>
 <ul>
-<li>3.1. 所有的表操作都必须经由某一个（insert可以是多个）Actor，而所有的Actor都有一个所属的<code class="highlighter-rouge">ActorType</code>。</li>
+  <li>3.1. 所有的表操作都必须经由某一个（insert可以是多个）Actor，而所有的Actor都有一个所属的<code class="highlighter-rouge">ActorType</code>。</li>
   <li>3.2. 用户在定义<code class="highlighter-rouge">ActorType</code>时，可以定义该<code class="highlighter-rouge">ActorType</code>所使用的表结构（与传统数据库一样），并可以创建该Type的Actor（数量不限）</li>
   <li>3.3. 一个<code class="highlighter-rouge">ActorType</code>中的所有actor共享相同的表结构和表关系，<code class="highlighter-rouge">ActorType</code>中的所有actor都只能访问自己actor中的数据
   就像微信的收藏功能一样，不用用户共享同样的收藏夹结构，但无法看到其他人收藏的内容。</li>
@@ -153,19 +184,22 @@
   <code class="highlighter-rouge">commit</code>
 </li>
 </ul>
+
 <h2 id="4-thrift客户端连接">4. Thrift客户端连接</h2>
 <ul>
-<li>4.1. 在actordb的github中下载thrift接口生成种子：<code class="highlighter-rouge">adbt.thrift</code>，使用thrift官网的生成工具生成实现thrift接口的类及相关类</li>
+  <li>4.1. 在actordb的github中下载thrift接口生成种子：<code class="highlighter-rouge">adbt.thrift</code>，使用thrift官网的生成工具生成实现thrift接口的类及相关类</li>
   <li>4.2. 使用Thrift客户端进行连接，客户端使用详见<code class="highlighter-rouge">thrift</code>官网。</li>
   <li>4.3. 使用生成的类作为<code class="highlighter-rouge">Client</code>，调用sql方法直接执行（sql举例如：<code class="highlighter-rouge">actor metadata(lcy);select count(*) from conf</code>）。API包括了同步和异步的接口。</li>
 </ul>
+
 <p><img class="emoji" title=":smile:" alt=":smile:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png" height="20" width="20" align="absmiddle"></p>
 
 <blockquote>
   <p>感谢公司多位同事的帮助,此文档来自公司一位大神(妹子)</p>
 </blockquote>
 
-    </article><div class="share">
+    </article>
+    <div class="share">
       <div class="share-component"></div>
     </div>
     <div class="comment">
@@ -195,7 +229,8 @@
               s.setAttribute('data-timestamp', +new Date());
               (d.head || d.body).appendChild(s);
             })();
-          </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
 </noscript>
         
         
@@ -209,19 +244,35 @@
     
 <h3>Search</h3>
 <div id="site_search">
-    <input type="text" id="search_box" placeholder="Search"><button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
 </div>
 
 <ul id="search_results"></ul>
+
 <link rel="stylesheet" type="text/css" href="https://zmatsh.b0.upaiyun.com/assets/css/modules/sidebar-search.css">
-<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script><script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script><h3>Post Directory</h3>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
 <div id="post-directory-module" class="mobile-hidden">
-  <section class="post-directory"><!-- Links that trigger the jumping --><!-- Added by javascript below --><dl></dl></section>
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
 </div>
 <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery.toc.js"></script>
+
+  </div>
 </div>
-</div>
-</section><!-- /section.content --><footer class="container"><div class="site-footer" role="contentinfo">
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
             <div class="copyright left mobile-block">
                     © 2015
                     <span title="breakeval13">breakeval13</span>
@@ -229,15 +280,16 @@
             </div>
 
             <ul class="site-footer-links right mobile-hidden">
-<li>
+                <li>
                     <a href="javascript:window.scrollTo(0,0)">TOP</a>
                 </li>
             </ul>
-<a href="http://github.com/breakEval13/breakEval13.github.io" target="_blank" aria-label="view source code">
+            <a href="http://github.com/breakEval13/breakEval13.github.io" target="_blank" aria-label="view source code">
                 <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
             </a>
             <ul class="site-footer-links mobile-hidden">
-<li>
+                
+                <li>
                     <a href="/" title="Index" target="">Index</a>
                 </li>
                 
@@ -263,9 +315,15 @@
                 
                 <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
             </ul>
-</div>
-    </footer><!-- / footer --><script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script><script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script><script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script><link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
-<script>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
+    <script>
       jQuery(document).ready(function($) {
         // geopattern
         $('.geopattern').each(function(){
@@ -273,7 +331,9 @@
         });
        // hljs.initHighlightingOnLoad();
       });
-    </script><div style="display:none">
+    </script>
+    
+    <div style="display:none">
       <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -284,9 +344,10 @@
         ga('send', 'pageview');
 
       </script>
-</div>
+    </div>
+    
 </body>
-<script>
+    <script>
         (function(){
             var bp = document.createElement('script');
             var curProtocol = window.location.protocol.split(':')[0];
