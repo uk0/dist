@@ -1,5 +1,11 @@
 {
   
+  "2017-10-21-raspberry-pi-zero": {
+    "title": "raspberry pi zero 安装系统，以及添加USB识别网卡模式[badUSB]",
+    "url": " /2017/10/21/raspberry-pi-zero/",
+    "category": "python"
+  },
+  
   "2017-10-18-re-port-python": {
     "title": "Python端口转发",
     "url": " /2017/10/18/re-port-python/",
@@ -969,6 +975,12 @@
   "2017-10-18-re-port-python": {
     "title": "Python端口转发",
     "url": "/2017/10/18/re-port-python/",
+    "category": "[&quot;python&quot;]"
+  },
+  
+  "2017-10-21-raspberry-pi-zero": {
+    "title": "raspberry pi zero 安装系统，以及添加USB识别网卡模式[badUSB]",
+    "url": "/2017/10/21/raspberry-pi-zero/",
     "category": "[&quot;python&quot;]"
   },
   

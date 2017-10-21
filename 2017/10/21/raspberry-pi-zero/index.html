@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>raspberry pi zero 安装系统，以及添加USB识别网卡模式[badUSB] &mdash; 山脚下的胖子.</title>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2017/10/21/raspberry-pi-zero/">
+    <link rel="alternate" type="application/atom+xml" title="山脚下的胖子." href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="raspberry pi zero 安装系统，以及添加USB识别网卡模式[badUSB]">
+      
+    <meta name="keywords" content="raspberry,python">
+    <meta name="og:keywords" content="raspberry,python">
+      
+    <meta name="description" content="一个用Python如何将自己的树莓派打造成“渗透测试神器”">
+    <meta name="og:description" content="一个用Python如何将自己的树莓派打造成“渗透测试神器”">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2017/10/21/raspberry-pi-zero/">
+    <meta property="og:site_name" content="山脚下的胖子.">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2017-10-21">
+    
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="山脚下的胖子."><span class="octicon octicon-mark-github"></span> 山脚下的胖子.</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="Index">Index</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="categories">categories</a>
+                
+                <a href="/open-source/" class=" site-header-nav-item" target="" title="open-source">open-source</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="wiki">wiki</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="links">links</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="about">about</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="raspberry pi ze">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">raspberry pi zero 安装系统，以及添加USB识别网卡模式[badUSB]</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/10/21
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#python" title="python">python</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <p>一个用Python如何将自己的树莓派打造成“渗透测试神器”</p>
+
+<p>date：2017-10-21
+author：zhangjianxin</p>
+
+<p>[TOC]</p>
+
+<h1 id="1--初始化树莓派zero">1 、 初始化树莓派zero。</h1>
+
+<p>[*] 第一步安装系统，</p>
+
+<ul>
+  <li>有以下设备
+    <ul>
+      <li>raspberry pi zero</li>
+      <li>SSK 转接卡</li>
+      <li>闪迪SD卡8GClass10</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://zmatsh.b0.upaiyun.com/images/1508598613256.jpg" alt="" /></p>
+
+<ul>
+  <li>第一次没有插入SD卡的时候</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>➜  ~ df -h
+Filesystem                          Size   Used  Avail Capacity iused      ifree %iused  Mounted on
+/dev/disk1                         112Gi   93Gi   18Gi    84% 1444634 4293522645    0%   /
+devfs                              186Ki  186Ki    0Bi   100%     642          0  100%   /dev
+map -hosts                           0Bi    0Bi    0Bi   100%       0          0  100%   /net
+map auto_home                        0Bi    0Bi    0Bi   100%       0          0  100%   /home
+localhost:/fMn-YFzQfnHjvi04JpRLvc  112Gi  112Gi    0Bi   100%       0          0  100%   /Volumes/MobileBackups
+
+</code></pre>
+</div>
+
+<ul>
+  <li>插入sd卡的时候（多了一个/dev/disk2s1 ）</li>
+</ul>
+
+<p><img src="https://zmatsh.b0.upaiyun.com/images/df-h-sd-card.png" alt="" /></p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>➜  ~ df -h
+Filesystem                          Size   Used  Avail Capacity iused      ifree %iused  Mounted on
+/dev/disk1                         112Gi   93Gi   18Gi    84% 1444634 4293522645    0%   /
+devfs                              186Ki  186Ki    0Bi   100%     642          0  100%   /dev
+map -hosts                           0Bi    0Bi    0Bi   100%       0          0  100%   /net
+map auto_home                        0Bi    0Bi    0Bi   100%       0          0  100%   /home
+localhost:/fMn-YFzQfnHjvi04JpRLvc  112Gi  112Gi    0Bi   100%       0          0  100%   /Volumes/MobileBackups
+/dev/disk2s1                       7.4Gi  2.4Mi  7.4Gi     1%      76     243827    0%   /Volumes/usb
+
+</code></pre>
+</div>
+
+<ul>
+  <li>通过diskutils工具进行umont这个SD卡(为了防止其他程序写入)</li>
+</ul>
+
+<p><img src="https://zmatsh.b0.upaiyun.com/images/umount-mac.png" alt="" /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>```bash
+➜  ~ diskutil unmountDisk /dev/disk2s1
+Unmount of all volumes on disk2 was successful
+```
+</code></pre>
+</div>
+
+<ul>
+  <li>通过dd 写入镜像到sd卡。(10min)</li>
+</ul>
+
+<p><img src="https://zmatsh.b0.upaiyun.com/images/dd-sd-car-success.png" alt="" /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>```bash
+➜  ~ sudo dd bs=512  if=2017-02-16-raspbian-jessie.img  of=/dev/disk2s1
+```
+</code></pre>
+</div>
+
+<blockquote>
+  <p>Ethernet Gadget模式即USB网卡模式，
+   比较常见的就是通过android手机的usb接口对pc进行网络共享的一种手段，
+   一般电脑都会自动识别这种设备，并开启网卡进行共享。</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>1、修改配置文件
+为了进行usb连接，我们需要修改BOOT文件夹下的<code class="highlighter-rouge">config.txt</code> 与<code class="highlighter-rouge">cmdline.txt</code>配置文件。
+首先在<code class="highlighter-rouge">config.txt</code>最末行处换行添加如下代码，打开usb网卡模式：</p>
+
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>  sudo vim config.txt
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>增加内容如下：</p>
+
+    <div class="language-text highlighter-rouge"><pre class="highlight"><code> dtoverlay=dwc2
+</code></pre>
+    </div>
+
+    <p><img src="https://zmatsh.b0.upaiyun.com/images/vim-config.png" alt="" /></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">cmdline.txt</code>文件中找到<code class="highlighter-rouge">rootwait</code>字段，并在其后面空格添加如下信息，在打开系统时开启usb网卡模式。</p>
+
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo vim cmdline.txt
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>增加内容如下：</p>
+
+    <div class="language-text highlighter-rouge"><pre class="highlight"><code>   modules-load=dwc2,g_ether
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<p><img src="https://zmatsh.b0.upaiyun.com/images/vim-cmdline.png" alt="" /></p>
+
+<ul>
+  <li>
+    <p>通过usb连接设备树莓派zero有两个<code class="highlighter-rouge">MicroUSB</code>口，一个是<code class="highlighter-rouge">电源</code>插口，职司供电的功能，
+另外一个就是usb接口，它除了供电以外还提供<code class="highlighter-rouge">OTG</code>的功能，我们也是通过这个接口来连接pc
+ssh连接到树莓派  默认账号为<code class="highlighter-rouge">pi</code> 密码为<code class="highlighter-rouge">raspberry</code></p>
+  </li>
+  <li>将树莓派的第二个USB口链接，并且链接到MacBook的USB口(Win10都可以)。</li>
+  <li>等待启动，树莓派zero的灯成黄色急闪状态(在load内核。)</li>
+  <li>
+    <p>在你的网络内看到以下显示，就可以ssh链接树莓派zero了。</p>
+
+    <p><img src="https://zmatsh.b0.upaiyun.com/images/usb-otg.png" alt="" /></p>
+  </li>
+  <li>配置网络地址，wifi网卡
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> pi@raspberrypi:~ <span class="nv">$ </span>sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+</code></pre>
+    </div>
+  </li>
+  <li>添加以下内容
+    <div class="language-text highlighter-rouge"><pre class="highlight"><code> network={
+ ssid="WiFi-B"
+ psk="12345678"
+ key_mgmt=WPA-PSK
+ priority=1
+ }
+ -----------------
+ #ssid:网络的ssid
+
+ #psk:密码
+
+ #priority:连接优先级，数字越大优先级越高（不可以是负数）
+
+ #scan_ssid:连接隐藏WiFi时需要指定该值为1
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>保存配置 <code class="highlighter-rouge">control + o 后 Enter</code></p>
+  </li>
+  <li>
+    <p>退出 <code class="highlighter-rouge">control + x </code></p>
+  </li>
+  <li>
+    <p>重启ZeroW <code class="highlighter-rouge">sudo reboot</code></p>
+  </li>
+  <li>
+    <p>ping Test</p>
+
+    <p><img src="https://zmatsh.b0.upaiyun.com/images/ssh-new-ping.png" alt="" /></p>
+  </li>
+</ul>
+
+<h1 id="2-配置和下载安装程序">2 、配置和下载安装程序</h1>
+
+<ul>
+  <li>安装软件
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo apt-get update
+</code></pre>
+    </div>
+
+    <p><img src="https://zmatsh.b0.upaiyun.com/images/zero-update.png" alt="" /></p>
+
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo apt-get install git john
+</code></pre>
+    </div>
+
+    <p><img src="https://zmatsh.b0.upaiyun.com/images/zero-install-git.png" alt="" /></p>
+  </li>
+  <li>
+    <p>克隆代码</p>
+
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>  git clone --recursive  http://github.com/mame82/P4wnP1
+</code></pre>
+    </div>
+
+    <p><img src="https://zmatsh.b0.upaiyun.com/images/git-clone-bad-usb.png" alt="" /></p>
+  </li>
+  <li>
+    <p>安装</p>
+
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> <span class="nb">cd </span>P4wnP1/
+ .／install.sh
+</code></pre>
+    </div>
+  </li>
+  <li>提示
+    <div class="language-text highlighter-rouge"><pre class="highlight"><code>    当然最重要的一点是安装后完毕wifi会修改为P4wnP1
+    密码是MaMe82-P4wnP1
+    ssh连接的地址是172.24.0.1账号和密码还是树莓派的初始密码
+    建议修改初始密码！小心被黑(bao)吃(ju)黑(hua)！！！
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>蓝牙ssh连接的地址是172.26.0.1</p>
+  </li>
+  <li>配置文件地址如下：
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>  pi@MAME82-P4WNP1:~ <span class="nv">$ </span>nano P4wnP1/setup.cfg
+</code></pre>
+    </div>
+
+    <p><img src="https://zmatsh.b0.upaiyun.com/images/images/hack-setting.png" alt="" /></p>
+
+    <ul>
+      <li>目前有的功能列表</li>
+    </ul>
+
+    <p><img src="https://zmatsh.b0.upaiyun.com/images/images/windows-python-script-hack.png" alt="" /></p>
+
+    <ul>
+      <li>测试shell,可以直接获取权限，图片：</li>
+    </ul>
+
+    <p><img src="https://zmatsh.b0.upaiyun.com/images/images/success-bad-usb-hack.png" alt="" /></p>
+  </li>
+</ul>
+
+<h1 id="3-成品图">3 成品图：</h1>
+
+<ul>
+  <li>以上操作经过验证可以直接拿去。</li>
+  <li>auther <code class="highlighter-rouge">breakEval13</code></li>
+  <li>https://github.com/breakEval13</li>
+</ul>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+      
+        
+        <!-- Disqus Protection, see https://github.com/mzlogin/mzlogin.github.io/issues/2 -->
+        
+        
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'http://firsh.me/2017/10/21/raspberry-pi-zero/';
+              this.page.identifier = '/2017/10/21/raspberry-pi-zero/';
+              this.page.title = 'raspberry pi zero 安装系统，以及添加USB识别网卡模式[badUSB]';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+
+              s.type = 'text/javascript';
+              s.async = true;
+              var shortname = 'zmatsh';
+
+              s.src = '//' + shortname + '.disqus.com/embed.js';
+
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        
+        
+      
+    
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="https://zmatsh.b0.upaiyun.com/assets/css/modules/sidebar-search.css">
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="breakeval13">breakeval13</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/breakEval13/breakEval13.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="Index" target="">Index</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="categories" target="">categories</a>
+                </li>
+                
+                <li>
+                    <a href="/open-source/" title="open-source" target="">open-source</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="wiki" target="">wiki</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="links" target="">links</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="about" target="">about</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-80669434-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>

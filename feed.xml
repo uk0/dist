@@ -1,4 +1,251 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-10-18T20:30:37+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">Python端口转发</title><link href="http://firsh.me/2017/10/18/re-port-python/" rel="alternate" type="text/html" title="Python端口转发" /><published>2017-10-18T00:00:00+08:00</published><updated>2017-10-18T00:00:00+08:00</updated><id>http://firsh.me/2017/10/18/re-port-python</id><content type="html" xml:base="http://firsh.me/2017/10/18/re-port-python/">&lt;p&gt;一个用Python做端口转发的源码示例&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-10-22T03:13:36+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">raspberry pi zero 安装系统，以及添加USB识别网卡模式[badUSB]</title><link href="http://firsh.me/2017/10/21/raspberry-pi-zero/" rel="alternate" type="text/html" title="raspberry pi zero 安装系统，以及添加USB识别网卡模式[badUSB]" /><published>2017-10-21T00:00:00+08:00</published><updated>2017-10-21T00:00:00+08:00</updated><id>http://firsh.me/2017/10/21/raspberry-pi-zero</id><content type="html" xml:base="http://firsh.me/2017/10/21/raspberry-pi-zero/">&lt;p&gt;一个用Python如何将自己的树莓派打造成“渗透测试神器”&lt;/p&gt;
+
+&lt;p&gt;date：2017-10-21
+author：zhangjianxin&lt;/p&gt;
+
+&lt;p&gt;[TOC]&lt;/p&gt;
+
+&lt;h1 id=&quot;1--初始化树莓派zero&quot;&gt;1 、 初始化树莓派zero。&lt;/h1&gt;
+
+&lt;p&gt;[*] 第一步安装系统，&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;有以下设备
+    &lt;ul&gt;
+      &lt;li&gt;raspberry pi zero&lt;/li&gt;
+      &lt;li&gt;SSK 转接卡&lt;/li&gt;
+      &lt;li&gt;闪迪SD卡8GClass10&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/1508598613256.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;第一次没有插入SD卡的时候&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;➜  ~ df -h
+Filesystem                          Size   Used  Avail Capacity iused      ifree %iused  Mounted on
+/dev/disk1                         112Gi   93Gi   18Gi    84% 1444634 4293522645    0%   /
+devfs                              186Ki  186Ki    0Bi   100%     642          0  100%   /dev
+map -hosts                           0Bi    0Bi    0Bi   100%       0          0  100%   /net
+map auto_home                        0Bi    0Bi    0Bi   100%       0          0  100%   /home
+localhost:/fMn-YFzQfnHjvi04JpRLvc  112Gi  112Gi    0Bi   100%       0          0  100%   /Volumes/MobileBackups
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;插入sd卡的时候（多了一个/dev/disk2s1 ）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/df-h-sd-card.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;➜  ~ df -h
+Filesystem                          Size   Used  Avail Capacity iused      ifree %iused  Mounted on
+/dev/disk1                         112Gi   93Gi   18Gi    84% 1444634 4293522645    0%   /
+devfs                              186Ki  186Ki    0Bi   100%     642          0  100%   /dev
+map -hosts                           0Bi    0Bi    0Bi   100%       0          0  100%   /net
+map auto_home                        0Bi    0Bi    0Bi   100%       0          0  100%   /home
+localhost:/fMn-YFzQfnHjvi04JpRLvc  112Gi  112Gi    0Bi   100%       0          0  100%   /Volumes/MobileBackups
+/dev/disk2s1                       7.4Gi  2.4Mi  7.4Gi     1%      76     243827    0%   /Volumes/usb
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;通过diskutils工具进行umont这个SD卡(为了防止其他程序写入)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/umount-mac.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;```bash
+➜  ~ diskutil unmountDisk /dev/disk2s1
+Unmount of all volumes on disk2 was successful
+```
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;通过dd 写入镜像到sd卡。(10min)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/dd-sd-car-success.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;```bash
+➜  ~ sudo dd bs=512  if=2017-02-16-raspbian-jessie.img  of=/dev/disk2s1
+```
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Ethernet Gadget模式即USB网卡模式，
+   比较常见的就是通过android手机的usb接口对pc进行网络共享的一种手段，
+   一般电脑都会自动识别这种设备，并开启网卡进行共享。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;1、修改配置文件
+为了进行usb连接，我们需要修改BOOT文件夹下的&lt;code class=&quot;highlighter-rouge&quot;&gt;config.txt&lt;/code&gt; 与&lt;code class=&quot;highlighter-rouge&quot;&gt;cmdline.txt&lt;/code&gt;配置文件。
+首先在&lt;code class=&quot;highlighter-rouge&quot;&gt;config.txt&lt;/code&gt;最末行处换行添加如下代码，打开usb网卡模式：&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  sudo vim config.txt
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;增加内容如下：&lt;/p&gt;
+
+    &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; dtoverlay=dwc2
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/vim-config.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cmdline.txt&lt;/code&gt;文件中找到&lt;code class=&quot;highlighter-rouge&quot;&gt;rootwait&lt;/code&gt;字段，并在其后面空格添加如下信息，在打开系统时开启usb网卡模式。&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; sudo vim cmdline.txt
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;增加内容如下：&lt;/p&gt;
+
+    &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   modules-load=dwc2,g_ether
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/vim-cmdline.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;通过usb连接设备树莓派zero有两个&lt;code class=&quot;highlighter-rouge&quot;&gt;MicroUSB&lt;/code&gt;口，一个是&lt;code class=&quot;highlighter-rouge&quot;&gt;电源&lt;/code&gt;插口，职司供电的功能，
+另外一个就是usb接口，它除了供电以外还提供&lt;code class=&quot;highlighter-rouge&quot;&gt;OTG&lt;/code&gt;的功能，我们也是通过这个接口来连接pc
+ssh连接到树莓派  默认账号为&lt;code class=&quot;highlighter-rouge&quot;&gt;pi&lt;/code&gt; 密码为&lt;code class=&quot;highlighter-rouge&quot;&gt;raspberry&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;将树莓派的第二个USB口链接，并且链接到MacBook的USB口(Win10都可以)。&lt;/li&gt;
+  &lt;li&gt;等待启动，树莓派zero的灯成黄色急闪状态(在load内核。)&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在你的网络内看到以下显示，就可以ssh链接树莓派zero了。&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/usb-otg.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;配置网络地址，wifi网卡
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; pi@raspberrypi:~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;添加以下内容
+    &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; network={
+ ssid=&quot;WiFi-B&quot;
+ psk=&quot;12345678&quot;
+ key_mgmt=WPA-PSK
+ priority=1
+ }
+ -----------------
+ #ssid:网络的ssid
+
+ #psk:密码
+
+ #priority:连接优先级，数字越大优先级越高（不可以是负数）
+
+ #scan_ssid:连接隐藏WiFi时需要指定该值为1
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;保存配置 &lt;code class=&quot;highlighter-rouge&quot;&gt;control + o 后 Enter&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;退出 &lt;code class=&quot;highlighter-rouge&quot;&gt;control + x &lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;重启ZeroW &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo reboot&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ping Test&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/ssh-new-ping.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;2-配置和下载安装程序&quot;&gt;2 、配置和下载安装程序&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;安装软件
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; sudo apt-get update
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/zero-update.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; sudo apt-get install git john
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/zero-install-git.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;克隆代码&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  git clone --recursive  http://github.com/mame82/P4wnP1
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/git-clone-bad-usb.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;安装&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;P4wnP1/
+ .／install.sh
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;提示
+    &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    当然最重要的一点是安装后完毕wifi会修改为P4wnP1
+    密码是MaMe82-P4wnP1
+    ssh连接的地址是172.24.0.1账号和密码还是树莓派的初始密码
+    建议修改初始密码！小心被黑(bao)吃(ju)黑(hua)！！！
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;蓝牙ssh连接的地址是172.26.0.1&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;配置文件地址如下：
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  pi@MAME82-P4WNP1:~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;nano P4wnP1/setup.cfg
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/images/hack-setting.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;目前有的功能列表&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/images/windows-python-script-hack.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;测试shell,可以直接获取权限，图片：&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/images/success-bad-usb-hack.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;3-成品图&quot;&gt;3 成品图：&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;以上操作经过验证可以直接拿去。&lt;/li&gt;
+  &lt;li&gt;auther &lt;code class=&quot;highlighter-rouge&quot;&gt;breakEval13&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;https://github.com/breakEval13&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>breakeval13</name></author><summary type="html">一个用Python如何将自己的树莓派打造成“渗透测试神器”</summary></entry><entry><title type="html">Python端口转发</title><link href="http://firsh.me/2017/10/18/re-port-python/" rel="alternate" type="text/html" title="Python端口转发" /><published>2017-10-18T00:00:00+08:00</published><updated>2017-10-18T00:00:00+08:00</updated><id>http://firsh.me/2017/10/18/re-port-python</id><content type="html" xml:base="http://firsh.me/2017/10/18/re-port-python/">&lt;p&gt;一个用Python做端口转发的源码示例&lt;/p&gt;
 
 &lt;h1 id=&quot;先看代码&quot;&gt;先看代码&lt;/h1&gt;
 &lt;p&gt;date：2017-10-17
@@ -1968,715 +2215,6 @@ root  18443  1  0 13:05 ?    00:00:00 ./redis-server &lt;span class=&quot;k&quot
 &lt;/code&gt;&lt;/pre&gt;
     &lt;/div&gt;
   &lt;/li&gt;
-  &lt;li&gt;以上代码经过验证可以直接拿去修改调用&lt;/li&gt;
-  &lt;li&gt;Owner &lt;code class=&quot;highlighter-rouge&quot;&gt;breakEval13&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;https://github.com/breakEval13&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>breakeval13</name></author><summary type="html">没事看看文章而已～</summary></entry><entry><title type="html">使用python进程与线程</title><link href="http://firsh.me/2017/08/07/python-thread/" rel="alternate" type="text/html" title="使用python进程与线程" /><published>2017-08-07T00:00:00+08:00</published><updated>2017-08-07T00:00:00+08:00</updated><id>http://firsh.me/2017/08/07/python-thread</id><content type="html" xml:base="http://firsh.me/2017/08/07/python-thread/">&lt;p&gt;没事看看文章而已～&lt;/p&gt;
-
-&lt;h1 id=&quot;python进程线程协程详解&quot;&gt;Python进程、线程、协程详解&lt;/h1&gt;
-
-&lt;h3 id=&quot;进程与线程的历史&quot;&gt;进程与线程的历史&lt;/h3&gt;
-
-&lt;p&gt;我们都知道计算机是由硬件和软件组成的。硬件中的CPU是计算机的核心，它承担计算机的所有任务。
-操作系统是运行在硬件之上的软件，是计算机的管理者，它负责资源的管理和分配、任务的调度。 程序是运行在系统上的具有某种功能的软件，比如说浏览器，音乐播放器等。
-每次执行程序的时候，都会完成一定的功能，比如说浏览器帮我们打开网页，为了保证其独立性，就需要一个专门的管理和控制执行程序的数据结构——进程控制块。
-进程就是一个程序在一个数据集上的一次动态执行过程。 进程一般由程序、数据集、进程控制块三部分组成。我们编写的程序用来描述进程要完成哪些功能以及如何完成；数据
-集则是程序在执行过程中所需要使用的资源；进程控制块用来记录进程的外部特征，描述进程的执行变化过程，系统可以利用它来控制和管理进程，它是系统感知进程存在的唯一
-标志。&lt;/p&gt;
-
-&lt;p&gt;在早期的操作系统里，计算机只有一个核心，进程执行程序的最小单位，任务调度采用时间片轮转的抢占式方式进行进程调度。每个进程都有各自的一块独立的内存，保证进程彼
-此间的内存地址空间的隔离。 随着计算机技术的发展，进程出现了很多弊端，一是进程的创建、撤销和切换的开销比较大，二是由于对称多处理机（对称多处理机
-（SymmetricalMulti-Processing）又叫SMP，是指在一个计算机上汇集了一组处理器(多CPU)，各CPU之间共享内存子系统以及总线结构
-）的出现，可以满足多个运行单位，而多进程并行开销过大。 这个时候就引入了线程的概念。
-线程也叫轻量级进程，它是一个基本的CPU执行单元，也是程序执行过程中的最小单元，由线程ID、程序计数器、寄存器集合
-和堆栈共同组成。线程的引入减小了程序并发执行时的开销，提高了操作系统的并发性能。
-线程没有自己的系统资源，只拥有在运行时必不可少的资源。但线程可以与同属与同一进程的其他线程共享进程所拥有的其他资源。&lt;/p&gt;
-
-&lt;h3 id=&quot;进程与线程之间的关系&quot;&gt;进程与线程之间的关系&lt;/h3&gt;
-
-&lt;p&gt;线程是属于进程的，线程运行在进程空间内，同一进程所产生的线程共享同一内存空间，当进程退出时该进程所产生的线程都会被强制退出并清除。线程可与属于同一进程的其它
-线程共享进程所拥有的全部资源，但是其本身基本上不拥有系统资源，只拥有一点在运行中必不可少的信息(如程序计数器、一组寄存器和栈)。&lt;/p&gt;
-
-&lt;p&gt;python 线程&lt;/p&gt;
-
-&lt;p&gt;Threading用于提供线程相关的操作，线程是应用程序中工作的最小单元。&lt;/p&gt;
-
-&lt;h3 id=&quot;1threading模块&quot;&gt;1、threading模块&lt;/h3&gt;
-
-&lt;p&gt;threading 模块建立在 _thread 模块之上。thread 模块以低级、原始的方式来处理和控制线程，而 threading 模块通过对
-thread 进行二次封装，提供了更方便的 api 来处理线程。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-pyhton&quot;&gt;    import threading
-    import time
-      
-    def worker(num):
-        &quot;&quot;&quot;
-        thread worker function
-        :return:
-        &quot;&quot;&quot;
-        time.sleep(1)
-        print(&quot;The num is  %d&quot; % num)
-        return
-      
-    for i in range(20):
-        t = threading.Thread(target=worker,args=(i,)，name=“t.%d” % i)
-        t.start()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;上述代码创建了20个“前台”线程，然后控制器就交给了CPU，CPU根据指定算法进行调度，分片执行指令。&lt;/p&gt;
-
-&lt;p&gt;Thread方法说明&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;t.start() &lt;/code&gt;: 激活线程，&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;t.getName()&lt;/code&gt; : 获取线程的名称&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;t.setName() &lt;/code&gt;： 设置线程的名称&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;t.name&lt;/code&gt; : 获取或设置线程的名称&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;t.is_alive() &lt;/code&gt;： 判断线程是否为激活状态&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;t.isAlive() &lt;/code&gt;：判断线程是否为激活状态&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;t.setDaemon() &lt;/code&gt;设置为后台线程或前台线程（默认：&lt;code class=&quot;highlighter-rouge&quot;&gt;False&lt;/code&gt;）;通过一个布尔值设置线程是否为守护线程，必须在执行start()方法之后才可以使用。
-如果是后台线程，主线程执行过程中，后台线程也在进行，主线程执行完毕后，后台线程不论成功与否，均停止；如果是前台线程，主线程执行过程中，前台线程也在进行，主线
-程执行完毕后，等待前台线程也执行完成后，程序停止&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;t.isDaemon()&lt;/code&gt; ： 判断是否为守护线程&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;t.ident&lt;/code&gt; ：获取线程的标识符。线程标识符是一个非零整数，只有在调用了start()方法之后该属性才有效，否则它只返回None。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;t.join() &lt;/code&gt;：逐个执行每个线程，执行完毕后继续往下执行，该方法使得多线程变得无意义&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;t.run() &lt;/code&gt; ：线程被cpu调度后自动执行线程对象的run方法&lt;/p&gt;
-
-&lt;h3 id=&quot;2线程锁threadingrlock和threadinglock&quot;&gt;2、线程锁&lt;code class=&quot;highlighter-rouge&quot;&gt;threading.RLock和threading.Lock&lt;/code&gt;&lt;/h3&gt;
-
-&lt;p&gt;由于线程之间是进行随机调度，并且每个线程可能只执行n条执行之后，CPU接着执行其他线程。为了保证数据的准确性，引入了锁的概念。所以，可能出现如下问题：&lt;/p&gt;
-
-&lt;p&gt;例：假设列表A的所有元素就为0，当一个线程从前向后打印列表的所有元素，另外一个线程则从后向前修改列表的元素为1,那么输出的时候，列表的元素就会一部分为0，一
-部分为1,这就导致了数据的不一致。锁的出现解决了这个问题。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-pyhton&quot;&gt;    import threading
-    import time
-      
-    globals_num = 0
-      
-    lock = threading.RLock()
-      
-    def Func():
-        lock.acquire()  # 获得锁
-        global globals_num
-        globals_num += 1
-        time.sleep(1)
-        print(globals_num)
-        lock.release()  # 释放锁
-      
-    for i in range(10):
-        t = threading.Thread(target=Func)
-        t.start()
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;3threadingrlock和threadinglock-的区别&quot;&gt;3、&lt;code class=&quot;highlighter-rouge&quot;&gt;threading.RLock和threading.Lock&lt;/code&gt; 的区别&lt;/h3&gt;
-
-&lt;p&gt;RLock允许在同一线程中被多次acquire。而Lock却不允许这种情况。
-如果使用RLock，那么acquire和release必须成对出现，即调用了n次acquire，必须调用n次的release才能真正释放所占用的琐。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-pyhton&quot;&gt;    import threading
-    lock = threading.Lock()    #Lock对象
-    lock.acquire()
-    lock.acquire()  #产生了死琐。
-    lock.release()
-    lock.release()　
-    import threading
-    rLock = threading.RLock()  #RLock对象
-    rLock.acquire()
-    rLock.acquire()    #在同一线程内，程序不会堵塞。
-    rLock.release()
-    rLock.release()
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;4threadingevent&quot;&gt;4、&lt;code class=&quot;highlighter-rouge&quot;&gt;threading.Event&lt;/code&gt;&lt;/h3&gt;
-
-&lt;p&gt;python线程的事件用于主线程控制其他线程的执行，事件主要提供了三个方法 set、wait、clear。&lt;/p&gt;
-
-&lt;p&gt;事件处理的机制：全局定义了一个“Flag”，如果“Flag”值为 False，那么当程序执行 event.wait
-方法时就会阻塞，如果“Flag”值为True，那么event.wait 方法时便不再阻塞。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;clear&lt;/code&gt;：将“Flag”设置为False&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;set&lt;/code&gt;：将“Flag”设置为True&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Event.isSet()&lt;/code&gt; ：判断标识位是否为Ture。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-pyhton&quot;&gt;    import threading
-      
-    def do(event):
-        print('start')
-        event.wait()
-        print('execute')
-      
-    event_obj = threading.Event()
-    for i in range(10):
-        t = threading.Thread(target=do, args=(event_obj,))
-        t.start()
-      
-    event_obj.clear()
-    inp = input('input:')
-    if inp == 'true':
-        event_obj.set()
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;当线程执行的时候，如果flag为False，则线程会阻塞，当flag为True的时候，线程不会阻塞。它提供了本地和远程的并发性。&lt;/p&gt;
-
-&lt;h3 id=&quot;5threadingcondition&quot;&gt;5、&lt;code class=&quot;highlighter-rouge&quot;&gt;threading.Condition&lt;/code&gt;&lt;/h3&gt;
-
-&lt;p&gt;一个&lt;code class=&quot;highlighter-rouge&quot;&gt;condition&lt;/code&gt;变量总是与某些类型的锁相联系，这个可以使用默认的情况或创建一个，当几个condition变量必须共享和同一个锁的时候，是很有用的。锁是
-conditon对象的一部分：没有必要分别跟踪。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;condition&lt;/code&gt;变量服从上下文管理协议：with语句块封闭之前可以获取与锁的联系。 &lt;code class=&quot;highlighter-rouge&quot;&gt;acquire()&lt;/code&gt; 和 ` release()`
-会调用与锁相关联的相应的方法。&lt;/p&gt;
-
-&lt;p&gt;其他和锁关联的方法必须被调用，&lt;code class=&quot;highlighter-rouge&quot;&gt;wait()&lt;/code&gt;方法会释放锁，当另外一个线程使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;notify()&lt;/code&gt; or
-&lt;code class=&quot;highlighter-rouge&quot;&gt;notify_all()&lt;/code&gt;唤醒它之前会一直阻塞。一旦被唤醒，wait()会重新获得锁并返回，&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Condition&lt;/code&gt; 类实现了一个conditon变量。 这个conditiaon变量允许一个或多个线程等待，直到他们被另一个线程通知。
-如果lock参数，被给定一个非空的值，，那么他必须是一个lock或者Rlock对象，它用来做底层锁。否则，会创建一个新的Rlock对象，用来做底层锁。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;wait(timeout=None) &lt;/code&gt;：
-等待通知，或者等到设定的超时时间。当调用这wait()方法时，如果调用它的线程没有得到锁，那么会抛出一个RuntimeError 异常。
-wati()释放锁以后，在被调用相同条件的另一个进程用&lt;code class=&quot;highlighter-rouge&quot;&gt;notify()&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;notify_all()&lt;/code&gt; 叫醒之前 会一直阻塞。wait()
-还可以指定一个超时时间。&lt;/p&gt;
-
-&lt;p&gt;如果有等待的线程，&lt;code class=&quot;highlighter-rouge&quot;&gt;notify()&lt;/code&gt;方法会唤醒一个在等待conditon变量的线程。&lt;code class=&quot;highlighter-rouge&quot;&gt;notify_all()&lt;/code&gt; 则会唤醒所有在等待conditon变量的线程。&lt;/p&gt;
-
-&lt;p&gt;注意： &lt;code class=&quot;highlighter-rouge&quot;&gt;notify()&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;notify_all()&lt;/code&gt;不会释放锁，也就是说，线程被唤醒后不会立刻返回他们的&lt;code class=&quot;highlighter-rouge&quot;&gt;wait()&lt;/code&gt;
-调用。除非线程调用&lt;code class=&quot;highlighter-rouge&quot;&gt;notify()&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;notify_all()&lt;/code&gt;之后放弃了锁的所有权。&lt;/p&gt;
-
-&lt;p&gt;在典型的设计风格里，利用condition变量用锁去通许访问一些共享状态，线程在获取到它想得到的状态前，会反复调用wait()。修改状态的线程在他们状态改变
-时调用 notify() or notify_all()，用这种方式，线程会尽可能的获取到想要的一个等待者状态。 例子： 生产者-消费者模型，&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-pyhton&quot;&gt;    import threading
-    import time
-    def consumer(cond):
-        with cond:
-            print(&quot;consumer before wait&quot;)
-            cond.wait()
-            print(&quot;consumer after wait&quot;)
-      
-    def producer(cond):
-        with cond:
-            print(&quot;producer before notifyAll&quot;)
-            cond.notifyAll()
-            print(&quot;producer after notifyAll&quot;)
-      
-    condition = threading.Condition()
-    c1 = threading.Thread(name=&quot;c1&quot;, target=consumer, args=(condition,))
-    c2 = threading.Thread(name=&quot;c2&quot;, target=consumer, args=(condition,))
-      
-    p = threading.Thread(name=&quot;p&quot;, target=producer, args=(condition,))
-      
-    c1.start()
-    time.sleep(2)
-    c2.start()
-    time.sleep(2)
-    p.start()
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;6queue模块&quot;&gt;6、&lt;code class=&quot;highlighter-rouge&quot;&gt;queue&lt;/code&gt;模块&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Queue&lt;/code&gt; 就是对队列，它是线程安全的&lt;/p&gt;
-
-&lt;p&gt;举例来说，我们去麦当劳吃饭。饭店里面有厨师职位，前台负责把厨房做好的饭卖给顾客，顾客则去前台领取做好的饭。这里的前台就相当于我们的队列。形成管道样，厨师做好
-饭通过前台传送给顾客，所谓单向队列&lt;/p&gt;
-
-&lt;p&gt;这个模型也叫生产者-消费者模型。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-pyhton&quot;&gt;    import queue
-     
-    q = queue.Queue(maxsize=0)  # 构造一个先进显出队列，maxsize指定队列长度，为0 时，表示队列长度无限制。
-     
-    q.join()    # 等到队列为kong的时候，在执行别的操作
-    q.qsize()   # 返回队列的大小 （不可靠）
-    q.empty()   # 当队列为空的时候，返回True 否则返回False （不可靠）
-    q.full()    # 当队列满的时候，返回True，否则返回False （不可靠）
-    q.put(item, block=True, timeout=None) #  将item放入Queue尾部，item必须存在，可以参数block默认为True,表示当队列满时，会等待队列给出可用位置，
-    　　　　　　　　　　　　　　　　　　　　　　　　 为False时为非阻塞，此时如果队列已满，会引发queue.Full 异常。 可选参数timeout，表示 会阻塞设置的时间，过后，
-    　　　　　　　　　　　　　　　　　　　　　　　　  如果队列无法给出放入item的位置，则引发 queue.Full 异常
-    q.get(block=True, timeout=None) #   移除并返回队列头部的一个值，可选参数block默认为True，表示获取值的时候，如果队列为空，则阻塞，为False时，不阻塞，
-    　　　　　　　　　　　　　　　　　　　　　　若此时队列为空，则引发 queue.Empty异常。 可选参数timeout，表示会阻塞设置的时候，过后，如果队列为空，则引发Empty异常。
-    q.put_nowait(item) #   等效于 put(item,block=False)
-    q.get_nowait() #    等效于 get(item,block=False)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;代码如下：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-pyhton&quot;&gt;    #!/usr/bin/env python
-    import Queue
-    import threading
-    message = Queue.Queue(10)
-     
-     
-    def producer(i):
-        while True:
-            message.put(i)
-     
-     
-    def consumer(i):
-        while True:
-            msg = message.get()
-     
-     
-    for i in range(12):
-        t = threading.Thread(target=producer, args=(i,))
-        t.start()
-     
-    for i in range(10):
-        t = threading.Thread(target=consumer, args=(i,))
-        t.start()
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;那就自己做个线程池吧：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-pyhton&quot;&gt;
-    # 简单往队列中传输线程数
-    import threading
-    import time
-    import queue
-    class Threadingpool():
-        def __init__(self,max_num = 10):
-            self.queue = queue.Queue(max_num)
-            for i in range(max_num):
-                self.queue.put(threading.Thread)
-        def getthreading(self):
-            return self.queue.get()
-        def addthreading(self):
-            self.queue.put(threading.Thread)
-    def func(p,i):
-        time.sleep(1)
-        print(i)
-        p.addthreading()
-    if __name__ == &quot;__main__&quot;:
-        p = Threadingpool()
-        for i in range(20):
-            thread = p.getthreading()
-            t = thread(target = func, args = (p,i))
-            t.start()
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-pyhton&quot;&gt;    #往队列中无限添加任务
-    import queue
-    import threading
-    import contextlib
-    import time
-    StopEvent = object()
-    class ThreadPool(object):
-        def __init__(self, max_num):
-            self.q = queue.Queue()
-            self.max_num = max_num
-            self.terminal = False
-            self.generate_list = []
-            self.free_list = []
-        def run(self, func, args, callback=None):
-            &quot;&quot;&quot;
-            线程池执行一个任务
-            :param func: 任务函数
-            :param args: 任务函数所需参数
-            :param callback: 任务执行失败或成功后执行的回调函数，回调函数有两个参数1、任务函数执行状态；2、任务函数返回值（默认为None，即：不执行回调函数）
-            :return: 如果线程池已经终止，则返回True否则None
-            &quot;&quot;&quot;
-            if len(self.free_list) == 0 and len(self.generate_list) &amp;lt; self.max_num:
-                self.generate_thread()
-            w = (func, args, callback,)
-            self.q.put(w)
-        def generate_thread(self):
-            &quot;&quot;&quot;
-            创建一个线程
-            &quot;&quot;&quot;
-            t = threading.Thread(target=self.call)
-            t.start()
-        def call(self):
-            &quot;&quot;&quot;
-            循环去获取任务函数并执行任务函数
-            &quot;&quot;&quot;
-            current_thread = threading.currentThread
-            self.generate_list.append(current_thread)
-            event = self.q.get()  # 获取线程
-            while event != StopEvent:   # 判断获取的线程数不等于全局变量
-                func, arguments, callback = event   # 拆分元祖，获得执行函数，参数，回调函数
-                try:
-                    result = func(*arguments)   # 执行函数
-                    status = True
-                except Exception as e:    # 函数执行失败
-                    status = False
-                    result = e
-                if callback is not None:
-                    try:
-                        callback(status, result)
-                    except Exception as e:
-                        pass
-                # self.free_list.append(current_thread)
-                # event = self.q.get()
-                # self.free_list.remove(current_thread)
-                with self.work_state():
-                    event = self.q.get()
-            else:
-                self.generate_list.remove(current_thread)
-        def close(self):
-            &quot;&quot;&quot;
-            关闭线程，给传输全局非元祖的变量来进行关闭
-            :return:
-            &quot;&quot;&quot;
-            for i in range(len(self.generate_list)):
-                self.q.put(StopEvent)
-        def terminate(self):
-            &quot;&quot;&quot;
-            突然关闭线程
-            :return:
-            &quot;&quot;&quot;
-            self.terminal = True
-            while self.generate_list:
-                self.q.put(StopEvent)
-            self.q.empty()
-        @contextlib.contextmanager
-        def work_state(self):
-            self.free_list.append(threading.currentThread)
-            try:
-                yield
-            finally:
-                self.free_list.remove(threading.currentThread)
-    def work(i):
-        print(i)
-        return i +1 # 返回给回调函数
-    def callback(ret):
-        print(ret)
-    pool = ThreadPool(10)
-    for item in range(50):
-        pool.run(func=work, args=(item,),callback=callback)
-    pool.terminate()
-    # pool.close()
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;python-进程&quot;&gt;python 进程&lt;/h3&gt;
-
-&lt;p&gt;multiprocessing是python的多进程管理包，和threading.Thread类似。&lt;/p&gt;
-
-&lt;h3 id=&quot;1multiprocessing模块&quot;&gt;1、multiprocessing模块&lt;/h3&gt;
-
-&lt;p&gt;直接从侧面用subprocesses替换线程使用GIL的方式，由于这一点，multiprocessing模块可以让程序员在给定的机器上充分的利用CPU。在m
-ultiprocessing中，通过创建Process对象生成进程，然后调用它的start()方法，&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-pyhton&quot;&gt;    from multiprocessing import Process
-     
-    def func(name):
-        print('hello', name)
-     
-     
-    if __name__ == &quot;__main__&quot;:
-        p = Process(target=func,args=('zhangyanlin',))
-        p.start()
-        p.join()  # 等待进程执行完毕
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;在使用并发设计的时候最好尽可能的避免共享数据，尤其是在使用多进程的时候。 如果你真有需要 要共享数据， multiprocessing提供了两种方式。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;（1）multiprocessing，Array,Value&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;数据可以用Value或Array存储在一个共享内存地图里，如下：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-pyhton&quot;&gt;    from multiprocessing import Array,Value,Process
-     
-    def func(a,b):
-        a.value = 3.333333333333333
-        for i in range(len(b)):
-            b[i] = -b[i]
-     
-     
-    if __name__ == &quot;__main__&quot;:
-        num = Value('d',0.0)
-        arr = Array('i',range(11))
-     
-     
-        c = Process(target=func,args=(num,arr))
-        d= Process(target=func,args=(num,arr))
-        c.start()
-        d.start()
-        c.join()
-        d.join()
-     
-        print(num.value)
-        for i in arr:
-            print(i)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;输出：&lt;/p&gt;
-
-    &lt;p&gt;　　3.1415927
-  　　[0, -1, -2, -3, -4, -5, -6, -7, -8, -9]&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;创建num和arr时，“d”和“i”参数由Array模块使用的typecodes创建：“d”表示一个双精度的浮点数，“i”表示一个有符号的整数，这些共享对象
-将被线程安全的处理。&lt;/p&gt;
-
-&lt;p&gt;Array(‘i’, range(10))中的‘i’参数：&lt;/p&gt;
-
-&lt;p&gt;‘c’: ctypes.c_char　　　　 ‘u’: ctypes.c_wchar　　　　‘b’: ctypes.c_byte　　　　 ‘B’:
-ctypes.c_ubyte&lt;/p&gt;
-
-&lt;p&gt;‘h’: ctypes.c_short　　　  ‘H’: ctypes.c_ushort　　  ‘i’: ctypes.c_int　　　　　 ‘I’:
-ctypes.c_uint&lt;/p&gt;
-
-&lt;p&gt;‘l’: ctypes.c_long,　　　　‘L’: ctypes.c_ulong　　　　‘f’: ctypes.c_float　　　　‘d’:
-ctypes.c_double&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;（2）multiprocessing，Manager&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;由&lt;code class=&quot;highlighter-rouge&quot;&gt;Manager()&lt;/code&gt;返回的&lt;code class=&quot;highlighter-rouge&quot;&gt;manager&lt;/code&gt;提供list, dict, Namespace, Lock, RLock, Semaphore,
-BoundedSemaphore, Condition, Event, Barrier, Queue, Value and Array类型的支持。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-pyhton&quot;&gt;    from multiprocessing import Process,Manager
-    def f(d,l):
-        d[&quot;name&quot;] = &quot;zhangyanlin&quot;
-        d[&quot;age&quot;] = 18
-        d[&quot;Job&quot;] = &quot;pythoner&quot;
-        l.reverse()
-     
-    if __name__ == &quot;__main__&quot;:
-        with Manager() as man:
-            d = man.dict()
-            l = man.list(range(10))
-     
-            p = Process(target=f,args=(d,l))
-            p.start()
-            p.join()
-     
-            print(d)
-            print(l)
-
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;输出：&lt;/p&gt;
-
-    &lt;p&gt;　　{0.25: None, 1: ’1’, ’2’: 2}
-  　　[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Server process manager比 shared memory
-更灵活，因为它可以支持任意的对象类型。另外，一个单独的manager可以通过进程在网络上不同的计算机之间共享，不过他比shared memory要慢。&lt;/p&gt;
-
-&lt;h3 id=&quot;2进程池using-a-pool-of-workers&quot;&gt;2、进程池（Using a pool of workers）&lt;/h3&gt;
-
-&lt;p&gt;Pool类描述了一个工作进程池，他有几种不同的方法让任务卸载工作进程。&lt;/p&gt;
-
-&lt;p&gt;进程池内部维护一个进程序列，当使用时，则去进程池中获取一个进程，如果进程池序列中没有可供使用的进进程，那么程序就会等待，直到进程池中有可用进程为止。&lt;/p&gt;
-
-&lt;p&gt;我们可以用Pool类创建一个进程池， 展开提交的任务给进程池。 例：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-pyhton&quot;&gt;    #apply
-    from  multiprocessing import Pool
-    import time
-     
-    def f1(i):
-        time.sleep(0.5)
-        print(i)
-        return i + 100
-     
-    if __name__ == &quot;__main__&quot;:
-        pool = Pool(5)
-        for i in range(1,31):
-            pool.apply(func=f1,args=(i,))
-     
-    #apply_async
-    def f1(i):
-        time.sleep(0.5)
-        print(i)
-        return i + 100
-    def f2(arg):
-        print(arg)
-     
-    if __name__ == &quot;__main__&quot;:
-        pool = Pool(5)
-        for i in range(1,31):
-            pool.apply_async(func=f1,args=(i,),callback=f2)
-        pool.close()
-        pool.join()
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;一个进程池对象可以控制工作进程池的哪些工作可以被提交，它支持超时和回调的异步结果，有一个类似map的实现。&lt;/p&gt;
-
-&lt;p&gt;processes ：使用的工作进程的数量，如果processes是None那么使用 os.cpu_count()返回的数量。&lt;/p&gt;
-
-&lt;p&gt;initializer： 如果initializer是None，那么每一个工作进程在开始的时候会调用initializer(*initargs)。&lt;/p&gt;
-
-&lt;p&gt;maxtasksperchild：工作进程退出之前可以完成的任务数，完成后用一个心的工作进程来替代原进程，来让闲置的资源被释放。maxtasksperchi
-ld默认是None，意味着只要Pool存在工作进程就会一直存活。&lt;/p&gt;
-
-&lt;p&gt;context: 用在制定工作进程启动时的上下文，一般使用 multiprocessing.Pool()
-或者一个context对象的Pool()方法来创建一个池，两种方法都适当的设置了context&lt;/p&gt;
-
-&lt;p&gt;注意：Pool对象的方法只可以被创建pool的进程所调用。&lt;/p&gt;
-
-&lt;p&gt;New in version 3.2: maxtasksperchild&lt;/p&gt;
-
-&lt;p&gt;New in version 3.4: context&lt;/p&gt;
-
-&lt;h3 id=&quot;进程池的方法&quot;&gt;进程池的方法&lt;/h3&gt;
-
-&lt;p&gt;apply(func[, args[, kwds]]) ：使用arg和kwds参数调用func函数，结果返回前会一直阻塞，由于这个原因，apply_asyn
-c()更适合并发执行，另外，func函数仅被pool中的一个进程运行。&lt;/p&gt;
-
-&lt;p&gt;apply_async(func[, args[, kwds[, callback[, error_callback]]]]) ： apply()方法的一个
-变体，会返回一个结果对象。如果callback被指定，那么callback可以接收一个参数然后被调用，当结果准备好回调时会调用callback，调用失败时，
-则用error_callback替换callback。 Callbacks应被立即完成，否则处理结果的线程会被阻塞。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;close() &lt;/code&gt;： 阻止更多的任务提交到pool，待任务完成后，工作进程会退出。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;terminate() &lt;/code&gt;： 不管任务是否完成，立即停止工作进程。在对pool对象进程垃圾回收的时候，会立即调用terminate()。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;join()&lt;/code&gt; : wait工作线程的退出，在调用join()前，必须调用close() or
-&lt;code class=&quot;highlighter-rouge&quot;&gt;terminate()&lt;/code&gt;。这样是因为被终止的进程需要被父进程调用wait（join等价与wait），否则进程会成为僵尸进程。&lt;/p&gt;
-
-&lt;p&gt;map(func, iterable[, chunksize])¶&lt;/p&gt;
-
-&lt;p&gt;map_async(func, iterable[, chunksize[, callback[, error_callback]]])¶&lt;/p&gt;
-
-&lt;p&gt;imap(func, iterable[, chunksize])¶&lt;/p&gt;
-
-&lt;p&gt;imap_unordered(func, iterable[, chunksize])&lt;/p&gt;
-
-&lt;p&gt;starmap(func, iterable[, chunksize])¶&lt;/p&gt;
-
-&lt;p&gt;starmap_async(func, iterable[, chunksize[, callback[, error_back]]])&lt;/p&gt;
-
-&lt;h3 id=&quot;python-协程&quot;&gt;python 协程&lt;/h3&gt;
-
-&lt;p&gt;线程和进程的操作是由程序触发系统接口，最后的执行者是系统；协程的操作则是程序员。&lt;/p&gt;
-
-&lt;p&gt;协程存在的意义：对于多线程应用，CPU通过切片的方式来切换线程间的执行，线程切换时需要耗时（保存状态，下次继续）。协程，则只使用一个线程，在一个线程中规定某
-个代码块执行顺序。&lt;/p&gt;
-
-&lt;p&gt;协程的适用场景：当程序中存在大量不需要CPU的操作时（IO），适用于协程；&lt;/p&gt;
-
-&lt;p&gt;event loop是协程执行的控制点， 如果你希望执行协程， 就需要用到它们。&lt;/p&gt;
-
-&lt;p&gt;event loop提供了如下的特性：&lt;/p&gt;
-
-&lt;p&gt;注册、执行、取消延时调用(异步函数)&lt;/p&gt;
-
-&lt;p&gt;创建用于通信的client和server协议(工具)&lt;/p&gt;
-
-&lt;p&gt;创建和别的程序通信的子进程和协议(工具)&lt;/p&gt;
-
-&lt;p&gt;把函数调用送入线程池中&lt;/p&gt;
-
-&lt;p&gt;协程示例：&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;import&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;asyncio&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;  &lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;async&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;def&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cor1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;COR1 start&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;await&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cor2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;COR1 end&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;  &lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;async&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;def&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cor2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;COR2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;  &lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;loop&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;asyncio&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_event_loop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;loop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run_until_complete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cor1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;loop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;最后三行是重点。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;asyncio.get_event_loop()&lt;/code&gt;  : asyncio启动默认的event loop&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;run_until_complete()&lt;/code&gt;  :  这个函数是阻塞执行的，知道所有的异步函数执行完成，&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;close()&lt;/code&gt;  :  关闭event loop。&lt;/p&gt;
-
-&lt;h3 id=&quot;1greenlet&quot;&gt;1、greenlet&lt;/h3&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;import&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;greenlet&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;def&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fun1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;12&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gr2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;switch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;56&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gr2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;switch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt; &lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;def&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fun2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;34&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gr1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;switch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;78&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt; &lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt; &lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;gr1&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;greenlet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;greenlet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fun1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;gr2&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;greenlet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;greenlet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fun2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;gr1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;switch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;2gevent&quot;&gt;2、gevent&lt;/h3&gt;
-
-&lt;p&gt;gevent属于第三方模块需要下载安装包&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    pip3 install --upgrade pip3
-    pip3 install gevent
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;import&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gevent&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt; &lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;def&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fun1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;www.baidu.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;   &lt;/span&gt;&lt;span class=&quot;c&quot;&gt;# 第一步&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gevent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;end the baidu.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;c&quot;&gt;# 第三步&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt; &lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;def&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fun2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;www.zhihu.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;   &lt;/span&gt;&lt;span class=&quot;c&quot;&gt;# 第二步&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gevent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;end th zhihu.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;c&quot;&gt;# 第四步&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt; &lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;gevent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;joinall&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gevent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spawn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fun1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gevent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spawn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fun2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;遇到IO操作自动切换：&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;import&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gevent&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;import&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;def&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;get: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gevent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;gevent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;joinall&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gevent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spawn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'https://www.pythontab.com/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gevent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spawn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'https://www.yahoo.com/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gevent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spawn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'https://github.com/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
   &lt;li&gt;以上代码经过验证可以直接拿去修改调用&lt;/li&gt;
   &lt;li&gt;Owner &lt;code class=&quot;highlighter-rouge&quot;&gt;breakEval13&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;https://github.com/breakEval13&lt;/li&gt;
