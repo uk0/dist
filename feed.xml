@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-10-22T03:13:36+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">raspberry pi zero 安装系统，以及添加USB识别网卡模式[badUSB]</title><link href="http://firsh.me/2017/10/21/raspberry-pi-zero/" rel="alternate" type="text/html" title="raspberry pi zero 安装系统，以及添加USB识别网卡模式[badUSB]" /><published>2017-10-21T00:00:00+08:00</published><updated>2017-10-21T00:00:00+08:00</updated><id>http://firsh.me/2017/10/21/raspberry-pi-zero</id><content type="html" xml:base="http://firsh.me/2017/10/21/raspberry-pi-zero/">&lt;p&gt;一个用Python如何将自己的树莓派打造成“渗透测试神器”&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-10-22T03:17:24+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">raspberry pi zero 安装系统，以及添加USB识别网卡模式[badUSB]</title><link href="http://firsh.me/2017/10/21/raspberry-pi-zero/" rel="alternate" type="text/html" title="raspberry pi zero 安装系统，以及添加USB识别网卡模式[badUSB]" /><published>2017-10-21T00:00:00+08:00</published><updated>2017-10-21T00:00:00+08:00</updated><id>http://firsh.me/2017/10/21/raspberry-pi-zero</id><content type="html" xml:base="http://firsh.me/2017/10/21/raspberry-pi-zero/">&lt;p&gt;一个用Python如何将自己的树莓派打造成“渗透测试神器”&lt;/p&gt;
 
 &lt;p&gt;date：2017-10-21
 author：zhangjianxin&lt;/p&gt;
@@ -207,7 +207,12 @@ ssh连接到树莓派  默认账号为&lt;code class=&quot;highlighter-rouge&quo
 &lt;/code&gt;&lt;/pre&gt;
     &lt;/div&gt;
   &lt;/li&gt;
-  &lt;li&gt;提示
+  &lt;li&gt;
+    &lt;p&gt;等待 下载大约300m数据，编译需要20分钟。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;提示&lt;/p&gt;
+
     &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    当然最重要的一点是安装后完毕wifi会修改为P4wnP1
     密码是MaMe82-P4wnP1
     ssh连接的地址是172.24.0.1账号和密码还是树莓派的初始密码
@@ -223,19 +228,19 @@ ssh连接到树莓派  默认账号为&lt;code class=&quot;highlighter-rouge&quo
 &lt;/code&gt;&lt;/pre&gt;
     &lt;/div&gt;
 
-    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/images/hack-setting.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/hack-setting.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
     &lt;ul&gt;
       &lt;li&gt;目前有的功能列表&lt;/li&gt;
     &lt;/ul&gt;
 
-    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/images/windows-python-script-hack.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/windows-python-script-hack.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
     &lt;ul&gt;
       &lt;li&gt;测试shell,可以直接获取权限，图片：&lt;/li&gt;
     &lt;/ul&gt;
 
-    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/images/success-bad-usb-hack.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/success-bad-usb-hack.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
