@@ -258,6 +258,9 @@ ssh连接到树莓派  默认账号为<code class="highlighter-rouge">pi</code> 
 
     <p><img src="https://zmatsh.b0.upaiyun.com/images/usb-otg.png" alt="" /></p>
   </li>
+  <li>
+    <p>看到如上图：<code class="highlighter-rouge">ssh pi@raspberrypi.local</code> 输入密码链接即可。</p>
+  </li>
   <li>配置网络地址，wifi网卡
     <div class="language-bash highlighter-rouge"><pre class="highlight"><code> pi@raspberrypi:~ <span class="nv">$ </span>sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
 </code></pre>
@@ -344,7 +347,11 @@ ssh连接到树莓派  默认账号为<code class="highlighter-rouge">pi</code> 
     </div>
   </li>
   <li>
-    <p>蓝牙ssh连接的地址是172.26.0.1</p>
+    <p>将USB设备插到你要渗透的机器上，你会搜索到一个Wifi热点<code class="highlighter-rouge">P4wnP1</code>,密码<code class="highlighter-rouge">MaMe82-P4wnP1</code></p>
+  </li>
+  <li>
+    <p>链接后进行SSH链接
+ <code class="highlighter-rouge">ssh pi@172.24.0.1</code>即可。注：蓝牙ssh连接的地址是172.26.0.1</p>
   </li>
   <li>配置文件地址如下：
     <div class="language-bash highlighter-rouge"><pre class="highlight"><code>  pi@MAME82-P4WNP1:~ <span class="nv">$ </span>nano P4wnP1/setup.cfg
