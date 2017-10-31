@@ -1,5 +1,11 @@
 {
   
+  "2017-10-30-crate-io-replace": {
+    "title": "Crate DB重启数据恢复Shards较慢解决方案[原创]",
+    "url": " /2017/10/30/crate-io-replace/",
+    "category": "java"
+  },
+  
   "2017-10-21-raspberry-pi-zero": {
     "title": "raspberry pi zero 安装系统，以及添加USB识别网卡模式[badUSB]",
     "url": " /2017/10/21/raspberry-pi-zero/",
@@ -982,6 +988,12 @@
     "title": "raspberry pi zero 安装系统，以及添加USB识别网卡模式[badUSB]",
     "url": "/2017/10/21/raspberry-pi-zero/",
     "category": "[&quot;python&quot;]"
+  },
+  
+  "2017-10-30-crate-io-replace": {
+    "title": "Crate DB重启数据恢复Shards较慢解决方案[原创]",
+    "url": "/2017/10/30/crate-io-replace/",
+    "category": "[&quot;java&quot;]"
   },
   
   "wiki-android-studio": {

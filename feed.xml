@@ -1,4 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-10-30T22:24:00+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">raspberry pi zero 安装系统，以及添加USB识别网卡模式[badUSB]</title><link href="http://firsh.me/2017/10/21/raspberry-pi-zero/" rel="alternate" type="text/html" title="raspberry pi zero 安装系统，以及添加USB识别网卡模式[badUSB]" /><published>2017-10-21T00:00:00+08:00</published><updated>2017-10-21T00:00:00+08:00</updated><id>http://firsh.me/2017/10/21/raspberry-pi-zero</id><content type="html" xml:base="http://firsh.me/2017/10/21/raspberry-pi-zero/">&lt;p&gt;一个用Python如何将自己的树莓派打造成“渗透测试神器”&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-10-31T11:09:36+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">Crate DB重启数据恢复Shards较慢解决方案[原创]</title><link href="http://firsh.me/2017/10/30/crate-io-replace/" rel="alternate" type="text/html" title="Crate DB重启数据恢复Shards较慢解决方案[原创]" /><published>2017-10-30T00:00:00+08:00</published><updated>2017-10-30T00:00:00+08:00</updated><id>http://firsh.me/2017/10/30/crate-io-replace</id><content type="html" xml:base="http://firsh.me/2017/10/30/crate-io-replace/">&lt;p&gt;Crate DB重启数据恢复Shards较慢解决方案“采用ES restFull API”&lt;/p&gt;
+
+&lt;p&gt;date：2017-10-31
+author：zhangjianxin&lt;/p&gt;
+
+&lt;h1 id=&quot;crate-db重启数据恢复shards较慢解决方案&quot;&gt;Crate DB重启数据恢复Shards较慢解决方案&lt;/h1&gt;
+
+&lt;p&gt;[*] 成功图，&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/crate-success.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;[*] 解决方案&lt;/p&gt;
+
+&lt;h1 id=&quot;解决crate-重启恢复shards速度慢的问题&quot;&gt;解决Crate 重启恢复Shards速度慢的问题&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;修改crate配置文件
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   es.api.enabled: &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;开始处理
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  curl -XPUT http://127.0.0.1:9200/_cluster/settings -d&lt;span class=&quot;s1&quot;&gt;'
+  {
+  	&quot;transient&quot; : {
+  		&quot;cluster.routing.allocation.enable&quot; : &quot;none&quot;
+  	}
+  }'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;感谢国庆大佬&quot;&gt;感谢&lt;code class=&quot;highlighter-rouge&quot;&gt;国庆&lt;/code&gt;大佬&lt;/h1&gt;
+&lt;h1 id=&quot;感谢禹神大佬&quot;&gt;感谢&lt;code class=&quot;highlighter-rouge&quot;&gt;禹神&lt;/code&gt;大佬&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;以上操作经过验证可以直接拿去。&lt;/li&gt;
+  &lt;li&gt;auther &lt;code class=&quot;highlighter-rouge&quot;&gt;breakEval13&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;https://github.com/breakEval13&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>breakeval13</name></author><summary type="html">Crate DB重启数据恢复Shards较慢解决方案“采用ES restFull API”</summary></entry><entry><title type="html">raspberry pi zero 安装系统，以及添加USB识别网卡模式[badUSB]</title><link href="http://firsh.me/2017/10/21/raspberry-pi-zero/" rel="alternate" type="text/html" title="raspberry pi zero 安装系统，以及添加USB识别网卡模式[badUSB]" /><published>2017-10-21T00:00:00+08:00</published><updated>2017-10-21T00:00:00+08:00</updated><id>http://firsh.me/2017/10/21/raspberry-pi-zero</id><content type="html" xml:base="http://firsh.me/2017/10/21/raspberry-pi-zero/">&lt;p&gt;一个用Python如何将自己的树莓派打造成“渗透测试神器”&lt;/p&gt;
 
 &lt;p&gt;date：2017-10-21
 author：zhangjianxin&lt;/p&gt;
@@ -2136,102 +2175,4 @@ file &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; /var/log/arangodb3/arangod.l
   &lt;li&gt;以上操作经过验证可以直接拿去。&lt;/li&gt;
   &lt;li&gt;Owner &lt;code class=&quot;highlighter-rouge&quot;&gt;breakEval13&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;https://github.com/breakEval13&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>breakeval13</name></author><summary type="html">ArangoDB安装，以及访问出现无权限，导致无法连接arangosh，的解决方法。</summary></entry><entry><title type="html">Redis安装,For Centos6</title><link href="http://firsh.me/2017/08/10/redis-install/" rel="alternate" type="text/html" title="Redis安装,For Centos6" /><published>2017-08-10T00:00:00+08:00</published><updated>2017-08-10T00:00:00+08:00</updated><id>http://firsh.me/2017/08/10/redis-install</id><content type="html" xml:base="http://firsh.me/2017/08/10/redis-install/">&lt;p&gt;没事看看文章而已～&lt;/p&gt;
-
-&lt;h1 id=&quot;redis安装&quot;&gt;Redis安装&lt;/h1&gt;
-&lt;p&gt;date：2016-11-15
-author：YangRaner&lt;/p&gt;
-
-&lt;p&gt;[TOC]&lt;/p&gt;
-
-&lt;h1 id=&quot;1检查安装依赖程序&quot;&gt;1.检查安装依赖程序&lt;/h1&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;yum install -y tcl gcc-c++ wget
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;h1 id=&quot;2下载redis&quot;&gt;2.下载Redis&lt;/h1&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkdir /opt/redis/
-&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /opt/redis/
-wget http://download.redis.io/releases/redis-3.0.4.tar.gz
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;h1 id=&quot;3解压redis&quot;&gt;3.解压Redis&lt;/h1&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;tar -xzvf redis-3.0.4.tar.gz
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;h1 id=&quot;4编译安装redis&quot;&gt;4.编译安装Redis&lt;/h1&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;redis-3.0.4
-make
-make install	
--------------------------------------------------------------
-make install安装完成后，会在/usr/local/bin目录下生成下面几个可执行文件，它们的作用分别是：
-redis-server：Redis服务器端启动程序
-redis-cli：Redis客户端操作工具。也可以用telnet根据其纯文本协议来操作
-redis-benchmark：Redis性能测试工具
-redis-check-aof：数据修复工具
-redis-check-dump：检查导出工具
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;h1 id=&quot;5配置redis&quot;&gt;5.配置Redis&lt;/h1&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cp redis.conf /etc/   复制配置文件到/etc/目录
-vim /etc/redis.conf    修改redis文件
-----------------------------------------------
-daemonize yes     修改daemonize配置项为yes，使Redis进程在后台运行
-requirepass Ejtone   &lt;span class=&quot;c&quot;&gt;# 设置密码，以提供远程登陆&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;h1 id=&quot;6启动redis&quot;&gt;6.启动Redis&lt;/h1&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /usr/local/bin		进入bin目录下
-./redis-server /etc/redis.conf		启动Redis
-ps -ef | grep redis			查看redis进程
-----------------------------------------------
-root  18443  1  0 13:05 ?    00:00:00 ./redis-server &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;:6379 
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;h1 id=&quot;7添加开机启动项&quot;&gt;7.添加开机启动项&lt;/h1&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 让Redis在服务器重启后自动启动，需要将启动命令写入开机启动项&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/usr/local/bin/redis-server /etc/redis.conf&quot;&lt;/span&gt; &amp;gt;&amp;gt;/etc/rc.local
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;以上完成安装&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;8redis配置参数&quot;&gt;8.Redis配置参数&lt;/h1&gt;
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;在前面的操作中，我们用到了使Redis进程在后台运行的参数，下面介绍其它一些常用的Redis启动参数：**
-&lt;code class=&quot;highlighter-rouge&quot;&gt;daemonize&lt;/code&gt;：是否以后台daemon方式运行
-&lt;code class=&quot;highlighter-rouge&quot;&gt;pidfile&lt;/code&gt;：pid文件位置
-&lt;code class=&quot;highlighter-rouge&quot;&gt;port&lt;/code&gt;：监听的端口号
-&lt;code class=&quot;highlighter-rouge&quot;&gt;timeout&lt;/code&gt;：请求超时时间
-&lt;code class=&quot;highlighter-rouge&quot;&gt;loglevel&lt;/code&gt;：log信息级别
-&lt;code class=&quot;highlighter-rouge&quot;&gt;logfile&lt;/code&gt;：log文件位置
-&lt;code class=&quot;highlighter-rouge&quot;&gt;databases&lt;/code&gt;：开启数据库的数量
-&lt;code class=&quot;highlighter-rouge&quot;&gt;save&lt;/code&gt; * &lt;em&gt;：保存快照的频率，第一个&lt;/em&gt;表示多长时间，第二个*表示执行多少次写操作。在一定时间内执行一定数量的写操作时，自动保存快照。可设置多个条件。
-&lt;code class=&quot;highlighter-rouge&quot;&gt;rdbcompression&lt;/code&gt;：是否使用压缩
-&lt;code class=&quot;highlighter-rouge&quot;&gt;dbfilename&lt;/code&gt;：数据快照文件名（只是文件名）
-&lt;code class=&quot;highlighter-rouge&quot;&gt;dir&lt;/code&gt;：数据快照的保存目录（仅目录）
-&lt;code class=&quot;highlighter-rouge&quot;&gt;appendonly&lt;/code&gt;：是否开启appendonlylog，开启的话每次写操作会记一条log，这会提高数据抗风险能力，但影响效率。
-&lt;code class=&quot;highlighter-rouge&quot;&gt;appendfsync&lt;/code&gt;：appendonlylog如何同步到磁盘。三个选项，分别是每次写都强制调用fsync、每秒启用一次fsync、不调用fsync等待系统自己同步&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;9重启redis&quot;&gt;9.重启Redis&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;9.1如果Redis已经配置为service服务，可以通过以下方式重启：&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;service redis restart
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;9.2如果Redis没有配置为service服务，可以通过以下方式重启：
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/usr/local/bin/redis-cli shutdown
-/usr/local/bin/redis-server /etc/redis.conf
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;以上代码经过验证可以直接拿去修改调用&lt;/li&gt;
-  &lt;li&gt;Owner &lt;code class=&quot;highlighter-rouge&quot;&gt;breakEval13&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;https://github.com/breakEval13&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>breakeval13</name></author><summary type="html">没事看看文章而已～</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>breakeval13</name></author><summary type="html">ArangoDB安装，以及访问出现无权限，导致无法连接arangosh，的解决方法。</summary></entry></feed>
