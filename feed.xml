@@ -1,4 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-10-31T11:09:36+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">Crate DB重启数据恢复Shards较慢解决方案[原创]</title><link href="http://firsh.me/2017/10/30/crate-io-replace/" rel="alternate" type="text/html" title="Crate DB重启数据恢复Shards较慢解决方案[原创]" /><published>2017-10-30T00:00:00+08:00</published><updated>2017-10-30T00:00:00+08:00</updated><id>http://firsh.me/2017/10/30/crate-io-replace</id><content type="html" xml:base="http://firsh.me/2017/10/30/crate-io-replace/">&lt;p&gt;Crate DB重启数据恢复Shards较慢解决方案“采用ES restFull API”&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-11-04T01:07:53+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">将“yyyyMMdd”格式的时间字符串转换为“yyyy-MM-dd HH:mm:ss”格式（Java）[原创]</title><link href="http://firsh.me/2017/10/31/Java-date-replace/" rel="alternate" type="text/html" title="将“yyyyMMdd”格式的时间字符串转换为“yyyy-MM-dd HH:mm:ss”格式（Java）[原创]" /><published>2017-10-31T00:00:00+08:00</published><updated>2017-10-31T00:00:00+08:00</updated><id>http://firsh.me/2017/10/31/Java-date-replace</id><content type="html" xml:base="http://firsh.me/2017/10/31/Java-date-replace/">&lt;p&gt;将“yyyyMMdd”格式的时间字符串转换为“yyyy-MM-dd HH:mm:ss”格式（Java）&lt;/p&gt;
+
+&lt;p&gt;date：2017-10-31
+author：zhangjianxin&lt;/p&gt;
+
+&lt;p&gt;#
+[*] 解决方案&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;start
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;date&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DateUtils&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;parseDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;yyyyMMdd&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DateFormatUtils&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;yyyy-MM-dd HH:mm:ss&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;以上操作经过验证可以直接拿去。&lt;/li&gt;
+  &lt;li&gt;auther &lt;code class=&quot;highlighter-rouge&quot;&gt;breakEval13&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;https://github.com/breakEval13&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>breakeval13</name></author><summary type="html">将“yyyyMMdd”格式的时间字符串转换为“yyyy-MM-dd HH:mm:ss”格式（Java）</summary></entry><entry><title type="html">Crate DB重启数据恢复Shards较慢解决方案[原创]</title><link href="http://firsh.me/2017/10/30/crate-io-replace/" rel="alternate" type="text/html" title="Crate DB重启数据恢复Shards较慢解决方案[原创]" /><published>2017-10-30T00:00:00+08:00</published><updated>2017-10-30T00:00:00+08:00</updated><id>http://firsh.me/2017/10/30/crate-io-replace</id><content type="html" xml:base="http://firsh.me/2017/10/30/crate-io-replace/">&lt;p&gt;Crate DB重启数据恢复Shards较慢解决方案“采用ES restFull API”&lt;/p&gt;
 
 &lt;p&gt;date：2017-10-31
 author：zhangjianxin&lt;/p&gt;
@@ -1999,180 +2017,4 @@ author：zhangjianxin&lt;/p&gt;
   &lt;li&gt;以上操作经过验证可以直接拿去。&lt;/li&gt;
   &lt;li&gt;Owner &lt;code class=&quot;highlighter-rouge&quot;&gt;breakEval13&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;https://github.com/breakEval13&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>breakeval13</name></author><summary type="html">ConcurrentBlockingQueue，自己写了一份增加理解，很久之前写代码，很地方不工整不要在意。</summary></entry><entry><title type="html">ArangoDB安装,For Centos7[原创]</title><link href="http://firsh.me/2017/08/17/arangodb-install-401/" rel="alternate" type="text/html" title="ArangoDB安装,For Centos7[原创]" /><published>2017-08-17T00:00:00+08:00</published><updated>2017-08-17T00:00:00+08:00</updated><id>http://firsh.me/2017/08/17/arangodb-install-401</id><content type="html" xml:base="http://firsh.me/2017/08/17/arangodb-install-401/">&lt;p&gt;ArangoDB安装，以及访问出现无权限，导致无法连接arangosh，的解决方法。&lt;/p&gt;
-
-&lt;h1 id=&quot;arangodb安装&quot;&gt;ArangoDB安装&lt;/h1&gt;
-&lt;p&gt;date：2017-08-17
-author：zhangjianxin&lt;/p&gt;
-
-&lt;p&gt;[TOC]&lt;/p&gt;
-
-&lt;h1 id=&quot;1下载arangodb-rpm&quot;&gt;1.下载ArangoDB rpm&lt;/h1&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget https://zmatsh.b0.upaiyun.com/blog/arangodb3-3.2.0-1.x86_64.rpm
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;h1 id=&quot;2install-arangodb&quot;&gt;2.Install ArangoDB&lt;/h1&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rpm -ivh arangodb3-3.2.0-1.x86_64.rpm
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;h1 id=&quot;3start&quot;&gt;3.start&lt;/h1&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;systemctl start arangodb3
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;h1 id=&quot;4status&quot;&gt;4.status&lt;/h1&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-systemctl status arangodb3
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;h1 id=&quot;5配置arangosh&quot;&gt;5.配置arangosh&lt;/h1&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/etc/arangodb3/arangosh.conf
-----------------------------------------------
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;console]
-pretty-print &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;server]
-endpoint &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; tcp://127.0.0.1:8529
-authentication &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# username = root&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# password =&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;log]
-file &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; -
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;javascript]
-startup-directory &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; /usr/share/arangodb3/js
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;h1 id=&quot;6配置arangod&quot;&gt;6.配置arangod&lt;/h1&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# ArangoDB configuration file&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# Documentation:&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# https://docs.arangodb.com/Manual/Administration/Configuration/&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;database]
-directory &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; /var/lib/arangodb3
-
-&lt;span class=&quot;c&quot;&gt;# maximal-journal-size = 33554432&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;server]
-&lt;span class=&quot;c&quot;&gt;# Specify the endpoint for HTTP requests by clients.&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#  tcp://ipv4-address:port&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#  tcp://[ipv6-address]:port&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#  ssl://ipv4-address:port&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#  ssl://[ipv6-address]:port&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#  unix:///path/to/socket&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# Examples:&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#   endpoint = tcp://0.0.0.0:8529&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#   endpoint = tcp://127.0.0.1:8529&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#   endpoint = tcp://localhost:8529&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#   endpoint = tcp://myserver.arangodb.com:8529&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#   endpoint = tcp://[::]:8529&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#   endpoint = tcp://[fe80::21a:5df1:aede:98cf]:8529&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
-endpoint &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; tcp://[::]:8529
-storage-engine &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; auto
-
-&lt;span class=&quot;c&quot;&gt;# reuse a port on restart or wait until it is freed by the operating system&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# reuse-address = false&lt;/span&gt;
-
-authentication &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# number of server threads. use 0 to make arangod determine the&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# number of threads automatically, based on available CPUs&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# threads = 0&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# gather server statistics&lt;/span&gt;
-statistics &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# the user and group are normally set in the start script&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# uid = arangodb&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# gid = arangodb&lt;/span&gt;
-
-uid &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; arangodb
-
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;scheduler]
-&lt;span class=&quot;c&quot;&gt;# number of threads used for I/O, use 0 to make arangod determine&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# the number of threads automatically&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# threads = 0&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;javascript]
-startup-directory &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; /usr/share/arangodb3/js
-app-path &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; /var/lib/arangodb3-apps
-&lt;span class=&quot;c&quot;&gt;# app-path = //arangodb3/apps&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# number of V8 contexts available for JavaScript execution. use 0 to&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# make arangod determine the number of contexts automatically.&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# v8-contexts = 0&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;foxx]
-&lt;span class=&quot;c&quot;&gt;# enable Foxx queues in the server&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# queues = true&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# interval (seconds) to use for polling jobs in Foxx queues&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# queues-poll-interval = 1&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;log]
-level &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; info
-file &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; /var/log/arangodb3/arangod.log
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;cluster]
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;rocksdb]
-&lt;span class=&quot;c&quot;&gt;# encryption-keyfile=/your-encryption-file&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;以上完成安装&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;7访问测试&quot;&gt;7.访问测试&lt;/h1&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;arangosh
-&lt;span class=&quot;c&quot;&gt;# 进入arangodb bash&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/blog/20E4E40601E232AFEB557A2260F5BA20.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;8解决没有权限问题&quot;&gt;8.解决没有权限问题&lt;/h1&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;c&quot;&gt;# 停止 `systemctl stop arangodb3`&lt;/span&gt;
- &lt;span class=&quot;c&quot;&gt;# 不启用授权启动arangodb&lt;/span&gt;
-/usr/sbin/arangod --server.authentication &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/blog/WX20170817-231202@2x.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;注意启动以后开启另一个&lt;code class=&quot;highlighter-rouge&quot;&gt;shell&lt;/code&gt;窗口,当前的不要结束，图上面是已经&lt;code class=&quot;highlighter-rouge&quot;&gt;Control + C &lt;/code&gt;了，这一步在什么时候做下面会说。&lt;/li&gt;
-  &lt;li&gt;接下来执行&lt;code class=&quot;highlighter-rouge&quot;&gt;arangosh&lt;/code&gt; 它会让你输入密码，直接会车即可。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/blog/WX20170817-231311@2x.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;在出现的arangodb shell 里面执行如下命令。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;@arangodb/users&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.replace&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;root&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;new-password&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
-&lt;span class=&quot;c&quot;&gt;#通过他的客户端进行直接修改`root`密码&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;输入完密码，进行退出&lt;code class=&quot;highlighter-rouge&quot;&gt;exit&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;退出后去第一个shell窗口执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;Control + C &lt;/code&gt;。&lt;/li&gt;
-  &lt;li&gt;然后在任意shell窗口进行访问&lt;code class=&quot;highlighter-rouge&quot;&gt;arangosh&lt;/code&gt;,并且输入修改后的密码,即可成功登录arangodb。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/blog/WX20170817-231323@2x.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;不推荐使用-arango-secure-installation进行修改root密码&quot;&gt;不推荐使用&lt;code class=&quot;highlighter-rouge&quot;&gt; arango-secure-installation&lt;/code&gt;进行修改root密码。&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;以上操作经过验证可以直接拿去。&lt;/li&gt;
-  &lt;li&gt;Owner &lt;code class=&quot;highlighter-rouge&quot;&gt;breakEval13&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;https://github.com/breakEval13&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>breakeval13</name></author><summary type="html">ArangoDB安装，以及访问出现无权限，导致无法连接arangosh，的解决方法。</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>breakeval13</name></author><summary type="html">ConcurrentBlockingQueue，自己写了一份增加理解，很久之前写代码，很地方不工整不要在意。</summary></entry></feed>
