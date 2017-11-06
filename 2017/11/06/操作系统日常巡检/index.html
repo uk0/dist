@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Linux 操作系统日常巡检[原创] — 山脚下的胖子.</title>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2017/11/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%B8%B8%E5%B7%A1%E6%A3%80/">
+    <link rel="alternate" type="application/atom+xml" title="山脚下的胖子." href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="Linux 操作系统日常巡检[原创]">
+      
+    <meta name="keywords" content="linux">
+    <meta name="og:keywords" content="linux">
+      
+    <meta name="description" content="Linux 操作系统日常巡检">
+    <meta name="og:description" content="Linux 操作系统日常巡检">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2017/11/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%B8%B8%E5%B7%A1%E6%A3%80/">
+    <meta property="og:site_name" content="山脚下的胖子.">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN">
+    
+    <meta property="article:published_time" content="2017-11-06">
+    
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="山脚下的胖子."><span class="octicon octicon-mark-github"></span> 山脚下的胖子.</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="Index">Index</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="categories">categories</a>
+                
+                <a href="/open-source/" class=" site-header-nav-item" target="" title="open-source">open-source</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="wiki">wiki</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="links">links</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="about">about</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="Linux 操作系统日常巡检[">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">Linux 操作系统日常巡检[原创]</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/11/06
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#linux" title="linux">linux</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths">
+    <article class="article-content markdown-body">
+    <p>Linux 操作系统日常巡检</p>
+
+<p>date：2017-10-06
+author：杨然儿</p>
+
+<h1 id="操作系统日常巡检">操作系统日常巡检</h1>
+<h1 id="0查询是否被攻击">0.查询是否被攻击</h1>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>统计登录成功的IP
+        last | awk '{ print $3}' | sort | uniq -c | sort -n
+登录失败的IP
+        lastb | awk '{ print $3}' | sort | uniq -c | sort -n
+查看是否被攻击
+        grep :x:0: /etc/passwd  --只返回一行
+是否存在可疑登录
+    登录成功的
+        grep "Accept" /var/log/secure*|awk '{print $9 '=' $11}'|sort|uniq -c
+    登录失败的
+        grep "Failed" /var/log/secure*|awk '{print $9 '=' $11}'|sort|uniq -c
+</code></pre>
+</div>
+
+<h1 id="1查操作系统日志是否存在错误">1.查操作系统日志是否存在错误:</h1>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>more /var/log/messages|grep -E '[Ee]erro|fail|[Ww]arning'
+</code></pre>
+</div>
+
+<h1 id="2查主机是否存在硬件错误">2.查主机是否存在硬件错误</h1>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>dmesg|more
+</code></pre>
+</div>
+
+<h1 id="3文件使用率">3.文件使用率</h1>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>df -h
+</code></pre>
+</div>
+
+<h1 id="4检查是否存在僵尸进程">4.检查是否存在僵尸进程</h1>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>ps -ef|grep defunct
+</code></pre>
+</div>
+
+<h1 id="5检查网关是否正确">5.检查网关是否正确</h1>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>netstat -nr
+ping  网关
+</code></pre>
+</div>
+
+<h1 id="6检查网络通信是否正常">6.检查网络通信是否正常</h1>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>netstat -ni
+RX-DRP 值为0或者保持稳定
+</code></pre>
+</div>
+
+<h1 id="7查网络连接状态">7.查网络连接状态</h1>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>netstat -an|egrep 'ESTABLISHED|FIN_WAIT_1|FIN_WAIT_2|TIME_WAIT|CLOSING|CLOSE_WAIT|LAST_ACK'
+
+netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
+</code></pre>
+</div>
+
+<h1 id="8查看是否丢包">8.查看是否丢包</h1>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>cat /proc/net/dev
+注意：dropped:0==&gt; 如果这个值不为 0 , 则说明有丢包现象
+</code></pre>
+</div>
+
+<h1 id="9网卡的工作状态">9.网卡的工作状态</h1>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>ifconfig -a
+如果网卡中状态无为down状态
+
+ethtool eth1
+ethtool -i eth1
+iftop -B -n  -N -p
+fftop -i eth1 -B -n  -N -p
+查看网卡速度
+</code></pre>
+</div>
+
+<h1 id="10cpu是否存在瓶颈">10.CPU是否存在瓶颈</h1>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>.CPU IDel大于90％则OK
+        top -i -n 1|grep id|awk '{print $8}'
+
+.CPU load average 正常值：&lt; CPU个数 * 核数 *0.7
+        top -i -n 1|grep load|awk '{print $13}'
+
+        一般来说只要每个CPU的当前活动进程数不大于3那么系统的性能就是良好的，
+        如果每个CPU的任务数大于5，那么就表示这台机器的性能有严重问题。
+        实际上这个进程数就是每个CPU的负载.
+</code></pre>
+</div>
+
+<h1 id="11检查内存是否充足">11.检查内存是否充足</h1>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>内存有足够空间
+free -m
+
+没有发生换页
+vmstat 1 6
+        如果 si 和so 的值总是不为零，则说明，swap 有很高的换页率
+        如果 bi 和 bo 的值很高说明系统在进行大量的IO读些操作
+</code></pre>
+</div>
+
+<h1 id="12检查io">12.检查IO</h1>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>查看读写速度
+        iostat -d -x -k 1 5
+
+        Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await  svctm  %util
+        xvdb              0.00    23.00    0.00   47.00     0.00   280.00    11.91     0.54   11.55   0.49   2.30
+        xvda              0.00     0.00    0.00    0.00     0.00     0.00     0.00     0.00    0.00   0.00   0.00
+        xvdc              0.00     0.00    0.00    0.00     0.00     0.00     0.00     0.00    0.00   0.00   0.00
+        xvdd              0.00     2.00    0.00  388.00     0.00  1560.00     8.04     1.26    3.26   0.34  13.10
+
+        rrqm/s 每秒读请求合并的次数
+        wrqm/s 每秒写请求合并的次数
+        r/s 每秒读请求次数，这个值通常会跟avgrq-sz一起观察，avgrq-sz大则有可能r/s比较小
+        w/s 每秒写请求次数，这个值通常会跟avgrq-sz一起观察，avgrq-sz大则有可能w/s比较小
+        rkB/s 这个指标跟vmstat的bi值通常应该是很接近的
+        wkB/s 这个指标跟vmstat的bo值通常应该是很接近的
+        avgrq-sz 每个请求平均大小，单位是扇区数，一般在200~400之间算是正常和理想的状态，如果这个值比较小，比方说只在100左右，说明太多的IO请求没有被合并，或者大的IO请求被“打散”，在写操作时，过多小的请求会造成磁盘磁头的频繁移动，降低IO性能。
+        avgqu-sz 平均请求队列长度，这个值在正常的系统中不应超过113太多，如果在200左右，甚至上千那说明发生了IO拥塞，而系统还在向IO请求队列中放请求（有一个例外是在执行sync,fsync操作时，该值到达最大值8192是正常的）
+        await 单位是毫秒，不应超过两位数，几百甚至上千都是不可接受的。
+        svctm 平均每次设备I/O操作的服务时间(毫秒)。即delta(use)/delta(rio+wio)
+        %util 尽可能的让该值达到100%，否则说明IO能力没有完全被利用。
+
+        如果svctm比较接近await,说明I/O几乎没有等待时间;
+        如果await远大于svctm,说明I/O队列太长，应用得到的响应时间变慢。
+
+
+磁盘平均队列长度 avgqu-sz 大于 3 就需要关注，
+        iostat -xt 1
+
+
+查看磁盘统计信息
+        cat /proc/diskstats
+
+     主设备号 次 设备名称   第1个域
+     202      32 xvdc  			4959692 347 411803562 33790444 8109304 76242434 674813944 1340903295 0 14873863 1374687623
+     202      33 xvdc1 			4959649 347 411803218 33790119 8109304 76242434 674813944 1340903295 0 14873753 1374687299
+     202      48 xvdd  			222375610 17443 16714996538 923047010 5307720710 1063308104 50968261080 2447567938 0 1816063211 3368385818
+     202      49 xvdd1 			222375567 17443 16714996194 923046942 5307720710 1063308104 50968261080 2447567938 0 1816063228 3368386366
+
+
+    第1个域：读完成次数 ----- 读磁盘的次数，成功完成读的总次数。
+    （number of issued reads. This is the total number of reads completed successfully.）
+
+    第2个域：合并读完成次数， 第6个域：合并写完成次数。为了效率可能会合并相邻的读和写。从而两次4K的读在它最终被处理到磁盘上之前可能会变成一次8K的读，才被计数（和排队），因此只有一次I/O操作。这个域使你知道这样的操作有多频繁。
+    （number of reads merged）
+
+    第3个域：读扇区的次数，成功读过的扇区总次数。
+    （number of sectors read. This is the total number of sectors read successfully.）
+
+    第4个域：读花费的毫秒数，这是所有读操作所花费的毫秒数（用__make_request()到end_that_request_last()测量）。
+    （number of milliseconds spent reading. This is the total number of milliseconds spent by all reads (as measured from __make_request() to end_that_request_last()).）
+
+    第5个域：写完成次数 ----写完成的次数，成功写完成的总次数。
+    （number of writes completed. This is the total number of writes completed successfully.）
+
+    第6个域：合并写完成次数 -----合并写次数。
+    （number of writes merged Reads and writes which are adjacent to each other may be merged for efficiency. Thus two 4K reads may become one 8K read before it is ultimately handed to the disk, and so it will be counted (and queued) as only one I/O. This field lets you know how often this was done.）
+
+    第7个域：写扇区次数 ---- 写扇区的次数，成功写扇区总次数。
+    （number of sectors written. This is the total number of sectors written successfully.）
+
+    第8个域：写操作花费的毫秒数  ---  写花费的毫秒数，这是所有写操作所花费的毫秒数（用__make_request()到end_that_request_last()测量）。
+    （number of milliseconds spent writing This is the total number of milliseconds spent by all writes (as measured from __make_request() to end_that_request_last()).）
+
+    第9个域：正在处理的输入/输出请求数 -- -I/O的当前进度，只有这个域应该是0。当请求被交给适当的request_queue_t时增加和请求完成时减小。
+    （number of I/Os currently in progress. The only field that should go to zero. Incremented as requests are given to appropriate request_queue_t and decremented as they finish.）
+
+    第10个域：输入/输出操作花费的毫秒数  ----花在I/O操作上的毫秒数，这个域会增长只要field 9不为0。
+    （number of milliseconds spent doing I/Os. This field is increased so long as field 9 is nonzero.）
+
+    第11个域：输入/输出操作花费的加权毫秒数 -----  加权， 花在I/O操作上的毫秒数，在每次I/O开始，I/O结束，I/O合并时这个域都会增加。这可以给I/O完成时间和存储那些可以累积的提供一个便利的测量标准。
+    （number of milliseconds spent doing I/Os. This field is incremented at each I/O start, I/O completion, I/O merge, or read of these stats by the number of I/Os in progress (field 9) times the number of milliseconds spent doing I/O since the last update of this field. This can provide an easy measure of both I/O completion time and the backlog that may be accumulating.）
+</code></pre>
+</div>
+
+<ul>
+  <li>以上操作经过验证可以直接拿去。</li>
+  <li>auther <code class="highlighter-rouge">breakEval13</code>
+</li>
+  <li>https://github.com/breakEval13</li>
+</ul>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+      
+        
+        <!-- Disqus Protection, see https://github.com/mzlogin/mzlogin.github.io/issues/2 -->
+        
+        
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'http://firsh.me/2017/11/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%B8%B8%E5%B7%A1%E6%A3%80/';
+              this.page.identifier = '/2017/11/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%B8%B8%E5%B7%A1%E6%A3%80/';
+              this.page.title = 'Linux 操作系统日常巡检[原创]';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+
+              s.type = 'text/javascript';
+              s.async = true;
+              var shortname = 'zmatsh';
+
+              s.src = '//' + shortname + '.disqus.com/embed.js';
+
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+        
+        
+      
+    
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="https://zmatsh.b0.upaiyun.com/assets/css/modules/sidebar-search.css">
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="breakeval13">breakeval13</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)">TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/breakEval13/breakEval13.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="Index" target="">Index</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="categories" target="">categories</a>
+                </li>
+                
+                <li>
+                    <a href="/open-source/" title="open-source" target="">open-source</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="wiki" target="">wiki</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="links" target="">links</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="about" target="">about</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-80669434-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>
