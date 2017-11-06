@@ -1,5 +1,11 @@
 {
   
+  "2017-11-06-nginx-up": {
+    "title": "Nginx 分段配置负载均衡[原创]",
+    "url": " /2017/11/06/nginx-up/",
+    "category": "lua"
+  },
+  
   "2017-10-31-java-date-replace": {
     "title": "将“yyyyMMdd”格式的时间字符串转换为“yyyy-MM-dd HH:mm:ss”格式（Java）[原创]",
     "url": " /2017/10/31/Java-date-replace/",
@@ -1006,6 +1012,12 @@
     "title": "将“yyyyMMdd”格式的时间字符串转换为“yyyy-MM-dd HH:mm:ss”格式（Java）[原创]",
     "url": "/2017/10/31/Java-date-replace/",
     "category": "[&quot;java&quot;]"
+  },
+  
+  "2017-11-06-nginx-up": {
+    "title": "Nginx 分段配置负载均衡[原创]",
+    "url": "/2017/11/06/nginx-up/",
+    "category": "[&quot;lua&quot;]"
   },
   
   "wiki-android-studio": {

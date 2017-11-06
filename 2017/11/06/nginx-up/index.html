@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Qt Creator &mdash; 山脚下的胖子.</title>
+    <title>Nginx 分段配置负载均衡[原创] &mdash; 山脚下的胖子.</title>
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
@@ -21,23 +21,23 @@
     
 
     
-    <link rel="canonical" href="http://firsh.me/wiki/qt-creator/">
+    <link rel="canonical" href="http://firsh.me/2017/11/06/nginx-up/">
     <link rel="alternate" type="application/atom+xml" title="山脚下的胖子." href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="Qt Creator">
+    <meta property="og:title" content="Nginx 分段配置负载均衡[原创]">
       
-    <meta name="keywords" content="Qt, Qt Creator">
-    <meta name="og:keywords" content="Qt, Qt Creator">
+    <meta name="keywords" content="linux,负载均衡,Nginx">
+    <meta name="og:keywords" content="linux,负载均衡,Nginx">
       
-    <meta name="description" content="快捷键（for mac）">
-    <meta name="og:description" content="快捷键（for mac）">
+    <meta name="description" content="Nginx 分段配置负载均衡">
+    <meta name="og:description" content="Nginx 分段配置负载均衡">
       
     
     
         
     
-    <meta property="og:url" content="http://firsh.me/wiki/qt-creator/">
+    <meta property="og:url" content="http://firsh.me/2017/11/06/nginx-up/">
     <meta property="og:site_name" content="山脚下的胖子.">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -85,104 +85,125 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="Qt Creator">
+    <section class="collection-head small geopattern" data-pattern-id="Nginx 分段配置负载均衡[">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">Qt Creator</h1>
+        <h1 class="collection-header">Nginx 分段配置负载均衡[原创]</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/11/06
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#lua" title="lua">lua</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
 </div>
 </section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
 <!-- / .banner -->
 <section class="container content">
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <h3 id="快捷键for-mac">快捷键（for mac）</h3>
+    <p>Nginx 分段配置负载均衡</p>
 
-<p>参考：<a href="http://doc.qt.io/qtcreator/creator-keyboard-shortcuts.html">http://doc.qt.io/qtcreator/creator-keyboard-shortcuts.html</a></p>
+<p>date：2017-11-06
+author：zhangjianxin</p>
 
-<p>C –&gt; Ctrl</p>
+<p>#
+[*] 解决方案</p>
 
-<p>S –&gt; Shift</p>
+<h1 id="nginx-config">nginx config</h1>
 
-<p>M –&gt; Alt</p>
+<p><img src="https://zmatsh.b0.upaiyun.com/images/WX20171106-142637@2x.png" alt="" /></p>
 
-<p>Cmd –&gt; Command</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>    user  nginx;
+    worker_processes  5;
+    error_log  /var/log/nginx/error.log warn;
+    pid        /var/run/nginx.pid;
+    worker_rlimit_nofile 1024;
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">功能</th>
-      <th style="text-align: left">快捷键</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">自动完成</td>
-      <td style="text-align: left">C-Space</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">显示/隐藏侧边栏</td>
-      <td style="text-align: left">Cmd-0</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">切换已打开的文件</td>
-      <td style="text-align: left">M-Tab</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">上/下一行</td>
-      <td style="text-align: left">C-p/C-n</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">前进/后退一个字符</td>
-      <td style="text-align: left">C-f/C-b</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">删除一个单词</td>
-      <td style="text-align: left">M-Del</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">构建</td>
-      <td style="text-align: left">Cmd-b</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">运行</td>
-      <td style="text-align: left">Cmd-r</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">调试</td>
-      <td style="text-align: left">Cmd-y</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">注释</td>
-      <td style="text-align: left">Cmd-/</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">换行</td>
-      <td style="text-align: left">Cmd-Return</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">跳到定义</td>
-      <td style="text-align: left">F2</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">切换头文件与源文件</td>
-      <td style="text-align: left">F4</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">前进/后退</td>
-      <td style="text-align: left">M-Cmd-Left/Right</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">打开定位器</td>
-      <td style="text-align: left">Cmd-k</td>
-    </tr>
-  </tbody>
-</table>
+    events <span class="o">{</span>
+      worker_connections  1024;
+    <span class="o">}</span>
+
+    http <span class="o">{</span>
+        include       mime.types;
+        default_type  application/octet-stream;
+
+        log_format  main  <span class="s1">'$remote_addr - $remote_user [$time_local] "$request" '</span>
+                         <span class="s1">'$status $body_bytes_sent "$http_referer" '</span>
+                          <span class="s1">'"$http_user_agent" "$http_x_forwarded_for"'</span>;
+
+        log_format  error <span class="s1">'$remote_addr - $remote_user [$time_local] "$request" '</span>
+                         <span class="s1">'$status $body_bytes_sent "$http_referer" '</span>
+                          <span class="s1">'"$http_user_agent" "$http_x_forwarded_for"'</span>;
+
+        access_log  logs/access.log  main;
+
+        sendfile        on;
+
+        keepalive_timeout  65;
+
+        gzip  on;
+        include /etc/nginx/conf.d/upstream/<span class="k">*</span>.conf;
+        include /etc/nginx/conf.d/vhost/<span class="k">*</span>.conf;
+    <span class="o">}</span>
+</code></pre>
+</div>
+
+<h1 id="nginx-upstream-config">nginx upstream config</h1>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>```bash
+upstream post_servers {
+    ip_hash;
+    server dscn01:80 weight=5 backup;
+    server dscn02:80 weight=10 max_fails=3 fail_timeout=30s;
+}
+```
+</code></pre>
+</div>
+
+<h1 id="nginx-vhost--config">nginx vhost  config</h1>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+server <span class="o">{</span>
+    listen       80;      <span class="c">#监听80端口</span>
+    access_log   logs/post.access.log main;  <span class="c">#使用main等级配置访问日志。</span>
+    error_log    logs/post.error.log error;          <span class="c">#使用error等级配置错误日志。</span>
+
+    <span class="nb">set</span> <span class="nv">$post_servers_upstream</span>   <span class="s2">"post_servers"</span>;   <span class="c">#使用set指令配置upstream为：'post_servers'</span>
+    location / <span class="o">{</span>  <span class="c">#将所有的请求代理到post_servers_upstream中。</span>
+      proxy_pass      http://<span class="nv">$post_servers_upstream</span>;
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+</code></pre>
+</div>
+
+<p><img src="https://zmatsh.b0.upaiyun.com/images/WX20171106-142733@2x.png" alt="" /></p>
+
+<ul>
+  <li>以上操作经过验证可以直接拿去。</li>
+  <li>auther <code class="highlighter-rouge">breakEval13</code></li>
+  <li>https://github.com/breakEval13</li>
+</ul>
 
     </article>
     <div class="share">
@@ -199,9 +220,9 @@
           <div id="disqus_thread"></div>
           <script>
             var disqus_config = function () {
-              this.page.url = 'http://firsh.me/wiki/qt-creator/';
-              this.page.identifier = '/wiki/qt-creator/';
-              this.page.title = 'Qt Creator';
+              this.page.url = 'http://firsh.me/2017/11/06/nginx-up/';
+              this.page.identifier = '/2017/11/06/nginx-up/';
+              this.page.title = 'Nginx 分段配置负载均衡[原创]';
             };
             (function() { // DON'T EDIT BELOW THIS LINE
               var d = document, s = d.createElement('script');
