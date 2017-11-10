@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Qt Creator &mdash; 山脚下的胖子.</title>
+    <title>Linux SSH 互信[原创] &mdash; 山脚下的胖子.</title>
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
@@ -21,28 +21,28 @@
     
 
     
-    <link rel="canonical" href="http://firsh.me/wiki/qt-creator/">
+    <link rel="canonical" href="http://firsh.me/2017/04/06/linux%E9%85%8D%E7%BD%AEssh%E4%BA%92%E4%BF%A1/">
     <link rel="alternate" type="application/atom+xml" title="山脚下的胖子." href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="Qt Creator">
+    <meta property="og:title" content="Linux SSH 互信[原创]">
       
-    <meta name="keywords" content="Qt, Qt Creator">
-    <meta name="og:keywords" content="Qt, Qt Creator">
+    <meta name="keywords" content="linux">
+    <meta name="og:keywords" content="linux">
       
-    <meta name="description" content="快捷键（for mac）">
-    <meta name="og:description" content="快捷键（for mac）">
+    <meta name="description" content="Linux SSH 互信">
+    <meta name="og:description" content="Linux SSH 互信">
       
     
     
         
     
-    <meta property="og:url" content="http://firsh.me/wiki/qt-creator/">
+    <meta property="og:url" content="http://firsh.me/2017/04/06/linux%E9%85%8D%E7%BD%AEssh%E4%BA%92%E4%BF%A1/">
     <meta property="og:site_name" content="山脚下的胖子.">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
     
-    <meta property="article:published_time" content="2017-11-10">
+    <meta property="article:published_time" content="2017-04-06">
     
     <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
     <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
@@ -85,104 +85,128 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="Qt Creator">
+    <section class="collection-head small geopattern" data-pattern-id="Linux SSH 互信[原创">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">Qt Creator</h1>
+        <h1 class="collection-header">Linux SSH 互信[原创]</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/04/06
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#linux" title="linux">linux</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
 </div>
 </section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
 <!-- / .banner -->
 <section class="container content">
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <h3 id="快捷键for-mac">快捷键（for mac）</h3>
+    <p>Linux SSH 互信</p>
 
-<p>参考：<a href="http://doc.qt.io/qtcreator/creator-keyboard-shortcuts.html">http://doc.qt.io/qtcreator/creator-keyboard-shortcuts.html</a></p>
+<p>date：2017-04-06
+author：杨然儿</p>
 
-<p>C –&gt; Ctrl</p>
+<h1 id="公钥认证的基本思想">公钥认证的基本思想：</h1>
 
-<p>S –&gt; Shift</p>
+<p>对信息的加密和解密采用不同的key，这对key分别称作private key和public key，其中，public key存放在欲登录的服务器上，而private key为特定的客户机所持有。当客户机向服务器发出建立安全连接的请求时，首先发送自己的public key，如果这个public key是被服务器所允许的，服务器就发送一个经过public key加密的随机数据给客户机，这个数据只能通过private key解密，客户机将解密后的信息发还给服务器，服务器验证正确后即确认客户机是可信任的，从而建立起一条安全的信息通道。通过这种方式，客户机不需要向外发送自己的身份标志“private key”即可达到校验的目的，并且private key是不能通过public key反向推断出来的。这避免了网络窃听可能造成的密码泄露。客户机需要小心的保存自己的private key，以免被其他人窃取，一旦这样的事情发生，就需要各服务器更换受信的public key列表。</p>
 
-<p>M –&gt; Alt</p>
+<p>配置ssh互信的步骤如下：</p>
 
-<p>Cmd –&gt; Command</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>1. 首先，在要配置互信的机器上，生成各自的经过认证的key文件；
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">功能</th>
-      <th style="text-align: left">快捷键</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">自动完成</td>
-      <td style="text-align: left">C-Space</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">显示/隐藏侧边栏</td>
-      <td style="text-align: left">Cmd-0</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">切换已打开的文件</td>
-      <td style="text-align: left">M-Tab</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">上/下一行</td>
-      <td style="text-align: left">C-p/C-n</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">前进/后退一个字符</td>
-      <td style="text-align: left">C-f/C-b</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">删除一个单词</td>
-      <td style="text-align: left">M-Del</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">构建</td>
-      <td style="text-align: left">Cmd-b</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">运行</td>
-      <td style="text-align: left">Cmd-r</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">调试</td>
-      <td style="text-align: left">Cmd-y</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">注释</td>
-      <td style="text-align: left">Cmd-/</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">换行</td>
-      <td style="text-align: left">Cmd-Return</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">跳到定义</td>
-      <td style="text-align: left">F2</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">切换头文件与源文件</td>
-      <td style="text-align: left">F4</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">前进/后退</td>
-      <td style="text-align: left">M-Cmd-Left/Right</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">打开定位器</td>
-      <td style="text-align: left">Cmd-k</td>
-    </tr>
-  </tbody>
-</table>
+2. 其次，将所有的key文件汇总到一个总的认证文件中；
+
+3. 将这个包含了所有互信机器认证key的认证文件，分发到各个机器中去；
+
+4. 验证互信。
+
+在主机名为node1,node2,node3上以相同的用户test(root用户也行，经过测试了)创建ssh互信；
+
+注意：以下所有，主机名都可以换成IP；
+</code></pre>
+</div>
+
+<p>1.在每个节点上创建 RSA密钥和公钥</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>使用test(或者root)用户登陆
+
+mkdir ~/.ssh
+
+#可能该目录已经存在
+
+chmod 700 ~/.ssh
+
+cd ~/.ssh
+
+ssh-keygen -t rsa
+
+#需要输入一些信息，全部回车，可以不用输入
+</code></pre>
+</div>
+
+<p>2.整合公钥文件</p>
+
+<p>在node1上执行以下命令</p>
+
+<p>#以下命令可能提示需要输入密码，应该是各节点的密码(我的机器所有密码都一样，这是我的猜测)；</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>ssh node1 cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
+
+ssh node2 cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
+
+ssh node3 cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
+
+chmod 600 ~/.ssh/authorized_keys
+</code></pre>
+</div>
+
+<p>3.分发整合后的公钥文件</p>
+
+<p>在node1上执行以下命令</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>scp ~/.ssh/authorized_keys  node2:~/.ssh/
+
+scp ~/.ssh/authorized_keys  node3:~/.ssh/
+</code></pre>
+</div>
+
+<p>4.测试ssh互信</p>
+
+<p>在各个节点上运行以下命令，若不需要输入密码就显示系统当前日期，就说明SSH互信已经配置成功了。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>ssh node1 date
+
+ssh node2 date
+
+ssh node3 date
+</code></pre>
+</div>
+
+<ul>
+  <li>以上操作经过验证可以直接拿去。</li>
+  <li>auther <code class="highlighter-rouge">breakEval13</code></li>
+  <li>https://github.com/breakEval13</li>
+</ul>
 
     </article>
     <div class="share">
@@ -199,9 +223,9 @@
           <div id="disqus_thread"></div>
           <script>
             var disqus_config = function () {
-              this.page.url = 'http://firsh.me/wiki/qt-creator/';
-              this.page.identifier = '/wiki/qt-creator/';
-              this.page.title = 'Qt Creator';
+              this.page.url = 'http://firsh.me/2017/04/06/linux%E9%85%8D%E7%BD%AEssh%E4%BA%92%E4%BF%A1/';
+              this.page.identifier = '/2017/04/06/linux%E9%85%8D%E7%BD%AEssh%E4%BA%92%E4%BF%A1/';
+              this.page.title = 'Linux SSH 互信[原创]';
             };
             (function() { // DON'T EDIT BELOW THIS LINE
               var d = document, s = d.createElement('script');
