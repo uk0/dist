@@ -18,6 +18,12 @@
     "category": "lua"
   },
   
+  "2017-11-06-mongdo-e7-bb-88-e6-9e-81-e5-ae-89-e8-a3-85-e9-9b-86-e7-be-a4": {
+    "title": "MongoDB安装模式[原创]",
+    "url": " /2017/11/06/Mongdo%E7%BB%88%E6%9E%81%E5%AE%89%E8%A3%85%E9%9B%86%E7%BE%A4/",
+    "category": "linux"
+  },
+  
   "2017-10-31-java-date-replace": {
     "title": "将“yyyyMMdd”格式的时间字符串转换为“yyyy-MM-dd HH:mm:ss”格式（Java）[原创]",
     "url": " /2017/10/31/Java-date-replace/",
@@ -1038,6 +1044,12 @@
     "title": "将“yyyyMMdd”格式的时间字符串转换为“yyyy-MM-dd HH:mm:ss”格式（Java）[原创]",
     "url": "/2017/10/31/Java-date-replace/",
     "category": "[&quot;java&quot;]"
+  },
+  
+  "2017-11-06-mongdo-e7-bb-88-e6-9e-81-e5-ae-89-e8-a3-85-e9-9b-86-e7-be-a4": {
+    "title": "MongoDB安装模式[原创]",
+    "url": "/2017/11/06/Mongdo%E7%BB%88%E6%9E%81%E5%AE%89%E8%A3%85%E9%9B%86%E7%BE%A4/",
+    "category": "[&quot;linux&quot;]"
   },
   
   "2017-11-06-nginx-up": {

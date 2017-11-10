@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>MongoDB安装模式[原创] &mdash; 山脚下的胖子.</title>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2017/11/06/Mongdo%E7%BB%88%E6%9E%81%E5%AE%89%E8%A3%85%E9%9B%86%E7%BE%A4/">
+    <link rel="alternate" type="application/atom+xml" title="山脚下的胖子." href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="MongoDB安装模式[原创]">
+      
+    <meta name="keywords" content="linux">
+    <meta name="og:keywords" content="linux">
+      
+    <meta name="description" content="Linux Mongodb">
+    <meta name="og:description" content="Linux Mongodb">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2017/11/06/Mongdo%E7%BB%88%E6%9E%81%E5%AE%89%E8%A3%85%E9%9B%86%E7%BE%A4/">
+    <meta property="og:site_name" content="山脚下的胖子.">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2017-11-06">
+    
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="山脚下的胖子."><span class="octicon octicon-mark-github"></span> 山脚下的胖子.</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="Index">Index</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="categories">categories</a>
+                
+                <a href="/open-source/" class=" site-header-nav-item" target="" title="open-source">open-source</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="wiki">wiki</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="links">links</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="about">about</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="MongoDB安装模式[原创]">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">MongoDB安装模式[原创]</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/11/06
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#linux" title="linux">linux</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <p>Linux Mongodb</p>
+
+<p>date：2017-11-11
+author：张建新</p>
+
+<h1 id="查看硬盘分配情况">查看硬盘分配情况</h1>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>    <span class="o">[</span>root@dscn022 mongodb]# lsblk
+    NAME             MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+    sda                8:0    0 278.5G  0 disk
+    ├─sda1             8:1    0   500M  0 part /boot
+    └─sda2             8:2    0 224.9G  0 part
+      ├─rhel-root    253:0    0    50G  0 lvm  /
+      ├─rhel-swap    253:1    0     4G  0 lvm  <span class="o">[</span>SWAP]
+      ├─rhel-home    253:2    0 100.9G  0 lvm  /home
+      ├─rhel-var     253:3    0    20G  0 lvm  /var
+      └─rhel-var_log 253:4    0    50G  0 lvm  /var/log
+    sdb                8:16   0   3.7T  0 disk
+    └─sdb1             8:17   0   3.7T  0 part /home/hadmin/logs
+    sdc                8:32   0   3.7T  0 disk
+    └─sdc1             8:33   0   3.7T  0 part
+    sdd                8:48   0   3.7T  0 disk
+    └─sdd1             8:49   0   3.7T  0 part
+    sde                8:64   0   3.7T  0 disk
+    └─sde1             8:65   0   3.7T  0 part
+    sdf                8:80   0   3.7T  0 disk
+    └─sdf1             8:81   0   3.7T  0 part /home/hadmin/data/mongodb/prev
+    sdg                8:96   0   3.7T  0 disk
+    └─sdg1             8:97   0   3.7T  0 part /home/hadmin/data/mongodb/curr
+    sdh                8:112  0   3.7T  0 disk
+    └─sdh1             8:113  0   3.7T  0 part /home/hadmin/data/mongodb/next
+    sdi                8:128  0   3.7T  0 disk
+    └─sdi1             8:129  0   3.7T  0 part
+    sdj                8:144  0   3.7T  0 disk
+    └─sdj1             8:145  0   3.7T  0 part
+    sdk                8:160  0   3.7T  0 disk
+    └─sdk1             8:161  0   3.7T  0 part
+    sdl                8:176  0   3.7T  0 disk
+    └─sdl1             8:177  0   3.7T  0 part
+    sdm                8:192  0   3.7T  0 disk
+    └─sdm1             8:193  0   3.7T  0 part
+    loop0              7:0    0   3.8G  0 loop /mnt
+</code></pre>
+</div>
+
+<h1 id="进行配置">进行配置</h1>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>| ------- | ------ | ------- |
+| :------| ------: | :------: |
+| curr | 1 | 2 | 3 |  4  | 5 |
+| prev | 5 | 1 | 2 |  3  | 4 |
+| next | 2 | 3 | 4 |  5  | 1 |
+</code></pre>
+</div>
+
+<h1 id="分配mongodb-目录">分配mongoDB 目录</h1>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>    mkdir -p  /home/hadmin/data/mongodb/prev
+    mkdir -p  /home/hadmin/data/mongodb/curr
+    mkdir -p  /home/hadmin/data/mongodb/next
+</code></pre>
+</div>
+
+<h1 id="进行mount">进行mount</h1>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code> mount    /dev/sdf1      /home/hadmin/data/mongodb/prev
+ mount    /dev/sdg1     /home/hadmin/data/mongodb/curr
+ mount   /dev/sdh1     /home/hadmin/data/mongodb/next
+
+</code></pre>
+</div>
+
+<h1 id="查看硬盘大小">查看硬盘大小</h1>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+    <span class="o">[</span>root@dscn022 mongodb]# df -h
+    Filesystem                Size  Used Avail Use% Mounted on
+    /dev/mapper/rhel-root      50G  5.1G   45G  11% /
+    devtmpfs                  126G     0  126G   0% /dev
+    tmpfs                     126G     0  126G   0% /dev/shm
+    tmpfs                     126G   50M  126G   1% /run
+    tmpfs                     126G     0  126G   0% /sys/fs/cgroup
+    /dev/sda1                 494M  127M  368M  26% /boot
+    /dev/mapper/rhel-var       20G  101M   20G   1% /var
+    /dev/mapper/rhel-home     101G  1.5G  100G   2% /home
+    /dev/mapper/rhel-var_log   50G   58M   50G   1% /var/log
+    /dev/loop0                3.8G  3.8G     0 100% /mnt
+    tmpfs                     126G   64K  126G   1% /tmp
+    tmpfs                      26G     0   26G   0% /run/user/0
+    /dev/sdb1                 3.6T   89M  3.4T   1% /home/hadmin/logs
+    /dev/sdf1                 3.6T  390M  3.4T   1% /home/hadmin/data/mongodb/prev
+    /dev/sdg1                 3.6T  390M  3.4T   1% /home/hadmin/data/mongodb/curr
+    /dev/sdh1                 3.6T  390M  3.4T   1% /home/hadmin/data/mongodb/next
+
+</code></pre>
+</div>
+
+<h1 id="脚本-傻瓜模式">脚本 （傻瓜模式）</h1>
+<ul>
+  <li>重要 <code class="highlighter-rouge">numactl</code></li>
+  <li>yum install -y numactl</li>
+  <li>配置Mongodb用到的文件夹都要<code class="highlighter-rouge">mkdir</code></li>
+  <li>common.sh</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>    <span class="c">#!/bin/bash</span>
+
+    <span class="c"># $1就是shard几</span>
+    <span class="c"># $2目录，重新规划磁盘后可以修改此处</span>
+    <span class="c"># $3是关闭位，启动不传，关闭传 --shutdown</span>
+
+    <span class="nv">INDEX</span><span class="o">=</span><span class="nv">$1</span>
+
+    <span class="nv">PORT</span><span class="o">=</span><span class="k">$((</span> <span class="m">27018</span> <span class="o">+</span> <span class="nv">$INDEX</span> <span class="k">))</span>
+    <span class="nv">HOSTNAME</span><span class="o">=</span><span class="sb">`</span>cat /etc/hostname<span class="sb">`</span>
+    <span class="nv">SHARD</span><span class="o">=</span><span class="s2">"TOD-Shard-</span><span class="nv">$INDEX</span><span class="s2">"</span>
+    <span class="nv">DB_PATH</span><span class="o">=</span><span class="s2">" /home/hadmin/data/mongodb/"</span><span class="nv">$2</span>
+    <span class="nv">PID_FILE</span><span class="o">=</span><span class="s2">"/home/hadmin/data/pids/mongodb/</span><span class="nv">$SHARD</span><span class="s2">.pid"</span>
+    <span class="nv">LOG_FILE</span><span class="o">=</span><span class="s2">"/home/hadmin/data/logs/mongodb/</span><span class="nv">$SHARD</span><span class="s2">.log"</span>
+
+    numactl --interleave<span class="o">=</span>all /home/hadmin/mongodb/bin/mongod --logpath <span class="nv">$LOG_FILE</span> --logappend --logRotate rename --timeStampFormat ctime --fork --pidfilepath <span class="nv">$PID_FILE</span> --port <span class="nv">$PORT</span> --bind_ip <span class="nv">$HOSTNAME</span> --dbpath <span class="nv">$DB_PATH</span> --journalCommitInterval 100 --storageEngine wiredTiger --wiredTigerCacheSizeGB 4 --replSet <span class="nv">$SHARD</span> --enableMajorityReadConcern --shardsvr --oplogSize 10240 <span class="nv">$3</span>
+
+</code></pre>
+</div>
+
+<h1 id="cfgsvrstart">cfgsvr.start</h1>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+    <span class="c">#!/bin/bash</span>
+
+    numactl --interleave<span class="o">=</span>all /home/hadmin/mongodb/bin/mongod -f /home/hadmin/mongodb/conf/configserver.conf
+
+</code></pre>
+</div>
+
+<h1 id="route">route</h1>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+    <span class="c">#!/bin/bash</span>
+
+    /home/hadmin/mongodb/bin/mongos -f /home/hadmin/mongodb/conf/router.conf
+
+</code></pre>
+</div>
+
+<h1 id="shard_currstart">shard_curr.start</h1>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+    <span class="c">#!/bin/bash</span>
+
+    /home/hadmin/mongodb/sbin/common.sh 1 curr
+
+</code></pre>
+</div>
+
+<h1 id="shard_nextstart">shard_next.start</h1>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+    <span class="c">#!/bin/bash</span>
+
+    /home/hadmin/mongodb/sbin/common.sh 2 next
+
+</code></pre>
+</div>
+
+<h1 id="shard_prevstart">shard_prev.start</h1>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+    <span class="c">#!/bin/bash</span>
+
+    /home/hadmin/mongodb/sbin/common.sh 5 prev
+
+</code></pre>
+</div>
+
+<h1 id="initconfigsh">initConfig.sh</h1>
+<ul>
+  <li>初始化副本</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+    <span class="c">#!/bin/bash</span>
+    /home/hadmin/mongodb/bin/mongo dscn022:27018 <span class="sh">&lt;&lt;EOF
+    config={
+        _id:"ConfigServer",
+        configsvr:true,
+        members:[
+            {_id:0,host:"dscn022:27018",priority:2},
+            {_id:1,host:"dscn023:27018"},
+            {_id:2,host:"dscn024:27018"}],
+        settings:{getLastErrorDefaults:{w:"majority",wtimeout:5000}}
+    };
+    rs.initiate(config);
+    exit;
+    EOF
+
+</span></code></pre>
+</div>
+
+<h1 id="initshardsh">initShard.sh</h1>
+
+<ul>
+  <li>初始化Shard</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+    <span class="c">#!/bin/bash</span>
+        /home/hadmin/mongodb/bin/mongo dscn022:27017 <span class="sh">&lt;&lt;EOF
+    sh.addShard("TOD-Shard-1/dscn022:27019,dscn023:27019,dscn026:27019");
+    sh.addShard("TOD-Shard-2/dscn023:27020,dscn024:27020,dscn022:27020");
+    sh.addShard("TOD-Shard-3/dscn024:27021,dscn025:27021,dscn023:27021");
+    sh.addShard("TOD-Shard-4/dscn025:27022,dscn026:27022,dscn024:27022");
+    sh.addShard("TOD-Shard-5/dscn025:27023,dscn026:27023,dscn022:27023");
+    sh.setBalancerState(false);
+    exit;
+    EOF
+
+</span></code></pre>
+</div>
+
+<h1 id="initrssh">initRS.sh</h1>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+    <span class="c">#!/bin/bash</span>
+    <span class="c">############</span>
+    <span class="c"># init rs1 #</span>
+    <span class="c">############</span>
+    /home/hadmin/mongodb/bin/mongo dscn022:27019 <span class="sh">&lt;&lt;EOF
+    config={_id:"TOD-Shard-1",
+    	members:[
+    		{_id:0,host:"dscn022:27019",priority:2},
+    		{_id:1,host:"dscn026:27019"},
+    		{_id:2,host:"dscn023:27019"}],
+    	settings:{getLastErrorDefaults:{w:"majority",wtimeout:5000}}};
+    rs.initiate(config);
+    exit;
+    EOF
+
+</span>    <span class="c">############</span>
+    <span class="c"># init rs2 #</span>
+    <span class="c">############</span>
+    /home/hadmin/mongodb/bin/mongo dscn022:27020 <span class="sh">&lt;&lt;EOF
+    config={_id:"TOD-Shard-2",
+    	members:[
+    		{_id:0,host:"dscn023:27020",priority:2},
+    		{_id:1,host:"dscn022:27020"},
+    		{_id:2,host:"dscn024:27020"}],
+    	settings:{getLastErrorDefaults:{w:"majority",wtimeout:5000}}};
+    rs.initiate(config);
+    exit;
+    EOF
+
+</span>    <span class="c">############</span>
+    <span class="c"># init rs3 #</span>
+    <span class="c">############</span>
+    /home/hadmin/mongodb/bin/mongo dscn024:27021 <span class="sh">&lt;&lt;EOF
+    config={_id:"TOD-Shard-3",
+    	members:[
+    		{_id:0,host:"dscn024:27021",priority:2},
+    		{_id:1,host:"dscn023:27021"},
+    		{_id:2,host:"dscn025:27021"}],
+    	settings:{getLastErrorDefaults:{w:"majority",wtimeout:5000}}};
+    rs.initiate(config);
+    exit;
+    EOF
+
+</span>    <span class="c">############</span>
+    <span class="c"># init rs4 #</span>
+    <span class="c">############</span>
+    /home/hadmin/mongodb/bin/mongo dscn025:27022 <span class="sh">&lt;&lt;EOF
+    config={_id:"TOD-Shard-4",
+    	members:[
+    		{_id:0,host:"dscn025:27022",priority:2},
+    		{_id:1,host:"dscn024:27022"},
+    		{_id:2,host:"dscn026:27022"}],
+    	settings:{getLastErrorDefaults:{w:"majority",wtimeout:5000}}};
+    rs.initiate(config);
+    exit;
+    EOF
+
+</span>    <span class="c">############</span>
+    <span class="c"># init rs5 #</span>
+    <span class="c">############</span>
+    /home/hadmin/mongodb/bin/mongo dscn026:27023 <span class="sh">&lt;&lt;EOF
+    config={_id:"TOD-Shard-5",
+    	members:[
+    		{_id:0,host:"dscn026:27023",priority:2},
+    		{_id:1,host:"dscn025:27023"},
+    		{_id:2,host:"dscn022:27023"}],
+    	settings:{getLastErrorDefaults:{w:"majority",wtimeout:5000}}};
+    rs.initiate(config);
+    exit;
+    EOF
+
+</span></code></pre>
+</div>
+
+<h1 id="总结总体流程">总结（总体流程）</h1>
+
+<ul>
+  <li>第一步挂盘（mount）</li>
+  <li>复制Mongodb到5个节点</li>
+  <li>配置文件只需要配置（ConfigServer，Route）！Shard 不需要配置。</li>
+  <li>将脚本放倒Sbin下（与mongodb，Bin 同级别目录）</li>
+  <li>启动ConfigServer(3个节点)</li>
+  <li>启动Route 3个节点</li>
+  <li>sbin包含文件
+    <ul>
+      <li>stop 文件请看<code class="highlighter-rouge">common.sh</code></li>
+    </ul>
+
+    <p><img src="https://zmatsh.b0.upaiyun.com/images/WX20171111-014151@2x.png" alt="" /></p>
+  </li>
+</ul>
+
+<h1 id="脚本执行流程">脚本执行流程</h1>
+
+<ul>
+  <li>cfgsvr.start（三个节点）</li>
+  <li>route.start（三个节点）</li>
+  <li>shard_curr.start (每个节点)</li>
+  <li>shard_next.start (每个节点)</li>
+  <li>shard_prev.start (每个节点)</li>
+  <li>initConfig.sh (任意节点)</li>
+  <li>initRS.sh (任意节点)</li>
+  <li>initShard.sh (任意节点)</li>
+</ul>
+
+<h1 id="提醒">提醒</h1>
+<ul>
+  <li>注意 <code class="highlighter-rouge">ConfigServer</code> 名称</li>
+  <li>注意 <code class="highlighter-rouge">Route</code>指定的 ConfigServer地址</li>
+  <li>节点互信 以及<code class="highlighter-rouge">hosts</code></li>
+</ul>
+
+<h1 id="感谢兽兽提供的脚本">感谢兽兽提供的脚本</h1>
+
+<h1 id="感谢民权协助">感谢民权协助</h1>
+
+<ul>
+  <li>以上操作经过验证可以直接拿去。</li>
+  <li>auther <code class="highlighter-rouge">breakEval13</code></li>
+  <li>https://github.com/breakEval13</li>
+</ul>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+      
+        
+        <!-- Disqus Protection, see https://github.com/mzlogin/mzlogin.github.io/issues/2 -->
+        
+        
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'http://firsh.me/2017/11/06/Mongdo%E7%BB%88%E6%9E%81%E5%AE%89%E8%A3%85%E9%9B%86%E7%BE%A4/';
+              this.page.identifier = '/2017/11/06/Mongdo%E7%BB%88%E6%9E%81%E5%AE%89%E8%A3%85%E9%9B%86%E7%BE%A4/';
+              this.page.title = 'MongoDB安装模式[原创]';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+
+              s.type = 'text/javascript';
+              s.async = true;
+              var shortname = 'zmatsh';
+
+              s.src = '//' + shortname + '.disqus.com/embed.js';
+
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        
+        
+      
+    
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="https://zmatsh.b0.upaiyun.com/assets/css/modules/sidebar-search.css">
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="breakeval13">breakeval13</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/breakEval13/breakEval13.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="Index" target="">Index</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="categories" target="">categories</a>
+                </li>
+                
+                <li>
+                    <a href="/open-source/" title="open-source" target="">open-source</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="wiki" target="">wiki</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="links" target="">links</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="about" target="">about</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-80669434-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>
