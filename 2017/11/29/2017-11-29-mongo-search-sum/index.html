@@ -1,0 +1,21 @@
+<h1 id="mongodb-search-aggregate-sum">Mongodb search aggregate SUM</h1>
+
+<ul>
+  <li>find aggregate</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>db.cabinet.aggregate<span class="o">(</span>
+   <span class="o">[</span>
+     <span class="o">{</span>
+       <span class="nv">$group</span>:
+         <span class="o">{</span>
+           _id: <span class="o">{</span> <span class="o">}</span>,
+           totalAmount: <span class="o">{</span> <span class="nv">$sum</span>: <span class="s2">"</span><span class="nv">$cabinetBoxTotal</span><span class="s2">"</span> <span class="o">}</span>,
+           count: <span class="o">{</span> <span class="nv">$sum</span>: 1 <span class="o">}</span>
+         <span class="o">}</span>
+     <span class="o">}</span>
+   <span class="o">]</span>
+<span class="o">)</span>
+
+</code></pre>
+</div>
