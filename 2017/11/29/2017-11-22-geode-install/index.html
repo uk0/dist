@@ -67,17 +67,19 @@ cluster.properties  cluster.xml
   </li>
 </ul>
 
-<p>create region –name=example-region –type=REPLICATE_PERSISTENT</p>
-
-<p>start server –name=server1 –server-port=40411
-start server –name=server2 –server-port=40412
-start server –name=server3 –server-port=40413
-start server –name=server4 –server-port=40414
-start server –name=server5 –server-port=40415</p>
-
-<p>query –query=” SELECT  * FROM /example-region h WHERE h.hoursPerWeek &lt; 40 “</p>
-
 <div class="language-text highlighter-rouge"><pre class="highlight"><code>
+create region --name=example-region --type=REPLICATE_PERSISTENT
+
+start server --name=server1 --server-port=40411
+start server --name=server2 --server-port=40412
+start server --name=server3 --server-port=40413
+start server --name=server4 --server-port=40414
+start server --name=server5 --server-port=40415
+
+query --query=" SELECT  * FROM /example-region h WHERE h.hoursPerWeek &lt; 40 "
+
+
+
 locator 定位器，相当于master-slave中的master，或者zookeeper，主要用于管理集群，和链接不同的server。
 
 　　gfsh&gt; start locator --name=locator1

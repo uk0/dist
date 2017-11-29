@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-11-29T11:41:56+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html"></title><link href="http://firsh.me/2017/11/29/2017-11-29-mongo-search-sum/" rel="alternate" type="text/html" title="" /><published>2017-11-29T11:41:56+08:00</published><updated>2017-11-29T11:41:56+08:00</updated><id>http://firsh.me/2017/11/29/2017-11-29-mongo-search-sum</id><content type="html" xml:base="http://firsh.me/2017/11/29/2017-11-29-mongo-search-sum/">&lt;h1 id=&quot;mongodb-search-aggregate-sum&quot;&gt;Mongodb search aggregate SUM&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-11-29T11:56:33+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html"></title><link href="http://firsh.me/2017/11/29/2017-11-29-mongo-search-sum/" rel="alternate" type="text/html" title="" /><published>2017-11-29T11:56:33+08:00</published><updated>2017-11-29T11:56:33+08:00</updated><id>http://firsh.me/2017/11/29/2017-11-29-mongo-search-sum</id><content type="html" xml:base="http://firsh.me/2017/11/29/2017-11-29-mongo-search-sum/">&lt;h1 id=&quot;mongodb-search-aggregate-sum&quot;&gt;Mongodb search aggregate SUM&lt;/h1&gt;
 
 &lt;ul&gt;
   &lt;li&gt;find aggregate&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;db.cabinet.aggregate&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+db.cabinet.aggregate&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
    &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;
      &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
        &lt;span class=&quot;nv&quot;&gt;$group&lt;/span&gt;:
@@ -18,7 +19,7 @@
 &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>breakeval13</name></author></entry><entry><title type="html"></title><link href="http://firsh.me/2017/11/29/2017-11-22-geode-install/" rel="alternate" type="text/html" title="" /><published>2017-11-29T11:41:56+08:00</published><updated>2017-11-29T11:41:56+08:00</updated><id>http://firsh.me/2017/11/29/2017-11-22-geode-install</id><content type="html" xml:base="http://firsh.me/2017/11/29/2017-11-22-geode-install/">&lt;h1 id=&quot;apache-geode-install&quot;&gt;Apache geode install&lt;/h1&gt;
+&lt;/div&gt;</content><author><name>breakeval13</name></author></entry><entry><title type="html"></title><link href="http://firsh.me/2017/11/29/2017-11-22-geode-install/" rel="alternate" type="text/html" title="" /><published>2017-11-29T11:56:33+08:00</published><updated>2017-11-29T11:56:33+08:00</updated><id>http://firsh.me/2017/11/29/2017-11-22-geode-install</id><content type="html" xml:base="http://firsh.me/2017/11/29/2017-11-22-geode-install/">&lt;h1 id=&quot;apache-geode-install&quot;&gt;Apache geode install&lt;/h1&gt;
 
 &lt;ul&gt;
   &lt;li&gt;下载二进制文件&lt;/li&gt;
@@ -87,17 +88,19 @@ cluster.properties  cluster.xml
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;create region –name=example-region –type=REPLICATE_PERSISTENT&lt;/p&gt;
-
-&lt;p&gt;start server –name=server1 –server-port=40411
-start server –name=server2 –server-port=40412
-start server –name=server3 –server-port=40413
-start server –name=server4 –server-port=40414
-start server –name=server5 –server-port=40415&lt;/p&gt;
-
-&lt;p&gt;query –query=” SELECT  * FROM /example-region h WHERE h.hoursPerWeek &amp;lt; 40 “&lt;/p&gt;
-
 &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+create region --name=example-region --type=REPLICATE_PERSISTENT
+
+start server --name=server1 --server-port=40411
+start server --name=server2 --server-port=40412
+start server --name=server3 --server-port=40413
+start server --name=server4 --server-port=40414
+start server --name=server5 --server-port=40415
+
+query --query=&quot; SELECT  * FROM /example-region h WHERE h.hoursPerWeek &amp;lt; 40 &quot;
+
+
+
 locator 定位器，相当于master-slave中的master，或者zookeeper，主要用于管理集群，和链接不同的server。
 
 　　gfsh&amp;gt; start locator --name=locator1
