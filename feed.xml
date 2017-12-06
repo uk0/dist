@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-12-06T13:25:51+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">ehcache集群配置terracotta。</title><link href="http://firsh.me/2017/12/05/ehecache-terracotta/" rel="alternate" type="text/html" title="ehcache集群配置terracotta。" /><published>2017-12-05T00:00:00+08:00</published><updated>2017-12-05T00:00:00+08:00</updated><id>http://firsh.me/2017/12/05/ehecache-terracotta</id><content type="html" xml:base="http://firsh.me/2017/12/05/ehecache-terracotta/">&lt;h1 id=&quot;ehcache集群配置terracotta&quot;&gt;ehcache集群配置terracotta&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-12-06T23:18:47+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">ehcache集群配置terracotta。</title><link href="http://firsh.me/2017/12/05/ehecache-terracotta/" rel="alternate" type="text/html" title="ehcache集群配置terracotta。" /><published>2017-12-05T00:00:00+08:00</published><updated>2017-12-05T00:00:00+08:00</updated><id>http://firsh.me/2017/12/05/ehecache-terracotta</id><content type="html" xml:base="http://firsh.me/2017/12/05/ehecache-terracotta/">&lt;h1 id=&quot;ehcache集群配置terracotta&quot;&gt;ehcache集群配置terracotta&lt;/h1&gt;
 
 &lt;ul&gt;
   &lt;li&gt;ehcache for maven conf&lt;/li&gt;
@@ -421,7 +421,618 @@ OQL 类SQL的脚本，用来查数
 以上命令的执行默认是以集群为范围的，如果要单机执行，需要修改apache-geode\config\gemfire.properties文件中的属性：enable-cluster-configuration=true，改为false。
 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>breakeval13</name></author><summary type="html">Apache geode install</summary></entry><entry><title type="html">Linux 操作系统日常巡检[原创]</title><link href="http://firsh.me/2017/11/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%B8%B8%E5%B7%A1%E6%A3%80/" rel="alternate" type="text/html" title="Linux 操作系统日常巡检[原创]" /><published>2017-11-06T00:00:00+08:00</published><updated>2017-11-06T00:00:00+08:00</updated><id>http://firsh.me/2017/11/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%B8%B8%E5%B7%A1%E6%A3%80</id><content type="html" xml:base="http://firsh.me/2017/11/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%B8%B8%E5%B7%A1%E6%A3%80/">&lt;p&gt;Linux 操作系统日常巡检&lt;/p&gt;
+&lt;/div&gt;</content><author><name>breakeval13</name></author><summary type="html">Apache geode install</summary></entry><entry><title type="html">Teleport 跳板机部署[转载漠然]</title><link href="http://firsh.me/2017/11/09/set-up-teleport/" rel="alternate" type="text/html" title="Teleport 跳板机部署[转载漠然]" /><published>2017-11-09T16:47:51+08:00</published><updated>2017-11-09T16:47:51+08:00</updated><id>http://firsh.me/2017/11/09/set-up-teleport</id><content type="html" xml:base="http://firsh.me/2017/11/09/set-up-teleport/">&lt;blockquote&gt;
+  &lt;p&gt;由于业务需求，以前账号管理混乱，所以很多人有生产服务器的 root 权限；所以目前需要一个能 ssh 登录线上服务器的工具，同时具有简单的审计功能；找了好久找到了这个小工具，以下记录一下搭建教程&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;一环境准备&quot;&gt;一、环境准备&lt;/h3&gt;
+
+&lt;p&gt;目前准备了 3 台虚拟机，两台位于内网 NAT 之后，一台位于公网可以直接链接；使用时客户端通过工具连接到公网跳板机上，然后实现自动跳转到内网任意主机；并且具有相应的操作回放审计，通过宿主机账户限制用户权限&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;ip&lt;/th&gt;
+      &lt;th&gt;节点&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;92.223.67.84&lt;/td&gt;
+      &lt;td&gt;公网 Master&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;172.16.0.80&lt;/td&gt;
+      &lt;td&gt;内网 Master&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;172.16.0.81&lt;/td&gt;
+      &lt;td&gt;内网 Node&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;二teleport-工作模式&quot;&gt;二、Teleport 工作模式&lt;/h3&gt;
+
+&lt;p&gt;Teleport 工作时从宏观上看是以集群为单位，也就是说&lt;strong&gt;公网算作一个集群，内网算作另一个集群，内网集群通过 ssh 隧道保持跟公网的链接状态，同时内网机群允许公网集群用户连接&lt;/strong&gt;，大体工作模式如下&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/markdown/hsnj8.png&quot; alt=&quot;Teleport 工作模式&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;三搭建公网-master&quot;&gt;三、搭建公网 Master&lt;/h3&gt;
+
+&lt;h4 id=&quot;31配置-systemd&quot;&gt;3.1、配置 Systemd&lt;/h4&gt;
+
+&lt;p&gt;首先下载相关可执行文件并复制到 Path 目录下，然后创建一下配置目录等&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget https://github.com/gravitational/teleport/releases/download/v2.3.5/teleport-v2.3.5-linux-amd64-bin.tar.gz
+tar -zxvf teleport-v2.3.5-linux-amd64-bin.tar.gz
+mv teleport/tctl teleport/teleport teleport/tsh /usr/local/bin
+mkdir -p /etc/teleport /data/teleport
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;然后为了让服务后台运行创建一个 systemd service 配置文件&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cat &amp;gt; /etc/systemd/system/teleport.service &lt;span class=&quot;sh&quot;&gt;&amp;lt;&amp;lt;EOF
+[Unit]
+Description=Teleport SSH Service
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/local/bin/teleport start -c /etc/teleport/teleport.yaml
+
+[Install]
+WantedBy=multi-user.target
+EOF
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;32配置-teleport&quot;&gt;3.2、配置 Teleport&lt;/h4&gt;
+
+&lt;p&gt;Systemd 配置完成后，就需要写一个 Teleport 的配置文件来让 Teleport 启动，具体选项含义可以参考 &lt;a href=&quot;https://gravitational.com/teleport/docs/2.3/admin-guide/&quot;&gt;官方文档&lt;/a&gt;；以下为我的配置样例&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# By default, this file should be stored in /etc/teleport.yaml&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# This section of the configuration file applies to all teleport&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# services.&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;teleport&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# nodename allows to assign an alternative name this node can be reached by.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# by default it's equal to hostname&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;nodename&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mritd.master&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Data directory where Teleport keeps its data, like keys/users for&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# authentication (if using the default BoltDB back-end)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;data_dir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/data/teleport&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# one-time invitation token used to join a cluster. it is not used on&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# subsequent starts&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;auth_token&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;jYektagNTmhjv9Dh&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# when running in multi-homed or NATed environments Teleport nodes need&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# to know which IP it will be reachable at by other nodes&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;advertise_ip&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;92.223.67.84&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# list of auth servers in a cluster. you will have more than one auth server&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# if you configure teleport auth to run in HA configuration&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;auth_servers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.0.0.0:3025&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.0.0.0:3025&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Teleport throttles all connections to avoid abuse. These settings allow&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# you to adjust the default limits&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;connection_limits&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;max_connections&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1000&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;max_users&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;250&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Logging configuration. Possible output values are 'stdout', 'stderr' and&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# 'syslog'. Possible severity values are INFO, WARN and ERROR (default).&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;stdout&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;severity&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;INFO&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Type of storage used for keys. You need to configure this to use etcd&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# backend if you want to run Teleport in HA configuration.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;storage&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;bolt&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Cipher algorithms that the server supports. This section only needs to be&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# set if you want to override the defaults.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;ciphers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;aes128-ctr&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;aes192-ctr&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;aes256-ctr&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;aes128-gcm@openssh.com&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;arcfour256&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;arcfour128&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Key exchange algorithms that the server supports. This section only needs&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# to be set if you want to override the defaults.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;kex_algos&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;curve25519-sha256@libssh.org&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ecdh-sha2-nistp256&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ecdh-sha2-nistp384&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ecdh-sha2-nistp521&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;diffie-hellman-group14-sha1&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;diffie-hellman-group1-sha1&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Message authentication code (MAC) algorithms that the server supports.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# This section only needs to be set if you want to override the defaults.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;mac_algos&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hmac-sha2-256-etm@openssh.com&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hmac-sha2-256&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hmac-sha1&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hmac-sha1-96&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# This section configures the 'auth service':&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;auth_service&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Turns 'auth' role on. Default is 'yes'&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;yes&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;authentication&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# default authentication type. possible values are 'local', 'oidc' and 'saml'&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# only local authentication (Teleport's own user DB) is supported in the open&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# source version&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;local&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# second_factor can be off, otp, or u2f&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;second_factor&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;otp&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# this section is used if second_factor is set to 'u2f'&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;#u2f:&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;#    # app_id must point to the URL of the Teleport Web UI (proxy) accessible&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;#    # by the end users&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;#    app_id: https://localhost:3080&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;#    # facets must list all proxy servers if there are more than one deployed&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;#    facets:&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;#    - https://localhost:3080&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# IP and the port to bind to. Other Teleport nodes will be connecting to&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# this port (AKA &quot;Auth API&quot; or &quot;Cluster API&quot;) to validate client&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# certificates&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;listen_addr&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.0.0.0:3025&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Pre-defined tokens for adding new nodes to a cluster. Each token specifies&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# the role a new node will be allowed to assume. The more secure way to&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# add nodes is to use `ttl node add --ttl` command to generate auto-expiring&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# tokens.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# We recommend to use tools like `pwgen` to generate sufficiently random&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# tokens of 32+ byte length.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;tokens&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;proxy,node:jYektagNTmhjv9Dh&quot;&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;auth:jYektagNTmhjv9Dh&quot;&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Optional &quot;cluster name&quot; is needed when configuring trust between multiple&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# auth servers. A cluster name is used as part of a signature in certificates&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# generated by this CA.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# By default an automatically generated GUID is used.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# IMPORTANT: if you change cluster_name, it will invalidate all generated&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# certificates and keys (may need to wipe out /var/lib/teleport directory)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;cluster_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;mritd&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# This section configures the 'node service':&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;ssh_service&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Turns 'ssh' role on. Default is 'yes'&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;yes&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# IP and the port for SSH service to bind to.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;listen_addr&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.0.0.0:3022&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# See explanation of labels in &quot;Labeling Nodes&quot; section below&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;role&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# List of the commands to periodically execute. Their output will be used as node labels.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# See &quot;Labeling Nodes&quot; section below for more information.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;commands&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;arch&lt;/span&gt;             &lt;span class=&quot;c1&quot;&gt;# this command will add a label like 'arch=x86_64' to a node&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;uname&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;-p&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1h0m0s&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# enables reading ~/.tsh/environment before creating a session. by default&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# set to false, can be set true here or as a command line flag.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;permit_user_env&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;false&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# This section configures the 'proxy servie'&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;proxy_service&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Turns 'proxy' role on. Default is 'yes'&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;yes&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# SSH forwarding/proxy address. Command line (CLI) clients always begin their&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# SSH sessions by connecting to this port&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;listen_addr&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.0.0.0:3023&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Reverse tunnel listening address. An auth server (CA) can establish an&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# outbound (from behind the firewall) connection to this address.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# This will allow users of the outside CA to connect to behind-the-firewall&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# nodes.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;tunnel_listen_addr&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.0.0.0:3024&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# The HTTPS listen address to serve the Web UI and also to authenticate the&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# command line (CLI) users via password+HOTP&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;web_listen_addr&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.0.0.0:3080&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# TLS certificate for the HTTPS connection. Configuring these properly is&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# critical for Teleport security.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#https_key_file: /var/lib/teleport/webproxy_key.pem&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#https_cert_file: /var/lib/teleport/webproxy_cert.pem&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;然后启动 Teleport 即可&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;teleport
+systemctl start teleport
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;如果启动出现如下错误&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;error: Could not load host key: /etc/ssh/ssh_host_ecdsa_key
+error: Could not load host key: /etc/ssh/ssh_host_ed25519_key
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;请执行 ssh-keygen 命令自行生成相关秘钥&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key
+ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;33添加用户&quot;&gt;3.3、添加用户&lt;/h4&gt;
+
+&lt;p&gt;公网这台 Teleport 将会作为主要的接入机器，所以在此节点内添加的用户将有权限登录所有集群，包括内网的另一个集群；所以为了方便以后操作先添加一个用户&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 添加一个用户名为 mritd 的用户，该用户在所有集群具有 root 用户权限&lt;/span&gt;
+tctl --config /etc/teleport/teleport.yaml users add mritd root
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;添加成功后会返回一个 OTP 认证初始化地址，浏览器访问后可以使用 Google 扫描 OTP 二维码从而在登录时增加一层 OTP 认证&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/markdown/chuyf.png&quot; alt=&quot;OTP CMD&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;访问该地址后初始化密码及 OTP&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/markdown/czwmd.png&quot; alt=&quot;init OTP&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;四搭建内网-master&quot;&gt;四、搭建内网 Master&lt;/h3&gt;
+
+&lt;p&gt;内网搭建 Master 和公网类似，只不过为了安全将所有 &lt;code class=&quot;highlighter-rouge&quot;&gt;0.0.0.0&lt;/code&gt; 的地址全部换成内网 IP 即可，以下为内网的配置信息&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# By default, this file should be stored in /etc/teleport.yaml&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# This section of the configuration file applies to all teleport&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# services.&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;teleport&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# nodename allows to assign an alternative name this node can be reached by.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# by default it's equal to hostname&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;nodename&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mritd.test1&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Data directory where Teleport keeps its data, like keys/users for&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# authentication (if using the default BoltDB back-end)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;data_dir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/data/teleport&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# one-time invitation token used to join a cluster. it is not used on&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# subsequent starts&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;auth_token&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;jYektagNTmhjv9Dh&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# when running in multi-homed or NATed environments Teleport nodes need&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# to know which IP it will be reachable at by other nodes&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;advertise_ip&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;172.16.0.80&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# list of auth servers in a cluster. you will have more than one auth server&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# if you configure teleport auth to run in HA configuration&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;auth_servers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;172.16.0.80:3025&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Teleport throttles all connections to avoid abuse. These settings allow&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# you to adjust the default limits&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;connection_limits&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;max_connections&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1000&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;max_users&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;250&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Logging configuration. Possible output values are 'stdout', 'stderr' and&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# 'syslog'. Possible severity values are INFO, WARN and ERROR (default).&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;stdout&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;severity&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;INFO&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Type of storage used for keys. You need to configure this to use etcd&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# backend if you want to run Teleport in HA configuration.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;storage&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;bolt&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Cipher algorithms that the server supports. This section only needs to be&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# set if you want to override the defaults. &lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;ciphers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;aes128-ctr&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;aes192-ctr&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;aes256-ctr&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;aes128-gcm@openssh.com&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;arcfour256&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;arcfour128&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Key exchange algorithms that the server supports. This section only needs&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# to be set if you want to override the defaults.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;kex_algos&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;curve25519-sha256@libssh.org&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ecdh-sha2-nistp256&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ecdh-sha2-nistp384&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ecdh-sha2-nistp521&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;diffie-hellman-group14-sha1&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;diffie-hellman-group1-sha1&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Message authentication code (MAC) algorithms that the server supports.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# This section only needs to be set if you want to override the defaults.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;mac_algos&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hmac-sha2-256-etm@openssh.com&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hmac-sha2-256&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hmac-sha1&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hmac-sha1-96&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# This section configures the 'auth service':&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;auth_service&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Turns 'auth' role on. Default is 'yes'&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;yes&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;authentication&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# default authentication type. possible values are 'local', 'oidc' and 'saml'&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# only local authentication (Teleport's own user DB) is supported in the open&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# source version&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;local&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# second_factor can be off, otp, or u2f&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;second_factor&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;otp&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# this section is used if second_factor is set to 'u2f'&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;#u2f:&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;#    # app_id must point to the URL of the Teleport Web UI (proxy) accessible&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;#    # by the end users&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;#    app_id: https://localhost:3080&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;#    # facets must list all proxy servers if there are more than one deployed&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;#    facets:&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;#    - https://localhost:3080&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# IP and the port to bind to. Other Teleport nodes will be connecting to&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# this port (AKA &quot;Auth API&quot; or &quot;Cluster API&quot;) to validate client&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# certificates&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;listen_addr&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;172.16.0.80:3025&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Pre-defined tokens for adding new nodes to a cluster. Each token specifies&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# the role a new node will be allowed to assume. The more secure way to&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# add nodes is to use `ttl node add --ttl` command to generate auto-expiring&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# tokens.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# We recommend to use tools like `pwgen` to generate sufficiently random&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# tokens of 32+ byte length.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;tokens&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;proxy,node:jYektagNTmhjv9Dh&quot;&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;auth:jYektagNTmhjv9Dh&quot;&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Optional &quot;cluster name&quot; is needed when configuring trust between multiple&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# auth servers. A cluster name is used as part of a signature in certificates&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# generated by this CA.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# By default an automatically generated GUID is used.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# IMPORTANT: if you change cluster_name, it will invalidate all generated&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# certificates and keys (may need to wipe out /var/lib/teleport directory)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;cluster_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;nat&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# This section configures the 'node service':&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;ssh_service&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Turns 'ssh' role on. Default is 'yes'&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;yes&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# IP and the port for SSH service to bind to.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;listen_addr&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;172.16.0.80:3022&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# See explanation of labels in &quot;Labeling Nodes&quot; section below&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;role&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# List of the commands to periodically execute. Their output will be used as node labels.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# See &quot;Labeling Nodes&quot; section below for more information.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;commands&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;arch&lt;/span&gt;             &lt;span class=&quot;c1&quot;&gt;# this command will add a label like 'arch=x86_64' to a node&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;uname&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;-p&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1h0m0s&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# enables reading ~/.tsh/environment before creating a session. by default&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# set to false, can be set true here or as a command line flag.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;permit_user_env&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;false&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# This section configures the 'proxy servie'&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;proxy_service&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Turns 'proxy' role on. Default is 'yes'&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;yes&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# SSH forwarding/proxy address. Command line (CLI) clients always begin their&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# SSH sessions by connecting to this port&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;listen_addr&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;172.16.0.80:3023&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Reverse tunnel listening address. An auth server (CA) can establish an&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# outbound (from behind the firewall) connection to this address.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# This will allow users of the outside CA to connect to behind-the-firewall&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# nodes.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;tunnel_listen_addr&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;172.16.0.80:3024&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# The HTTPS listen address to serve the Web UI and also to authenticate the&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# command line (CLI) users via password+HOTP&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;web_listen_addr&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;172.16.0.80:3080&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# TLS certificate for the HTTPS connection. Configuring these properly is&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# critical for Teleport security.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#https_key_file: /var/lib/teleport/webproxy_key.pem&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#https_cert_file: /var/lib/teleport/webproxy_cert.pem&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;配置完成后直接启动即可&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;teleport
+systemctl start teleport
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;五将内网集群链接至公网&quot;&gt;五、将内网集群链接至公网&lt;/h3&gt;
+
+&lt;p&gt;上文已经讲过，Teleport 通过公网链接内网主机的方式是让内网集群向公网打通一条 ssh 隧道，然后再进行通讯；具体配置如下&lt;/p&gt;
+
+&lt;h4 id=&quot;51公网-master-开启授信集群&quot;&gt;5.1、公网 Master 开启授信集群&lt;/h4&gt;
+
+&lt;p&gt;在公网 Master 增加 Token 配置，以允许持有该 Token 的其他内网集群连接到此，修改 &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/teleport/teleport.yaml&lt;/code&gt; 增加一个 token 即可&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;tokens:
+    - &lt;span class=&quot;s2&quot;&gt;&quot;proxy,node:jYektagNTmhjv9Dh&quot;&lt;/span&gt;
+    - &lt;span class=&quot;s2&quot;&gt;&quot;auth:jYektagNTmhjv9Dh&quot;&lt;/span&gt;
+    - &lt;span class=&quot;s2&quot;&gt;&quot;trusted_cluster:xiomwWcrKinFw4Vs&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;然后重启 Teleport&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;systemctl restart teleport
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;52内网-master-链接公网-master&quot;&gt;5.2、内网 Master 链接公网 Master&lt;/h4&gt;
+
+&lt;p&gt;当公网集群开启了允许其他集群链接后，内网集群只需要创建配置进行连接即可，创建配置(cluster.yaml)如下&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# cluster.yaml&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;trusted_cluster&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v2&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# the trusted cluster name MUST match the 'cluster_name' setting of the&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# cluster&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;local_cluster&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# this field allows to create tunnels that are disabled, but can be enabled later.&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# the token expected by the &quot;main&quot; cluster:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;xiomwWcrKinFw4Vs&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# the address in 'host:port' form of the reverse tunnel listening port on the&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# &quot;master&quot; proxy server:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;tunnel_addr&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;92.223.67.84:3024&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# the address in 'host:port' form of the web listening port on the&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# &quot;master&quot; proxy server:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;web_proxy_addr&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;92.223.67.84:3080&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;执行以下命令使内网集群通过 ssh 隧道连接到公网集群&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;tctl --config /etc/teleport/teleport.yaml create /etc/teleport/cluster.yaml
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;注意，如果在启动公网和内网集群时没有指定受信的证书( &lt;code class=&quot;highlighter-rouge&quot;&gt;https_cert_file&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;https_key_file&lt;/code&gt; )，那么默认 Teleport 将会生成一个自签名证书，此时在 create 受信集群时将会产生如下错误:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;the trusted cluster uses misconfigured HTTP/TLS certificate
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;此时需要在 &lt;strong&gt;待添加集群(内网)&lt;/strong&gt; 启动时增加 &lt;code class=&quot;highlighter-rouge&quot;&gt;--insecure&lt;/code&gt; 参数，即 Systemd 配置修改如下&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Unit]
+&lt;span class=&quot;nv&quot;&gt;Description&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Teleport SSH Service
+&lt;span class=&quot;nv&quot;&gt;After&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;network.target
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Service]
+&lt;span class=&quot;nv&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;simple
+&lt;span class=&quot;nv&quot;&gt;Restart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;always
+&lt;span class=&quot;nv&quot;&gt;ExecStart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/local/bin/teleport start --insecure -c /etc/teleport/teleport.yaml
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Install]
+&lt;span class=&quot;nv&quot;&gt;WantedBy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;multi-user.target
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;然后再进行 create 就不会报错&lt;/p&gt;
+
+&lt;h3 id=&quot;六添加其他节点&quot;&gt;六、添加其他节点&lt;/h3&gt;
+
+&lt;p&gt;两台节点打通后，此时如果有其他机器则可以将其加入到对应集群中，以下以另一台内网机器为例&lt;/p&gt;
+
+&lt;p&gt;由于在主节点 &lt;code class=&quot;highlighter-rouge&quot;&gt;auth_service&lt;/code&gt; 中已经预先指定了一个 static Token 用于其他节点加入( &lt;code class=&quot;highlighter-rouge&quot;&gt;proxy,node:jYektagNTmhjv9Dh&lt;/code&gt; )，所以其他节点只需要使用这个 Token 加入即可，在另一台内网主机上修改 Systemd 配置如下，然后启动即可&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Unit]
+&lt;span class=&quot;nv&quot;&gt;Description&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Teleport SSH Service
+&lt;span class=&quot;nv&quot;&gt;After&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;network.target
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Service]
+&lt;span class=&quot;nv&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;simple
+&lt;span class=&quot;nv&quot;&gt;Restart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;always
+&lt;span class=&quot;nv&quot;&gt;ExecStart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/local/bin/teleport start --roles&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;node,proxy &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+                                        --token&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;jYektagNTmhjv9Dh &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+                                        --auth-server&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;172.16.0.80
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Install]
+&lt;span class=&quot;nv&quot;&gt;WantedBy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;multi-user.target
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;此时在内网的 Master 上可以查看到 Node 已经加入&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;test1.node ➜ tctl --config /etc/teleport/teleport.yaml nodes ls
+Hostname    UUID                                 Address          Labels
+----------- ------------------------------------ ---------------- -----------------------
+test2.node  abc786fe-9a60-4480-80f7-8edc20710e58 172.16.0.81:3022
+mritd.test1 be9080fb-bdba-4823-9fb6-294e0b0dcce3 172.16.0.80:3022 &lt;span class=&quot;nv&quot;&gt;arch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;x86_64,role&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;master
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;七连接测试&quot;&gt;七、连接测试&lt;/h3&gt;
+
+&lt;h4 id=&quot;71web-测试&quot;&gt;7.1、Web 测试&lt;/h4&gt;
+
+&lt;p&gt;Teleport 支持 Web 页面访问，直接访问 &lt;code class=&quot;highlighter-rouge&quot;&gt;https://公网IP:3080&lt;/code&gt;，然后登陆即可，登陆后如下&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/markdown/9yf6k.png&quot; alt=&quot;Web login&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;通过 Cluster 选项可以切换不同集群，点击后面的用户名可以选择不同用户登录到不同主机(用户授权在添加用户时控制)，登陆成功后如下&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/markdown/m7hz5.png&quot; alt=&quot;Login Success&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;通过 Teleport 进行的所有操作可以通过审计菜单进行操作回放&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/markdown/c8a74.png&quot; alt=&quot;Audit&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;72命令行测试&quot;&gt;7.2、命令行测试&lt;/h4&gt;
+
+&lt;p&gt;类 Uninx 系统下我们还是习惯使用终端登录，终端登录需要借助 Teleport 的命令行工具 &lt;code class=&quot;highlighter-rouge&quot;&gt;tsh&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;tsh&lt;/code&gt; 在下载的 release 压缩版中已经有了，具体使用文档请自行 help 和参考官方文档，以下为简单的使用示例&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;登录跳板机: 短时间内只需要登录一次即可，登录时需要输入密码及 OTP 口令&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;TELEPORT_PROXY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;92.223.67.84
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;TELEPORT_USER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;mritd
+tsh login --insecure
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;登录主机: 完成上一步 login 后就可以免密码登录任意主机&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# cluster 名字是上面设置的，在 web 界面也能看到&lt;/span&gt;
+tsh ssh --cluster nat root@test2.node
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;复制文件: &lt;strong&gt;复制文件时不显示进度，并非卡死&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;tsh scp --cluster nat teleport-v2.3.5-linux-amd64-bin.tar.gz root@test2.node:/
+
+&lt;span class=&quot;gp&quot;&gt;-&amp;gt; &lt;/span&gt;teleport-v2.3.5-linux-amd64-bin.tar.gz &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;16797035&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>breakeval13</name></author><summary type="html">由于业务需求，以前账号管理混乱，所以很多人有生产服务器的 root 权限；所以目前需要一个能 ssh 登录线上服务器的工具，同时具有简单的审计功能；找了好久找到了这个小工具，以下记录一下搭建教程</summary></entry><entry><title type="html">Linux 操作系统日常巡检[原创]</title><link href="http://firsh.me/2017/11/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%B8%B8%E5%B7%A1%E6%A3%80/" rel="alternate" type="text/html" title="Linux 操作系统日常巡检[原创]" /><published>2017-11-06T00:00:00+08:00</published><updated>2017-11-06T00:00:00+08:00</updated><id>http://firsh.me/2017/11/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%B8%B8%E5%B7%A1%E6%A3%80</id><content type="html" xml:base="http://firsh.me/2017/11/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%B8%B8%E5%B7%A1%E6%A3%80/">&lt;p&gt;Linux 操作系统日常巡检&lt;/p&gt;
 
 &lt;p&gt;date：2017-10-06
 author：杨然儿&lt;/p&gt;
@@ -1377,43 +1988,4 @@ author：zhangjianxin&lt;/p&gt;
   &lt;li&gt;以上操作经过验证可以直接拿去。&lt;/li&gt;
   &lt;li&gt;auther &lt;code class=&quot;highlighter-rouge&quot;&gt;breakEval13&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;https://github.com/breakEval13&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>breakeval13</name></author><summary type="html">将“yyyyMMdd”格式的时间字符串转换为“yyyy-MM-dd HH:mm:ss”格式（Java）</summary></entry><entry><title type="html">Crate DB重启数据恢复Shards较慢解决方案[原创]</title><link href="http://firsh.me/2017/10/30/crate-io-replace/" rel="alternate" type="text/html" title="Crate DB重启数据恢复Shards较慢解决方案[原创]" /><published>2017-10-30T00:00:00+08:00</published><updated>2017-10-30T00:00:00+08:00</updated><id>http://firsh.me/2017/10/30/crate-io-replace</id><content type="html" xml:base="http://firsh.me/2017/10/30/crate-io-replace/">&lt;p&gt;Crate DB重启数据恢复Shards较慢解决方案“采用ES restFull API”&lt;/p&gt;
-
-&lt;p&gt;date：2017-10-31
-author：zhangjianxin&lt;/p&gt;
-
-&lt;h1 id=&quot;crate-db重启数据恢复shards较慢解决方案&quot;&gt;Crate DB重启数据恢复Shards较慢解决方案&lt;/h1&gt;
-
-&lt;p&gt;[*] 成功图，&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/crate-success.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;[*] 解决方案&lt;/p&gt;
-
-&lt;h1 id=&quot;解决crate-重启恢复shards速度慢的问题&quot;&gt;解决Crate 重启恢复Shards速度慢的问题&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;修改crate配置文件
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   es.api.enabled: &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;开始处理
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  curl -XPUT http://127.0.0.1:9200/_cluster/settings -d&lt;span class=&quot;s1&quot;&gt;'
-  {
-  	&quot;transient&quot; : {
-  		&quot;cluster.routing.allocation.enable&quot; : &quot;none&quot;
-  	}
-  }'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;感谢国庆大佬&quot;&gt;感谢&lt;code class=&quot;highlighter-rouge&quot;&gt;国庆&lt;/code&gt;大佬&lt;/h1&gt;
-&lt;h1 id=&quot;感谢禹神大佬&quot;&gt;感谢&lt;code class=&quot;highlighter-rouge&quot;&gt;禹神&lt;/code&gt;大佬&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;以上操作经过验证可以直接拿去。&lt;/li&gt;
-  &lt;li&gt;auther &lt;code class=&quot;highlighter-rouge&quot;&gt;breakEval13&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;https://github.com/breakEval13&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>breakeval13</name></author><summary type="html">Crate DB重启数据恢复Shards较慢解决方案“采用ES restFull API”</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>breakeval13</name></author><summary type="html">将“yyyyMMdd”格式的时间字符串转换为“yyyy-MM-dd HH:mm:ss”格式（Java）</summary></entry></feed>
