@@ -1,5 +1,11 @@
 {
   
+  "2017-12-05-ehecache-terracotta": {
+    "title": "ehcache集群配置terracotta。",
+    "url": " /2017/12/05/ehecache-terracotta/",
+    "category": "mongo"
+  },
+  
   "2017-11-29-mongo-search-sum": {
     "title": "Mongodb Aggregate Sum。",
     "url": " /2017/11/29/mongo-search-sum/",
@@ -1103,6 +1109,12 @@
   "2017-11-29-mongo-search-sum": {
     "title": "Mongodb Aggregate Sum。",
     "url": "/2017/11/29/mongo-search-sum/",
+    "category": "[&quot;mongo&quot;]"
+  },
+  
+  "2017-12-05-ehecache-terracotta": {
+    "title": "ehcache集群配置terracotta。",
+    "url": "/2017/12/05/ehecache-terracotta/",
     "category": "[&quot;mongo&quot;]"
   },
   

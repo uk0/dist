@@ -1,4 +1,133 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-11-30T17:19:07+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">Mongodb Aggregate Sum。</title><link href="http://firsh.me/2017/11/29/mongo-search-sum/" rel="alternate" type="text/html" title="Mongodb Aggregate Sum。" /><published>2017-11-29T00:00:00+08:00</published><updated>2017-11-29T00:00:00+08:00</updated><id>http://firsh.me/2017/11/29/mongo-search-sum</id><content type="html" xml:base="http://firsh.me/2017/11/29/mongo-search-sum/">&lt;h1 id=&quot;mongodb-search-aggregate-sum&quot;&gt;Mongodb search aggregate SUM&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-12-06T13:23:19+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">ehcache集群配置terracotta。</title><link href="http://firsh.me/2017/12/05/ehecache-terracotta/" rel="alternate" type="text/html" title="ehcache集群配置terracotta。" /><published>2017-12-05T00:00:00+08:00</published><updated>2017-12-05T00:00:00+08:00</updated><id>http://firsh.me/2017/12/05/ehecache-terracotta</id><content type="html" xml:base="http://firsh.me/2017/12/05/ehecache-terracotta/">&lt;h1 id=&quot;ehcache集群配置terracotta&quot;&gt;ehcache集群配置terracotta&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ehcache for maven conf&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;        &lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.ehcache&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;ehcache&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;${ehcache.version}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.ehcache&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;ehcache-clustered&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;${ehcache.version}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;tc-config.xml (ehcache3.4.0)版本已经被合并了里面包含&lt;code class=&quot;highlighter-rouge&quot;&gt;terracotta&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;tc-config&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.terracotta.org/config&quot;&lt;/span&gt;
+           &lt;span class=&quot;na&quot;&gt;xmlns:ohr=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.terracotta.org/config/offheap-resource&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;&amp;lt;!--
+    This is the default Terracotta server configuration file for the Ehcache kit.
+
+    It defines a single offheap resource of 512MB to be used for caching data.
+
+    It also defines a single server, but you can add another one to benefit from high availability.
+  --&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;plugins&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;config&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;ohr:offheap-resources&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;ohr:resource&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;unit=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;MB&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;512&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ohr:resource&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/ohr:offheap-resources&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/config&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/plugins&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;servers&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;server&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;host=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;10.11.0.224&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;s1&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;c&quot;&gt;&amp;lt;!--
+        Indicates the location for logs files - %H will resolve to user home directory.
+        Note that relative path will be resolved from the location of this configuration file.
+       --&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;logs&amp;gt;&lt;/span&gt;/home/hadmin/data/logs/ehcache/ehcache-server/terracotta-logs-s1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/logs&amp;gt;&lt;/span&gt;
+
+      &lt;span class=&quot;c&quot;&gt;&amp;lt;!--
+        This port is used by clients to communicate to the server.
+        Its value is actually the default one and is thus omitted.
+      --&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;tsa-port&amp;gt;&lt;/span&gt;9410&lt;span class=&quot;nt&quot;&gt;&amp;lt;/tsa-port&amp;gt;&lt;/span&gt;
+
+      &lt;span class=&quot;c&quot;&gt;&amp;lt;!--
+        This port is used for server to server communication.
+        Its value is actually the default one and is thus omitted.
+      --&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;tsa-group-port&amp;gt;&lt;/span&gt;9430&lt;span class=&quot;nt&quot;&gt;&amp;lt;/tsa-group-port&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/server&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;server&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;host=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;10.11.0.225&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;s2&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;c&quot;&gt;&amp;lt;!--
+                   Indicates the location for logs files - %H will resolve to user home directory.
+        Note that relative path will be resolved from the location of this configuration file.
+       --&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;logs&amp;gt;&lt;/span&gt;/home/hadmin/data/logs/ehcache/ehcache-server/terracotta-logs-s2&lt;span class=&quot;nt&quot;&gt;&amp;lt;/logs&amp;gt;&lt;/span&gt;
+
+      &lt;span class=&quot;c&quot;&gt;&amp;lt;!--
+                   This port is used by clients to communicate to the server.
+        Its value is actually the default one and is thus omitted.
+      --&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;tsa-port&amp;gt;&lt;/span&gt;9410&lt;span class=&quot;nt&quot;&gt;&amp;lt;/tsa-port&amp;gt;&lt;/span&gt;
+
+      &lt;span class=&quot;c&quot;&gt;&amp;lt;!--
+                   This port is used for server to server communication.
+        Its value is actually the default one and is thus omitted.
+      --&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;tsa-group-port&amp;gt;&lt;/span&gt;9430&lt;span class=&quot;nt&quot;&gt;&amp;lt;/tsa-group-port&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/server&amp;gt;&lt;/span&gt;
+
+    &lt;span class=&quot;c&quot;&gt;&amp;lt;!--
+      Below a sample server definition that will give HA to the cluster if run on a different host.
+
+      Servers know how to communicate between each others because each version of the config file on each host
+      will list all servers in it.
+    --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;&amp;lt;!--&amp;lt;server host=&quot;otherhost&quot; name=&quot;other-server&quot;&amp;gt;--&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;c&quot;&gt;&amp;lt;!--&amp;lt;logs&amp;gt;logs&amp;lt;/logs&amp;gt;--&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;c&quot;&gt;&amp;lt;!--&amp;lt;tsa-port&amp;gt;9410&amp;lt;/tsa-port&amp;gt;--&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;&amp;lt;!--&amp;lt;/server&amp;gt;--&amp;gt;&lt;/span&gt;
+
+    &lt;span class=&quot;c&quot;&gt;&amp;lt;!--
+      Indicates how much time a server taking over after a failure in an active will wait
+      to allow existing clients to reconnect. The time unit is seconds.
+    --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;client-reconnect-window&amp;gt;&lt;/span&gt;120&lt;span class=&quot;nt&quot;&gt;&amp;lt;/client-reconnect-window&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/servers&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/tc-config&amp;gt;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;以上的配置文件为两个节点&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;分别在两个节点上运行相应命令。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 1&lt;/span&gt;
+nohup ./bin/start-tc-server.sh  -f conf/tc-config.xml  -n s1 &amp;amp;
+&lt;span class=&quot;c&quot;&gt;# 2&lt;/span&gt;
+nohup ./bin/start-tc-server.sh  -f conf/tc-config.xml  -n s2 &amp;amp;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;这样两台基本的Ehcache 服务集群就搭建成功了。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;文章写的比较着急，不忙了在继续整理，望理解。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>breakeval13</name></author><summary type="html">ehcache集群配置terracotta</summary></entry><entry><title type="html">Mongodb Aggregate Sum。</title><link href="http://firsh.me/2017/11/29/mongo-search-sum/" rel="alternate" type="text/html" title="Mongodb Aggregate Sum。" /><published>2017-11-29T00:00:00+08:00</published><updated>2017-11-29T00:00:00+08:00</updated><id>http://firsh.me/2017/11/29/mongo-search-sum</id><content type="html" xml:base="http://firsh.me/2017/11/29/mongo-search-sum/">&lt;h1 id=&quot;mongodb-search-aggregate-sum&quot;&gt;Mongodb search aggregate SUM&lt;/h1&gt;
 
 &lt;ul&gt;
   &lt;li&gt;find aggregate and where&lt;/li&gt;
@@ -1232,267 +1361,4 @@ author：zhangjianxin&lt;/p&gt;
   &lt;li&gt;以上操作经过验证可以直接拿去。&lt;/li&gt;
   &lt;li&gt;auther &lt;code class=&quot;highlighter-rouge&quot;&gt;breakEval13&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;https://github.com/breakEval13&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>breakeval13</name></author><summary type="html">Crate DB重启数据恢复Shards较慢解决方案“采用ES restFull API”</summary></entry><entry><title type="html">raspberry pi zero 安装系统，以及添加USB识别网卡模式[badUSB]</title><link href="http://firsh.me/2017/10/21/raspberry-pi-zero/" rel="alternate" type="text/html" title="raspberry pi zero 安装系统，以及添加USB识别网卡模式[badUSB]" /><published>2017-10-21T00:00:00+08:00</published><updated>2017-10-21T00:00:00+08:00</updated><id>http://firsh.me/2017/10/21/raspberry-pi-zero</id><content type="html" xml:base="http://firsh.me/2017/10/21/raspberry-pi-zero/">&lt;p&gt;一个用Python如何将自己的树莓派打造成“渗透测试神器”&lt;/p&gt;
-
-&lt;p&gt;date：2017-10-21
-author：zhangjianxin&lt;/p&gt;
-
-&lt;p&gt;[TOC]&lt;/p&gt;
-
-&lt;h1 id=&quot;1--初始化树莓派zero&quot;&gt;1 、 初始化树莓派zero。&lt;/h1&gt;
-
-&lt;p&gt;[*] 第一步安装系统，&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;有以下设备
-    &lt;ul&gt;
-      &lt;li&gt;raspberry pi zero&lt;/li&gt;
-      &lt;li&gt;SSK 转接卡&lt;/li&gt;
-      &lt;li&gt;闪迪SD卡8GClass10&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/1508598613256.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;第一次没有插入SD卡的时候&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;➜  ~ df -h
-Filesystem                          Size   Used  Avail Capacity iused      ifree %iused  Mounted on
-/dev/disk1                         112Gi   93Gi   18Gi    84% 1444634 4293522645    0%   /
-devfs                              186Ki  186Ki    0Bi   100%     642          0  100%   /dev
-map -hosts                           0Bi    0Bi    0Bi   100%       0          0  100%   /net
-map auto_home                        0Bi    0Bi    0Bi   100%       0          0  100%   /home
-localhost:/fMn-YFzQfnHjvi04JpRLvc  112Gi  112Gi    0Bi   100%       0          0  100%   /Volumes/MobileBackups
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;插入sd卡的时候（多了一个/dev/disk2s1 ）&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/df-h-sd-card.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;➜  ~ df -h
-Filesystem                          Size   Used  Avail Capacity iused      ifree %iused  Mounted on
-/dev/disk1                         112Gi   93Gi   18Gi    84% 1444634 4293522645    0%   /
-devfs                              186Ki  186Ki    0Bi   100%     642          0  100%   /dev
-map -hosts                           0Bi    0Bi    0Bi   100%       0          0  100%   /net
-map auto_home                        0Bi    0Bi    0Bi   100%       0          0  100%   /home
-localhost:/fMn-YFzQfnHjvi04JpRLvc  112Gi  112Gi    0Bi   100%       0          0  100%   /Volumes/MobileBackups
-/dev/disk2s1                       7.4Gi  2.4Mi  7.4Gi     1%      76     243827    0%   /Volumes/usb
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;通过diskutils工具进行umont这个SD卡(为了防止其他程序写入)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/umount-mac.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;```bash
-➜  ~ diskutil unmountDisk /dev/disk2s1
-Unmount of all volumes on disk2 was successful
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;通过dd 写入镜像到sd卡。(10min)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/dd-sd-car-success.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;```bash
-➜  ~ sudo dd bs=512  if=2017-02-16-raspbian-jessie.img  of=/dev/disk2s1
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Ethernet Gadget模式即USB网卡模式，
-   比较常见的就是通过android手机的usb接口对pc进行网络共享的一种手段，
-   一般电脑都会自动识别这种设备，并开启网卡进行共享。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;1、修改配置文件
-为了进行usb连接，我们需要修改BOOT文件夹下的&lt;code class=&quot;highlighter-rouge&quot;&gt;config.txt&lt;/code&gt; 与&lt;code class=&quot;highlighter-rouge&quot;&gt;cmdline.txt&lt;/code&gt;配置文件。
-首先在&lt;code class=&quot;highlighter-rouge&quot;&gt;config.txt&lt;/code&gt;最末行处换行添加如下代码，打开usb网卡模式：&lt;/p&gt;
-
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  sudo vim config.txt
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;增加内容如下：&lt;/p&gt;
-
-    &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; dtoverlay=dwc2
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-
-    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/vim-config.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cmdline.txt&lt;/code&gt;文件中找到&lt;code class=&quot;highlighter-rouge&quot;&gt;rootwait&lt;/code&gt;字段，并在其后面空格添加如下信息，在打开系统时开启usb网卡模式。&lt;/p&gt;
-
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; sudo vim cmdline.txt
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;增加内容如下：&lt;/p&gt;
-
-    &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   modules-load=dwc2,g_ether
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/vim-cmdline.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;通过usb连接设备树莓派zero有两个&lt;code class=&quot;highlighter-rouge&quot;&gt;MicroUSB&lt;/code&gt;口，一个是&lt;code class=&quot;highlighter-rouge&quot;&gt;电源&lt;/code&gt;插口，职司供电的功能，
-另外一个就是usb接口，它除了供电以外还提供&lt;code class=&quot;highlighter-rouge&quot;&gt;OTG&lt;/code&gt;的功能，我们也是通过这个接口来连接pc
-ssh连接到树莓派  默认账号为&lt;code class=&quot;highlighter-rouge&quot;&gt;pi&lt;/code&gt; 密码为&lt;code class=&quot;highlighter-rouge&quot;&gt;raspberry&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;将树莓派的第二个USB口链接，并且链接到MacBook的USB口(Win10都可以)。&lt;/li&gt;
-  &lt;li&gt;等待启动，树莓派zero的灯成黄色急闪状态(在load内核。)&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;在你的网络内看到以下显示，就可以ssh链接树莓派zero了。&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/usb-otg.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;看到如上图：&lt;code class=&quot;highlighter-rouge&quot;&gt;ssh pi@raspberrypi.local&lt;/code&gt; 输入密码链接即可。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;配置网络地址，wifi网卡
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; pi@raspberrypi:~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;添加以下内容
-    &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; network={
- ssid=&quot;WiFi-B&quot;
- psk=&quot;12345678&quot;
- key_mgmt=WPA-PSK
- priority=1
- }
- -----------------
- #ssid:网络的ssid
-
- #psk:密码
-
- #priority:连接优先级，数字越大优先级越高（不可以是负数）
-
- #scan_ssid:连接隐藏WiFi时需要指定该值为1
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;保存配置 &lt;code class=&quot;highlighter-rouge&quot;&gt;control + o 后 Enter&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;退出 &lt;code class=&quot;highlighter-rouge&quot;&gt;control + x &lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;重启ZeroW &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo reboot&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;ping Test&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/ssh-new-ping.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;2-配置和下载安装程序&quot;&gt;2 、配置和下载安装程序&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;安装软件
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; sudo apt-get update
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-
-    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/zero-update.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; sudo apt-get install git john
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-
-    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/zero-install-git.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;克隆代码&lt;/p&gt;
-
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  git clone --recursive  http://github.com/mame82/P4wnP1
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-
-    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/git-clone-bad-usb.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;安装&lt;/p&gt;
-
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;P4wnP1/
- .／install.sh
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;等待 下载大约300m数据，编译需要20分钟。&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/install-y-success.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;提示&lt;/p&gt;
-
-    &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    当然最重要的一点是安装后完毕wifi会修改为P4wnP1
-    密码是MaMe82-P4wnP1
-    ssh连接的地址是172.24.0.1账号和密码还是树莓派的初始密码
-    建议修改初始密码！小心被黑(bao)吃(ju)黑(hua)！！！
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;将USB设备插到你要渗透的机器上，你会搜索到一个Wifi热点&lt;code class=&quot;highlighter-rouge&quot;&gt;P4wnP1&lt;/code&gt;,密码&lt;code class=&quot;highlighter-rouge&quot;&gt;MaMe82-P4wnP1&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;链接后进行SSH链接
- &lt;code class=&quot;highlighter-rouge&quot;&gt;ssh pi@172.24.0.1&lt;/code&gt;即可。注：蓝牙ssh连接的地址是172.26.0.1&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;配置文件地址如下：
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  pi@MAME82-P4WNP1:~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;nano P4wnP1/setup.cfg
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-
-    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/hack-setting.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;目前有的功能列表&lt;/li&gt;
-    &lt;/ul&gt;
-
-    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/windows-python-script-hack.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;测试shell,可以直接获取权限，图片：&lt;/li&gt;
-    &lt;/ul&gt;
-
-    &lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/success-bad-usb-hack.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;3-成品图&quot;&gt;3 成品图：&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://zmatsh.b0.upaiyun.com/images/success-png.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;以上操作经过验证可以直接拿去。&lt;/li&gt;
-  &lt;li&gt;auther &lt;code class=&quot;highlighter-rouge&quot;&gt;breakEval13&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;https://github.com/breakEval13&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>breakeval13</name></author><summary type="html">一个用Python如何将自己的树莓派打造成“渗透测试神器”</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>breakeval13</name></author><summary type="html">Crate DB重启数据恢复Shards较慢解决方案“采用ES restFull API”</summary></entry></feed>
