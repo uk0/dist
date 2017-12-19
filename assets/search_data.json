@@ -1,5 +1,11 @@
 {
   
+  "2017-12-19-hadoop-install": {
+    "title": "Hadoop集群配置HA。",
+    "url": " /2017/12/19/hadoop-install/",
+    "category": "Hadoop"
+  },
+  
   "2017-12-05-ehecache-terracotta": {
     "title": "ehcache集群配置terracotta。",
     "url": " /2017/12/05/ehecache-terracotta/",
@@ -600,6 +606,8 @@
   
   
   
+  
+  
 
   
   "2016-05-21-enable-https-for-github-pages": {
@@ -1128,6 +1136,12 @@
     "title": "ehcache集群配置terracotta。",
     "url": "/2017/12/05/ehecache-terracotta/",
     "category": "[&quot;mongo&quot;]"
+  },
+  
+  "2017-12-19-hadoop-install": {
+    "title": "Hadoop集群配置HA。",
+    "url": "/2017/12/19/hadoop-install/",
+    "category": "[&quot;Hadoop&quot;]"
   },
   
   "wiki-android-studio": {
