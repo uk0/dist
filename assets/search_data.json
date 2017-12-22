@@ -1,5 +1,11 @@
 {
   
+  "2017-12-20-demo-test": {
+    "title": "日常总结[我的时间线]@",
+    "url": " /2017/12/20/demo-test/",
+    "category": "all"
+  },
+  
   "2017-12-19-hadoop-install": {
     "title": "Hadoop集群配置HA。",
     "url": " /2017/12/19/hadoop-install/",
@@ -1142,6 +1148,12 @@
     "title": "Hadoop集群配置HA。",
     "url": "/2017/12/19/hadoop-install/",
     "category": "[&quot;Hadoop&quot;]"
+  },
+  
+  "2017-12-20-demo-test": {
+    "title": "日常总结[我的时间线]@",
+    "url": "/2017/12/20/demo-test/",
+    "category": "[&quot;all&quot;]"
   },
   
   "wiki-android-studio": {
