@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-12-19T21:39:46+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">Hadoop集群配置HA。</title><link href="http://firsh.me/2017/12/19/hadoop-install/" rel="alternate" type="text/html" title="Hadoop集群配置HA。" /><published>2017-12-19T00:00:00+08:00</published><updated>2017-12-19T00:00:00+08:00</updated><id>http://firsh.me/2017/12/19/hadoop-install</id><content type="html" xml:base="http://firsh.me/2017/12/19/hadoop-install/">&lt;h1 id=&quot;hadoop集群配置ha&quot;&gt;hadoop集群配置HA&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-12-22T10:54:24+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">Hadoop集群配置HA。</title><link href="http://firsh.me/2017/12/19/hadoop-install/" rel="alternate" type="text/html" title="Hadoop集群配置HA。" /><published>2017-12-19T00:00:00+08:00</published><updated>2017-12-19T00:00:00+08:00</updated><id>http://firsh.me/2017/12/19/hadoop-install</id><content type="html" xml:base="http://firsh.me/2017/12/19/hadoop-install/">&lt;h1 id=&quot;hadoop集群配置ha&quot;&gt;hadoop集群配置HA&lt;/h1&gt;
 
 &lt;h1 id=&quot;准备&quot;&gt;准备&lt;/h1&gt;
 
@@ -165,6 +165,32 @@ mkdir  -p  /home/program/zookeeper data logs pids &lt;span class=&quot;c&quot;&g
 
 
   xfs_growfs /dev/mapper/VG00-lvroot
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;读取文件里面的文件路径参数转译&quot;&gt;读取文件里面的文件路径参数【转译】&lt;/h1&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;nv&quot;&gt;HBASE_TMP_DIR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;cat &lt;span class=&quot;nv&quot;&gt;$HBASE_PACKAGE_PATH&lt;/span&gt;/config | grep HBASE_TMP_DIR | awk -F &lt;span class=&quot;s2&quot;&gt;&quot;=&quot;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print$2}'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;HBASE_TMP_DIR_STR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$HBASE_TMP_DIR&lt;/span&gt; | sed &lt;span class=&quot;s1&quot;&gt;'s#\/#\\\/#g'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+
+sed -i &lt;span class=&quot;s2&quot;&gt;&quot;s/HBASE_TMP_DIR/&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HBASE_TMP_DIR_STR&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$HBASE_HOME&lt;/span&gt;/conf/hbase-site.xml
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;读取节点配置合理配置主从节点&quot;&gt;读取节点配置合理配置主从节点&lt;/h1&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;OLD_IFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$IFS&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;IFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;,&quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HBASE_REGION&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;IFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$OLD_IFS&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;s &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[@]&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;do
+    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$s&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &amp;gt;&amp;gt;&lt;span class=&quot;nv&quot;&gt;$HBASE_HOME&lt;/span&gt;/conf/regionservers
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;</content><author><name>breakeval13</name></author><summary type="html">hadoop集群配置HA</summary></entry><entry><title type="html">ehcache集群配置terracotta。</title><link href="http://firsh.me/2017/12/05/ehecache-terracotta/" rel="alternate" type="text/html" title="ehcache集群配置terracotta。" /><published>2017-12-05T00:00:00+08:00</published><updated>2017-12-05T00:00:00+08:00</updated><id>http://firsh.me/2017/12/05/ehecache-terracotta</id><content type="html" xml:base="http://firsh.me/2017/12/05/ehecache-terracotta/">&lt;h1 id=&quot;ehcache集群配置terracotta&quot;&gt;ehcache集群配置terracotta&lt;/h1&gt;

@@ -292,6 +292,32 @@ mkdir  -p  /home/program/zookeeper data logs pids <span class="c"># zookeeper �
 </code></pre>
 </div>
 
+<h1 id="读取文件里面的文件路径参数转译">读取文件里面的文件路径参数【转译】</h1>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<span class="nv">HBASE_TMP_DIR</span><span class="o">=</span><span class="k">$(</span>cat <span class="nv">$HBASE_PACKAGE_PATH</span>/config | grep HBASE_TMP_DIR | awk -F <span class="s2">"="</span> <span class="s1">'{print$2}'</span><span class="k">)</span>
+
+<span class="nv">HBASE_TMP_DIR_STR</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="nv">$HBASE_TMP_DIR</span> | sed <span class="s1">'s#\/#\\\/#g'</span><span class="k">)</span>
+
+sed -i <span class="s2">"s/HBASE_TMP_DIR/</span><span class="nv">$HBASE_TMP_DIR_STR</span><span class="s2">/"</span> <span class="nv">$HBASE_HOME</span>/conf/hbase-site.xml
+
+</code></pre>
+</div>
+
+<h1 id="读取节点配置合理配置主从节点">读取节点配置合理配置主从节点</h1>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nv">OLD_IFS</span><span class="o">=</span><span class="s2">"</span><span class="nv">$IFS</span><span class="s2">"</span>
+<span class="nv">IFS</span><span class="o">=</span><span class="s2">","</span>
+<span class="nv">arr</span><span class="o">=(</span><span class="nv">$HBASE_REGION</span><span class="o">)</span>
+<span class="nv">IFS</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OLD_IFS</span><span class="s2">"</span>
+<span class="k">for </span>s <span class="k">in</span> <span class="k">${</span><span class="nv">arr</span><span class="p">[@]</span><span class="k">}</span>
+<span class="k">do
+    </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$s</span><span class="s2">"</span> &gt;&gt;<span class="nv">$HBASE_HOME</span>/conf/regionservers
+<span class="k">done</span>
+
+</code></pre>
+</div>
+
     </article>
     <div class="share">
       <div class="share-component"></div>
