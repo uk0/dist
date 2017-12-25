@@ -1,5 +1,11 @@
 {
   
+  "2017-12-26-kubeless-simple": {
+    "title": "kubeless原创实验",
+    "url": " /2017/12/26/kubeless-simple/",
+    "category": "kubeless"
+  },
+  
   "2017-12-25-2017-12-25-serverless-1": {
     "title": "Serverless for Java development",
     "url": " /2017/12/25/2017-12-25-serverless-1/",
@@ -1166,6 +1172,12 @@
     "title": "Serverless for Java development",
     "url": "/2017/12/25/2017-12-25-serverless-1/",
     "category": "[&quot;java&quot;, &quot;serverless&quot;, &quot;docker&quot;, &quot;yaml&quot;]"
+  },
+  
+  "2017-12-26-kubeless-simple": {
+    "title": "kubeless原创实验",
+    "url": "/2017/12/26/kubeless-simple/",
+    "category": "[&quot;kubeless&quot;]"
   },
   
   "wiki-android-studio": {
