@@ -1,5 +1,11 @@
 {
   
+  "2017-12-25-2017-12-25-serverless-1": {
+    "title": "Serverless for Java development",
+    "url": " /2017/12/25/2017-12-25-serverless-1/",
+    "category": "java"
+  },
+  
   "2017-12-20-demo-test": {
     "title": "日常总结[我的时间线]@",
     "url": " /2017/12/20/demo-test/",
@@ -1154,6 +1160,12 @@
     "title": "日常总结[我的时间线]@",
     "url": "/2017/12/20/demo-test/",
     "category": "[&quot;all&quot;]"
+  },
+  
+  "2017-12-25-2017-12-25-serverless-1": {
+    "title": "Serverless for Java development",
+    "url": "/2017/12/25/2017-12-25-serverless-1/",
+    "category": "[&quot;java&quot;, &quot;serverless&quot;, &quot;docker&quot;, &quot;yaml&quot;]"
   },
   
   "wiki-android-studio": {
