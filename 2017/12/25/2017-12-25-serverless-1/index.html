@@ -214,6 +214,83 @@
 
 <h1 id="kubeless-整理中">kubeless [整理中]</h1>
 
+<ul>
+  <li>kubeless function1.yaml</li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code>
+  <span class="s">---</span>
+<span class="s">apiVersion</span><span class="pi">:</span> <span class="s">k8s.io/v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">Function</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">function1</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">handler</span><span class="pi">:</span> <span class="s">hello.foobar</span>
+  <span class="s">image</span><span class="pi">:</span> <span class="s">registry.timeondata.com/firsh_demo/kubeless_runtime_python:2.7.1</span>
+  <span class="s">runtime</span><span class="pi">:</span> <span class="s">python2.7</span>
+  <span class="s">deps</span><span class="pi">:</span> <span class="pi">|</span>
+    <span class="no">cowpy</span>
+  <span class="s">function</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="no">import time</span>
+      <span class="no">import random</span>
+      <span class="no">from cowpy import cow</span>
+      <span class="no">def foobar():</span>
+        <span class="no"># NB: delay will be negative and sleep will raise an error</span>
+        <span class="no"># occasionally.  This is a feature for demoing errors.</span>
+        <span class="no">delay = random.normalvariate(0.3, 0.2)</span>
+        <span class="no">time.sleep(delay)</span>
+        <span class="no">msg = "hello world - with a %0.2fs artificial delay" % delay</span>
+        <span class="no">c = cow.get_cow()</span>
+        <span class="no">return c().milk(msg)</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>启动</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>  ➜ python git:<span class="o">(</span>master<span class="o">)</span> ✗ kubectl create -f function1.yaml
+
+</code></pre>
+</div>
+
+<ul>
+  <li>检查启动</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code> <span class="c"># 检查启动</span>
+ ➜  python git:<span class="o">(</span>master<span class="o">)</span> ✗ kubeless <span class="k">function </span>ls
+NAME     	NAMESPACE	HANDLER     	RUNTIME  	TYPE	TOPIC	DEPENDENCIES	STATUS
+function1	default  	hello.foobar	python2.7	    	     	cowpy       	1/1 READY
+</code></pre>
+</div>
+
+<ul>
+  <li>测试调用</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>    kubeless <span class="k">function </span>call  function1 
+</code></pre>
+</div>
+
+<ul>
+  <li>结果</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+➜  python git:<span class="o">(</span>master<span class="o">)</span> ✗ kubeless <span class="k">function </span>call  function1
+ _____________________________________________
+&lt; hello world - with a 0.42s artificial delay &gt;
+ ---------------------------------------------
+     <span class="se">\ </span>  ^__^
+      <span class="se">\ </span> <span class="o">(</span>oo<span class="o">)</span><span class="se">\_</span>______
+         <span class="o">(</span>__<span class="o">)</span><span class="se">\ </span>      <span class="o">)</span><span class="se">\/\</span>
+           <span class="o">||</span>----w |
+           <span class="o">||</span>     <span class="o">||</span>
+
+</code></pre>
+</div>
+
 <p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
 
     </article>

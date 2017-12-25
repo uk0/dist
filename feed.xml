@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-12-25T14:37:27+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">Serverless for Java development</title><link href="http://firsh.me/2017/12/25/2017-12-25-serverless-1/" rel="alternate" type="text/html" title="Serverless for Java development" /><published>2017-12-25T14:13:23+08:00</published><updated>2017-12-25T14:13:23+08:00</updated><id>http://firsh.me/2017/12/25/2017-12-25-serverless-1</id><content type="html" xml:base="http://firsh.me/2017/12/25/2017-12-25-serverless-1/">&lt;p&gt;Server Less 我的第一个简单的实例。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-12-25T19:18:44+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">Serverless for Java development</title><link href="http://firsh.me/2017/12/25/2017-12-25-serverless-1/" rel="alternate" type="text/html" title="Serverless for Java development" /><published>2017-12-25T14:13:23+08:00</published><updated>2017-12-25T14:13:23+08:00</updated><id>http://firsh.me/2017/12/25/2017-12-25-serverless-1</id><content type="html" xml:base="http://firsh.me/2017/12/25/2017-12-25-serverless-1/">&lt;p&gt;Server Less 我的第一个简单的实例。&lt;/p&gt;
 
 &lt;h1 id=&quot;前言&quot;&gt;前言&lt;/h1&gt;
 
@@ -75,6 +75,83 @@
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;kubeless-整理中&quot;&gt;kubeless [整理中]&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;kubeless function1.yaml&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+  &lt;span class=&quot;s&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;k8s.io/v1&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Function&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;function1&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hello.foobar&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;registry.timeondata.com/firsh_demo/kubeless_runtime_python:2.7.1&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;runtime&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;python2.7&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;deps&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;cowpy&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
+      &lt;span class=&quot;no&quot;&gt;import time&lt;/span&gt;
+      &lt;span class=&quot;no&quot;&gt;import random&lt;/span&gt;
+      &lt;span class=&quot;no&quot;&gt;from cowpy import cow&lt;/span&gt;
+      &lt;span class=&quot;no&quot;&gt;def foobar():&lt;/span&gt;
+        &lt;span class=&quot;no&quot;&gt;# NB: delay will be negative and sleep will raise an error&lt;/span&gt;
+        &lt;span class=&quot;no&quot;&gt;# occasionally.  This is a feature for demoing errors.&lt;/span&gt;
+        &lt;span class=&quot;no&quot;&gt;delay = random.normalvariate(0.3, 0.2)&lt;/span&gt;
+        &lt;span class=&quot;no&quot;&gt;time.sleep(delay)&lt;/span&gt;
+        &lt;span class=&quot;no&quot;&gt;msg = &quot;hello world - with a %0.2fs artificial delay&quot; % delay&lt;/span&gt;
+        &lt;span class=&quot;no&quot;&gt;c = cow.get_cow()&lt;/span&gt;
+        &lt;span class=&quot;no&quot;&gt;return c().milk(msg)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;启动&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ➜ python git:&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; ✗ kubectl create -f function1.yaml
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;检查启动&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;c&quot;&gt;# 检查启动&lt;/span&gt;
+ ➜  python git:&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; ✗ kubeless &lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;ls
+NAME     	NAMESPACE	HANDLER     	RUNTIME  	TYPE	TOPIC	DEPENDENCIES	STATUS
+function1	default  	hello.foobar	python2.7	    	     	cowpy       	1/1 READY
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;测试调用&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    kubeless &lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;call  function1 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;结果&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+➜  python git:&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; ✗ kubeless &lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;call  function1
+ _____________________________________________
+&amp;lt; hello world - with a 0.42s artificial delay &amp;gt;
+ ---------------------------------------------
+     &lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;  ^__^
+      &lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;oo&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;______
+         &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;__&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;      &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\/\&lt;/span&gt;
+           &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt;----w |
+           &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>breakeval13</name></author><summary type="html">Server Less 我的第一个简单的实例。</summary></entry><entry><title type="html">日常总结[我的时间线]@</title><link href="http://firsh.me/2017/12/20/demo-test/" rel="alternate" type="text/html" title="日常总结[我的时间线]@" /><published>2017-12-20T00:00:00+08:00</published><updated>2017-12-20T00:00:00+08:00</updated><id>http://firsh.me/2017/12/20/demo-test</id><content type="html" xml:base="http://firsh.me/2017/12/20/demo-test/">&lt;h1 id=&quot;总结日常遇到的问题以及解决办法总结每天遇到的问题&quot;&gt;总结日常遇到的问题，以及解决办法，总结每天遇到的问题。&lt;/h1&gt;
 
