@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-12-26T10:37:13+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">kubeless原创实验</title><link href="http://firsh.me/2017/12/26/kubeless-simple/" rel="alternate" type="text/html" title="kubeless原创实验" /><published>2017-12-26T01:13:11+08:00</published><updated>2017-12-26T01:13:11+08:00</updated><id>http://firsh.me/2017/12/26/kubeless-simple</id><content type="html" xml:base="http://firsh.me/2017/12/26/kubeless-simple/">&lt;h1 id=&quot;quick-start&quot;&gt;quick start&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-12-26T18:27:14+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">kubeless原创实验</title><link href="http://firsh.me/2017/12/26/kubeless-simple/" rel="alternate" type="text/html" title="kubeless原创实验" /><published>2017-12-26T01:13:11+08:00</published><updated>2017-12-26T01:13:11+08:00</updated><id>http://firsh.me/2017/12/26/kubeless-simple</id><content type="html" xml:base="http://firsh.me/2017/12/26/kubeless-simple/">&lt;h1 id=&quot;quick-start&quot;&gt;quick start&lt;/h1&gt;
 
 &lt;ul&gt;
   &lt;li&gt;实验环境kubernetes 1.8&lt;/li&gt;
@@ -134,9 +134,7 @@ kubectl proxy -p 8080 &amp;amp;
       &lt;li&gt;deploy hello&lt;/li&gt;
     &lt;/ul&gt;
 
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;![](http://zmatsh.b0.upaiyun.com/demos/f4c7ebb2-3674-49b5-9848-9f16d4390a73.png)
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
+    &lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/f4c7ebb2-3674-49b5-9848-9f16d4390a73.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
