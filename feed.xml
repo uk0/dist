@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-12-27T19:57:15+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">LVM 管理之一：扩容VG/LV</title><link href="http://firsh.me/2017/12/27/lvm-vgs-lvs-kuorong/" rel="alternate" type="text/html" title="LVM 管理之一：扩容VG/LV" /><published>2017-12-27T19:40:23+08:00</published><updated>2017-12-27T19:40:23+08:00</updated><id>http://firsh.me/2017/12/27/lvm-vgs-lvs-kuorong</id><content type="html" xml:base="http://firsh.me/2017/12/27/lvm-vgs-lvs-kuorong/">&lt;p&gt;#动态扩容 VG&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2017-12-27T20:25:17+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子.</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">LVM 管理之一：扩容VG/LV</title><link href="http://firsh.me/2017/12/27/lvm-vgs-lvs-kuorong/" rel="alternate" type="text/html" title="LVM 管理之一：扩容VG/LV" /><published>2017-12-27T19:40:23+08:00</published><updated>2017-12-27T19:40:23+08:00</updated><id>http://firsh.me/2017/12/27/lvm-vgs-lvs-kuorong</id><content type="html" xml:base="http://firsh.me/2017/12/27/lvm-vgs-lvs-kuorong/">&lt;p&gt;#动态扩容 VG&lt;/p&gt;
 
-&lt;p&gt;##1.1 查看硬盘信息&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;1.1 查看硬盘信息&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@pgb lvm]# fdisk -l
 
@@ -39,7 +41,9 @@ Units &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; cylinders of 1008 &lt;span 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;##1.2 查看 VG 信息&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;1.2 查看 VG 信息&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@pgb lvm]# vgdisplay
@@ -67,7 +71,9 @@ Units &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; cylinders of 1008 &lt;span 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;##1.3 格式化文件系统&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;1.3 格式化文件系统&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@pgb lvm]# mkfs -t ext3 -c /dev/hdb2
 mke2fs 1.39 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;29-May-2006&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
@@ -95,14 +101,18 @@ Checking &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;bad blocks &lt;span cl
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;##1.4 创建PV&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;1.4 创建PV&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@pgb lvm]# pvcreate /dev/hdb2
   Physical volume &lt;span class=&quot;s2&quot;&gt;&quot;/dev/hdb2&quot;&lt;/span&gt; successfully created  
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;##1.5 在线扩容 VG&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;1.5 在线扩容 VG&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@pgb lvm]# vgs
   VG          &lt;span class=&quot;c&quot;&gt;#PV #LV #SN Attr   VSize VFree  &lt;/span&gt;
@@ -118,7 +128,9 @@ Checking &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;bad blocks &lt;span cl
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;##1.6 再次查看 VG，查看是否扩容&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;1.6 再次查看 VG，查看是否扩容&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@pgb lvm]# vgdisplay
@@ -153,7 +165,9 @@ Checking &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;bad blocks &lt;span cl
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;##2.1 查看目录使用情况&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;2.1 查看目录使用情况&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@pgb lvm]# df -hv
 Filesystem            Size  Used Avail Use% Mounted on
@@ -166,7 +180,9 @@ none                  217M  104K  217M   1% /var/lib/xenstored
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;##2.2 查看所属 VG 信息&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;2.2 查看所属 VG 信息&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@pgb lvm]# vgdisplay
   --- Volume group ---
@@ -194,7 +210,9 @@ none                  217M  104K  217M   1% /var/lib/xenstored
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;##2.3 增加 LV 大小&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;2.3 增加 LV 大小&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@pgb lvm]#  lvextend  -L +512M /dev/mapper/vg01_pgdata-lv_pgdata1 
   Extending logical volume lv_pgdata1 to 1.50 GB
@@ -216,7 +234,9 @@ none                  217M  104K  217M   1% /var/lib/xenstored
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;##2.4 resize2fs&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;2.4 resize2fs&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@pgb lvm]# resize2fs -f /dev/mapper/vg01_pgdata-lv_pgdata1
 resize2fs 1.39 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;29-May-2006&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
@@ -226,7 +246,9 @@ The filesystem on /dev/mapper/vg01_pgdata-lv_pgdata1 is now 524288 blocks long.
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;##2.5 再次查看&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;2.5 再次查看&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@pgb lvm]# df -hv
 Filesystem            Size  Used Avail Use% Mounted on
