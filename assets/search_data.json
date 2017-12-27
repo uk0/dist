@@ -1,5 +1,11 @@
 {
   
+  "2017-12-27-lvm-vgs-lvs-kuorong": {
+    "title": "LVM 管理之一：扩容VG/LV",
+    "url": " /2017/12/27/lvm-vgs-lvs-kuorong/",
+    "category": "vgs"
+  },
+  
   "2017-12-27-serverless-aws-in": {
     "title": "Aws Serverless for lambda Test",
     "url": " /2017/12/27/serverless-aws-in/",
@@ -1190,6 +1196,12 @@
     "title": "Aws Serverless for lambda Test",
     "url": "/2017/12/27/serverless-aws-in/",
     "category": "[&quot;aws&quot;]"
+  },
+  
+  "2017-12-27-lvm-vgs-lvs-kuorong": {
+    "title": "LVM 管理之一：扩容VG/LV",
+    "url": "/2017/12/27/lvm-vgs-lvs-kuorong/",
+    "category": "[&quot;vgs&quot;, &quot;lve&quot;]"
   },
   
   "wiki-android-studio": {
