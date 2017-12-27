@@ -1,5 +1,11 @@
 {
   
+  "2017-12-27-serverless-aws-in": {
+    "title": "Aws Serverless for lambda Test",
+    "url": " /2017/12/27/serverless-aws-in/",
+    "category": "aws"
+  },
+  
   "2017-12-26-kubeless-simple": {
     "title": "kubeless原创实验",
     "url": " /2017/12/26/kubeless-simple/",
@@ -1178,6 +1184,12 @@
     "title": "kubeless原创实验",
     "url": "/2017/12/26/kubeless-simple/",
     "category": "[&quot;kubeless&quot;]"
+  },
+  
+  "2017-12-27-serverless-aws-in": {
+    "title": "Aws Serverless for lambda Test",
+    "url": "/2017/12/27/serverless-aws-in/",
+    "category": "[&quot;aws&quot;]"
   },
   
   "wiki-android-studio": {
