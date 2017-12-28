@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Linux/Unix &mdash; 山脚下的胖子.</title>
+    <title>shell bash 模版填充ENV &mdash; 山脚下的胖子.</title>
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
@@ -21,23 +21,23 @@
     
 
     
-    <link rel="canonical" href="http://firsh.me/wiki/linux/">
+    <link rel="canonical" href="http://firsh.me/2017/12/28/shell-bash-rep/">
     <link rel="alternate" type="application/atom+xml" title="山脚下的胖子." href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="Linux/Unix">
+    <meta property="og:title" content="shell bash 模版填充ENV">
       
-    <meta name="keywords" content="Linux">
-    <meta name="og:keywords" content="Linux">
+    <meta name="keywords" content="storm bash shell 替换  模版">
+    <meta name="og:keywords" content="storm bash shell 替换  模版">
       
-    <meta name="description" content="类 Unix 系统下的一些常用命令和用法。">
-    <meta name="og:description" content="类 Unix 系统下的一些常用命令和用法。">
+    <meta name="description" content="quick  start">
+    <meta name="og:description" content="quick  start">
       
     
     
         
     
-    <meta property="og:url" content="http://firsh.me/wiki/linux/">
+    <meta property="og:url" content="http://firsh.me/2017/12/28/shell-bash-rep/">
     <meta property="og:site_name" content="山脚下的胖子.">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -85,79 +85,61 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="Linux/Unix">
+    <section class="collection-head small geopattern" data-pattern-id="shell bash 模版填充">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">Linux/Unix</h1>
+        <h1 class="collection-header">shell bash 模版填充ENV</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/12/28
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#shell" title="shell">shell</a>
+          </span>
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#bash" title="bash">bash</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
 </div>
 </section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
 <!-- / .banner -->
 <section class="container content">
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <p>类 Unix 系统下的一些常用命令和用法。</p>
+    <h1 id="quick--start">quick  start</h1>
 
-<h2 id="实用命令">实用命令</h2>
-
-<h3 id="fuser">fuser</h3>
-
-<p>查看文件被谁占用。</p>
-
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>fuser -u .linux.md.swp
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="nv">ZK_IP</span><span class="o">=</span><span class="s2">"192.168.1.1"</span>
+cat <span class="k">${</span><span class="nv">template_path</span><span class="k">}</span> |
+awk <span class="s1">'$0 !~ /^\s*#.*$/'</span> |
+sed <span class="s1">'s/[ "]/\\&amp;/g'</span> |
+<span class="k">while </span><span class="nb">read</span> -r line;do
+    <span class="nb">eval echo</span> <span class="k">${</span><span class="nv">line</span><span class="k">}</span>
+<span class="k">done</span> &gt;<span class="k">${</span><span class="nv">dst_path</span><span class="k">}</span>
 </code></pre>
 </div>
 
-<h3 id="id">id</h3>
-
-<p>查看当前用户、组 id。</p>
-
-<h3 id="lsof">lsof</h3>
-
-<p>查看打开的文件列表。</p>
-
-<blockquote>
-  <p>An  open  file  may  be  a  regular  file,  a directory, a block special file, a character special file, an executing text reference, a library, a stream or a network file (Internet socket, NFS file or UNIX domain socket.)  A specific file or all the files in a file system may be selected by path.</p>
-</blockquote>
-
-<h4 id="查看网络相关的文件占用">查看网络相关的文件占用</h4>
-
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>lsof -i
-</code></pre>
-</div>
-
-<h4 id="查看端口占用">查看端口占用</h4>
-
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>lsof -i tcp:5037
-</code></pre>
-</div>
-
-<h4 id="查看某个文件被谁占用">查看某个文件被谁占用</h4>
-
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>lsof .linux.md.swp
-</code></pre>
-</div>
-
-<h4 id="查看某个用户占用的文件信息">查看某个用户占用的文件信息</h4>
-
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>lsof -u mazhuang
-</code></pre>
-</div>
-
-<p><code class="highlighter-rouge">-u</code> 后面可以跟 uid 或 login name。</p>
-
-<h4 id="查看某个程序占用的文件信息">查看某个程序占用的文件信息</h4>
-
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>lsof -c Vim
-</code></pre>
-</div>
-
-<p>注意程序名区分大小写。</p>
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
 
     </article>
     <div class="share">
@@ -174,9 +156,9 @@
           <div id="disqus_thread"></div>
           <script>
             var disqus_config = function () {
-              this.page.url = 'http://firsh.me/wiki/linux/';
-              this.page.identifier = '/wiki/linux/';
-              this.page.title = 'Linux/Unix';
+              this.page.url = 'http://firsh.me/2017/12/28/shell-bash-rep/';
+              this.page.identifier = '/2017/12/28/shell-bash-rep/';
+              this.page.title = 'shell bash 模版填充ENV';
             };
             (function() { // DON'T EDIT BELOW THIS LINE
               var d = document, s = d.createElement('script');

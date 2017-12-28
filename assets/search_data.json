@@ -1,5 +1,11 @@
 {
   
+  "2017-12-28-shell-bash-rep": {
+    "title": "shell bash 模版填充ENV",
+    "url": " /2017/12/28/shell-bash-rep/",
+    "category": "shell"
+  },
+  
   "2017-12-27-lvm-vgs-lvs-kuorong": {
     "title": "LVM 管理之一：扩容VG/LV",
     "url": " /2017/12/27/lvm-vgs-lvs-kuorong/",
@@ -1202,6 +1208,12 @@
     "title": "LVM 管理之一：扩容VG/LV",
     "url": "/2017/12/27/lvm-vgs-lvs-kuorong/",
     "category": "[&quot;vgs&quot;, &quot;lve&quot;]"
+  },
+  
+  "2017-12-28-shell-bash-rep": {
+    "title": "shell bash 模版填充ENV",
+    "url": "/2017/12/28/shell-bash-rep/",
+    "category": "[&quot;shell&quot;, &quot;bash&quot;]"
   },
   
   "wiki-android-studio": {
