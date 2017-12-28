@@ -1,5 +1,11 @@
 {
   
+  "2017-12-29-serverlesss-kubeless-ingress-minikube": {
+    "title": "serverless demo for kubernetes + ingress [原创]",
+    "url": " /2017/12/29/serverlesss-kubeless-ingress-minikube/",
+    "category": "serverless"
+  },
+  
   "2017-12-28-shell-bash-rep": {
     "title": "shell bash 模版填充ENV",
     "url": " /2017/12/28/shell-bash-rep/",
@@ -1214,6 +1220,12 @@
     "title": "shell bash 模版填充ENV",
     "url": "/2017/12/28/shell-bash-rep/",
     "category": "[&quot;shell&quot;, &quot;bash&quot;]"
+  },
+  
+  "2017-12-29-serverlesss-kubeless-ingress-minikube": {
+    "title": "serverless demo for kubernetes + ingress [原创]",
+    "url": "/2017/12/29/serverlesss-kubeless-ingress-minikube/",
+    "category": "[&quot;serverless&quot;, &quot;kubernetes&quot;, &quot;ingress&quot;, &quot;kubeless&quot;]"
   },
   
   "wiki-android-studio": {
