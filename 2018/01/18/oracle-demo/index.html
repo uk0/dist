@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>oracle for docker dev ENV &mdash; 山脚下的胖子...</title>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2018/01/18/oracle-demo/">
+    <link rel="alternate" type="application/atom+xml" title="山脚下的胖子..." href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="oracle for docker dev ENV">
+      
+    <meta name="keywords" content="oracle docker">
+    <meta name="og:keywords" content="oracle docker">
+      
+    <meta name="description" content="oracle 服务采用 Docker 搭建，用的镜像为wnameless/oracle-xe-11g 这里负责整理用来测试时候的问题。">
+    <meta name="og:description" content="oracle 服务采用 Docker 搭建，用的镜像为wnameless/oracle-xe-11g 这里负责整理用来测试时候的问题。">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2018/01/18/oracle-demo/">
+    <meta property="og:site_name" content="山脚下的胖子...">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2018-01-18">
+    
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="山脚下的胖子..."><span class="octicon octicon-mark-github"></span> 山脚下的胖子...</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="Index">Index</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="categories">categories</a>
+                
+                <a href="/open-source/" class=" site-header-nav-item" target="" title="open-source">open-source</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="wiki">wiki</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="links">links</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="about">about</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="oracle for dock">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">oracle for docker dev ENV</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2018/01/18
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#oracle" title="oracle">oracle</a>
+          </span>
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#java" title="java">java</a>
+          </span>
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#docker" title="docker">docker</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <p>oracle 服务采用 Docker 搭建，用的镜像为<code class="highlighter-rouge">wnameless/oracle-xe-11g</code> 这里负责整理用来测试时候的问题。</p>
+
+<h2 id="下载镜像pull">下载镜像(pull)</h2>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>docker pull wnameless/oracle-xe-11g
+</code></pre>
+</div>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>docker run -d -p 49160:22 -p 49161:1521 -e <span class="nv">ORACLE_ALLOW_REMOTE</span><span class="o">=</span><span class="nb">true </span>wnameless/oracle-xe-11g
+</code></pre>
+</div>
+<p>By default, the password verification is disable(password never expired). If you want it back, run this:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>docker run -d -p 49160:22 -p 49161:1521 -e <span class="nv">ORACLE_PASSWORD_VERIFY</span><span class="o">=</span><span class="nb">true </span>wnameless/oracle-xe-11g
+</code></pre>
+</div>
+
+<p>For performance concern, you may want to disable the disk asynch IO:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>docker run -d -p 49160:22 -p 49161:1521 -e <span class="nv">ORACLE_DISABLE_ASYNCH_IO</span><span class="o">=</span><span class="nb">true </span>wnameless/oracle-xe-11g
+</code></pre>
+</div>
+<p>For XDB user, run this:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>docker run -d -p 49160:22 -p 49161:1521 -p 8080:8080 -e <span class="nv">ORACLE_ENABLE_XDB</span><span class="o">=</span><span class="nb">true </span>wnameless/oracle-xe-11g
+Check <span class="k">if </span>localhost:8080 work
+</code></pre>
+</div>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -XGET <span class="s2">"http://localhost:8080"</span>
+</code></pre>
+</div>
+<p>You will show</p>
+
+<p>&lt;!DOCTYPE HTML PUBLIC “-//IETF//DTD HTML 2.0//EN”&gt;</p>
+<html><head>
+<TITLE>401 Unauthorized</TITLE>
+</head><body><h1>Unauthorized</h1>
+</body></html>
+
+<h2 id="login-httplocalhost8080-with-following-credential">Login http://localhost:8080 with following credential:</h2>
+<p>username: XDB
+password: xdb
+Connect database with following setting:</p>
+
+<p>hostname: localhost
+port: 49161
+sid: xe
+username: system
+password: oracle
+Password for SYS &amp; SYSTEM</p>
+
+<p>oracle
+Login by SSH</p>
+
+<p>ssh root@localhost -p 49160
+password: admin
+Support custom DB Initialization</p>
+
+<h2 id="dockerfile">Dockerfile</h2>
+<p>FROM wnameless/oracle-xe-11g</p>
+
+<p>ADD init.sql /docker-entrypoint-initdb.d/</p>
+
+<h2 id="sqldeveloper">SQLDeveloper</h2>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="c1">--- 遇到的问题 ora-01045</span>
+
+<span class="c1">---ORA-01045: user ... lacks CREATE SESSION privilege; logon denied</span>
+<span class="c1">--- This error is thrown if a user wants to log on a database but lacks the create session system privilege.</span>
+<span class="c1">---In order to give someone this privilege, use:</span>
+
+<span class="k">grant</span> <span class="k">create</span> <span class="k">session</span> <span class="k">to</span> <span class="n">aom</span><span class="p">;</span>
+<span class="c1">--- See also other Oracle errors.</span>
+
+<span class="c1">--- 创建表空间</span>
+<span class="k">CREATE</span>   <span class="n">TABLESPACE</span> <span class="n">aom</span>
+<span class="n">DATAFILE</span> <span class="s1">'/data/disk1/aom_space.dbf'</span> <span class="k">size</span> <span class="mi">500</span><span class="n">m</span>
+<span class="n">AUTOEXTEND</span> <span class="k">ON</span>
+<span class="k">NEXT</span> <span class="mi">200</span><span class="n">M</span> <span class="n">MAXSIZE</span> <span class="mi">20480</span><span class="n">M</span>
+<span class="n">EXTENT</span> <span class="n">MANAGEMENT</span> <span class="k">LOCAL</span><span class="p">;</span>
+<span class="c1">--- oracle 创建DB需要用用户去创建，也就是先要创建用户 并且指定表空间</span>
+<span class="k">CREATE</span> <span class="k">USER</span> <span class="n">aom</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="mi">123456</span> <span class="k">DEFAULT</span> <span class="n">TABLESPACE</span> <span class="n">aom_space</span><span class="p">;</span>
+
+<span class="c1">---创建用户并指定表空间和临时表空间</span>
+<span class="k">CREATE</span> <span class="k">USER</span> <span class="n">aom</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="mi">123456</span>
+<span class="k">DEFAULT</span> <span class="n">TABLESPACE</span> <span class="n">aom_space</span>
+<span class="k">TEMPORARY</span> <span class="n">TABLESPACE</span> <span class="n">aom_temp</span><span class="p">;</span>
+
+<span class="c1">---授权用户</span>
+<span class="k">GRANT</span> <span class="k">CREATE</span> <span class="k">USER</span><span class="p">,</span><span class="k">DROP</span> <span class="k">USER</span><span class="p">,</span><span class="k">ALTER</span> <span class="k">USER</span> <span class="p">,</span><span class="k">CREATE</span> <span class="k">ANY</span> <span class="k">VIEW</span> <span class="p">,</span>
+     <span class="k">DROP</span> <span class="k">ANY</span> <span class="k">VIEW</span><span class="p">,</span><span class="n">EXP_FULL_DATABASE</span><span class="p">,</span><span class="n">IMP_FULL_DATABASE</span><span class="p">,</span>
+     <span class="n">DBA</span><span class="p">,</span><span class="k">CONNECT</span><span class="p">,</span><span class="n">RESOURCE</span><span class="p">,</span><span class="k">CREATE</span> <span class="k">SESSION</span> <span class="k">TO</span>  <span class="n">aom</span><span class="p">;</span>
+
+
+<span class="c1">---删除表空间</span>
+<span class="k">DROP</span> <span class="n">TABLESPACE</span> <span class="n">aom_space</span> <span class="k">INCLUDING</span> <span class="n">CONTENTS</span> <span class="k">AND</span> <span class="n">DATAFILES</span><span class="p">;</span>
+
+
+<span class="c1">---查看表空间</span>
+<span class="k">SELECT</span> <span class="n">tv</span><span class="p">.</span><span class="n">TABLESPACE_NAME</span> <span class="nv">"TABLESPACE_NAME"</span><span class="p">,</span><span class="n">TOTALSPACE</span> <span class="nv">"TOTALSPACE/M"</span><span class="p">,</span><span class="n">FREESPACE</span> <span class="nv">"FREESPACE/M"</span><span class="p">,</span><span class="n">ROUND</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">FREESPACE</span><span class="o">/</span><span class="n">TOTALSPACE</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="nv">"USED%"</span>
+<span class="k">FROM</span>
+<span class="p">(</span><span class="k">SELECT</span> <span class="n">TABLESPACE_NAME</span><span class="p">,</span><span class="n">ROUND</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span><span class="o">/</span><span class="mi">1024</span><span class="o">/</span><span class="mi">1024</span><span class="p">)</span> <span class="n">TOTALSPACE</span> <span class="k">FROM</span>    <span class="n">DBA_DATA_FILES</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">TABLESPACE_NAME</span><span class="p">)</span> <span class="n">tv</span><span class="p">,</span>
+         <span class="p">(</span><span class="k">SELECT</span> <span class="n">TABLESPACE_NAME</span><span class="p">,</span><span class="n">ROUND</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span><span class="o">/</span><span class="mi">1024</span><span class="o">/</span><span class="mi">1024</span><span class="p">)</span> <span class="n">FREESPACE</span> <span class="k">FROM</span> <span class="n">DBA_FREE_SPACE</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">TABLESPACE_NAME</span><span class="p">)</span> <span class="n">fs</span>
+<span class="k">WHERE</span> <span class="n">tv</span><span class="p">.</span><span class="n">TABLESPACE_NAME</span><span class="o">=</span><span class="n">fs</span><span class="p">.</span><span class="n">TABLESPACE_NAME</span><span class="p">;</span>
+
+
+<span class="c1">---查看临时表空间</span>
+<span class="k">SELECT</span> <span class="n">TABLESPACE_NAME</span> <span class="k">FROM</span> <span class="n">DBA_TABLESPACES</span><span class="p">;</span>
+
+<span class="c1">---增加表空间大小</span>
+<span class="k">ALTER</span> <span class="n">TABLESPACE</span> <span class="n">aom_space</span> <span class="k">ADD</span> <span class="n">DATAFILE</span> <span class="s1">'/data/disk1/aom_space.dbf'</span> <span class="k">size</span> <span class="mi">4096</span><span class="n">M</span><span class="p">;</span>
+
+<span class="c1">---增加临时表空间大小</span>
+<span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">TEMPFILE</span> <span class="s1">'/data/disk1/aom_temp.dbf'</span> <span class="n">RESIZE</span> <span class="mi">8192</span><span class="n">M</span><span class="p">;</span>
+
+<span class="c1">---删除用户</span>
+<span class="k">DROP</span> <span class="k">USER</span> <span class="n">aom</span> <span class="k">CASCADE</span>
+
+<span class="c1">---把数据导入不同于原系统的表空间，在导入之后却往往发现，数据被导入了原表空间(下面解决此方法)</span>
+<span class="k">grant</span> <span class="k">connect</span><span class="p">,</span> <span class="n">resource</span><span class="p">,</span><span class="n">dba</span> <span class="k">to</span> <span class="n">aom</span><span class="p">;</span>
+<span class="c1">---回收用户unlimited tablespace权限，这样就可以导入到用户缺省表空间：</span>
+<span class="k">revoke</span> <span class="n">unlimited</span> <span class="n">tablespace</span> <span class="k">from</span> <span class="n">aom</span><span class="p">;</span>
+<span class="k">alter</span> <span class="k">user</span> <span class="n">aom</span> <span class="n">quota</span> <span class="mi">0</span> <span class="k">on</span> <span class="n">aom_space</span><span class="p">;</span>
+<span class="k">alter</span> <span class="k">user</span> <span class="n">aom</span> <span class="n">quota</span> <span class="n">unlimited</span> <span class="k">on</span> <span class="n">aom_space</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+      
+        
+        <!-- Disqus Protection, see https://github.com/mzlogin/mzlogin.github.io/issues/2 -->
+        
+        
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'http://firsh.me/2018/01/18/oracle-demo/';
+              this.page.identifier = '/2018/01/18/oracle-demo/';
+              this.page.title = 'oracle for docker dev ENV';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+
+              s.type = 'text/javascript';
+              s.async = true;
+              var shortname = 'zmatsh';
+
+              s.src = '//' + shortname + '.disqus.com/embed.js';
+
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        
+        
+      
+    
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="https://zmatsh.b0.upaiyun.com/assets/css/modules/sidebar-search.css">
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="breakeval13">breakeval13</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/breakEval13/breakEval13.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="Index" target="">Index</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="categories" target="">categories</a>
+                </li>
+                
+                <li>
+                    <a href="/open-source/" title="open-source" target="">open-source</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="wiki" target="">wiki</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="links" target="">links</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="about" target="">about</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-80669434-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>

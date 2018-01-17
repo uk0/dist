@@ -1,4 +1,132 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-01-15T16:55:43+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子…</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">serverless demo for kubernetes + ingress [原创]</title><link href="http://firsh.me/2017/12/29/serverlesss-kubeless-ingress-minikube/" rel="alternate" type="text/html" title="serverless demo for kubernetes + ingress [原创]" /><published>2017-12-29T00:11:45+08:00</published><updated>2017-12-29T00:11:45+08:00</updated><id>http://firsh.me/2017/12/29/serverlesss-kubeless-ingress-minikube</id><content type="html" xml:base="http://firsh.me/2017/12/29/serverlesss-kubeless-ingress-minikube/">&lt;h4 id=&quot;文章介绍serverless--kubernetes--ingress--kubeless-快速开发function-简化开发无服务器接口让开发更快-更爽&quot;&gt;文章介绍，Serverless + kubernetes + ingress + kubeless 快速开发function 简化开发，无服务器接口，让开发更快 更爽&lt;/h4&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-01-18T00:59:42+08:00</updated><id>http://firsh.me/</id><title type="html">山脚下的胖子…</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">oracle for docker dev ENV</title><link href="http://firsh.me/2018/01/18/oracle-demo/" rel="alternate" type="text/html" title="oracle for docker dev ENV" /><published>2018-01-18T00:43:56+08:00</published><updated>2018-01-18T00:43:56+08:00</updated><id>http://firsh.me/2018/01/18/oracle-demo</id><content type="html" xml:base="http://firsh.me/2018/01/18/oracle-demo/">&lt;p&gt;oracle 服务采用 Docker 搭建，用的镜像为&lt;code class=&quot;highlighter-rouge&quot;&gt;wnameless/oracle-xe-11g&lt;/code&gt; 这里负责整理用来测试时候的问题。&lt;/p&gt;
+
+&lt;h2 id=&quot;下载镜像pull&quot;&gt;下载镜像(pull)&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker pull wnameless/oracle-xe-11g
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker run -d -p 49160:22 -p 49161:1521 -e &lt;span class=&quot;nv&quot;&gt;ORACLE_ALLOW_REMOTE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true &lt;/span&gt;wnameless/oracle-xe-11g
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;By default, the password verification is disable(password never expired). If you want it back, run this:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker run -d -p 49160:22 -p 49161:1521 -e &lt;span class=&quot;nv&quot;&gt;ORACLE_PASSWORD_VERIFY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true &lt;/span&gt;wnameless/oracle-xe-11g
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;For performance concern, you may want to disable the disk asynch IO:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker run -d -p 49160:22 -p 49161:1521 -e &lt;span class=&quot;nv&quot;&gt;ORACLE_DISABLE_ASYNCH_IO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true &lt;/span&gt;wnameless/oracle-xe-11g
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;For XDB user, run this:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker run -d -p 49160:22 -p 49161:1521 -p 8080:8080 -e &lt;span class=&quot;nv&quot;&gt;ORACLE_ENABLE_XDB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true &lt;/span&gt;wnameless/oracle-xe-11g
+Check &lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;localhost:8080 work
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl -XGET &lt;span class=&quot;s2&quot;&gt;&quot;http://localhost:8080&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;You will show&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;!DOCTYPE HTML PUBLIC “-//IETF//DTD HTML 2.0//EN”&amp;gt;&lt;/p&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;TITLE&gt;401 Unauthorized&lt;/TITLE&gt;
+&lt;/head&gt;&lt;body&gt;&lt;h1&gt;Unauthorized&lt;/h1&gt;
+&lt;/body&gt;&lt;/html&gt;
+
+&lt;h2 id=&quot;login-httplocalhost8080-with-following-credential&quot;&gt;Login http://localhost:8080 with following credential:&lt;/h2&gt;
+&lt;p&gt;username: XDB
+password: xdb
+Connect database with following setting:&lt;/p&gt;
+
+&lt;p&gt;hostname: localhost
+port: 49161
+sid: xe
+username: system
+password: oracle
+Password for SYS &amp;amp; SYSTEM&lt;/p&gt;
+
+&lt;p&gt;oracle
+Login by SSH&lt;/p&gt;
+
+&lt;p&gt;ssh root@localhost -p 49160
+password: admin
+Support custom DB Initialization&lt;/p&gt;
+
+&lt;h2 id=&quot;dockerfile&quot;&gt;Dockerfile&lt;/h2&gt;
+&lt;p&gt;FROM wnameless/oracle-xe-11g&lt;/p&gt;
+
+&lt;p&gt;ADD init.sql /docker-entrypoint-initdb.d/&lt;/p&gt;
+
+&lt;h2 id=&quot;sqldeveloper&quot;&gt;SQLDeveloper&lt;/h2&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;--- 遇到的问题 ora-01045&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;---ORA-01045: user ... lacks CREATE SESSION privilege; logon denied&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;--- This error is thrown if a user wants to log on a database but lacks the create session system privilege.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;---In order to give someone this privilege, use:&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;grant&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;create&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;session&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;--- See also other Oracle errors.&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;--- 创建表空间&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;TABLESPACE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;DATAFILE&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/data/disk1/aom_space.dbf'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;AUTOEXTEND&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;NEXT&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MAXSIZE&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20480&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;EXTENT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MANAGEMENT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;LOCAL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;--- oracle 创建DB需要用用户去创建，也就是先要创建用户 并且指定表空间&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;USER&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IDENTIFIED&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;123456&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DEFAULT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLESPACE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom_space&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;---创建用户并指定表空间和临时表空间&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;USER&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IDENTIFIED&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;123456&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;DEFAULT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLESPACE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom_space&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;TEMPORARY&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLESPACE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom_temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;---授权用户&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;GRANT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;USER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;DROP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;USER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;USER&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ANY&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;VIEW&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;DROP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ANY&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;VIEW&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;EXP_FULL_DATABASE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IMP_FULL_DATABASE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;DBA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CONNECT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RESOURCE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SESSION&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TO&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;aom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+
+&lt;span class=&quot;c1&quot;&gt;---删除表空间&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;DROP&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLESPACE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom_space&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;INCLUDING&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CONTENTS&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DATAFILES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+
+&lt;span class=&quot;c1&quot;&gt;---查看表空间&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TABLESPACE_NAME&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;TABLESPACE_NAME&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TOTALSPACE&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;TOTALSPACE/M&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FREESPACE&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;FREESPACE/M&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ROUND&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FREESPACE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TOTALSPACE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;USED%&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLESPACE_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ROUND&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;SUM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bytes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1024&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1024&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TOTALSPACE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;DBA_DATA_FILES&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;GROUP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLESPACE_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+         &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLESPACE_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ROUND&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;SUM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bytes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1024&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1024&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FREESPACE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DBA_FREE_SPACE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;GROUP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLESPACE_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TABLESPACE_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TABLESPACE_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+
+&lt;span class=&quot;c1&quot;&gt;---查看临时表空间&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLESPACE_NAME&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DBA_TABLESPACES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;---增加表空间大小&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLESPACE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom_space&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ADD&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DATAFILE&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/data/disk1/aom_space.dbf'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4096&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;---增加临时表空间大小&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DATABASE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TEMPFILE&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/data/disk1/aom_temp.dbf'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RESIZE&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8192&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;---删除用户&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;DROP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;USER&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CASCADE&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;---把数据导入不同于原系统的表空间，在导入之后却往往发现，数据被导入了原表空间(下面解决此方法)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;grant&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resource&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dba&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;---回收用户unlimited tablespace权限，这样就可以导入到用户缺省表空间：&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;revoke&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unlimited&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tablespace&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;alter&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quota&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom_space&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;alter&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quota&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unlimited&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom_space&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>breakeval13</name></author><summary type="html">oracle 服务采用 Docker 搭建，用的镜像为wnameless/oracle-xe-11g 这里负责整理用来测试时候的问题。</summary></entry><entry><title type="html">serverless demo for kubernetes + ingress [原创]</title><link href="http://firsh.me/2017/12/29/serverlesss-kubeless-ingress-minikube/" rel="alternate" type="text/html" title="serverless demo for kubernetes + ingress [原创]" /><published>2017-12-29T00:11:45+08:00</published><updated>2017-12-29T00:11:45+08:00</updated><id>http://firsh.me/2017/12/29/serverlesss-kubeless-ingress-minikube</id><content type="html" xml:base="http://firsh.me/2017/12/29/serverlesss-kubeless-ingress-minikube/">&lt;h4 id=&quot;文章介绍serverless--kubernetes--ingress--kubeless-快速开发function-简化开发无服务器接口让开发更快-更爽&quot;&gt;文章介绍，Serverless + kubernetes + ingress + kubeless 快速开发function 简化开发，无服务器接口，让开发更快 更爽&lt;/h4&gt;
 
 &lt;h2 id=&quot;工具&quot;&gt;工具&lt;/h2&gt;
 
@@ -1214,40 +1342,4 @@ nohup ./bin/start-tc-server.sh  -f conf/tc-config.xml  -n s2 &amp;amp;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>breakeval13</name></author><summary type="html">ehcache集群配置terracotta</summary></entry><entry><title type="html">Mongodb Aggregate Sum。</title><link href="http://firsh.me/2017/11/29/mongo-search-sum/" rel="alternate" type="text/html" title="Mongodb Aggregate Sum。" /><published>2017-11-29T00:00:00+08:00</published><updated>2017-11-29T00:00:00+08:00</updated><id>http://firsh.me/2017/11/29/mongo-search-sum</id><content type="html" xml:base="http://firsh.me/2017/11/29/mongo-search-sum/">&lt;h1 id=&quot;mongodb-search-aggregate-sum&quot;&gt;Mongodb search aggregate SUM&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;find aggregate and where&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-db.cabinet.aggregate&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-   &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;
-     &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-       &lt;span class=&quot;nv&quot;&gt;$group&lt;/span&gt;:
-         &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-           _id: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
-           totalAmount: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$sum&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cabinetBoxTotal&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
-           count: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$sum&lt;/span&gt;: 1 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-   &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-db.cabinet.aggregate&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-   &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;
-       &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$match&lt;/span&gt; : &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; cabinetName : &lt;span class=&quot;s2&quot;&gt;&quot;中国农业大学西校区2号柜&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
-  
-     &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-       &lt;span class=&quot;nv&quot;&gt;$group&lt;/span&gt;:
-         &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-           _id: &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;,
-           totalAmount: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$sum&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cabinetBoxTotal&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
-           count: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$sum&lt;/span&gt;: 1 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-   &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>breakeval13</name></author><summary type="html">Mongodb search aggregate SUM</summary></entry></feed>
+&lt;/div&gt;</content><author><name>breakeval13</name></author><summary type="html">ehcache集群配置terracotta</summary></entry></feed>
