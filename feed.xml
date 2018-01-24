@@ -1,4 +1,100 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-01-24T15:23:34+08:00</updated><id>http://firsh.me/</id><title type="html">观海听涛</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">rocketmq 多Master集群搭建</title><link href="http://firsh.me/2018/01/24/rocketmq-master-all/" rel="alternate" type="text/html" title="rocketmq 多Master集群搭建" /><published>2018-01-24T15:01:53+08:00</published><updated>2018-01-24T15:01:53+08:00</updated><id>http://firsh.me/2018/01/24/rocketmq-master-all</id><content type="html" xml:base="http://firsh.me/2018/01/24/rocketmq-master-all/">&lt;p&gt;搭建一套多个Master的集群（RocketMQ）
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-01-24T16:30:04+08:00</updated><id>http://firsh.me/</id><title type="html">观海听涛</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">Flink 高可用集群搭建 HA</title><link href="http://firsh.me/2018/01/24/flinkinstall-on-redhat7/" rel="alternate" type="text/html" title="Flink 高可用集群搭建 HA" /><published>2018-01-24T16:16:32+08:00</published><updated>2018-01-24T16:16:32+08:00</updated><id>http://firsh.me/2018/01/24/flinkinstall-on-redhat7</id><content type="html" xml:base="http://firsh.me/2018/01/24/flinkinstall-on-redhat7/">&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;搭建一个高可用的Flink 集群HA
+    用于项目测试
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;quick-start&quot;&gt;quick start&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;flink-conf.yaml&lt;/p&gt;
+
+    &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+     &lt;span class=&quot;s&quot;&gt;jobmanager.rpc.port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;6123&lt;/span&gt;
+
+
+     &lt;span class=&quot;s&quot;&gt;jobmanager.heap.mb&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;512&lt;/span&gt;
+
+
+     &lt;span class=&quot;s&quot;&gt;taskmanager.heap.mb&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;512&lt;/span&gt;
+
+     &lt;span class=&quot;s&quot;&gt;taskmanager.numberOfTaskSlots&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;2&lt;/span&gt;
+
+     &lt;span class=&quot;s&quot;&gt;taskmanager.memory.preallocate&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;false&lt;/span&gt;
+
+
+     &lt;span class=&quot;s&quot;&gt;parallelism.default&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1&lt;/span&gt;
+
+
+     &lt;span class=&quot;s&quot;&gt;jobmanager.web.address&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.0.0.0&lt;/span&gt;
+
+     &lt;span class=&quot;s&quot;&gt;jobmanager.web.port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;8081&lt;/span&gt;
+
+
+     &lt;span class=&quot;s&quot;&gt;jobmanager.archive.fs.dir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hdfs://ns/flink/completed_jobs/&lt;/span&gt;
+
+     &lt;span class=&quot;s&quot;&gt;historyserver.web.address&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.0.0.0&lt;/span&gt;
+
+
+     &lt;span class=&quot;s&quot;&gt;historyserver.web.port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;8082&lt;/span&gt;
+
+
+     &lt;span class=&quot;s&quot;&gt;historyserver.archive.fs.dir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hdfs://ns/flink/completed_jobs/&lt;/span&gt;
+
+
+     &lt;span class=&quot;s&quot;&gt;historyserver.archive.fs.refresh-interval&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10000&lt;/span&gt;
+
+
+
+     &lt;span class=&quot;s&quot;&gt;state.backend&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;filesystem&lt;/span&gt;
+
+
+     &lt;span class=&quot;s&quot;&gt;state.backend.fs.checkpointdir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hdfs://ns/flink/checkpoints_backend&lt;/span&gt;
+     &lt;span class=&quot;s&quot;&gt;state.backend.fs.savepointdir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hdfs://ns/flink/savepoints_backend&lt;/span&gt;
+     &lt;span class=&quot;s&quot;&gt;state.checkpoints.dir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hdfs://ns/flink/checkpoints_data&lt;/span&gt;
+     &lt;span class=&quot;s&quot;&gt;state.savepoints.dir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hdfs://ns/flink/savepoints_data&lt;/span&gt;
+
+
+     &lt;span class=&quot;s&quot;&gt;taskmanager.tmp.dirs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/home/aom/data/flink/tmp&lt;/span&gt;
+     &lt;span class=&quot;s&quot;&gt;env.log.dir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/home/aom/data/logs/flink&lt;/span&gt;
+
+
+
+
+     &lt;span class=&quot;s&quot;&gt;fs.hdfs.hadoopconf&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/home/aom/hadoop/etc/hadoop&lt;/span&gt;
+
+
+     &lt;span class=&quot;s&quot;&gt;high-availability&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;zookeeper&lt;/span&gt;
+     &lt;span class=&quot;s&quot;&gt;high-availability.zookeeper.quorum&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;dscn1:2181,dscn2:2181,dscn3:2181&lt;/span&gt;
+     &lt;span class=&quot;s&quot;&gt;high-availability.zookeeper.storageDir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hdfs://ns/flink/recovery&lt;/span&gt;
+     &lt;span class=&quot;s&quot;&gt;high-availability.zookeeper.path.root&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/flink&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;masters
+    &lt;pre&gt;&lt;code class=&quot;language-bahs&quot;&gt;tod1:8081
+tod2:8081
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;slaves&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    tod1
+    tod2
+    tod3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;scp 到其他节点&lt;/li&gt;
+  &lt;li&gt;启动集群
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    start-cluster.sh
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>breakeval13</name></author><summary type="html">搭建一个高可用的Flink 集群HA 用于项目测试</summary></entry><entry><title type="html">rocketmq 多Master集群搭建</title><link href="http://firsh.me/2018/01/24/rocketmq-master-all/" rel="alternate" type="text/html" title="rocketmq 多Master集群搭建" /><published>2018-01-24T15:01:53+08:00</published><updated>2018-01-24T15:01:53+08:00</updated><id>http://firsh.me/2018/01/24/rocketmq-master-all</id><content type="html" xml:base="http://firsh.me/2018/01/24/rocketmq-master-all/">&lt;p&gt;搭建一套多个Master的集群（RocketMQ）
     为了项目测试使用。&lt;/p&gt;
 
 &lt;h2 id=&quot;quick-start&quot;&gt;quick start&lt;/h2&gt;
@@ -1097,199 +1193,4 @@ EOF
 
 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>breakeval13</name></author><summary type="html">总结日常遇到的问题，以及解决办法，总结每天遇到的问题。</summary></entry><entry><title type="html">Hadoop集群配置HA。</title><link href="http://firsh.me/2017/12/19/hadoop-install/" rel="alternate" type="text/html" title="Hadoop集群配置HA。" /><published>2017-12-19T00:00:00+08:00</published><updated>2017-12-19T00:00:00+08:00</updated><id>http://firsh.me/2017/12/19/hadoop-install</id><content type="html" xml:base="http://firsh.me/2017/12/19/hadoop-install/">&lt;h1 id=&quot;hadoop集群配置ha&quot;&gt;hadoop集群配置HA&lt;/h1&gt;
-
-&lt;h1 id=&quot;准备&quot;&gt;准备&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;JDK1.8&lt;/li&gt;
-  &lt;li&gt;NTP&lt;/li&gt;
-  &lt;li&gt;zookeeper&lt;/li&gt;
-  &lt;li&gt;NTPDATE&lt;/li&gt;
-  &lt;li&gt;配置目录&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scp -r zookeeper/ dscn&lt;span class=&quot;nv&quot;&gt;$:&lt;/span&gt;/home/zookeeper
-
-scp -r hadoop/ dscn&lt;span class=&quot;nv&quot;&gt;$:&lt;/span&gt;/home/hadoop
-
-mkdir  -p /home/program/hadoop/  data logs pids  &lt;span class=&quot;c&quot;&gt;# hadoop 文件路径&lt;/span&gt;
-
-mkdir  -p  /home/program/zookeeper data logs pids &lt;span class=&quot;c&quot;&gt;# zookeeper 文件&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;hdfs haadmin -transitionToActive nn1 --forcemanual
-解决启动节点都为 &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;standby&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;环境变量-hadoop&quot;&gt;环境变量 Hadoop&lt;/h1&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;
-        export JAVA_HOME=/usr/java/jdk1.8.0_73
-        export HADOOP_HOME=/home/dscs/hadoop
-        export HADOOP_LOG_DIR=/home/program/hadoop/logs
-        export HADOOP_PID_DIR=/home/program/hadoop/pids
-        export HADOOP_IDENT_STRING=dscs
-        export YARN_LOG_DIR=/home/program/hadoop/logs
-        export YARN_PID_DIR=/home/program/hadoop/pids
-        export YARN_IDENT_STRING=dscs
-        export CLASSPATH=.:&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$JAVA_HOME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/lib/dt.jar:&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$JAVA_HOME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/lib/tools.jar
-        PATH=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HADOOP_HOME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/bin:&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HADOOP_HOME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/sbin:&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$JAVA_HOME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/bin:&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;
-        &quot;&lt;/span&gt; &amp;gt;&amp;gt;~/.bash_profile
-    &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; ~/.bash_profile
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;环境变量-java&quot;&gt;环境变量 Java&lt;/h1&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;dirname &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;dirname &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;readlink -f &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;which javac&lt;span class=&quot;k&quot;&gt;))))&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;zookeeper-config&quot;&gt;zookeeper config&lt;/h1&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-    &lt;span class=&quot;nv&quot;&gt;dataDir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/local/program/zookeeper/data
-    &lt;span class=&quot;nv&quot;&gt;dataLogDir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/local/program/zookeeper/logs
-    &lt;span class=&quot;nv&quot;&gt;clientPort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;2181
-    &lt;span class=&quot;nv&quot;&gt;tickTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;2000
-    &lt;span class=&quot;nv&quot;&gt;initLimit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;5
-    &lt;span class=&quot;nv&quot;&gt;syncLimit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;2
-    server.1&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;dscn1:2888:3888
-    server.2&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;dscn2:2888:3888
-    server.3&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;dscn3:2888:3888
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;i &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;1 2 3
-    &lt;span class=&quot;k&quot;&gt;do 
-
-        &lt;/span&gt;ssh dscn&lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt; mkdir -p /home/program/zookeeper/data/ &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt; &amp;gt; /home/program/zookeeper/data/myid
-
-    &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;hadoop-启动流程&quot;&gt;hadoop 启动流程&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;启动 zookeeper (3个节点)&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; ```bash
-     ./zkServer.sh start ../conf/zoo.cfg
- ```
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;启动 JournalNode (3个节点) 
-     &lt;code class=&quot;highlighter-rouge&quot;&gt;bash
-         sbin/hadoop-daemon.sh start journalnode
-    &lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;在其中一个namenode上格式化：
-     &lt;code class=&quot;highlighter-rouge&quot;&gt;bash
-          bin/hdfs namenode -format -bjsxt 
-    &lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;启动刚刚格式化的namenode:&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; ```bash
-     sbin/hadoop-daemon.sh start namenode
- ```
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;在另一个没有格式化的namenode上执行&lt;/p&gt;
-
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;         bin/hdfs namenode -bootstrapStandby 
-            
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;启动第二个namenode&lt;/p&gt;
-
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;      sbin/hadoop-daemon.sh start namenode
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;启动第二个datanode(3个节点)&lt;/p&gt;
-
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;      sbin/hadoop-daemon.sh start datanode
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;在其中一个namenode上初始化zkfc：&lt;/p&gt;
-
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;     bin/hdfs zkfc -formatZK
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;启动 JobHistory&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    sbin/mr-jobhistory-daemon.sh start historyserver
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;# 异常描述&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Hadoop2.0的HA机制判断两者元数据不一致时，为了防止脑裂，所以使两者都处于standby状态,&lt;/li&gt;
-  &lt;li&gt;场景：两台namenode都是standby。&lt;/li&gt;
-  &lt;li&gt;zk集群里只是保存，hadoop集群的ha状态，而不保存数据，所以在ha机制出现问题时，可以使用此条命令：&lt;/li&gt;
-  &lt;li&gt;停止集群 hadoop&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;        hdfs zkfc -formatZK
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;# 插曲 scp 发现存储不够了&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
- &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@dscn1 hadoop]# vgs
-  VG   &lt;span class=&quot;c&quot;&gt;#PV #LV #SN Attr   VSize    VFree&lt;/span&gt;
-  VG00   1  10   0 wz--n- &amp;lt;199.51g &amp;lt;1.26g
-
-
-  lvextend -L +173G /dev/mapper/VG00-lvroot
-
-
-  xfs_growfs /dev/mapper/VG00-lvroot
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;读取文件里面的文件路径参数转译&quot;&gt;读取文件里面的文件路径参数【转译】&lt;/h1&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;nv&quot;&gt;HBASE_TMP_DIR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;cat &lt;span class=&quot;nv&quot;&gt;$HBASE_PACKAGE_PATH&lt;/span&gt;/config | grep HBASE_TMP_DIR | awk -F &lt;span class=&quot;s2&quot;&gt;&quot;=&quot;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print$2}'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;nv&quot;&gt;HBASE_TMP_DIR_STR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$HBASE_TMP_DIR&lt;/span&gt; | sed &lt;span class=&quot;s1&quot;&gt;'s#\/#\\\/#g'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-
-sed -i &lt;span class=&quot;s2&quot;&gt;&quot;s/HBASE_TMP_DIR/&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HBASE_TMP_DIR_STR&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$HBASE_HOME&lt;/span&gt;/conf/hbase-site.xml
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;读取节点配置合理配置主从节点&quot;&gt;读取节点配置合理配置主从节点&lt;/h1&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;OLD_IFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$IFS&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;IFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;,&quot;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HBASE_REGION&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;IFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$OLD_IFS&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;s &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[@]&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;do
-    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$s&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &amp;gt;&amp;gt;&lt;span class=&quot;nv&quot;&gt;$HBASE_HOME&lt;/span&gt;/conf/regionservers
-&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>breakeval13</name></author><summary type="html">hadoop集群配置HA</summary></entry></feed>
+&lt;/div&gt;</content><author><name>breakeval13</name></author><summary type="html">总结日常遇到的问题，以及解决办法，总结每天遇到的问题。</summary></entry></feed>
