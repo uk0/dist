@@ -212,8 +212,17 @@ broker-c.properties
 </ul>
 
 <h2 id="start">start</h2>
-
 <ul>
+  <li>
+    <p>修改脚本参数</p>
+
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>   <span class="c">#runbroker.sh</span>
+    <span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">JAVA_OPT</span><span class="k">}</span><span class="s2"> -server -Xms1g  -Xmx1g -Xmn512m -XX:PermSize=128m -XX:MaxPermSize=320m"</span>
+   <span class="c">#runserver.sh</span>
+   <span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">JAVA_OPT</span><span class="k">}</span><span class="s2"> -server -Xms1g -Xmx1g -Xmn512m -XX:PermSize=128m -XX:MaxPermSize=320m
+</span></code></pre>
+    </div>
+  </li>
   <li>
     <p>启动RocketMQ</p>
 
