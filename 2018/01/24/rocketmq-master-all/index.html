@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Eclipse &mdash; 观海听涛</title>
+    <title>rocketmq 多Master集群搭建 &mdash; 观海听涛</title>
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
@@ -21,23 +21,23 @@
     
 
     
-    <link rel="canonical" href="http://firsh.me/wiki/eclipse/">
+    <link rel="canonical" href="http://firsh.me/2018/01/24/rocketmq-master-all/">
     <link rel="alternate" type="application/atom+xml" title="观海听涛" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="Eclipse">
+    <meta property="og:title" content="rocketmq 多Master集群搭建">
       
-    <meta name="keywords" content="Eclipse">
-    <meta name="og:keywords" content="Eclipse">
+    <meta name="keywords" content="rocketmq">
+    <meta name="og:keywords" content="rocketmq">
       
-    <meta name="description" content="快捷键">
-    <meta name="og:description" content="快捷键">
+    <meta name="description" content="搭建一套多个Master的集群（RocketMQ）    为了项目测试使用。">
+    <meta name="og:description" content="搭建一套多个Master的集群（RocketMQ）    为了项目测试使用。">
       
     
     
         
     
-    <meta property="og:url" content="http://firsh.me/wiki/eclipse/">
+    <meta property="og:url" content="http://firsh.me/2018/01/24/rocketmq-master-all/">
     <meta property="og:site_name" content="观海听涛">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -85,167 +85,173 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="Eclipse">
+    <section class="collection-head small geopattern" data-pattern-id="rocketmq 多Maste">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">Eclipse</h1>
+        <h1 class="collection-header">rocketmq 多Master集群搭建</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2018/01/24
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#java" title="java">java</a>
+          </span>
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#rocketmq" title="rocketmq">rocketmq</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
 </div>
 </section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
 <!-- / .banner -->
 <section class="container content">
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <h3 id="快捷键">快捷键</h3>
+    <p>搭建一套多个Master的集群（RocketMQ）
+    为了项目测试使用。</p>
 
-<p>C –&gt; Ctrl</p>
+<h2 id="quick-start">quick start</h2>
 
-<p>S –&gt; Shift</p>
+<ul>
+  <li>准备RocketMQ 4.2.0 tar</li>
+  <li>准备JDK 1.8</li>
+</ul>
 
-<p>A –&gt; Alt</p>
+<h2 id="config">config</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">功能</th>
-      <th style="text-align: left">快捷键</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">显示所有快捷键</td>
-      <td style="text-align: left">C-S-l</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">开/关注释</td>
-      <td style="text-align: left">C-/</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">显示 outline</td>
-      <td style="text-align: left">C-o</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">当前打开的文件列表</td>
-      <td style="text-align: left">C-e</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">快速查找打开文件</td>
-      <td style="text-align: left">C-S-r</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">查找</td>
-      <td style="text-align: left">C-h</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">查找后跳到下一处</td>
-      <td style="text-align: left">C-.</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Undo</td>
-      <td style="text-align: left">C-z</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Redo</td>
-      <td style="text-align: left">C-y</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">跳到指定行</td>
-      <td style="text-align: left">C-l</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">自动补全</td>
-      <td style="text-align: left">A-/</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">自动解决导入包问题</td>
-      <td style="text-align: left">C-S-o</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">返回</td>
-      <td style="text-align: left">A-Left</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">反返回</td>
-      <td style="text-align: left">A-Right</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">步进</td>
-      <td style="text-align: left">F5</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">单步</td>
-      <td style="text-align: left">F6</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">执行到返回</td>
-      <td style="text-align: left">F7</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">继续执行</td>
-      <td style="text-align: left">F8</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">删除当前行</td>
-      <td style="text-align: left">C-d</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">删除前一个词</td>
-      <td style="text-align: left">C-Backspace</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">删除后一个词</td>
-      <td style="text-align: left">C-Delete</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">缩进</td>
-      <td style="text-align: left">Tab</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">减少缩进</td>
-      <td style="text-align: left">S-Tab</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">在下面新起一行</td>
-      <td style="text-align: left">S-Enter</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">在上面新起一行</td>
-      <td style="text-align: left">C-S-Enter</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="qa">Q&amp;A</h3>
-
-<ol>
+<ul>
   <li>
-    <p>如何解决 Mac OS X 下安装的是 Java 1.8，运行 Eclipse 时提示「您需要安装旧 Java SE 6 运行环境才能打开「Eclipse.app」。」的问题？</p>
+    <p>三个broker的配置 broker-a，broker-b，broker-c
+broker-a.properties
+broker-b.properties
+broker-c.properties
+修改下面配置文件的 <code class="highlighter-rouge">brokerName</code>即可</p>
 
-    <p><img src="/images/wiki/eclipse-need-java6.png" alt="" /></p>
-
-    <p>更改 /Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Info.plist 文件里的 JVMCapabilities 段如下（默认只有 <code class="highlighter-rouge">CommandLine</code>）：</p>
-
-    <div class="highlighter-rouge"><pre class="highlight"><code> &lt;key&gt;JVMCapabilities&lt;/key&gt;
-            &lt;array&gt;
-                    &lt;string&gt;JNI&lt;/string&gt;
-                    &lt;string&gt;BundledApp&lt;/string&gt;
-                    &lt;string&gt;WebStart&lt;/string&gt;
-                    &lt;string&gt;Applets&lt;/string&gt;
-                    &lt;string&gt;CommandLine&lt;/string&gt;
-            &lt;/array&gt;
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>    <span class="c">#所属集群名字</span>
+    <span class="nv">brokerClusterName</span><span class="o">=</span>rocketmq-aom
+    <span class="c">#broker名字，注意此处不同的配置文件填写的不一样</span>
+    <span class="nv">brokerName</span><span class="o">=</span>broker-a|b|c
+    <span class="c">#0 表示 Master，&gt;0 表示 Slave</span>
+    <span class="nv">brokerId</span><span class="o">=</span>0
+    <span class="c">#nameServer地址，分号分割</span>
+    <span class="nv">namesrvAddr</span><span class="o">=</span>tod1:9876;tod2:9876;tod3:9876
+    <span class="c">#在发送消息时，自动创建服务器不存在的topic，默认创建的队列数</span>
+    <span class="nv">defaultTopicQueueNums</span><span class="o">=</span>4
+    <span class="c">#是否允许 Broker 自动创建Topic，建议线下开启，线上关闭</span>
+    <span class="nv">autoCreateTopicEnable</span><span class="o">=</span><span class="nb">true</span>
+    <span class="c">#是否允许 Broker 自动创建订阅组，建议线下开启，线上关闭</span>
+    <span class="nv">autoCreateSubscriptionGroup</span><span class="o">=</span><span class="nb">true</span>
+    <span class="c">#Broker 对外服务的监听端口</span>
+    <span class="nv">listenPort</span><span class="o">=</span>10911
+    <span class="c">#删除文件时间点，默认凌晨 4点</span>
+    <span class="nv">deleteWhen</span><span class="o">=</span>04
+    <span class="c">#文件保留时间，默认 48 小时</span>
+    <span class="nv">fileReservedTime</span><span class="o">=</span>120
+    <span class="c">#commitLog每个文件的大小默认1G</span>
+    <span class="nv">mapedFileSizeCommitLog</span><span class="o">=</span>1073741824
+    <span class="c">#ConsumeQueue每个文件默认存30W条，根据业务情况调整</span>
+    <span class="nv">mapedFileSizeConsumeQueue</span><span class="o">=</span>300000
+    <span class="c">#destroyMapedFileIntervalForcibly=120000</span>
+    <span class="c">#redeleteHangedFileInterval=120000</span>
+    <span class="c">#检测物理文件磁盘空间</span>
+    <span class="nv">diskMaxUsedSpaceRatio</span><span class="o">=</span>88
+    <span class="c">#存储路径</span>
+    <span class="nv">storePathRootDir</span><span class="o">=</span>/home/aom/data/rocketmq/store
+    <span class="c">#commitLog 存储路径</span>
+    <span class="nv">storePathCommitLog</span><span class="o">=</span>/home/aom/data/rocketmq/store/commitlog
+    <span class="c">#消费队列存储路径存储路径</span>
+    <span class="nv">storePathConsumeQueue</span><span class="o">=</span>/home/aom/data/rocketmq/store/consumequeue
+    <span class="c">#消息索引存储路径</span>
+    <span class="nv">storePathIndex</span><span class="o">=</span>/home/aom/data/rocketmq/store/index
+    <span class="c">#checkpoint 文件存储路径</span>
+    <span class="nv">storeCheckpoint</span><span class="o">=</span>/home/aom/data/rocketmq/store/checkpoint
+    <span class="c">#abort 文件存储路径</span>
+    <span class="nv">abortFile</span><span class="o">=</span>/home/aom/data/rocketmq/store/abort
+    <span class="c">#限制的消息大小</span>
+    <span class="nv">maxMessageSize</span><span class="o">=</span>65536
+    <span class="c">#flushCommitLogLeastPages=4</span>
+    <span class="c">#flushConsumeQueueLeastPages=2</span>
+    <span class="c">#flushCommitLogThoroughInterval=10000</span>
+    <span class="c">#flushConsumeQueueThoroughInterval=60000</span>
+    <span class="c">#Broker 的角色</span>
+    <span class="c">#- ASYNC_MASTER 异步复制Master</span>
+    <span class="c">#- SYNC_MASTER 同步双写Master</span>
+    <span class="c">#- SLAVE</span>
+    <span class="nv">brokerRole</span><span class="o">=</span>ASYNC_MASTER
+    <span class="c">#刷盘方式</span>
+    <span class="c">#- ASYNC_FLUSH 异步刷盘</span>
+    <span class="c">#- SYNC_FLUSH 同步刷盘</span>
+    <span class="nv">flushDiskType</span><span class="o">=</span>ASYNC_FLUSH
+    <span class="c">#checkTransactionMessageEnable=false</span>
+    <span class="c">#发消息线程池数量</span>
+    <span class="c">#sendMessageThreadPoolNums=128</span>
+    <span class="c">#拉消息线程池数量</span>
+    <span class="c">#pullMessageThreadPoolNums=128</span>
 </code></pre>
     </div>
-
-    <p>然后重启电脑。</p>
-
-    <p>没有找到为何这样改的解释，按名称猜想应该是说在这几种环境下启动 Java 具有跨版本的兼容性吧。</p>
   </li>
-</ol>
+</ul>
+
+<h2 id="start">start</h2>
+
+<ul>
+  <li>
+    <p>启动RocketMQ</p>
+
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+   <span class="c">#先启动Nameserv（三台机器）</span>
+    nohup sh mqnamesrv &amp;
+    nohup sh mqnamesrv &amp;
+    nohup sh mqnamesrv &amp;
+   <span class="c"># 启动 broker（三台机器）</span>
+    nohup sh mqbroker -c /home/rocketmq/conf/2m-noslave/broker-a.properties &gt;/dev/null 2&gt;&amp;1 &amp; 
+
+    nohup sh mqbroker -c /home/rocketmq/conf/2m-noslave/broker-b.properties &gt;/dev/null 2&gt;&amp;1 &amp; 
+
+    nohup sh mqbroker -c /home/rocketmq/conf/2m-noslave/broker-c.properties &gt;/dev/null 2&gt;&amp;1 &amp; 
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h2 id="test">test</h2>
+
+<ul>
+  <li>
+    <p>test RocketMQ</p>
+
+    <div class="language-text highlighter-rouge"><pre class="highlight"><code>    [root@tod1 bin]# ./mqadmin clusterList -n 192.168.1.149:9876
+    Java HotSpot(TM) 64-Bit Server VM warning: ignoring option PermSize=128m; support was removed in 8.0
+    Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=128m; support was removed in 8.0
+    #Cluster Name     #Broker Name            #BID  #Addr                  #Version                #InTPS(LOAD)       #OutTPS(LOAD) #PCWait(ms) #Hour #SPACE
+    rocketmq-aom      broker-a                0     192.168.1.149:10911    V4_2_0_SNAPSHOT          0.00(0,0ms)         0.00(0,0ms)          0 421335.24 0.0128
+    rocketmq-aom      broker-b                0     192.168.1.150:10911    V4_2_0_SNAPSHOT          0.00(0,0ms)         0.00(0,0ms)          0 421335.24 0.0116
+    rocketmq-aom      broker-c                0     192.168.1.151:10911    V4_2_0_SNAPSHOT          0.00(0,0ms)         0.00(0,0ms)          0 421335.24 0.0116
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
 
     </article>
     <div class="share">
@@ -262,9 +268,9 @@
           <div id="disqus_thread"></div>
           <script>
             var disqus_config = function () {
-              this.page.url = 'http://firsh.me/wiki/eclipse/';
-              this.page.identifier = '/wiki/eclipse/';
-              this.page.title = 'Eclipse';
+              this.page.url = 'http://firsh.me/2018/01/24/rocketmq-master-all/';
+              this.page.identifier = '/2018/01/24/rocketmq-master-all/';
+              this.page.title = 'rocketmq 多Master集群搭建';
             };
             (function() { // DON'T EDIT BELOW THIS LINE
               var d = document, s = d.createElement('script');
