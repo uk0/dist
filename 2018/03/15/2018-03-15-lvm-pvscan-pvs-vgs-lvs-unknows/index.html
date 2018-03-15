@@ -1,0 +1,53 @@
+<h2 id="lv扩容">LV扩容</h2>
+
+<p>### 过程如下：</p>
+
+<ul>
+  <li>
+    <p>挂载一块硬盘4T</p>
+
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>      fdisk /dev/sdb
+
+      send n
+
+      send p
+
+      send w;
+
+      mkfs -t ext4 -c /dev/sdb1
+
+      wrating....
+
+
+      pvcreate /dev/sdb1
+
+
+      vgextend rhel /dev/sdb1
+
+
+      lvextend -L +2000G  /dev/mapper/lvs-home
+
+      <span class="c">#根据文件格式进行重置home大小</span>
+
+      xfs_growfs /dev/mapper/lvs-home
+
+          or
+
+      resize2fs -p /dev/mapper/lvs-home
+
+      其中遇到的问题如下：
+
+      创建完成PV--&gt;mkfs<span class="o">(</span>格盘<span class="o">)</span>--&gt;vgs<span class="o">(</span>warning Device with uuid XXXXXX-xxxxxx-xxx-xxxx-xxxxx<span class="o">)</span>
+
+      解决办法：
+      pvcreate --uuid <span class="s2">"UUID"</span> --restorefile /etc/lvm/archie/rhel_000001-1511980835.vg  /dev/sdb1
+
+      如果解决不了用第二种方式：
+      vgreduce --removemissing --verbose myVG_NAME
+
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>

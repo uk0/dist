@@ -1,4 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-03-11T23:18:38+08:00</updated><id>http://firsh.me/</id><title type="html">观海听涛</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html">是时候换一个环境了。</title><link href="http://firsh.me/2018/03/11/2018-over-or-start/" rel="alternate" type="text/html" title="是时候换一个环境了。" /><published>2018-03-11T23:05:06+08:00</published><updated>2018-03-11T23:05:06+08:00</updated><id>http://firsh.me/2018/03/11/2018-over-or-start</id><content type="html" xml:base="http://firsh.me/2018/03/11/2018-over-or-start/">&lt;h2 id=&quot;时隔17个月&quot;&gt;时隔17个月&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-03-15T14:49:33+08:00</updated><id>http://firsh.me/</id><title type="html">观海听涛</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>breakeval13</name></author><entry><title type="html"></title><link href="http://firsh.me/2018/03/15/2018-03-15-lvm-pvscan-pvs-vgs-lvs-unknows/" rel="alternate" type="text/html" title="" /><published>2018-03-15T14:49:33+08:00</published><updated>2018-03-15T14:49:33+08:00</updated><id>http://firsh.me/2018/03/15/2018-03-15-lvm-pvscan-pvs-vgs-lvs-unknows</id><content type="html" xml:base="http://firsh.me/2018/03/15/2018-03-15-lvm-pvscan-pvs-vgs-lvs-unknows/">&lt;h2 id=&quot;lv扩容&quot;&gt;LV扩容&lt;/h2&gt;
+
+&lt;p&gt;### 过程如下：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;挂载一块硬盘4T&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;      fdisk /dev/sdb
+
+      send n
+
+      send p
+
+      send w;
+
+      mkfs -t ext4 -c /dev/sdb1
+
+      wrating....
+
+
+      pvcreate /dev/sdb1
+
+
+      vgextend rhel /dev/sdb1
+
+
+      lvextend -L +2000G  /dev/mapper/lvs-home
+
+      &lt;span class=&quot;c&quot;&gt;#根据文件格式进行重置home大小&lt;/span&gt;
+
+      xfs_growfs /dev/mapper/lvs-home
+
+          or
+
+      resize2fs -p /dev/mapper/lvs-home
+
+      其中遇到的问题如下：
+
+      创建完成PV--&amp;gt;mkfs&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;格盘&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;--&amp;gt;vgs&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;warning Device with uuid XXXXXX-xxxxxx-xxx-xxxx-xxxxx&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+      解决办法：
+      pvcreate --uuid &lt;span class=&quot;s2&quot;&gt;&quot;UUID&quot;&lt;/span&gt; --restorefile /etc/lvm/archie/rhel_000001-1511980835.vg  /dev/sdb1
+
+      如果解决不了用第二种方式：
+      vgreduce --removemissing --verbose myVG_NAME
+
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>breakeval13</name></author></entry><entry><title type="html">是时候换一个环境了。</title><link href="http://firsh.me/2018/03/11/2018-over-or-start/" rel="alternate" type="text/html" title="是时候换一个环境了。" /><published>2018-03-11T23:05:06+08:00</published><updated>2018-03-11T23:05:06+08:00</updated><id>http://firsh.me/2018/03/11/2018-over-or-start</id><content type="html" xml:base="http://firsh.me/2018/03/11/2018-over-or-start/">&lt;h2 id=&quot;时隔17个月&quot;&gt;时隔17个月&lt;/h2&gt;
 
 &lt;p&gt;本人Java大数据研发工程师一名，因为一些事情所以会离职，在这里和大家唠叨一下，16年10月进入公司，这么长的时间里面，对公司的技术感到欣慰，对公司的环境感到幸福，唯一不满意的就是公司的着重程度，我想很多公司都有这种情况，一个以技术为核心驱动的公司，能给公司带来利益的最底层是程序员，上一级是项目经理，然后就是销售部门，售前部门，商务部门，拿到一个项目不容易，做好一个项目同样不容易，所以因为种种原因，可能是觉得自己配不上这个公司吧，选择离职，是一个很好的决定。&lt;/p&gt;
 
@@ -996,157 +1048,4 @@ kubectl proxy -p 8080 &amp;amp;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>breakeval13</name></author><summary type="html">quick start</summary></entry><entry><title type="html">Serverless for Java development</title><link href="http://firsh.me/2017/12/25/2017-12-25-serverless-1/" rel="alternate" type="text/html" title="Serverless for Java development" /><published>2017-12-25T14:13:23+08:00</published><updated>2017-12-25T14:13:23+08:00</updated><id>http://firsh.me/2017/12/25/2017-12-25-serverless-1</id><content type="html" xml:base="http://firsh.me/2017/12/25/2017-12-25-serverless-1/">&lt;p&gt;Server Less 我的第一个简单的实例。&lt;/p&gt;
-
-&lt;h1 id=&quot;前言&quot;&gt;前言&lt;/h1&gt;
-
-&lt;p&gt;Serverless 适用场景：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;1 运算密集 —— 如图片压缩、数据分析。因为使用 Serverless 方案同一秒里可以运行千上万个 Lambda，能轻易实现传统架构无法实现的超强处理能力，并且只在使用时收费。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;2  为其它服务提供编程支持 —— 例如，当 AWS DynamoDB 数据发生变化时，调用 AWS Lambda 生成 PDF 报表。再如，为 AWS API Gateway 提供自定义权限验证脚本。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;3  定时任务 —— 以往使用 cron 编写的定时任务可以改用 AWS Lambda 实现，很明显的好处是任务不执行的时候完全不收费。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;4  瘦容器 —— 因为 AWS Lambda 本身基于 Docker 容器实现，Lambda 方法跑在 Amazon Linux AMI 中，虽然官方支持的编程语言只有 NodeJS、Java、Python，但其实可以用 NodeJS 的 shim 运行大部分能在 Linux 下运行的程序。以至于有人用这个特性做了 LambCI 这种脑洞大开的 Serverless CI 服务。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;5   无人运维 —— Serverless 的核心优势就是不需要管理服务器，自伸缩的特性如果用传统方案解决会相对复杂很多。如果你需要一个服务为你跑好几年，期间完全不需要担心它的服务器运行情况，Serverless 会是最好的选择。&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;quick-start-fnproject&quot;&gt;quick start [fnproject]&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Docker ，fn cli ，nodejs&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;用到以下两个工具
-   https://github.com/fnproject/fn &lt;/li&gt;
-    &lt;/ul&gt;
-
-    &lt;p&gt;https://github.com/fnproject/ui&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;brew install fn # 安装fn command命令行&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;执行fn start 启动 FN_Server
-   &lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/574abd7a-5de7-4de3-ba11-84517eb23074.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;请求
-   &lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/9b1eb8af-ccb5-415e-bc77-89e72c2dc05d.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;请求实例
-   &lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/b8491fa5-4bd1-48ff-ac51-2151a096406a.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;coder&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-
-    &lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/25648265-1603-4516-bab5-21e95b3c47d2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;yaml 配置&lt;/li&gt;
-    &lt;/ul&gt;
-
-    &lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/54eae79d-7c0b-422c-966f-3701f1dc40f2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;deploy hello&lt;/li&gt;
-    &lt;/ul&gt;
-
-    &lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/f4c7ebb2-3674-49b5-9848-9f16d4390a73.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;kubeless-整理中&quot;&gt;kubeless [整理中]&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;kubeless function1.yaml&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-  &lt;span class=&quot;s&quot;&gt;---&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;k8s.io/v1&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Function&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;function1&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hello.foobar&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;registry.timeondata.com/firsh_demo/kubeless_runtime_python:2.7.1&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;runtime&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;python2.7&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;deps&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;cowpy&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;import time&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;import random&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;from cowpy import cow&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;def foobar():&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;# NB: delay will be negative and sleep will raise an error&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;# occasionally.  This is a feature for demoing errors.&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;delay = random.normalvariate(0.3, 0.2)&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;time.sleep(delay)&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;msg = &quot;hello world - with a %0.2fs artificial delay&quot; % delay&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;c = cow.get_cow()&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;return c().milk(msg)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;启动&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ➜ python git:&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; ✗ kubectl create -f function1.yaml
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;检查启动&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;c&quot;&gt;# 检查启动&lt;/span&gt;
- ➜  python git:&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; ✗ kubeless &lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;ls
-NAME     	NAMESPACE	HANDLER     	RUNTIME  	TYPE	TOPIC	DEPENDENCIES	STATUS
-function1	default  	hello.foobar	python2.7	    	     	cowpy       	1/1 READY
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;测试调用&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    kubeless &lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;call  function1 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;结果&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-➜  python git:&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; ✗ kubeless &lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;call  function1
- _____________________________________________
-&amp;lt; hello world - with a 0.42s artificial delay &amp;gt;
- ---------------------------------------------
-     &lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;  ^__^
-      &lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;oo&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;______
-         &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;__&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;      &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\/\&lt;/span&gt;
-           &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt;----w |
-           &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>breakeval13</name></author><summary type="html">Server Less 我的第一个简单的实例。</summary></entry></feed>
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>breakeval13</name></author><summary type="html">quick start</summary></entry></feed>
