@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Badminton &mdash; 观海听涛</title>
+    <title>linu硬盘检查大小awk脚本全自动执行 &mdash; 观海听涛</title>
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
@@ -21,23 +21,23 @@
     
 
     
-    <link rel="canonical" href="http://firsh.me/wiki/badminton/">
+    <link rel="canonical" href="http://firsh.me/2018/04/04/check-disk-manager/">
     <link rel="alternate" type="application/atom+xml" title="观海听涛" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="Badminton">
+    <meta property="og:title" content="linu硬盘检查大小awk脚本全自动执行">
       
-    <meta name="keywords" content="羽毛球">
-    <meta name="og:keywords" content="羽毛球">
+    <meta name="keywords" content="awk linux 硬盘检查">
+    <meta name="og:keywords" content="awk linux 硬盘检查">
       
-    <meta name="description" content="视频">
-    <meta name="og:description" content="视频">
+    <meta name="description" content="DISK 监测剩余量">
+    <meta name="og:description" content="DISK 监测剩余量">
       
     
     
         
     
-    <meta property="og:url" content="http://firsh.me/wiki/badminton/">
+    <meta property="og:url" content="http://firsh.me/2018/04/04/check-disk-manager/">
     <meta property="og:site_name" content="观海听涛">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -85,53 +85,63 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="Badminton">
+    <section class="collection-head small geopattern" data-pattern-id="linu硬盘检查大小awk脚本">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">Badminton</h1>
+        <h1 class="collection-header">linu硬盘检查大小awk脚本全自动执行</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2018/04/04
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#awk" title="awk">awk</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
 </div>
 </section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
 <!-- / .banner -->
 <section class="container content">
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <h2 id="视频">视频</h2>
+    <h2 id="disk-监测剩余量">DISK 监测剩余量</h2>
 
-<ul>
-  <li>
-    <p><a href="http://v.youku.com/v_show/id_XNDExNDM2NzA0.html">李在福《Play To Win》完整版</a></p>
-  </li>
-  <li>
-    <p><a href="http://v.youku.com/v_show/id_XMjczOTAyODI4.html?f=15463121">李在福《追球》全集</a></p>
-  </li>
-</ul>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="nv">temp</span><span class="o">=</span>0.0
+<span class="nv">DISK_SIZE</span><span class="o">=</span>0.0
+<span class="k">for </span>i <span class="k">in</span> <span class="o">{</span>0..26<span class="o">}</span>
+<span class="k">do
+    </span><span class="nb">echo</span> -e <span class="s2">"dscn0</span><span class="nv">$i</span><span class="s2"> Disk"</span>
+    <span class="nb">echo</span> <span class="s2">"剩余可用大小GB"</span>
+    <span class="nv">temp</span><span class="o">=</span><span class="sb">`</span>ssh dscn0<span class="nv">$i</span> df -m|grep hadoop | awk <span class="s1">'$4~/^[0-9]/ {split($4,array,"[A-Z]");b+=array[1]} END {print b/1024}'</span><span class="sb">`</span>
+    <span class="nv">DISK_SIZE</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$DISK_SIZE</span><span class="s2"> + </span><span class="nv">$temp</span><span class="s2">"</span> | bc<span class="k">)</span>
 
-<h2 id="图文">图文</h2>
+    <span class="nb">echo</span> -e <span class="s2">"总数 剩余 占比 目录"</span>
+    ssh dscn0<span class="nv">$i</span> df -h | grep hadoop  | awk <span class="s1">'{print$2, $4, $5, $6}'</span>
+<span class="k">done
+</span><span class="nb">echo</span> -e <span class="s2">"</span><span class="se">\0</span><span class="s2">33[32m 剩余总大小: </span><span class="nv">$DISK_SIZE</span><span class="s2"> GB </span><span class="se">\0</span><span class="s2">33[0m"</span>
 
-<ul>
-  <li><a href="http://q.115.com/t-137397-1619804.html">超全羽毛球技术图解</a></li>
-</ul>
+</code></pre>
+</div>
 
-<h2 id="公众号">公众号</h2>
-
-<ul>
-  <li>
-    <p>和蔡赟聊羽毛球</p>
-
-    <p>微信号：caiyunliaoyumaoqiu</p>
-  </li>
-  <li>
-    <p>羽毛球</p>
-
-    <p>微信号：yu-mao-qiu</p>
-  </li>
-</ul>
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
 
     </article>
     <div class="share">
@@ -148,9 +158,9 @@
           <div id="disqus_thread"></div>
           <script>
             var disqus_config = function () {
-              this.page.url = 'http://firsh.me/wiki/badminton/';
-              this.page.identifier = '/wiki/badminton/';
-              this.page.title = 'Badminton';
+              this.page.url = 'http://firsh.me/2018/04/04/check-disk-manager/';
+              this.page.identifier = '/2018/04/04/check-disk-manager/';
+              this.page.title = 'linu硬盘检查大小awk脚本全自动执行';
             };
             (function() { // DON'T EDIT BELOW THIS LINE
               var d = document, s = d.createElement('script');

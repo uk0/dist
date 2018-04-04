@@ -1,4 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-03-30T02:19:18+08:00</updated><id>http://firsh.me/</id><title type="html">观海听涛</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>uk0</name></author><entry><title type="html">LVM unknown device how to recover?</title><link href="http://firsh.me/2018/03/15/lvm-pvscan-pvs-vgs-lvs-unknows/" rel="alternate" type="text/html" title="LVM unknown device how to recover?" /><published>2018-03-15T14:36:05+08:00</published><updated>2018-03-15T14:36:05+08:00</updated><id>http://firsh.me/2018/03/15/lvm-pvscan-pvs-vgs-lvs-unknows</id><content type="html" xml:base="http://firsh.me/2018/03/15/lvm-pvscan-pvs-vgs-lvs-unknows/">&lt;h2 id=&quot;lv扩容&quot;&gt;LV扩容&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-04-04T17:12:19+08:00</updated><id>http://firsh.me/</id><title type="html">观海听涛</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>uk0</name></author><entry><title type="html">linu硬盘检查大小awk脚本全自动执行</title><link href="http://firsh.me/2018/04/04/check-disk-manager/" rel="alternate" type="text/html" title="linu硬盘检查大小awk脚本全自动执行" /><published>2018-04-04T17:08:52+08:00</published><updated>2018-04-04T17:08:52+08:00</updated><id>http://firsh.me/2018/04/04/check-disk-manager</id><content type="html" xml:base="http://firsh.me/2018/04/04/check-disk-manager/">&lt;h2 id=&quot;disk-监测剩余量&quot;&gt;DISK 监测剩余量&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.0
+&lt;span class=&quot;nv&quot;&gt;DISK_SIZE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.0
+&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;i &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;0..26&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;do
+    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -e &lt;span class=&quot;s2&quot;&gt;&quot;dscn0&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; Disk&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;剩余可用大小GB&quot;&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;ssh dscn0&lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt; df -m|grep hadoop | awk &lt;span class=&quot;s1&quot;&gt;'$4~/^[0-9]/ {split($4,array,&quot;[A-Z]&quot;);b+=array[1]} END {print b/1024}'&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;DISK_SIZE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$DISK_SIZE&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; + &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$temp&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | bc&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -e &lt;span class=&quot;s2&quot;&gt;&quot;总数 剩余 占比 目录&quot;&lt;/span&gt;
+    ssh dscn0&lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt; df -h | grep hadoop  | awk &lt;span class=&quot;s1&quot;&gt;'{print$2, $4, $5, $6}'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;done
+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -e &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[32m 剩余总大小: &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$DISK_SIZE&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; GB &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[0m&quot;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>uk0</name></author><summary type="html">DISK 监测剩余量</summary></entry><entry><title type="html">LVM unknown device how to recover?</title><link href="http://firsh.me/2018/03/15/lvm-pvscan-pvs-vgs-lvs-unknows/" rel="alternate" type="text/html" title="LVM unknown device how to recover?" /><published>2018-03-15T14:36:05+08:00</published><updated>2018-03-15T14:36:05+08:00</updated><id>http://firsh.me/2018/03/15/lvm-pvscan-pvs-vgs-lvs-unknows</id><content type="html" xml:base="http://firsh.me/2018/03/15/lvm-pvscan-pvs-vgs-lvs-unknows/">&lt;h2 id=&quot;lv扩容&quot;&gt;LV扩容&lt;/h2&gt;
 
 &lt;p&gt;### 过程如下：&lt;/p&gt;
 
@@ -980,70 +1000,4 @@ none                  217M  104K  217M   1% /var/lib/xenstored
 
 &lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/070f4afd-25c7-4783-a9e3-e77f133daad8.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>uk0</name></author><summary type="html">Aws Lambda to Serverless</summary></entry><entry><title type="html">kubeless原创实验</title><link href="http://firsh.me/2017/12/26/kubeless-simple/" rel="alternate" type="text/html" title="kubeless原创实验" /><published>2017-12-26T01:13:11+08:00</published><updated>2017-12-26T01:13:11+08:00</updated><id>http://firsh.me/2017/12/26/kubeless-simple</id><content type="html" xml:base="http://firsh.me/2017/12/26/kubeless-simple/">&lt;h1 id=&quot;quick-start&quot;&gt;quick start&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;实验环境kubernetes 1.8&lt;/li&gt;
-  &lt;li&gt;kubeless 3&lt;/li&gt;
-  &lt;li&gt;docker 17-ce&lt;/li&gt;
-  &lt;li&gt;kubeless-ui latest&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;部署function&quot;&gt;部署function&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
- kubeless &lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;deploy get-python  --runtime python2.7 &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-                                --from-file hellowithdata.py&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-                                --handler hellowithdata.handler &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-                                --trigger-http
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;部署成功&quot;&gt;部署成功&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;➜  python git:&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; ✗ kubeless &lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;ls
-NAME      	NAMESPACE	HANDLER              	RUNTIME  	TYPE	TOPIC	DEPENDENCIES	STATUS
-&lt;span class=&quot;k&quot;&gt;function  	&lt;/span&gt;default  	hello.handler        	python2.7	    	     	            	1/1 READY
-get-python	default  	hellowithdata.handler	python2.7	HTTP	     	            	1/1 READY
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;ui查看&quot;&gt;UI查看&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/33632748-61ce-41ac-9ede-f9b9a0b2fc7f.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;用命令测试&quot;&gt;用命令测试&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/ff6ab7bd-2891-428d-b7f3-4975b07ae896.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;curl请求&quot;&gt;curl请求&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 将kubectl 代理到本地端口&lt;/span&gt;
-kubectl proxy -p 8080 &amp;amp;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;测试&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-➜  python git:&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; ✗ curl -L --data &lt;span class=&quot;s1&quot;&gt;'{&quot;Another&quot;: &quot;Echo&quot;}'&lt;/span&gt; localhost:8080/api/v1/proxy/namespaces/default/services/get-python:function-port/ --header &lt;span class=&quot;s2&quot;&gt;&quot;Content-Type:application/json&quot;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Another&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;Echo&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;%
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;解答&quot;&gt;解答&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    --from-file &lt;span class=&quot;c&quot;&gt;# 可执行文件 .py&lt;/span&gt;
-    --runtime &lt;span class=&quot;c&quot;&gt;#执行环境&lt;/span&gt;
-    --handler &lt;span class=&quot;c&quot;&gt;# function 执行某个方法&lt;/span&gt;
-    --trigger-http  &lt;span class=&quot;c&quot;&gt;# function 模式&lt;/span&gt;
-    --runtime-image &lt;span class=&quot;c&quot;&gt;# 默认不需要（如果在离线状态可以指定本地已经存在的镜像）&lt;/span&gt;
-    --trigger-topic &lt;span class=&quot;c&quot;&gt;# 个人理解是参数存放的topic 比如流处理 （存放到指定队列）&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>uk0</name></author><summary type="html">quick start</summary></entry></feed>
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>uk0</name></author><summary type="html">Aws Lambda to Serverless</summary></entry></feed>

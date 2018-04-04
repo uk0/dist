@@ -1,5 +1,11 @@
 {
   
+  "2018-04-04-check-disk-manager": {
+    "title": "linu硬盘检查大小awk脚本全自动执行",
+    "url": " /2018/04/04/check-disk-manager/",
+    "category": "awk"
+  },
+  
   "2018-03-15-lvm-pvscan-pvs-vgs-lvs-unknows": {
     "title": "LVM unknown device how to recover?",
     "url": " /2018/03/15/lvm-pvscan-pvs-vgs-lvs-unknows/",
@@ -1288,6 +1294,12 @@
     "title": "LVM unknown device how to recover?",
     "url": "/2018/03/15/lvm-pvscan-pvs-vgs-lvs-unknows/",
     "category": "[&quot;linux&quot;]"
+  },
+  
+  "2018-04-04-check-disk-manager": {
+    "title": "linu硬盘检查大小awk脚本全自动执行",
+    "url": "/2018/04/04/check-disk-manager/",
+    "category": "[&quot;awk&quot;]"
   },
   
   "wiki-android-studio": {
