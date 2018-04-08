@@ -1,7 +1,7 @@
 {
   
   "2018-04-04-check-disk-manager": {
-    "title": "linu硬盘检查大小awk脚本全自动执行",
+    "title": "linux硬盘检查大小awk脚本全自动执行,以及日志抽取",
     "url": " /2018/04/04/check-disk-manager/",
     "category": "awk"
   },
@@ -1297,7 +1297,7 @@
   },
   
   "2018-04-04-check-disk-manager": {
-    "title": "linu硬盘检查大小awk脚本全自动执行",
+    "title": "linux硬盘检查大小awk脚本全自动执行,以及日志抽取",
     "url": "/2018/04/04/check-disk-manager/",
     "category": "[&quot;awk&quot;]"
   },
