@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-04-04T17:12:19+08:00</updated><id>http://firsh.me/</id><title type="html">观海听涛</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>uk0</name></author><entry><title type="html">linu硬盘检查大小awk脚本全自动执行</title><link href="http://firsh.me/2018/04/04/check-disk-manager/" rel="alternate" type="text/html" title="linu硬盘检查大小awk脚本全自动执行" /><published>2018-04-04T17:08:52+08:00</published><updated>2018-04-04T17:08:52+08:00</updated><id>http://firsh.me/2018/04/04/check-disk-manager</id><content type="html" xml:base="http://firsh.me/2018/04/04/check-disk-manager/">&lt;h2 id=&quot;disk-监测剩余量&quot;&gt;DISK 监测剩余量&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-04-08T18:41:56+08:00</updated><id>http://firsh.me/</id><title type="html">观海听涛</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>uk0</name></author><entry><title type="html">linu硬盘检查大小awk脚本全自动执行</title><link href="http://firsh.me/2018/04/04/check-disk-manager/" rel="alternate" type="text/html" title="linu硬盘检查大小awk脚本全自动执行" /><published>2018-04-04T17:08:52+08:00</published><updated>2018-04-04T17:08:52+08:00</updated><id>http://firsh.me/2018/04/04/check-disk-manager</id><content type="html" xml:base="http://firsh.me/2018/04/04/check-disk-manager/">&lt;h2 id=&quot;disk-监测剩余量&quot;&gt;DISK 监测剩余量&lt;/h2&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.0
@@ -14,6 +14,56 @@
     ssh dscn0&lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt; df -h | grep hadoop  | awk &lt;span class=&quot;s1&quot;&gt;'{print$2, $4, $5, $6}'&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;done
 &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -e &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[32m 剩余总大小: &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$DISK_SIZE&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; GB &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[0m&quot;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id=&quot;bash-样式&quot;&gt;bash 样式&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+    &lt;span class=&quot;nv&quot;&gt;PS1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'\[\e[1;32m\]\u@\h\[\e[m\]:\[\e[1;34m\]\W\[\e[1;33m\]\$\[\e[m\] '&lt;/span&gt;
+    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;抽取一天的日志到另一个日志文件&quot;&gt;抽取一天的日志到另一个日志文件&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;TIME_LINE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;date +%Y%m%d%H%M%S&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;getOne&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# 设定变量&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; -z &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;;&lt;span class=&quot;k&quot;&gt;then
+        &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -e &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[31m Error: log Name is Null  &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[0m&quot;&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -e &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[32m Simple : ./readlogs.sh getOne xxx.log  &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[0m&quot;&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;1
+    &lt;span class=&quot;k&quot;&gt;fi
+    &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;date -d yesterday +%F&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#前一天&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#s=$(date +%F) #今天&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;date +%F&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#今天&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# 根据条件获得开始和结束的行号&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;sl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;cat -n &lt;span class=&quot;nv&quot;&gt;$log&lt;/span&gt; | grep &lt;span class=&quot;nv&quot;&gt;$s&lt;/span&gt; | head -1 | sed &lt;span class=&quot;s1&quot;&gt;'s/^[ \t]*//g'&lt;/span&gt; | cut -f 1&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;el&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;cat -n &lt;span class=&quot;nv&quot;&gt;$log&lt;/span&gt; | grep &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt; | tail -1 | sed &lt;span class=&quot;s1&quot;&gt;'s/^[ \t]*//g'&lt;/span&gt; | cut -f 1&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -e &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[32m start Line &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$sl&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[0m&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -e &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[32m end Line &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$el&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[0m&quot;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# 获取结果并输出到 `date`.log 文件&lt;/span&gt;
+    sed -n &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$sl&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$el&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'p'&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$log&lt;/span&gt; &amp;gt;&amp;gt; check_auto_&lt;span class=&quot;nv&quot;&gt;$TIME_LINE&lt;/span&gt;.log
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
+
+&lt;span class=&quot;s2&quot;&gt;&quot;getOne&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	getOne &lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -e &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[1m usage: &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;  [getOne] &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[0m&quot;&lt;/span&gt;
+	&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -e &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[1m DESC: &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; getOne : 获得一天内的文件日志，并且进行导出。 &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[0m&quot;&lt;/span&gt;
+	&lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;2 &lt;span class=&quot;c&quot;&gt;# Command to come out of the program with status 1&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;esac&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;0
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
