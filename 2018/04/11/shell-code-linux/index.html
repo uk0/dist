@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Shell初级入门程序 &mdash; 观海听涛</title>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2018/04/11/shell-code-linux/">
+    <link rel="alternate" type="application/atom+xml" title="观海听涛" href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="Shell初级入门程序">
+      
+    <meta name="keywords" content="shellcode linux">
+    <meta name="og:keywords" content="shellcode linux">
+      
+    <meta name="description" content="前言">
+    <meta name="og:description" content="前言">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2018/04/11/shell-code-linux/">
+    <meta property="og:site_name" content="观海听涛">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2018-04-11">
+    
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="观海听涛"><span class="octicon octicon-mark-github"></span> 观海听涛</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="Index">Index</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="categories">categories</a>
+                
+                <a href="/open-source/" class=" site-header-nav-item" target="" title="open-source">open-source</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="wiki">wiki</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="links">links</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="about">about</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="Shell初级入门程序">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">Shell初级入门程序</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2018/04/11
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#shellcode" title="shellcode">shellcode</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <h2 id="前言">前言</h2>
+
+<p>很久没有写博客了，今天写写一个以前没有写过的话题，缓冲区溢出shellcode编写。</p>
+
+<p>我是菜鸟，以前没有写过shellcode，最近也在忙着网络的渗透，栈溢出也是零零碎碎的看到一些知识，大牛飘过，菜鸟言论仅供娱乐。</p>
+
+<p>大家同是菜鸟的人可以看看，我是站在初学者的角度写这篇文章的，所以初学者应该比较容易理解。</p>
+
+<p>对于一些复杂的shellcodet我们暂且先不谈，我们先来看看自己编写一个打开cmd窗口的shellcode。其实黑客防线上有位大神执笔写了一系列exploit的编写，有兴趣的人自己去看看。</p>
+
+<h2 id="首先我们需要了解一下windows的运行机制我们先写一个简单的开启本地cmd窗口的程序">首先我们需要了解一下windows的运行机制。我们先写一个简单的开启本地cmd窗口的程序：</h2>
+
+<div class="language-c highlighter-rouge"><pre class="highlight"><code><span class="cp">#include&lt;windows.h&gt;  
+</span><span class="n">Void</span> <span class="nf">main</span><span class="p">()</span>  
+<span class="p">{</span>  
+   <span class="n">WinExec</span><span class="p">(</span><span class="s">"cmd.exe"</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>  
+<span class="p">}</span> 
+</code></pre>
+</div>
+
+<h3 id="在visual-c上按f10进入反汇编代码">在Visual C++上按F10进入反汇编代码:</h3>
+
+<div class="language-c highlighter-rouge"><pre class="highlight"><code><span class="o">:</span><span class="err">#</span><span class="n">include</span><span class="err">”</span><span class="n">windows</span><span class="p">.</span><span class="n">h</span><span class="err">”</span>  
+<span class="mi">2</span><span class="o">:</span><span class="kt">void</span> <span class="n">main</span><span class="p">()</span>  
+<span class="mi">3</span><span class="o">:</span>    <span class="p">{</span>  
+<span class="mo">00401010</span>   <span class="n">push</span>        <span class="n">ebp</span>  
+<span class="mo">00401011</span>   <span class="n">mov</span>         <span class="n">ebp</span><span class="p">,</span><span class="n">esp</span>  
+<span class="mo">00401013</span>   <span class="n">sub</span>         <span class="n">esp</span><span class="p">,</span><span class="mi">40</span><span class="n">h</span>  
+<span class="mo">00401016</span>   <span class="n">push</span>        <span class="n">ebx</span>  
+<span class="mo">00401017</span>   <span class="n">push</span>        <span class="n">esi</span>  
+<span class="mo">0040101</span><span class="mi">8</span>   <span class="n">push</span>        <span class="n">edi</span>  
+<span class="mo">0040101</span><span class="mi">9</span>   <span class="n">lea</span>         <span class="n">edi</span><span class="p">,[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">40</span><span class="n">h</span><span class="p">]</span>  
+<span class="mo">0040101</span><span class="n">C</span>   <span class="n">mov</span>         <span class="n">ecx</span><span class="p">,</span><span class="mi">10</span><span class="n">h</span>  
+<span class="mo">00401021</span>   <span class="n">mov</span>         <span class="n">eax</span><span class="p">,</span><span class="mi">0</span><span class="n">CCCCCCCCh</span>  
+<span class="mo">00401026</span>   <span class="n">rep</span> <span class="n">stos</span>    <span class="n">dword</span> <span class="n">ptr</span> <span class="p">[</span><span class="n">edi</span><span class="p">]</span>  
+<span class="mi">4</span><span class="o">:</span>        <span class="n">WinExec</span><span class="p">(</span><span class="s">"cmd.exe"</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>  
+<span class="mo">0040102</span><span class="mi">8</span>   <span class="n">mov</span>         <span class="n">esi</span><span class="p">,</span><span class="n">esp</span>  
+<span class="mo">0040102</span><span class="n">A</span>   <span class="n">push</span>        <span class="mi">1</span>  
+<span class="mo">0040102</span><span class="n">C</span>   <span class="n">push</span>        <span class="n">offset</span> <span class="n">string</span> <span class="s">"cmd.exe"</span> <span class="p">(</span><span class="mo">0041</span><span class="n">f01c</span><span class="p">)</span>  
+<span class="mo">00401031</span>   <span class="n">call</span>        <span class="n">dword</span> <span class="n">ptr</span> <span class="p">[</span><span class="n">__imp__WinExec</span><span class="err">@</span><span class="mi">8</span> <span class="p">(</span><span class="mo">0042413</span><span class="n">c</span><span class="p">)]</span>  
+<span class="mo">00401037</span>   <span class="n">cmp</span>         <span class="n">esi</span><span class="p">,</span><span class="n">esp</span>  
+<span class="mo">0040103</span><span class="mi">9</span>   <span class="n">call</span>        <span class="n">__chkesp</span> <span class="p">(</span><span class="mo">00401070</span><span class="p">)</span>  
+<span class="mi">5</span><span class="o">:</span>    <span class="p">}</span>  
+</code></pre>
+</div>
+
+<p>通过这个程序我们可以清楚的看到计算机在调用WinExec函数的时候是先把两个参数从右至左一次压入栈，然后调用call函数转到WinExec的地址去。但是要注意的是call函数除了实现地址的跳转还有一点就是把当前的EIP压入栈。</p>
+
+<p>对于shellcode是机器码，大多数人看到都会晕乎乎的，但是不用怕，我们所要做的工作不是用机器码写这一大堆东西，这些计算机已经为我们做的很好了，我们所要做的就是用汇编甚至是高级语言写下我们要实现的代码。</p>
+
+<p>但目前其实目的已经很明确，我们要调用WinExec函数就要知道在不同系统中WinExec函数所在的地址，那么用什么方法知道这个函数所在的地址呢？这里我介绍一种非常简便的办法，使用vc自带的depends工具。打开Depends，随便拖一个PE文件进去如下图：</p>
+
+<p><img src="http://zmatsh.b0.upaiyun.com/demos/feb1aef7-5ae0-43d1-bdbf-b234589fa766.jpeg" alt="" /></p>
+
+<p>我们可以看到KERNEL.DLL的入口地址是0x7c800000而WinExec的入口地址是0x0006250D那么WinExec的地址就出来了两个相加得到0x7C86250D，这个方法是不是很简单？另外本菜鸟使用的是windows XP sp3不同的系统可能有所不同。</p>
+
+<p>有了入口地址，我们可以用汇编来编写我们的shellcode，</p>
+
+<div class="language-c highlighter-rouge"><pre class="highlight"><code><span class="cp">#include&lt;windows.h&gt;  
+</span><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>  
+<span class="p">{</span>  
+    <span class="n">_asm</span>  
+    <span class="p">{</span>  
+        <span class="n">push</span> <span class="n">ebp</span>  
+        <span class="n">mov</span> <span class="n">ebp</span><span class="p">,</span><span class="n">esp</span>  
+        <span class="n">xor</span> <span class="n">edi</span><span class="p">,</span><span class="n">edi</span>  
+        <span class="n">push</span> <span class="n">edi</span>  
+        <span class="n">sub</span> <span class="n">esp</span><span class="p">,</span><span class="mo">04</span><span class="n">h</span>  
+        <span class="n">mov</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">08</span><span class="n">h</span><span class="p">],</span><span class="mi">63</span><span class="n">h</span>  
+        <span class="n">mov</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mo">07</span><span class="n">h</span><span class="p">],</span><span class="mi">6</span><span class="n">Dh</span>  
+        <span class="n">mov</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mo">06</span><span class="n">h</span><span class="p">],</span><span class="mi">64</span><span class="n">h</span>  
+        <span class="n">mov</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mo">05</span><span class="n">h</span><span class="p">],</span><span class="mi">2</span><span class="n">Eh</span>  
+        <span class="n">mov</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mo">04</span><span class="n">h</span><span class="p">],</span><span class="mi">65</span><span class="n">h</span>  
+        <span class="n">mov</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mo">03</span><span class="n">h</span><span class="p">],</span><span class="mi">78</span><span class="n">h</span>  
+        <span class="n">mov</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mo">02</span><span class="n">h</span><span class="p">],</span><span class="mi">65</span><span class="n">h</span>  
+        <span class="n">push</span> <span class="mi">1</span>         <span class="c1">//压入第一个参数  
+</span>        <span class="n">lea</span> <span class="n">eax</span><span class="p">,[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">08</span><span class="n">h</span><span class="p">]</span>           
+        <span class="n">push</span> <span class="n">eax</span>           <span class="c1">//压入第二个参数  
+</span>        <span class="n">mov</span> <span class="n">edx</span><span class="p">,</span><span class="mh">0x7C86250D</span>  
+        <span class="n">call</span> <span class="n">edx</span>            <span class="c1">//调用WinExec  
+</span>        <span class="n">leave</span>  
+    <span class="p">};</span>  
+<span class="p">}</span>  
+
+</code></pre>
+</div>
+
+<p>按F10进入反汇编调试器中，在按Alt+8看到汇编代码，此时并没有机器码啊，别着急，在空白的地方右击出现的下拉菜单中选中Code Byte一项。看看出现了什么？在每一行汇编代码前出现了机器码！如下图</p>
+
+<p><img src="http://zmatsh.b0.upaiyun.com/demos/0d6ce28d-d9c8-47b8-b21b-1eeb923c9754.bmp" alt="" /></p>
+
+<p>下面要做的工作就是把这些机器码抄下来了，这个是体力活。直接抄在一起比如：558BEC83EC……那么我们还要在每两个字母前手动添加/x么？当然不用，写一个小程序，一劳永逸：</p>
+
+<div class="language-c highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "stdio.h"  
+#include "stdlib.h"  
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>  
+<span class="p">{</span>  
+    <span class="kt">FILE</span> <span class="o">*</span><span class="n">fp1</span><span class="o">=</span><span class="nb">NULL</span><span class="p">,</span><span class="o">*</span><span class="n">fp2</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>  
+    <span class="kt">char</span> <span class="n">ch</span><span class="p">,</span><span class="n">filename</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>  
+    <span class="n">printf</span><span class="p">(</span><span class="s">"请输入文件路径：(注意字符转义)/n"</span><span class="p">);</span>  
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span><span class="n">filename</span><span class="p">);</span>  
+    <span class="k">if</span><span class="p">((</span><span class="n">fp1</span><span class="o">=</span><span class="n">fopen</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="s">"rb"</span><span class="p">))</span><span class="o">==</span><span class="nb">NULL</span><span class="p">)</span>  
+    <span class="p">{</span>  
+        <span class="n">printf</span><span class="p">(</span><span class="s">"不能读取文件！/n"</span><span class="p">);</span>  
+        <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>  
+    <span class="p">}</span>  
+    <span class="k">if</span><span class="p">((</span><span class="n">fp2</span><span class="o">=</span><span class="n">fopen</span><span class="p">(</span><span class="s">"shellcode.txt"</span><span class="p">,</span><span class="s">"w+"</span><span class="p">))</span><span class="o">==</span><span class="nb">NULL</span><span class="p">)</span>  
+    <span class="p">{</span>  
+        <span class="n">printf</span><span class="p">(</span><span class="s">"不能写入文件！/n"</span><span class="p">);</span>  
+        <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>  
+    <span class="p">}</span>  
+    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">feof</span><span class="p">(</span><span class="n">fp1</span><span class="p">))</span>  
+    <span class="p">{</span>  
+        <span class="n">ch</span><span class="o">=</span><span class="n">fgetc</span><span class="p">(</span><span class="n">fp1</span><span class="p">);</span>  
+        <span class="n">fputc</span><span class="p">(</span><span class="err">'</span><span class="c1">//',fp2);  
+</span>        <span class="n">fputc</span><span class="p">(</span><span class="sc">'x'</span><span class="p">,</span><span class="n">fp2</span><span class="p">);</span>  
+        <span class="n">fputc</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span><span class="n">fp2</span><span class="p">);</span>  
+        <span class="n">ch</span><span class="o">=</span><span class="n">fgetc</span><span class="p">(</span><span class="n">fp1</span><span class="p">);</span>  
+        <span class="n">fputc</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span><span class="n">fp2</span><span class="p">);</span>  
+    <span class="p">}</span>  
+    <span class="n">printf</span><span class="p">(</span><span class="s">"转换成功！"</span><span class="p">);</span>  
+    <span class="n">fclose</span><span class="p">(</span><span class="n">fp1</span><span class="p">);</span>  
+    <span class="n">fclose</span><span class="p">(</span><span class="n">fp2</span><span class="p">);</span>  
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>  
+      
+<span class="p">}</span>  
+</code></pre>
+</div>
+
+<p>最终转换的shellcode就是</p>
+
+<div class="language-c highlighter-rouge"><pre class="highlight"><code><span class="o">/</span><span class="n">x55</span><span class="o">/</span><span class="n">x8B</span><span class="o">/</span><span class="n">xEX</span><span class="o">/</span><span class="n">x83</span><span class="o">/</span><span class="n">xEC</span><span class="o">/</span><span class="n">x40</span><span class="o">/</span><span class="n">x53</span><span class="o">/</span><span class="n">x56</span><span class="o">/</span><span class="n">x57</span><span class="o">/</span><span class="n">x8D</span><span class="o">/</span><span class="n">x7D</span><span class="o">/</span><span class="n">xC0</span><span class="o">/</span><span class="n">xB9</span><span class="o">/</span><span class="n">x10</span><span class="o">/</span><span class="n">x11</span><span class="o">/</span><span class="n">x11</span><span class="o">/</span><span class="n">x11</span><span class="o">/</span><span class="n">xB8</span><span class="o">/</span><span class="n">xCC</span><span class="o">/</span><span class="n">xCC</span><span class="o">/</span><span class="n">xCC</span><span class="o">/</span><span class="n">xCC</span><span class="o">/</span><span class="n">xF3</span><span class="o">/</span><span class="n">x1B</span><span class="o">/</span><span class="n">x55</span><span class="o">/</span><span class="n">x8B</span><span class="o">/</span><span class="n">xEC</span><span class="o">/</span><span class="n">x33</span><span class="o">/</span><span class="n">xFF</span><span class="o">/</span><span class="n">x57</span><span class="o">/</span><span class="n">x83</span><span class="o">/</span><span class="n">xEC</span><span class="o">/</span><span class="n">x04</span><span class="o">/</span><span class="n">xC6</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xF8</span><span class="o">/</span><span class="n">x63</span><span class="o">/</span><span class="n">xC6</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xF9</span><span class="o">/</span><span class="n">x6D</span><span class="o">/</span><span class="n">xC6</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xFA</span><span class="o">/</span><span class="n">x64</span><span class="o">/</span><span class="n">xC6</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xFB</span><span class="o">/</span><span class="n">x2E</span><span class="o">/</span><span class="n">xC6</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xFC</span><span class="o">/</span><span class="n">x65</span><span class="o">/</span><span class="n">xC6</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xFD</span><span class="o">/</span><span class="n">x78</span><span class="o">/</span><span class="n">xC6</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xFE</span><span class="o">/</span><span class="n">x65</span><span class="o">/</span><span class="n">x6A</span><span class="o">/</span><span class="n">x01</span><span class="o">/</span><span class="n">x8D</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xF8</span><span class="o">/</span><span class="n">x50</span><span class="o">/</span><span class="n">xBA</span><span class="o">/</span><span class="n">x0D</span><span class="o">/</span><span class="n">x25</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">x7C</span><span class="o">/</span><span class="n">xFF</span><span class="o">/</span><span class="n">xD2</span><span class="o">/</span><span class="n">xC9</span>
+</code></pre>
+</div>
+<p>到这里该讲的都讲完了，还是那一句话，菜鸟言论，大牛飘过。。。</p>
+
+<h3 id="原文httpsblogcsdnnetyiyefangzhou24articledetails6440239">原文：https://blog.csdn.net/yiyefangzhou24/article/details/6440239</h3>
+
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+      
+        
+        <!-- Disqus Protection, see https://github.com/mzlogin/mzlogin.github.io/issues/2 -->
+        
+        
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'http://firsh.me/2018/04/11/shell-code-linux/';
+              this.page.identifier = '/2018/04/11/shell-code-linux/';
+              this.page.title = 'Shell初级入门程序';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+
+              s.type = 'text/javascript';
+              s.async = true;
+              var shortname = 'zmatsh';
+
+              s.src = '//' + shortname + '.disqus.com/embed.js';
+
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        
+        
+      
+    
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="https://zmatsh.b0.upaiyun.com/assets/css/modules/sidebar-search.css">
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="uk0">uk0</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/uk0/uk0.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="Index" target="">Index</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="categories" target="">categories</a>
+                </li>
+                
+                <li>
+                    <a href="/open-source/" title="open-source" target="">open-source</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="wiki" target="">wiki</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="links" target="">links</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="about" target="">about</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-80669434-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>

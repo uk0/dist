@@ -1,5 +1,11 @@
 {
   
+  "2018-04-11-shell-code-linux": {
+    "title": "Shell初级入门程序",
+    "url": " /2018/04/11/shell-code-linux/",
+    "category": "shellcode"
+  },
+  
   "2018-04-04-check-disk-manager": {
     "title": "linux硬盘检查大小awk脚本全自动执行,以及日志抽取",
     "url": " /2018/04/04/check-disk-manager/",
@@ -1300,6 +1306,12 @@
     "title": "linux硬盘检查大小awk脚本全自动执行,以及日志抽取",
     "url": "/2018/04/04/check-disk-manager/",
     "category": "[&quot;awk&quot;]"
+  },
+  
+  "2018-04-11-shell-code-linux": {
+    "title": "Shell初级入门程序",
+    "url": "/2018/04/11/shell-code-linux/",
+    "category": "[&quot;shellcode&quot;]"
   },
   
   "wiki-android-studio": {
