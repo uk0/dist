@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-04-16T13:55:56+08:00</updated><id>http://firsh.me/</id><title type="html">观海听涛</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>uk0</name></author><entry><title type="html">为 Docker for Mac 配置 HTTP 代理</title><link href="http://firsh.me/2018/04/16/docker-macos-proxy-https-http/" rel="alternate" type="text/html" title="为 Docker for Mac 配置 HTTP 代理" /><published>2018-04-16T13:44:26+08:00</published><updated>2018-04-16T13:44:26+08:00</updated><id>http://firsh.me/2018/04/16/docker-macos-proxy-https-http</id><content type="html" xml:base="http://firsh.me/2018/04/16/docker-macos-proxy-https-http/">&lt;p&gt;##需求
-使用 Docker for Mac 时，让 docker pull/push 走本地的代理端口。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-04-16T13:59:20+08:00</updated><id>http://firsh.me/</id><title type="html">观海听涛</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>uk0</name></author><entry><title type="html">为 Docker for Mac 配置 HTTP 代理</title><link href="http://firsh.me/2018/04/16/docker-macos-proxy-https-http/" rel="alternate" type="text/html" title="为 Docker for Mac 配置 HTTP 代理" /><published>2018-04-16T13:44:26+08:00</published><updated>2018-04-16T13:44:26+08:00</updated><id>http://firsh.me/2018/04/16/docker-macos-proxy-https-http</id><content type="html" xml:base="http://firsh.me/2018/04/16/docker-macos-proxy-https-http/">&lt;h2 id=&quot;需求&quot;&gt;需求&lt;/h2&gt;
 
-&lt;p&gt;##简介
-Docker 是一种虚拟容器，可以提高开发过程中环境的一致性，便于维护，并且大大促进了知识以及经验的分享和积累。Docker for Mac 是 Docker 专门为 macOS 开发的图形客户端，使用起来相当方便，不过如果从 docker 仓库拉取镜像，那速度真是感人，2.0G 的镜像，估计一天一夜都下载不完，中途中断更是让人崩溃。更悲剧的是，docker 的网络流量无法走设置好的代理，比如本地的 http://127.0.0.1:8118，无论是在 Docker for Mac 图形界面里设置，或者在环境变量里设置 http_proxy/https_proxy 。另外，DaoCloud 的 Docker 加速器以及阿里云的 Docker 国内镜像服务，都有一定的效果，但速度不甚理想，而且新的 docker 镜像可能还没来得及缓存。&lt;/p&gt;
+&lt;p&gt;使用 Docker for Mac 时，让 docker pull/push 走本地的代理端口。&lt;/p&gt;
 
-&lt;p&gt;##解决方案&lt;/p&gt;
+&lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
+&lt;p&gt;Docker 是一种虚拟容器，可以提高开发过程中环境的一致性，便于维护，并且大大促进了知识以及经验的分享和积累。Docker for Mac 是 Docker 专门为 macOS 开发的图形客户端，使用起来相当方便，不过如果从 docker 仓库拉取镜像，那速度真是感人，2.0G 的镜像，估计一天一夜都下载不完，中途中断更是让人崩溃。更悲剧的是，docker 的网络流量无法走设置好的代理，比如本地的 http://127.0.0.1:8118，无论是在 Docker for Mac 图形界面里设置，或者在环境变量里设置 http_proxy/https_proxy 。另外，DaoCloud 的 Docker 加速器以及阿里云的 Docker 国内镜像服务，都有一定的效果，但速度不甚理想，而且新的 docker 镜像可能还没来得及缓存。&lt;/p&gt;
+
+&lt;h2 id=&quot;解决方案&quot;&gt;解决方案&lt;/h2&gt;
 
 &lt;ol&gt;
   &lt;li&gt;把本地代理监听地址调整到 0.0.0.0&lt;/li&gt;
@@ -70,7 +71,7 @@ brew install privoxy
 
 &lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/d9600bf0-ce6a-41f6-a50b-ce569ea6bfb8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>uk0</name></author><summary type="html">##需求 使用 Docker for Mac 时，让 docker pull/push 走本地的代理端口。</summary></entry><entry><title type="html">Shell初级入门程序</title><link href="http://firsh.me/2018/04/11/shell-code-linux/" rel="alternate" type="text/html" title="Shell初级入门程序" /><published>2018-04-11T13:12:45+08:00</published><updated>2018-04-11T13:12:45+08:00</updated><id>http://firsh.me/2018/04/11/shell-code-linux</id><content type="html" xml:base="http://firsh.me/2018/04/11/shell-code-linux/">&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>uk0</name></author><summary type="html">需求</summary></entry><entry><title type="html">Shell初级入门程序</title><link href="http://firsh.me/2018/04/11/shell-code-linux/" rel="alternate" type="text/html" title="Shell初级入门程序" /><published>2018-04-11T13:12:45+08:00</published><updated>2018-04-11T13:12:45+08:00</updated><id>http://firsh.me/2018/04/11/shell-code-linux</id><content type="html" xml:base="http://firsh.me/2018/04/11/shell-code-linux/">&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
 
 &lt;p&gt;很久没有写博客了，今天写写一个以前没有写过的话题，缓冲区溢出shellcode编写。&lt;/p&gt;
 
