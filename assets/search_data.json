@@ -1,5 +1,11 @@
 {
   
+  "2018-04-23-docker-swarm-spring-cloud": {
+    "title": "docker swarm 集成 Spring Cloud 验证",
+    "url": " /2018/04/23/docker-swarm-spring-cloud/",
+    "category": "docker"
+  },
+  
   "2018-04-16-docker-macos-proxy-https-http": {
     "title": "为 Docker for Mac 配置 HTTP 代理",
     "url": " /2018/04/16/docker-macos-proxy-https-http/",
@@ -700,6 +706,8 @@
   
   
   
+  
+  
 
   
   "2016-05-21-enable-https-for-github-pages": {
@@ -1324,6 +1332,12 @@
     "title": "为 Docker for Mac 配置 HTTP 代理",
     "url": "/2018/04/16/docker-macos-proxy-https-http/",
     "category": "[&quot;docker&quot;]"
+  },
+  
+  "2018-04-23-docker-swarm-spring-cloud": {
+    "title": "docker swarm 集成 Spring Cloud 验证",
+    "url": "/2018/04/23/docker-swarm-spring-cloud/",
+    "category": "[&quot;docker&quot;, &quot;swarm&quot;, &quot;spring&quot;]"
   },
   
   "wiki-android-studio": {
