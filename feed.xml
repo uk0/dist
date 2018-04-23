@@ -1,4 +1,197 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-04-23T10:45:52+08:00</updated><id>http://firsh.me/</id><title type="html">观海听涛</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>uk0</name></author><entry><title type="html">docker swarm 集成 Spring Cloud 验证</title><link href="http://firsh.me/2018/04/23/docker-swarm-spring-cloud/" rel="alternate" type="text/html" title="docker swarm 集成 Spring Cloud 验证" /><published>2018-04-23T10:18:14+08:00</published><updated>2018-04-23T10:18:14+08:00</updated><id>http://firsh.me/2018/04/23/docker-swarm-spring-cloud</id><content type="html" xml:base="http://firsh.me/2018/04/23/docker-swarm-spring-cloud/">&lt;h2 id=&quot;开始&quot;&gt;开始&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-04-23T11:25:19+08:00</updated><id>http://firsh.me/</id><title type="html">观海听涛</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>uk0</name></author><entry><title type="html">Gitlab JC/CD 第一篇</title><link href="http://firsh.me/2018/04/23/gitlab-cicd-java-runner/" rel="alternate" type="text/html" title="Gitlab JC/CD 第一篇" /><published>2018-04-23T10:45:02+08:00</published><updated>2018-04-23T10:45:02+08:00</updated><id>http://firsh.me/2018/04/23/gitlab-cicd-java-runner</id><content type="html" xml:base="http://firsh.me/2018/04/23/gitlab-cicd-java-runner/">&lt;h2 id=&quot;just-now&quot;&gt;just now&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;不再介绍如何安装&lt;code class=&quot;highlighter-rouge&quot;&gt;Gitlab&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;从&lt;code class=&quot;highlighter-rouge&quot;&gt;runner&lt;/code&gt; 开始介绍&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;配置runner&quot;&gt;配置Runner&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;管理员用户登录 第一步&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/e0a5ba5a-3b77-4871-a06d-b280040fcf8d.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;第二步进入Runner配置项&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/f5f17d52-ff64-44a9-8f10-61a171ddbaf4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;获得runner的注册信息&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/7a0076af-57c3-4886-9bfb-e7edc4f03750.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;启动一个Runner 并且配置&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+sudo docker run -d --name gitlab-java --restart always &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  -v /srv/gitlab-java/config:/etc/gitlab-runner &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  -v /var/run/docker.sock:/var/run/docker.sock &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  gitlab/gitlab-runner:latest
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;注册runner 到 Gitlab&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo docker &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; -it gitlab-java gitlab-runner register &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  --url &lt;span class=&quot;s2&quot;&gt;&quot;http://gitlab.emosa.com/&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  --registration-token &lt;span class=&quot;s2&quot;&gt;&quot;hyNYzSsoJKjGqy1y4D-Q&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  --executor docker &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  --description &lt;span class=&quot;s2&quot;&gt;&quot;Java-Runner&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  --docker-image &lt;span class=&quot;s2&quot;&gt;&quot;debian&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  --docker-volumes /var/run/docker.sock:/var/run/docker.sock
+
+
+&lt;span class=&quot;c&quot;&gt;# gitlab-runner register&lt;/span&gt;
+Please enter the gitlab-ci coordinator URL:
+&lt;span class=&quot;c&quot;&gt;# 示例：http://gitlab.emosa.com/&lt;/span&gt;
+Please enter the gitlab-ci token &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;this runner:
+&lt;span class=&quot;c&quot;&gt;# hyNYzSsoJKjGqy1y4D-Q&lt;/span&gt;
+Please enter the gitlab-ci description &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;this runner:
+&lt;span class=&quot;c&quot;&gt;# Java-Runner&lt;/span&gt;
+Please enter the gitlab-ci tags &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;this runner &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;comma separated&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
+&lt;span class=&quot;c&quot;&gt;# java&lt;/span&gt;
+这个地方还有一个配置 默认即可
+&lt;span class=&quot;c&quot;&gt;#false&lt;/span&gt;
+Whether to run untagged builds &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;/false]:
+&lt;span class=&quot;c&quot;&gt;# true&lt;/span&gt;
+Please enter the executor: docker, parallels, shell, kubernetes, docker-ssh, ssh, virtualbox, docker+machine, docker-ssh+machine:
+&lt;span class=&quot;c&quot;&gt;# docker&lt;/span&gt;
+Please enter the default Docker image &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;e.g. ruby:2.1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
+&lt;span class=&quot;c&quot;&gt;# debian&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;检查启动结果&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/a8e8f6f4-2567-4434-af95-4de02ee55c8a.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Gitlab Runner 就配置完成了。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>uk0</name></author><summary type="html">just now</summary></entry><entry><title type="html">Gitlab JC/CD 第二篇</title><link href="http://firsh.me/2018/04/23/gitlab-cicd-java-runner-cicd-java/" rel="alternate" type="text/html" title="Gitlab JC/CD 第二篇" /><published>2018-04-23T10:45:02+08:00</published><updated>2018-04-23T10:45:02+08:00</updated><id>http://firsh.me/2018/04/23/gitlab-cicd-java-runner-%08cicd-java</id><content type="html" xml:base="http://firsh.me/2018/04/23/gitlab-cicd-java-runner-cicd-java/">&lt;h2 id=&quot;just-now&quot;&gt;just now&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;上个文章介绍了 如何配置Gitlab 的Runner，这次介绍如何将Runner 利用起来。&lt;/li&gt;
+  &lt;li&gt;创建一个&lt;code class=&quot;highlighter-rouge&quot;&gt;Java&lt;/code&gt;项目，配置它的&lt;code class=&quot;highlighter-rouge&quot;&gt;gitlab-ci&lt;/code&gt;文件.&lt;/li&gt;
+  &lt;li&gt;下面的这个&lt;code class=&quot;highlighter-rouge&quot;&gt;yaml&lt;/code&gt;文件是用来配置从源码到 Jar/Tar的一个过程，在提交到另一个仓库的yaml&lt;/li&gt;
+  &lt;li&gt;还有另一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;yaml&lt;/code&gt;是从 源码–&amp;gt;Jar／tar–&amp;gt;镜像&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# cache 这个参数用于定义全局那些文件将被 cache 到下一个  stages&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# 调试开启&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;before_script&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+ &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;pwd&lt;/span&gt;
+ &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;env&lt;/span&gt;
+ &lt;span class=&quot;c1&quot;&gt;##&lt;/span&gt;
+ &lt;span class=&quot;c1&quot;&gt;## Assuming you created the SSH_KNOWN_HOSTS variable, uncomment the&lt;/span&gt;
+ &lt;span class=&quot;c1&quot;&gt;## follo wing two lines.&lt;/span&gt;
+ &lt;span class=&quot;c1&quot;&gt;##&lt;/span&gt;
+ &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mkdir -p /root/.ssh/&lt;/span&gt;
+ &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;chmod  700 /root/.ssh/&lt;/span&gt;
+ &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;echo -e &quot;StrictHostKeyChecking no \nUserKnownHostsFile /dev/null&quot; &amp;gt; ~/.ssh/config&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;cache&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$CI_PROJECT_NAME-$CI_COMMIT_REF_NAME-$CI_COMMIT_SHA&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;paths&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;build/&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/data/repo&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;stages&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;build-jar&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;build-release&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;build-dev&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;DOCKER_DRIVER&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;overlay2&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;MAVEN_OPTS&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-Dmaven.repo.local=/data/repo&quot;&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;CI_DEBUG_TRACE&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;true&quot;&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;build-Java&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;registry.cn-hangzhou.aliyuncs.com/emos_prod/centos7-jdk8-maven3-git-1.8:latest&quot;&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;stage&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;build-jar&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;chmod u+x ./maven-build-all.sh&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./maven-build-all.sh&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ls -a build/&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;build_dev&lt;/span&gt;
+
+&lt;span class=&quot;s&quot;&gt;release-jar-release&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;registry.cn-hangzhou.aliyuncs.com/emos_prod/centos7-jdk8-maven3-git-1.8:latest&quot;&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;stage&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;build-release&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;git clone http://$GITLAB_USER:$GITLAB_PASS@gitlab-cicd.com/release/build-space.git&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cd build-space &amp;amp;&amp;amp; rm -rf * &amp;amp;&amp;amp; cp -r ../build/* .&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;git config --global user.name &quot;root&quot;&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;git config --global user.email &quot;root@emos.com&quot;&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;git add --all .&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;git commit -m &quot;Gitlab CI Auto Builder master&quot;&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;git push --force --quiet http://$GITLAB_USER:$GITLAB_PASSgitlab-cicd.com/release/build-space.git master:master&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;build_dev&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;only&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master&lt;/span&gt;
+
+&lt;span class=&quot;s&quot;&gt;release-jar-dev&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;registry.cn-hangzhou.aliyuncs.com/emos_prod/centos7-jdk8-maven3-git-1.8:latest&quot;&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;stage&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;build-dev&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;git clone http://$GITLAB_USER:$GITLAB_PASS@gitlab-cicd.com/dev/build-space.git&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cd build-space &amp;amp;&amp;amp; rm -rf * &amp;amp;&amp;amp; cp -r ../build/* .&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;git config user.name &quot;root&quot;&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;git config user.email &quot;root@emos.com&quot;&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;git add --all .&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;git commit -m &quot;Gitlab CI Auto Builder dev&quot;&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;git push --force --quiet http://$GITLAB_USER:$GITLAB_PASS@gitlab-cicd.com/dev/build-space.git dev:dev&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;build_dev&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;only&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;dev&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;文件主要是为了给Gitlab中的某个项目绑定一个&lt;code class=&quot;highlighter-rouge&quot;&gt;Job&lt;/code&gt;运行这个Job的就是我们在上次讲的在&lt;code class=&quot;highlighter-rouge&quot;&gt;gitlab&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;runner&lt;/code&gt; 。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;看一下目录结构&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/7382a109-79c5-41c3-91ba-fa5d946ac61f.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;这个总体配置很简单都是&lt;code class=&quot;highlighter-rouge&quot;&gt;yaml&lt;/code&gt;文件规范，主要还是项介绍一下里面的&lt;code class=&quot;highlighter-rouge&quot;&gt;cache&lt;/code&gt; cache 是做CICD避免不掉的东西，可以用来 将编译好的文件传送到下一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;stage&lt;/code&gt; 实现方式大概是 将你要&lt;code class=&quot;highlighter-rouge&quot;&gt;cache&lt;/code&gt;的包 打成一个&lt;code class=&quot;highlighter-rouge&quot;&gt;zip&lt;/code&gt;包,启动下一个&lt;code class=&quot;highlighter-rouge&quot;&gt;stage&lt;/code&gt;在进行&lt;code class=&quot;highlighter-rouge&quot;&gt;unzip&lt;/code&gt;到当初的目录地址。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在以上的配置中 &lt;code class=&quot;highlighter-rouge&quot;&gt;GITLAB_USER&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;GITLAB_PASS&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/66b3a3ce-0df4-4c69-8c43-f3738001aaa1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;设置运行的环境变量&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/6c890392-8690-4384-bc57-ffc38f9cae86.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;推荐创建全局Cache 。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>uk0</name></author><summary type="html">just now 上个文章介绍了 如何配置Gitlab 的Runner，这次介绍如何将Runner 利用起来。 创建一个Java项目，配置它的gitlab-ci文件. 下面的这个yaml文件是用来配置从源码到 Jar/Tar的一个过程，在提交到另一个仓库的yaml 还有另一个 yaml是从 源码–&amp;gt;Jar／tar–&amp;gt;镜像</summary></entry><entry><title type="html">docker swarm 集成 Spring Cloud 验证</title><link href="http://firsh.me/2018/04/23/docker-swarm-spring-cloud/" rel="alternate" type="text/html" title="docker swarm 集成 Spring Cloud 验证" /><published>2018-04-23T10:18:14+08:00</published><updated>2018-04-23T10:18:14+08:00</updated><id>http://firsh.me/2018/04/23/docker-swarm-spring-cloud</id><content type="html" xml:base="http://firsh.me/2018/04/23/docker-swarm-spring-cloud/">&lt;h2 id=&quot;开始&quot;&gt;开始&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;机器选择 Centos 7 4Gb内存&lt;/li&gt;
@@ -719,370 +912,4 @@ broker-c.properties
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>uk0</name></author><summary type="html">搭建一套多个Master的集群（RocketMQ） 为了项目测试使用。</summary></entry><entry><title type="html">oracle for docker dev ENV</title><link href="http://firsh.me/2018/01/18/oracle-demo/" rel="alternate" type="text/html" title="oracle for docker dev ENV" /><published>2018-01-18T00:43:56+08:00</published><updated>2018-01-18T00:43:56+08:00</updated><id>http://firsh.me/2018/01/18/oracle-demo</id><content type="html" xml:base="http://firsh.me/2018/01/18/oracle-demo/">&lt;p&gt;oracle 服务采用 Docker 搭建，用的镜像为&lt;code class=&quot;highlighter-rouge&quot;&gt;wnameless/oracle-xe-11g&lt;/code&gt; 这里负责整理用来测试时候的问题。&lt;/p&gt;
-
-&lt;h2 id=&quot;下载镜像pull&quot;&gt;下载镜像(pull)&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker pull wnameless/oracle-xe-11g
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker run -d -p 49160:22 -p 49161:1521 -e &lt;span class=&quot;nv&quot;&gt;ORACLE_ALLOW_REMOTE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true &lt;/span&gt;wnameless/oracle-xe-11g
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;By default, the password verification is disable(password never expired). If you want it back, run this:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker run -d -p 49160:22 -p 49161:1521 -e &lt;span class=&quot;nv&quot;&gt;ORACLE_PASSWORD_VERIFY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true &lt;/span&gt;wnameless/oracle-xe-11g
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;For performance concern, you may want to disable the disk asynch IO:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker run -d -p 49160:22 -p 49161:1521 -e &lt;span class=&quot;nv&quot;&gt;ORACLE_DISABLE_ASYNCH_IO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true &lt;/span&gt;wnameless/oracle-xe-11g
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;For XDB user, run this:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker run -d -p 49160:22 -p 49161:1521 -p 8080:8080 -e &lt;span class=&quot;nv&quot;&gt;ORACLE_ENABLE_XDB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true &lt;/span&gt;wnameless/oracle-xe-11g
-Check &lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;localhost:8080 work
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl -XGET &lt;span class=&quot;s2&quot;&gt;&quot;http://localhost:8080&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;You will show&lt;/p&gt;
-
-&lt;p&gt;&amp;lt;!DOCTYPE HTML PUBLIC “-//IETF//DTD HTML 2.0//EN”&amp;gt;&lt;/p&gt;
-&lt;html&gt;&lt;head&gt;
-&lt;TITLE&gt;401 Unauthorized&lt;/TITLE&gt;
-&lt;/head&gt;&lt;body&gt;&lt;h1&gt;Unauthorized&lt;/h1&gt;
-&lt;/body&gt;&lt;/html&gt;
-
-&lt;h2 id=&quot;login-httplocalhost8080-with-following-credential&quot;&gt;Login http://localhost:8080 with following credential:&lt;/h2&gt;
-&lt;p&gt;username: XDB
-password: xdb
-Connect database with following setting:&lt;/p&gt;
-
-&lt;p&gt;hostname: localhost
-port: 49161
-sid: xe
-username: system
-password: oracle
-Password for SYS &amp;amp; SYSTEM&lt;/p&gt;
-
-&lt;p&gt;oracle
-Login by SSH&lt;/p&gt;
-
-&lt;p&gt;ssh root@localhost -p 49160
-password: admin
-Support custom DB Initialization&lt;/p&gt;
-
-&lt;h2 id=&quot;dockerfile&quot;&gt;Dockerfile&lt;/h2&gt;
-&lt;p&gt;FROM wnameless/oracle-xe-11g&lt;/p&gt;
-
-&lt;p&gt;ADD init.sql /docker-entrypoint-initdb.d/&lt;/p&gt;
-
-&lt;h2 id=&quot;sqldeveloper&quot;&gt;SQLDeveloper&lt;/h2&gt;
-
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;--- 遇到的问题 ora-01045&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;---ORA-01045: user ... lacks CREATE SESSION privilege; logon denied&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;--- This error is thrown if a user wants to log on a database but lacks the create session system privilege.&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;---In order to give someone this privilege, use:&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;grant&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;create&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;session&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;--- See also other Oracle errors.&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;--- 创建表空间&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;TABLESPACE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;DATAFILE&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/data/disk1/aom_space.dbf'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;AUTOEXTEND&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;NEXT&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MAXSIZE&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20480&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;EXTENT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MANAGEMENT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;LOCAL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;--- oracle 创建DB需要用用户去创建，也就是先要创建用户 并且指定表空间&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;USER&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IDENTIFIED&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;123456&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DEFAULT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLESPACE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom_space&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;---创建用户并指定表空间和临时表空间&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;USER&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IDENTIFIED&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;123456&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;DEFAULT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLESPACE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom_space&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;TEMPORARY&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLESPACE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom_temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;---授权用户&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;GRANT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;USER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;DROP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;USER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;USER&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ANY&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;VIEW&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-     &lt;span class=&quot;k&quot;&gt;DROP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ANY&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;VIEW&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;EXP_FULL_DATABASE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IMP_FULL_DATABASE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-     &lt;span class=&quot;n&quot;&gt;DBA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CONNECT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RESOURCE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SESSION&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TO&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;aom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-
-&lt;span class=&quot;c1&quot;&gt;---删除表空间&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;DROP&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLESPACE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom_space&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;INCLUDING&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CONTENTS&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DATAFILES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-
-&lt;span class=&quot;c1&quot;&gt;---查看表空间&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TABLESPACE_NAME&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;TABLESPACE_NAME&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TOTALSPACE&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;TOTALSPACE/M&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FREESPACE&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;FREESPACE/M&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ROUND&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FREESPACE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TOTALSPACE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;USED%&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLESPACE_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ROUND&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;SUM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bytes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1024&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1024&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TOTALSPACE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;DBA_DATA_FILES&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;GROUP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLESPACE_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-         &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLESPACE_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ROUND&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;SUM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bytes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1024&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1024&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FREESPACE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DBA_FREE_SPACE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;GROUP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLESPACE_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TABLESPACE_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TABLESPACE_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-
-&lt;span class=&quot;c1&quot;&gt;---查看临时表空间&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLESPACE_NAME&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DBA_TABLESPACES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;---增加表空间大小&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLESPACE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom_space&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ADD&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DATAFILE&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/data/disk1/aom_space.dbf'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4096&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;---增加临时表空间大小&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DATABASE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TEMPFILE&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/data/disk1/aom_temp.dbf'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RESIZE&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8192&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;---删除用户&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;DROP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;USER&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CASCADE&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;---把数据导入不同于原系统的表空间，在导入之后却往往发现，数据被导入了原表空间(下面解决此方法)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;grant&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resource&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dba&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;---回收用户unlimited tablespace权限，这样就可以导入到用户缺省表空间：&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;revoke&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unlimited&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tablespace&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;alter&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quota&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom_space&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;alter&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quota&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unlimited&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aom_space&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>uk0</name></author><summary type="html">oracle 服务采用 Docker 搭建，用的镜像为wnameless/oracle-xe-11g 这里负责整理用来测试时候的问题。</summary></entry><entry><title type="html">serverless demo for kubernetes + ingress [原创]</title><link href="http://firsh.me/2017/12/29/serverlesss-kubeless-ingress-minikube/" rel="alternate" type="text/html" title="serverless demo for kubernetes + ingress [原创]" /><published>2017-12-29T00:11:45+08:00</published><updated>2017-12-29T00:11:45+08:00</updated><id>http://firsh.me/2017/12/29/serverlesss-kubeless-ingress-minikube</id><content type="html" xml:base="http://firsh.me/2017/12/29/serverlesss-kubeless-ingress-minikube/">&lt;h4 id=&quot;文章介绍serverless--kubernetes--ingress--kubeless-快速开发function-简化开发无服务器接口让开发更快-更爽&quot;&gt;文章介绍，Serverless + kubernetes + ingress + kubeless 快速开发function 简化开发，无服务器接口，让开发更快 更爽&lt;/h4&gt;
-
-&lt;h2 id=&quot;工具&quot;&gt;工具&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;kubernetes&lt;/li&gt;
-  &lt;li&gt;kubeless&lt;/li&gt;
-  &lt;li&gt;ingress&lt;/li&gt;
-  &lt;li&gt;serverless&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;启动minikube&quot;&gt;启动Minikube&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;配置Docker 代理下载镜像速度能快一点。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;minikube start --docker-env &lt;span class=&quot;nv&quot;&gt;HTTP_PROXY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;http://192.168.155.2:8118 &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-                 --docker-env &lt;span class=&quot;nv&quot;&gt;HTTPS_PROXY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;https://192.168.155.2:8118
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;检查kubernetes 是否已经启动完成。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/d8922ed9-aeb0-4056-9abb-3319cf2b7544.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;检查ingress&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/51342058-f68a-4c0f-ba9b-9ff846c8a571.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;检查UI是否已经启动&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/baee88c2-ccfc-4551-9596-6752c4640826.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;检查kubelessui[有没有都可以]&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/4a80959d-8db3-4a44-bc41-403f1c77f324.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;正题&quot;&gt;正题&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;创建一个空的目录一会要用到&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;安装 serverless  &lt;code class=&quot;highlighter-rouge&quot;&gt;npm install serverless&lt;/code&gt;&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;安装 serverless-kubeless  &lt;code class=&quot;highlighter-rouge&quot;&gt;npm install serverless-kubeless&lt;/code&gt;&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;创建一个serverless function &lt;code class=&quot;highlighter-rouge&quot;&gt;serverless create --template kubeless-python&lt;/code&gt;&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;看看serverless 支持多少模版&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-
-    &lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/6b52ee20-569a-4450-b3b9-b495c9e3fd0b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;执行创建命令&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    serverless create --template kubeless-python
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;结果&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;➜  demo2 serverless create --template kubeless-python
-    Serverless: Generating boilerplate...
-    _______                             __
-    |   _   .-----.----.--.--.-----.----|  .-----.-----.-----.
-    |   |___|  -__|   _|  |  |  -__|   _|  |  -__|__ --|__ --|
-    |____   |_____|__|  &lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;__/|_____|__| |__|_____|_____|_____|
-    |   |   |             The Serverless Application Framework
-    |       |                           serverless.com, v1.25.0
-    -------&lt;span class=&quot;s1&quot;&gt;'
-
-    Serverless: Successfully generated boilerplate for template: &quot;kubeless-python&quot;
-    Serverless: NOTE: Please update the &quot;service&quot; property in serverless.yml with your service name
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;目录介绍&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/0d3ccbe2-a619-44ca-bf70-267a2c6a10db.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;里面会出现四个文件 ，第一个git的忽略文件(不用git可能没有)
-第二个 是function 的主体
-第三个是serverless 部署依赖的yml&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;handler.py&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;json&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;s&quot;&gt;&quot;message&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Go Serverless v1.0! Your function executed successfully!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;s&quot;&gt;&quot;input&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;json&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;s&quot;&gt;&quot;statusCode&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;s&quot;&gt;&quot;body&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dumps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;serverless.yml&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;c1&quot;&gt;# Welcome to Serverless!&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;# For full config options, check the kubeless plugin docs:&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;#    https://github.com/serverless/serverless-kubeless&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;# For documentation on kubeless itself:&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;#    http://kubeless.io&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;# Update the service name below with your own service name&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;service&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hello-world&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;# Please ensure the serverless-kubeless provider plugin is installed globally.&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;# $ npm install -g serverless-kubeless&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;# ...before installing project dependencies to register this provider.&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;# $ npm install&lt;/span&gt;
-
-    &lt;span class=&quot;s&quot;&gt;provider&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;kubeless&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;runtime&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;python2.7&lt;/span&gt;
-
-    &lt;span class=&quot;s&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;serverless-kubeless&lt;/span&gt;
-
-    &lt;span class=&quot;s&quot;&gt;functions&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;demo2&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# 有重名 hello 所以改成demo2&lt;/span&gt;
-        &lt;span class=&quot;s&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;handler.hello&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;package.json [可以不用管]&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;以上的Serverless 可以运行了&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;开始部署&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;提示 &lt;code class=&quot;highlighter-rouge&quot;&gt;serverless&lt;/code&gt; 可以简写  &lt;code class=&quot;highlighter-rouge&quot;&gt;sls&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    ➜  demo2 serverless deploy
-    Serverless: Packaging service...
-    Serverless: Excluding development dependencies...
-    Serverless: Deploying &lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;demo2...
-    Serverless: Function demo2 successfully deployed
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;查看是否部署成功&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/c1313fae-c4dc-4b9f-bcb8-1508b8dec8fe.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;创建&lt;code class=&quot;highlighter-rouge&quot;&gt;Ingress&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubeless ingress create ingress-demo2  -n default --function demo2
-&lt;span class=&quot;c&quot;&gt;# 参数介绍&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# ingress-demo 是ingress 的名字&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# -n 是kubernetes 的命名空间&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# --function 是你要绑定到那个 function&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;执行命令 没有错误即可，检查 ingress 是否创建&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    kubeless ingress list
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/e2839acc-e728-4f81-99e1-97474ec53a40.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;找到我们的链接&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    demo2.192.168.64.2.nip.io
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;用postman进行测试。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/6e04c70c-ad58-46a5-afc7-498b741323f6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;测试通过&lt;/p&gt;
-
-&lt;h2 id=&quot;总结&quot;&gt;总结&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ingress 安装一定要检查好&lt;/li&gt;
-  &lt;li&gt;serverless-kubeless 每次创建一个 fucntion 都需要在当前目录执行安装命令&lt;code class=&quot;highlighter-rouge&quot;&gt;npm install serverless-kubeless&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;目前kubeless 支持的语言比较少(runtime) python nodejs&lt;/li&gt;
-  &lt;li&gt;有兴趣可以看看 &lt;code class=&quot;highlighter-rouge&quot;&gt;aws lambda&lt;/code&gt; 还有 &lt;code class=&quot;highlighter-rouge&quot;&gt;fnproject&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;教程整理比较匆忙如果有疑问请留言。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>uk0</name></author><summary type="html">文章介绍，Serverless + kubernetes + ingress + kubeless 快速开发function 简化开发，无服务器接口，让开发更快 更爽</summary></entry></feed>
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>uk0</name></author><summary type="html">搭建一套多个Master的集群（RocketMQ） 为了项目测试使用。</summary></entry></feed>

@@ -1,5 +1,17 @@
 {
   
+  "2018-04-23-gitlab-cicd-java-runner": {
+    "title": "Gitlab JC/CD 第一篇",
+    "url": " /2018/04/23/gitlab-cicd-java-runner/",
+    "category": "git"
+  },
+  
+  "2018-04-23-gitlab-cicd-java-runner-cicd-java": {
+    "title": "Gitlab JC/CD 第二篇",
+    "url": " /2018/04/23/gitlab-cicd-java-runner-cicd-java/",
+    "category": "git"
+  },
+  
   "2018-04-23-docker-swarm-spring-cloud": {
     "title": "docker swarm 集成 Spring Cloud 验证",
     "url": " /2018/04/23/docker-swarm-spring-cloud/",
@@ -1338,6 +1350,18 @@
     "title": "docker swarm 集成 Spring Cloud 验证",
     "url": "/2018/04/23/docker-swarm-spring-cloud/",
     "category": "[&quot;docker&quot;, &quot;swarm&quot;, &quot;spring&quot;]"
+  },
+  
+  "2018-04-23-gitlab-cicd-java-runner-cicd-java": {
+    "title": "Gitlab JC/CD 第二篇",
+    "url": "/2018/04/23/gitlab-cicd-java-runner-cicd-java/",
+    "category": "[&quot;git&quot;, &quot;lab&quot;]"
+  },
+  
+  "2018-04-23-gitlab-cicd-java-runner": {
+    "title": "Gitlab JC/CD 第一篇",
+    "url": "/2018/04/23/gitlab-cicd-java-runner/",
+    "category": "[&quot;git&quot;, &quot;lab&quot;]"
   },
   
   "wiki-android-studio": {
