@@ -1,4 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-05-10T13:30:05+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>uk0</name></author><entry><title type="html">Gitlab JC/CD 第一篇</title><link href="http://firsh.me/2018/04/23/gitlab-cicd-java-runner/" rel="alternate" type="text/html" title="Gitlab JC/CD 第一篇" /><published>2018-04-23T10:45:02+08:00</published><updated>2018-04-23T10:45:02+08:00</updated><id>http://firsh.me/2018/04/23/gitlab-cicd-java-runner</id><content type="html" xml:base="http://firsh.me/2018/04/23/gitlab-cicd-java-runner/">&lt;h2 id=&quot;just-now&quot;&gt;just now&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-05-10T14:13:32+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>uk0</name></author><entry><title type="html">修改CentOS默认yum源为国内yum镜像源</title><link href="http://firsh.me/2018/05/10/centos-yum-repo/" rel="alternate" type="text/html" title="修改CentOS默认yum源为国内yum镜像源" /><published>2018-05-10T14:05:42+08:00</published><updated>2018-05-10T14:05:42+08:00</updated><id>http://firsh.me/2018/05/10/centos-yum-repo</id><content type="html" xml:base="http://firsh.me/2018/05/10/centos-yum-repo/">&lt;p&gt;有时候CentOS默认的yum源不一定是国内镜像，导致yum在线安装及更新速度不是很理想。这时候需要将yum源设置为国内镜像站点。国内主要开源的开源镜像站点应该是网易和阿里云了.&lt;/p&gt;
+
+&lt;h2 id=&quot;修改centos默认yum源为mirrors163com&quot;&gt;修改CentOS默认yum源为mirrors.163.com&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;首先备份系统自带yum源配置文件/etc/yum.repos.d/CentOS-Base.repo&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@localhost ~]# mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;进入yum源配置文件所在的文件夹&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@localhost ~]# &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /etc/yum.repos.d/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;下载163的yum源配置文件&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 自己根据版本进行下载&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# 163&lt;/span&gt;
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS7-Base-163.repo
+wget -O /etc/yum.repos.d/CentOS-Base.repo  http://mirrors.163.com/.help/CentOS6-Base-163.repo
+wget -O /etc/yum.repos.d/CentOS-Base.repo  http://mirrors.163.com/.help/CentOS5-Base-163.repo
+&lt;span class=&quot;c&quot;&gt;# aliyun&lt;/span&gt;
+wget -O /etc/yum.repos.d/CentOS-Base.repo  http://mirrors.aliyun.com/repo/Centos-7.repo
+wget -O /etc/yum.repos.d/CentOS-Base.repo  http://mirrors.aliyun.com/repo/Centos-5.repo
+wget -O /etc/yum.repos.d/CentOS-Base.repo  http://mirrors.aliyun.com/repo/Centos-6.repo
+
+&lt;span class=&quot;c&quot;&gt;# 运行yum makecache生成缓存&lt;/span&gt;
+
+yum makecache
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;更新动作&quot;&gt;更新动作&lt;/h1&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#更新系统就会看到以下mirrors.163.com信息&lt;/span&gt;
+已加载插件：fastestmirror, refresh-packagekit, security
+设置更新进程Loading mirror speeds from cached hostfile
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; base: mirrors.163.com
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; extras: mirrors.163.com
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; updates: mirrors.163.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;转不注明出处，老子就不写了，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>uk0</name></author><summary type="html">有时候CentOS默认的yum源不一定是国内镜像，导致yum在线安装及更新速度不是很理想。这时候需要将yum源设置为国内镜像站点。国内主要开源的开源镜像站点应该是网易和阿里云了.</summary></entry><entry><title type="html">Gitlab JC/CD 第一篇</title><link href="http://firsh.me/2018/04/23/gitlab-cicd-java-runner/" rel="alternate" type="text/html" title="Gitlab JC/CD 第一篇" /><published>2018-04-23T10:45:02+08:00</published><updated>2018-04-23T10:45:02+08:00</updated><id>http://firsh.me/2018/04/23/gitlab-cicd-java-runner</id><content type="html" xml:base="http://firsh.me/2018/04/23/gitlab-cicd-java-runner/">&lt;h2 id=&quot;just-now&quot;&gt;just now&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;不再介绍如何安装&lt;code class=&quot;highlighter-rouge&quot;&gt;Gitlab&lt;/code&gt;&lt;/li&gt;
@@ -778,138 +828,4 @@ tod2:8081
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>uk0</name></author><summary type="html">搭建一个高可用的Flink 集群HA 用于项目测试</summary></entry><entry><title type="html">rocketmq 多Master集群搭建</title><link href="http://firsh.me/2018/01/24/rocketmq-master-all/" rel="alternate" type="text/html" title="rocketmq 多Master集群搭建" /><published>2018-01-24T15:01:53+08:00</published><updated>2018-01-24T15:01:53+08:00</updated><id>http://firsh.me/2018/01/24/rocketmq-master-all</id><content type="html" xml:base="http://firsh.me/2018/01/24/rocketmq-master-all/">&lt;p&gt;搭建一套多个Master的集群（RocketMQ）
-    为了项目测试使用。&lt;/p&gt;
-
-&lt;h2 id=&quot;quick-start&quot;&gt;quick start&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;准备RocketMQ 4.2.0 tar&lt;/li&gt;
-  &lt;li&gt;准备JDK 1.8&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;config&quot;&gt;config&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;三个broker的配置 broker-a，broker-b，broker-c
-broker-a.properties
-broker-b.properties
-broker-c.properties
-修改下面配置文件的 &lt;code class=&quot;highlighter-rouge&quot;&gt;brokerName&lt;/code&gt;即可&lt;/p&gt;
-
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;c&quot;&gt;#所属集群名字&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;brokerClusterName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;rocketmq-aom
-    &lt;span class=&quot;c&quot;&gt;#broker名字，注意此处不同的配置文件填写的不一样&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;brokerName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;broker-a|b|c
-    &lt;span class=&quot;c&quot;&gt;#0 表示 Master，&amp;gt;0 表示 Slave&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;brokerId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0
-    &lt;span class=&quot;c&quot;&gt;#nameServer地址，分号分割&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;namesrvAddr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;tod1:9876;tod2:9876;tod3:9876
-    &lt;span class=&quot;c&quot;&gt;#在发送消息时，自动创建服务器不存在的topic，默认创建的队列数&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;defaultTopicQueueNums&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4
-    &lt;span class=&quot;c&quot;&gt;#是否允许 Broker 自动创建Topic，建议线下开启，线上关闭&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;autoCreateTopicEnable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;#是否允许 Broker 自动创建订阅组，建议线下开启，线上关闭&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;autoCreateSubscriptionGroup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;#Broker 对外服务的监听端口&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;listenPort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;10911
-    &lt;span class=&quot;c&quot;&gt;#删除文件时间点，默认凌晨 4点&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;deleteWhen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;04
-    &lt;span class=&quot;c&quot;&gt;#文件保留时间，默认 48 小时&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;fileReservedTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;120
-    &lt;span class=&quot;c&quot;&gt;#commitLog每个文件的大小默认1G&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;mapedFileSizeCommitLog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1073741824
-    &lt;span class=&quot;c&quot;&gt;#ConsumeQueue每个文件默认存30W条，根据业务情况调整&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;mapedFileSizeConsumeQueue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;300000
-    &lt;span class=&quot;c&quot;&gt;#destroyMapedFileIntervalForcibly=120000&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;#redeleteHangedFileInterval=120000&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;#检测物理文件磁盘空间&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;diskMaxUsedSpaceRatio&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;88
-    &lt;span class=&quot;c&quot;&gt;#存储路径&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;storePathRootDir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/aom/data/rocketmq/store
-    &lt;span class=&quot;c&quot;&gt;#commitLog 存储路径&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;storePathCommitLog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/aom/data/rocketmq/store/commitlog
-    &lt;span class=&quot;c&quot;&gt;#消费队列存储路径存储路径&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;storePathConsumeQueue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/aom/data/rocketmq/store/consumequeue
-    &lt;span class=&quot;c&quot;&gt;#消息索引存储路径&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;storePathIndex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/aom/data/rocketmq/store/index
-    &lt;span class=&quot;c&quot;&gt;#checkpoint 文件存储路径&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;storeCheckpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/aom/data/rocketmq/store/checkpoint
-    &lt;span class=&quot;c&quot;&gt;#abort 文件存储路径&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;abortFile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/aom/data/rocketmq/store/abort
-    &lt;span class=&quot;c&quot;&gt;#限制的消息大小&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;maxMessageSize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;65536
-    &lt;span class=&quot;c&quot;&gt;#flushCommitLogLeastPages=4&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;#flushConsumeQueueLeastPages=2&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;#flushCommitLogThoroughInterval=10000&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;#flushConsumeQueueThoroughInterval=60000&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;#Broker 的角色&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;#- ASYNC_MASTER 异步复制Master&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;#- SYNC_MASTER 同步双写Master&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;#- SLAVE&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;brokerRole&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ASYNC_MASTER
-    &lt;span class=&quot;c&quot;&gt;#刷盘方式&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;#- ASYNC_FLUSH 异步刷盘&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;#- SYNC_FLUSH 同步刷盘&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;flushDiskType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ASYNC_FLUSH
-    &lt;span class=&quot;c&quot;&gt;#checkTransactionMessageEnable=false&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;#发消息线程池数量&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;#sendMessageThreadPoolNums=128&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;#拉消息线程池数量&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;#pullMessageThreadPoolNums=128&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;start&quot;&gt;start&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;修改脚本参数&lt;/p&gt;
-
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   &lt;span class=&quot;c&quot;&gt;#runbroker.sh&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;JAVA_OPT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_OPT&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; -server -Xms1g  -Xmx1g -Xmn512m -XX:PermSize=128m -XX:MaxPermSize=320m&quot;&lt;/span&gt;
-   &lt;span class=&quot;c&quot;&gt;#runserver.sh&lt;/span&gt;
-   &lt;span class=&quot;nv&quot;&gt;JAVA_OPT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_OPT&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; -server -Xms1g -Xmx1g -Xmn512m -XX:PermSize=128m -XX:MaxPermSize=320m
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;启动RocketMQ&lt;/p&gt;
-
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-   &lt;span class=&quot;c&quot;&gt;#先启动Nameserv（三台机器）&lt;/span&gt;
-    nohup sh mqnamesrv &amp;amp;
-    nohup sh mqnamesrv &amp;amp;
-    nohup sh mqnamesrv &amp;amp;
-   &lt;span class=&quot;c&quot;&gt;# 启动 broker（三台机器）&lt;/span&gt;
-    nohup sh mqbroker -c /home/rocketmq/conf/2m-noslave/broker-a.properties &amp;gt;/dev/null 2&amp;gt;&amp;amp;1 &amp;amp; 
-
-    nohup sh mqbroker -c /home/rocketmq/conf/2m-noslave/broker-b.properties &amp;gt;/dev/null 2&amp;gt;&amp;amp;1 &amp;amp; 
-
-    nohup sh mqbroker -c /home/rocketmq/conf/2m-noslave/broker-c.properties &amp;gt;/dev/null 2&amp;gt;&amp;amp;1 &amp;amp; 
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;test&quot;&gt;test&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;test RocketMQ&lt;/p&gt;
-
-    &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    [root@tod1 bin]# ./mqadmin clusterList -n 192.168.1.149:9876
-    Java HotSpot(TM) 64-Bit Server VM warning: ignoring option PermSize=128m; support was removed in 8.0
-    Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=128m; support was removed in 8.0
-    #Cluster Name     #Broker Name            #BID  #Addr                  #Version                #InTPS(LOAD)       #OutTPS(LOAD) #PCWait(ms) #Hour #SPACE
-    rocketmq-aom      broker-a                0     192.168.1.149:10911    V4_2_0_SNAPSHOT          0.00(0,0ms)         0.00(0,0ms)          0 421335.24 0.0128
-    rocketmq-aom      broker-b                0     192.168.1.150:10911    V4_2_0_SNAPSHOT          0.00(0,0ms)         0.00(0,0ms)          0 421335.24 0.0116
-    rocketmq-aom      broker-c                0     192.168.1.151:10911    V4_2_0_SNAPSHOT          0.00(0,0ms)         0.00(0,0ms)          0 421335.24 0.0116
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>uk0</name></author><summary type="html">搭建一套多个Master的集群（RocketMQ） 为了项目测试使用。</summary></entry></feed>
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>uk0</name></author><summary type="html">搭建一个高可用的Flink 集群HA 用于项目测试</summary></entry></feed>
