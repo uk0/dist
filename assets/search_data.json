@@ -1,5 +1,11 @@
 {
   
+  "2018-05-21-serverspeeder91yun-install": {
+    "title": "优秀的VPS TCP加速软件 —— 一键锐速安装脚本（开心版）",
+    "url": " /2018/05/21/serverspeeder91yun-install/",
+    "category": "linux"
+  },
+  
   "2018-05-10-centos-yum-repo": {
     "title": "修改CentOS默认yum源为国内yum镜像源",
     "url": " /2018/05/10/centos-yum-repo/",
@@ -1374,6 +1380,12 @@
     "title": "修改CentOS默认yum源为国内yum镜像源",
     "url": "/2018/05/10/centos-yum-repo/",
     "category": "[&quot;linux&quot;, &quot;yum&quot;]"
+  },
+  
+  "2018-05-21-serverspeeder91yun-install": {
+    "title": "优秀的VPS TCP加速软件 —— 一键锐速安装脚本（开心版）",
+    "url": "/2018/05/21/serverspeeder91yun-install/",
+    "category": "[&quot;linux&quot;, &quot;serverspeeder&quot;]"
   },
   
   "wiki-android-studio": {

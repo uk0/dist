@@ -1,4 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-05-10T14:13:32+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>uk0</name></author><entry><title type="html">修改CentOS默认yum源为国内yum镜像源</title><link href="http://firsh.me/2018/05/10/centos-yum-repo/" rel="alternate" type="text/html" title="修改CentOS默认yum源为国内yum镜像源" /><published>2018-05-10T14:05:42+08:00</published><updated>2018-05-10T14:05:42+08:00</updated><id>http://firsh.me/2018/05/10/centos-yum-repo</id><content type="html" xml:base="http://firsh.me/2018/05/10/centos-yum-repo/">&lt;p&gt;有时候CentOS默认的yum源不一定是国内镜像，导致yum在线安装及更新速度不是很理想。这时候需要将yum源设置为国内镜像站点。国内主要开源的开源镜像站点应该是网易和阿里云了.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-05-21T13:56:39+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>uk0</name></author><entry><title type="html">优秀的VPS TCP加速软件 —— 一键锐速安装脚本（开心版）</title><link href="http://firsh.me/2018/05/21/serverspeeder91yun-install/" rel="alternate" type="text/html" title="优秀的VPS TCP加速软件 —— 一键锐速安装脚本（开心版）" /><published>2018-05-21T13:49:52+08:00</published><updated>2018-05-21T13:49:52+08:00</updated><id>http://firsh.me/2018/05/21/serverspeeder91yun-install</id><content type="html" xml:base="http://firsh.me/2018/05/21/serverspeeder91yun-install/">&lt;h2 id=&quot;锐速----rmtnss&quot;&gt;锐速 +   RMTNSS&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;系统要求Centos7 64 位 内核 3.10&lt;/li&gt;
+  &lt;li&gt;RMTNSS https://github.com/uk0/RMTNSS&lt;/li&gt;
+  &lt;li&gt;锐速 https://www.91yun.co/serverspeeder91yun&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;quick-start&quot;&gt;quick start&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#检查系统虚拟化支持&lt;/span&gt;
+yum install virt-what -y
+&lt;span class=&quot;c&quot;&gt;# 例如返回 kvm&lt;/span&gt;
+virt-what
+&lt;span class=&quot;c&quot;&gt;# 安装新的内核&lt;/span&gt;
+wget --no-check-certificate -O rskernel.sh https://raw.githubusercontent.com/uxh/shadowsocks_bash/master/rskernel.sh &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; bash rskernel.sh
+
+&lt;span class=&quot;c&quot;&gt;# 安装锐速&lt;/span&gt;
+
+wget -N --no-check-certificate https://github.com/91yun/serverspeeder/raw/master/serverspeeder-v.sh &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; bash serverspeeder-v.sh CentOS 7.1 3.10.0-229.1.2.el7.x86_64 x64 3.11.20.4 serverspeeder_3283
+
+&lt;span class=&quot;c&quot;&gt;#重启锐速&lt;/span&gt;
+/serverspeeder/bin/serverSpeeder.sh restart
+&lt;span class=&quot;c&quot;&gt;#启动锐速&lt;/span&gt;
+/serverspeeder/bin/serverSpeeder.sh start
+&lt;span class=&quot;c&quot;&gt;#停止锐速&lt;/span&gt;
+/serverspeeder/bin/serverSpeeder.sh stop
+&lt;span class=&quot;c&quot;&gt;#查看锐速运行情况&lt;/span&gt;
+/serverspeeder/bin/serverSpeeder.sh status
+&lt;span class=&quot;c&quot;&gt;# 卸载&lt;/span&gt;
+chattr -i /serverspeeder/etc/apx&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; /serverspeeder/bin/serverSpeeder.sh uninstall -f
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>uk0</name></author><summary type="html">锐速 + RMTNSS</summary></entry><entry><title type="html">修改CentOS默认yum源为国内yum镜像源</title><link href="http://firsh.me/2018/05/10/centos-yum-repo/" rel="alternate" type="text/html" title="修改CentOS默认yum源为国内yum镜像源" /><published>2018-05-10T14:05:42+08:00</published><updated>2018-05-10T14:05:42+08:00</updated><id>http://firsh.me/2018/05/10/centos-yum-repo</id><content type="html" xml:base="http://firsh.me/2018/05/10/centos-yum-repo/">&lt;p&gt;有时候CentOS默认的yum源不一定是国内镜像，导致yum在线安装及更新速度不是很理想。这时候需要将yum源设置为国内镜像站点。国内主要开源的开源镜像站点应该是网易和阿里云了.&lt;/p&gt;
 
 &lt;h2 id=&quot;修改centos默认yum源为mirrors163com&quot;&gt;修改CentOS默认yum源为mirrors.163.com&lt;/h2&gt;
 
@@ -732,100 +767,4 @@ brew install privoxy
 
 &lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>uk0</name></author><summary type="html">LV扩容</summary></entry><entry><title type="html">Go Go Go</title><link href="http://firsh.me/2018/03/11/2018-over-or-start/" rel="alternate" type="text/html" title="Go Go Go" /><published>2018-03-11T23:05:06+08:00</published><updated>2018-03-11T23:05:06+08:00</updated><id>http://firsh.me/2018/03/11/2018-over-or-start</id><content type="html" xml:base="http://firsh.me/2018/03/11/2018-over-or-start/">&lt;p&gt;#翻滚吧&lt;/p&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>uk0</name></author><summary type="html">#翻滚吧</summary></entry><entry><title type="html">Flink 高可用集群搭建 HA</title><link href="http://firsh.me/2018/01/24/flinkinstall-on-redhat7/" rel="alternate" type="text/html" title="Flink 高可用集群搭建 HA" /><published>2018-01-24T16:16:32+08:00</published><updated>2018-01-24T16:16:32+08:00</updated><id>http://firsh.me/2018/01/24/flinkinstall-on-redhat7</id><content type="html" xml:base="http://firsh.me/2018/01/24/flinkinstall-on-redhat7/">&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;搭建一个高可用的Flink 集群HA
-    用于项目测试
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;quick-start&quot;&gt;quick start&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;flink-conf.yaml&lt;/p&gt;
-
-    &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-     &lt;span class=&quot;s&quot;&gt;jobmanager.rpc.port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;6123&lt;/span&gt;
-
-
-     &lt;span class=&quot;s&quot;&gt;jobmanager.heap.mb&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;512&lt;/span&gt;
-
-
-     &lt;span class=&quot;s&quot;&gt;taskmanager.heap.mb&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;512&lt;/span&gt;
-
-     &lt;span class=&quot;s&quot;&gt;taskmanager.numberOfTaskSlots&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;2&lt;/span&gt;
-
-     &lt;span class=&quot;s&quot;&gt;taskmanager.memory.preallocate&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;false&lt;/span&gt;
-
-
-     &lt;span class=&quot;s&quot;&gt;parallelism.default&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1&lt;/span&gt;
-
-
-     &lt;span class=&quot;s&quot;&gt;jobmanager.web.address&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.0.0.0&lt;/span&gt;
-
-     &lt;span class=&quot;s&quot;&gt;jobmanager.web.port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;8081&lt;/span&gt;
-
-
-     &lt;span class=&quot;s&quot;&gt;jobmanager.archive.fs.dir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hdfs://ns/flink/completed_jobs/&lt;/span&gt;
-
-     &lt;span class=&quot;s&quot;&gt;historyserver.web.address&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.0.0.0&lt;/span&gt;
-
-
-     &lt;span class=&quot;s&quot;&gt;historyserver.web.port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;8082&lt;/span&gt;
-
-
-     &lt;span class=&quot;s&quot;&gt;historyserver.archive.fs.dir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hdfs://ns/flink/completed_jobs/&lt;/span&gt;
-
-
-     &lt;span class=&quot;s&quot;&gt;historyserver.archive.fs.refresh-interval&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10000&lt;/span&gt;
-
-
-
-     &lt;span class=&quot;s&quot;&gt;state.backend&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;filesystem&lt;/span&gt;
-
-
-     &lt;span class=&quot;s&quot;&gt;state.backend.fs.checkpointdir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hdfs://ns/flink/checkpoints_backend&lt;/span&gt;
-     &lt;span class=&quot;s&quot;&gt;state.backend.fs.savepointdir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hdfs://ns/flink/savepoints_backend&lt;/span&gt;
-     &lt;span class=&quot;s&quot;&gt;state.checkpoints.dir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hdfs://ns/flink/checkpoints_data&lt;/span&gt;
-     &lt;span class=&quot;s&quot;&gt;state.savepoints.dir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hdfs://ns/flink/savepoints_data&lt;/span&gt;
-
-
-     &lt;span class=&quot;s&quot;&gt;taskmanager.tmp.dirs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/home/aom/data/flink/tmp&lt;/span&gt;
-     &lt;span class=&quot;s&quot;&gt;env.log.dir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/home/aom/data/logs/flink&lt;/span&gt;
-
-
-
-
-     &lt;span class=&quot;s&quot;&gt;fs.hdfs.hadoopconf&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/home/aom/hadoop/etc/hadoop&lt;/span&gt;
-
-
-     &lt;span class=&quot;s&quot;&gt;high-availability&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;zookeeper&lt;/span&gt;
-     &lt;span class=&quot;s&quot;&gt;high-availability.zookeeper.quorum&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;dscn1:2181,dscn2:2181,dscn3:2181&lt;/span&gt;
-     &lt;span class=&quot;s&quot;&gt;high-availability.zookeeper.storageDir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hdfs://ns/flink/recovery&lt;/span&gt;
-     &lt;span class=&quot;s&quot;&gt;high-availability.zookeeper.path.root&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/flink&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;masters
-    &lt;pre&gt;&lt;code class=&quot;language-bahs&quot;&gt;tod1:8081
-tod2:8081
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/li&gt;
-  &lt;li&gt;slaves&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    tod1
-    tod2
-    tod3
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;scp 到其他节点&lt;/li&gt;
-  &lt;li&gt;启动集群
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    start-cluster.sh
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>uk0</name></author><summary type="html">搭建一个高可用的Flink 集群HA 用于项目测试</summary></entry></feed>
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>uk0</name></author><summary type="html">#翻滚吧</summary></entry></feed>
