@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>ant-design-pro 初级问题以及解答 &mdash; 张建新</title>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2018/05/28/ant-design-pro-stack1/">
+    <link rel="alternate" type="application/atom+xml" title="张建新" href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="ant-design-pro 初级问题以及解答">
+      
+    <meta name="keywords" content="React">
+    <meta name="og:keywords" content="React">
+      
+    <meta name="description" content="本章介绍的是ant-design-pro 使用中遇到的一些问题 以及个人的解决方式，大牛勿喷。">
+    <meta name="og:description" content="本章介绍的是ant-design-pro 使用中遇到的一些问题 以及个人的解决方式，大牛勿喷。">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2018/05/28/ant-design-pro-stack1/">
+    <meta property="og:site_name" content="张建新">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2018-05-28">
+    
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="张建新"><span class="octicon octicon-mark-github"></span> 张建新</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="Index">Index</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="categories">categories</a>
+                
+                <a href="/open-source/" class=" site-header-nav-item" target="" title="open-source">open-source</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="wiki">wiki</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="links">links</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="about">about</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="ant-design-pro ">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">ant-design-pro 初级问题以及解答</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2018/05/28
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#react" title="react">react</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <h2 id="本章介绍的是ant-design-pro-使用中遇到的一些问题-以及个人的解决方式大牛勿喷">本章介绍的是ant-design-pro 使用中遇到的一些问题 以及个人的解决方式，大牛勿喷。</h2>
+
+<h2 id="react-与-ant-design-pro">React 与 Ant-Design-Pro</h2>
+
+<ul>
+  <li>下载工程：</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>https://github.com/ant-design/ant-design-pro
+</code></pre>
+</div>
+<ul>
+  <li>安装依赖包</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code> npm i -dd  <span class="c"># 等待的时间很长。【可以代理出去速度更快】</span>
+
+ npm start <span class="c"># 启动</span>
+
+ npm run build:aot:prod <span class="c"># 编译</span>
+
+</code></pre>
+</div>
+
+<ul>
+  <li>修改配置文件 <code class="highlighter-rouge">.eslintrc.js</code> WebStorm 最新版2018 可能会报错，所以需要修改<code class="highlighter-rouge">.eslintrc.js</code></li>
+</ul>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">parser</span><span class="p">:</span> <span class="s1">'babel-eslint'</span><span class="p">,</span>
+  <span class="na">extends</span><span class="p">:</span> <span class="p">[</span><span class="s1">'airbnb'</span><span class="p">,</span> <span class="s1">'prettier'</span><span class="p">],</span>
+  <span class="na">env</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">browser</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">node</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">es6</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">mocha</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">jest</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">jasmine</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">rules</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">// 布尔值类型的 propTypes 的 name 必须为 is 或 has 开头</span>
+    <span class="c1">// @off 不强制要求写 propTypes</span>
+    <span class="s2">"react/boolean-prop-naming"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 一个 defaultProps 必须有对应的 propTypes</span>
+    <span class="c1">// @off 不强制要求写 propTypes</span>
+    <span class="s2">"react/default-props-match-prop-types"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 组件必须有 displayName 属性</span>
+    <span class="c1">// @off 不强制要求写 displayName</span>
+    <span class="s2">"react/display-name"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 禁止在自定义组件中使用一些指定的 props</span>
+    <span class="c1">// @off 没必要限制</span>
+    <span class="s2">"react/forbid-component-props"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 禁止使用一些指定的 elements</span>
+    <span class="c1">// @off 没必要限制</span>
+    <span class="s2">"react/forbid-elements"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 禁止使用一些指定的 propTypes</span>
+    <span class="c1">// @off 不强制要求写 propTypes</span>
+    <span class="s2">"react/forbid-prop-types"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 禁止直接使用别的组建的 propTypes</span>
+    <span class="c1">// @off 不强制要求写 propTypes</span>
+    <span class="s2">"react/forbid-foreign-prop-types"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 禁止使用数组的 index 作为 key</span>
+    <span class="c1">// @off 太严格了</span>
+    <span class="s2">"react/no-array-index-key"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 禁止使用 children 做 props</span>
+    <span class="s2">"react/no-children-prop"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// 禁止使用 dangerouslySetInnerHTML</span>
+    <span class="c1">// @off 没必要限制</span>
+    <span class="s2">"react/no-danger"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 禁止在使用了 dangerouslySetInnerHTML 的组建内添加 children</span>
+    <span class="s2">"react/no-danger-with-children"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// 禁止使用已废弃的 api</span>
+    <span class="s2">"react/no-deprecated"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// 禁止在 componentDidMount 里面使用 setState</span>
+    <span class="c1">// @off 同构应用需要在 didMount 里写 setState</span>
+    <span class="s2">"react/no-did-mount-set-state"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 禁止在 componentDidUpdate 里面使用 setState</span>
+    <span class="s2">"react/no-did-update-set-state"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// 禁止直接修改 this.state</span>
+    <span class="s2">"react/no-direct-mutation-state"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// 禁止使用 findDOMNode</span>
+    <span class="s2">"react/no-find-dom-node"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// 禁止使用 isMounted</span>
+    <span class="s2">"react/no-is-mounted"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// 禁止在一个文件创建两个组件</span>
+    <span class="c1">// @off 有一个 bug https://github.com/yannickcr/eslint-plugin-react/issues/1181</span>
+    <span class="s2">"react/no-multi-comp"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 禁止在 PureComponent 中使用 shouldComponentUpdate</span>
+    <span class="s2">"react/no-redundant-should-component-update"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// 禁止使用 ReactDOM.render 的返回值</span>
+    <span class="s2">"react/no-render-return-value"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// 禁止使用 setState</span>
+    <span class="c1">// @off setState 很常用</span>
+    <span class="s2">"react/no-set-state"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 禁止拼写错误</span>
+    <span class="s2">"react/no-typos"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// 禁止使用字符串 ref</span>
+    <span class="s2">"react/no-string-refs"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// 禁止在组件的内部存在未转义的 &gt;, ", " 或 }</span>
+    <span class="s2">"react/no-unescaped-entities"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// @fixable 禁止出现 HTML 中的属性，如 class</span>
+    <span class="s2">"react/no-unknown-property"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// 禁止出现未使用的 propTypes</span>
+    <span class="c1">// @off 不强制要求写 propTypes</span>
+    <span class="s2">"react/no-unused-prop-types"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 定义过的 state 必须使用</span>
+    <span class="c1">// @off 没有官方文档，并且存在很多 bug： https://github.com/yannickcr/eslint-plugin-react/search?q=no-unused-state&amp;type=Issues&amp;utf8=%E2%9C%93</span>
+    <span class="s2">"react/no-unused-state"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 禁止在 componentWillUpdate 中使用 setState</span>
+    <span class="s2">"react/no-will-update-set-state"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// 必须使用 Class 的形式创建组件</span>
+    <span class="s2">"react/prefer-es6-class"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">"error"</span><span class="p">,</span>
+      <span class="s2">"always"</span>
+    <span class="p">],</span>
+    <span class="c1">// @fixable props 与 value 之间的等号前后禁止有空格</span>
+    <span class="s2">"react/jsx-equals-spacing"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">"error"</span><span class="p">,</span>
+      <span class="s2">"never"</span>
+    <span class="p">],</span>
+    <span class="c1">// 数组中的 jsx 必须有 key</span>
+    <span class="s2">"react/jsx-key"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// @fixable 限制每行的 props 数量</span>
+    <span class="c1">// @off 没必要限制</span>
+    <span class="s2">"react/jsx-max-props-per-line"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// jsx 中禁止使用 bind</span>
+    <span class="c1">// @off 太严格了</span>
+    <span class="s2">"react/jsx-no-bind"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 禁止在 jsx 中使用像注释的字符串</span>
+    <span class="s2">"react/jsx-no-comment-textnodes"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// 禁止在 jsx 中出现字符串</span>
+    <span class="c1">// @off 没必要限制</span>
+    <span class="s2">"react/jsx-no-literals"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 禁止使用 target="_blank"</span>
+    <span class="c1">// @off 没必要限制</span>
+    <span class="s2">"react/jsx-no-target-blank"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 禁止使用未定义的 jsx elemet</span>
+    <span class="s2">"react/jsx-no-undef"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// 禁止使用 pascal 写法的 jsx，比如 &lt;TEST_COMPONENT&gt;</span>
+    <span class="s2">"react/jsx-pascal-case"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// @fixable props 必须排好序</span>
+    <span class="c1">// @off 没必要限制</span>
+    <span class="s2">"react/jsx-sort-props"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 限制文件后缀</span>
+    <span class="c1">// @off 没必要限制</span>
+    <span class="s2">"react/jsx-filename-extension"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+
+    <span class="s2">"import/prefer-default-export"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="mi">0</span>
+    <span class="p">],</span>
+    <span class="c1">// 禁止出现重复的 props</span>
+    <span class="s2">"react/jsx-no-duplicate-props"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// @fixable jsx 的开始和闭合处禁止有空格</span>
+    <span class="s2">"prefer-destructuring"</span><span class="p">:[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s2">"react/jsx-tag-spacing"</span><span class="p">:[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s2">"object-shorthand"</span><span class="p">:[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="c1">// "react/jsx-tag-spacing": [</span>
+    <span class="c1">//   "error",</span>
+    <span class="c1">//   {</span>
+    <span class="c1">//     "closingSlash": "never",</span>
+    <span class="c1">//     "beforeSelfClosing": "always",</span>
+    <span class="c1">//     "afterOpening": "never"</span>
+    <span class="c1">//   }</span>
+    <span class="c1">// ],</span>
+    <span class="c1">// jsx 文件必须 import React</span>
+    <span class="s2">"react/jsx-uses-react"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// 定义了的 jsx element 必须使用</span>
+    <span class="s2">"react/jsx-uses-vars"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// @fixable 多行的 jsx 必须有括号包起来</span>
+    <span class="c1">// @off 没必要限制</span>
+    <span class="s2">"react/jsx-wrap-multilines"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// @fixable 第一个 prop 必须得换行</span>
+    <span class="c1">// @off 没必要限制</span>
+    <span class="s2">"react/jsx-first-prop-new-line"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// handler 的名称必须是 onXXX 或 handleXXX</span>
+    <span class="c1">// @off 没必要限制</span>
+    <span class="s2">"react/jsx-handler-names"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 必须使用 pure function</span>
+    <span class="c1">// @off 没必要限制</span>
+    <span class="s2">"react/prefer-stateless-function"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 组件必须写 propTypes</span>
+    <span class="c1">// @off 不强制要求写 propTypes</span>
+    <span class="s2">"react/prop-types"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 出现 jsx 的地方必须 import React</span>
+    <span class="c1">// @off 已经在 no-undef 中限制了</span>
+    <span class="s2">"react/react-in-jsx-scope"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 非 required 的 prop 必须有 defaultProps</span>
+    <span class="c1">// @off 不强制要求写 propTypes</span>
+    <span class="s2">"react/require-default-props"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 组件必须有 shouldComponentUpdate</span>
+    <span class="c1">// @off 没必要限制</span>
+    <span class="s2">"react/require-optimization"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// render 方法中必须有返回值</span>
+    <span class="s2">"react/require-render-return"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// @fixable 组件内没有 children 时，必须使用自闭和写法</span>
+    <span class="c1">// @off 没必要限制</span>
+    <span class="s2">"react/self-closing-comp"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// @fixable 组件内方法必须按照一定规则排序</span>
+    <span class="s2">"react/sort-comp"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// propTypes 的熟悉必须按照字母排序</span>
+    <span class="c1">// @off 没必要限制</span>
+    <span class="s2">"react/sort-prop-types"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// style 属性的取值必须是 object</span>
+    <span class="s2">"react/style-prop-object"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// HTML 中的自闭和标签禁止有 children</span>
+    <span class="s2">"react/void-dom-elements-no-children"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span>
+    <span class="c1">// @fixable 布尔值的属性必须显式的写 someprop={true}</span>
+    <span class="c1">// @off 没必要限制</span>
+    <span class="s2">"react/jsx-boolean-value"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// @fixable 自闭和标签的反尖括号必须与尖括号的那一行对齐</span>
+    <span class="s2">"react/jsx-closing-bracket-location"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">"error"</span><span class="p">,</span>
+      <span class="p">{</span>
+        <span class="s2">"nonEmpty"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="s2">"selfClosing"</span><span class="p">:</span> <span class="s2">"line-aligned"</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="c1">// @fixable 结束标签必须与开始标签的那一行对齐</span>
+    <span class="c1">// @off 已经在 jsx-indent 中限制了</span>
+    <span class="s2">"react/jsx-closing-tag-location"</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="s1">'generator-star-spacing'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'consistent-return'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'no-useless-concat'</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="c1">// 'react/forbid-prop-types': [0],</span>
+    <span class="c1">// 'react/jsx-filename-extension': [1, { extensions: ['.js'] }],</span>
+    <span class="s1">'global-require'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="c1">// 'import/prefer-default-export': [0],</span>
+    <span class="c1">// 'react/jsx-no-bind': [0],</span>
+    <span class="c1">// 'react/prop-types': [0],</span>
+    <span class="c1">// 'react/prefer-stateless-function': [0],</span>
+    <span class="c1">// 'react/jsx-wrap-multilines': [</span>
+    <span class="c1">//   'error',</span>
+    <span class="c1">//   {</span>
+    <span class="c1">//     declaration: 'parens-new-line',</span>
+    <span class="c1">//     assignment: 'parens-new-line',</span>
+    <span class="c1">//     return: 'parens-new-line',</span>
+    <span class="c1">//     arrow: 'parens-new-line',</span>
+    <span class="c1">//     condition: 'parens-new-line',</span>
+    <span class="c1">//     logical: 'parens-new-line',</span>
+    <span class="c1">//     prop: 'ignore',</span>
+    <span class="c1">//   },</span>
+    <span class="c1">// ],</span>
+    <span class="s1">'no-else-return'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'no-restricted-syntax'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'import/no-extraneous-dependencies'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'no-use-before-define'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'jsx-a11y/no-static-element-interactions'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'jsx-a11y/no-noninteractive-element-interactions'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'jsx-a11y/click-events-have-key-events'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'jsx-a11y/anchor-is-valid'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'no-nested-ternary'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'prefer-template'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'no-unused-vars'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'no-param-reassign'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'react/sort-comp'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'import/no-duplicates'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'no-unneeded-ternary'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'arrow-body-style'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'spaced-comment'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'import/extensions'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'no-bitwise'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'no-cond-assign'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'import/no-unresolved'</span><span class="p">:</span> <span class="s2">"off"</span><span class="p">,</span>
+    <span class="s1">'import/no-useless-concat'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'comma-dangle'</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s1">'error'</span><span class="p">,</span>
+      <span class="p">{</span>
+        <span class="na">arrays</span><span class="p">:</span> <span class="s1">'always-multiline'</span><span class="p">,</span>
+        <span class="na">objects</span><span class="p">:</span> <span class="s1">'always-multiline'</span><span class="p">,</span>
+        <span class="na">imports</span><span class="p">:</span> <span class="s1">'always-multiline'</span><span class="p">,</span>
+        <span class="na">exports</span><span class="p">:</span> <span class="s1">'always-multiline'</span><span class="p">,</span>
+        <span class="na">functions</span><span class="p">:</span> <span class="s1">'ignore'</span><span class="p">,</span>
+      <span class="p">},</span>
+    <span class="p">],</span>
+    <span class="s1">'object-curly-newline'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'function-paren-newline'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'no-restricted-globals'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'require-yield'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+  <span class="p">},</span>
+  <span class="na">parserOptions</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">ecmaFeatures</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">experimentalObjectRestSpread</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="na">settings</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">polyfills</span><span class="p">:</span> <span class="p">[</span><span class="s1">'fetch'</span><span class="p">,</span> <span class="s1">'promises'</span><span class="p">],</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>
+    <p>修改默认的 <code class="highlighter-rouge">request.js &gt; request2.js</code></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">npm i axios --save -dd </code></p>
+  </li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
+<span class="kr">import</span> <span class="nx">axios</span> <span class="nx">from</span> <span class="s1">'axios'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">notification</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'antd'</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">checkStatus</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">{</span> <span class="nl">data</span><span class="p">:</span> <span class="nx">result</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">response</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">response</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">result</span><span class="p">.</span><span class="nx">success</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>  <span class="c1">// get response successfully</span>
+      <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+    <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+      <span class="kr">const</span> <span class="nx">error</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+      <span class="nx">result</span><span class="p">.</span><span class="nx">success</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="nx">error</span><span class="p">.</span><span class="nx">result</span> <span class="o">=</span> <span class="nx">result</span><span class="p">;</span>
+      <span class="k">throw</span> <span class="nx">error</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/**
+ * Requests a URL, returning a promise.
+ *
+ * @param  {string} url       The URL we want to request
+ * @param  {object} [options] The options we want to pass to "axios"
+ * @return {object}           An object containing either "data" or "err"
+ */</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">request</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">defaultOptions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">credentials</span><span class="p">:</span> <span class="s1">'include'</span><span class="p">,</span>
+  <span class="p">};</span>
+  <span class="kr">const</span> <span class="nx">newOptions</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">defaultOptions</span><span class="p">,</span> <span class="p">...</span><span class="nx">options</span> <span class="p">};</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">newOptions</span><span class="p">.</span><span class="nx">method</span> <span class="o">===</span> <span class="s1">'POST'</span> <span class="o">||</span> <span class="nx">newOptions</span><span class="p">.</span><span class="nx">method</span> <span class="o">===</span> <span class="s1">'PUT'</span> <span class="o">||</span> <span class="nx">newOptions</span><span class="p">.</span><span class="nx">method</span> <span class="o">===</span> <span class="s1">'DELETE'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">newOptions</span><span class="p">.</span><span class="nx">body</span> <span class="k">instanceof</span> <span class="nx">FormData</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nx">newOptions</span><span class="p">.</span><span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">Accept</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">,</span>
+        <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json; charset=utf-8'</span><span class="p">,</span>
+        <span class="p">...</span><span class="nx">newOptions</span><span class="p">.</span><span class="nx">headers</span><span class="p">,</span>
+      <span class="p">};</span>
+      <span class="c1">// newOptions.body = JSON.stringify(newOptions.body);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"----------------request body json-------------------"</span><span class="p">)</span>
+      <span class="c1">// newOptions.body is FormData</span>
+      <span class="nx">newOptions</span><span class="p">.</span><span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"content-type"</span><span class="p">:</span> <span class="s2">"application/json"</span><span class="p">,</span>
+        <span class="p">...</span><span class="nx">newOptions</span><span class="p">.</span><span class="nx">headers</span><span class="p">,</span>
+      <span class="p">};</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">axios</span><span class="p">.</span><span class="nx">create</span><span class="p">().</span><span class="nx">request</span><span class="p">({</span>
+    <span class="nx">url</span><span class="p">,</span>
+    <span class="na">method</span><span class="p">:</span> <span class="nx">options</span> <span class="o">&amp;&amp;</span> <span class="nx">options</span><span class="p">.</span><span class="nx">method</span> <span class="p">?</span> <span class="nx">options</span><span class="p">.</span><span class="nx">method</span> <span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
+    <span class="na">timeout</span><span class="p">:</span> <span class="mi">15000</span><span class="p">,</span> <span class="c1">// http请求超时时间</span>
+    <span class="p">...</span><span class="nx">newOptions</span><span class="p">,</span>
+  <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">checkStatus</span><span class="p">)</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">code</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">notification</span><span class="p">.</span><span class="nx">error</span><span class="p">({</span>
+          <span class="na">message</span><span class="p">:</span> <span class="nx">error</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span>
+          <span class="na">description</span><span class="p">:</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">,</span>
+        <span class="p">});</span>
+      <span class="p">}</span>
+      <span class="c1">// http请求超时处理</span>
+      <span class="k">if</span> <span class="p">(</span><span class="s1">'stack'</span> <span class="k">in</span> <span class="nx">error</span> <span class="o">&amp;&amp;</span> <span class="s1">'message'</span> <span class="k">in</span> <span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="p">{</span> <span class="nx">message</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">error</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="nx">message</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">'timeout'</span><span class="p">))</span> <span class="p">{</span>
+          <span class="nx">notification</span><span class="p">.</span><span class="nx">error</span><span class="p">({</span>
+            <span class="na">message</span><span class="p">:</span> <span class="err">`请求错误</span><span class="p">:</span> <span class="nx">$</span><span class="p">{</span><span class="nx">url</span><span class="p">}</span><span class="err">`</span><span class="p">,</span>
+            <span class="na">description</span><span class="p">:</span> <span class="s1">'很抱歉您的请求已经超时了，请稍后再试！'</span><span class="p">,</span>
+          <span class="p">});</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+          <span class="nx">notification</span><span class="p">.</span><span class="nx">error</span><span class="p">({</span>
+            <span class="na">message</span><span class="p">:</span> <span class="err">`请求错误</span><span class="p">:</span> <span class="nx">$</span><span class="p">{</span><span class="nx">url</span><span class="p">}</span><span class="err">`</span><span class="p">,</span>
+            <span class="na">description</span><span class="p">:</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">,</span>
+          <span class="p">});</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+      <span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">{</span> <span class="na">success</span><span class="p">:</span> <span class="kc">false</span> <span class="p">};</span>
+      <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<ul>
+  <li><code class="highlighter-rouge">.roadhogrc.mock.js</code> 修改如下内容。</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nx">mockjs</span> <span class="nx">from</span> <span class="s1">'mockjs'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">getRule</span><span class="p">,</span> <span class="nx">postRule</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./mock/rule'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">getActivities</span><span class="p">,</span> <span class="nx">getNotice</span><span class="p">,</span> <span class="nx">getFakeList</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./mock/api'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">getFakeChartData</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./mock/chart'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">getProfileBasicData</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./mock/profile'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">getProfileAdvancedData</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./mock/profile'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">getNotices</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./mock/notices'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">format</span><span class="p">,</span> <span class="nx">delay</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'roadhog-api-doc'</span><span class="p">;</span>
+
+<span class="c1">// 代码中会兼容本地 service mock 以及部署站点的静态数据</span>
+<span class="kr">const</span> <span class="nx">proxy</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">// 支持值为 Object 和 Array</span>
+  <span class="s1">'GET /proxy-get/(.*)'</span><span class="p">:</span> <span class="s1">'http://127.0.0.1:8004/pay-web-rest/'</span><span class="p">,</span>
+  <span class="s1">'POST /proxy-post/(.*)'</span><span class="p">:</span> <span class="s1">'http://127.0.0.1:8004/pay-web-rest/'</span><span class="p">,</span>
+  <span class="s1">'DELETE /proxy-delete/(.*)'</span><span class="p">:</span> <span class="s1">'http://127.0.0.1:8004/pay-web-rest/'</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="c1">// 是否禁用代理</span>
+<span class="kr">const</span> <span class="nx">noProxy</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NO_PROXY</span> <span class="o">===</span> <span class="s1">'true'</span><span class="p">;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">noProxy</span> <span class="p">?</span> <span class="p">{}</span> <span class="p">:</span> <span class="nx">delay</span><span class="p">(</span><span class="nx">proxy</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<h2 id="写一个模块">写一个模块。</h2>
+
+<ul>
+  <li>经过上面的配置，现在已经可以开始写模块了。</li>
+  <li>
+    <p>写一个模块需要配置如下几项。</p>
+
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>ant-design-pro/src/common/menu.js <span class="c"># 页面菜单，可以配置权限。</span>
+ant-design-pro/src/common/router.js # 该文件内配置全局的 route路径，可以分配访问[models]的权限
+ant-design-pro/src/routes # 每一个单独的 route 功能的实现（同等于Page）
+ant-design-pro/src/models <span class="c"># effects 用来注册请求，访问请求。</span>
+ant-design-pro/src/services <span class="c"># 封装 request请求 供给 ‘effects’</span>
+    
+</code></pre>
+    </div>
+  </li>
+  <li>现在需要在 <code class="highlighter-rouge">route</code> 内加一个路径，也就是我们自己的route
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code>    <span class="c1">// park 服务所支持的 route------start</span>
+    <span class="s1">'/payList/agent-list'</span><span class="err">:</span> <span class="p">{</span>
+ <span class="nl">component</span><span class="p">:</span> <span class="nx">dynamicWrapper</span><span class="p">(</span><span class="nx">app</span><span class="p">,</span> <span class="p">[</span><span class="s1">'parkingPayManager'</span><span class="p">],</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="kr">import</span><span class="p">(</span><span class="s1">'../routes/PayManager/PayAgent'</span><span class="p">)),</span>
+    <span class="p">},</span>
+    <span class="c1">// 1. 其中 parkingPayManager 是一个models我们要将这个models注册进来，给这个route使用。</span>
+    <span class="c1">// 2. /payList/agent-list 是`menu`的菜单路径。</span>
+</code></pre>
+    </div>
+  </li>
+  <li>现在需要在 <code class="highlighter-rouge">menu</code> 内加一个菜单。</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+    <span class="nl">name</span><span class="p">:</span> <span class="s1">'支付商户管理'</span><span class="p">,</span>
+    <span class="nx">icon</span><span class="err">:</span> <span class="s1">'table'</span><span class="p">,</span>
+    <span class="nx">path</span><span class="err">:</span> <span class="s1">'payList'</span><span class="p">,</span>
+    <span class="nx">children</span><span class="err">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">name</span><span class="p">:</span> <span class="s1">'商户管理'</span><span class="p">,</span>
+        <span class="na">path</span><span class="p">:</span> <span class="s1">'agent-list'</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+  <span class="p">},</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>添加一个model</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="p">{</span>
+  <span class="nx">queryParkManagerAgents</span><span class="p">,</span>
+<span class="p">}</span> <span class="nx">from</span> <span class="s1">'../services/parkingServices'</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="na">namespace</span><span class="p">:</span> <span class="s1">'parkingPayManager'</span><span class="p">,</span> <span class="c1">//我们所有的 dispatch 都是通过这个namespace定位过来的。 所以当请求不通，要注意。</span>
+  <span class="na">state</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">QueryAgentData</span><span class="p">:</span> <span class="p">[],</span>
+  <span class="p">},</span>
+  <span class="na">effects</span><span class="p">:</span> <span class="p">{</span>
+    <span class="o">*</span><span class="nx">queryAgentList</span><span class="p">({</span><span class="nx">callback</span><span class="p">},</span> <span class="p">{</span> <span class="nx">call</span><span class="p">,</span> <span class="nx">put</span> <span class="p">})</span> <span class="p">{</span> <span class="c1">//  `{callback}` 替换成 `_` 就是没有参数</span>
+      <span class="kr">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">yield</span> <span class="nx">call</span><span class="p">(</span><span class="nx">queryParkManagerAgents</span><span class="p">);</span> <span class="c1">//queryParkManagerAgents 是定义的service 里面放出的可调用的方法</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"result Data  successfully"</span><span class="p">);</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+      <span class="k">yield</span> <span class="nx">put</span><span class="p">({</span>
+        <span class="na">type</span><span class="p">:</span> <span class="s1">'updateStateQueryAgentList'</span><span class="p">,</span>  <span class="c1">// (response.success) ? response.data : [],</span>
+        <span class="na">payload</span><span class="p">:</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span>
+      <span class="p">});</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">success</span><span class="p">)</span><span class="nx">callback</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span> <span class="c1">//进行回调</span>
+    <span class="p">},</span>
+
+    <span class="c1">//updateStateQueryAgentList 是通过type 进行调用. 名字要相互对应，后面会讲为什么这么调用。</span>
+  <span class="na">reducers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nx">updateStateQueryAgentList</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">);</span>
+      <span class="k">return</span> <span class="p">{</span>
+        <span class="p">...</span><span class="nx">state</span><span class="p">,</span>
+        <span class="na">QueryAgentData</span><span class="p">:</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">,</span> <span class="c1">// 这个QueryAgentData 需要提前定义在state里面</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">}</span>
+
+</code></pre>
+</div>
+
+<ul>
+  <li>定义一个 <code class="highlighter-rouge">Service</code></li>
+</ul>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code>
+<span class="kr">import</span> <span class="nx">request</span> <span class="nx">from</span> <span class="s1">'../utils/request2'</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="nx">async</span> <span class="kd">function</span> <span class="nx">queryParkManagerAgents</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'/proxy-get/queryAllAgent'</span><span class="p">,</span> <span class="p">{</span> <span class="c1">//其中这里面的 proxy-get 是通过 调用mock 的proxy 完成的。 也就是第一次配置的哪个 mock配置文件。</span>
+    <span class="na">method</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+
+</code></pre>
+</div>
+
+<ul>
+  <li>最后编写一个 route （page）</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>import React, <span class="o">{</span>PureComponent<span class="o">}</span> from <span class="s1">'react'</span>;
+import <span class="o">{</span>connect<span class="o">}</span> from <span class="s1">'dva'</span>;
+import <span class="o">{</span>
+  Card,
+  Button,
+  Form,
+  Input,
+  Select,
+  Modal,
+  message,
+<span class="o">}</span> from <span class="s1">'antd'</span>;
+import StandardTable from <span class="s1">'components/StandardTable'</span>;
+import PageHeaderLayout from <span class="s1">'../../layouts/PageHeaderLayout'</span>;
+
+import styles from <span class="s1">'./PayAgent.less'</span>;
+
+const <span class="o">{</span>Option<span class="o">}</span> <span class="o">=</span> Select;
+
+const FormItem <span class="o">=</span> Form.Item;
+//定义一个 Form
+const CreateForm <span class="o">=</span> Form.create<span class="o">()(</span>props <span class="o">=</span>&gt; <span class="o">{</span>
+  const <span class="o">{</span>modalVisible, form, handleAdd, handleModalVisible, optionChildrenDataTemp<span class="o">}</span> <span class="o">=</span> props;
+  const okHandle <span class="o">=</span> <span class="o">()</span> <span class="o">=</span>&gt; <span class="o">{</span>
+    form.validateFields<span class="o">((</span>err, fieldsValue<span class="o">)</span> <span class="o">=</span>&gt; <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span>err<span class="o">)</span> <span class="k">return</span>;
+      form.resetFields<span class="o">()</span>;
+      handleAdd<span class="o">(</span>fieldsValue<span class="o">)</span>;
+    <span class="o">})</span>;
+  <span class="o">}</span>;
+  <span class="k">return</span> <span class="o">(</span>
+    &lt;Modal
+      <span class="nv">title</span><span class="o">=</span><span class="s2">"新建配置"</span>
+      <span class="nv">visible</span><span class="o">={</span>modalVisible<span class="o">}</span>
+      <span class="nv">onOk</span><span class="o">={</span>okHandle<span class="o">}</span>
+      <span class="nv">onCancel</span><span class="o">={()</span> <span class="o">=</span>&gt; handleModalVisible<span class="o">()}</span>
+    &gt;
+      &lt;FormItem <span class="nv">labelCol</span><span class="o">=</span> <span class="nv">wrapperCol</span><span class="o">=</span> <span class="nv">label</span><span class="o">=</span><span class="s2">"商户代码"</span>&gt;
+        <span class="o">{</span>form.getFieldDecorator<span class="o">(</span><span class="s1">'mch_code'</span>, <span class="o">{</span>
+          rules: <span class="o">[{</span>required: <span class="nb">true</span>, message: <span class="s1">'Please input  mch_code...'</span><span class="o">}]</span>,
+        <span class="o">})(</span>&lt;Input <span class="nv">placeholder</span><span class="o">=</span><span class="s2">"目前有用"</span>/&gt;<span class="o">)}</span>
+      &lt;/FormItem&gt;
+      &lt;FormItem <span class="nv">labelCol</span><span class="o">=</span> <span class="nv">wrapperCol</span><span class="o">=</span> <span class="nv">label</span><span class="o">=</span><span class="s2">"通道支付码"</span>&gt;
+        <span class="o">{</span>form.getFieldDecorator<span class="o">(</span><span class="s1">'mchp_code'</span>, <span class="o">{</span>
+          rules: <span class="o">[{</span>required: <span class="nb">true</span>, message: <span class="s1">'Please input  mchp_code...'</span><span class="o">}]</span>,
+        <span class="o">})(</span>&lt;Input <span class="nv">placeholder</span><span class="o">=</span><span class="s2">"请输入：通道支付码"</span>/&gt;<span class="o">)}</span>
+      &lt;/FormItem&gt;
+      &lt;FormItem <span class="nv">labelCol</span><span class="o">=</span> <span class="nv">wrapperCol</span><span class="o">=</span> <span class="nv">label</span><span class="o">=</span><span class="s2">"商户名称"</span>&gt;
+        <span class="o">{</span>form.getFieldDecorator<span class="o">(</span><span class="s1">'business_name'</span>, <span class="o">{</span>
+          rules: <span class="o">[{</span>required: <span class="nb">true</span>, message: <span class="s1">'Please input  business_name...'</span><span class="o">}]</span>,
+        <span class="o">})(</span>&lt;Input <span class="nv">placeholder</span><span class="o">=</span><span class="s2">"请输入： 商户名称"</span>/&gt;<span class="o">)}</span>
+      &lt;/FormItem&gt;
+      &lt;FormItem <span class="nv">labelCol</span><span class="o">=</span> <span class="nv">wrapperCol</span><span class="o">=</span> <span class="nv">label</span><span class="o">=</span><span class="s2">"描述信息"</span>&gt;
+        <span class="o">{</span>form.getFieldDecorator<span class="o">(</span><span class="s1">'mch_description'</span>, <span class="o">{</span>
+          rules: <span class="o">[{</span>required: <span class="nb">true</span>, message: <span class="s1">'Please input  certificate_file...'</span><span class="o">}]</span>,
+        <span class="o">})(</span>&lt;Input <span class="nv">placeholder</span><span class="o">=</span><span class="s2">"请输入：描述信息"</span>/&gt;<span class="o">)}</span>
+      &lt;/FormItem&gt;
+      &lt;FormItem <span class="nv">labelCol</span><span class="o">=</span> <span class="nv">wrapperCol</span><span class="o">=</span> <span class="nv">label</span><span class="o">=</span><span class="s2">"商户ID"</span>&gt;
+        <span class="o">{</span>form.getFieldDecorator<span class="o">(</span><span class="s1">'mch_id'</span>, <span class="o">{</span>
+          rules: <span class="o">[{</span>required: <span class="nb">true</span>, message: <span class="s1">'Please input  mch_id...'</span><span class="o">}]</span>,
+        <span class="o">})(</span>&lt;Input <span class="nv">placeholder</span><span class="o">=</span><span class="s2">"请输入：商户ID"</span>/&gt;<span class="o">)}</span>
+      &lt;/FormItem&gt;
+      &lt;FormItem <span class="nv">labelCol</span><span class="o">=</span> <span class="nv">wrapperCol</span><span class="o">=</span> <span class="nv">label</span><span class="o">=</span><span class="s2">"选择通道"</span>&gt;
+        <span class="o">{</span>form.getFieldDecorator<span class="o">(</span><span class="s1">'mchc_code'</span>, <span class="o">{</span>
+          rules: <span class="o">[{</span>required: <span class="nb">true</span>, message: <span class="s1">'Please selectd...'</span><span class="o">}]</span>,
+        <span class="o">})(</span>&lt;Select
+          // <span class="nv">mode</span><span class="o">=</span><span class="s2">"tags"</span>  // multiple  tags combobox
+          <span class="nv">style</span><span class="o">=</span>
+          <span class="nv">placeholder</span><span class="o">=</span><span class="s2">"不限"</span>
+        &gt;
+          <span class="o">{</span>optionChildrenDataTemp.map<span class="o">(</span>item <span class="o">=</span>&gt; <span class="o">(</span>
+            &lt;Option <span class="nv">key</span><span class="o">={</span>item.channel_id<span class="o">}</span> <span class="nv">value</span><span class="o">={</span>item.channel_id<span class="o">}</span>&gt;
+              <span class="o">{</span>item.channel_name<span class="o">}</span>
+            &lt;/Option&gt;
+          <span class="o">))}</span>
+        &lt;/Select&gt;<span class="o">)}</span>
+      &lt;/FormItem&gt;
+    &lt;/Modal&gt;
+  <span class="o">)</span>;
+<span class="o">})</span>;
+// 连接model层的state数据，然后通过this.props.state : loading.models.名<span class="o">(</span>namespace<span class="o">)</span>访问model层的state数据
+@connect<span class="o">(({</span>parkingPayManager, loading<span class="o">})</span> <span class="o">=</span>&gt; <span class="o">({</span>
+  parkingPayManager, //获得整个 Model
+  loading: loading.models.parkingPayManager, //   <span class="nb">true </span>or <span class="nb">false</span> 
+<span class="o">}))</span>
+<span class="nb">export </span>default class PayAgent extends PureComponent <span class="o">{</span>
+  state <span class="o">=</span> <span class="o">{</span>
+    selectedRows: <span class="o">[]</span>,
+    isLoading: <span class="nb">false</span>,
+    modalVisible: <span class="nb">false</span>,
+    optionChildrenData: <span class="o">[]</span>,
+  <span class="o">}</span>;
+
+  componentWillMount<span class="o">()</span> <span class="o">{</span>
+    const <span class="o">{</span>dispatch<span class="o">}</span> <span class="o">=</span> this.props;
+    dispatch<span class="o">({</span>
+      <span class="nb">type</span>: <span class="s1">'parkingPayManager/queryChannelList'</span>, //通过dispatch调用这个请求。
+      callback: <span class="o">(</span>e<span class="o">)</span> <span class="o">=</span>&gt; <span class="o">{</span> //请求内的callback  可以做刷新动作等，
+        message.success<span class="o">(</span><span class="s2">"select init success "</span> + e<span class="o">)</span>;
+        this.setState<span class="o">({</span>
+          optionChildrenData: e,
+        <span class="o">})</span>;
+      <span class="o">}</span>,
+    <span class="o">})</span>;
+    console.log<span class="o">(</span><span class="s2">"初始化 =&gt; 下拉列表的数据"</span><span class="o">)</span>;
+  <span class="o">}</span>
+
+  componentDidMount<span class="o">()</span> <span class="o">{</span>
+    // componentWillMount -&gt; render -&gt;  componentDidMount  ..-&gt; componentWillReceiveProps
+    const <span class="o">{</span>dispatch<span class="o">}</span> <span class="o">=</span> this.props;
+    // 触发action触发model层的state的初始化
+    dispatch<span class="o">({</span>
+      <span class="nb">type</span>: <span class="s1">'parkingPayManager/queryAgentList'</span>,
+    <span class="o">})</span>;
+  <span class="o">}</span>
+
+  handleModalVisible <span class="o">=</span> flag <span class="o">=</span>&gt; <span class="o">{</span>
+    this.setState<span class="o">({</span>
+      modalVisible: !!flag,
+    <span class="o">})</span>;
+  <span class="o">}</span>
+
+  handleAdd <span class="o">=</span> fields <span class="o">=</span>&gt; <span class="o">{</span>
+    const <span class="o">{</span>dispatch<span class="o">}</span> <span class="o">=</span> this.props;
+    // 触发action触发model层的state的初始化
+    dispatch<span class="o">({</span>
+      <span class="nb">type</span>: <span class="s1">'parkingPayManager/insertAgent'</span>,
+      payload: JSON.stringify<span class="o">(</span>fields<span class="o">)</span>,
+      callback: <span class="o">()</span> <span class="o">=</span>&gt; <span class="o">{</span>
+        dispatch<span class="o">({</span>
+          <span class="nb">type</span>: <span class="s1">'parkingPayManager/queryAgentList'</span>,
+        <span class="o">})</span>;
+        this.setState<span class="o">({</span>
+          modalVisible: <span class="nb">false</span>, // 清除
+        <span class="o">})</span>;
+        message.success<span class="o">(</span><span class="s1">'successfully '</span> + JSON.stringify<span class="o">(</span>fields<span class="o">))</span>;
+      <span class="o">}</span>,
+    <span class="o">})</span>;
+  <span class="o">}</span>;
+
+  render<span class="o">()</span> <span class="o">{</span>
+    const <span class="o">{</span>parkingPayManager: <span class="o">{</span>QueryAgentData<span class="o">}}</span> <span class="o">=</span> this.props;
+    const newdata <span class="o">=</span> <span class="o">{</span>
+      list: QueryAgentData,
+      pagination: <span class="o">{</span>
+        total: QueryAgentData.length,
+        pageSize: 10,// 页面量
+        current: 1, // 当前第几页
+      <span class="o">}</span>,
+    <span class="o">}</span>;
+    const <span class="o">{</span>isLoading, modalVisible, selectedRows, optionChildrenData<span class="o">}</span> <span class="o">=</span> this.state;
+    const columns <span class="o">=</span> <span class="o">[</span>
+      <span class="o">{</span>
+        title: <span class="s1">'商户伪码'</span>,
+        dataIndex: <span class="s1">'mch_code'</span>,
+        align: <span class="s1">'right'</span>,
+        render: text <span class="o">=</span>&gt;
+          text ? <span class="o">(</span>
+            text
+          <span class="o">)</span> : <span class="o">(</span>
+            <span class="s1">'无法显示'</span>
+          <span class="o">)</span>,
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        title: <span class="s1">'商户名称'</span>,
+        dataIndex: <span class="s1">'business_name'</span>,
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        title: <span class="s1">'描述信息'</span>,
+        dataIndex: <span class="s1">'mch_description'</span>,
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        title: <span class="s1">'商户的通道码'</span>,
+        dataIndex: <span class="s1">'mchc_code'</span>,
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        title: <span class="s1">'商户支付码'</span>,
+        dataIndex: <span class="s1">'mchp_code'</span>,
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        title: <span class="s1">'商户ID'</span>,
+        dataIndex: <span class="s1">'mch_id'</span>,
+        render: text <span class="o">=</span>&gt;
+          text ? <span class="o">(</span>
+            text
+          <span class="o">)</span> : <span class="o">(</span>
+            <span class="s1">'AliPay Not MchID'</span>
+          <span class="o">)</span>,
+      <span class="o">}</span>,
+    <span class="o">]</span>;
+
+    const parentMethods <span class="o">=</span> <span class="o">{</span>
+      handleAdd: this.handleAdd,
+      handleModalVisible: this.handleModalVisible,
+      optionChildrenDataTemp: optionChildrenData,
+    <span class="o">}</span>;
+
+    <span class="k">return</span> <span class="o">(</span>
+      &lt;PageHeaderLayout <span class="nv">title</span><span class="o">=</span><span class="s2">"商户配置信息"</span>&gt;
+        &lt;Card <span class="nv">bordered</span><span class="o">={</span><span class="nb">false</span><span class="o">}</span>&gt;
+          &lt;div <span class="nv">className</span><span class="o">={</span>styles.tableList<span class="o">}</span>&gt;
+            &lt;div <span class="nv">className</span><span class="o">={</span>styles.tableListOperator<span class="o">}</span>&gt;
+              &lt;Button <span class="nv">icon</span><span class="o">=</span><span class="s2">"plus"</span> <span class="nb">type</span><span class="o">=</span><span class="s2">"primary"</span> <span class="nv">onClick</span><span class="o">={()</span> <span class="o">=</span>&gt; this.handleModalVisible<span class="o">(</span><span class="nb">true</span><span class="o">)}</span>&gt;
+                添加商户配置
+              &lt;/Button&gt;
+            &lt;/div&gt;
+            &lt;StandardTable
+              <span class="nv">selectedRows</span><span class="o">={</span>selectedRows<span class="o">}</span>
+              <span class="nv">loading</span><span class="o">={</span>isLoading<span class="o">}</span>
+              <span class="nv">data</span><span class="o">={</span>newdata<span class="o">}</span>
+              <span class="nv">columns</span><span class="o">={</span>columns<span class="o">}</span>
+            /&gt;
+          &lt;/div&gt;
+        &lt;/Card&gt;
+        &lt;CreateForm <span class="o">{</span>...parentMethods<span class="o">}</span> <span class="nv">modalVisible</span><span class="o">={</span>modalVisible<span class="o">}</span>/&gt;
+      &lt;/PageHeaderLayout&gt;
+    <span class="o">)</span>;
+  <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre>
+</div>
+
+<ul>
+  <li>最终完成这个页面，进行访问查看。</li>
+</ul>
+
+<p><img src="http://zmatsh.b0.upaiyun.com/demos/104d4e32-f0f8-4a54-8f87-a839fce15176.png" alt="" /></p>
+
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+      
+        
+        <!-- Disqus Protection, see https://github.com/mzlogin/mzlogin.github.io/issues/2 -->
+        
+        
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'http://firsh.me/2018/05/28/ant-design-pro-stack1/';
+              this.page.identifier = '/2018/05/28/ant-design-pro-stack1/';
+              this.page.title = 'ant-design-pro 初级问题以及解答';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+
+              s.type = 'text/javascript';
+              s.async = true;
+              var shortname = 'zmatsh';
+
+              s.src = '//' + shortname + '.disqus.com/embed.js';
+
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        
+        
+      
+    
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="https://zmatsh.b0.upaiyun.com/assets/css/modules/sidebar-search.css">
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="uk0">uk0</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/uk0/uk0.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="Index" target="">Index</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="categories" target="">categories</a>
+                </li>
+                
+                <li>
+                    <a href="/open-source/" title="open-source" target="">open-source</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="wiki" target="">wiki</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="links" target="">links</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="about" target="">about</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-80669434-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>
