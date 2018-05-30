@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Ant-Design-Pro 基础问题第四天] &mdash; 张建新</title>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2018/05/30/ant-design-pro-stack2/">
+    <link rel="alternate" type="application/atom+xml" title="张建新" href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="Ant-Design-Pro 基础问题第四天]">
+      
+    <meta name="keywords" content="react,ant-design-pro,aliyun">
+    <meta name="og:keywords" content="react,ant-design-pro,aliyun">
+      
+    <meta name="description" content="其中是我在QQ群 362329545遇到的 问题，整理成问答录，希望能解决入门的烦恼，个人见解，如果有那里有错误请指出了我会积极改进，方便他人。">
+    <meta name="og:description" content="其中是我在QQ群 362329545遇到的 问题，整理成问答录，希望能解决入门的烦恼，个人见解，如果有那里有错误请指出了我会积极改进，方便他人。">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2018/05/30/ant-design-pro-stack2/">
+    <meta property="og:site_name" content="张建新">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2018-05-30">
+    
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="张建新"><span class="octicon octicon-mark-github"></span> 张建新</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="Index">Index</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="categories">categories</a>
+                
+                <a href="/open-source/" class=" site-header-nav-item" target="" title="open-source">open-source</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="wiki">wiki</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="links">links</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="about">about</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="Ant-Design-Pro ">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">Ant-Design-Pro 基础问题第四天]</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2018/05/30
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#yield" title="yield">yield</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <p>其中是我在QQ群 <code class="highlighter-rouge">362329545</code>遇到的 问题，整理成问答录，希望能解决入门的烦恼，个人见解，如果有那里有错误请指出了我会积极改进，方便他人。</p>
+
+<h2 id="问答录3问">问答录[3问]</h2>
+
+<h3 id="form-基础问题">Form 基础问题</h3>
+<ul>
+  <li>
+    <p><a href="#form_1" target="_self">如何编辑修改在一个Form内进行操作</a></p>
+  </li>
+  <li>
+    <p><span id="form_1"><font>在Form如何进行编辑以及新增数据。</font></span></p>
+
+    <ul>
+      <li>开始这个演示，注意注释描述,代码不一定能运行，只是整体做个介绍</li>
+    </ul>
+
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code>    <span class="kr">const</span> <span class="nx">CreateForm</span> <span class="o">=</span> <span class="nx">Form</span><span class="p">.</span><span class="nx">create</span><span class="p">()(</span><span class="nx">props</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="p">{</span><span class="nx">modalVisible</span><span class="p">,</span> <span class="nx">form</span><span class="p">,</span> <span class="nx">handleAdd</span><span class="p">,</span> <span class="nx">handleEdit</span><span class="p">,</span> <span class="nx">handleModalVisible</span><span class="p">,</span> <span class="nx">formData</span><span class="p">,</span> <span class="nx">formType</span><span class="p">}</span> <span class="o">=</span> <span class="nx">props</span><span class="p">;</span>  <span class="cm">/** 传入的可变变量 **/</span>
+    <span class="kr">const</span> <span class="nx">okHandle</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">form</span><span class="p">.</span><span class="nx">validateFields</span><span class="p">((</span><span class="nx">err</span><span class="p">,</span> <span class="nx">fieldsValue</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+        <span class="nx">form</span><span class="p">.</span><span class="nx">resetFields</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">formType</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">handleAdd</span><span class="p">(</span><span class="nx">fieldsValue</span><span class="p">);</span> <span class="cm">/**判断类型进行展示数据，以及新增*/</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">formType</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">handleEdit</span><span class="p">(</span><span class="nx">fieldsValue</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">};</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="o">&lt;</span><span class="nx">Modal</span>
+        <span class="nx">title</span><span class="o">=</span><span class="s2">"微信配置"</span>
+        <span class="nx">visible</span><span class="o">=</span><span class="p">{</span><span class="nx">modalVisible</span><span class="p">}</span>
+
+        <span class="nx">onOk</span><span class="o">=</span><span class="p">{</span><span class="nx">okHandle</span><span class="p">}</span> <span class="c1">//修改和新增主要看这里  </span>
+
+        <span class="nx">onCancel</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="nx">handleModalVisible</span><span class="p">()}</span>
+        <span class="o">&gt;</span>
+        <span class="c1">//初始化数据 formData</span>
+
+        <span class="o">&lt;</span><span class="nx">FormItem</span> <span class="nx">labelCol</span><span class="o">=</span> <span class="nx">wrapperCol</span><span class="o">=</span> <span class="nx">label</span><span class="o">=</span><span class="s2">"公钥"</span><span class="o">&gt;</span>
+            <span class="p">{</span><span class="nx">form</span><span class="p">.</span><span class="nx">getFieldDecorator</span><span class="p">(</span><span class="s1">'public_key'</span><span class="p">,</span> <span class="p">{</span>
+            <span class="na">initialValue</span><span class="p">:</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">formData</span> <span class="o">||</span> <span class="p">{}).</span><span class="nx">length</span> <span class="p">?</span> <span class="nx">formData</span><span class="p">.</span><span class="nx">public_key</span> <span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+            <span class="na">rules</span><span class="p">:</span> <span class="p">[{</span><span class="na">required</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">message</span><span class="p">:</span> <span class="s1">'Please input  public_key...'</span><span class="p">}],</span>
+            <span class="p">})(</span><span class="o">&lt;</span><span class="nx">Input</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s2">"请输入"</span><span class="o">/&gt;</span><span class="p">)}</span>
+        <span class="o">&lt;</span><span class="sr">/FormItem</span><span class="err">&gt;
+</span>
+        <span class="cm">/**这里定义的是 select 的数据以及修改的时候数据的加载 可以保证数据正常显示。**/</span>
+        <span class="cm">/**目前存在一些疑惑，为什么通过formData 直接绑定，在修改的时候展示的是key 不是 value 通过外部传递就可以。**/</span>
+        <span class="o">&lt;</span><span class="nx">FormItem</span> <span class="nx">labelCol</span><span class="o">=</span> <span class="nx">wrapperCol</span><span class="o">=</span> <span class="nx">label</span><span class="o">=</span><span class="s2">"应用类型"</span><span class="o">&gt;</span>
+            <span class="p">{</span><span class="nx">form</span><span class="p">.</span><span class="nx">getFieldDecorator</span><span class="p">(</span><span class="s1">'channel_way'</span><span class="p">,</span> <span class="p">{</span>
+            <span class="na">initialValue</span><span class="p">:</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">formData</span> <span class="o">||</span> <span class="p">{}).</span><span class="nx">length</span> <span class="p">?</span> <span class="nx">formData</span><span class="p">.</span><span class="nx">channel_way</span> <span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+            <span class="p">})(</span>
+            <span class="o">&lt;</span><span class="nx">Select</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s2">"不限"</span> <span class="nx">style</span><span class="o">=&gt;</span>
+                <span class="p">{</span><span class="nx">channelWayData</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="p">(</span>
+                <span class="o">&lt;</span><span class="nx">Option</span> <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span> <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="o">&gt;</span>
+                    <span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">desc</span><span class="p">}</span>
+                <span class="o">&lt;</span><span class="sr">/Option</span><span class="err">&gt;
+</span>                <span class="p">))}</span>
+            <span class="o">&lt;</span><span class="sr">/Select</span><span class="err">&gt;
+</span>            <span class="p">)}</span>
+        <span class="o">&lt;</span><span class="sr">/FormItem</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="sr">/Modal</span><span class="err">&gt;
+</span>    <span class="p">);</span>
+    <span class="p">});</span>
+
+      <span class="nx">handleEdit</span> <span class="o">=</span> <span class="nx">fields</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">message</span><span class="p">.</span><span class="nx">success</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">fields</span><span class="p">))</span>
+            <span class="kr">const</span> <span class="p">{</span><span class="nx">paymentConfigId</span><span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">;</span>
+            <span class="kr">const</span> <span class="p">{</span><span class="nx">dispatch</span><span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">;</span>
+            <span class="nx">fields</span><span class="p">.</span><span class="nx">channel_id</span> <span class="o">=</span> <span class="nx">paymentConfigId</span><span class="p">;</span>
+            <span class="nx">dispatch</span><span class="p">({</span>
+            <span class="na">type</span><span class="p">:</span> <span class="s1">'parkingPayManager/modifyChannel'</span><span class="p">,</span>
+            <span class="na">payload</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">fields</span><span class="p">),</span>
+            <span class="na">callback</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="nx">dispatch</span><span class="p">({</span>
+                <span class="na">type</span><span class="p">:</span> <span class="s1">'parkingPayManager/queryChannelList'</span><span class="p">,</span>
+                <span class="na">callback</span><span class="p">:</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                    <span class="nx">message</span><span class="p">.</span><span class="nx">success</span><span class="p">(</span><span class="s2">"修改成功，列表已经刷新！"</span><span class="p">)</span>
+                <span class="p">},</span>
+                <span class="p">})</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+                <span class="na">modalVisible</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// 清除</span>
+                <span class="p">});</span>
+            <span class="p">},</span>
+            <span class="p">})</span>
+        <span class="p">}</span>
+
+        <span class="nx">handleAdd</span> <span class="o">=</span> <span class="nx">fields</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="kr">const</span> <span class="p">{</span><span class="nx">dispatch</span><span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">;</span>
+            <span class="cm">/**switchPress true = 0, fasle = 1 方便数据存储*/</span> 
+            <span class="nx">fields</span><span class="p">.</span><span class="nx">channel_status</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">switchPress</span><span class="p">(</span><span class="nx">fields</span><span class="p">.</span><span class="nx">channel_status</span><span class="p">);</span>
+            <span class="cm">/**触发action触发model层的state的初始化*/</span>
+            <span class="nx">dispatch</span><span class="p">({</span>
+            <span class="na">type</span><span class="p">:</span> <span class="s1">'parkingPayManager/insertChannel'</span><span class="p">,</span>
+            <span class="na">payload</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">fields</span><span class="p">),</span>
+            <span class="na">callback</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="nx">dispatch</span><span class="p">({</span>
+                <span class="na">type</span><span class="p">:</span> <span class="s1">'parkingPayManager/queryChannelList'</span><span class="p">,</span>
+                <span class="na">callback</span><span class="p">:</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                    <span class="nx">message</span><span class="p">.</span><span class="nx">success</span><span class="p">(</span><span class="s1">'successfully '</span><span class="p">);</span>
+                <span class="p">},</span>
+                <span class="p">})</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+                        <span class="na">modalVisible</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+                    <span class="p">});</span>
+                <span class="p">},</span>
+            <span class="p">});</span>
+        <span class="p">};</span>
+    <span class="cm">/**传递数据*/</span>
+    <span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">paymentTypeData</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="na">desc</span><span class="p">:</span> <span class="s2">"支付宝"</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="p">,</span>
+        <span class="p">{</span>
+            <span class="na">id</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="na">desc</span><span class="p">:</span> <span class="s2">"微信"</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="p">,</span>
+        <span class="p">],</span>
+        <span class="na">channelWayData</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="na">id</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="na">desc</span><span class="p">:</span> <span class="s2">"小程序,公众号"</span><span class="p">,</span>
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="na">desc</span><span class="p">:</span> <span class="s2">"APP"</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="p">],</span>
+        <span class="na">selectedRows</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="na">formType</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="cm">/** 0 add  1 edit 定义Form的弹出的模式  **/</span>
+        <span class="na">formData</span><span class="p">:</span> <span class="p">{},</span>
+    <span class="p">}</span>
+    <span class="cm">/**
+    * @param  {state:Object} ... 里面多个参数 
+    *
+    */</span>
+    <span class="kr">const</span> <span class="p">{</span><span class="nx">isLoading</span><span class="p">,...</span><span class="err"></span><span class="p">[</span><span class="err">省略</span><span class="p">]}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">;</span>
+
+    <span class="kr">const</span> <span class="nx">parentMethods</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">handleAdd</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleAdd</span><span class="p">,</span>
+        <span class="na">handleModalVisible</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleModalVisible</span><span class="p">,</span>
+        <span class="na">optionChildrenDataTemp</span><span class="p">:</span> <span class="nx">optionChildrenData</span><span class="p">,</span>
+        <span class="na">formData</span><span class="p">:</span> <span class="nx">formData</span><span class="p">,</span>
+        <span class="na">formType</span><span class="p">:</span> <span class="nx">formType</span><span class="p">,</span>
+
+        <span class="na">handleEdit</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleEdit</span><span class="p">,</span>
+        <span class="na">channelWayData</span><span class="p">:</span> <span class="nx">channelWayData</span><span class="p">,</span>
+        <span class="na">paymentTypeData</span><span class="p">:</span> <span class="nx">paymentTypeData</span><span class="p">,</span>
+    <span class="p">};</span>
+
+
+     <span class="cm">/**
+     * 组件参数配置（render =&gt; （这里面定义的组件））
+     * @param {array}  parentMethods 是我们传递的参数组[多个]
+     *
+     * @param {boolean}  modalVisible 模态框 弹出还暗示隐藏的状态
+     */</span>
+     <span class="o">&lt;</span><span class="nx">CreateForm</span> <span class="p">{...</span><span class="nx">parentMethods</span><span class="p">}</span> <span class="nx">modalVisible</span><span class="o">=</span><span class="p">{</span><span class="nx">modalVisible</span><span class="p">}</span><span class="sr">/</span><span class="err">&gt;
+</span>
+     <span class="cm">/** models 里面的方法 */</span>
+     <span class="cm">/**
+     *@param {Object} payload 是我们提交的参数，或者是用来修改数据等。
+     *@param {function} callback 执行成功的回调可以将参数 call回去。
+     **/</span>
+     <span class="na">effects</span><span class="p">:</span> <span class="p">{</span>
+        <span class="o">*</span> <span class="nx">insertChannelCfg</span><span class="p">({</span><span class="nx">payload</span><span class="p">,</span> <span class="nx">callback</span><span class="p">},</span> <span class="p">{</span><span class="nx">call</span><span class="p">,</span> <span class="nx">put</span><span class="p">})</span> <span class="p">{</span>
+            <span class="kr">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">yield</span> <span class="nx">call</span><span class="p">(</span><span class="nx">insertParkManagerChannelCfg</span><span class="p">,</span> <span class="nx">payload</span><span class="p">);</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"result Data  successfully"</span><span class="p">);</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+            <span class="k">yield</span> <span class="nx">put</span><span class="p">({</span>
+                <span class="na">type</span><span class="p">:</span> <span class="s1">'updateStateInsertChannelCfg'</span><span class="p">,</span>
+                <span class="na">payload</span><span class="p">:</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span>
+                <span class="cm">/**
+                *  (response.success) ? response.data : [], 也可以这样去写
+                */</span>
+            <span class="p">});</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">success</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">callback</span><span class="p">();</span>
+                <span class="cm">/*
+                * callback(response);
+                * 可以将参数携带回去，也可以不携带，具体看下需求
+                **/</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+     <span class="p">}</span>
+    <span class="cm">/**
+    *@param {reducers} 通过reducers -&gt; updateStateInsertChannelCfg 将数据传递回去
+    **/</span>
+    <span class="nl">reducers</span><span class="p">:{</span>
+        <span class="nx">updateStateInsertChannelCfg</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="p">...</span><span class="nx">state</span><span class="p">,</span>
+            <span class="na">InsertChannelCfgNum</span><span class="p">:</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">,</span>
+            <span class="cm">/** InsertChannelCfgNum 记得在 state 里面注册 否则会出现undef */</span>
+        <span class="p">}</span>
+        <span class="p">},</span>
+     <span class="p">}</span>
+
+     <span class="cm">/***
+     * 解答一下 `namespace: 'parkingPayManager'`
+     *  我们在dispatch 里面通过type 调用的 是先通过 namespace 再去找到具体的(effects)内的执行器。
+     *
+     **/</span>
+
+    <span class="cm">/** services [用来发送请求，并且将数据携带回去] **/</span>
+
+    <span class="cm">/**
+    *@param {JSON} params 我们传递的参数，
+    *@func  request 是自己封装的一个请求的方法。
+    **/</span>
+    <span class="kr">export</span> <span class="nx">async</span> <span class="kd">function</span> <span class="nx">insertParkManagerChannelCfg</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'/proxy-post/insertChannelCfg'</span><span class="p">,</span> <span class="p">{</span>
+            <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span> <span class="na">data</span><span class="p">:</span> <span class="nx">params</span> <span class="o">||</span> <span class="p">{},</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+      
+        
+        <!-- Disqus Protection, see https://github.com/mzlogin/mzlogin.github.io/issues/2 -->
+        
+        
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'http://firsh.me/2018/05/30/ant-design-pro-stack2/';
+              this.page.identifier = '/2018/05/30/ant-design-pro-stack2/';
+              this.page.title = 'Ant-Design-Pro 基础问题第四天]';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+
+              s.type = 'text/javascript';
+              s.async = true;
+              var shortname = 'zmatsh';
+
+              s.src = '//' + shortname + '.disqus.com/embed.js';
+
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        
+        
+      
+    
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="https://zmatsh.b0.upaiyun.com/assets/css/modules/sidebar-search.css">
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="uk0">uk0</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/uk0/uk0.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="Index" target="">Index</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="categories" target="">categories</a>
+                </li>
+                
+                <li>
+                    <a href="/open-source/" title="open-source" target="">open-source</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="wiki" target="">wiki</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="links" target="">links</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="about" target="">about</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-80669434-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>
