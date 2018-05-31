@@ -129,6 +129,7 @@
 <ul>
   <li><a href="#form_1" target="_self">如何编辑修改在一个Form内进行操作</a></li>
   <li><a href="#form_2" target="_self">关于Ant(StandardTable)的默认数据格式</a></li>
+  <li><a href="#form_3" target="_self">关于Ant方法按钮方法触发的方式，以及如何定义。</a></li>
 </ul>
 
 <h3 id="答">答</h3>
@@ -372,6 +373,25 @@
              <span class="nx">data</span><span class="o">=</span><span class="p">{</span><span class="nx">newdata</span><span class="p">}</span>
              <span class="nx">columns</span><span class="o">=</span><span class="p">{</span><span class="nx">columns</span><span class="p">}</span>
              <span class="sr">/</span><span class="err">&gt;
+</span></code></pre>
+    </div>
+  </li>
+</ul>
+
+<h4 id="按钮onclick渲染触发"><span id="form_3"><font>按钮onClick，渲染触发。</font></span></h4>
+
+<ul>
+  <li>
+    <p>按钮定义</p>
+
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code>      <span class="cm">/**
+      * ()=&gt;this.ModifyHandleModalVisible(row,true) 用匿名函数的方式定义不会再加载的时候被触发
+      *
+      * this.ModifyHandleModalVisible(row,true)  这样会直接被触发（渲染周期开始）。
+      **/</span>
+      <span class="o">&lt;</span><span class="nx">Button</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"edit"</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span><span class="o">=&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">ModifyHandleModalVisible</span><span class="p">(</span><span class="nx">row</span><span class="p">,</span><span class="kc">true</span><span class="p">)}</span><span class="o">&gt;</span>
+              <span class="err">修改</span>
+      <span class="o">&lt;</span><span class="sr">/Button</span><span class="err">&gt;
 </span></code></pre>
     </div>
   </li>
