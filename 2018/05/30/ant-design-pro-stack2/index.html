@@ -131,6 +131,7 @@
   <li><a href="#form_2" target="_self">关于Ant(StandardTable)的默认数据格式</a></li>
   <li><a href="#form_3" target="_self">关于Ant方法按钮方法触发的方式，以及如何定义。</a></li>
   <li><a href="#form_4" target="_self">简单描述一下dispatch调用的过程。</a></li>
+  <li><a href="#form_5" target="_self">Redux(Router)页面跳转，携带参数的方式</a></li>
 </ul>
 
 <h3 id="答">答</h3>
@@ -488,6 +489,84 @@
         <p>3.1 subscribe方法 对应着 sub</p>
       </li>
     </ol>
+  </li>
+</ul>
+
+<h4 id="ant-redux-页面传递参数多种方式"><span id="form_5"><font>Ant Redux 页面传递参数，多种方式</font></span></h4>
+
+<ul>
+  <li>
+    <p>path 携带参数 <code class="highlighter-rouge">props.params</code></p>
+
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code>  <span class="cm">/**传递*/</span>
+  <span class="kr">import</span> <span class="p">{</span> <span class="nx">Router</span><span class="p">,</span><span class="nx">Route</span><span class="p">,</span><span class="nx">hashHistory</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">'react-router'</span><span class="p">;</span>
+  <span class="kr">class</span> <span class="nx">App</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+      <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+      <span class="p">...</span>
+      <span class="cm">/**使用方式*/</span>
+      <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span><span class="na">id</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="na">name</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="na">age</span><span class="p">:</span><span class="mi">1</span><span class="p">};</span>
+      <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+      <span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="err">`</span><span class="o">/</span><span class="nx">user</span><span class="o">/</span><span class="nx">$</span><span class="p">{</span><span class="nx">data</span><span class="p">}</span><span class="err">`</span><span class="p">;</span>
+      <span class="p">...</span>
+      <span class="k">return</span> <span class="p">(</span>
+          <span class="o">&lt;</span><span class="nx">Router</span> <span class="nx">history</span><span class="o">=</span><span class="p">{</span><span class="nx">hashHistory</span><span class="p">}</span><span class="o">&gt;</span>
+              <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s1">'/user/:name'</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">UserPage</span><span class="p">}</span><span class="o">&gt;&lt;</span><span class="sr">/Route</span><span class="err">&gt;
+</span>          <span class="o">&lt;</span><span class="sr">/Router</span><span class="err">&gt;
+</span>      <span class="p">)</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="cm">/**接收**/</span>
+
+  <span class="kr">export</span> <span class="k">default</span> <span class="kr">class</span> <span class="nx">UserPage</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="p">{</span>
+      <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">){</span>
+          <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="nx">render</span><span class="p">(){</span>
+          <span class="k">return</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">name</span><span class="o">&lt;</span><span class="sr">/div&gt;</span><span class="err">)
+</span>      <span class="p">}</span>
+  <span class="p">}</span>
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>query 类似<code class="highlighter-rouge">request</code>的<code class="highlighter-rouge">get</code></p>
+
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code>    <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s1">'/user'</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">UserPage</span><span class="p">}</span><span class="o">&gt;&lt;</span><span class="sr">/Route</span><span class="err">&gt;
+</span>
+   <span class="p">...</span>
+   <span class="cm">/**使用方式**/</span>
+   <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span><span class="na">id</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="na">name</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="na">age</span><span class="p">:</span><span class="mi">1</span><span class="p">};</span>
+    <span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">pathname</span><span class="p">:</span><span class="s1">'/user'</span><span class="p">,</span>
+    <span class="na">query</span><span class="p">:</span><span class="nx">data</span><span class="p">,</span>
+    <span class="p">}</span>
+   <span class="p">...</span>
+    <span class="cm">/**获取数据**/</span>
+    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">query</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="p">{</span><span class="nx">id</span><span class="p">,</span><span class="nx">name</span><span class="p">,</span><span class="nx">age</span><span class="p">}</span> <span class="o">=</span> <span class="nx">data</span><span class="p">;</span>
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>state方式类似于post方式，使用方式和query类似，首先定义路由：</p>
+
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code>     <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s1">'/user'</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">UserPage</span><span class="p">}</span><span class="o">&gt;&lt;</span><span class="sr">/Route</span><span class="err">&gt;
+</span>     <span class="p">...</span>
+     <span class="err"></span><span class="cm">/**使用*/</span>
+     <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span><span class="na">id</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="na">name</span><span class="p">:</span><span class="nx">sam</span><span class="p">,</span><span class="na">age</span><span class="p">:</span><span class="mi">36</span><span class="p">};</span>
+     <span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="na">pathname</span><span class="p">:</span><span class="s1">'/user'</span><span class="p">,</span>
+         <span class="na">state</span><span class="p">:</span><span class="nx">data</span><span class="p">,</span>
+     <span class="p">}</span>
+     <span class="p">...</span>
+     <span class="cm">/**获取数据*/</span>
+     <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">state</span><span class="p">;</span>
+     <span class="kd">var</span> <span class="p">{</span><span class="nx">id</span><span class="p">,</span><span class="nx">name</span><span class="p">,</span><span class="nx">age</span><span class="p">}</span> <span class="o">=</span> <span class="nx">data</span><span class="p">;</span>
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">state</code>方式依然可以传递任意类型的数据，而且可以不以明文方式传输.</p>
   </li>
 </ul>
 
