@@ -1,5 +1,11 @@
 {
   
+  "2018-06-21-yarn-hack-hadoop": {
+    "title": "yarn运莫名其妙的job 导致集群变慢 一直在跑一个用户为dr.who的application",
+    "url": " /2018/06/21/yarn-hack-hadoop/",
+    "category": "hadoop"
+  },
+  
   "2018-05-30-ant-design-pro-stack2": {
     "title": "Ant-Design-Pro 基础问题[第四天]",
     "url": " /2018/05/30/ant-design-pro-stack2/",
@@ -1410,6 +1416,12 @@
     "title": "Ant-Design-Pro 基础问题[第四天]",
     "url": "/2018/05/30/ant-design-pro-stack2/",
     "category": "[&quot;yield&quot;]"
+  },
+  
+  "2018-06-21-yarn-hack-hadoop": {
+    "title": "yarn运莫名其妙的job 导致集群变慢 一直在跑一个用户为dr.who的application",
+    "url": "/2018/06/21/yarn-hack-hadoop/",
+    "category": "[&quot;hadoop&quot;, &quot;yarn&quot;, &quot;hack&quot;]"
   },
   
   "wiki-android-studio": {

