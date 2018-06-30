@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Swimming &mdash; 张建新</title>
+    <title>基于Python DeJavu 进音乐指纹识别，识别歌曲 &mdash; 张建新</title>
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
@@ -21,23 +21,23 @@
     
 
     
-    <link rel="canonical" href="http://firsh.me/wiki/swimming/">
+    <link rel="canonical" href="http://firsh.me/2018/07/01/dejavu-python-read-mp3/">
     <link rel="alternate" type="application/atom+xml" title="张建新" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="Swimming">
+    <meta property="og:title" content="基于Python DeJavu 进音乐指纹识别，识别歌曲">
       
-    <meta name="keywords" content="游泳, 蛙泳">
-    <meta name="og:keywords" content="游泳, 蛙泳">
+    <meta name="keywords" content="张建新,docker,Github, 张建新博客 Google Kubernetes, kubernetes, Flink,Graphx Spark,hadoop,hbase,mongodb,hdfs,Geek,hack,Spring boot,spring boot,spring,Docker,Dockerfile,Java ,Python 冷漠">
+    <meta name="og:keywords" content="张建新,docker,Github, 张建新博客 Google Kubernetes, kubernetes, Flink,Graphx Spark,hadoop,hbase,mongodb,hdfs,Geek,hack,Spring boot,spring boot,spring,Docker,Dockerfile,Java ,Python 冷漠">
       
-    <meta name="description" content="蛙泳">
-    <meta name="og:description" content="蛙泳">
+    <meta name="description" content="这只是一个Demo">
+    <meta name="og:description" content="这只是一个Demo">
       
     
     
         
     
-    <meta property="og:url" content="http://firsh.me/wiki/swimming/">
+    <meta property="og:url" content="http://firsh.me/2018/07/01/dejavu-python-read-mp3/">
     <meta property="og:site_name" content="张建新">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -85,53 +85,135 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="Swimming">
+    <section class="collection-head small geopattern" data-pattern-id="基于Python DeJavu">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">Swimming</h1>
+        <h1 class="collection-header">基于Python DeJavu 进音乐指纹识别，识别歌曲</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2018/07/01
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#dejavu" title="dejavu">dejavu</a>
+          </span>
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#python" title="python">python</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
 </div>
 </section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
 <!-- / .banner -->
 <section class="container content">
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <h2 id="蛙泳">蛙泳</h2>
+    <p>这只是一个Demo</p>
 
-<p>我目前能游出最远距离的泳姿。</p>
-
-<h3 id="视频">视频</h3>
+<h2 id="开始">开始</h2>
 
 <ul>
-  <li><a href="http://v.youku.com/v_show/id_XMjgwOTA4OTI0.html?from=s1.8-1-1.2">蛙泳教学完整版</a></li>
+  <li>将音频数据分析的结果存储到数据库</li>
 </ul>
 
-<h3 id="动作时序图">动作时序图</h3>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="kn">from</span> <span class="nn">dejavu</span> <span class="kn">import</span> <span class="n">Dejavu</span>
 
-<p><img src="/images/wiki/breaststroke.png" alt="" /></p>
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"database"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"host"</span><span class="p">:</span> <span class="s">"127.0.0.1"</span><span class="p">,</span>
+        <span class="s">"user"</span><span class="p">:</span> <span class="s">"root"</span><span class="p">,</span>
+        <span class="s">"passwd"</span><span class="p">:</span> <span class="s">"passw0rd"</span><span class="p">,</span>
+        <span class="s">"db"</span><span class="p">:</span> <span class="s">"dejavu"</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s">"database_type"</span><span class="p">:</span> <span class="s">"mysql"</span><span class="p">,</span>
+<span class="p">}</span>
 
-<h3 id="要领">要领</h3>
+<span class="c"># 将数据提取到Mysql （音乐的指纹）</span>
+
+<span class="n">djv</span> <span class="o">=</span> <span class="n">Dejavu</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+<span class="n">djv</span><span class="o">.</span><span class="n">fingerprint_directory</span><span class="p">(</span><span class="s">"/Users/zhangjianxin/home/mp3/"</span><span class="p">,</span> <span class="p">[</span><span class="s">".mp3"</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">djv</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">get_num_fingerprints</span><span class="p">())</span>
+
+</code></pre>
+</div>
 
 <ul>
-  <li>先划手，后收腿，先伸胳膊后蹬腿。</li>
-  <li>腿部动作时一定要勾脚，大腿不要收太多。</li>
-  <li>收腿放松，蹬腿用力，蹬完一定要漂一会，把握好节奏，不要快蹬快收。</li>
-  <li>手部划水动作不要过大，不要超过肩部。</li>
-  <li>两手开始外分时就抬头吸气。</li>
+  <li>监听麦克风进行识别歌曲</li>
 </ul>
 
-<h2 id="自由泳">自由泳</h2>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
 
-<h3 id="视频-1">视频</h3>
 
-<ul>
-  <li><a href="http://v.youku.com/v_show/id_XNzIxMTkwOTY0.html?beta&amp;from=s1.8-1-2.999&amp;f=18195375&amp;sf=10102&amp;spm=0.0.0.0.lMFhS6">值得一看的自由泳教学视频</a></li>
-</ul>
+<span class="kn">from</span> <span class="nn">dejavu</span> <span class="kn">import</span> <span class="n">Dejavu</span>
+<span class="kn">from</span> <span class="nn">dejavu.recognize</span> <span class="kn">import</span> <span class="n">FileRecognizer</span><span class="p">,</span> <span class="n">MicrophoneRecognizer</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"database"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"host"</span><span class="p">:</span> <span class="s">"127.0.0.1"</span><span class="p">,</span>
+        <span class="s">"user"</span><span class="p">:</span> <span class="s">"root"</span><span class="p">,</span>
+        <span class="s">"passwd"</span><span class="p">:</span> <span class="s">"passw0rd"</span><span class="p">,</span>
+        <span class="s">"db"</span><span class="p">:</span> <span class="s">"dejavu"</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s">"database_type"</span><span class="p">:</span> <span class="s">"mysql"</span>
+<span class="p">}</span>
+<span class="n">djv</span> <span class="o">=</span> <span class="n">Dejavu</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+<span class="c"># 识别从mic输入的音频 只获得5秒的音频</span>
+<span class="n">secs</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">song</span> <span class="o">=</span> <span class="n">djv</span><span class="o">.</span><span class="n">recognize</span><span class="p">(</span><span class="n">MicrophoneRecognizer</span><span class="p">,</span> <span class="n">seconds</span><span class="o">=</span><span class="n">secs</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">song</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">"No Match"</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">song</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h2 id="需要用到的工具">需要用到的工具</h2>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>python 2.7
+
+brew install portaudio
+brew install ffmpeg
+brew install mysql-connector-c <span class="c"># my_config.h</span>
+brew install mysql
+<span class="c">#!!!  mysql-connector-c (my_config.h) -&gt;  mysql</span>
+ln -s  ../../../../mysql-connector-c/6.1.11/include/my_config.h ./
+
+
+brew link mysql <span class="c"># create links</span>
+
+pip install mysql-python
+pip install <span class="nv">numpy</span><span class="o">==</span>1.10.2 <span class="c"># 版本兼容性问题</span>
+pip install PyDejavu
+
+</code></pre>
+</div>
+
+<p><img src="http://zmatsh.b0.upaiyun.com/demos/788db197-f796-42d2-8ea5-ef655160e7c5.png" alt="" /></p>
+
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
 
     </article>
     <div class="share">
@@ -148,9 +230,9 @@
           <div id="disqus_thread"></div>
           <script>
             var disqus_config = function () {
-              this.page.url = 'http://firsh.me/wiki/swimming/';
-              this.page.identifier = '/wiki/swimming/';
-              this.page.title = 'Swimming';
+              this.page.url = 'http://firsh.me/2018/07/01/dejavu-python-read-mp3/';
+              this.page.identifier = '/2018/07/01/dejavu-python-read-mp3/';
+              this.page.title = '基于Python DeJavu 进音乐指纹识别，识别歌曲';
             };
             (function() { // DON'T EDIT BELOW THIS LINE
               var d = document, s = d.createElement('script');

@@ -1,5 +1,11 @@
 {
   
+  "2018-07-01-dejavu-python-read-mp3": {
+    "title": "基于Python DeJavu 进音乐指纹识别，识别歌曲",
+    "url": " /2018/07/01/dejavu-python-read-mp3/",
+    "category": "dejavu"
+  },
+  
   "2018-06-21-yarn-hack-hadoop": {
     "title": "yarn运莫名其妙的job 导致集群变慢 一直在跑一个用户为dr.who的application",
     "url": " /2018/06/21/yarn-hack-hadoop/",
@@ -1436,6 +1442,12 @@
     "title": "yarn运莫名其妙的job 导致集群变慢 一直在跑一个用户为dr.who的application",
     "url": "/2018/06/21/yarn-hack-hadoop/",
     "category": "[&quot;hadoop&quot;, &quot;yarn&quot;, &quot;hack&quot;]"
+  },
+  
+  "2018-07-01-dejavu-python-read-mp3": {
+    "title": "基于Python DeJavu 进音乐指纹识别，识别歌曲",
+    "url": "/2018/07/01/dejavu-python-read-mp3/",
+    "category": "[&quot;dejavu&quot;, &quot;python&quot;]"
   },
   
   "wiki-android-studio": {

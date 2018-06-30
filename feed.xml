@@ -1,4 +1,91 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-06-30T21:58:19+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html">yarn运莫名其妙的job 导致集群变慢 一直在跑一个用户为dr.who的application</title><link href="http://firsh.me/2018/06/21/yarn-hack-hadoop/" rel="alternate" type="text/html" title="yarn运莫名其妙的job 导致集群变慢 一直在跑一个用户为dr.who的application" /><published>2018-06-21T17:48:51+08:00</published><updated>2018-06-21T17:48:51+08:00</updated><id>http://firsh.me/2018/06/21/yarn-hack-hadoop</id><content type="html" xml:base="http://firsh.me/2018/06/21/yarn-hack-hadoop/">&lt;p&gt;简单介绍一下过程，现在有些人通过 hadoop 开放的restApi进行挖矿，8088 以及 8090 端口。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-07-01T01:55:28+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html">基于Python DeJavu 进音乐指纹识别，识别歌曲</title><link href="http://firsh.me/2018/07/01/dejavu-python-read-mp3/" rel="alternate" type="text/html" title="基于Python DeJavu 进音乐指纹识别，识别歌曲" /><published>2018-07-01T01:24:05+08:00</published><updated>2018-07-01T01:24:05+08:00</updated><id>http://firsh.me/2018/07/01/dejavu-python-read-mp3</id><content type="html" xml:base="http://firsh.me/2018/07/01/dejavu-python-read-mp3/">&lt;p&gt;这只是一个Demo&lt;/p&gt;
+
+&lt;h2 id=&quot;开始&quot;&gt;开始&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;将音频数据分析的结果存储到数据库&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/python&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;dejavu&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Dejavu&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;database&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;host&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;127.0.0.1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;user&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;root&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;passwd&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;passw0rd&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;db&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;dejavu&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;database_type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;mysql&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# 将数据提取到Mysql （音乐的指纹）&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;djv&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Dejavu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;djv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fingerprint_directory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/Users/zhangjianxin/home/mp3/&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;djv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_num_fingerprints&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;监听麦克风进行识别歌曲&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/python&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
+
+
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;dejavu&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Dejavu&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;dejavu.recognize&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FileRecognizer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MicrophoneRecognizer&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;database&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;host&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;127.0.0.1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;user&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;root&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;passwd&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;passw0rd&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;db&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;dejavu&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;database_type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;mysql&quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;djv&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Dejavu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# 识别从mic输入的音频 只获得5秒的音频&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;secs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;song&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;djv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;recognize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MicrophoneRecognizer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seconds&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;secs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;song&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;No Match&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;song&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;需要用到的工具&quot;&gt;需要用到的工具&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python 2.7
+
+brew install portaudio
+brew install ffmpeg
+brew install mysql-connector-c &lt;span class=&quot;c&quot;&gt;# my_config.h&lt;/span&gt;
+brew install mysql
+&lt;span class=&quot;c&quot;&gt;#!!!  mysql-connector-c (my_config.h) -&amp;gt;  mysql&lt;/span&gt;
+ln -s  ../../../../mysql-connector-c/6.1.11/include/my_config.h ./
+
+
+brew link mysql &lt;span class=&quot;c&quot;&gt;# create links&lt;/span&gt;
+
+pip install mysql-python
+pip install &lt;span class=&quot;nv&quot;&gt;numpy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;1.10.2 &lt;span class=&quot;c&quot;&gt;# 版本兼容性问题&lt;/span&gt;
+pip install PyDejavu
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/788db197-f796-42d2-8ea5-ef655160e7c5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">这只是一个Demo</summary></entry><entry><title type="html">yarn运莫名其妙的job 导致集群变慢 一直在跑一个用户为dr.who的application</title><link href="http://firsh.me/2018/06/21/yarn-hack-hadoop/" rel="alternate" type="text/html" title="yarn运莫名其妙的job 导致集群变慢 一直在跑一个用户为dr.who的application" /><published>2018-06-21T17:48:51+08:00</published><updated>2018-06-21T17:48:51+08:00</updated><id>http://firsh.me/2018/06/21/yarn-hack-hadoop</id><content type="html" xml:base="http://firsh.me/2018/06/21/yarn-hack-hadoop/">&lt;p&gt;简单介绍一下过程，现在有些人通过 hadoop 开放的restApi进行挖矿，8088 以及 8090 端口。&lt;/p&gt;
 
 &lt;h3 id=&quot;排问题&quot;&gt;排问题&lt;/h3&gt;
 &lt;ul&gt;
@@ -1753,142 +1840,4 @@ brew install privoxy
 
 &lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/d9600bf0-ce6a-41f6-a50b-ce569ea6bfb8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">需求</summary></entry><entry><title type="html">Shell初级入门程序</title><link href="http://firsh.me/2018/04/11/shell-code-linux/" rel="alternate" type="text/html" title="Shell初级入门程序" /><published>2018-04-11T13:12:45+08:00</published><updated>2018-04-11T13:12:45+08:00</updated><id>http://firsh.me/2018/04/11/shell-code-linux</id><content type="html" xml:base="http://firsh.me/2018/04/11/shell-code-linux/">&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
-
-&lt;p&gt;很久没有写博客了，今天写写一个以前没有写过的话题，缓冲区溢出shellcode编写。&lt;/p&gt;
-
-&lt;p&gt;我是菜鸟，以前没有写过shellcode，最近也在忙着网络的渗透，栈溢出也是零零碎碎的看到一些知识，大牛飘过，菜鸟言论仅供娱乐。&lt;/p&gt;
-
-&lt;p&gt;大家同是菜鸟的人可以看看，我是站在初学者的角度写这篇文章的，所以初学者应该比较容易理解。&lt;/p&gt;
-
-&lt;p&gt;对于一些复杂的shellcodet我们暂且先不谈，我们先来看看自己编写一个打开cmd窗口的shellcode。其实黑客防线上有位大神执笔写了一系列exploit的编写，有兴趣的人自己去看看。&lt;/p&gt;
-
-&lt;h2 id=&quot;首先我们需要了解一下windows的运行机制我们先写一个简单的开启本地cmd窗口的程序&quot;&gt;首先我们需要了解一下windows的运行机制。我们先写一个简单的开启本地cmd窗口的程序：&lt;/h2&gt;
-
-&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include&amp;lt;windows.h&amp;gt;  
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
-   &lt;span class=&quot;n&quot;&gt;WinExec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;cmd.exe&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;在visual-c上按f10进入反汇编代码&quot;&gt;在Visual C++上按F10进入反汇编代码:&lt;/h3&gt;
-
-&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;”&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;windows&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;”&lt;/span&gt;  
-&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  
-&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
-&lt;span class=&quot;mo&quot;&gt;00401010&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;ebp&lt;/span&gt;  
-&lt;span class=&quot;mo&quot;&gt;00401011&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;mov&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;ebp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;esp&lt;/span&gt;  
-&lt;span class=&quot;mo&quot;&gt;00401013&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;sub&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;esp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;40&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;  
-&lt;span class=&quot;mo&quot;&gt;00401016&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;ebx&lt;/span&gt;  
-&lt;span class=&quot;mo&quot;&gt;00401017&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;esi&lt;/span&gt;  
-&lt;span class=&quot;mo&quot;&gt;0040101&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;edi&lt;/span&gt;  
-&lt;span class=&quot;mo&quot;&gt;0040101&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;lea&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;edi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ebp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;40&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;  
-&lt;span class=&quot;mo&quot;&gt;0040101&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;mov&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;ecx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;  
-&lt;span class=&quot;mo&quot;&gt;00401021&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;mov&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;eax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CCCCCCCCh&lt;/span&gt;  
-&lt;span class=&quot;mo&quot;&gt;00401026&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;rep&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stos&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;dword&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;  
-&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;WinExec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;cmd.exe&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
-&lt;span class=&quot;mo&quot;&gt;0040102&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;mov&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;esi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;esp&lt;/span&gt;  
-&lt;span class=&quot;mo&quot;&gt;0040102&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;        &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
-&lt;span class=&quot;mo&quot;&gt;0040102&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;offset&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;cmd.exe&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;0041&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f01c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
-&lt;span class=&quot;mo&quot;&gt;00401031&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;dword&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__imp__WinExec&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;0042413&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;  
-&lt;span class=&quot;mo&quot;&gt;00401037&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;cmp&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;esi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;esp&lt;/span&gt;  
-&lt;span class=&quot;mo&quot;&gt;0040103&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;__chkesp&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;00401070&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
-&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;通过这个程序我们可以清楚的看到计算机在调用WinExec函数的时候是先把两个参数从右至左一次压入栈，然后调用call函数转到WinExec的地址去。但是要注意的是call函数除了实现地址的跳转还有一点就是把当前的EIP压入栈。&lt;/p&gt;
-
-&lt;p&gt;对于shellcode是机器码，大多数人看到都会晕乎乎的，但是不用怕，我们所要做的工作不是用机器码写这一大堆东西，这些计算机已经为我们做的很好了，我们所要做的就是用汇编甚至是高级语言写下我们要实现的代码。&lt;/p&gt;
-
-&lt;p&gt;但目前其实目的已经很明确，我们要调用WinExec函数就要知道在不同系统中WinExec函数所在的地址，那么用什么方法知道这个函数所在的地址呢？这里我介绍一种非常简便的办法，使用vc自带的depends工具。打开Depends，随便拖一个PE文件进去如下图：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/feb1aef7-5ae0-43d1-bdbf-b234589fa766.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;我们可以看到KERNEL.DLL的入口地址是0x7c800000而WinExec的入口地址是0x0006250D那么WinExec的地址就出来了两个相加得到0x7C86250D，这个方法是不是很简单？另外本菜鸟使用的是windows XP sp3不同的系统可能有所不同。&lt;/p&gt;
-
-&lt;p&gt;有了入口地址，我们可以用汇编来编写我们的shellcode，&lt;/p&gt;
-
-&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include&amp;lt;windows.h&amp;gt;  
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
-    &lt;span class=&quot;n&quot;&gt;_asm&lt;/span&gt;  
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;push&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ebp&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;mov&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ebp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;esp&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;xor&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;edi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edi&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;push&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;edi&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;sub&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;esp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;04&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;mov&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ebp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;08&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;63&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;mov&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ebp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;07&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Dh&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;mov&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ebp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;06&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;64&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;mov&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ebp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;05&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Eh&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;mov&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ebp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;04&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;65&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;mov&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ebp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;03&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;78&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;mov&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ebp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;02&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;65&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;push&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;//压入第一个参数  
-&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;lea&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ebp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;08&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;           
-        &lt;span class=&quot;n&quot;&gt;push&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eax&lt;/span&gt;           &lt;span class=&quot;c1&quot;&gt;//压入第二个参数  
-&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;mov&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;edx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mh&quot;&gt;0x7C86250D&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;edx&lt;/span&gt;            &lt;span class=&quot;c1&quot;&gt;//调用WinExec  
-&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;leave&lt;/span&gt;  
-    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;  
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;按F10进入反汇编调试器中，在按Alt+8看到汇编代码，此时并没有机器码啊，别着急，在空白的地方右击出现的下拉菜单中选中Code Byte一项。看看出现了什么？在每一行汇编代码前出现了机器码！如下图&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/0d6ce28d-d9c8-47b8-b21b-1eeb923c9754.bmp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;下面要做的工作就是把这些机器码抄下来了，这个是体力活。直接抄在一起比如：558BEC83EC……那么我们还要在每两个字母前手动添加/x么？当然不用，写一个小程序，一劳永逸：&lt;/p&gt;
-
-&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;stdio.h&quot;  
-#include &quot;stdlib.h&quot;  
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
-    &lt;span class=&quot;kt&quot;&gt;FILE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fp1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fp2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
-    &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;  
-    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;请输入文件路径：(注意字符转义)/n&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
-    &lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%s&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fp1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fopen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;rb&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;不能读取文件！/n&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fp2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fopen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;shellcode.txt&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;w+&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;不能写入文件！/n&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
-    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;feof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fp1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;  
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;ch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fgetc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fp1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;fputc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//',fp2);  
-&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;fputc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'x'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fp2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;fputc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fp2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;ch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fgetc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fp1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;fputc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fp2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
-    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;转换成功！&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
-    &lt;span class=&quot;n&quot;&gt;fclose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fp1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
-    &lt;span class=&quot;n&quot;&gt;fclose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fp2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
-      
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;最终转换的shellcode就是&lt;/p&gt;
-
-&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x55&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x8B&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xEX&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x83&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xEC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x40&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x53&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x56&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x57&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x8D&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x7D&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xC0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xB9&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x11&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x11&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x11&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xB8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xCC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xCC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xCC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xCC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xF3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x1B&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x55&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x8B&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xEC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x33&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xFF&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x57&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x83&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xEC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x04&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xC6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x45&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xF8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x63&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xC6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x45&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xF9&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x6D&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xC6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x45&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xFA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x64&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xC6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x45&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xFB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x2E&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xC6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x45&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xFC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x65&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xC6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x45&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xFD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x78&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xC6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x45&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xFE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x65&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x6A&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x01&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x8D&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x45&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xF8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x50&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xBA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x0D&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x25&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x86&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x7C&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xFF&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xD2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xC9&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;到这里该讲的都讲完了，还是那一句话，菜鸟言论，大牛飘过。。。&lt;/p&gt;
-
-&lt;h3 id=&quot;原文httpsblogcsdnnetyiyefangzhou24articledetails6440239&quot;&gt;原文：https://blog.csdn.net/yiyefangzhou24/article/details/6440239&lt;/h3&gt;
-
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">前言</summary></entry></feed>
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">需求</summary></entry></feed>
