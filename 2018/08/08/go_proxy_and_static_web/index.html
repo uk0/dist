@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>OllyDbg &mdash; 张建新</title>
+    <title>Go实现 静态页面服务器与反向代理在同一个端口进行工作. &mdash; 张建新</title>
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
@@ -21,23 +21,23 @@
     
 
     
-    <link rel="canonical" href="http://firsh.me/wiki/ollydbg/">
+    <link rel="canonical" href="http://firsh.me/2018/08/08/go_proxy_and_static_web/">
     <link rel="alternate" type="application/atom+xml" title="张建新" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="OllyDbg">
+    <meta property="og:title" content="Go实现 静态页面服务器与反向代理在同一个端口进行工作.">
       
-    <meta name="keywords" content="debug, ollydbg">
-    <meta name="og:keywords" content="debug, ollydbg">
+    <meta name="keywords" content="go 反向代理 静态服务器">
+    <meta name="og:keywords" content="go 反向代理 静态服务器">
       
-    <meta name="description" content="快捷键">
-    <meta name="og:description" content="快捷键">
+    <meta name="description" content="这是一个简单的 静态服务器，自带反向代理.">
+    <meta name="og:description" content="这是一个简单的 静态服务器，自带反向代理.">
       
     
     
         
     
-    <meta property="og:url" content="http://firsh.me/wiki/ollydbg/">
+    <meta property="og:url" content="http://firsh.me/2018/08/08/go_proxy_and_static_web/">
     <meta property="og:site_name" content="张建新">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -85,96 +85,112 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="OllyDbg">
+    <section class="collection-head small geopattern" data-pattern-id="Go实现 静态页面服务器与反向">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">OllyDbg</h1>
+        <h1 class="collection-header">Go实现 静态页面服务器与反向代理在同一个端口进行工作.</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2018/08/08
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#Go" title="Go">Go</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
 </div>
 </section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
 <!-- / .banner -->
 <section class="container content">
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <h3 id="快捷键">快捷键</h3>
+    <h1 id="这是一个简单的-静态服务器自带反向代理">这是一个简单的 静态服务器，自带反向代理.</h1>
 
-<p>Ctrl –&gt; C</p>
+<h3 id="quick">quick</h3>
 
-<p>Shift –&gt; S</p>
+<ul>
+  <li>1，如何配置
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">{</span>
+    <span class="s2">"firsh.cc"</span>: <span class="o">{</span><span class="c"># 这个url需要在 host文件里面修改一下下面会讲</span>
+    <span class="s2">"/api"</span>: <span class="s2">"localhost:8005"</span>,  <span class="c"># 需要代理的服务器地址 与mock一致即可 忽略POST，GET DELETE等方法</span>
+    <span class="s2">"*"</span>: <span class="s2">"/Users/zhangjianxin/home/GO_LIB/src/github.com/breakEval13/libs/lib/staticweb/root"</span>
+    <span class="c"># 上面的文件路径为dist目录</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+    </div>
+  </li>
+  <li>2 host如何进行映射</li>
+</ul>
 
-<p>Alt –&gt; M</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+➜  Desktop cat /etc/hosts
+<span class="c">##</span>
+<span class="c"># Host Database</span>
+<span class="c">#</span>
+127.0.0.1    firsh.me <span class="c"># 这里</span>
+127.0.0.1    firsh.cc <span class="c"># 这里</span>
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">功能</th>
-      <th style="text-align: left">快捷键</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">设置/取消断点</td>
-      <td style="text-align: left">F2</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">执行到光标所在行</td>
-      <td style="text-align: left">F4</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">步过</td>
-      <td style="text-align: left">F8</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">步进</td>
-      <td style="text-align: left">F7</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">运行</td>
-      <td style="text-align: left">F9</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">暂停</td>
-      <td style="text-align: left">F12</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">回到应用层</td>
-      <td style="text-align: left">M-F9</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">打开文件</td>
-      <td style="text-align: left">F3</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">重新调试</td>
-      <td style="text-align: left">C-F2</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">打开应用程序输入表</td>
-      <td style="text-align: left">C-n</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">寻找表达式</td>
-      <td style="text-align: left">C-g</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">打开断点窗口</td>
-      <td style="text-align: left">M-b</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">切换断点状态</td>
-      <td style="text-align: left">空格</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">添加备注</td>
-      <td style="text-align: left">;</td>
-    </tr>
-  </tbody>
-</table>
+</code></pre>
+</div>
+<ul>
+  <li>windows 同理进行修改hosts文件</li>
+</ul>
+
+<h3 id="如何启动">如何启动</h3>
+
+<ul>
+  <li>start
+  ```bash
+#windows 直接双击
+#mac or linux
+chmod +x  xxxx
+./xxx #即可</li>
+</ul>
+
+<p>```</p>
+<ul>
+  <li>
+    <p>配置文件和可执行文件放在统一目录(目录级别一致)))</p>
+  </li>
+  <li>
+    <p>需要修改代理的服务器IP直接编辑文件即可,程序会自动更新代理。</p>
+  </li>
+</ul>
+
+<h3 id="演示">演示</h3>
+<ul>
+  <li>GIF</li>
+</ul>
+
+<p><img src="http://zmatsh.b0.upaiyun.com/demos/1f4abb63-ed08-4004-a612-427a32ee6fb5.gif" alt="" /></p>
+
+<ul>
+  <li>Github</li>
+</ul>
+
+<p>https://github.com/uk0/web-container-proxy</p>
+
+<h2 id="小白手段大佬勿喷">！！！小白手段，大佬勿喷。</h2>
+
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
 
     </article>
     <div class="share">
@@ -191,9 +207,9 @@
           <div id="disqus_thread"></div>
           <script>
             var disqus_config = function () {
-              this.page.url = 'http://firsh.me/wiki/ollydbg/';
-              this.page.identifier = '/wiki/ollydbg/';
-              this.page.title = 'OllyDbg';
+              this.page.url = 'http://firsh.me/2018/08/08/go_proxy_and_static_web/';
+              this.page.identifier = '/2018/08/08/go_proxy_and_static_web/';
+              this.page.title = 'Go实现 静态页面服务器与反向代理在同一个端口进行工作.';
             };
             (function() { // DON'T EDIT BELOW THIS LINE
               var d = document, s = d.createElement('script');

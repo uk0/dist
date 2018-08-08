@@ -1,4 +1,73 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-07-01T01:55:28+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html">基于Python DeJavu 进音乐指纹识别，识别歌曲</title><link href="http://firsh.me/2018/07/01/dejavu-python-read-mp3/" rel="alternate" type="text/html" title="基于Python DeJavu 进音乐指纹识别，识别歌曲" /><published>2018-07-01T01:24:05+08:00</published><updated>2018-07-01T01:24:05+08:00</updated><id>http://firsh.me/2018/07/01/dejavu-python-read-mp3</id><content type="html" xml:base="http://firsh.me/2018/07/01/dejavu-python-read-mp3/">&lt;p&gt;这只是一个Demo&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-08-08T15:07:04+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html">Go实现 静态页面服务器与反向代理在同一个端口进行工作.</title><link href="http://firsh.me/2018/08/08/go_proxy_and_static_web/" rel="alternate" type="text/html" title="Go实现 静态页面服务器与反向代理在同一个端口进行工作." /><published>2018-08-08T15:03:28+08:00</published><updated>2018-08-08T15:03:28+08:00</updated><id>http://firsh.me/2018/08/08/go_proxy_and_static_web</id><content type="html" xml:base="http://firsh.me/2018/08/08/go_proxy_and_static_web/">&lt;h1 id=&quot;这是一个简单的-静态服务器自带反向代理&quot;&gt;这是一个简单的 静态服务器，自带反向代理.&lt;/h1&gt;
+
+&lt;h3 id=&quot;quick&quot;&gt;quick&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;1，如何配置
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;firsh.cc&quot;&lt;/span&gt;: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;# 这个url需要在 host文件里面修改一下下面会讲&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;/api&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;localhost:8005&quot;&lt;/span&gt;,  &lt;span class=&quot;c&quot;&gt;# 需要代理的服务器地址 与mock一致即可 忽略POST，GET DELETE等方法&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;*&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;/Users/zhangjianxin/home/GO_LIB/src/github.com/breakEval13/libs/lib/staticweb/root&quot;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# 上面的文件路径为dist目录&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;2 host如何进行映射&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+➜  Desktop cat /etc/hosts
+&lt;span class=&quot;c&quot;&gt;##&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Host Database&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+127.0.0.1    firsh.me &lt;span class=&quot;c&quot;&gt;# 这里&lt;/span&gt;
+127.0.0.1    firsh.cc &lt;span class=&quot;c&quot;&gt;# 这里&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;windows 同理进行修改hosts文件&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;如何启动&quot;&gt;如何启动&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;start
+  ```bash
+#windows 直接双击
+#mac or linux
+chmod +x  xxxx
+./xxx #即可&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;配置文件和可执行文件放在统一目录(目录级别一致)))&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;需要修改代理的服务器IP直接编辑文件即可,程序会自动更新代理。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;演示&quot;&gt;演示&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;GIF&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/1f4abb63-ed08-4004-a612-427a32ee6fb5.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Github&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;https://github.com/uk0/web-container-proxy&lt;/p&gt;
+
+&lt;h2 id=&quot;小白手段大佬勿喷&quot;&gt;！！！小白手段，大佬勿喷。&lt;/h2&gt;
+
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">这是一个简单的 静态服务器，自带反向代理.</summary></entry><entry><title type="html">基于Python DeJavu 进音乐指纹识别，识别歌曲</title><link href="http://firsh.me/2018/07/01/dejavu-python-read-mp3/" rel="alternate" type="text/html" title="基于Python DeJavu 进音乐指纹识别，识别歌曲" /><published>2018-07-01T01:24:05+08:00</published><updated>2018-07-01T01:24:05+08:00</updated><id>http://firsh.me/2018/07/01/dejavu-python-read-mp3</id><content type="html" xml:base="http://firsh.me/2018/07/01/dejavu-python-read-mp3/">&lt;p&gt;这只是一个Demo&lt;/p&gt;
 
 &lt;h2 id=&quot;开始&quot;&gt;开始&lt;/h2&gt;
 
@@ -1767,77 +1836,4 @@ docker stack deploy -c  emeos.yml demo
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;以上可能不善于表达，仅仅是技术方向的实现验证时间：2018年4月23日&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">开始</summary></entry><entry><title type="html">为 Docker for Mac 配置 HTTP 代理</title><link href="http://firsh.me/2018/04/16/docker-macos-proxy-https-http/" rel="alternate" type="text/html" title="为 Docker for Mac 配置 HTTP 代理" /><published>2018-04-16T13:44:26+08:00</published><updated>2018-04-16T13:44:26+08:00</updated><id>http://firsh.me/2018/04/16/docker-macos-proxy-https-http</id><content type="html" xml:base="http://firsh.me/2018/04/16/docker-macos-proxy-https-http/">&lt;h2 id=&quot;需求&quot;&gt;需求&lt;/h2&gt;
-
-&lt;p&gt;使用 Docker for Mac 时，让 docker pull/push 走本地的代理端口。&lt;/p&gt;
-
-&lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
-&lt;p&gt;Docker 是一种虚拟容器，可以提高开发过程中环境的一致性，便于维护，并且大大促进了知识以及经验的分享和积累。Docker for Mac 是 Docker 专门为 macOS 开发的图形客户端，使用起来相当方便，不过如果从 docker 仓库拉取镜像，那速度真是感人，2.0G 的镜像，估计一天一夜都下载不完，中途中断更是让人崩溃。更悲剧的是，docker 的网络流量无法走设置好的代理，比如本地的 http://127.0.0.1:8118，无论是在 Docker for Mac 图形界面里设置，或者在环境变量里设置 http_proxy/https_proxy 。另外，DaoCloud 的 Docker 加速器以及阿里云的 Docker 国内镜像服务，都有一定的效果，但速度不甚理想，而且新的 docker 镜像可能还没来得及缓存。&lt;/p&gt;
-
-&lt;h2 id=&quot;解决方案&quot;&gt;解决方案&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;把本地代理监听地址调整到 0.0.0.0&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;在本地设置代理时，把监听地址从 127.0.0.1 调整到 0.0.0.0。不同的软件设置方法不太相同，我用的privoxy。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Mac 安装 &lt;code class=&quot;highlighter-rouge&quot;&gt;privoxy&lt;/code&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-brew install privoxy
-&lt;span class=&quot;c&quot;&gt;# brew&lt;/span&gt;
-/usr/bin/ruby -e &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# Addr: https://brew.sh&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;privoxy 配置文件&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    cat /usr/local/etc/privoxy/config
-    &lt;span class=&quot;c&quot;&gt;# 转发地址&lt;/span&gt;
-    forward-socks5   /               localhost:1083 .
-    &lt;span class=&quot;c&quot;&gt;# 监听地址&lt;/span&gt;
-    listen-address  0.0.0.0:8118
-    &lt;span class=&quot;c&quot;&gt;# local network do not use proxy&lt;/span&gt;
-    forward         192.168.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;/     .
-    forward            10.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;/     .
-    forward           127.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;/     .
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;将本机的 lo0 网络接口设置成任意 IP&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;lo0 接口被称作 loopback，默认是 127.0.0.1，这里可以设置任意可用 IP 地址：&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo ifconfig lo0 &lt;span class=&quot;nb&quot;&gt;alias &lt;/span&gt;10.200.10.1/24    &lt;span class=&quot;c&quot;&gt;# 24是掩码&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;在 Docker for Mac 里设置代理 你可以看看自己的本地代理是在监听哪个端 &lt;code class=&quot;highlighter-rouge&quot;&gt;privoxy&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;c&quot;&gt;# 监听地址&lt;/span&gt;
-    listen-address  0.0.0.0:8118
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;不同的软件使用的端口可能不一样，根据情况设置，最后的代理地址就是上面第二部分的 IP 加上这个端口，如下图：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/f6838f96-60db-4123-a907-450351efda7a.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;结果测试图&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/d9600bf0-ce6a-41f6-a50b-ce569ea6bfb8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">需求</summary></entry></feed>
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">开始</summary></entry></feed>

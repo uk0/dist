@@ -1,5 +1,11 @@
 {
   
+  "2018-08-08-go-proxy-and-static-web": {
+    "title": "Go实现 静态页面服务器与反向代理在同一个端口进行工作.",
+    "url": " /2018/08/08/go_proxy_and_static_web/",
+    "category": "Go"
+  },
+  
   "2018-07-01-dejavu-python-read-mp3": {
     "title": "基于Python DeJavu 进音乐指纹识别，识别歌曲",
     "url": " /2018/07/01/dejavu-python-read-mp3/",
@@ -1448,6 +1454,12 @@
     "title": "基于Python DeJavu 进音乐指纹识别，识别歌曲",
     "url": "/2018/07/01/dejavu-python-read-mp3/",
     "category": "[&quot;dejavu&quot;, &quot;python&quot;]"
+  },
+  
+  "2018-08-08-go-proxy-and-static-web": {
+    "title": "Go实现 静态页面服务器与反向代理在同一个端口进行工作.",
+    "url": "/2018/08/08/go_proxy_and_static_web/",
+    "category": "[&quot;Go&quot;]"
   },
   
   "wiki-android-studio": {
