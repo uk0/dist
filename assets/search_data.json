@@ -1,5 +1,11 @@
 {
   
+  "2018-08-30-shell-getinterip": {
+    "title": "Shell 获得外网IP",
+    "url": " /2018/08/30/shell-getinterip/",
+    "category": "shell"
+  },
+  
   "2018-08-08-go-proxy-and-static-web": {
     "title": "Go实现 静态页面服务器与反向代理在同一个端口进行工作.",
     "url": " /2018/08/08/go_proxy_and_static_web/",
@@ -1460,6 +1466,12 @@
     "title": "Go实现 静态页面服务器与反向代理在同一个端口进行工作.",
     "url": "/2018/08/08/go_proxy_and_static_web/",
     "category": "[&quot;Go&quot;]"
+  },
+  
+  "2018-08-30-shell-getinterip": {
+    "title": "Shell 获得外网IP",
+    "url": "/2018/08/30/shell-getinterip/",
+    "category": "[&quot;shell&quot;]"
   },
   
   "wiki-android-studio": {
