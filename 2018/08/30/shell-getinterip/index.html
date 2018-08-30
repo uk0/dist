@@ -143,7 +143,7 @@
 	<span class="nb">echo</span> <span class="s2">"search inter ip "</span>
         <span class="nv">ip</span><span class="o">=</span><span class="k">$(</span>cat <span class="k">${</span><span class="nv">bashpath</span><span class="k">}</span>/ip.html  | sed  <span class="s1">'s/：/ /g'</span> | awk <span class="s1">'{print$3}'</span><span class="k">)</span>
 	<span class="nb">echo</span> <span class="nv">$ip</span>
-    rm <span class="o">{</span>bashpath<span class="o">}</span>/ip.html
+    rm <span class="k">${</span><span class="nv">bashpath</span><span class="k">}</span>/ip.html
 <span class="k">fi</span>
 </code></pre>
 </div>
