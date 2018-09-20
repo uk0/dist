@@ -1,5 +1,11 @@
 {
   
+  "2018-09-20-kubernetes-cdh-deploy": {
+    "title": "kubernetes 部署cdh 通过 NASNFS）进行文件存储。",
+    "url": " /2018/09/20/kubernetes-cdh-deploy/",
+    "category": "cdh"
+  },
+  
   "2018-08-30-shell-getinterip": {
     "title": "Shell 获得外网IP",
     "url": " /2018/08/30/shell-getinterip/",
@@ -1472,6 +1478,12 @@
     "title": "Shell 获得外网IP",
     "url": "/2018/08/30/shell-getinterip/",
     "category": "[&quot;shell&quot;]"
+  },
+  
+  "2018-09-20-kubernetes-cdh-deploy": {
+    "title": "kubernetes 部署cdh 通过 NASNFS）进行文件存储。",
+    "url": "/2018/09/20/kubernetes-cdh-deploy/",
+    "category": "[&quot;cdh&quot;]"
   },
   
   "wiki-android-studio": {
