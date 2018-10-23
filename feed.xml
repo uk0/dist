@@ -1,4 +1,107 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-09-20T16:31:49+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html">kubernetes 部署cdh 通过 NASNFS）进行文件存储。</title><link href="http://firsh.me/2018/09/20/kubernetes-cdh-deploy/" rel="alternate" type="text/html" title="kubernetes 部署cdh 通过 NASNFS）进行文件存储。" /><published>2018-09-20T15:59:04+08:00</published><updated>2018-09-20T15:59:04+08:00</updated><id>http://firsh.me/2018/09/20/kubernetes-cdh-deploy</id><content type="html" xml:base="http://firsh.me/2018/09/20/kubernetes-cdh-deploy/">&lt;p&gt;技术验证篇，通过Kubernetes搭建一个可扩展的 CDH，并且启动hadoop。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-10-23T19:06:02+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html">通过Serverless 获取 hadoop 文件系统的[原创]</title><link href="http://firsh.me/2018/10/23/serverless-hadoop-hdfs-get/" rel="alternate" type="text/html" title="通过Serverless 获取 hadoop 文件系统的[原创]" /><published>2018-10-23T18:53:13+08:00</published><updated>2018-10-23T18:53:13+08:00</updated><id>http://firsh.me/2018/10/23/serverless-hadoop-hdfs-get</id><content type="html" xml:base="http://firsh.me/2018/10/23/serverless-hadoop-hdfs-get/">&lt;h2 id=&quot;通过serverless-kubeless-进行操作hdfs--实现下载文件&quot;&gt;通过Serverless (Kubeless) 进行操作Hdfs , 实现下载文件.&lt;/h2&gt;
+
+&lt;h3 id=&quot;code&quot;&gt;code&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Python&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;hdfs&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Client&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;bottle&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;route&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HTTPResponse&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://hdfs-web-svc.cloudera:50070&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;session&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;content-type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'application/octet-stream'&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Content-Disposition'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'attachment;filename=&quot;data.csv&quot;'&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@route&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'/download'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getfile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/public/csv/parking_ths_car_record/part-m-00000&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;content&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reader&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;content&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'utf-8'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'ignore'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'gbk'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HTTPResponse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;serverless.yml&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Welcome to Serverless!&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# For full config options, check the kubeless plugin docs:&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#    https://github.com/serverless/serverless-kubeless&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# For documentation on kubeless itself:&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#    http://kubeless.io&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Update the service name below with your own service name&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;service&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;getfile&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Please ensure the serverless-kubeless provider plugin is installed globally.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# $ npm install -g serverless-kubeless&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# ...before installing project dependencies to register this provider.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# $ npm install&lt;/span&gt;
+
+&lt;span class=&quot;s&quot;&gt;provider&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;kubeless&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;${env:K8S_NAMESPACE, 'cloudera'}&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;runtime&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;python2.7&lt;/span&gt;
+
+&lt;span class=&quot;s&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;serverless-kubeless&lt;/span&gt;
+
+&lt;span class=&quot;s&quot;&gt;functions&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;getfile&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;handler.getfile&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;requirements.txt&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-txt&quot;&gt;bottle==0.12.13
+hdfs==2.1.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;kubernetes Ingress&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;extensions/v1beta1&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Ingress&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;getfile-ing&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;rules&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;getfile.kube.ibm-testing.com&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;paths&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;backend&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;s&quot;&gt;serviceName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;getfile&lt;/span&gt;
+          &lt;span class=&quot;s&quot;&gt;servicePort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;8080&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;相关地址&quot;&gt;相关地址&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;https://github.com/serverless/&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;更多信息可以关注&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;https://github.com/kubeless/kubeless/tree/f49533233cd79b116113ea10454cb2ca234dadfd/docker/runtime&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">通过Serverless (Kubeless) 进行操作Hdfs , 实现下载文件.</summary></entry><entry><title type="html">kubernetes 部署cdh 通过 NASNFS）进行文件存储。</title><link href="http://firsh.me/2018/09/20/kubernetes-cdh-deploy/" rel="alternate" type="text/html" title="kubernetes 部署cdh 通过 NASNFS）进行文件存储。" /><published>2018-09-20T15:59:04+08:00</published><updated>2018-09-20T15:59:04+08:00</updated><id>http://firsh.me/2018/09/20/kubernetes-cdh-deploy</id><content type="html" xml:base="http://firsh.me/2018/09/20/kubernetes-cdh-deploy/">&lt;p&gt;技术验证篇，通过Kubernetes搭建一个可扩展的 CDH，并且启动hadoop。&lt;/p&gt;
 
 &lt;h2 id=&quot;quick&quot;&gt;Quick&lt;/h2&gt;
 
@@ -2246,88 +2349,4 @@ yum makecache
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;转不注明出处，老子就不写了，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">有时候CentOS默认的yum源不一定是国内镜像，导致yum在线安装及更新速度不是很理想。这时候需要将yum源设置为国内镜像站点。国内主要开源的开源镜像站点应该是网易和阿里云了.</summary></entry><entry><title type="html">Gitlab JC/CD 第一篇</title><link href="http://firsh.me/2018/04/23/gitlab-cicd-java-runner/" rel="alternate" type="text/html" title="Gitlab JC/CD 第一篇" /><published>2018-04-23T10:45:02+08:00</published><updated>2018-04-23T10:45:02+08:00</updated><id>http://firsh.me/2018/04/23/gitlab-cicd-java-runner</id><content type="html" xml:base="http://firsh.me/2018/04/23/gitlab-cicd-java-runner/">&lt;h2 id=&quot;just-now&quot;&gt;just now&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;不再介绍如何安装&lt;code class=&quot;highlighter-rouge&quot;&gt;Gitlab&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;从&lt;code class=&quot;highlighter-rouge&quot;&gt;runner&lt;/code&gt; 开始介绍&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;配置runner&quot;&gt;配置Runner&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;管理员用户登录 第一步&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/e0a5ba5a-3b77-4871-a06d-b280040fcf8d.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;第二步进入Runner配置项&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/f5f17d52-ff64-44a9-8f10-61a171ddbaf4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;获得runner的注册信息&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/7a0076af-57c3-4886-9bfb-e7edc4f03750.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;启动一个Runner 并且配置&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-sudo docker run -d --name gitlab-java --restart always &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-  -v /srv/gitlab-java/config:/etc/gitlab-runner &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-  -v /var/run/docker.sock:/var/run/docker.sock &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-  gitlab/gitlab-runner:latest
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;注册runner 到 Gitlab&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo docker &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; -it gitlab-java gitlab-runner register &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-  --url &lt;span class=&quot;s2&quot;&gt;&quot;http://gitlab.emosa.com/&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-  --registration-token &lt;span class=&quot;s2&quot;&gt;&quot;hyNYzSsoJKjGqy1y4D-Q&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-  --executor docker &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-  --description &lt;span class=&quot;s2&quot;&gt;&quot;Java-Runner&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-  --docker-image &lt;span class=&quot;s2&quot;&gt;&quot;debian&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-  --docker-volumes /var/run/docker.sock:/var/run/docker.sock
-
-
-&lt;span class=&quot;c&quot;&gt;# gitlab-runner register&lt;/span&gt;
-Please enter the gitlab-ci coordinator URL:
-&lt;span class=&quot;c&quot;&gt;# 示例：http://gitlab.emosa.com/&lt;/span&gt;
-Please enter the gitlab-ci token &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;this runner:
-&lt;span class=&quot;c&quot;&gt;# hyNYzSsoJKjGqy1y4D-Q&lt;/span&gt;
-Please enter the gitlab-ci description &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;this runner:
-&lt;span class=&quot;c&quot;&gt;# Java-Runner&lt;/span&gt;
-Please enter the gitlab-ci tags &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;this runner &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;comma separated&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
-&lt;span class=&quot;c&quot;&gt;# java&lt;/span&gt;
-这个地方还有一个配置 默认即可
-&lt;span class=&quot;c&quot;&gt;#false&lt;/span&gt;
-Whether to run untagged builds &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;/false]:
-&lt;span class=&quot;c&quot;&gt;# true&lt;/span&gt;
-Please enter the executor: docker, parallels, shell, kubernetes, docker-ssh, ssh, virtualbox, docker+machine, docker-ssh+machine:
-&lt;span class=&quot;c&quot;&gt;# docker&lt;/span&gt;
-Please enter the default Docker image &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;e.g. ruby:2.1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
-&lt;span class=&quot;c&quot;&gt;# debian&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;检查启动结果&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/a8e8f6f4-2567-4434-af95-4de02ee55c8a.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Gitlab Runner 就配置完成了。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">just now</summary></entry></feed>
+&lt;p&gt;转不注明出处，老子就不写了，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">有时候CentOS默认的yum源不一定是国内镜像，导致yum在线安装及更新速度不是很理想。这时候需要将yum源设置为国内镜像站点。国内主要开源的开源镜像站点应该是网易和阿里云了.</summary></entry></feed>

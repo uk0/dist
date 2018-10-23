@@ -1,5 +1,11 @@
 {
   
+  "2018-10-23-serverless-hadoop-hdfs-get": {
+    "title": "通过Serverless 获取 hadoop 文件系统的[原创]",
+    "url": " /2018/10/23/serverless-hadoop-hdfs-get/",
+    "category": "serverless"
+  },
+  
   "2018-09-20-kubernetes-cdh-deploy": {
     "title": "kubernetes 部署cdh 通过 NASNFS）进行文件存储。",
     "url": " /2018/09/20/kubernetes-cdh-deploy/",
@@ -1484,6 +1490,12 @@
     "title": "kubernetes 部署cdh 通过 NASNFS）进行文件存储。",
     "url": "/2018/09/20/kubernetes-cdh-deploy/",
     "category": "[&quot;cdh&quot;]"
+  },
+  
+  "2018-10-23-serverless-hadoop-hdfs-get": {
+    "title": "通过Serverless 获取 hadoop 文件系统的[原创]",
+    "url": "/2018/10/23/serverless-hadoop-hdfs-get/",
+    "category": "[&quot;serverless&quot;, &quot;kubeless&quot;, &quot;sls&quot;, &quot;hadoop&quot;, &quot;cdh&quot;, &quot;hdfs&quot;]"
   },
   
   "wiki-android-studio": {
