@@ -1504,12 +1504,6 @@
     "category": "[&quot;Android&quot;]"
   },
   
-  "wiki-badminton": {
-    "title": "Badminton",
-    "url": "/wiki/badminton/",
-    "category": "[&quot;Hobbies&quot;]"
-  },
-  
   "wiki-chinese-copywriting-guidelines": {
     "title": "中文文案排版指北（简体中文版）",
     "url": "/wiki/chinese-copywriting-guidelines/",
@@ -1558,12 +1552,6 @@
     "category": "[&quot;Mac&quot;]"
   },
   
-  "wiki-markdown": {
-    "title": "Markdown",
-    "url": "/wiki/markdown/",
-    "category": "[&quot;Markdown&quot;]"
-  },
-  
   "wiki-mpv": {
     "title": "MPV",
     "url": "/wiki/mpv/",
@@ -1604,12 +1592,6 @@
     "title": "Source Insight",
     "url": "/wiki/source-insight/",
     "category": "[&quot;Tools&quot;]"
-  },
-  
-  "wiki-swimming": {
-    "title": "Swimming",
-    "url": "/wiki/swimming/",
-    "category": "[&quot;Hobbies&quot;]"
   },
   
   "wiki-template": {
