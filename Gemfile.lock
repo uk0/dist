@@ -167,12 +167,12 @@ GEM
     minima (2.0.0)
     minitest (5.11.3)
     multipart-post (2.0.0)
-    net-dns (0.8.0)
+    net-dns (0.9.0)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
     octokit (4.13.0)
       sawyer (~> 0.8.0, >= 0.5.3)
-    pathutil (0.16.1)
+    pathutil (0.16.2)
       forwardable-extended (~> 2.6)
     public_suffix (2.0.5)
     rb-fsevent (0.10.3)
@@ -243,4 +243,4 @@ DEPENDENCIES
   sass (= 3.4.23)
 
 BUNDLED WITH
-   1.16.2
+   1.16.6

@@ -1,5 +1,11 @@
 {
   
+  "2018-11-05-kubeless-serverless-hdfs-put-data": {
+    "title": "seerverless操作hdfs上传数据。",
+    "url": " /2018/11/05/kubeless-serverless-hdfs-put-data/",
+    "category": "hdfs"
+  },
+  
   "2018-10-23-serverless-hadoop-hdfs-get": {
     "title": "通过Serverless 获取 hadoop 文件系统的[原创]",
     "url": " /2018/10/23/serverless-hadoop-hdfs-get/",
@@ -1496,6 +1502,12 @@
     "title": "通过Serverless 获取 hadoop 文件系统的[原创]",
     "url": "/2018/10/23/serverless-hadoop-hdfs-get/",
     "category": "[&quot;serverless&quot;, &quot;kubeless&quot;, &quot;sls&quot;, &quot;hadoop&quot;, &quot;cdh&quot;, &quot;hdfs&quot;]"
+  },
+  
+  "2018-11-05-kubeless-serverless-hdfs-put-data": {
+    "title": "seerverless操作hdfs上传数据。",
+    "url": "/2018/11/05/kubeless-serverless-hdfs-put-data/",
+    "category": "[&quot;hdfs&quot;]"
   },
   
   "wiki-android-studio": {

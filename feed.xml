@@ -1,4 +1,61 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-10-29T10:53:46+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html">通过Serverless 获取 hadoop 文件系统的[原创]</title><link href="http://firsh.me/2018/10/23/serverless-hadoop-hdfs-get/" rel="alternate" type="text/html" title="通过Serverless 获取 hadoop 文件系统的[原创]" /><published>2018-10-23T18:53:13+08:00</published><updated>2018-10-23T18:53:13+08:00</updated><id>http://firsh.me/2018/10/23/serverless-hadoop-hdfs-get</id><content type="html" xml:base="http://firsh.me/2018/10/23/serverless-hadoop-hdfs-get/">&lt;h2 id=&quot;通过serverless-kubeless-进行操作hdfs--实现下载文件&quot;&gt;通过Serverless (Kubeless) 进行操作Hdfs , 实现下载文件.&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-11-05T20:05:08+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html">seerverless操作hdfs上传数据。</title><link href="http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data/" rel="alternate" type="text/html" title="seerverless操作hdfs上传数据。" /><published>2018-11-05T20:00:33+08:00</published><updated>2018-11-05T20:00:33+08:00</updated><id>http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data</id><content type="html" xml:base="http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data/">&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;
+
+&lt;h2 id=&quot;kubernetes-serverless-操作-hadoop-hdfs&quot;&gt;kubernetes serverless 操作 Hadoop Hdfs&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;serverless Python 操作hdfs&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# /usr/bin/env python&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# coding=utf-8&lt;/span&gt;
+
+import paramiko
+import os
+from hdfs import Client
+from bottle import route, run
+from bottle import request
+
+client &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Client&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http://hdfs-web-svc.cloudera:50070&quot;&lt;/span&gt;, &lt;span class=&quot;nv&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/&quot;&lt;/span&gt;, &lt;span class=&quot;nv&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;100, &lt;span class=&quot;nv&quot;&gt;session&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;False&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# 文件上传的HTML模板，这里没有额外去写html模板了，直接写在这里，方便点吧&lt;/span&gt;
+@route&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'/upload'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+def upload&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;:
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'''
+        &amp;lt;html&amp;gt;
+            &amp;lt;head&amp;gt;
+            &amp;lt;/head&amp;gt;
+            &amp;lt;body&amp;gt;
+                &amp;lt;form action&quot;/upload&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&amp;gt;
+                    &amp;lt;input type=&quot;file&quot; name=&quot;data&quot; /&amp;gt;
+                    &amp;lt;input type=&quot;submit&quot; value=&quot;Upload&quot; /&amp;gt;
+                &amp;lt;/form&amp;gt;
+            &amp;lt;/body&amp;gt;
+        &amp;lt;/html&amp;gt;
+    '''&lt;/span&gt;
+
+
+&lt;span class=&quot;c&quot;&gt;# 文件上传，overwrite=True为覆盖原有的文件，&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# 如果不加这参数，当服务器已存在同名文件时，将返回“IOError: File exists.”错误&lt;/span&gt;
+@route&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'/upload'&lt;/span&gt;, &lt;span class=&quot;nv&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'POST'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+def doupload&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;:
+    upload &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; request.files.getall&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'data'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;meta &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;upload:
+        buf &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; meta.file.read&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        name, ext &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; os.path.splitext&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;meta.filename&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;ext not &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'.jar'&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;'.tar'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'File extension not allowed. type [JAR]'&lt;/span&gt;
+        path &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/task/mr/'&lt;/span&gt; + name + ext
+        &lt;span class=&quot;c&quot;&gt;# ssh root@agent-2.agent-svc.cloudera.svc.cluster.local&lt;/span&gt;
+        print&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;--------------save Task To&quot;&lt;/span&gt; + path&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        with client.write&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;path, &lt;span class=&quot;nv&quot;&gt;overwrite&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;True&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; as writer:
+            writer.write&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;buf&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'ok'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;具体信息看第一条关于 serverless 的文章。&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>unknow :)</name></author><summary type="html">转载请注明出处，本文采用 CC4.0 协议授权</summary></entry><entry><title type="html">通过Serverless 获取 hadoop 文件系统的[原创]</title><link href="http://firsh.me/2018/10/23/serverless-hadoop-hdfs-get/" rel="alternate" type="text/html" title="通过Serverless 获取 hadoop 文件系统的[原创]" /><published>2018-10-23T18:53:13+08:00</published><updated>2018-10-23T18:53:13+08:00</updated><id>http://firsh.me/2018/10/23/serverless-hadoop-hdfs-get</id><content type="html" xml:base="http://firsh.me/2018/10/23/serverless-hadoop-hdfs-get/">&lt;h2 id=&quot;通过serverless-kubeless-进行操作hdfs--实现下载文件&quot;&gt;通过Serverless (Kubeless) 进行操作Hdfs , 实现下载文件.&lt;/h2&gt;
 
 &lt;h3 id=&quot;code&quot;&gt;code&lt;/h3&gt;
 
@@ -2299,54 +2356,4 @@ chattr -i /serverspeeder/etc/apx&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">锐速 + RMTNSS</summary></entry><entry><title type="html">修改CentOS默认yum源为国内yum镜像源</title><link href="http://firsh.me/2018/05/10/centos-yum-repo/" rel="alternate" type="text/html" title="修改CentOS默认yum源为国内yum镜像源" /><published>2018-05-10T14:05:42+08:00</published><updated>2018-05-10T14:05:42+08:00</updated><id>http://firsh.me/2018/05/10/centos-yum-repo</id><content type="html" xml:base="http://firsh.me/2018/05/10/centos-yum-repo/">&lt;p&gt;有时候CentOS默认的yum源不一定是国内镜像，导致yum在线安装及更新速度不是很理想。这时候需要将yum源设置为国内镜像站点。国内主要开源的开源镜像站点应该是网易和阿里云了.&lt;/p&gt;
-
-&lt;h2 id=&quot;修改centos默认yum源为mirrors163com&quot;&gt;修改CentOS默认yum源为mirrors.163.com&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;首先备份系统自带yum源配置文件/etc/yum.repos.d/CentOS-Base.repo&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@localhost ~]# mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;进入yum源配置文件所在的文件夹&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@localhost ~]# &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /etc/yum.repos.d/
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;下载163的yum源配置文件&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 自己根据版本进行下载&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# 163&lt;/span&gt;
-wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS7-Base-163.repo
-wget -O /etc/yum.repos.d/CentOS-Base.repo  http://mirrors.163.com/.help/CentOS6-Base-163.repo
-wget -O /etc/yum.repos.d/CentOS-Base.repo  http://mirrors.163.com/.help/CentOS5-Base-163.repo
-&lt;span class=&quot;c&quot;&gt;# aliyun&lt;/span&gt;
-wget -O /etc/yum.repos.d/CentOS-Base.repo  http://mirrors.aliyun.com/repo/Centos-7.repo
-wget -O /etc/yum.repos.d/CentOS-Base.repo  http://mirrors.aliyun.com/repo/Centos-5.repo
-wget -O /etc/yum.repos.d/CentOS-Base.repo  http://mirrors.aliyun.com/repo/Centos-6.repo
-
-&lt;span class=&quot;c&quot;&gt;# 运行yum makecache生成缓存&lt;/span&gt;
-
-yum makecache
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;更新动作&quot;&gt;更新动作&lt;/h1&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#更新系统就会看到以下mirrors.163.com信息&lt;/span&gt;
-已加载插件：fastestmirror, refresh-packagekit, security
-设置更新进程Loading mirror speeds from cached hostfile
-&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; base: mirrors.163.com
-&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; extras: mirrors.163.com
-&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; updates: mirrors.163.com
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;转不注明出处，老子就不写了，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">有时候CentOS默认的yum源不一定是国内镜像，导致yum在线安装及更新速度不是很理想。这时候需要将yum源设置为国内镜像站点。国内主要开源的开源镜像站点应该是网易和阿里云了.</summary></entry></feed>
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">锐速 + RMTNSS</summary></entry></feed>

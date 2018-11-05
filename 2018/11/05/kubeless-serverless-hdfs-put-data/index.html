@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Wiki Template &mdash; 张建新</title>
+    <title>seerverless操作hdfs上传数据。 &mdash; 张建新</title>
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
@@ -21,23 +21,23 @@
     
 
     
-    <link rel="canonical" href="http://firsh.me/wiki/template/">
+    <link rel="canonical" href="http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data/">
     <link rel="alternate" type="application/atom+xml" title="张建新" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="Wiki Template">
+    <meta property="og:title" content="seerverless操作hdfs上传数据。">
       
-    <meta name="keywords" content="keyword1, keyword2">
-    <meta name="og:keywords" content="keyword1, keyword2">
+    <meta name="keywords" content="hdfs">
+    <meta name="og:keywords" content="hdfs">
       
-    <meta name="description" content="Content here">
-    <meta name="og:description" content="Content here">
+    <meta name="description" content="转载请注明出处，本文采用 CC4.0 协议授权">
+    <meta name="og:description" content="转载请注明出处，本文采用 CC4.0 协议授权">
       
     
     
         
     
-    <meta property="og:url" content="http://firsh.me/wiki/template/">
+    <meta property="og:url" content="http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data/">
     <meta property="og:site_name" content="张建新">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -85,23 +85,100 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="Wiki Template">
+    <section class="collection-head small geopattern" data-pattern-id="seerverless操作hd">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">Wiki Template</h1>
+        <h1 class="collection-header">seerverless操作hdfs上传数据。</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2018/11/05
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#hdfs" title="hdfs">hdfs</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
 </div>
 </section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
 <!-- / .banner -->
 <section class="container content">
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <p>Content here</p>
+    <p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
+
+<h2 id="kubernetes-serverless-操作-hadoop-hdfs">kubernetes serverless 操作 Hadoop Hdfs</h2>
+
+<ul>
+  <li>serverless Python 操作hdfs</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># /usr/bin/env python</span>
+<span class="c"># coding=utf-8</span>
+
+import paramiko
+import os
+from hdfs import Client
+from bottle import route, run
+from bottle import request
+
+client <span class="o">=</span> Client<span class="o">(</span><span class="s2">"http://hdfs-web-svc.cloudera:50070"</span>, <span class="nv">root</span><span class="o">=</span><span class="s2">"/"</span>, <span class="nv">timeout</span><span class="o">=</span>100, <span class="nv">session</span><span class="o">=</span>False<span class="o">)</span>
+<span class="c"># 文件上传的HTML模板，这里没有额外去写html模板了，直接写在这里，方便点吧</span>
+@route<span class="o">(</span><span class="s1">'/upload'</span><span class="o">)</span>
+def upload<span class="o">()</span>:
+    <span class="k">return</span> <span class="s1">'''
+        &lt;html&gt;
+            &lt;head&gt;
+            &lt;/head&gt;
+            &lt;body&gt;
+                &lt;form action"/upload" method="post" enctype="multipart/form-data"&gt;
+                    &lt;input type="file" name="data" /&gt;
+                    &lt;input type="submit" value="Upload" /&gt;
+                &lt;/form&gt;
+            &lt;/body&gt;
+        &lt;/html&gt;
+    '''</span>
+
+
+<span class="c"># 文件上传，overwrite=True为覆盖原有的文件，</span>
+<span class="c"># 如果不加这参数，当服务器已存在同名文件时，将返回“IOError: File exists.”错误</span>
+@route<span class="o">(</span><span class="s1">'/upload'</span>, <span class="nv">method</span><span class="o">=</span><span class="s1">'POST'</span><span class="o">)</span>
+def doupload<span class="o">()</span>:
+    upload <span class="o">=</span> request.files.getall<span class="o">(</span><span class="s1">'data'</span><span class="o">)</span>
+    <span class="k">for </span>meta <span class="k">in </span>upload:
+        buf <span class="o">=</span> meta.file.read<span class="o">()</span>
+        name, ext <span class="o">=</span> os.path.splitext<span class="o">(</span>meta.filename<span class="o">)</span>
+        <span class="k">if </span>ext not <span class="k">in</span> <span class="o">(</span><span class="s1">'.jar'</span>, <span class="s1">'.tar'</span><span class="o">)</span>:
+            <span class="k">return</span> <span class="s1">'File extension not allowed. type [JAR]'</span>
+        path <span class="o">=</span> <span class="s1">'/task/mr/'</span> + name + ext
+        <span class="c"># ssh root@agent-2.agent-svc.cloudera.svc.cluster.local</span>
+        print<span class="o">(</span><span class="s2">"--------------save Task To"</span> + path<span class="o">)</span>
+        with client.write<span class="o">(</span>path, <span class="nv">overwrite</span><span class="o">=</span>True<span class="o">)</span> as writer:
+            writer.write<span class="o">(</span>buf<span class="o">)</span>;
+
+    <span class="k">return</span> <span class="s1">'ok'</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>具体信息看第一条关于 serverless 的文章。</li>
+</ul>
 
     </article>
     <div class="share">
@@ -118,9 +195,9 @@
           <div id="disqus_thread"></div>
           <script>
             var disqus_config = function () {
-              this.page.url = 'http://firsh.me/wiki/template/';
-              this.page.identifier = '/wiki/template/';
-              this.page.title = 'Wiki Template';
+              this.page.url = 'http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data/';
+              this.page.identifier = '/2018/11/05/kubeless-serverless-hdfs-put-data/';
+              this.page.title = 'seerverless操作hdfs上传数据。';
             };
             (function() { // DON'T EDIT BELOW THIS LINE
               var d = document, s = d.createElement('script');
