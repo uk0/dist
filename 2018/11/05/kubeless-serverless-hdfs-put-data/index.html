@@ -177,6 +177,42 @@ def doupload<span class="o">()</span>:
 </div>
 
 <ul>
+  <li>serverless.yml</li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="c1"># Welcome to Serverless!</span>
+<span class="c1">#</span>
+<span class="c1"># For full config options, check the kubeless plugin docs:</span>
+<span class="c1">#    https://github.com/serverless/serverless-kubeless</span>
+<span class="c1">#</span>
+<span class="c1"># For documentation on kubeless itself:</span>
+<span class="c1">#    http://kubeless.io</span>
+
+<span class="c1"># Update the service name below with your own service name</span>
+<span class="s">service</span><span class="pi">:</span> <span class="s">put-taskjar</span>
+
+<span class="c1"># Please ensure the serverless-kubeless provider plugin is installed globally.</span>
+<span class="c1"># $ npm install -g serverless-kubeless</span>
+<span class="c1">#</span>
+<span class="c1"># ...before installing project dependencies to register this provider.</span>
+<span class="c1"># $ npm install</span>
+
+<span class="s">provider</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">kubeless</span>
+  <span class="s">namespace</span><span class="pi">:</span> <span class="s">${env:K8S_NAMESPACE, 'cloudera'}</span>
+  <span class="s">runtime</span><span class="pi">:</span> <span class="s">python2.7</span>
+
+<span class="s">plugins</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">serverless-kubeless</span>
+
+<span class="s">functions</span><span class="pi">:</span>
+  <span class="s">upload</span><span class="pi">:</span>
+    <span class="s">handler</span><span class="pi">:</span> <span class="s">task.upload</span>
+
+</code></pre>
+</div>
+
+<ul>
   <li>具体信息看第一条关于 serverless 的文章。</li>
 </ul>
 
