@@ -1,4 +1,102 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-11-05T20:07:10+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html">seerverless操作hdfs上传数据。</title><link href="http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data/" rel="alternate" type="text/html" title="seerverless操作hdfs上传数据。" /><published>2018-11-05T20:00:33+08:00</published><updated>2018-11-05T20:00:33+08:00</updated><id>http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data</id><content type="html" xml:base="http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data/">&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-11-06T15:32:32+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html"></title><link href="http://firsh.me/2018/11/06/2018-11-06-linux-awk-study/" rel="alternate" type="text/html" title="" /><published>2018-11-06T15:32:32+08:00</published><updated>2018-11-06T15:32:32+08:00</updated><id>http://firsh.me/2018/11/06/2018-11-06-linux-awk-study</id><content type="html" xml:base="http://firsh.me/2018/11/06/2018-11-06-linux-awk-study/">&lt;h3 id=&quot;直接上代码&quot;&gt;直接上代码&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;set time&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 12:34:56
+&lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;hr &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$time&lt;/span&gt; | awk &lt;span class=&quot;s1&quot;&gt;'{split($0,a,&quot;:&quot; ); print a[1]}'&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# = 12&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;sec &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$time&lt;/span&gt; | awk &lt;span class=&quot;s1&quot;&gt;'{split($0,a,&quot;:&quot; ); print a[3]}'&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# = 56&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;hms &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$time&lt;/span&gt; | awk &lt;span class=&quot;s1&quot;&gt;'{split($0,a,&quot;:&quot; ); print a[1], a[2], a[3]}'&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;# = 12 34 56&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# 获得5 - 10 line 并且用 `;` 分隔每一行  获得第个元素&lt;/span&gt;
+sed -n &lt;span class=&quot;s1&quot;&gt;'5,10p'&lt;/span&gt; xvideos.com-db.csv | awk &lt;span class=&quot;s1&quot;&gt;'{split($0,a,&quot;;&quot; ); print a[1]}'&lt;/span&gt;
+
+sed -n &lt;span class=&quot;s1&quot;&gt;'5,10p'&lt;/span&gt; xvideos.com-db.csv | awk &lt;span class=&quot;s1&quot;&gt;'{split($0,a,&quot;;&quot; ); print a[1] a[2]}'&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;#从第3000行开始，显示1000行。即显示3000~3999行&lt;/span&gt;
+cat filename | tail -n +3000 | head -n 1000
+
+&lt;span class=&quot;c&quot;&gt;#显示1000行到3000行&lt;/span&gt;
+
+cat filename| head -n 3000 | tail -n +1000 
+
+tail -n 1000 &lt;span class=&quot;c&quot;&gt;#：显示最后1000行&lt;/span&gt;
+
+tail -n +1000 &lt;span class=&quot;c&quot;&gt;#：从1000行开始显示，显示1000行以后的&lt;/span&gt;
+
+head -n 1000 &lt;span class=&quot;c&quot;&gt;#：显示前面1000行&lt;/span&gt;
+
+tail -400f demo.log &lt;span class=&quot;c&quot;&gt;#监控最后400行日志文件的变化 等价与 tail -n 400 -f （-f参数是实时）&lt;/span&gt;
+
+less demo.log &lt;span class=&quot;c&quot;&gt;#查看日志文件，支持上下滚屏，查找功能&lt;/span&gt;
+
+uniq -c demo.log  &lt;span class=&quot;c&quot;&gt;#标记该行重复的数量，不重复值为1&lt;/span&gt;
+
+grep &lt;span class=&quot;s1&quot;&gt;'INFO'&lt;/span&gt; demo.log     &lt;span class=&quot;c&quot;&gt;#在文件demo.log中查找所有包行INFO的行&lt;/span&gt;
+
+grep -o &lt;span class=&quot;s1&quot;&gt;'order-fix.curr_id:\([0-9]\+\)'&lt;/span&gt; demo.log    &lt;span class=&quot;c&quot;&gt;#-o选项只提取order-fix.curr_id:xxx的内容（而不是一整行），并输出到屏幕上&lt;/span&gt;
+grep -c &lt;span class=&quot;s1&quot;&gt;'ERROR'&lt;/span&gt; demo.log   &lt;span class=&quot;c&quot;&gt;#输出文件demo.log中查找所有包行ERROR的行的数量&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# 输出demo.log中的某个日期中的ERROR的行&lt;/span&gt;
+sed -n &lt;span class=&quot;s1&quot;&gt;'/^2011-08-23.*ERROR/p'&lt;/span&gt; demolog.log
+
+&lt;span class=&quot;c&quot;&gt;#指定执行的sed文件&lt;/span&gt;
+sed -f demo.sed2 demo.log
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;demo.sed2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#n   #这一行用法和命令中的-n一样意思，就是默认不输出&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#demo.sed2&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#下面的一行是替换指令，就是把19位长的日期和INFO/ERROR,id,和后面的一截提取出来，然后用@分割符把这4个字段重新按顺序组合&lt;/span&gt;
+s/^&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt; 0-9]&lt;span class=&quot;se&quot;&gt;\{&lt;/span&gt;19&lt;span class=&quot;se&quot;&gt;\}\)&lt;/span&gt;.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;INFO&lt;span class=&quot;se&quot;&gt;\|&lt;/span&gt;ERROR&lt;span class=&quot;se&quot;&gt;\)&lt;/span&gt; .&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;order-fix.curr_id:&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;0-9]&lt;span class=&quot;se&quot;&gt;\+\)&lt;/span&gt;,&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/&lt;span class=&quot;se&quot;&gt;\1&lt;/span&gt;@&lt;span class=&quot;se&quot;&gt;\3&lt;/span&gt;@&lt;span class=&quot;se&quot;&gt;\2&lt;/span&gt;@&lt;span class=&quot;se&quot;&gt;\4&lt;/span&gt;/p
+
+
+&lt;span class=&quot;c&quot;&gt;#排序功能 -t表示用@作为分割符，-k表示用分割出来的第几个域排序(不要漏掉后面的,2/,3/,1，详细意思看下面的参考链接，这里不做详述)&lt;/span&gt;
+sed -f test.sed demolog.log | sort -t@ -k2,2n -k3,3r -k1,1  &lt;span class=&quot;c&quot;&gt;#n为按数字排序，r为倒序&lt;/span&gt;
+
+
+awk &lt;span class=&quot;s1&quot;&gt;'BEGIN{FS=&quot;@&quot;} {print $2,$3}'&lt;/span&gt; demo.log_after_sort   &lt;span class=&quot;c&quot;&gt;#BEGIN中预处理的是，把@号作为行的列分割符,把分割后的行的第2，3列输出&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;对指定时间范围内的日志进行统计，包括输出INFO，ERROR总数，记录总数，每个订单记录分类统计&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sed -f demo.sed demolog.log | sort -t@ -k2,2n -k3,3r -k1,1 | awk -f demo.awk
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;demo.awk&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#下面的例子是作为命令行输入的，利用单引号作为换行标记，这样就不用另外把脚本写进文件调用了&lt;/span&gt;
+awk &lt;span class=&quot;s1&quot;&gt;'
+BEGIN {
+  FS=&quot;@&quot;
+}
+ 
+{
+  if ($3 == &quot;INFO&quot;) {info_count++}
+  if ($3 == &quot;ERROR&quot;) {error_count++}
+ 
+}
+ 
+END {
+  print &quot;order total count:&quot;NR           #NR是awk内置变量，是遍历的当前行号，到了END区域自然行号就等于总数了
+  printf(&quot;INFO count:%d ERROR count:%d\n&quot;,info_count,error_count)
+} '&lt;/span&gt; demo.log_after_sort
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;原文：https://blog.csdn.net/UltraNi/article/details/6750434&lt;/p&gt;
+
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author></entry><entry><title type="html">seerverless操作hdfs上传数据。</title><link href="http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data/" rel="alternate" type="text/html" title="seerverless操作hdfs上传数据。" /><published>2018-11-05T20:00:33+08:00</published><updated>2018-11-05T20:00:33+08:00</updated><id>http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data</id><content type="html" xml:base="http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data/">&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;
 
 &lt;h2 id=&quot;kubernetes-serverless-操作-hadoop-hdfs&quot;&gt;kubernetes serverless 操作 Hadoop Hdfs&lt;/h2&gt;
 
@@ -2357,39 +2455,4 @@ const CreateForm &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Form.create&lt;s
 
 &lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/104d4e32-f0f8-4a54-8f87-a839fce15176.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">本章介绍的是ant-design-pro 使用中遇到的一些问题 以及个人的解决方式，大牛勿喷。</summary></entry><entry><title type="html">优秀的VPS TCP加速软件 —— 一键锐速安装脚本（开心版）</title><link href="http://firsh.me/2018/05/21/serverspeeder91yun-install/" rel="alternate" type="text/html" title="优秀的VPS TCP加速软件 —— 一键锐速安装脚本（开心版）" /><published>2018-05-21T13:49:52+08:00</published><updated>2018-05-21T13:49:52+08:00</updated><id>http://firsh.me/2018/05/21/serverspeeder91yun-install</id><content type="html" xml:base="http://firsh.me/2018/05/21/serverspeeder91yun-install/">&lt;h2 id=&quot;锐速----rmtnss&quot;&gt;锐速 +   RMTNSS&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;系统要求Centos7 64 位 内核 3.10&lt;/li&gt;
-  &lt;li&gt;RMTNSS https://github.com/uk0/RMTNSS&lt;/li&gt;
-  &lt;li&gt;锐速 https://www.91yun.co/serverspeeder91yun&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;quick-start&quot;&gt;quick start&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#检查系统虚拟化支持&lt;/span&gt;
-yum install virt-what -y
-&lt;span class=&quot;c&quot;&gt;# 例如返回 kvm&lt;/span&gt;
-virt-what
-&lt;span class=&quot;c&quot;&gt;# 安装新的内核&lt;/span&gt;
-wget --no-check-certificate -O rskernel.sh https://raw.githubusercontent.com/uxh/shadowsocks_bash/master/rskernel.sh &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; bash rskernel.sh
-
-&lt;span class=&quot;c&quot;&gt;# 安装锐速&lt;/span&gt;
-
-wget -N --no-check-certificate https://github.com/91yun/serverspeeder/raw/master/serverspeeder-v.sh &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; bash serverspeeder-v.sh CentOS 7.1 3.10.0-229.1.2.el7.x86_64 x64 3.11.20.4 serverspeeder_3283
-
-&lt;span class=&quot;c&quot;&gt;#重启锐速&lt;/span&gt;
-/serverspeeder/bin/serverSpeeder.sh restart
-&lt;span class=&quot;c&quot;&gt;#启动锐速&lt;/span&gt;
-/serverspeeder/bin/serverSpeeder.sh start
-&lt;span class=&quot;c&quot;&gt;#停止锐速&lt;/span&gt;
-/serverspeeder/bin/serverSpeeder.sh stop
-&lt;span class=&quot;c&quot;&gt;#查看锐速运行情况&lt;/span&gt;
-/serverspeeder/bin/serverSpeeder.sh status
-&lt;span class=&quot;c&quot;&gt;# 卸载&lt;/span&gt;
-chattr -i /serverspeeder/etc/apx&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; /serverspeeder/bin/serverSpeeder.sh uninstall -f
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">锐速 + RMTNSS</summary></entry></feed>
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">本章介绍的是ant-design-pro 使用中遇到的一些问题 以及个人的解决方式，大牛勿喷。</summary></entry></feed>
