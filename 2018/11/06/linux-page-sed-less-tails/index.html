@@ -30,8 +30,8 @@
     <meta name="keywords" content="awk sed grep 日志">
     <meta name="og:keywords" content="awk sed grep 日志">
       
-    <meta name="description" content="  shell 展示```bash">
-    <meta name="og:description" content="  shell 展示```bash">
+    <meta name="description" content="  Shell 整理复习2018年11月06日">
+    <meta name="og:description" content="  Shell 整理复习2018年11月06日">
       
     
     
@@ -122,7 +122,9 @@
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
     <ul>
-  <li>shell 展示
+  <li>
+    <p>Shell 整理复习2018年11月06日</p>
+
     <div class="language-bash highlighter-rouge"><pre class="highlight"><code>
 <span class="nb">set time</span> <span class="o">=</span> 12:34:56
 <span class="nb">set </span>hr <span class="o">=</span> <span class="sb">`</span><span class="nb">echo</span> <span class="nv">$time</span> | awk <span class="s1">'{split($0,a,":" ); print a[1]}'</span><span class="sb">`</span> <span class="c"># = 12</span>
@@ -191,6 +193,7 @@ awk <span class="s1">'BEGIN{FS="@"} {print $2,$3}'</span> demo.log_after_sort   
     </ul>
 
     <div class="language-bash highlighter-rouge"><pre class="highlight"><code>sed -f demo.sed demolog.log | sort -t@ -k2,2n -k3,3r -k1,1 | awk -f demo.awk
+  
 </code></pre>
     </div>
 
@@ -217,6 +220,58 @@ END {
 
 </code></pre>
     </div>
+
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>  ll -lrth <span class="c">#:按照更改时间倒序排列，最新文件在下边</span>
+
+  ll -lrSh <span class="c">#:按照文件大小倒序排列，最大文件在下边</span>
+  grep --color <span class="c"># :高亮查询关键字</span>
+</code></pre>
+    </div>
+    <ul>
+      <li>在大多数情况下<code class="highlighter-rouge"> awk</code> 的 <code class="highlighter-rouge">print</code> 语句可以完成任务，但有时我们还需要更多。在那些情况下，awk 提供了两个我们熟知的函数 <code class="highlighter-rouge">printf()</code> 和 <code class="highlighter-rouge">sprintf()</code>。是的，如同其它许多 awk 部件一样，这些函数等同于相应的<code class="highlighter-rouge"> C 语言函数</code>。<code class="highlighter-rouge">printf()</code> 会将格式化字符串打印到 stdout，而 sprintf()函数返回根据<code class="highlighter-rouge">printf</code>格式说明指定的格式化的字符串，它格式化数据但不输出数据。a w k提供函数<code class="highlighter-rouge">printf</code>，拥有几种不同的格式化输出功能。例如按列输出、左对齐或右对齐方式。</li>
+      <li><code class="highlighter-rouge">printf()</code>函数基本语法是<code class="highlighter-rouge">printf()</code>（<code class="highlighter-rouge">格式控制符</code>，<code class="highlighter-rouge">参数</code>） ，格式控制字符通常在引号里。类似C语言，awk printf格式有如下：
+        <div class="language-c highlighter-rouge"><pre class="highlight"><code>  <span class="o">%</span><span class="n">c</span> <span class="c1">//ASCII字符
+</span>  <span class="o">%</span><span class="n">d</span> <span class="c1">//整数
+</span>  <span class="o">%</span><span class="n">e</span> <span class="c1">//浮点数，科学记数法
+</span>  <span class="o">%</span><span class="n">f</span> <span class="c1">//浮点数，例如（1 2 3 . 4 4）
+</span>  <span class="o">%</span><span class="n">g</span> <span class="c1">//awk决定使用哪种浮点数转换 e或者f
+</span>  <span class="o">%</span><span class="n">o</span> <span class="c1">//八进制数
+</span>  <span class="o">%</span><span class="n">s</span> <span class="c1">//字符串
+</span>  <span class="o">%</span><span class="n">x</span> <span class="c1">//十六进制数
+</span></code></pre>
+        </div>
+      </li>
+      <li>下面来试试这些个格式：
+        <div class="language-bash highlighter-rouge"><pre class="highlight"><code>  <span class="nb">echo </span>97 | awk <span class="s1">'{printf("%c\n", $0)}'</span>
+  A
+</code></pre>
+        </div>
+      </li>
+      <li>类似<code class="highlighter-rouge">C语言</code>的格式化输出：
+        <div class="language-bash highlighter-rouge"><pre class="highlight"><code>  awk <span class="s1">'BEGIN{FS=":"}{printf("%-15s%s\n", $1, $3)}'</span> group_file2
+  wireshark    987
+  usbmon       986
+  jackuser     985
+  vboxusers    984
+  aln         1001
+</code></pre>
+        </div>
+      </li>
+      <li><code class="highlighter-rouge">sprintf</code>()函数返回根据<code class="highlighter-rouge">printf</code>格式说明指定的格式化的字符串，它格式化数据但不输出数据。所以需要将<code class="highlighter-rouge">sprintf</code>返回的数据保存在变量里面再输出</li>
+    </ul>
+
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>  awk <span class="s1">'BEGIN{FS=":";ORS=""}{var=sprintf("%s\n", $1);print var}'</span> group_file2
+  wireshark
+  usbmon
+  jackuser
+  vboxusers
+  aln
+</code></pre>
+    </div>
+
+    <ul>
+      <li>一个Linux 大佬 https://blog.csdn.net/imxiangzi/article/details/50387073</li>
+    </ul>
   </li>
 </ul>
 

@@ -1,5 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-11-06T17:05:03+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html">Linux awk less tail grep 使用</title><link href="http://firsh.me/2018/11/06/linux-page-sed-less-tails/" rel="alternate" type="text/html" title="Linux awk less tail grep 使用" /><published>2018-11-06T17:00:35+08:00</published><updated>2018-11-06T17:00:35+08:00</updated><id>http://firsh.me/2018/11/06/linux-page-sed-less-tails</id><content type="html" xml:base="http://firsh.me/2018/11/06/linux-page-sed-less-tails/">&lt;ul&gt;
-  &lt;li&gt;shell 展示
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-11-06T18:18:41+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html">Linux awk less tail grep 使用</title><link href="http://firsh.me/2018/11/06/linux-page-sed-less-tails/" rel="alternate" type="text/html" title="Linux awk less tail grep 使用" /><published>2018-11-06T17:00:35+08:00</published><updated>2018-11-06T17:00:35+08:00</updated><id>http://firsh.me/2018/11/06/linux-page-sed-less-tails</id><content type="html" xml:base="http://firsh.me/2018/11/06/linux-page-sed-less-tails/">&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Shell 整理复习2018年11月06日&lt;/p&gt;
+
     &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;span class=&quot;nb&quot;&gt;set time&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 12:34:56
 &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;hr &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$time&lt;/span&gt; | awk &lt;span class=&quot;s1&quot;&gt;'{split($0,a,&quot;:&quot; ); print a[1]}'&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# = 12&lt;/span&gt;
@@ -68,6 +70,7 @@ awk &lt;span class=&quot;s1&quot;&gt;'BEGIN{FS=&quot;@&quot;} {print $2,$3}'&lt;
     &lt;/ul&gt;
 
     &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sed -f demo.sed demolog.log | sort -t@ -k2,2n -k3,3r -k1,1 | awk -f demo.awk
+  
 &lt;/code&gt;&lt;/pre&gt;
     &lt;/div&gt;
 
@@ -94,10 +97,62 @@ END {
 
 &lt;/code&gt;&lt;/pre&gt;
     &lt;/div&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ll -lrth &lt;span class=&quot;c&quot;&gt;#:按照更改时间倒序排列，最新文件在下边&lt;/span&gt;
+
+  ll -lrSh &lt;span class=&quot;c&quot;&gt;#:按照文件大小倒序排列，最大文件在下边&lt;/span&gt;
+  grep --color &lt;span class=&quot;c&quot;&gt;# :高亮查询关键字&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+    &lt;ul&gt;
+      &lt;li&gt;在大多数情况下&lt;code class=&quot;highlighter-rouge&quot;&gt; awk&lt;/code&gt; 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;print&lt;/code&gt; 语句可以完成任务，但有时我们还需要更多。在那些情况下，awk 提供了两个我们熟知的函数 &lt;code class=&quot;highlighter-rouge&quot;&gt;printf()&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;sprintf()&lt;/code&gt;。是的，如同其它许多 awk 部件一样，这些函数等同于相应的&lt;code class=&quot;highlighter-rouge&quot;&gt; C 语言函数&lt;/code&gt;。&lt;code class=&quot;highlighter-rouge&quot;&gt;printf()&lt;/code&gt; 会将格式化字符串打印到 stdout，而 sprintf()函数返回根据&lt;code class=&quot;highlighter-rouge&quot;&gt;printf&lt;/code&gt;格式说明指定的格式化的字符串，它格式化数据但不输出数据。a w k提供函数&lt;code class=&quot;highlighter-rouge&quot;&gt;printf&lt;/code&gt;，拥有几种不同的格式化输出功能。例如按列输出、左对齐或右对齐方式。&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;printf()&lt;/code&gt;函数基本语法是&lt;code class=&quot;highlighter-rouge&quot;&gt;printf()&lt;/code&gt;（&lt;code class=&quot;highlighter-rouge&quot;&gt;格式控制符&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;参数&lt;/code&gt;） ，格式控制字符通常在引号里。类似C语言，awk printf格式有如下：
+        &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//ASCII字符
+&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//整数
+&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//浮点数，科学记数法
+&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//浮点数，例如（1 2 3 . 4 4）
+&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//awk决定使用哪种浮点数转换 e或者f
+&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;o&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//八进制数
+&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//字符串
+&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//十六进制数
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;下面来试试这些个格式：
+        &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nb&quot;&gt;echo &lt;/span&gt;97 | awk &lt;span class=&quot;s1&quot;&gt;'{printf(&quot;%c\n&quot;, $0)}'&lt;/span&gt;
+  A
+&lt;/code&gt;&lt;/pre&gt;
+        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;类似&lt;code class=&quot;highlighter-rouge&quot;&gt;C语言&lt;/code&gt;的格式化输出：
+        &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  awk &lt;span class=&quot;s1&quot;&gt;'BEGIN{FS=&quot;:&quot;}{printf(&quot;%-15s%s\n&quot;, $1, $3)}'&lt;/span&gt; group_file2
+  wireshark    987
+  usbmon       986
+  jackuser     985
+  vboxusers    984
+  aln         1001
+&lt;/code&gt;&lt;/pre&gt;
+        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sprintf&lt;/code&gt;()函数返回根据&lt;code class=&quot;highlighter-rouge&quot;&gt;printf&lt;/code&gt;格式说明指定的格式化的字符串，它格式化数据但不输出数据。所以需要将&lt;code class=&quot;highlighter-rouge&quot;&gt;sprintf&lt;/code&gt;返回的数据保存在变量里面再输出&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  awk &lt;span class=&quot;s1&quot;&gt;'BEGIN{FS=&quot;:&quot;;ORS=&quot;&quot;}{var=sprintf(&quot;%s\n&quot;, $1);print var}'&lt;/span&gt; group_file2
+  wireshark
+  usbmon
+  jackuser
+  vboxusers
+  aln
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;一个Linux 大佬 https://blog.csdn.net/imxiangzi/article/details/50387073&lt;/li&gt;
+    &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">shell 展示 ```bash</summary></entry><entry><title type="html">seerverless操作hdfs上传数据。</title><link href="http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data/" rel="alternate" type="text/html" title="seerverless操作hdfs上传数据。" /><published>2018-11-05T20:00:33+08:00</published><updated>2018-11-05T20:00:33+08:00</updated><id>http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data</id><content type="html" xml:base="http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data/">&lt;p&gt;这只是一次尝试。。。。&lt;/p&gt;
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">Shell 整理复习2018年11月06日</summary></entry><entry><title type="html">seerverless操作hdfs上传数据。</title><link href="http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data/" rel="alternate" type="text/html" title="seerverless操作hdfs上传数据。" /><published>2018-11-05T20:00:33+08:00</published><updated>2018-11-05T20:00:33+08:00</updated><id>http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data</id><content type="html" xml:base="http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data/">&lt;p&gt;这只是一次尝试。。。。&lt;/p&gt;
 
 &lt;h2 id=&quot;kubernetes-serverless-操作-hadoop-hdfs&quot;&gt;kubernetes serverless 操作 Hadoop Hdfs&lt;/h2&gt;
 
