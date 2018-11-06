@@ -1,6 +1,9 @@
-<h3 id="直接上代码">直接上代码</h3>
+<p>Linux 相关使用记录以及遇到的问题。</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">set time</span> <span class="o">=</span> 12:34:56
+<h2 id="直接上代码">直接上代码</h2>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<span class="nb">set time</span> <span class="o">=</span> 12:34:56
 <span class="nb">set </span>hr <span class="o">=</span> <span class="sb">`</span><span class="nb">echo</span> <span class="nv">$time</span> | awk <span class="s1">'{split($0,a,":" ); print a[1]}'</span><span class="sb">`</span> <span class="c"># = 12</span>
 
 <span class="nb">set </span>sec <span class="o">=</span> <span class="sb">`</span><span class="nb">echo</span> <span class="nv">$time</span> | awk <span class="s1">'{split($0,a,":" ); print a[3]}'</span><span class="sb">`</span> <span class="c"># = 56</span>
