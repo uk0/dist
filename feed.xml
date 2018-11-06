@@ -1,8 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-11-06T17:03:43+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html"></title><link href="http://firsh.me/2018/11/06/2018-11-06-study-sedawktailless/" rel="alternate" type="text/html" title="" /><published>2018-11-06T17:03:43+08:00</published><updated>2018-11-06T17:03:43+08:00</updated><id>http://firsh.me/2018/11/06/2018-11-06-study-sedawktailless</id><content type="html" xml:base="http://firsh.me/2018/11/06/2018-11-06-study-sedawktailless/">&lt;p&gt;Linux 相关使用记录以及遇到的问题。&lt;/p&gt;
-
-&lt;h2 id=&quot;quick&quot;&gt;quick&lt;/h2&gt;
-
-&lt;ul&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-11-06T17:05:03+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html">Linux awk less tail grep 使用</title><link href="http://firsh.me/2018/11/06/linux-page-sed-less-tails/" rel="alternate" type="text/html" title="Linux awk less tail grep 使用" /><published>2018-11-06T17:00:35+08:00</published><updated>2018-11-06T17:00:35+08:00</updated><id>http://firsh.me/2018/11/06/linux-page-sed-less-tails</id><content type="html" xml:base="http://firsh.me/2018/11/06/linux-page-sed-less-tails/">&lt;ul&gt;
   &lt;li&gt;shell 展示
     &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;span class=&quot;nb&quot;&gt;set time&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 12:34:56
@@ -101,9 +97,7 @@ END {
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;原文：https://blog.csdn.net/UltraNi/article/details/6750434&lt;/p&gt;
-
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author></entry><entry><title type="html">Linux awk less tail grep 使用</title><link href="http://firsh.me/2018/11/06/linux-page-sed-less-tails/" rel="alternate" type="text/html" title="Linux awk less tail grep 使用" /><published>2018-11-06T17:00:35+08:00</published><updated>2018-11-06T17:00:35+08:00</updated><id>http://firsh.me/2018/11/06/linux-page-sed-less-tails</id><content type="html" xml:base="http://firsh.me/2018/11/06/linux-page-sed-less-tails/">&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">转载请注明出处，本文采用 CC4.0 协议授权</summary></entry><entry><title type="html">seerverless操作hdfs上传数据。</title><link href="http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data/" rel="alternate" type="text/html" title="seerverless操作hdfs上传数据。" /><published>2018-11-05T20:00:33+08:00</published><updated>2018-11-05T20:00:33+08:00</updated><id>http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data</id><content type="html" xml:base="http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data/">&lt;p&gt;这只是一次尝试。。。。&lt;/p&gt;
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">shell 展示 ```bash</summary></entry><entry><title type="html">seerverless操作hdfs上传数据。</title><link href="http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data/" rel="alternate" type="text/html" title="seerverless操作hdfs上传数据。" /><published>2018-11-05T20:00:33+08:00</published><updated>2018-11-05T20:00:33+08:00</updated><id>http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data</id><content type="html" xml:base="http://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data/">&lt;p&gt;这只是一次尝试。。。。&lt;/p&gt;
 
 &lt;h2 id=&quot;kubernetes-serverless-操作-hadoop-hdfs&quot;&gt;kubernetes serverless 操作 Hadoop Hdfs&lt;/h2&gt;
 
@@ -1723,4 +1717,745 @@ pip install PyDejavu
 
 &lt;p&gt;&lt;img src=&quot;http://47.93.5.46/1.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">其中是我在QQ群 362329545遇到的 问题，整理成问答录，希望能解决入门的烦恼，个人见解，如果有那里有错误请指出了我会积极改进，方便他人。</summary></entry></feed>
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">其中是我在QQ群 362329545遇到的 问题，整理成问答录，希望能解决入门的烦恼，个人见解，如果有那里有错误请指出了我会积极改进，方便他人。</summary></entry><entry><title type="html">ant-design-pro 初级问题以及解答</title><link href="http://firsh.me/2018/05/28/ant-design-pro-stack1/" rel="alternate" type="text/html" title="ant-design-pro 初级问题以及解答" /><published>2018-05-28T15:21:44+08:00</published><updated>2018-05-28T15:21:44+08:00</updated><id>http://firsh.me/2018/05/28/ant-design-pro-stack1</id><content type="html" xml:base="http://firsh.me/2018/05/28/ant-design-pro-stack1/">&lt;h2 id=&quot;本章介绍的是ant-design-pro-使用中遇到的一些问题-以及个人的解决方式大牛勿喷&quot;&gt;本章介绍的是ant-design-pro 使用中遇到的一些问题 以及个人的解决方式，大牛勿喷。&lt;/h2&gt;
+
+&lt;h2 id=&quot;react-与-ant-design-pro&quot;&gt;React 与 Ant-Design-Pro&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;下载工程：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://github.com/ant-design/ant-design-pro
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;安装依赖包&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; npm i -dd  &lt;span class=&quot;c&quot;&gt;# 等待的时间很长。【可以代理出去速度更快】&lt;/span&gt;
+
+ npm start &lt;span class=&quot;c&quot;&gt;# 启动&lt;/span&gt;
+
+ npm run build:aot:prod &lt;span class=&quot;c&quot;&gt;# 编译&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;修改配置文件 &lt;code class=&quot;highlighter-rouge&quot;&gt;.eslintrc.js&lt;/code&gt; WebStorm 最新版2018 可能会报错，所以需要修改&lt;code class=&quot;highlighter-rouge&quot;&gt;.eslintrc.js&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'babel-eslint'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;extends&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'airbnb'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'prettier'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;browser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;es6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;mocha&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;jest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;jasmine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;rules&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 布尔值类型的 propTypes 的 name 必须为 is 或 has 开头&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 不强制要求写 propTypes&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/boolean-prop-naming&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 一个 defaultProps 必须有对应的 propTypes&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 不强制要求写 propTypes&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/default-props-match-prop-types&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 组件必须有 displayName 属性&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 不强制要求写 displayName&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/display-name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止在自定义组件中使用一些指定的 props&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 没必要限制&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/forbid-component-props&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止使用一些指定的 elements&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 没必要限制&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/forbid-elements&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止使用一些指定的 propTypes&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 不强制要求写 propTypes&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/forbid-prop-types&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止直接使用别的组建的 propTypes&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 不强制要求写 propTypes&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/forbid-foreign-prop-types&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止使用数组的 index 作为 key&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 太严格了&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/no-array-index-key&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止使用 children 做 props&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/no-children-prop&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止使用 dangerouslySetInnerHTML&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 没必要限制&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/no-danger&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止在使用了 dangerouslySetInnerHTML 的组建内添加 children&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/no-danger-with-children&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止使用已废弃的 api&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/no-deprecated&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止在 componentDidMount 里面使用 setState&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 同构应用需要在 didMount 里写 setState&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/no-did-mount-set-state&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止在 componentDidUpdate 里面使用 setState&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/no-did-update-set-state&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止直接修改 this.state&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/no-direct-mutation-state&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止使用 findDOMNode&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/no-find-dom-node&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止使用 isMounted&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/no-is-mounted&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止在一个文件创建两个组件&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 有一个 bug https://github.com/yannickcr/eslint-plugin-react/issues/1181&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/no-multi-comp&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止在 PureComponent 中使用 shouldComponentUpdate&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/no-redundant-should-component-update&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止使用 ReactDOM.render 的返回值&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/no-render-return-value&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止使用 setState&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off setState 很常用&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/no-set-state&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止拼写错误&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/no-typos&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止使用字符串 ref&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/no-string-refs&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止在组件的内部存在未转义的 &amp;gt;, &quot;, &quot; 或 }&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/no-unescaped-entities&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @fixable 禁止出现 HTML 中的属性，如 class&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/no-unknown-property&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止出现未使用的 propTypes&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 不强制要求写 propTypes&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/no-unused-prop-types&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 定义过的 state 必须使用&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 没有官方文档，并且存在很多 bug： https://github.com/yannickcr/eslint-plugin-react/search?q=no-unused-state&amp;amp;type=Issues&amp;amp;utf8=%E2%9C%93&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/no-unused-state&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止在 componentWillUpdate 中使用 setState&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/no-will-update-set-state&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 必须使用 Class 的形式创建组件&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/prefer-es6-class&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s2&quot;&gt;&quot;always&quot;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @fixable props 与 value 之间的等号前后禁止有空格&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/jsx-equals-spacing&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s2&quot;&gt;&quot;never&quot;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 数组中的 jsx 必须有 key&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/jsx-key&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @fixable 限制每行的 props 数量&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 没必要限制&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/jsx-max-props-per-line&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// jsx 中禁止使用 bind&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 太严格了&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/jsx-no-bind&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止在 jsx 中使用像注释的字符串&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/jsx-no-comment-textnodes&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止在 jsx 中出现字符串&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 没必要限制&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/jsx-no-literals&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止使用 target=&quot;_blank&quot;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 没必要限制&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/jsx-no-target-blank&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止使用未定义的 jsx elemet&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/jsx-no-undef&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止使用 pascal 写法的 jsx，比如 &amp;lt;TEST_COMPONENT&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/jsx-pascal-case&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @fixable props 必须排好序&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 没必要限制&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/jsx-sort-props&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 限制文件后缀&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 没必要限制&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/jsx-filename-extension&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+
+    &lt;span class=&quot;s2&quot;&gt;&quot;import/prefer-default-export&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 禁止出现重复的 props&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/jsx-no-duplicate-props&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @fixable jsx 的开始和闭合处禁止有空格&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;prefer-destructuring&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/jsx-tag-spacing&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;object-shorthand&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// &quot;react/jsx-tag-spacing&quot;: [&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//   &quot;error&quot;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//   {&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//     &quot;closingSlash&quot;: &quot;never&quot;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//     &quot;beforeSelfClosing&quot;: &quot;always&quot;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//     &quot;afterOpening&quot;: &quot;never&quot;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//   }&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ],&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// jsx 文件必须 import React&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/jsx-uses-react&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 定义了的 jsx element 必须使用&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/jsx-uses-vars&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @fixable 多行的 jsx 必须有括号包起来&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 没必要限制&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/jsx-wrap-multilines&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @fixable 第一个 prop 必须得换行&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 没必要限制&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/jsx-first-prop-new-line&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// handler 的名称必须是 onXXX 或 handleXXX&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 没必要限制&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/jsx-handler-names&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 必须使用 pure function&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 没必要限制&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/prefer-stateless-function&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 组件必须写 propTypes&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 不强制要求写 propTypes&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/prop-types&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 出现 jsx 的地方必须 import React&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 已经在 no-undef 中限制了&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/react-in-jsx-scope&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 非 required 的 prop 必须有 defaultProps&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 不强制要求写 propTypes&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/require-default-props&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 组件必须有 shouldComponentUpdate&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 没必要限制&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/require-optimization&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// render 方法中必须有返回值&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/require-render-return&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @fixable 组件内没有 children 时，必须使用自闭和写法&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 没必要限制&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/self-closing-comp&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @fixable 组件内方法必须按照一定规则排序&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/sort-comp&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// propTypes 的熟悉必须按照字母排序&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 没必要限制&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/sort-prop-types&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// style 属性的取值必须是 object&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/style-prop-object&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// HTML 中的自闭和标签禁止有 children&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/void-dom-elements-no-children&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @fixable 布尔值的属性必须显式的写 someprop={true}&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 没必要限制&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/jsx-boolean-value&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @fixable 自闭和标签的反尖括号必须与尖括号的那一行对齐&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/jsx-closing-bracket-location&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;s2&quot;&gt;&quot;nonEmpty&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s2&quot;&gt;&quot;selfClosing&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;line-aligned&quot;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @fixable 结束标签必须与开始标签的那一行对齐&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// @off 已经在 jsx-indent 中限制了&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;react/jsx-closing-tag-location&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'generator-star-spacing'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'consistent-return'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'no-useless-concat'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 'react/forbid-prop-types': [0],&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 'react/jsx-filename-extension': [1, { extensions: ['.js'] }],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'global-require'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 'import/prefer-default-export': [0],&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 'react/jsx-no-bind': [0],&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 'react/prop-types': [0],&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 'react/prefer-stateless-function': [0],&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 'react/jsx-wrap-multilines': [&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//   'error',&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//   {&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//     declaration: 'parens-new-line',&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//     assignment: 'parens-new-line',&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//     return: 'parens-new-line',&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//     arrow: 'parens-new-line',&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//     condition: 'parens-new-line',&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//     logical: 'parens-new-line',&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//     prop: 'ignore',&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//   },&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'no-else-return'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'no-restricted-syntax'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'import/no-extraneous-dependencies'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'no-use-before-define'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'jsx-a11y/no-static-element-interactions'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'jsx-a11y/no-noninteractive-element-interactions'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'jsx-a11y/click-events-have-key-events'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'jsx-a11y/anchor-is-valid'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'no-nested-ternary'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'prefer-template'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'no-unused-vars'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'no-param-reassign'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'react/sort-comp'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'import/no-duplicates'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'no-unneeded-ternary'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'arrow-body-style'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'spaced-comment'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'import/extensions'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'no-bitwise'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'no-cond-assign'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'import/no-unresolved'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'import/no-useless-concat'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'comma-dangle'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'error'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;arrays&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'always-multiline'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;objects&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'always-multiline'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;imports&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'always-multiline'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;exports&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'always-multiline'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;functions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'ignore'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'object-curly-newline'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'function-paren-newline'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'no-restricted-globals'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'require-yield'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;parserOptions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;ecmaFeatures&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;experimentalObjectRestSpread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;settings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;polyfills&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'fetch'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'promises'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;修改默认的 &lt;code class=&quot;highlighter-rouge&quot;&gt;request.js &amp;gt; request2.js&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;npm i axios --save -dd &lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;axios&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'axios'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;notification&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'antd'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;checkStatus&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;success&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// get response successfully&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;success&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;/**
+ * Requests a URL, returning a promise.
+ *
+ * @param  {string} url       The URL we want to request
+ * @param  {object} [options] The options we want to pass to &quot;axios&quot;
+ * @return {object}           An object containing either &quot;data&quot; or &quot;err&quot;
+ */&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;defaultOptions&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;credentials&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'include'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newOptions&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;defaultOptions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;options&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;newOptions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'POST'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newOptions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'PUT'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newOptions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'DELETE'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;newOptions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;FormData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;newOptions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;headers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;Accept&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'application/json'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'Content-Type'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'application/json; charset=utf-8'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;newOptions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// newOptions.body = JSON.stringify(newOptions.body);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;----------------request body json-------------------&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// newOptions.body is FormData&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;newOptions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;headers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;s2&quot;&gt;&quot;content-type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;application/json&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;newOptions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;axios&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;options&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'GET'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// http请求超时时间&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;newOptions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;checkStatus&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;notification&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// http请求超时处理&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'stack'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'message'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;indexOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'timeout'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;notification&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;`请求错误&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'很抱歉您的请求已经超时了，请稍后再试！'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;notification&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;`请求错误&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;success&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.roadhogrc.mock.js&lt;/code&gt; 修改如下内容。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mockjs&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'mockjs'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getRule&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;postRule&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./mock/rule'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getActivities&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getNotice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getFakeList&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./mock/api'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getFakeChartData&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./mock/chart'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getProfileBasicData&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./mock/profile'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getProfileAdvancedData&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./mock/profile'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getNotices&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./mock/notices'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;delay&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'roadhog-api-doc'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 代码中会兼容本地 service mock 以及部署站点的静态数据&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;proxy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// 支持值为 Object 和 Array&lt;/span&gt;
+  &lt;span class=&quot;s1&quot;&gt;'GET /proxy-get/(.*)'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'http://127.0.0.1:8004/pay-web-rest/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;s1&quot;&gt;'POST /proxy-post/(.*)'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'http://127.0.0.1:8004/pay-web-rest/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;s1&quot;&gt;'DELETE /proxy-delete/(.*)'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'http://127.0.0.1:8004/pay-web-rest/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 是否禁用代理&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;noProxy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;NO_PROXY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'true'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;noProxy&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;proxy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;写一个模块&quot;&gt;写一个模块。&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;经过上面的配置，现在已经可以开始写模块了。&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;写一个模块需要配置如下几项。&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ant-design-pro/src/common/menu.js &lt;span class=&quot;c&quot;&gt;# 页面菜单，可以配置权限。&lt;/span&gt;
+ant-design-pro/src/common/router.js # 该文件内配置全局的 route路径，可以分配访问[models]的权限
+ant-design-pro/src/routes # 每一个单独的 route 功能的实现（同等于Page）
+ant-design-pro/src/models &lt;span class=&quot;c&quot;&gt;# effects 用来注册请求，访问请求。&lt;/span&gt;
+ant-design-pro/src/services &lt;span class=&quot;c&quot;&gt;# 封装 request请求 供给 ‘effects’&lt;/span&gt;
+    
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;现在需要在 &lt;code class=&quot;highlighter-rouge&quot;&gt;route&lt;/code&gt; 内加一个路径，也就是我们自己的route
+    &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;c1&quot;&gt;// park 服务所支持的 route------start&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'/payList/agent-list'&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+ &lt;span class=&quot;nl&quot;&gt;component&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dynamicWrapper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'parkingPayManager'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'../routes/PayManager/PayAgent'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 1. 其中 parkingPayManager 是一个models我们要将这个models注册进来，给这个route使用。&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 2. /payList/agent-list 是`menu`的菜单路径。&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;现在需要在 &lt;code class=&quot;highlighter-rouge&quot;&gt;menu&lt;/code&gt; 内加一个菜单。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'支付商户管理'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'table'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'payList'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;children&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'商户管理'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'agent-list'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;添加一个model&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;queryParkManagerAgents&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'../services/parkingServices'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'parkingPayManager'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//我们所有的 dispatch 都是通过这个namespace定位过来的。 所以当请求不通，要注意。&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;QueryAgentData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;effects&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;queryAgentList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;put&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//  `{callback}` 替换成 `_` 就是没有参数&lt;/span&gt;
+      &lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;yield&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;queryParkManagerAgents&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//queryParkManagerAgents 是定义的service 里面放出的可调用的方法&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;result Data  successfully&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;yield&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'updateStateQueryAgentList'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// (response.success) ? response.data : [],&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;success&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//进行回调&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;//updateStateQueryAgentList 是通过type 进行调用. 名字要相互对应，后面会讲为什么这么调用。&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;reducers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;updateStateQueryAgentList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;QueryAgentData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 这个QueryAgentData 需要提前定义在state里面&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;定义一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;Service&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;request&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'../utils/request2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;queryParkManagerAgents&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'/proxy-get/queryAllAgent'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//其中这里面的 proxy-get 是通过 调用mock 的proxy 完成的。 也就是第一次配置的哪个 mock配置文件。&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'GET'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;最后编写一个 route （page）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import React, &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;PureComponent&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; from &lt;span class=&quot;s1&quot;&gt;'react'&lt;/span&gt;;
+import &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;connect&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; from &lt;span class=&quot;s1&quot;&gt;'dva'&lt;/span&gt;;
+import &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  Card,
+  Button,
+  Form,
+  Input,
+  Select,
+  Modal,
+  message,
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; from &lt;span class=&quot;s1&quot;&gt;'antd'&lt;/span&gt;;
+import StandardTable from &lt;span class=&quot;s1&quot;&gt;'components/StandardTable'&lt;/span&gt;;
+import PageHeaderLayout from &lt;span class=&quot;s1&quot;&gt;'../../layouts/PageHeaderLayout'&lt;/span&gt;;
+
+import styles from &lt;span class=&quot;s1&quot;&gt;'./PayAgent.less'&lt;/span&gt;;
+
+const &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;Option&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Select;
+
+const FormItem &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Form.Item;
+//定义一个 Form
+const CreateForm &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Form.create&lt;span class=&quot;o&quot;&gt;()(&lt;/span&gt;props &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  const &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;modalVisible, form, handleAdd, handleModalVisible, optionChildrenDataTemp&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; props;
+  const okHandle &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    form.validateFields&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;err, fieldsValue&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;err&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;;
+      form.resetFields&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;;
+      handleAdd&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;fieldsValue&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+    &lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &amp;lt;Modal
+      &lt;span class=&quot;nv&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;新建配置&quot;&lt;/span&gt;
+      &lt;span class=&quot;nv&quot;&gt;visible&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;modalVisible&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;nv&quot;&gt;onOk&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;okHandle&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;nv&quot;&gt;onCancel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; handleModalVisible&lt;span class=&quot;o&quot;&gt;()}&lt;/span&gt;
+    &amp;gt;
+      &amp;lt;FormItem &lt;span class=&quot;nv&quot;&gt;labelCol&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;wrapperCol&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;商户代码&quot;&lt;/span&gt;&amp;gt;
+        &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;form.getFieldDecorator&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'mch_code'&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          rules: &lt;span class=&quot;o&quot;&gt;[{&lt;/span&gt;required: &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;, message: &lt;span class=&quot;s1&quot;&gt;'Please input  mch_code...'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}]&lt;/span&gt;,
+        &lt;span class=&quot;o&quot;&gt;})(&lt;/span&gt;&amp;lt;Input &lt;span class=&quot;nv&quot;&gt;placeholder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;目前有用&quot;&lt;/span&gt;/&amp;gt;&lt;span class=&quot;o&quot;&gt;)}&lt;/span&gt;
+      &amp;lt;/FormItem&amp;gt;
+      &amp;lt;FormItem &lt;span class=&quot;nv&quot;&gt;labelCol&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;wrapperCol&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;通道支付码&quot;&lt;/span&gt;&amp;gt;
+        &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;form.getFieldDecorator&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'mchp_code'&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          rules: &lt;span class=&quot;o&quot;&gt;[{&lt;/span&gt;required: &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;, message: &lt;span class=&quot;s1&quot;&gt;'Please input  mchp_code...'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}]&lt;/span&gt;,
+        &lt;span class=&quot;o&quot;&gt;})(&lt;/span&gt;&amp;lt;Input &lt;span class=&quot;nv&quot;&gt;placeholder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;请输入：通道支付码&quot;&lt;/span&gt;/&amp;gt;&lt;span class=&quot;o&quot;&gt;)}&lt;/span&gt;
+      &amp;lt;/FormItem&amp;gt;
+      &amp;lt;FormItem &lt;span class=&quot;nv&quot;&gt;labelCol&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;wrapperCol&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;商户名称&quot;&lt;/span&gt;&amp;gt;
+        &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;form.getFieldDecorator&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'business_name'&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          rules: &lt;span class=&quot;o&quot;&gt;[{&lt;/span&gt;required: &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;, message: &lt;span class=&quot;s1&quot;&gt;'Please input  business_name...'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}]&lt;/span&gt;,
+        &lt;span class=&quot;o&quot;&gt;})(&lt;/span&gt;&amp;lt;Input &lt;span class=&quot;nv&quot;&gt;placeholder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;请输入： 商户名称&quot;&lt;/span&gt;/&amp;gt;&lt;span class=&quot;o&quot;&gt;)}&lt;/span&gt;
+      &amp;lt;/FormItem&amp;gt;
+      &amp;lt;FormItem &lt;span class=&quot;nv&quot;&gt;labelCol&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;wrapperCol&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;描述信息&quot;&lt;/span&gt;&amp;gt;
+        &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;form.getFieldDecorator&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'mch_description'&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          rules: &lt;span class=&quot;o&quot;&gt;[{&lt;/span&gt;required: &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;, message: &lt;span class=&quot;s1&quot;&gt;'Please input  certificate_file...'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}]&lt;/span&gt;,
+        &lt;span class=&quot;o&quot;&gt;})(&lt;/span&gt;&amp;lt;Input &lt;span class=&quot;nv&quot;&gt;placeholder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;请输入：描述信息&quot;&lt;/span&gt;/&amp;gt;&lt;span class=&quot;o&quot;&gt;)}&lt;/span&gt;
+      &amp;lt;/FormItem&amp;gt;
+      &amp;lt;FormItem &lt;span class=&quot;nv&quot;&gt;labelCol&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;wrapperCol&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;商户ID&quot;&lt;/span&gt;&amp;gt;
+        &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;form.getFieldDecorator&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'mch_id'&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          rules: &lt;span class=&quot;o&quot;&gt;[{&lt;/span&gt;required: &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;, message: &lt;span class=&quot;s1&quot;&gt;'Please input  mch_id...'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}]&lt;/span&gt;,
+        &lt;span class=&quot;o&quot;&gt;})(&lt;/span&gt;&amp;lt;Input &lt;span class=&quot;nv&quot;&gt;placeholder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;请输入：商户ID&quot;&lt;/span&gt;/&amp;gt;&lt;span class=&quot;o&quot;&gt;)}&lt;/span&gt;
+      &amp;lt;/FormItem&amp;gt;
+      &amp;lt;FormItem &lt;span class=&quot;nv&quot;&gt;labelCol&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;wrapperCol&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;选择通道&quot;&lt;/span&gt;&amp;gt;
+        &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;form.getFieldDecorator&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'mchc_code'&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          rules: &lt;span class=&quot;o&quot;&gt;[{&lt;/span&gt;required: &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;, message: &lt;span class=&quot;s1&quot;&gt;'Please selectd...'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}]&lt;/span&gt;,
+        &lt;span class=&quot;o&quot;&gt;})(&lt;/span&gt;&amp;lt;Select
+          // &lt;span class=&quot;nv&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tags&quot;&lt;/span&gt;  // multiple  tags combobox
+          &lt;span class=&quot;nv&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+          &lt;span class=&quot;nv&quot;&gt;placeholder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;不限&quot;&lt;/span&gt;
+        &amp;gt;
+          &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;optionChildrenDataTemp.map&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;item &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+            &amp;lt;Option &lt;span class=&quot;nv&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;item.channel_id&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;item.channel_id&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&amp;gt;
+              &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;item.channel_name&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+            &amp;lt;/Option&amp;gt;
+          &lt;span class=&quot;o&quot;&gt;))}&lt;/span&gt;
+        &amp;lt;/Select&amp;gt;&lt;span class=&quot;o&quot;&gt;)}&lt;/span&gt;
+      &amp;lt;/FormItem&amp;gt;
+    &amp;lt;/Modal&amp;gt;
+  &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+&lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;;
+// 连接model层的state数据，然后通过this.props.state : loading.models.名&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;namespace&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;访问model层的state数据
+@connect&lt;span class=&quot;o&quot;&gt;(({&lt;/span&gt;parkingPayManager, loading&lt;span class=&quot;o&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;o&quot;&gt;({&lt;/span&gt;
+  parkingPayManager, //获得整个 Model
+  loading: loading.models.parkingPayManager, //   &lt;span class=&quot;nb&quot;&gt;true &lt;/span&gt;or &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt; 
+&lt;span class=&quot;o&quot;&gt;}))&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;default class PayAgent extends PureComponent &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  state &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    selectedRows: &lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt;,
+    isLoading: &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;,
+    modalVisible: &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;,
+    optionChildrenData: &lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt;,
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;;
+
+  componentWillMount&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    const &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;dispatch&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; this.props;
+    dispatch&lt;span class=&quot;o&quot;&gt;({&lt;/span&gt;
+      &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;: &lt;span class=&quot;s1&quot;&gt;'parkingPayManager/queryChannelList'&lt;/span&gt;, //通过dispatch调用这个请求。
+      callback: &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;e&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; //请求内的callback  可以做刷新动作等，
+        message.success&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;select init success &quot;&lt;/span&gt; + e&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+        this.setState&lt;span class=&quot;o&quot;&gt;({&lt;/span&gt;
+          optionChildrenData: e,
+        &lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
+    &lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;;
+    console.log&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;初始化 =&amp;gt; 下拉列表的数据&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+  componentDidMount&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    // componentWillMount -&amp;gt; render -&amp;gt;  componentDidMount  ..-&amp;gt; componentWillReceiveProps
+    const &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;dispatch&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; this.props;
+    // 触发action触发model层的state的初始化
+    dispatch&lt;span class=&quot;o&quot;&gt;({&lt;/span&gt;
+      &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;: &lt;span class=&quot;s1&quot;&gt;'parkingPayManager/queryAgentList'&lt;/span&gt;,
+    &lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+  handleModalVisible &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; flag &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    this.setState&lt;span class=&quot;o&quot;&gt;({&lt;/span&gt;
+      modalVisible: !!flag,
+    &lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+  handleAdd &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; fields &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    const &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;dispatch&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; this.props;
+    // 触发action触发model层的state的初始化
+    dispatch&lt;span class=&quot;o&quot;&gt;({&lt;/span&gt;
+      &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;: &lt;span class=&quot;s1&quot;&gt;'parkingPayManager/insertAgent'&lt;/span&gt;,
+      payload: JSON.stringify&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;fields&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;,
+      callback: &lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        dispatch&lt;span class=&quot;o&quot;&gt;({&lt;/span&gt;
+          &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;: &lt;span class=&quot;s1&quot;&gt;'parkingPayManager/queryAgentList'&lt;/span&gt;,
+        &lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;;
+        this.setState&lt;span class=&quot;o&quot;&gt;({&lt;/span&gt;
+          modalVisible: &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;, // 清除
+        &lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;;
+        message.success&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'successfully '&lt;/span&gt; + JSON.stringify&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;fields&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
+    &lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;;
+
+  render&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    const &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;parkingPayManager: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;QueryAgentData&lt;span class=&quot;o&quot;&gt;}}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; this.props;
+    const newdata &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      list: QueryAgentData,
+      pagination: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        total: QueryAgentData.length,
+        pageSize: 10,// 页面量
+        current: 1, // 当前第几页
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;;
+    const &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;isLoading, modalVisible, selectedRows, optionChildrenData&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; this.state;
+    const columns &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        title: &lt;span class=&quot;s1&quot;&gt;'商户伪码'&lt;/span&gt;,
+        dataIndex: &lt;span class=&quot;s1&quot;&gt;'mch_code'&lt;/span&gt;,
+        align: &lt;span class=&quot;s1&quot;&gt;'right'&lt;/span&gt;,
+        render: text &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt;
+          text ? &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+            text
+          &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; : &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;s1&quot;&gt;'无法显示'&lt;/span&gt;
+          &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;,
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
+      &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        title: &lt;span class=&quot;s1&quot;&gt;'商户名称'&lt;/span&gt;,
+        dataIndex: &lt;span class=&quot;s1&quot;&gt;'business_name'&lt;/span&gt;,
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
+      &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        title: &lt;span class=&quot;s1&quot;&gt;'描述信息'&lt;/span&gt;,
+        dataIndex: &lt;span class=&quot;s1&quot;&gt;'mch_description'&lt;/span&gt;,
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
+      &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        title: &lt;span class=&quot;s1&quot;&gt;'商户的通道码'&lt;/span&gt;,
+        dataIndex: &lt;span class=&quot;s1&quot;&gt;'mchc_code'&lt;/span&gt;,
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
+      &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        title: &lt;span class=&quot;s1&quot;&gt;'商户支付码'&lt;/span&gt;,
+        dataIndex: &lt;span class=&quot;s1&quot;&gt;'mchp_code'&lt;/span&gt;,
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
+      &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        title: &lt;span class=&quot;s1&quot;&gt;'商户ID'&lt;/span&gt;,
+        dataIndex: &lt;span class=&quot;s1&quot;&gt;'mch_id'&lt;/span&gt;,
+        render: text &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt;
+          text ? &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+            text
+          &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; : &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;s1&quot;&gt;'AliPay Not MchID'&lt;/span&gt;
+          &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;,
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
+    &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;;
+
+    const parentMethods &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      handleAdd: this.handleAdd,
+      handleModalVisible: this.handleModalVisible,
+      optionChildrenDataTemp: optionChildrenData,
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+      &amp;lt;PageHeaderLayout &lt;span class=&quot;nv&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;商户配置信息&quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;Card &lt;span class=&quot;nv&quot;&gt;bordered&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&amp;gt;
+          &amp;lt;div &lt;span class=&quot;nv&quot;&gt;className&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;styles.tableList&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&amp;gt;
+            &amp;lt;div &lt;span class=&quot;nv&quot;&gt;className&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;styles.tableListOperator&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&amp;gt;
+              &amp;lt;Button &lt;span class=&quot;nv&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;plus&quot;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;primary&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;onClick&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; this.handleModalVisible&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)}&lt;/span&gt;&amp;gt;
+                添加商户配置
+              &amp;lt;/Button&amp;gt;
+            &amp;lt;/div&amp;gt;
+            &amp;lt;StandardTable
+              &lt;span class=&quot;nv&quot;&gt;selectedRows&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;selectedRows&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+              &lt;span class=&quot;nv&quot;&gt;loading&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;isLoading&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+              &lt;span class=&quot;nv&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;newdata&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+              &lt;span class=&quot;nv&quot;&gt;columns&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;columns&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+            /&amp;gt;
+          &amp;lt;/div&amp;gt;
+        &amp;lt;/Card&amp;gt;
+        &amp;lt;CreateForm &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;...parentMethods&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;modalVisible&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;modalVisible&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;/&amp;gt;
+      &amp;lt;/PageHeaderLayout&amp;gt;
+    &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;最终完成这个页面，进行访问查看。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/104d4e32-f0f8-4a54-8f87-a839fce15176.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">本章介绍的是ant-design-pro 使用中遇到的一些问题 以及个人的解决方式，大牛勿喷。</summary></entry></feed>
