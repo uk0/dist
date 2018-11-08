@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Golang PHP zlib (php)加密<=>解密(go). &mdash; 张建新</title>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2018/11/08/golang-zlib-en-de-text/">
+    <link rel="alternate" type="application/atom+xml" title="张建新" href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="Golang PHP zlib (php)加密<=>解密(go).">
+      
+    <meta name="keywords" content="php golang zlib加密解密">
+    <meta name="og:keywords" content="php golang zlib加密解密">
+      
+    <meta name="description" content="这个问题是来自一个群友的，一开始马虎大意 后来解决问题。">
+    <meta name="og:description" content="这个问题是来自一个群友的，一开始马虎大意 后来解决问题。">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2018/11/08/golang-zlib-en-de-text/">
+    <meta property="og:site_name" content="张建新">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2018-11-08">
+    
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="张建新"><span class="octicon octicon-mark-github"></span> 张建新</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="Index">Index</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="CATEGORIES">CATEGORIES</a>
+                
+                <a href="/open-source/" class=" site-header-nav-item" target="" title="OPEN-SOURCE">OPEN-SOURCE</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="WIKI">WIKI</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="LINKS">LINKS</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="ABOUT">ABOUT</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="Golang PHP zlib">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">Golang PHP zlib (php)加密<=>解密(go).</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2018/11/08
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#zlib" title="zlib">zlib</a>
+          </span>
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#golang" title="golang">golang</a>
+          </span>
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#php" title="php">php</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <h2 id="这个问题是来自一个群友的一开始马虎大意-后来解决问题">这个问题是来自一个群友的，一开始马虎大意 后来解决问题。</h2>
+
+<p>s</p>
+
+<h3 id="golang-代码">Golang 代码</h3>
+
+<div class="language-golang highlighter-rouge"><pre class="highlight"><code><span class="k">package</span><span class="x"> </span><span class="n">main</span><span class="x">
+
+</span><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="x">
+	</span><span class="s">"bytes"</span><span class="x">
+	</span><span class="s">"compress/zlib"</span><span class="x">
+	</span><span class="s">"encoding/base64"</span><span class="x">
+	</span><span class="s">"fmt"</span><span class="x">
+	</span><span class="s">"io"</span><span class="x">
+</span><span class="p">)</span><span class="x">
+</span><span class="c">//进行zlib压缩</span><span class="x">
+</span><span class="k">func</span><span class="x"> </span><span class="n">DoZlibCompress</span><span class="p">(</span><span class="n">src</span><span class="x"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">)</span><span class="x"> </span><span class="p">[]</span><span class="kt">byte</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="k">var</span><span class="x"> </span><span class="n">in</span><span class="x"> </span><span class="n">bytes</span><span class="o">.</span><span class="n">Buffer</span><span class="x">
+	</span><span class="n">w</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">zlib</span><span class="o">.</span><span class="n">NewWriterLevelDict</span><span class="p">(</span><span class="o">&amp;</span><span class="n">in</span><span class="p">,</span><span class="o">-</span><span class="m">1</span><span class="p">,</span><span class="n">src</span><span class="p">)</span><span class="x">
+	</span><span class="n">w</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="n">src</span><span class="p">)</span><span class="x">
+	</span><span class="n">w</span><span class="o">.</span><span class="n">Close</span><span class="p">()</span><span class="x">
+	</span><span class="k">return</span><span class="x"> </span><span class="n">in</span><span class="o">.</span><span class="n">Bytes</span><span class="p">()</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="n">DoZlibCompress2</span><span class="p">(</span><span class="n">src</span><span class="x"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">)</span><span class="x"> </span><span class="p">[]</span><span class="kt">byte</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="k">var</span><span class="x"> </span><span class="n">bufs</span><span class="x"> </span><span class="n">bytes</span><span class="o">.</span><span class="n">Buffer</span><span class="x">
+	</span><span class="n">w</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">zlib</span><span class="o">.</span><span class="n">NewWriterLevel</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bufs</span><span class="p">,</span><span class="x"> </span><span class="o">-</span><span class="m">1</span><span class="p">)</span><span class="x">
+	</span><span class="n">w</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="n">src</span><span class="p">)</span><span class="x">
+	</span><span class="k">defer</span><span class="x"> </span><span class="n">w</span><span class="o">.</span><span class="n">Flush</span><span class="p">()</span><span class="x">
+		</span><span class="n">w</span><span class="o">.</span><span class="n">Close</span><span class="p">()</span><span class="x">
+	</span><span class="k">return</span><span class="x"> </span><span class="n">bufs</span><span class="o">.</span><span class="n">Bytes</span><span class="p">()</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="c">//进行zlib解压缩</span><span class="x">
+</span><span class="k">func</span><span class="x"> </span><span class="n">DoZlibUnCompress</span><span class="p">(</span><span class="n">compressSrc</span><span class="x"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">)</span><span class="x"> </span><span class="p">[]</span><span class="kt">byte</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="n">b</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">bytes</span><span class="o">.</span><span class="n">NewReader</span><span class="p">(</span><span class="n">compressSrc</span><span class="p">)</span><span class="x">
+	</span><span class="k">var</span><span class="x"> </span><span class="n">out</span><span class="x"> </span><span class="n">bytes</span><span class="o">.</span><span class="n">Buffer</span><span class="x">
+	</span><span class="n">r</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">zlib</span><span class="o">.</span><span class="n">NewReader</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="x">
+	</span><span class="n">io</span><span class="o">.</span><span class="n">Copy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">out</span><span class="p">,</span><span class="x"> </span><span class="n">r</span><span class="p">)</span><span class="x">
+	</span><span class="k">return</span><span class="x"> </span><span class="n">out</span><span class="o">.</span><span class="n">Bytes</span><span class="p">()</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="n">main</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="c">//buff, _ := base64.StdEncoding.DecodeString("eJxLTEoGAAJNASc=")</span><span class="x">
+	</span><span class="n">buff</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">base64</span><span class="o">.</span><span class="n">StdEncoding</span><span class="o">.</span><span class="n">DecodeString</span><span class="p">(</span><span class="s">"eJxKTEoGBAAA//8CTQEn"</span><span class="p">)</span><span class="x">
+	</span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="kt">string</span><span class="p">(</span><span class="n">DoZlibUnCompress</span><span class="p">(</span><span class="n">buff</span><span class="p">)))</span><span class="x">
+
+
+
+	</span><span class="c">//zip := DoZlibCompress([]byte("abc"))</span><span class="x">
+	</span><span class="n">zip</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">DoZlibCompress2</span><span class="p">([]</span><span class="kt">byte</span><span class="p">(</span><span class="s">"abc"</span><span class="p">))</span><span class="x">
+	</span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">zip</span><span class="p">)</span><span class="x">
+
+	</span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">StdEncoding</span><span class="o">.</span><span class="n">EncodeToString</span><span class="p">(</span><span class="n">zip</span><span class="p">))</span><span class="x">
+
+	</span><span class="c">//</span><span class="x">
+	</span><span class="c">//fmt.Println(string(DoZlibUnCompress(zip)))</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="o">...</span><span class="x">
+</span><span class="n">abc</span><span class="x">
+</span><span class="p">[</span><span class="m">120</span><span class="x"> </span><span class="m">156</span><span class="x"> </span><span class="m">74</span><span class="x"> </span><span class="m">76</span><span class="x"> </span><span class="m">74</span><span class="x"> </span><span class="m">6</span><span class="x"> </span><span class="m">4</span><span class="x"> </span><span class="m">0</span><span class="x"> </span><span class="m">0</span><span class="x"> </span><span class="m">255</span><span class="x"> </span><span class="m">255</span><span class="x"> </span><span class="m">2</span><span class="x"> </span><span class="m">77</span><span class="x"> </span><span class="m">1</span><span class="x"> </span><span class="m">39</span><span class="p">]</span><span class="x">
+</span><span class="n">eJxKTEoGBAAA</span><span class="c">//8CTQEn</span><span class="x">
+</span></code></pre>
+</div>
+
+<h3 id="php-代码">PHP 代码</h3>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>
+<span class="cp">&lt;?php</span>
+
+<span class="nv">$code</span> <span class="o">=</span><span class="nb">zlib_encode</span><span class="p">(</span><span class="s2">"abc"</span><span class="p">,</span><span class="nx">ZLIB_ENCODING_DEFLATE</span><span class="p">);</span>
+<span class="nv">$code</span> <span class="o">=</span> <span class="nb">base64_encode</span><span class="p">(</span><span class="nv">$code</span><span class="p">);</span>
+<span class="k">echo</span>  <span class="s2">"</span><span class="nv">$code</span><span class="s2">"</span><span class="p">;</span>
+<span class="c1">// eJxLTEoGAAJNASc=
+</span>
+<span class="nv">$code</span> <span class="o">=</span> <span class="nb">bin2hex</span><span class="p">(</span><span class="nv">$code</span><span class="p">);</span>
+<span class="k">echo</span>  <span class="s2">"</span><span class="nv">$code</span><span class="s2">"</span><span class="p">;</span>
+<span class="c1">// 654a784c54456f4741414a4e4153633d
+</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="疑问">疑问</h3>
+
+<ul>
+  <li>为什么种方式加密的hex 不一致解析的结果却是一致的。</li>
+  <li>Golang 是对Zlib 进行了哪些优化？</li>
+</ul>
+
+<p>测试地址。&gt; http://www.txtwizard.net/compression</p>
+
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+      
+        
+        <!-- Disqus Protection, see https://github.com/mzlogin/mzlogin.github.io/issues/2 -->
+        
+        
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'http://firsh.me/2018/11/08/golang-zlib-en-de-text/';
+              this.page.identifier = '/2018/11/08/golang-zlib-en-de-text/';
+              this.page.title = 'Golang PHP zlib (php)加密<=>解密(go).';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+
+              s.type = 'text/javascript';
+              s.async = true;
+              var shortname = 'zmatsh';
+
+              s.src = '//' + shortname + '.disqus.com/embed.js';
+
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        
+        
+      
+    
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="https://zmatsh.b0.upaiyun.com/assets/css/modules/sidebar-search.css">
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="unknow :)">unknow :)</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/uk0/uk0.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="Index" target="">Index</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="CATEGORIES" target="">CATEGORIES</a>
+                </li>
+                
+                <li>
+                    <a href="/open-source/" title="OPEN-SOURCE" target="">OPEN-SOURCE</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="WIKI" target="">WIKI</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="LINKS" target="">LINKS</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="ABOUT" target="">ABOUT</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-80669434-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>
