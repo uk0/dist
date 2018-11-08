@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-11-08T20:31:23+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html">Golang PHP zlib (php)加密&amp;lt;=&amp;gt;解密(go).</title><link href="http://firsh.me/2018/11/08/golang-zlib-en-de-text/" rel="alternate" type="text/html" title="Golang PHP zlib (php)加密&lt;=&gt;解密(go)." /><published>2018-11-08T20:14:05+08:00</published><updated>2018-11-08T20:14:05+08:00</updated><id>http://firsh.me/2018/11/08/golang-zlib-en-de-text</id><content type="html" xml:base="http://firsh.me/2018/11/08/golang-zlib-en-de-text/">&lt;h2 id=&quot;这个问题是来自一个群友的一开始马虎大意-后来解决问题&quot;&gt;这个问题是来自一个群友的，一开始马虎大意 后来解决问题。&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-11-08T22:55:52+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html">Golang PHP zlib (php)加密&amp;lt;=&amp;gt;解密(go).</title><link href="http://firsh.me/2018/11/08/golang-zlib-en-de-text/" rel="alternate" type="text/html" title="Golang PHP zlib (php)加密&lt;=&gt;解密(go)." /><published>2018-11-08T20:14:05+08:00</published><updated>2018-11-08T20:14:05+08:00</updated><id>http://firsh.me/2018/11/08/golang-zlib-en-de-text</id><content type="html" xml:base="http://firsh.me/2018/11/08/golang-zlib-en-de-text/">&lt;h2 id=&quot;这个问题是来自一个群友的一开始马虎大意-后来解决问题&quot;&gt;这个问题是来自一个群友的，一开始马虎大意 后来解决问题。&lt;/h2&gt;
 
 &lt;p&gt;s&lt;/p&gt;
 
@@ -90,6 +90,10 @@
 &lt;/ul&gt;
 
 &lt;p&gt;测试地址。&amp;gt; http://www.txtwizard.net/compression&lt;/p&gt;
+
+&lt;p&gt;https://stackoverflow.com/questions/40893411/golang-python-zlib-difference&lt;/p&gt;
+
+&lt;p&gt;https://stackoverflow.com/questions/52767214/compressed-output-differs-from-go-to-ruby-implementation&lt;/p&gt;
 
 &lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">这个问题是来自一个群友的，一开始马虎大意 后来解决问题。</summary></entry><entry><title type="html">Linux awk less tail grep 使用</title><link href="http://firsh.me/2018/11/06/linux-page-sed-less-tails/" rel="alternate" type="text/html" title="Linux awk less tail grep 使用" /><published>2018-11-06T17:00:35+08:00</published><updated>2018-11-06T17:00:35+08:00</updated><id>http://firsh.me/2018/11/06/linux-page-sed-less-tails</id><content type="html" xml:base="http://firsh.me/2018/11/06/linux-page-sed-less-tails/">&lt;h2 id=&quot;linux-awk-less-grep-sed-等命令使用&quot;&gt;Linux awk less grep sed 等命令使用&lt;/h2&gt;
 
