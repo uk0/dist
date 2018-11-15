@@ -109,9 +109,8 @@
 
 <p>查看文件被谁占用。</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>fuser -u .linux.md.swp
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fuser <span class="nt">-u</span> .linux.md.swp
+</code></pre></div></div>
 
 <h3 id="id">id</h3>
 
@@ -127,35 +126,30 @@
 
 <h4 id="查看网络相关的文件占用">查看网络相关的文件占用</h4>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>lsof -i
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lsof <span class="nt">-i</span>
+</code></pre></div></div>
 
 <h4 id="查看端口占用">查看端口占用</h4>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>lsof -i tcp:5037
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lsof <span class="nt">-i</span> tcp:5037
+</code></pre></div></div>
 
 <h4 id="查看某个文件被谁占用">查看某个文件被谁占用</h4>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>lsof .linux.md.swp
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lsof .linux.md.swp
+</code></pre></div></div>
 
 <h4 id="查看某个用户占用的文件信息">查看某个用户占用的文件信息</h4>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>lsof -u mazhuang
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lsof <span class="nt">-u</span> mazhuang
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">-u</code> 后面可以跟 uid 或 login name。</p>
 
 <h4 id="查看某个程序占用的文件信息">查看某个程序占用的文件信息</h4>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>lsof -c Vim
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lsof <span class="nt">-c</span> Vim
+</code></pre></div></div>
 
 <p>注意程序名区分大小写。</p>
 

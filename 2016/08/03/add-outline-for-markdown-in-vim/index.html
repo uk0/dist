@@ -152,9 +152,8 @@
   <li>
     <p>在 vimrc 文件里添加如下内容：</p>
 
-    <div class="language-viml highlighter-rouge"><pre class="highlight"><code>Plugin <span class="s1">'majutsushi/tagbar'</span>
-</code></pre>
-    </div>
+    <div class="language-viml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Plugin <span class="s1">'majutsushi/tagbar'</span>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>执行 <code class="highlighter-rouge">:so $MYVIMRC</code></p>
@@ -180,7 +179,7 @@
   <li>
     <p>给 ~/.ctags 文件（Windows 下是 <code class="highlighter-rouge">C:\Users\&lt;username&gt;\.ctags</code> 里增加如下内容，没有这个文件就新建一个：</p>
 
-    <div class="language-viml highlighter-rouge"><pre class="highlight"><code><span class="p">--</span>langdef<span class="p">=</span>markdown
+    <div class="language-viml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">--</span>langdef<span class="p">=</span>markdown
 <span class="p">--</span>langmap<span class="p">=</span>markdown<span class="p">:.</span>md
 <span class="p">--</span>regex<span class="p">-</span>markdown<span class="p">=</span><span class="sr">/^#{1}[ \t]*([^#]+.*)/</span><span class="p">.</span> \<span class="m">1</span><span class="sr">/h,headings/</span>
 <span class="p">--</span>regex<span class="p">-</span>markdown<span class="p">=</span><span class="sr">/^#{2}[ \t]*([^#]+.*)/</span><span class="p">.</span>   \<span class="m">1</span><span class="sr">/h,headings/</span>
@@ -188,23 +187,21 @@
 <span class="p">--</span>regex<span class="p">-</span>markdown<span class="p">=</span><span class="sr">/^#{4}[ \t]*([^#]+.*)/</span><span class="p">.</span>       \<span class="m">1</span><span class="sr">/h,headings/</span>
 <span class="p">--</span>regex<span class="p">-</span>markdown<span class="p">=</span><span class="sr">/^#{5}[ \t]*([^#]+.*)/</span><span class="p">.</span>         \<span class="m">1</span><span class="sr">/h,headings/</span>
 <span class="p">--</span>regex<span class="p">-</span>markdown<span class="p">=</span><span class="sr">/^#{6}[ \t]*([^#]+.*)/</span><span class="p">.</span>           \<span class="m">1</span><span class="sr">/h,headings/</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
 
     <p>这表示提取 Markdown 文件里的一到六级标题，并使用空格缩进表示层次。</p>
   </li>
   <li>
     <p>给你的 vimrc 文件里增加如下内容：</p>
 
-    <div class="language-viml highlighter-rouge"><pre class="highlight"><code><span class="k">let</span> <span class="nv">g:tagbar_type_markdown</span> <span class="p">=</span> <span class="p">{</span>
+    <div class="language-viml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">g:tagbar_type_markdown</span> <span class="p">=</span> <span class="p">{</span>
 <span class="se">        \</span> <span class="s1">'ctagstype'</span> <span class="p">:</span> <span class="s1">'markdown'</span><span class="p">,</span>
 <span class="se">        \</span> <span class="s1">'kinds'</span> <span class="p">:</span> <span class="p">[</span>
 <span class="se">                \</span> <span class="s1">'h:headings'</span><span class="p">,</span>
 <span class="se">        \</span> <span class="p">],</span>
 <span class="se">    \</span> <span class="s1">'sort'</span> <span class="p">:</span> <span class="m">0</span>
 <span class="se">\</span> <span class="p">}</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
 
     <p>配置 tagbar 支持 Markdown。</p>
   </li>
@@ -216,19 +213,17 @@
   <li>
     <p>现在你可以使用 <code class="highlighter-rouge">:TagbarToggle&lt;CR&gt;</code> 来打开导航窗格了，但每次开关导航窗格都要敲这么长一串命令毕竟不够方便，配置快捷键来操作更顺手，在你的 vimrc 文件里增加一个映射：</p>
 
-    <div class="language-viml highlighter-rouge"><pre class="highlight"><code>nnoremap <span class="p">&lt;</span>leader<span class="p">&gt;</span>tb <span class="p">:</span>TagbarToggle<span class="p">&lt;</span>CR<span class="p">&gt;</span>
-</code></pre>
-    </div>
+    <div class="language-viml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nnoremap <span class="p">&lt;</span>leader<span class="p">&gt;</span>tb <span class="p">:</span>TagbarToggle<span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</code></pre></div>    </div>
 
     <p>现在你可以使用 <code class="highlighter-rouge">&lt;leader&gt;tb</code> 来随时开/关导航窗格了。</p>
   </li>
   <li>
     <p>导航窗格默认是在右边，如果你也像我一样喜欢它在左边，也想指定它的宽度，可以在你的 vimrc 文件里配置：</p>
 
-    <div class="language-viml highlighter-rouge"><pre class="highlight"><code><span class="k">let</span> <span class="nv">g:tagbar_width</span> <span class="p">=</span> <span class="m">30</span>
+    <div class="language-viml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">g:tagbar_width</span> <span class="p">=</span> <span class="m">30</span>
 <span class="k">let</span> <span class="nv">g:tagbar_left</span> <span class="p">=</span> <span class="m">1</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
 </ol>
 

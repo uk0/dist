@@ -733,7 +733,7 @@ c()更适合并发执行，另外，func函数仅被pool中的一个进程运行
 
 <p>协程示例：</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code>    <span class="n">import</span><span class="err"> </span><span class="n">asyncio</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">import</span><span class="err"> </span><span class="n">asyncio</span>
     <span class="err">  </span>
     <span class="n">async</span><span class="err"> </span><span class="n">def</span><span class="err"> </span><span class="n">cor1</span><span class="p">():</span>
     <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"COR1 start"</span><span class="p">)</span>
@@ -746,8 +746,7 @@ c()更适合并发执行，另外，func函数仅被pool中的一个进程运行
     <span class="n">loop</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>
     <span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">cor1</span><span class="p">())</span>
     <span class="n">loop</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>最后三行是重点。</p>
 
@@ -759,7 +758,7 @@ c()更适合并发执行，另外，func函数仅被pool中的一个进程运行
 
 <h3 id="1greenlet">1、greenlet</h3>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code>    <span class="n">import</span><span class="err"> </span><span class="n">greenlet</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">import</span><span class="err"> </span><span class="n">greenlet</span>
     <span class="n">def</span><span class="err"> </span><span class="n">fun1</span><span class="p">():</span>
     <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"12"</span><span class="p">)</span>
     <span class="err">    </span><span class="n">gr2</span><span class="o">.</span><span class="n">switch</span><span class="p">()</span>
@@ -775,19 +774,17 @@ c()更适合并发执行，另外，func函数仅被pool中的一个进程运行
     <span class="n">gr1</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">greenlet</span><span class="o">.</span><span class="n">greenlet</span><span class="p">(</span><span class="n">fun1</span><span class="p">)</span>
     <span class="n">gr2</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">greenlet</span><span class="o">.</span><span class="n">greenlet</span><span class="p">(</span><span class="n">fun2</span><span class="p">)</span>
     <span class="n">gr1</span><span class="o">.</span><span class="n">switch</span><span class="p">()</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="2gevent">2、gevent</h3>
 
 <p>gevent属于第三方模块需要下载安装包</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>    pip3 install --upgrade pip3
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    pip3 install --upgrade pip3
     pip3 install gevent
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code>    <span class="n">import</span><span class="err"> </span><span class="n">gevent</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">import</span><span class="err"> </span><span class="n">gevent</span>
     <span class="err"> </span>
     <span class="n">def</span><span class="err"> </span><span class="n">fun1</span><span class="p">():</span>
     <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"www.baidu.com"</span><span class="p">)</span><span class="err">   </span><span class="c"># 第一步</span>
@@ -803,15 +800,14 @@ c()更适合并发执行，另外，func函数仅被pool中的一个进程运行
     <span class="err">    </span><span class="n">gevent</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">fun1</span><span class="p">),</span>
     <span class="err">    </span><span class="n">gevent</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">fun2</span><span class="p">),</span>
     <span class="p">])</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>遇到IO操作自动切换：</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code>    <span class="n">import</span><span class="err"> </span><span class="n">gevent</span>
-    <span class="n">import</span><span class="err"> </span><span class="n">requests</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">import</span><span class="err"> </span><span class="n">gevent</span>
+    <span class="k">import</span><span class="err"> </span><span class="n">requests</span>
     <span class="n">def</span><span class="err"> </span><span class="n">func</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
     <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"get: </span><span class="si">%</span><span class="s">s"</span><span class="o">%</span><span class="n">url</span><span class="p">)</span>
     <span class="err">    </span><span class="n">gevent</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -823,8 +819,7 @@ c()更适合并发执行，另外，func函数仅被pool中的一个进程运行
     <span class="err">    </span><span class="n">gevent</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="err"> </span><span class="s">'https://www.yahoo.com/'</span><span class="p">),</span>
     <span class="err">    </span><span class="n">gevent</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="err"> </span><span class="s">'https://github.com/'</span><span class="p">),</span>
     <span class="p">])</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>以上代码经过验证可以直接拿去修改调用</li>

@@ -127,97 +127,83 @@
   <li>find aggregate</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>docker run -d <span class="se">\</span>
-  -p 49160:22 <span class="se">\</span>
-  -p 49161:1521 <span class="se">\</span>
-  -p 8080:8080 <span class="se">\</span>
-  -e <span class="nv">ORACLE_ENABLE_XDB</span><span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
-  -e <span class="nv">ORACLE_ALLOW_REMOTE</span><span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
-  -e <span class="nv">ORACLE_PASSWORD_VERIFY</span><span class="o">=</span><span class="nb">true</span>  <span class="se">\</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="se">\</span>
+  <span class="nt">-p</span> 49160:22 <span class="se">\</span>
+  <span class="nt">-p</span> 49161:1521 <span class="se">\</span>
+  <span class="nt">-p</span> 8080:8080 <span class="se">\</span>
+  <span class="nt">-e</span> <span class="nv">ORACLE_ENABLE_XDB</span><span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
+  <span class="nt">-e</span> <span class="nv">ORACLE_ALLOW_REMOTE</span><span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
+  <span class="nt">-e</span> <span class="nv">ORACLE_PASSWORD_VERIFY</span><span class="o">=</span><span class="nb">true</span>  <span class="se">\</span>
   wnameless/oracle-xe-11g
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><img src="https://zmatsh.b0.upaiyun.com/images/oracle.png" alt="" /></p>
 
 <h3 id="installationwith-ubuntu-1604">Installation(with Ubuntu 16.04)</h3>
-<div class="highlighter-rouge"><pre class="highlight"><code>docker pull wnameless/oracle-xe-11g
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull wnameless/oracle-xe-11g
+</code></pre></div></div>
 
 <p>Run with 22 and 1521 ports opened:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>docker run -d -p 49160:22 -p 49161:1521 wnameless/oracle-xe-11g
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -d -p 49160:22 -p 49161:1521 wnameless/oracle-xe-11g
+</code></pre></div></div>
 
 <p>Run this, if you want the database to be connected remotely:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>docker run -d -p 49160:22 -p 49161:1521 -e ORACLE_ALLOW_REMOTE=true wnameless/oracle-xe-11g
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -d -p 49160:22 -p 49161:1521 -e ORACLE_ALLOW_REMOTE=true wnameless/oracle-xe-11g
+</code></pre></div></div>
 
 <p>By default, the password verification is disable(password never expired). If you want it back, run this:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>docker run -d -p 49160:22 -p 49161:1521 -e ORACLE_PASSWORD_VERIFY=true wnameless/oracle-xe-11g
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -d -p 49160:22 -p 49161:1521 -e ORACLE_PASSWORD_VERIFY=true wnameless/oracle-xe-11g
+</code></pre></div></div>
 
 <p><img src="https://zmatsh.b0.upaiyun.com/images/oracle2.png" alt="" /></p>
 
 <p>For performance concern, you may want to disable the disk asynch IO:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>docker run -d -p 49160:22 -p 49161:1521 -e ORACLE_DISABLE_ASYNCH_IO=true wnameless/oracle-xe-11g
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -d -p 49160:22 -p 49161:1521 -e ORACLE_DISABLE_ASYNCH_IO=true wnameless/oracle-xe-11g
+</code></pre></div></div>
 
 <p>For XDB user, run this:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>docker run -d -p 49160:22 -p 49161:1521 -p 8080:8080 -e ORACLE_ENABLE_XDB=true wnameless/oracle-xe-11g
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -d -p 49160:22 -p 49161:1521 -p 8080:8080 -e ORACLE_ENABLE_XDB=true wnameless/oracle-xe-11g
+</code></pre></div></div>
 
 <p>Check if localhost:8080 work</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>curl -XGET "http://localhost:8080"
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -XGET "http://localhost:8080"
+</code></pre></div></div>
 <p>You will show</p>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;</span>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;</span>
 <span class="nt">&lt;HTML&gt;&lt;HEAD&gt;</span>
 <span class="nt">&lt;TITLE&gt;</span>401 Unauthorized<span class="nt">&lt;/TITLE&gt;</span>
 <span class="nt">&lt;/HEAD&gt;&lt;BODY&gt;&lt;H1&gt;</span>Unauthorized<span class="nt">&lt;/H1&gt;</span>
 <span class="nt">&lt;/BODY&gt;&lt;/HTML&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code># Login http://localhost:8080 with following credential:
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Login http://localhost:8080 with following credential:
 username: XDB
 password: xdb
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Connect database with following setting:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>hostname: localhost
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hostname: localhost
 port: 49161
 sid: xe
 username: system
 password: oracle
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Password for SYS &amp; SYSTEM</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>oracle
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oracle
+</code></pre></div></div>
 
 <p>Login by SSH</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>ssh root@localhost -p 49160
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh root@localhost -p 49160
 password: admin
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Support custom DB Initialization</p>
-<div class="highlighter-rouge"><pre class="highlight"><code># Dockerfile
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Dockerfile
 FROM wnameless/oracle-xe-11g
 
 ADD init.sql /docker-entrypoint-initdb.d/
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><img src="https://zmatsh.b0.upaiyun.com/images/oracle3.png" alt="" /></p>
 

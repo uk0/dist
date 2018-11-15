@@ -131,7 +131,7 @@ author：杨然儿</p>
 password abs</p>
 
 <h1 id="一ssh加固">一、ssh加固</h1>
-<div class="highlighter-rouge"><pre class="highlight"><code>	vi /etc/ssh/sshd_config
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	vi /etc/ssh/sshd_config
 		####################
 		Port 35791
 		Protocol 2
@@ -147,11 +147,10 @@ password abs</p>
 		PasswordAuthentication yes
 		#####################
 	service sshd reload
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="二环境变量加固profile">二、环境变量加固profile</h1>
-<div class="highlighter-rouge"><pre class="highlight"><code>	vi /etc/profile
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	vi /etc/profile
 		#######################################
 		##记录历史命令时间
 		export HISTTIMEFORMAT="`whoami`  %F   %T  "
@@ -161,11 +160,10 @@ password abs</p>
 		TMOUT=600
 		#######################################
 	source /etc/profile
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="三屏蔽banner信息">三、屏蔽banner信息</h1>
-<div class="highlighter-rouge"><pre class="highlight"><code>	备份方法：
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	备份方法：
 			#cp -p /etc/ssh/sshd_config /etc/ssh/sshd_config_bak
 			#cp -p /etc/motd /etc/motd_bak
 
@@ -175,32 +173,28 @@ password abs</p>
 
 			#vi /etc/motd
 			删除全部内容或更新成自己想要添加的内容
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="四禁用x_windows服务">四、禁用x_windows服务</h1>
-<div class="highlighter-rouge"><pre class="highlight"><code>		vi /etc/inittab
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>		vi /etc/inittab
 		################################################################
 		id:5:initdefault:                   --5改成3
 		#######################################################################
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="五打开审计">五、打开审计</h1>
-<div class="highlighter-rouge"><pre class="highlight"><code>		chkconfig auditd on
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>		chkconfig auditd on
 		service auditd restart
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="六清理不必要的信任主机">六、清理不必要的信任主机</h1>
-<div class="highlighter-rouge"><pre class="highlight"><code>	--删除其中不必要的主机
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	--删除其中不必要的主机
 		#vi /etc/hosts.equiv
 		#vi /$HOME/.rhosts
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="七安装基础包">七、安装基础包</h1>
-<div class="highlighter-rouge"><pre class="highlight"><code>1、安装rz sz和 screen
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1、安装rz sz和 screen
 	1).安装
 	yum install -y lrzsz
 	yum install -y screen
@@ -320,11 +314,10 @@ password abs</p>
 
 	7).查看建议
 		grep Suggestion /var/log/lynis.log
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="八建立主机间的信任">八、建立主机间的信任</h1>
-<div class="highlighter-rouge"><pre class="highlight"><code>1、生成密钥(默认的是rsa)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1、生成密钥(默认的是rsa)
 	ssh-keygen -t rsa
 2、将生成的密钥（公钥）拷贝给另一台主机
 	ssh-copy-id -i ~/.ssh/id_rsa.pub "-p 35791 root@192.168.1.4"
@@ -332,11 +325,10 @@ password abs</p>
 3、测试
 	ssh -p 35791 root@192.168.1.4
 	这样直接连接到192.168.1.4这一台主机上，不用输入密码就是添加信任成功
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="九修改主机名">九、修改主机名</h1>
-<div class="highlighter-rouge"><pre class="highlight"><code>1.临时修改主机名
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.临时修改主机名
 	查看当前主机名：
 	spark@localhost:~$ hostname
 	localhost
@@ -366,11 +358,10 @@ PS:以上的修改只是临时修改，重启后就恢复原样了。
 	vi /etc/hosts
 	127.0.0.1    localhost.localdomain  #修改localhost.localdomain为orcl1
 	shutdown -r now    #最后，重启服务器即可。
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="十配置防火墙">十、配置防火墙</h1>
-<div class="highlighter-rouge"><pre class="highlight"><code>1、进入配置文件
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1、进入配置文件
     +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	vim /etc/sysconfig/iptables
 		########################################################
@@ -433,17 +424,15 @@ PS:以上的修改只是临时修改，重启后就恢复原样了。
 		-P OUTPUT ACCEPT
 		COMMIT
 		##################################################### +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="十一阿里云服务器安装安骑士">十一、阿里云服务器安装安骑士</h1>
-<div class="highlighter-rouge"><pre class="highlight"><code>1、安装64位的执行命令
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1、安装64位的执行命令
 	wget 'http://update.aegis.aliyun.com/download/AliAqsInstall_64.sh' &amp;&amp; sh AliAqsInstall_64.sh i24iJ7
 
 2、安装32位的执行命令
 	wget 'http://update.aegis.aliyun.com/download/AliAqsInstall_32.sh' &amp;&amp; sh AliAqsInstall_32.sh i24iJ7
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>以上操作经过验证可以直接拿去。</li>

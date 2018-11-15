@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>arangodb/linux下搭建，可以搭建集群模式。 — 张建新</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>arangodb/linux下搭建，可以搭建集群模式。 &mdash; 张建新</title>
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
@@ -41,7 +40,7 @@
     <meta property="og:url" content="http://firsh.me/2017/07/03/arangodb-master/">
     <meta property="og:site_name" content="张建新">
     <meta property="og:type" content="article">
-    <meta property="og:locale" content="zh_CN">
+    <meta property="og:locale" content="zh_CN" />
     
     <meta property="article:published_time" content="2017-07-03">
     
@@ -133,7 +132,7 @@
 
 <p>现在版本：3.1.23</p>
 
-<p><img class="emoji" title=":smile:" alt=":smile:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png" height="20" width="20" align="absmiddle"></p>
+<p><img class="emoji" title=":smile:" alt=":smile:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png" height="20" width="20"></p>
 
 <h2 id="1-安装部署">1. 安装部署</h2>
 
@@ -145,18 +144,14 @@
 
 <p>We are auto generating docker images via our build system so the Dockerfile is a template. To build your own ArangoDB image:</p>
 
-<div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>cp Dockerfile.templ Dockerfile
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp Dockerfile.templ Dockerfile
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Adjust @VERSION@ in the Dockerfile to the version of arangodb you want to have and issue:</p>
 
-<div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>docker build -t arangodb .
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker build <span class="nt">-t</span> arangodb <span class="nb">.</span>
+</code></pre></div></div>
 
 <p>This will create an image named <code class="highlighter-rouge">arangodb</code>.</p>
 

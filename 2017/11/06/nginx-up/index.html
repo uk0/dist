@@ -133,44 +133,43 @@ author：zhangjianxin</p>
 
 <p><img src="https://zmatsh.b0.upaiyun.com/images/WX20171106-142637@2x.png" alt="" /></p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>    user  nginx;
-    worker_processes  5;
-    error_log  /var/log/nginx/error.log warn;
-    pid        /var/run/nginx.pid;
-    worker_rlimit_nofile 1024;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    user  nginx<span class="p">;</span>
+    worker_processes  5<span class="p">;</span>
+    error_log  /var/log/nginx/error.log warn<span class="p">;</span>
+    pid        /var/run/nginx.pid<span class="p">;</span>
+    worker_rlimit_nofile 1024<span class="p">;</span>
 
     events <span class="o">{</span>
-      worker_connections  1024;
+      worker_connections  1024<span class="p">;</span>
     <span class="o">}</span>
 
     http <span class="o">{</span>
-        include       mime.types;
-        default_type  application/octet-stream;
+        include       mime.types<span class="p">;</span>
+        default_type  application/octet-stream<span class="p">;</span>
 
         log_format  main  <span class="s1">'$remote_addr - $remote_user [$time_local] "$request" '</span>
                          <span class="s1">'$status $body_bytes_sent "$http_referer" '</span>
-                          <span class="s1">'"$http_user_agent" "$http_x_forwarded_for"'</span>;
+                          <span class="s1">'"$http_user_agent" "$http_x_forwarded_for"'</span><span class="p">;</span>
 
         log_format  error <span class="s1">'$remote_addr - $remote_user [$time_local] "$request" '</span>
                          <span class="s1">'$status $body_bytes_sent "$http_referer" '</span>
-                          <span class="s1">'"$http_user_agent" "$http_x_forwarded_for"'</span>;
+                          <span class="s1">'"$http_user_agent" "$http_x_forwarded_for"'</span><span class="p">;</span>
 
-        access_log  logs/access.log  main;
+        access_log  logs/access.log  main<span class="p">;</span>
 
-        sendfile        on;
+        sendfile        on<span class="p">;</span>
 
-        keepalive_timeout  65;
+        keepalive_timeout  65<span class="p">;</span>
 
-        gzip  on;
-        include /etc/nginx/conf.d/upstream/<span class="k">*</span>.conf;
-        include /etc/nginx/conf.d/vhost/<span class="k">*</span>.conf;
+        gzip  on<span class="p">;</span>
+        include /etc/nginx/conf.d/upstream/<span class="k">*</span>.conf<span class="p">;</span>
+        include /etc/nginx/conf.d/vhost/<span class="k">*</span>.conf<span class="p">;</span>
     <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="nginx-upstream-config">nginx upstream config</h1>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>```bash
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```bash
 
 upstream post_servers {
     ip_hash;
@@ -179,25 +178,23 @@ upstream post_servers {
 }
 
 ```
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="nginx-vhost--config">nginx vhost  config</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 server <span class="o">{</span>
-    listen       80;      <span class="c">#监听80端口</span>
-    access_log   logs/post.access.log main;  <span class="c">#使用main等级配置访问日志。</span>
-    error_log    logs/post.error.log error;          <span class="c">#使用error等级配置错误日志。</span>
+    listen       80<span class="p">;</span>      <span class="c">#监听80端口</span>
+    access_log   logs/post.access.log main<span class="p">;</span>  <span class="c">#使用main等级配置访问日志。</span>
+    error_log    logs/post.error.log error<span class="p">;</span>          <span class="c">#使用error等级配置错误日志。</span>
 
-    <span class="nb">set</span> <span class="nv">$post_servers_upstream</span>   <span class="s2">"post_servers"</span>;   <span class="c">#使用set指令配置upstream为：'post_servers'</span>
+    <span class="nb">set</span> <span class="nv">$post_servers_upstream</span>   <span class="s2">"post_servers"</span><span class="p">;</span>   <span class="c">#使用set指令配置upstream为：'post_servers'</span>
     location / <span class="o">{</span>  <span class="c">#将所有的请求代理到post_servers_upstream中。</span>
-      proxy_pass      http://<span class="nv">$post_servers_upstream</span>;
+      proxy_pass      http://<span class="nv">$post_servers_upstream</span><span class="p">;</span>
     <span class="o">}</span>
   <span class="o">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><img src="https://zmatsh.b0.upaiyun.com/images/WX20171106-142733@2x.png" alt="" /></p>
 

@@ -127,7 +127,7 @@
   <li>ehcache for maven conf</li>
 </ul>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code>        <span class="nt">&lt;dependency&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="nt">&lt;dependency&gt;</span>
             <span class="nt">&lt;groupId&gt;</span>org.ehcache<span class="nt">&lt;/groupId&gt;</span>
             <span class="nt">&lt;artifactId&gt;</span>ehcache<span class="nt">&lt;/artifactId&gt;</span>
             <span class="nt">&lt;version&gt;</span>${ehcache.version}<span class="nt">&lt;/version&gt;</span>
@@ -138,14 +138,13 @@
             <span class="nt">&lt;version&gt;</span>${ehcache.version}<span class="nt">&lt;/version&gt;</span>
         <span class="nt">&lt;/dependency&gt;</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>tc-config.xml (ehcache3.4.0)版本已经被合并了里面包含<code class="highlighter-rouge">terracotta</code></li>
 </ul>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;tc-config</span> <span class="na">xmlns=</span><span class="s">"http://www.terracotta.org/config"</span>
            <span class="na">xmlns:ohr=</span><span class="s">"http://www.terracotta.org/config/offheap-resource"</span><span class="nt">&gt;</span>
   <span class="c">&lt;!--
@@ -223,8 +222,7 @@
   <span class="nt">&lt;/servers&gt;</span>
 <span class="nt">&lt;/tc-config&gt;</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>
@@ -235,13 +233,12 @@
   </li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># 1</span>
-nohup ./bin/start-tc-server.sh  -f conf/tc-config.xml  -n s1 &amp;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 1</span>
+nohup ./bin/start-tc-server.sh  <span class="nt">-f</span> conf/tc-config.xml  <span class="nt">-n</span> s1 &amp;
 <span class="c"># 2</span>
-nohup ./bin/start-tc-server.sh  -f conf/tc-config.xml  -n s2 &amp;
+nohup ./bin/start-tc-server.sh  <span class="nt">-f</span> conf/tc-config.xml  <span class="nt">-n</span> s2 &amp;
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>
@@ -255,7 +252,7 @@ nohup ./bin/start-tc-server.sh  -f conf/tc-config.xml  -n s2 &amp;
   </li>
 </ul>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 
 <span class="kn">package</span> <span class="n">todcloud</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">ehcache</span><span class="o">;</span>
 
@@ -304,8 +301,7 @@ nohup ./bin/start-tc-server.sh  -f conf/tc-config.xml  -n s2 &amp;
     <span class="o">}</span>
 <span class="o">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
     </article>
     <div class="share">

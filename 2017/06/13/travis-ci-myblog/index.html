@@ -133,37 +133,33 @@ Travis CI提供一个在线的持续集成服务，用来构建托管在github�
 所以我们需要使用SSH key来使Travis CI拥有权限。还有一些其他的问题也都参开hexo作者的博文解决了，
 用Travis CI自动部署网站到Github。</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#安装travis-ci的命令行工具</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#安装travis-ci的命令行工具</span>
 
 gem install travis
 
-</code></pre>
-</div>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#登录Travis CI</span>
-travis login --auto <span class="c">#这里可以用token登录。</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#登录Travis CI</span>
+travis login <span class="nt">--auto</span> <span class="c">#这里可以用token登录。</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#使用travis命令行工具加密私钥</span>
-travis encrypt-file id_rsa --add
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#使用travis命令行工具加密私钥</span>
+travis encrypt-file id_rsa <span class="nt">--add</span>
+</code></pre></div></div>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#travis CI解密配置,这部分内容需要配置在 .travis.yml 里,注意修改秘钥</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#travis CI解密配置,这部分内容需要配置在 .travis.yml 里,注意修改秘钥</span>
 
-- openssl aes-256-cbc -K <span class="nv">$encrypted_26b4962af0e7_key</span> -iv <span class="nv">$encrypted_26b4962af0e7_iv</span>
-  -in id_rsa.enc -out ~/.ssh/id_rsa -d
-</code></pre>
-</div>
+- openssl aes-256-cbc <span class="nt">-K</span> <span class="nv">$encrypted_26b4962af0e7_key</span> <span class="nt">-iv</span> <span class="nv">$encrypted_26b4962af0e7_iv</span>
+  <span class="nt">-in</span> id_rsa.enc <span class="nt">-out</span> ~/.ssh/id_rsa <span class="nt">-d</span>
+</code></pre></div></div>
 <p>.travis.yml</p>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code>
-<span class="s">language</span><span class="pi">:</span> <span class="s">node_js</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="na">language</span><span class="pi">:</span> <span class="s">node_js</span>
 
-<span class="s">node_js</span><span class="pi">:</span>
+<span class="na">node_js</span><span class="pi">:</span>
 <span class="pi">-</span> <span class="s1">'</span><span class="s">4.1'</span>
-<span class="s">before_install</span><span class="pi">:</span>
+<span class="na">before_install</span><span class="pi">:</span>
 <span class="pi">-</span> <span class="s">openssl aes-256-cbc -K $encrypted_26b4962af0e7_key -iv $encrypted_26b4962af0e7_iv</span>
   <span class="s">-in id_rsa.enc -out ~/.ssh/id_rsa -d</span>
 <span class="pi">-</span> <span class="s">chmod 600 ~/.ssh/id_rsa</span>
@@ -173,17 +169,16 @@ travis encrypt-file id_rsa --add
 <span class="pi">-</span> <span class="s">git config --global user.name "pangjian"</span>
 <span class="pi">-</span> <span class="s">git config --global user.email "pangjian1010@gmail.com"</span>
 
-<span class="s">install</span><span class="pi">:</span>
+<span class="na">install</span><span class="pi">:</span>
 <span class="pi">-</span> <span class="s">npm install hexo-cli -g</span>
 <span class="pi">-</span> <span class="s">npm install</span>
 
-<span class="s">script</span><span class="pi">:</span>
+<span class="na">script</span><span class="pi">:</span>
 <span class="pi">-</span> <span class="s">hexo -version</span>
 <span class="pi">-</span> <span class="s">hexo clean</span>
 <span class="pi">-</span> <span class="s">hexo g</span>
 <span class="pi">-</span> <span class="s">hexo deploy</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>转载请注明出处：https://firsh.me/2017/06/13/travis-ci-myblog/</li>

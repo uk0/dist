@@ -136,10 +136,9 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <div class="highlighter-rouge"><pre class="highlight"><code>搭建一个高可用的Flink 集群HA
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>搭建一个高可用的Flink 集群HA
     用于项目测试
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="quick-start">quick start</h2>
 
@@ -147,7 +146,7 @@
   <li>
     <p>flink-conf.yaml</p>
 
-    <div class="language-yaml highlighter-rouge"><pre class="highlight"><code>
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
      <span class="s">jobmanager.rpc.port</span><span class="pi">:</span> <span class="s">6123</span>
 
 
@@ -158,7 +157,7 @@
 
      <span class="s">taskmanager.numberOfTaskSlots</span><span class="pi">:</span> <span class="s">2</span>
 
-     <span class="s">taskmanager.memory.preallocate</span><span class="pi">:</span> <span class="s">false</span>
+     <span class="s">taskmanager.memory.preallocate</span><span class="pi">:</span> <span class="no">false</span>
 
 
      <span class="s">parallelism.default</span><span class="pi">:</span> <span class="s">1</span>
@@ -202,12 +201,11 @@
      <span class="s">fs.hdfs.hadoopconf</span><span class="pi">:</span> <span class="s">/home/aom/hadoop/etc/hadoop</span>
 
 
-     <span class="s">high-availability</span><span class="pi">:</span> <span class="s">zookeeper</span>
+     <span class="na">high-availability</span><span class="pi">:</span> <span class="s">zookeeper</span>
      <span class="s">high-availability.zookeeper.quorum</span><span class="pi">:</span> <span class="s">dscn1:2181,dscn2:2181,dscn3:2181</span>
      <span class="s">high-availability.zookeeper.storageDir</span><span class="pi">:</span> <span class="s">hdfs://ns/flink/recovery</span>
      <span class="s">high-availability.zookeeper.path.root</span><span class="pi">:</span> <span class="s">/flink</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>masters
     <pre><code class="language-bahs">tod1:8081
@@ -217,18 +215,16 @@ tod2:8081
   <li>slaves</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>    tod1
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    tod1
     tod2
     tod3
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>scp 到其他节点</li>
   <li>启动集群
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>    start-cluster.sh
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    start-cluster.sh
+</code></pre></div>    </div>
   </li>
 </ul>
 

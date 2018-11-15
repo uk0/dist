@@ -127,29 +127,27 @@
 
 <ul>
   <li>1，如何配置
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">{</span>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">{</span>
     <span class="s2">"firsh.cc"</span>: <span class="o">{</span><span class="c"># 这个url需要在 host文件里面修改一下下面会讲</span>
     <span class="s2">"/api"</span>: <span class="s2">"localhost:8005"</span>,  <span class="c"># 需要代理的服务器地址 与mock一致即可 忽略POST，GET DELETE等方法</span>
     <span class="s2">"*"</span>: <span class="s2">"/Users/zhangjianxin/home/GO_LIB/src/github.com/breakEval13/libs/lib/staticweb/root"</span>
     <span class="c"># 上面的文件路径为dist目录</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>2 host如何进行映射</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
-➜  Desktop cat /etc/hosts
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+➜  Desktop <span class="nb">cat</span> /etc/hosts
 <span class="c">##</span>
 <span class="c"># Host Database</span>
 <span class="c">#</span>
 127.0.0.1    firsh.me <span class="c"># 这里</span>
 127.0.0.1    firsh.cc <span class="c"># 这里</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 <ul>
   <li>windows 同理进行修改hosts文件</li>
 </ul>

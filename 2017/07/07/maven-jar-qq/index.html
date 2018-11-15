@@ -125,10 +125,9 @@
 
 <h2 id="错误描述">错误描述</h2>
 
-<div class="language-text highlighter-rouge"><pre class="highlight"><code>  因为项目中用到ActorDB所以有了以下的故事，当maven中引入多个jar包，那么避免不了会发生重复的包存在。
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  因为项目中用到ActorDB所以有了以下的故事，当maven中引入多个jar包，那么避免不了会发生重复的包存在。
  
-</code></pre>
-</div>
+</code></pre></div></div>
 <ul>
   <li>如图所示，成功的倒入了·<code class="highlighter-rouge">org.apache.thrift</code>
 但是工具里面没有找到 <code class="highlighter-rouge">clearBit</code>，<code class="highlighter-rouge">setBit</code>等方法。</li>
@@ -153,7 +152,7 @@
 于是找到了解决方案代码如下：</li>
 </ul>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code>   <span class="nt">&lt;dependency&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nt">&lt;dependency&gt;</span>
       <span class="nt">&lt;groupId&gt;</span>org.wso2.msf4j<span class="nt">&lt;/groupId&gt;</span>
       <span class="nt">&lt;artifactId&gt;</span>msf4j-all<span class="nt">&lt;/artifactId&gt;</span>
       <span class="nt">&lt;version&gt;</span>2.1.0<span class="nt">&lt;/version&gt;</span>
@@ -164,8 +163,7 @@
           <span class="nt">&lt;/exclusion&gt;</span>
       <span class="nt">&lt;/exclusions&gt;</span>
   <span class="nt">&lt;/dependency&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>通过这种方式进行包的摘除，(结果还不是很理想，还是有问题。)
@@ -180,20 +178,18 @@
 
 <h2 id="总结">总结</h2>
 <p>学习了Mavne的加载顺序，以及排错方式：</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#查找依赖所在的地方</span>
- mvn dependency:tree -Dverbose -Dincludes<span class="o">=</span>org.apache.thrift:libthrift
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#查找依赖所在的地方</span>
+ mvn dependency:tree <span class="nt">-Dverbose</span> <span class="nt">-Dincludes</span><span class="o">=</span>org.apache.thrift:libthrift
+</code></pre></div></div>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!--去除依赖，在外部加载--&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--去除依赖，在外部加载--&gt;</span>
 <span class="nt">&lt;exclusions&gt;</span>
       <span class="nt">&lt;exclusion&gt;</span>
           <span class="nt">&lt;artifactId&gt;</span>libthrift<span class="nt">&lt;/artifactId&gt;</span>
           <span class="nt">&lt;groupId&gt;</span>org.apache.thrift<span class="nt">&lt;/groupId&gt;</span>
       <span class="nt">&lt;/exclusion&gt;</span>
   <span class="nt">&lt;/exclusions&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 
     </article>

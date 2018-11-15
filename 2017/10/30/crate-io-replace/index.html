@@ -137,19 +137,17 @@ author：zhangjianxin</p>
 <h1 id="解决crate-重启恢复shards速度慢的问题">解决Crate 重启恢复Shards速度慢的问题</h1>
 <ul>
   <li>修改crate配置文件
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>   es.api.enabled: <span class="nb">true</span>
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   es.api.enabled: <span class="nb">true</span>
+</code></pre></div>    </div>
   </li>
   <li>开始处理
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>  curl -XPUT http://127.0.0.1:9200/_cluster/settings -d<span class="s1">'
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  curl <span class="nt">-XPUT</span> http://127.0.0.1:9200/_cluster/settings <span class="nt">-d</span><span class="s1">'
   {
   	"transient" : {
   		"cluster.routing.allocation.enable" : "none"
   	}
   }'</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
 </ul>
 

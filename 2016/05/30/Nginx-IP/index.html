@@ -129,7 +129,7 @@
 
 <h2 id="解决办法">解决办法</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>1. Nginx 开启 http_realip_module 模块
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. Nginx 开启 http_realip_module 模块
 
     ./configure --with-http_realip_module
 
@@ -155,8 +155,7 @@
 	修改为 
 	pattern="%{X-FORWARDED-FOR}i %l %u %t %r %s %b %D %q %{User-Agent}i %T" resolveHosts="false"/&gt;
 	
-</code></pre>
-</div>
+</code></pre></div></div>
 
     </article>
     <div class="share">

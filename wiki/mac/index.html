@@ -201,31 +201,27 @@
   <li>
     <p>使用 <code class="highlighter-rouge">find</code> 命令，例如：</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>find ~ -iname aapt
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find ~ -iname aapt
+</code></pre></div>    </div>
   </li>
   <li>
     <p>使用 <code class="highlighter-rouge">mdfind</code> 命令，例如：</p>
 
     <p>全局搜索</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>mdfind -name aapt
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mdfind -name aapt
+</code></pre></div>    </div>
 
     <p>或搜索指定文件夹</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>mdfind -onlyin ~/Library aapt
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mdfind -onlyin ~/Library aapt
+</code></pre></div>    </div>
   </li>
   <li>
     <p>使用 <code class="highlighter-rouge">locate</code> 命令，例如：</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>locate aapt
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>locate aapt
+</code></pre></div>    </div>
   </li>
 </ul>
 
@@ -240,9 +236,8 @@
   <li>
     <p>在 Terminal 下</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>pwd|pbcopy
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pwd|pbcopy
+</code></pre></div>    </div>
   </li>
 </ul>
 
@@ -273,7 +268,7 @@
 
 <h3 id="保存-safari-里正在播放的视频">保存 Safari 里正在播放的视频</h3>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>su
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>su
 <span class="c"># cd /private/var/folders</span>
 <span class="c"># ls</span>
 nk zz
@@ -282,8 +277,7 @@ nk zz
 zy3770994vqg83xvmbc9pd0m0000gn
 <span class="c"># cd zy3770994vqg83xvmbc9pd0m0000gn/T</span>
 <span class="c"># open .</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>然后复制里面叫 FlashTmp.xxx 的文件，改名为 FlashTmp.flv。（操作过程中保持视频在播放状态）</p>
 
@@ -347,10 +341,9 @@ zy3770994vqg83xvmbc9pd0m0000gn
 
 <p>去除窗口截图时的阴影：</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>defaults write com.apple.screencapture disable-shadow -bool TRUE
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>defaults write com.apple.screencapture disable-shadow <span class="nt">-bool</span> TRUE
 Killall SystemUIServer
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>如果要保留窗口截图时的阴影，则将 TRUE 改为 FALSE。</p>
 
@@ -362,10 +355,9 @@ Killall SystemUIServer
 
 <p>使用 <code class="highlighter-rouge">brew options mpv</code> 可以看到有个 <code class="highlighter-rouge">--with-bundle</code> 是安装时创建 .app 文件。</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>brew install mpv --with-bundle
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew install mpv <span class="nt">--with-bundle</span>
 brew linkapps mpv
-</code></pre>
-</div>
+</code></pre></div></div>
 
     </article>
     <div class="share">

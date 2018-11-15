@@ -126,33 +126,29 @@
 <h2 id="摘要-我要装个rocketmq">摘要: 我要装个RocketMQ</h2>
 
 <h1 id="rocketmq-安装">rocketmq 安装</h1>
-<div class="highlighter-rouge"><pre class="highlight"><code>安装rocketmq需要环境：
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>安装rocketmq需要环境：
 1、jdk1.7以上
 2、maven
 3、git
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><em>jdk1.8</em></p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code> wget https://zmatsh.b0.upaiyun.com/blog/tmp/jdk-8u92-linux-x64.tar.gz
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> wget https://zmatsh.b0.upaiyun.com/blog/tmp/jdk-8u92-linux-x64.tar.gz
+</code></pre></div></div>
 <p><em>maven下载：</em></p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>wget http://mirrors.hust.edu.cn/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget http://mirrors.hust.edu.cn/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
 
-tar xf apache-maven-3.3.9-bin.tar.gz -C /opt/
-</code></pre>
-</div>
+<span class="nb">tar </span>xf apache-maven-3.3.9-bin.tar.gz <span class="nt">-C</span> /opt/
+</code></pre></div></div>
 <p><em>git下载：</em></p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>yum install git -y
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum install git <span class="nt">-y</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 <p><em>环境变量如下：</em></p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">export </span>PATH USER LOGNAME MAIL HOSTNAME HISTSIZE HISTCONTROL
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span>PATH USER LOGNAME MAIL HOSTNAME HISTSIZE HISTCONTROL
 <span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/opt/jdk/jdk1.8.0_65
 <span class="nb">export </span><span class="nv">JRE_HOME</span><span class="o">=</span>/opt/jdk/jdk1.8.0_65/jre
 <span class="nb">export </span><span class="nv">CLASSPATH</span><span class="o">=</span>.:<span class="nv">$JAVA_HOME</span>/lib/dt.jar:<span class="nv">$JAVA_HOME</span>/lib/tools.jar:<span class="nv">$JRE_HOME</span>/lib:<span class="nv">$CLASSPATH</span>
@@ -163,93 +159,80 @@ tar xf apache-maven-3.3.9-bin.tar.gz -C /opt/
 <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$M2_HOME</span>/bin
 <span class="nb">export </span><span class="nv">ROCKETMQ_HOME</span><span class="o">=</span>/opt/RocketMQ-3.5.8/devenv
 <span class="nb">export </span><span class="nv">NAMESRV_ADDR</span><span class="o">=</span>127.0.0.1:9876
-</code></pre>
-</div>
+</code></pre></div></div>
 <p><em>使配置文件生效</em></p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">source</span> /etc/profile
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source</span> /etc/profile
+</code></pre></div></div>
 <p><em>检测maven</em></p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@dscn1 ~]# mvn -v
-Apache Maven 3.3.9 <span class="o">(</span>bb52d8502b132ec0a5a3f4c09453c07478323dc5; 2015-11-11T00:41:47+08:00<span class="o">)</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@dscn1 ~]# mvn <span class="nt">-v</span>
+Apache Maven 3.3.9 <span class="o">(</span>bb52d8502b132ec0a5a3f4c09453c07478323dc5<span class="p">;</span> 2015-11-11T00:41:47+08:00<span class="o">)</span>
 Maven home: /opt/apache-maven-3.3.9
 Java version: 1.8.0_65, vendor: Oracle Corporation
 Java home: /opt/jdk/jdk1.8.0_65/jre
 Default locale: zh_CN, platform encoding: UTF-8
 OS name: <span class="s2">"linux"</span>, version: <span class="s2">"2.6.32-573.22.1.el6.x86_64"</span>, arch: <span class="s2">"amd64"</span>, family: <span class="s2">"unix"</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>[toc]</p>
 
 <p>##一、正式开始安装rocketmq
 1、下载安装</p>
 
-<div class="language-text highlighter-rouge"><pre class="highlight"><code>a）wget https://github.com/alibaba/RocketMQ/archive/v3.5.8.tar.gz		###下载包
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a）wget https://github.com/alibaba/RocketMQ/archive/v3.5.8.tar.gz		###下载包
 b）tar -xf v3.5.8.tar.gz	 -C /opt/	###解压
 c）cd /opt/RocketMQ-3.5.8 	###进入解压后目录
 d）sh install.sh			###进行安装(下载国外的数据，时间较长)
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>2、修改文件内存</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> /opt/RocketMQ-3.5.8/devenv/bin
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /opt/RocketMQ-3.5.8/devenv/bin
 <span class="c">#vim修改runbroker.sh、runserver.sh两个文件</span>
--------------------------------------
+<span class="nt">-------------------------------------</span>
 <span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">JAVA_OPT</span><span class="k">}</span><span class="s2"> -server -Xms512m -Xmx512m -Xmn256m -XX:PermSize=128m -XX:MaxPermSize=320m"</span>		<span class="c">###Xms启动时内存，Xmx最大内存，Xmn最小内存</span>
---------------------------------------
-</code></pre>
-</div>
+<span class="nt">--------------------------------------</span>
+</code></pre></div></div>
 
 <p>3、启动<code class="highlighter-rouge">nameserver</code></p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>nohup sh  mqnamesrv &gt;/var/log/ns.log 2&gt;&amp;1 &amp;
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nohup sh  mqnamesrv <span class="o">&gt;</span>/var/log/ns.log 2&gt;&amp;1 &amp;
+</code></pre></div></div>
 <p>4、验证<code class="highlighter-rouge">nameserver</code>是否启动：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>tail -f /var/log/ns.log   <span class="c">###查看日志有无错误信息</span>
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tail <span class="nt">-f</span> /var/log/ns.log   <span class="c">###查看日志有无错误信息</span>
+</code></pre></div></div>
 <p>5、启动<code class="highlighter-rouge">broker</code>
  在启动<code class="highlighter-rouge">borker</code>之前需要指定<code class="highlighter-rouge">nameserver</code>地址：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"export NAMESRV_ADDR=127.0.0.1:9876"</span> &gt;&gt; /etc/profile		<span class="c">###写入到环境变量，或者直接</span>
--n来指定
- nohup sh mqbroker -n 192.168.0.106:9876 <span class="nv">autoCreateTopicEnable</span><span class="o">=</span><span class="nb">true</span> &gt; /var/log/mq.log 2&gt;&amp;1 &amp;
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"export NAMESRV_ADDR=127.0.0.1:9876"</span> <span class="o">&gt;&gt;</span> /etc/profile		<span class="c">###写入到环境变量，或者直接</span>
+<span class="nt">-n</span>来指定
+ nohup sh mqbroker <span class="nt">-n</span> 192.168.0.106:9876 <span class="nv">autoCreateTopicEnable</span><span class="o">=</span><span class="nb">true</span> <span class="o">&gt;</span> /var/log/mq.log 2&gt;&amp;1 &amp;
+</code></pre></div></div>
 <p>6、检验是否开启</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>tail -f /var/log/mq.log   <span class="c">###查看日志有无错误信息</span>
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tail <span class="nt">-f</span> /var/log/mq.log   <span class="c">###查看日志有无错误信息</span>
+</code></pre></div></div>
 
 <p>7、关闭的命令：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sh mqshutdown namesrv
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sh mqshutdown namesrv
 sh mqshutdown broker
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>8、创建队列</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sh mqadmin updateTopic -b <span class="s2">"192.168.0.106:10911"</span> -t Topic1 -r 10 -w 10			<span class="c">###-b   broker的ip和端口	-t java程序中定义的名字</span>
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sh mqadmin updateTopic <span class="nt">-b</span> <span class="s2">"192.168.0.106:10911"</span> <span class="nt">-t</span> Topic1 <span class="nt">-r</span> 10 <span class="nt">-w</span> 10			<span class="c">###-b   broker的ip和端口	-t java程序中定义的名字</span>
+</code></pre></div></div>
 <p>9、更改broker配置文件，更改ip,使外网可以访问</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sh mqadmin updateBrokerConfig -b 192.168.0.106:10911 -k brokerIP1 -v 192.168.0.106
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sh mqadmin updateBrokerConfig <span class="nt">-b</span> 192.168.0.106:10911 <span class="nt">-k</span> brokerIP1 <span class="nt">-v</span> 192.168.0.106
+</code></pre></div></div>
 <p>10、以此输入下面两个命令：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bash tools.sh com.alibaba.rocketmq.example.quickstart.Producer		<span class="c">###生产者(生产队列)</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash tools.sh com.alibaba.rocketmq.example.quickstart.Producer		<span class="c">###生产者(生产队列)</span>
 
 bash tools.sh com.alibaba.rocketmq.example.quickstart.Consumer		<span class="c">###消费者（清理队列）</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <blockquote>
   <p>如果报错是内存不够，就改<code class="highlighter-rouge">runbroker.sh</code>、<code class="highlighter-rouge">runserver.sh</code>两个文件</p>
@@ -267,12 +250,11 @@ bash tools.sh com.alibaba.rocketmq.example.quickstart.Consumer		<span class="c">
 <p>除了启动步骤不同。其余与上面一主的配置相同：
 1、修改/opt/RocketMQ-3.5.8/devenv/bin/runbroker.sh、runserver.sh两个文件：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">JAVA_OPT</span><span class="k">}</span><span class="s2"> -server -Xms512m -Xmx512m -Xmn256m -XX:PermSize=128m -XX:MaxPermSize=320m"</span>		<span class="c">###Xms启动时内存，Xmx最大内存，Xmn最小内存</span>
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">JAVA_OPT</span><span class="k">}</span><span class="s2"> -server -Xms512m -Xmx512m -Xmn256m -XX:PermSize=128m -XX:MaxPermSize=320m"</span>		<span class="c">###Xms启动时内存，Xmx最大内存，Xmn最小内存</span>
+</code></pre></div></div>
 <p>2、主的机器修改/opt/RocketMQ-3.5.8/devenv/conf/2m-2s-async/broker-a.properties</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nv">namesrvAddr</span><span class="o">=</span>192.168.0.106:9876;192.168.0.107:9876
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">namesrvAddr</span><span class="o">=</span>192.168.0.106:9876<span class="p">;</span>192.168.0.107:9876
 <span class="nv">brokerIP1</span><span class="o">=</span>192.168.0.106
 <span class="nv">brokerClusterName</span><span class="o">=</span>DefaultCluster
 <span class="nv">brokerName</span><span class="o">=</span>broker-a
@@ -283,11 +265,10 @@ bash tools.sh com.alibaba.rocketmq.example.quickstart.Consumer		<span class="c">
 <span class="nv">flushDiskType</span><span class="o">=</span>ASYNC_FLUSH
 <span class="nv">storePathRootDir</span><span class="o">=</span>/opt/RocketMQ-3.4.6
 <span class="nv">storePathCommitLog</span><span class="o">=</span>/opt/RocketMQ-3.4.6/log/commitlog
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>3、从的机器修改/opt/RocketMQ-3.5.8/devenv/conf/2m-2s-async/broker-a-s.properties</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nv">namesrvAddr</span><span class="o">=</span>192.168.0.106:9876;192.168.0.107:9876
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">namesrvAddr</span><span class="o">=</span>192.168.0.106:9876<span class="p">;</span>192.168.0.107:9876
 <span class="nv">brokerIP1</span><span class="o">=</span>192.168.0.107
 <span class="nv">brokerClusterName</span><span class="o">=</span>DefaultCluster
 <span class="nv">brokerName</span><span class="o">=</span>broker-a
@@ -298,21 +279,20 @@ bash tools.sh com.alibaba.rocketmq.example.quickstart.Consumer		<span class="c">
 <span class="nv">flushDiskType</span><span class="o">=</span>ASYNC_FLUSH
 <span class="nv">storePathRootDir</span><span class="o">=</span>/opt/RocketMQ-3.4.6
 <span class="nv">storePathCommitLog</span><span class="o">=</span>/opt/RocketMQ-3.4.6/log/commitlog
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <blockquote>
   <p>参考内容和解释如下：</p>
 </blockquote>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#所属集群名字</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#所属集群名字</span>
 <span class="nv">brokerClusterName</span><span class="o">=</span>rocketmq-cluster
 <span class="c">#broker名字，注意此处不同的配置文件填写的不一样</span>
 <span class="nv">brokerName</span><span class="o">=</span>broker-a|broker-b
 <span class="c">#0 表示 Master， &gt;0 表示 Slave</span>
 <span class="nv">brokerId</span><span class="o">=</span>0
 <span class="c">#nameServer地址，分号分割</span>
-<span class="nv">namesrvAddr</span><span class="o">=</span>rocketmq-nameserver1:9876;rocketmq-nameserver2:9876
+<span class="nv">namesrvAddr</span><span class="o">=</span>rocketmq-nameserver1:9876<span class="p">;</span>rocketmq-nameserver2:9876
 <span class="c">#在发送消息时，自动创建服务器不存在的topic，默认创建的队列数</span>
 <span class="nv">defaultTopicQueueNums</span><span class="o">=</span>4
 <span class="c">#是否允许 Broker 自动创建Topic，建议线下开启，线上关闭</span>
@@ -365,24 +345,20 @@ bash tools.sh com.alibaba.rocketmq.example.quickstart.Consumer		<span class="c">
 <span class="c">#sendMessageThreadPoolNums=128</span>
 <span class="c">#拉消息线程池数量</span>
 <span class="c">#pullMessageThreadPoolNums=128</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>4、两个机器上都启动nameserver:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>nohup sh  mqnamesrv &gt;/var/log/ns.log 2&gt;&amp;1 &amp;
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nohup sh  mqnamesrv <span class="o">&gt;</span>/var/log/ns.log 2&gt;&amp;1 &amp;
+</code></pre></div></div>
 <p>5、主的机器启动broker：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code> nohup sh mqbroker -c ../conf/2m-2s-async/broker-a.properties &gt; /var/log/mq.log 2&gt;&amp;1 &amp;
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> nohup sh mqbroker <span class="nt">-c</span> ../conf/2m-2s-async/broker-a.properties <span class="o">&gt;</span> /var/log/mq.log 2&gt;&amp;1 &amp;
+</code></pre></div></div>
 <p>6、从的机器启动broker：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code> nohup sh mqbroker -c ../conf/2m-2s-async/broker-a-s.properties &gt; /var/log/mq.log 2&gt;&amp;1 &amp;
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> nohup sh mqbroker <span class="nt">-c</span> ../conf/2m-2s-async/broker-a-s.properties <span class="o">&gt;</span> /var/log/mq.log 2&gt;&amp;1 &amp;
+</code></pre></div></div>
 
 <h2 id="运行成功的图">运行成功的图！</h2>
 

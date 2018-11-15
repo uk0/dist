@@ -134,47 +134,43 @@
   <li>首先备份系统自带yum源配置文件/etc/yum.repos.d/CentOS-Base.repo</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@localhost ~]# mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@localhost ~]# mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+</code></pre></div></div>
 
 <ul>
   <li>进入yum源配置文件所在的文件夹</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@localhost ~]# <span class="nb">cd</span> /etc/yum.repos.d/
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@localhost ~]# <span class="nb">cd</span> /etc/yum.repos.d/
+</code></pre></div></div>
 <ul>
   <li>下载163的yum源配置文件</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># 自己根据版本进行下载</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 自己根据版本进行下载</span>
 <span class="c"># 163</span>
-wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS7-Base-163.repo
-wget -O /etc/yum.repos.d/CentOS-Base.repo  http://mirrors.163.com/.help/CentOS6-Base-163.repo
-wget -O /etc/yum.repos.d/CentOS-Base.repo  http://mirrors.163.com/.help/CentOS5-Base-163.repo
+wget <span class="nt">-O</span> /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS7-Base-163.repo
+wget <span class="nt">-O</span> /etc/yum.repos.d/CentOS-Base.repo  http://mirrors.163.com/.help/CentOS6-Base-163.repo
+wget <span class="nt">-O</span> /etc/yum.repos.d/CentOS-Base.repo  http://mirrors.163.com/.help/CentOS5-Base-163.repo
 <span class="c"># aliyun</span>
-wget -O /etc/yum.repos.d/CentOS-Base.repo  http://mirrors.aliyun.com/repo/Centos-7.repo
-wget -O /etc/yum.repos.d/CentOS-Base.repo  http://mirrors.aliyun.com/repo/Centos-5.repo
-wget -O /etc/yum.repos.d/CentOS-Base.repo  http://mirrors.aliyun.com/repo/Centos-6.repo
+wget <span class="nt">-O</span> /etc/yum.repos.d/CentOS-Base.repo  http://mirrors.aliyun.com/repo/Centos-7.repo
+wget <span class="nt">-O</span> /etc/yum.repos.d/CentOS-Base.repo  http://mirrors.aliyun.com/repo/Centos-5.repo
+wget <span class="nt">-O</span> /etc/yum.repos.d/CentOS-Base.repo  http://mirrors.aliyun.com/repo/Centos-6.repo
 
 <span class="c"># 运行yum makecache生成缓存</span>
 
 yum makecache
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="更新动作">更新动作</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#更新系统就会看到以下mirrors.163.com信息</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#更新系统就会看到以下mirrors.163.com信息</span>
 已加载插件：fastestmirror, refresh-packagekit, security
 设置更新进程Loading mirror speeds from cached hostfile
 <span class="k">*</span> base: mirrors.163.com
 <span class="k">*</span> extras: mirrors.163.com
 <span class="k">*</span> updates: mirrors.163.com
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>转不注明出处，老子就不写了，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
 

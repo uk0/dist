@@ -157,26 +157,25 @@
   <li>启动一个Runner 并且配置</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
-sudo docker run -d --name gitlab-java --restart always <span class="se">\</span>
-  -v /srv/gitlab-java/config:/etc/gitlab-runner <span class="se">\</span>
-  -v /var/run/docker.sock:/var/run/docker.sock <span class="se">\</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nb">sudo </span>docker run <span class="nt">-d</span> <span class="nt">--name</span> gitlab-java <span class="nt">--restart</span> always <span class="se">\</span>
+  <span class="nt">-v</span> /srv/gitlab-java/config:/etc/gitlab-runner <span class="se">\</span>
+  <span class="nt">-v</span> /var/run/docker.sock:/var/run/docker.sock <span class="se">\</span>
   gitlab/gitlab-runner:latest
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>注册runner 到 Gitlab</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo docker <span class="nb">exec</span> -it gitlab-java gitlab-runner register <span class="se">\</span>
-  --url <span class="s2">"http://gitlab.emosa.com/"</span> <span class="se">\</span>
-  --registration-token <span class="s2">"hyNYzSsoJKjGqy1y4D-Q"</span> <span class="se">\</span>
-  --executor docker <span class="se">\</span>
-  --description <span class="s2">"Java-Runner"</span> <span class="se">\</span>
-  --docker-image <span class="s2">"debian"</span> <span class="se">\</span>
-  --docker-volumes /var/run/docker.sock:/var/run/docker.sock
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>docker <span class="nb">exec</span> <span class="nt">-it</span> gitlab-java gitlab-runner register <span class="se">\</span>
+  <span class="nt">--url</span> <span class="s2">"http://gitlab.emosa.com/"</span> <span class="se">\</span>
+  <span class="nt">--registration-token</span> <span class="s2">"hyNYzSsoJKjGqy1y4D-Q"</span> <span class="se">\</span>
+  <span class="nt">--executor</span> docker <span class="se">\</span>
+  <span class="nt">--description</span> <span class="s2">"Java-Runner"</span> <span class="se">\</span>
+  <span class="nt">--docker-image</span> <span class="s2">"debian"</span> <span class="se">\</span>
+  <span class="nt">--docker-volumes</span> /var/run/docker.sock:/var/run/docker.sock
 
 
 <span class="c"># gitlab-runner register</span>
@@ -197,8 +196,7 @@ Please enter the executor: docker, parallels, shell, kubernetes, docker-ssh, ssh
 Please enter the default Docker image <span class="o">(</span>e.g. ruby:2.1<span class="o">)</span>:
 <span class="c"># debian</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>检查启动结果</li>

@@ -129,25 +129,24 @@
   <li>登陆服务器每次都输入密码很不舒服，所以总结了一个小脚本。</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="c">#!/bin/bash</span>
 <span class="nv">USER</span><span class="o">=</span>activemq
 <span class="nv">current_node</span><span class="o">=</span>192.168.1.45
 <span class="nv">PASSWD</span><span class="o">=</span>activemq
-/usr/bin/expect <span class="sh">&lt;&lt;EOF
-    spawn ssh $USER@$current_node
+/usr/bin/expect <span class="o">&lt;&lt;</span><span class="no">EOF</span><span class="sh">
+    spawn ssh </span><span class="nv">$USER</span><span class="sh">@</span><span class="nv">$current_node</span><span class="sh">
     expect "*(yes/no)?*" {
         send -- "yes\r"
         expect "*?assword:*"
-        send -- "$PASSWD\r"
+        send -- "</span><span class="nv">$PASSWD</span><span class="sh">\r"
     }  "*?assword:*"
-        send -- "$PASSWD\r"
+        send -- "</span><span class="nv">$PASSWD</span><span class="sh">\r"
         expect "*# "
     send -- "exit \r"
-EOF
+</span><span class="no">EOF
 
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <p># 2017-12-21  [shell]</p>
 
@@ -155,7 +154,7 @@ EOF
   <li>用<code class="highlighter-rouge">,</code>劈分数据。</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nv">HBASE_REGION</span><span class="o">=</span>dscn1,dscn2,dscn3
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">HBASE_REGION</span><span class="o">=</span>dscn1,dscn2,dscn3
 
 <span class="c">#用 `,` split</span>
 <span class="nv">OLD_IFS</span><span class="o">=</span><span class="s2">"</span><span class="nv">$IFS</span><span class="s2">"</span>
@@ -164,12 +163,11 @@ EOF
 <span class="nv">IFS</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OLD_IFS</span><span class="s2">"</span>
 <span class="k">for </span>s <span class="k">in</span> <span class="k">${</span><span class="nv">arr</span><span class="p">[@]</span><span class="k">}</span>
 <span class="k">do
-   </span>ssh <span class="s2">"</span><span class="nv">$s</span><span class="s2">"</span> ls
-<span class="k">done</span>
+   </span>ssh <span class="s2">"</span><span class="nv">$s</span><span class="s2">"</span> <span class="nb">ls
+</span><span class="k">done</span>
 
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
     </article>
     <div class="share">

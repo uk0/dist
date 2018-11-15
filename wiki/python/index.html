@@ -119,15 +119,13 @@
   <li>
     <p>格式化 JSON 文件</p>
 
-    <div class="language-sh highlighter-rouge"><pre class="highlight"><code>python -m json.tool src.json &gt; dst.json
-</code></pre>
-    </div>
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> json.tool src.json <span class="o">&gt;</span> dst.json
+</code></pre></div>    </div>
 
     <p>在 Vim 里格式化 JSON：</p>
 
-    <div class="language-sh highlighter-rouge"><pre class="highlight"><code>:%!python -m json.tool
-</code></pre>
-    </div>
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:%!python <span class="nt">-m</span> json.tool
+</code></pre></div>    </div>
   </li>
 </ul>
 
@@ -141,9 +139,8 @@
   <li>
     <p>运行一个简易的 HTTP 服务器</p>
 
-    <div class="language-sh highlighter-rouge"><pre class="highlight"><code>python -m CGIHTTPServer 80
-</code></pre>
-    </div>
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> CGIHTTPServer 80
+</code></pre></div>    </div>
   </li>
 </ul>
 
@@ -157,15 +154,13 @@
   <li>
     <p>解码 base64</p>
 
-    <div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="nb">echo </span><span class="nv">aGVsbG93b3JsZA</span><span class="o">==</span> | python -m base64 -d
-</code></pre>
-    </div>
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo </span><span class="nv">aGVsbG93b3JsZA</span><span class="o">==</span> | python <span class="nt">-m</span> base64 <span class="nt">-d</span>
+</code></pre></div>    </div>
 
     <p>则能看到输出</p>
 
-    <div class="language-sh highlighter-rouge"><pre class="highlight"><code>helloworld
-</code></pre>
-    </div>
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>helloworld
+</code></pre></div>    </div>
   </li>
 </ul>
 

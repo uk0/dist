@@ -125,11 +125,10 @@
 HDFS 采用NS高可用模式。</p>
 
 <h1 id="hdfsmanagerjava">HDFSManager.Java</h1>
-<div class="highlighter-rouge"><pre class="highlight"><code>* 初始化HDFS链接。
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* 初始化HDFS链接。
+</code></pre></div></div>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">e</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">hdfs</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">e</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">hdfs</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">com.alibaba.fastjson.JSONObject</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.e.firsh.base.esb.BO</span><span class="o">;</span>
@@ -240,15 +239,14 @@ HDFS 采用NS高可用模式。</p>
     <span class="o">}</span>
 <span class="o">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 <h1 id="hdfssinkjava">HDFSSink.Java</h1>
 
 <ul>
   <li>继承<code class="highlighter-rouge">RichSinkFunction</code>，重写<code class="highlighter-rouge">open</code> 和 <code class="highlighter-rouge">invoke</code>方法，还有<code class="highlighter-rouge">close</code>。</li>
 </ul>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">e</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">sink</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">e</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">sink</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">com.e.firsh.spb.utils.hdfs.HDFSManager</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.apache.flink.configuration.Configuration</span><span class="o">;</span>
@@ -270,8 +268,7 @@ HDFS 采用NS高可用模式。</p>
     <span class="o">}</span>
 <span class="o">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="以上代码为简易版经过修改思路清晰flink自带一种hdfs的链接方式详情见链接">以上代码为简易版经过修改，思路清晰，（Flink自带一种HDFS的链接方式详情见链接：）</h1>
 

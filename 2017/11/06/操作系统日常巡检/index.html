@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Linux 操作系统日常巡检[原创] — 张建新</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Linux 操作系统日常巡检[原创] &mdash; 张建新</title>
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
@@ -41,7 +40,7 @@
     <meta property="og:url" content="http://firsh.me/2017/11/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%B8%B8%E5%B7%A1%E6%A3%80/">
     <meta property="og:site_name" content="张建新">
     <meta property="og:type" content="article">
-    <meta property="og:locale" content="zh_CN">
+    <meta property="og:locale" content="zh_CN" />
     
     <meta property="article:published_time" content="2017-11-06">
     
@@ -131,8 +130,7 @@ author：杨然儿</p>
 
 <h1 id="0查询是否被攻击">0.查询是否被攻击</h1>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>统计登录成功的IP
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>统计登录成功的IP
         last | awk '{ print $3}' | sort | uniq -c | sort -n
 登录失败的IP
         lastb | awk '{ print $3}' | sort | uniq -c | sort -n
@@ -143,65 +141,47 @@ author：杨然儿</p>
         grep "Accept" /var/log/secure*|awk '{print $9 '=' $11}'|sort|uniq -c
     登录失败的
         grep "Failed" /var/log/secure*|awk '{print $9 '=' $11}'|sort|uniq -c
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="1查操作系统日志是否存在错误">1.查操作系统日志是否存在错误:</h1>
-<div class="highlighter-rouge">
-<pre class="highlight"><code>more /var/log/messages|grep -E '[Ee]erro|fail|[Ww]arning'
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>more /var/log/messages|grep -E '[Ee]erro|fail|[Ww]arning'
+</code></pre></div></div>
 
 <h1 id="2查主机是否存在硬件错误">2.查主机是否存在硬件错误</h1>
-<div class="highlighter-rouge">
-<pre class="highlight"><code>dmesg|more
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dmesg|more
+</code></pre></div></div>
 
 <h1 id="3文件使用率">3.文件使用率</h1>
-<div class="highlighter-rouge">
-<pre class="highlight"><code>df -h
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>df -h
+</code></pre></div></div>
 
 <h1 id="4检查是否存在僵尸进程">4.检查是否存在僵尸进程</h1>
-<div class="highlighter-rouge">
-<pre class="highlight"><code>ps -ef|grep defunct
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps -ef|grep defunct
+</code></pre></div></div>
 
 <h1 id="5检查网关是否正确">5.检查网关是否正确</h1>
-<div class="highlighter-rouge">
-<pre class="highlight"><code>netstat -nr
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>netstat -nr
 ping  网关
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="6检查网络通信是否正常">6.检查网络通信是否正常</h1>
-<div class="highlighter-rouge">
-<pre class="highlight"><code>netstat -ni
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>netstat -ni
 RX-DRP 值为0或者保持稳定
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="7查网络连接状态">7.查网络连接状态</h1>
-<div class="highlighter-rouge">
-<pre class="highlight"><code>netstat -an|egrep 'ESTABLISHED|FIN_WAIT_1|FIN_WAIT_2|TIME_WAIT|CLOSING|CLOSE_WAIT|LAST_ACK'
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>netstat -an|egrep 'ESTABLISHED|FIN_WAIT_1|FIN_WAIT_2|TIME_WAIT|CLOSING|CLOSE_WAIT|LAST_ACK'
 
 netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="8查看是否丢包">8.查看是否丢包</h1>
-<div class="highlighter-rouge">
-<pre class="highlight"><code>cat /proc/net/dev
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat /proc/net/dev
 注意：dropped:0==&gt; 如果这个值不为 0 , 则说明有丢包现象
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="9网卡的工作状态">9.网卡的工作状态</h1>
-<div class="highlighter-rouge">
-<pre class="highlight"><code>ifconfig -a
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ifconfig -a
 如果网卡中状态无为down状态
 
 ethtool eth1
@@ -209,12 +189,10 @@ ethtool -i eth1
 iftop -B -n  -N -p
 fftop -i eth1 -B -n  -N -p
 查看网卡速度
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="10cpu是否存在瓶颈">10.CPU是否存在瓶颈</h1>
-<div class="highlighter-rouge">
-<pre class="highlight"><code>.CPU IDel大于90％则OK
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.CPU IDel大于90％则OK
         top -i -n 1|grep id|awk '{print $8}'
 
 .CPU load average 正常值：&lt; CPU个数 * 核数 *0.7
@@ -223,24 +201,20 @@ fftop -i eth1 -B -n  -N -p
         一般来说只要每个CPU的当前活动进程数不大于3那么系统的性能就是良好的，
         如果每个CPU的任务数大于5，那么就表示这台机器的性能有严重问题。
         实际上这个进程数就是每个CPU的负载.
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="11检查内存是否充足">11.检查内存是否充足</h1>
-<div class="highlighter-rouge">
-<pre class="highlight"><code>内存有足够空间
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>内存有足够空间
 free -m
 
 没有发生换页
 vmstat 1 6
         如果 si 和so 的值总是不为零，则说明，swap 有很高的换页率
         如果 bi 和 bo 的值很高说明系统在进行大量的IO读些操作
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="12检查io">12.检查IO</h1>
-<div class="highlighter-rouge">
-<pre class="highlight"><code>查看读写速度
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>查看读写速度
         iostat -d -x -k 1 5
 
         Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await  svctm  %util
@@ -311,8 +285,7 @@ vmstat 1 6
 
     第11个域：输入/输出操作花费的加权毫秒数 -----  加权， 花在I/O操作上的毫秒数，在每次I/O开始，I/O结束，I/O合并时这个域都会增加。这可以给I/O完成时间和存储那些可以累积的提供一个便利的测量标准。
     （number of milliseconds spent doing I/Os. This field is incremented at each I/O start, I/O completion, I/O merge, or read of these stats by the number of I/Os in progress (field 9) times the number of milliseconds spent doing I/O since the last update of this field. This can provide an easy measure of both I/O completion time and the backlog that may be accumulating.）
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>以上操作经过验证可以直接拿去。</li>

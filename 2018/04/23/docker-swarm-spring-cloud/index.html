@@ -152,97 +152,95 @@
   <li>配置 docker swarm 的启动文件</li>
 </ul>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3'</span>
-<span class="s">services</span><span class="pi">:</span>
-  <span class="s">eureka1</span><span class="pi">:</span>
-    <span class="s">image</span><span class="pi">:</span> <span class="s">registry.ap-northeast-1.aliyuncs.com/emos_prod/emos.register.test:latest</span>
-    <span class="s">networks</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3'</span>
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">eureka1</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">registry.ap-northeast-1.aliyuncs.com/emos_prod/emos.register.test:latest</span>
+    <span class="na">networks</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">springcloud-overlay</span>
-    <span class="s">ports</span><span class="pi">:</span>
+    <span class="na">ports</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s2">"</span><span class="s">8098:8098"</span>
-    <span class="s">environment</span><span class="pi">:</span>
+    <span class="na">environment</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">ADDITIONAL_EUREKA_SERVER_LIST=http://emos:emos@eureka2:8098/eureka/,http://emos:emos@eureka3:8098/eureka/</span>
-    <span class="s">tty</span><span class="pi">:</span> <span class="s">true</span>
-    <span class="s">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">bash"</span><span class="pi">,</span><span class="s2">"</span><span class="s">-i"</span><span class="pi">,</span><span class="s2">"</span><span class="s">bin/Entrypoint.sh"</span><span class="pi">,</span><span class="s2">"</span><span class="s">start"</span><span class="pi">]</span>
-  <span class="s">eureka2</span><span class="pi">:</span>
-    <span class="s">image</span><span class="pi">:</span> <span class="s">registry.ap-northeast-1.aliyuncs.com/emos_prod/emos.register.test:latest</span>
-    <span class="s">networks</span><span class="pi">:</span>
+    <span class="na">tty</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">bash"</span><span class="pi">,</span><span class="s2">"</span><span class="s">-i"</span><span class="pi">,</span><span class="s2">"</span><span class="s">bin/Entrypoint.sh"</span><span class="pi">,</span><span class="s2">"</span><span class="s">start"</span><span class="pi">]</span>
+  <span class="na">eureka2</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">registry.ap-northeast-1.aliyuncs.com/emos_prod/emos.register.test:latest</span>
+    <span class="na">networks</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">springcloud-overlay</span>
-    <span class="s">ports</span><span class="pi">:</span>
+    <span class="na">ports</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s2">"</span><span class="s">8097:8098"</span>
-    <span class="s">environment</span><span class="pi">:</span>
+    <span class="na">environment</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">ADDITIONAL_EUREKA_SERVER_LIST=http://emos:emos@eureka1:8098/eureka/,http://emos:emos@eureka3:8098/eureka/</span>
-    <span class="s">tty</span><span class="pi">:</span> <span class="s">true</span>
-    <span class="s">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">bash"</span><span class="pi">,</span><span class="s2">"</span><span class="s">-i"</span><span class="pi">,</span><span class="s2">"</span><span class="s">bin/Entrypoint.sh"</span><span class="pi">,</span><span class="s2">"</span><span class="s">start"</span><span class="pi">]</span>
-  <span class="s">eureka3</span><span class="pi">:</span>
-    <span class="s">image</span><span class="pi">:</span> <span class="s">registry.ap-northeast-1.aliyuncs.com/emos_prod/emos.register.test:latest</span>
-    <span class="s">networks</span><span class="pi">:</span>
+    <span class="na">tty</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">bash"</span><span class="pi">,</span><span class="s2">"</span><span class="s">-i"</span><span class="pi">,</span><span class="s2">"</span><span class="s">bin/Entrypoint.sh"</span><span class="pi">,</span><span class="s2">"</span><span class="s">start"</span><span class="pi">]</span>
+  <span class="na">eureka3</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">registry.ap-northeast-1.aliyuncs.com/emos_prod/emos.register.test:latest</span>
+    <span class="na">networks</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">springcloud-overlay</span>
-    <span class="s">ports</span><span class="pi">:</span>
+    <span class="na">ports</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s2">"</span><span class="s">8096:8098"</span>
-    <span class="s">environment</span><span class="pi">:</span>
+    <span class="na">environment</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">ADDITIONAL_EUREKA_SERVER_LIST=http://emos:emos@eureka1:8098/eureka/,http://emos:emos@eureka2:8098/eureka/</span>
-    <span class="s">tty</span><span class="pi">:</span> <span class="s">true</span>
-    <span class="s">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">bash"</span><span class="pi">,</span><span class="s2">"</span><span class="s">-i"</span><span class="pi">,</span><span class="s2">"</span><span class="s">bin/Entrypoint.sh"</span><span class="pi">,</span><span class="s2">"</span><span class="s">start"</span><span class="pi">]</span>
+    <span class="na">tty</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">bash"</span><span class="pi">,</span><span class="s2">"</span><span class="s">-i"</span><span class="pi">,</span><span class="s2">"</span><span class="s">bin/Entrypoint.sh"</span><span class="pi">,</span><span class="s2">"</span><span class="s">start"</span><span class="pi">]</span>
 
 
-  <span class="s">emos-config</span><span class="pi">:</span>
-    <span class="s">image</span><span class="pi">:</span> <span class="s">registry.ap-northeast-1.aliyuncs.com/emos_prod/emos.config.test:latest</span>
-    <span class="s">ports</span><span class="pi">:</span>
+  <span class="na">emos-config</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">registry.ap-northeast-1.aliyuncs.com/emos_prod/emos.config.test:latest</span>
+    <span class="na">ports</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s2">"</span><span class="s">8888"</span>
-    <span class="s">networks</span><span class="pi">:</span>
+    <span class="na">networks</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">springcloud-overlay</span>
-    <span class="s">environment</span><span class="pi">:</span>
+    <span class="na">environment</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">EUREKA_SERVER_ADDRESS=http://emos:emos@eureka1:8098/eureka/,http://emos:emos@eureka2:8098/eureka/,http://emos:emos@eureka3:8098/eureka/</span>
-    <span class="s">tty</span><span class="pi">:</span> <span class="s">true</span>
-    <span class="s">depends_on</span><span class="pi">:</span>
+    <span class="na">tty</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">eureka1</span>
       <span class="pi">-</span> <span class="s">eureka2</span>
       <span class="pi">-</span> <span class="s">eureka3</span>
-    <span class="s">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">bash"</span><span class="pi">,</span><span class="s2">"</span><span class="s">-i"</span><span class="pi">,</span><span class="s2">"</span><span class="s">bin/Entrypoint.sh"</span><span class="pi">,</span><span class="s2">"</span><span class="s">start"</span><span class="pi">]</span>
-  <span class="s">ths-account</span><span class="pi">:</span>
-    <span class="s">image</span><span class="pi">:</span> <span class="s">registry.ap-northeast-1.aliyuncs.com/emos_prod/emos.account.test:latest</span>
-    <span class="s">ports</span><span class="pi">:</span>
+    <span class="na">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">bash"</span><span class="pi">,</span><span class="s2">"</span><span class="s">-i"</span><span class="pi">,</span><span class="s2">"</span><span class="s">bin/Entrypoint.sh"</span><span class="pi">,</span><span class="s2">"</span><span class="s">start"</span><span class="pi">]</span>
+  <span class="na">ths-account</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">registry.ap-northeast-1.aliyuncs.com/emos_prod/emos.account.test:latest</span>
+    <span class="na">ports</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s2">"</span><span class="s">8006"</span>
-    <span class="s">networks</span><span class="pi">:</span>
+    <span class="na">networks</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">springcloud-overlay</span>
-    <span class="s">depends_on</span><span class="pi">:</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">eureka1</span>
       <span class="pi">-</span> <span class="s">eureka2</span>
       <span class="pi">-</span> <span class="s">eureka3</span>
       <span class="pi">-</span> <span class="s">emos-config</span>
-    <span class="s">environment</span><span class="pi">:</span>
+    <span class="na">environment</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">EUREKA_SERVER_ADDRESS=http://emos:emos@eureka1:8098/eureka/,http://emos:emos@eureka2:8098/eureka/,http://emos:emos@eureka3:8098/eureka/</span>
-    <span class="s">tty</span><span class="pi">:</span> <span class="s">true</span>
-    <span class="s">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">bash"</span><span class="pi">,</span><span class="s2">"</span><span class="s">-i"</span><span class="pi">,</span><span class="s2">"</span><span class="s">bin/Entrypoint.sh"</span><span class="pi">,</span><span class="s2">"</span><span class="s">start"</span><span class="pi">]</span>
-  <span class="s">emos-gateway</span><span class="pi">:</span>
-    <span class="s">image</span><span class="pi">:</span> <span class="s">registry.ap-northeast-1.aliyuncs.com/emos_prod/emos.gateway.test:latest</span>
-    <span class="s">ports</span><span class="pi">:</span>
+    <span class="na">tty</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">bash"</span><span class="pi">,</span><span class="s2">"</span><span class="s">-i"</span><span class="pi">,</span><span class="s2">"</span><span class="s">bin/Entrypoint.sh"</span><span class="pi">,</span><span class="s2">"</span><span class="s">start"</span><span class="pi">]</span>
+  <span class="na">emos-gateway</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">registry.ap-northeast-1.aliyuncs.com/emos_prod/emos.gateway.test:latest</span>
+    <span class="na">ports</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s2">"</span><span class="s">8002"</span>
-    <span class="s">networks</span><span class="pi">:</span>
+    <span class="na">networks</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">springcloud-overlay</span>
-    <span class="s">depends_on</span><span class="pi">:</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">eureka1</span>
       <span class="pi">-</span> <span class="s">eureka2</span>
       <span class="pi">-</span> <span class="s">eureka3</span>
       <span class="pi">-</span> <span class="s">ths-account</span>
       <span class="pi">-</span> <span class="s">emos-config</span>
-    <span class="s">environment</span><span class="pi">:</span>
+    <span class="na">environment</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">EUREKA_SERVER_ADDRESS=http://emos:emos@eureka1:8098/eureka/,http://emos:emos@eureka2:8098/eureka/,http://emos:emos@eureka3:8098/eureka/</span>
-    <span class="s">tty</span><span class="pi">:</span> <span class="s">true</span>
-    <span class="s">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">bash"</span><span class="pi">,</span><span class="s2">"</span><span class="s">-i"</span><span class="pi">,</span><span class="s2">"</span><span class="s">bin/Entrypoint.sh"</span><span class="pi">,</span><span class="s2">"</span><span class="s">start"</span><span class="pi">]</span>
-<span class="s">networks</span><span class="pi">:</span>
-  <span class="s">springcloud-overlay</span><span class="pi">:</span>
-    <span class="s">driver</span><span class="pi">:</span> <span class="s">overlay</span>
-</code></pre>
-</div>
+    <span class="na">tty</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">bash"</span><span class="pi">,</span><span class="s2">"</span><span class="s">-i"</span><span class="pi">,</span><span class="s2">"</span><span class="s">bin/Entrypoint.sh"</span><span class="pi">,</span><span class="s2">"</span><span class="s">start"</span><span class="pi">]</span>
+<span class="na">networks</span><span class="pi">:</span>
+  <span class="na">springcloud-overlay</span><span class="pi">:</span>
+    <span class="na">driver</span><span class="pi">:</span> <span class="s">overlay</span>
+</code></pre></div></div>
 
 <h2 id="注意启动顺序">注意启动顺序</h2>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#可以拆开分开执行</span>
-docker stack deploy -c  emeos.yml demo
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#可以拆开分开执行</span>
+docker stack deploy <span class="nt">-c</span>  emeos.yml demo
+</code></pre></div></div>
 
 <h3 id="问题解析">问题解析</h3>
 
@@ -250,35 +248,34 @@ docker stack deploy -c  emeos.yml demo
   <li>其中spring-clou</li>
 </ul>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code>
-<span class="s">spring</span><span class="pi">:</span>
-  <span class="s">cloud</span><span class="pi">:</span>
-    <span class="s">config</span><span class="pi">:</span>
-      <span class="s">profile</span><span class="pi">:</span> <span class="s">${config.profile:dev}</span>
-      <span class="s">discovery</span><span class="pi">:</span>
-        <span class="s">enabled</span><span class="pi">:</span> <span class="s">true</span>
-        <span class="s">service-id</span><span class="pi">:</span> <span class="s">${APPLICATION_CONFIG_NAME}</span>
-  <span class="s">application</span><span class="pi">:</span>
-      <span class="s">name</span><span class="pi">:</span> <span class="s">${APPLICATION_NAME}</span>
-<span class="s">security</span><span class="pi">:</span>
-  <span class="s">basic</span><span class="pi">:</span>
-    <span class="s">enabled</span><span class="pi">:</span> <span class="s">false</span>
-  <span class="s">user</span><span class="pi">:</span>
-    <span class="s">name</span><span class="pi">:</span> <span class="s">emos</span> <span class="c1">#eureka 用户名</span>
-    <span class="s">password</span><span class="pi">:</span> <span class="s">emos</span> <span class="c1">#eureka 密码</span>
-<span class="s">eureka</span><span class="pi">:</span>
-  <span class="s">client</span><span class="pi">:</span>
-    <span class="s">serviceUrl</span><span class="pi">:</span>
-      <span class="s">defaultZone</span><span class="pi">:</span> <span class="s">${EUREKA_SERVER_ADDRESS}</span>
-  <span class="s">instance</span><span class="pi">:</span>
-    <span class="s">status-page-url-path</span><span class="pi">:</span> <span class="s">/swagger-ui.html</span>
-    <span class="s">hostname</span><span class="pi">:</span> <span class="s">${HOST_NAME}</span>
-<span class="s">management</span><span class="pi">:</span>
-  <span class="s">security</span><span class="pi">:</span>
-    <span class="s">enabled</span><span class="pi">:</span> <span class="s">false</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="na">spring</span><span class="pi">:</span>
+  <span class="na">cloud</span><span class="pi">:</span>
+    <span class="na">config</span><span class="pi">:</span>
+      <span class="na">profile</span><span class="pi">:</span> <span class="s">${config.profile:dev}</span>
+      <span class="na">discovery</span><span class="pi">:</span>
+        <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+        <span class="na">service-id</span><span class="pi">:</span> <span class="s">${APPLICATION_CONFIG_NAME}</span>
+  <span class="na">application</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">${APPLICATION_NAME}</span>
+<span class="na">security</span><span class="pi">:</span>
+  <span class="na">basic</span><span class="pi">:</span>
+    <span class="na">enabled</span><span class="pi">:</span> <span class="no">false</span>
+  <span class="na">user</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">emos</span> <span class="c1">#eureka 用户名</span>
+    <span class="na">password</span><span class="pi">:</span> <span class="s">emos</span> <span class="c1">#eureka 密码</span>
+<span class="na">eureka</span><span class="pi">:</span>
+  <span class="na">client</span><span class="pi">:</span>
+    <span class="na">serviceUrl</span><span class="pi">:</span>
+      <span class="na">defaultZone</span><span class="pi">:</span> <span class="s">${EUREKA_SERVER_ADDRESS}</span>
+  <span class="na">instance</span><span class="pi">:</span>
+    <span class="na">status-page-url-path</span><span class="pi">:</span> <span class="s">/swagger-ui.html</span>
+    <span class="na">hostname</span><span class="pi">:</span> <span class="s">${HOST_NAME}</span>
+<span class="na">management</span><span class="pi">:</span>
+  <span class="na">security</span><span class="pi">:</span>
+    <span class="na">enabled</span><span class="pi">:</span> <span class="no">false</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 <ul>
   <li><code class="highlighter-rouge">HOST_NAME</code> 是要用 <code class="highlighter-rouge">swarm</code> 启动的服务名来定义的例如：<code class="highlighter-rouge">ths-account</code></li>
   <li><code class="highlighter-rouge">EUREKA_SERVER_ADDRESS</code> 是高可用服务</li>

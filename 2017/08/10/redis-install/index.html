@@ -130,54 +130,47 @@ author：YangRaner</p>
 <p>[TOC]</p>
 
 <h1 id="1检查安装依赖程序">1.检查安装依赖程序</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>yum install -y tcl gcc-c++ wget
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum install <span class="nt">-y</span> tcl gcc-c++ wget
+</code></pre></div></div>
 <h1 id="2下载redis">2.下载Redis</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mkdir /opt/redis/
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir /opt/redis/
 <span class="nb">cd</span> /opt/redis/
 wget http://download.redis.io/releases/redis-3.0.4.tar.gz
-</code></pre>
-</div>
+</code></pre></div></div>
 <h1 id="3解压redis">3.解压Redis</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>tar -xzvf redis-3.0.4.tar.gz
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar</span> <span class="nt">-xzvf</span> redis-3.0.4.tar.gz
+</code></pre></div></div>
 <h1 id="4编译安装redis">4.编译安装Redis</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd </span>redis-3.0.4
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>redis-3.0.4
 make
 make install	
--------------------------------------------------------------
+<span class="nt">-------------------------------------------------------------</span>
 make install安装完成后，会在/usr/local/bin目录下生成下面几个可执行文件，它们的作用分别是：
 redis-server：Redis服务器端启动程序
 redis-cli：Redis客户端操作工具。也可以用telnet根据其纯文本协议来操作
 redis-benchmark：Redis性能测试工具
 redis-check-aof：数据修复工具
 redis-check-dump：检查导出工具
-</code></pre>
-</div>
+</code></pre></div></div>
 <h1 id="5配置redis">5.配置Redis</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>cp redis.conf /etc/   复制配置文件到/etc/目录
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp redis.conf /etc/   复制配置文件到/etc/目录
 vim /etc/redis.conf    修改redis文件
-----------------------------------------------
+<span class="nt">----------------------------------------------</span>
 daemonize yes     修改daemonize配置项为yes，使Redis进程在后台运行
 requirepass Ejtone   <span class="c"># 设置密码，以提供远程登陆</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <h1 id="6启动redis">6.启动Redis</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> /usr/local/bin		进入bin目录下
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /usr/local/bin		进入bin目录下
 ./redis-server /etc/redis.conf		启动Redis
-ps -ef | grep redis			查看redis进程
-----------------------------------------------
+ps <span class="nt">-ef</span> | <span class="nb">grep </span>redis			查看redis进程
+<span class="nt">----------------------------------------------</span>
 root  18443  1  0 13:05 ?    00:00:00 ./redis-server <span class="k">*</span>:6379 
 
-</code></pre>
-</div>
+</code></pre></div></div>
 <h1 id="7添加开机启动项">7.添加开机启动项</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># 让Redis在服务器重启后自动启动，需要将启动命令写入开机启动项</span>
-<span class="nb">echo</span> <span class="s2">"/usr/local/bin/redis-server /etc/redis.conf"</span> &gt;&gt;/etc/rc.local
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 让Redis在服务器重启后自动启动，需要将启动命令写入开机启动项</span>
+<span class="nb">echo</span> <span class="s2">"/usr/local/bin/redis-server /etc/redis.conf"</span> <span class="o">&gt;&gt;</span>/etc/rc.local
+</code></pre></div></div>
 <p><strong>以上完成安装</strong></p>
 
 <h1 id="8redis配置参数">8.Redis配置参数</h1>
@@ -205,16 +198,14 @@ root  18443  1  0 13:05 ?    00:00:00 ./redis-server <span class="k">*</span>:63
   <li>9.1如果Redis已经配置为service服务，可以通过以下方式重启：</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>service redis restart
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>service redis restart
+</code></pre></div></div>
 
 <ul>
   <li>9.2如果Redis没有配置为service服务，可以通过以下方式重启：
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>/usr/local/bin/redis-cli shutdown
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/bin/redis-cli shutdown
 /usr/local/bin/redis-server /etc/redis.conf
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>以上代码经过验证可以直接拿去修改调用</li>
   <li>Owner <code class="highlighter-rouge">breakEval13</code></li>

@@ -126,137 +126,127 @@
 <h2 id="1emptydir本地数据卷">1、EmptyDir（本地数据卷</h2>
 
 <p>　EmptyDir类型的volume创建于pod被调度到某个宿主机上的时候，而同一个pod内的容器都能读写EmptyDir中的同一个文件。一旦这个pod离开了这个宿主机，EmptyDirr中的数据就会被永久删除。所以目前EmptyDir类型的volume主要用作临时空间，比如Web服务器写日志或者tmp文件需要的临时目录。yaml示例如下：</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@k8s-master demon2]# cat <span class="nb">test</span>-emptypath.yaml 
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@k8s-master demon2]# <span class="nb">cat </span>test-emptypath.yaml 
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
-<span class="s">kind</span><span class="pi">:</span> <span class="s">Pod</span>
-<span class="s">metadata</span><span class="pi">:</span>
-  <span class="s">labels</span><span class="pi">:</span>
-    <span class="s">name</span><span class="pi">:</span> <span class="s">test-emptypath</span>
-    <span class="s">role</span><span class="pi">:</span> <span class="s">master</span>
-  <span class="s">name</span><span class="pi">:</span> <span class="s">test-emptypath</span>
-<span class="s">spec</span><span class="pi">:</span>
-  <span class="s">containers</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">test-emptypath</span>
-      <span class="s">image</span><span class="pi">:</span> <span class="s">registry:5000/back_demon:1.0</span>
-      <span class="s">volumeMounts</span><span class="pi">:</span>
-       <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">log-storage</span>
-         <span class="s">mountPath</span><span class="pi">:</span> <span class="s">/home/laizy/test/</span>
-      <span class="s">command</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Pod</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">test-emptypath</span>
+    <span class="na">role</span><span class="pi">:</span> <span class="s">master</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">test-emptypath</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">containers</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">test-emptypath</span>
+      <span class="na">image</span><span class="pi">:</span> <span class="s">registry:5000/back_demon:1.0</span>
+      <span class="na">volumeMounts</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">log-storage</span>
+         <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/home/laizy/test/</span>
+      <span class="na">command</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">/run.sh</span>
-  <span class="s">volumes</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">log-storage</span>
-    <span class="s">emptyDir</span><span class="pi">:</span> <span class="pi">{}</span>
-</code></pre>
-</div>
+  <span class="na">volumes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">log-storage</span>
+    <span class="na">emptyDir</span><span class="pi">:</span> <span class="pi">{}</span>
+</code></pre></div></div>
 
 <h2 id="2hostdir本地数据卷">2、HostDir（本地数据卷</h2>
 <p>　HostDir属性的volume使得对应的容器能够访问当前宿主机上的指定目录。例如，需要运行一个访问Docker系统目录的容器，那么就使用/var/lib/docker目录作为一个HostDir类型的volume；或者要在一个容器内部运行CAdvisor，那么就使用/dev/cgroups目录作为一个HostDir类型的volume。一旦这个pod离开了这个宿主机，HostDir中的数据虽然不会被永久删除，但数据也不会随pod迁移到其他宿主机上。因此，需要注意的是，由于各个宿主机上的文件系统结构和内容并不一定完全相同，所以相同pod的HostDir可能会在不同的宿主机上表现出不同的行为。yaml示例如下：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@k8s-master demon2]# cat <span class="nb">test</span>-hostpath.yaml 
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@k8s-master demon2]# <span class="nb">cat </span>test-hostpath.yaml 
+</code></pre></div></div>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
-<span class="s">kind</span><span class="pi">:</span> <span class="s">Pod</span>
-<span class="s">metadata</span><span class="pi">:</span>
-  <span class="s">labels</span><span class="pi">:</span>
-    <span class="s">name</span><span class="pi">:</span> <span class="s">test-hostpath</span>
-    <span class="s">role</span><span class="pi">:</span> <span class="s">master</span>
-  <span class="s">name</span><span class="pi">:</span> <span class="s">test-hostpath</span>
-<span class="s">spec</span><span class="pi">:</span>
-  <span class="s">containers</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">test-hostpath</span>
-      <span class="s">image</span><span class="pi">:</span> <span class="s">registry:5000/back_demon:1.0</span>
-      <span class="s">volumeMounts</span><span class="pi">:</span>
-       <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">ssl-certs</span>
-         <span class="s">mountPath</span><span class="pi">:</span> <span class="s">/home/laizy/test/cert</span>
-         <span class="s">readOnly</span><span class="pi">:</span> <span class="s">true</span>
-      <span class="s">command</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Pod</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">test-hostpath</span>
+    <span class="na">role</span><span class="pi">:</span> <span class="s">master</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">test-hostpath</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">containers</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">test-hostpath</span>
+      <span class="na">image</span><span class="pi">:</span> <span class="s">registry:5000/back_demon:1.0</span>
+      <span class="na">volumeMounts</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">ssl-certs</span>
+         <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/home/laizy/test/cert</span>
+         <span class="na">readOnly</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">command</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">/run.sh</span>
-  <span class="s">volumes</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">ssl-certs</span>
-    <span class="s">hostPath</span><span class="pi">:</span>
-     <span class="s">path</span><span class="pi">:</span> <span class="s">/etc/ssl/certs</span>
-</code></pre>
-</div>
+  <span class="na">volumes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">ssl-certs</span>
+    <span class="na">hostPath</span><span class="pi">:</span>
+     <span class="na">path</span><span class="pi">:</span> <span class="s">/etc/ssl/certs</span>
+</code></pre></div></div>
 <h2 id="3nfs网络数据卷">3、NFS（网络数据卷）</h2>
 
 <p>NFS类型的volume。允许一块现有的网络硬盘在同一个pod内的容器间共享。yaml示例如下：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@k8s-master demon2]# cat <span class="nb">test</span>-nfspath.yaml 
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@k8s-master demon2]# <span class="nb">cat </span>test-nfspath.yaml 
+</code></pre></div></div>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
-<span class="s">kind</span><span class="pi">:</span> <span class="s">Pod</span>
-<span class="s">metadata</span><span class="pi">:</span>
-  <span class="s">labels</span><span class="pi">:</span>
-    <span class="s">name</span><span class="pi">:</span> <span class="s">test-nfspath</span>
-    <span class="s">role</span><span class="pi">:</span> <span class="s">master</span>
-  <span class="s">name</span><span class="pi">:</span> <span class="s">test-nfspath</span>
-<span class="s">spec</span><span class="pi">:</span>
-  <span class="s">containers</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">test-nfspath</span>
-      <span class="s">image</span><span class="pi">:</span> <span class="s">registry:5000/back_demon:1.0</span>
-      <span class="s">volumeMounts</span><span class="pi">:</span>
-       <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">nfs-storage</span>
-         <span class="s">mountPath</span><span class="pi">:</span> <span class="s">/home/laizy/test/</span>
-      <span class="s">command</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Pod</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">test-nfspath</span>
+    <span class="na">role</span><span class="pi">:</span> <span class="s">master</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">test-nfspath</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">containers</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">test-nfspath</span>
+      <span class="na">image</span><span class="pi">:</span> <span class="s">registry:5000/back_demon:1.0</span>
+      <span class="na">volumeMounts</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">nfs-storage</span>
+         <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/home/laizy/test/</span>
+      <span class="na">command</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">/run.sh</span>
-  <span class="s">volumes</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">nfs-storage</span>
-    <span class="s">nfs</span><span class="pi">:</span>
-     <span class="s">server</span><span class="pi">:</span> <span class="s">192.168.20.47</span>
-     <span class="s">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/data/disk1"</span>
-</code></pre>
-</div>
+  <span class="na">volumes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">nfs-storage</span>
+    <span class="na">nfs</span><span class="pi">:</span>
+     <span class="na">server</span><span class="pi">:</span> <span class="s">192.168.20.47</span>
+     <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/data/disk1"</span>
+</code></pre></div></div>
 <h2 id="4secret信息数据卷">4、Secret（信息数据卷）</h2>
 
 <p>　Kubemetes提供了Secret来处理敏感数据，比如密码、Token和密钥，相比于直接将敏感数据配置在Pod的定义或者镜像中，Secret提供了更加安全的机制（Base64加密），防止数据泄露。Secret的创建是独立于Pod的，以数据卷的形式挂载到Pod中，Secret的数据将以文件的形式保存，容器通过读取文件可以获取需要的数据。yaml示例如下：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@k8s-master demon2]# cat secret.yaml 
-</code></pre>
-</div>
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
-<span class="s">kind</span><span class="pi">:</span> <span class="s">Secret</span>
-<span class="s">metadata</span><span class="pi">:</span>
- <span class="s">name</span><span class="pi">:</span> <span class="s">mysecret</span>
-<span class="s">type</span><span class="pi">:</span> <span class="s">Opaque</span>
-<span class="s">data</span><span class="pi">:</span>
- <span class="s">username</span><span class="pi">:</span> <span class="s">emhlbnl1</span>
- <span class="s">password</span><span class="pi">:</span> <span class="s">eWFvZGlkaWFv</span>
-</code></pre>
-</div>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@k8s-master demon2]# cat <span class="nb">test</span>-secret.yaml 
-</code></pre>
-</div>
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
-<span class="s">kind</span><span class="pi">:</span> <span class="s">Pod</span>
-<span class="s">metadata</span><span class="pi">:</span>
-  <span class="s">labels</span><span class="pi">:</span>
-    <span class="s">name</span><span class="pi">:</span> <span class="s">test-secret</span>
-    <span class="s">role</span><span class="pi">:</span> <span class="s">master</span>
-  <span class="s">name</span><span class="pi">:</span> <span class="s">test-secret</span>
-<span class="s">spec</span><span class="pi">:</span>
-  <span class="s">containers</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">test-secret</span>
-      <span class="s">image</span><span class="pi">:</span> <span class="s">registry:5000/back_demon:1.0</span>
-      <span class="s">volumeMounts</span><span class="pi">:</span>
-       <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">secret</span>
-         <span class="s">mountPath</span><span class="pi">:</span> <span class="s">/home/laizy/secret</span>
-         <span class="s">readOnly</span><span class="pi">:</span> <span class="s">true</span>
-      <span class="s">command</span><span class="pi">:</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@k8s-master demon2]# <span class="nb">cat </span>secret.yaml 
+</code></pre></div></div>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Secret</span>
+<span class="na">metadata</span><span class="pi">:</span>
+ <span class="na">name</span><span class="pi">:</span> <span class="s">mysecret</span>
+<span class="na">type</span><span class="pi">:</span> <span class="s">Opaque</span>
+<span class="na">data</span><span class="pi">:</span>
+ <span class="na">username</span><span class="pi">:</span> <span class="s">emhlbnl1</span>
+ <span class="na">password</span><span class="pi">:</span> <span class="s">eWFvZGlkaWFv</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@k8s-master demon2]# <span class="nb">cat </span>test-secret.yaml 
+</code></pre></div></div>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Pod</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">test-secret</span>
+    <span class="na">role</span><span class="pi">:</span> <span class="s">master</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">test-secret</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">containers</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">test-secret</span>
+      <span class="na">image</span><span class="pi">:</span> <span class="s">registry:5000/back_demon:1.0</span>
+      <span class="na">volumeMounts</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">secret</span>
+         <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/home/laizy/secret</span>
+         <span class="na">readOnly</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">command</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">/run.sh</span>
-  <span class="s">volumes</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">secret</span>
-    <span class="s">secret</span><span class="pi">:</span>
-     <span class="s">secretName</span><span class="pi">:</span> <span class="s">mysecret</span>
-</code></pre>
-</div>
+  <span class="na">volumes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">secret</span>
+    <span class="na">secret</span><span class="pi">:</span>
+     <span class="na">secretName</span><span class="pi">:</span> <span class="s">mysecret</span>
+</code></pre></div></div>
 
 
     </article>

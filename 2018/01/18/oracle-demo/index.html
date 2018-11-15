@@ -135,34 +135,28 @@
 
 <h2 id="下载镜像pull">下载镜像(pull)</h2>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>docker pull wnameless/oracle-xe-11g
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull wnameless/oracle-xe-11g
+</code></pre></div></div>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>docker run -d -p 49160:22 -p 49161:1521 -e <span class="nv">ORACLE_ALLOW_REMOTE</span><span class="o">=</span><span class="nb">true </span>wnameless/oracle-xe-11g
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="nt">-p</span> 49160:22 <span class="nt">-p</span> 49161:1521 <span class="nt">-e</span> <span class="nv">ORACLE_ALLOW_REMOTE</span><span class="o">=</span><span class="nb">true </span>wnameless/oracle-xe-11g
+</code></pre></div></div>
 <p>By default, the password verification is disable(password never expired). If you want it back, run this:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>docker run -d -p 49160:22 -p 49161:1521 -e <span class="nv">ORACLE_PASSWORD_VERIFY</span><span class="o">=</span><span class="nb">true </span>wnameless/oracle-xe-11g
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="nt">-p</span> 49160:22 <span class="nt">-p</span> 49161:1521 <span class="nt">-e</span> <span class="nv">ORACLE_PASSWORD_VERIFY</span><span class="o">=</span><span class="nb">true </span>wnameless/oracle-xe-11g
+</code></pre></div></div>
 
 <p>For performance concern, you may want to disable the disk asynch IO:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>docker run -d -p 49160:22 -p 49161:1521 -e <span class="nv">ORACLE_DISABLE_ASYNCH_IO</span><span class="o">=</span><span class="nb">true </span>wnameless/oracle-xe-11g
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="nt">-p</span> 49160:22 <span class="nt">-p</span> 49161:1521 <span class="nt">-e</span> <span class="nv">ORACLE_DISABLE_ASYNCH_IO</span><span class="o">=</span><span class="nb">true </span>wnameless/oracle-xe-11g
+</code></pre></div></div>
 <p>For XDB user, run this:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>docker run -d -p 49160:22 -p 49161:1521 -p 8080:8080 -e <span class="nv">ORACLE_ENABLE_XDB</span><span class="o">=</span><span class="nb">true </span>wnameless/oracle-xe-11g
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="nt">-p</span> 49160:22 <span class="nt">-p</span> 49161:1521 <span class="nt">-p</span> 8080:8080 <span class="nt">-e</span> <span class="nv">ORACLE_ENABLE_XDB</span><span class="o">=</span><span class="nb">true </span>wnameless/oracle-xe-11g
 Check <span class="k">if </span>localhost:8080 work
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -XGET <span class="s2">"http://localhost:8080"</span>
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-XGET</span> <span class="s2">"http://localhost:8080"</span>
+</code></pre></div></div>
 <p>You will show</p>
 
 <p>&lt;!DOCTYPE HTML PUBLIC “-//IETF//DTD HTML 2.0//EN”&gt;</p>
@@ -197,7 +191,7 @@ Support custom DB Initialization</p>
 
 <h2 id="sqldeveloper">SQLDeveloper</h2>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="c1">--- 遇到的问题 ora-01045</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">--- 遇到的问题 ora-01045</span>
 
 <span class="c1">---ORA-01045: user ... lacks CREATE SESSION privilege; logon denied</span>
 <span class="c1">--- This error is thrown if a user wants to log on a database but lacks the create session system privilege.</span>
@@ -256,8 +250,7 @@ Support custom DB Initialization</p>
 <span class="k">revoke</span> <span class="n">unlimited</span> <span class="n">tablespace</span> <span class="k">from</span> <span class="n">aom</span><span class="p">;</span>
 <span class="k">alter</span> <span class="k">user</span> <span class="n">aom</span> <span class="n">quota</span> <span class="mi">0</span> <span class="k">on</span> <span class="n">aom_space</span><span class="p">;</span>
 <span class="k">alter</span> <span class="k">user</span> <span class="n">aom</span> <span class="n">quota</span> <span class="n">unlimited</span> <span class="k">on</span> <span class="n">aom_space</span><span class="p">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
 

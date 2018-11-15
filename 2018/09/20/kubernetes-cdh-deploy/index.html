@@ -151,59 +151,59 @@
 
 <h2 id="开始部署">开始部署</h2>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="nn">---</span>
-<span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
-<span class="s">kind</span><span class="pi">:</span> <span class="s">ServiceAccount</span>
-<span class="s">metadata</span><span class="pi">:</span>
-  <span class="s">name</span><span class="pi">:</span> <span class="s">cloudera-sa</span>
-  <span class="s">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
-  <span class="s">labels</span><span class="pi">:</span>
-    <span class="s">name</span><span class="pi">:</span> <span class="s">sa</span>
-    <span class="s">app</span><span class="pi">:</span> <span class="s">cloudera</span>
-<span class="s">automountServiceAccountToken</span><span class="pi">:</span> <span class="s">true</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ServiceAccount</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">cloudera-sa</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">sa</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">cloudera</span>
+<span class="na">automountServiceAccountToken</span><span class="pi">:</span> <span class="no">true</span>
 <span class="nn">---</span>
-<span class="s">kind</span><span class="pi">:</span> <span class="s">ClusterRole</span>
-<span class="s">apiVersion</span><span class="pi">:</span> <span class="s">rbac.authorization.k8s.io/v1</span>
-<span class="s">metadata</span><span class="pi">:</span>
-  <span class="s">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
-  <span class="s">name</span><span class="pi">:</span> <span class="s">cloudera-cr</span>
-  <span class="s">labels</span><span class="pi">:</span>
-    <span class="s">name</span><span class="pi">:</span> <span class="s">cr</span>
-    <span class="s">app</span><span class="pi">:</span> <span class="s">cloudera</span>
-<span class="s">rules</span><span class="pi">:</span>
-<span class="pi">-</span> <span class="s">apiGroups</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">*"</span><span class="pi">]</span>
-  <span class="s">resources</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">*"</span><span class="pi">]</span>
-  <span class="s">verbs</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">*"</span><span class="pi">]</span>
-<span class="pi">-</span> <span class="s">nonResourceURLs</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">*"</span><span class="pi">]</span>
-  <span class="s">verbs</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">*"</span><span class="pi">]</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ClusterRole</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">rbac.authorization.k8s.io/v1</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">cloudera-cr</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">cr</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">cloudera</span>
+<span class="na">rules</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">apiGroups</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">*"</span><span class="pi">]</span>
+  <span class="na">resources</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">*"</span><span class="pi">]</span>
+  <span class="na">verbs</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">*"</span><span class="pi">]</span>
+<span class="pi">-</span> <span class="na">nonResourceURLs</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">*"</span><span class="pi">]</span>
+  <span class="na">verbs</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">*"</span><span class="pi">]</span>
 <span class="nn">---</span>
-<span class="s">apiVersion</span><span class="pi">:</span> <span class="s">rbac.authorization.k8s.io/v1</span>
-<span class="s">kind</span><span class="pi">:</span> <span class="s">ClusterRoleBinding</span>
-<span class="s">metadata</span><span class="pi">:</span>
-  <span class="s">name</span><span class="pi">:</span> <span class="s">cloudera-crb</span>
-  <span class="s">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
-  <span class="s">labels</span><span class="pi">:</span>
-    <span class="s">name</span><span class="pi">:</span> <span class="s">crb</span>
-    <span class="s">app</span><span class="pi">:</span> <span class="s">cloudera</span>
-<span class="s">subjects</span><span class="pi">:</span>
-<span class="pi">-</span> <span class="s">kind</span><span class="pi">:</span> <span class="s">ServiceAccount</span>
-  <span class="s">name</span><span class="pi">:</span> <span class="s">cloudera-sa</span>
-  <span class="s">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
-<span class="s">roleRef</span><span class="pi">:</span>
-  <span class="s">kind</span><span class="pi">:</span> <span class="s">ClusterRole</span>
-  <span class="s">name</span><span class="pi">:</span> <span class="s">cloudera-cr</span>
-  <span class="s">apiGroup</span><span class="pi">:</span> <span class="s">rbac.authorization.k8s.io</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">rbac.authorization.k8s.io/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ClusterRoleBinding</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">cloudera-crb</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">crb</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">cloudera</span>
+<span class="na">subjects</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">kind</span><span class="pi">:</span> <span class="s">ServiceAccount</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">cloudera-sa</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
+<span class="na">roleRef</span><span class="pi">:</span>
+  <span class="na">kind</span><span class="pi">:</span> <span class="s">ClusterRole</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">cloudera-cr</span>
+  <span class="na">apiGroup</span><span class="pi">:</span> <span class="s">rbac.authorization.k8s.io</span>
 <span class="nn">---</span>
-<span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
-<span class="s">kind</span><span class="pi">:</span> <span class="s">ConfigMap</span>
-<span class="s">metadata</span><span class="pi">:</span>
-  <span class="s">name</span><span class="pi">:</span> <span class="s">cloudera-config</span>
-  <span class="s">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
-  <span class="s">labels</span><span class="pi">:</span>
-    <span class="s">name</span><span class="pi">:</span> <span class="s">cloudera-config</span>
-    <span class="s">app</span><span class="pi">:</span> <span class="s">cloudera</span>
-<span class="s">data</span><span class="pi">:</span>
-  <span class="s">master_host</span><span class="pi">:</span> <span class="s">master-svc</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ConfigMap</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">cloudera-config</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">cloudera-config</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">cloudera</span>
+<span class="na">data</span><span class="pi">:</span>
+  <span class="na">master_host</span><span class="pi">:</span> <span class="s">master-svc</span>
   <span class="s">cron.tab</span><span class="pi">:</span> <span class="pi">|</span>
     <span class="no">*/30 * * * * ntpdate master-svc &amp;&amp; hwclock --systohc</span>
 
@@ -431,391 +431,390 @@
     <span class="no">#cloudera_oracle_connector_jar=/usr/share/java/oracle-connector-java.jar</span>
     <span class="no">#By default, postgres jar is found dynamically in $MGMT_HOME/lib</span>
     <span class="no">#cloudera_postgresql_jdbc_jar=</span>
-<span class="err">-</span><span class="no">--</span>
-<span class="err">a</span><span class="no">piVersion: apps/v1</span>
-<span class="err">k</span><span class="no">ind: Deployment</span>
-<span class="err">m</span><span class="no">etadata:</span>
-  <span class="no">name: nfs-deploy</span>
-  <span class="no">namespace: cloudera</span>
-  <span class="no">labels:</span>
-    <span class="no">name: nfs</span>
-    <span class="no">app: cloudera</span>
-<span class="err">s</span><span class="no">pec:</span>
-  <span class="no">replicas: 1</span>
-  <span class="no">revisionHistoryLimit: 2</span>
-  <span class="no">selector:</span>
-    <span class="no">matchLabels:</span>
-      <span class="no">name: nfs</span>
-      <span class="no">app: cloudera</span>
-  <span class="no">template:</span>
-    <span class="no">metadata:</span>
-      <span class="no">name: nfs-client</span>
-      <span class="no">namespace: cloudera</span>
-      <span class="no">labels:</span>
-        <span class="no">name: nfs</span>
-        <span class="no">app: cloudera</span>
-    <span class="no">spec:</span>
-      <span class="no">tolerations:</span>
-      <span class="no">- key: node-role.kubernetes.io/master</span>
-        <span class="no">effect: NoSchedule</span>
-      <span class="no">serviceAccountName: cloudera-sa</span>
-      <span class="no">containers:</span>
-      <span class="no">- image: registry.cn-hangzhou.aliyuncs.com/acs/alicloud-nas-controller:v1.8.4</span>
-<span class="err">#</span><span class="no">        imagePullPolicy: Never</span>
-        <span class="no">name: nfs-client</span>
-<span class="err">#</span><span class="no">        securityContext:</span>
-<span class="err">#</span><span class="no">          privileged: true</span>
-        <span class="no">volumeMounts:</span>
-        <span class="no">- name: nfs-client-root</span>
-          <span class="no">mountPath: /persistentvolumes</span>
-        <span class="no">env:</span>
-        <span class="no">- name: PROVISIONER_NAME</span>
-          <span class="no">value: alicloud/nas</span>
-        <span class="no">- name: NFS_SERVER</span>
-          <span class="no">value: 074ca49d80-ak47.cn-hangzhou.nas.aliyuncs.com</span>
-        <span class="no">- name: NFS_PATH</span>
-          <span class="no">value: /pv/cloudera/agent/</span>
-      <span class="no">volumes:</span>
-      <span class="no">- name: nfs-client-root</span>
-        <span class="no">nfs:</span>
-          <span class="no">server: 074ca49d80-ak47.cn-hangzhou.nas.aliyuncs.com</span>
-          <span class="no">path: /pv/cloudera/agent/</span>
-<span class="err">-</span><span class="no">--</span>
-<span class="err">a</span><span class="no">piVersion: storage.k8s.io/v1</span>
-<span class="err">k</span><span class="no">ind: StorageClass</span>
-<span class="err">m</span><span class="no">etadata:</span>
-  <span class="no">name: cloudera-storage</span>
-  <span class="no">namespace: cloudera</span>
-  <span class="no">labels:</span>
-    <span class="no">name: storage</span>
-    <span class="no">app: cloudera</span>
-<span class="err">r</span><span class="no">eclaimPolicy: Delete</span>
-<span class="err">p</span><span class="no">rovisioner: alicloud/nas</span>
-<span class="err">-</span><span class="no">--</span>
-<span class="err">a</span><span class="no">piVersion: apps/v1</span>
-<span class="err">k</span><span class="no">ind: Deployment</span>
-<span class="err">m</span><span class="no">etadata:</span>
-  <span class="no">name: master-deploy</span>
-  <span class="no">namespace: cloudera</span>
-  <span class="no">labels:</span>
-    <span class="no">name: master-deploy</span>
-    <span class="no">app: cloudera</span>
-<span class="err">s</span><span class="no">pec:</span>
-  <span class="no">replicas: 1</span>
-  <span class="no">revisionHistoryLimit: 2</span>
-  <span class="no">selector:</span>
-    <span class="no">matchLabels:</span>
-      <span class="no">name: master</span>
-      <span class="no">app: cloudera</span>
-  <span class="no">template:</span>
-    <span class="no">metadata:</span>
-      <span class="no">name: master</span>
-      <span class="no">namespace: cloudera</span>
-      <span class="no">labels:</span>
-        <span class="no">name: master</span>
-        <span class="no">app: cloudera</span>
-    <span class="no">spec:</span>
-      <span class="no">tolerations:</span>
-      <span class="no">- effect: NoSchedule</span>
-        <span class="no">key: node-role.kubernetes.io/master</span>
-      <span class="no">restartPolicy: Always</span>
-      <span class="no">serviceAccountName: cloudera-sa</span>
-      <span class="no">automountServiceAccountToken: true</span>
-      <span class="no">hostname: master-svc</span>
-      <span class="no">containers:</span>
-      <span class="no">- name: cloudera-master</span>
-        <span class="no">image: registry-vpc.cn-hangzhou.aliyuncs.com/huaching_prod/cloudera-master:5.14.2</span>
-<span class="err">#</span><span class="no">        imagePullPolicy: IfNotPresent</span>
-        <span class="no">resources:</span>
-          <span class="no">limits:</span>
-            <span class="no">memory: "4096Mi"</span>
-            <span class="no">cpu: "1000m"</span>
-        <span class="no">lifecycle:</span>
-          <span class="no">preStop:</span>
-            <span class="no">exec:</span>
-              <span class="no">command: ["/bin/bash","-c","/cloudera-init/run/stop.sh &gt;&gt; /cloudera/log/stop.log 2&gt;&amp;1"]</span>
-        <span class="no">volumeMounts:</span>
-        <span class="no">#- name: cloudera-init</span>
-          <span class="no">#mountPath: /cloudera-init/run/</span>
-        <span class="no">- name: mysql</span>
-          <span class="no">mountPath: /var/lib/mysql/</span>
-        <span class="no">- name: repo</span>
-          <span class="no">mountPath: /opt/cloudera/parcel-repo/</span>
-        <span class="no">- name: config</span>
-          <span class="no">mountPath: /opt/cm/etc/cloudera-scm-agent/</span>
-        <span class="no">env:</span>
-        <span class="no">- name: HOSTNAME</span>
-          <span class="no">valueFrom:</span>
-            <span class="no">configMapKeyRef:</span>
-              <span class="no">name: cloudera-config</span>
-              <span class="no">key: master_host</span>
-        <span class="no">- name: POD_IP</span>
-          <span class="no">valueFrom:</span>
-            <span class="no">fieldRef:</span>
-              <span class="no">apiVersion: v1</span>
-              <span class="no">fieldPath: status.podIP</span>
-        <span class="no">- name: POD_NAME</span>
-          <span class="no">valueFrom:</span>
-            <span class="no">fieldRef:</span>
-              <span class="no">apiVersion: v1</span>
-              <span class="no">fieldPath: metadata.name</span>
-        <span class="no">ports:</span>
-        <span class="no">- containerPort: 7180</span>
-          <span class="no">name: ui</span>
-        <span class="no">- containerPort: 9000</span>
-          <span class="no">name: agent</span>
-        <span class="no">- containerPort: 7182</span>
-          <span class="no">name: server</span>
-        <span class="no">- containerPort: 7191</span>
-          <span class="no">name: parcel</span>
-        <span class="no">- containerPort: 4434</span>
-          <span class="no">name: parcel-ssl</span>
-        <span class="no">securityContext:</span>
-          <span class="no">privileged: true</span>
-      <span class="no">imagePullSecrets:</span>
-      <span class="no">- name: registrykey-vpc</span>
-      <span class="no">volumes:</span>
-      <span class="no">- name: repo</span>
-        <span class="no">nfs:</span>
-          <span class="no">server: 074ca49d80-ak47.cn-hangzhou.nas.aliyuncs.com</span>
-          <span class="no">path: /pv/cloudera/repo/</span>
-      <span class="no">- name: mysql</span>
-        <span class="no">nfs:</span>
-          <span class="no">server: 074ca49d80-ak47.cn-hangzhou.nas.aliyuncs.com</span>
-          <span class="no">path: /pv/cloudera/master/</span>
-      <span class="no">#- name: cloudera-init</span>
-        <span class="no">#configMap:</span>
-          <span class="no">#name: cloudera-config</span>
-          <span class="no">#defaultMode: 0751</span>
-          <span class="no">#items:</span>
-          <span class="no">#- key: master.start</span>
-            <span class="no">#path: start.sh</span>
-          <span class="no">#- key: master.stop</span>
-            <span class="no">#path: stop.sh</span>
-          <span class="no">#- key: mysql.sql</span>
-            <span class="no">#path: mysql.sql</span>
-      <span class="no">- name: config</span>
-        <span class="no">configMap:</span>
-          <span class="no">name: cloudera-config</span>
-          <span class="no">items:</span>
-          <span class="no">- key: config.ini</span>
-            <span class="no">path: config.ini</span>
-<span class="err">-</span><span class="no">--</span>
-<span class="err">a</span><span class="no">piVersion: v1</span>
-<span class="err">k</span><span class="no">ind: Service</span>
-<span class="err">m</span><span class="no">etadata:</span>
-  <span class="no">name: master-svc</span>
-  <span class="no">namespace: cloudera</span>
-  <span class="no">labels:</span>
-    <span class="no">name: master-svc</span>
-    <span class="no">app: cloudera</span>
-<span class="err">s</span><span class="no">pec:</span>
-    <span class="no">type: ClusterIP</span>
-    <span class="no">clusterIP: None</span>
-    <span class="no">ports:</span>
-    <span class="no">- name: agent</span>
-      <span class="no">port: 9000</span>
-      <span class="no">protocol: TCP</span>
-      <span class="no">targetPort: 9000</span>
-    <span class="no">- name: server</span>
-      <span class="no">port: 7182</span>
-      <span class="no">protocol: TCP</span>
-      <span class="no">targetPort: 7182</span>
-    <span class="no">- name: parcel</span>
-      <span class="no">port: 7191</span>
-      <span class="no">protocol: TCP</span>
-      <span class="no">targetPort: 7191</span>
-    <span class="no">- name: parcel-ssl</span>
-      <span class="no">port: 4434</span>
-      <span class="no">protocol: TCP</span>
-      <span class="no">targetPort: 4434</span>
-    <span class="no">- name: ui</span>
-      <span class="no">port: 7180</span>
-      <span class="no">protocol: TCP</span>
-      <span class="no">targetPort: 7180</span>
-    <span class="no">selector:</span>
-        <span class="no">name: master</span>
-        <span class="no">app: cloudera</span>
-<span class="err">-</span><span class="no">--</span>
-<span class="err">a</span><span class="no">piVersion: v1</span>
-<span class="err">k</span><span class="no">ind: Service</span>
-<span class="err">m</span><span class="no">etadata:</span>
-  <span class="no">name: master-external</span>
-  <span class="no">namespace: cloudera</span>
-  <span class="no">labels:</span>
-    <span class="no">name: master-external</span>
-    <span class="no">app: cloudera</span>
-<span class="err">s</span><span class="no">pec:</span>
-    <span class="no">type: ClusterIP</span>
-    <span class="no">ports:</span>
-    <span class="no">- name: ui</span>
-      <span class="no">port: 7180</span>
-      <span class="no">protocol: TCP</span>
-      <span class="no">targetPort: 7180</span>
-    <span class="no">selector:</span>
-        <span class="no">name: master</span>
-        <span class="no">app: cloudera</span>
-<span class="err">-</span><span class="no">--</span>
-<span class="err">a</span><span class="no">piVersion: policy/v1beta1</span>
-<span class="err">k</span><span class="no">ind: PodDisruptionBudget</span>
-<span class="err">m</span><span class="no">etadata:</span>
-  <span class="no">name: agent-pdb</span>
-  <span class="no">namespace: cloudera</span>
-  <span class="no">labels:</span>
-    <span class="no">name: agent-pdb</span>
-    <span class="no">app: cloudera</span>
-<span class="err">s</span><span class="no">pec:</span>
-  <span class="no">selector:</span>
-    <span class="no">matchLabels:</span>
-      <span class="no">name: agent</span>
-      <span class="no">app: cloudera</span>
-  <span class="no">maxUnavailable: 1</span>
-<span class="err">-</span><span class="no">--</span>
-<span class="err">a</span><span class="no">piVersion: v1</span>
-<span class="err">k</span><span class="no">ind: Service</span>
-<span class="err">m</span><span class="no">etadata:</span>
-  <span class="no">name: agent-svc</span>
-  <span class="no">namespace: cloudera</span>
-  <span class="no">labels:</span>
-    <span class="no">name: agent-svc</span>
-    <span class="no">app: cloudera</span>
-<span class="err">s</span><span class="no">pec:</span>
-    <span class="no">type: ClusterIP</span>
-    <span class="no">clusterIP: None</span>
-    <span class="no">ports:</span>
-    <span class="no">- name: agent</span>
-      <span class="no">port: 9000</span>
-      <span class="no">protocol: TCP</span>
-      <span class="no">targetPort: 9000</span>
-    <span class="no">- name: server</span>
-      <span class="no">port: 7182</span>
-      <span class="no">protocol: TCP</span>
-      <span class="no">targetPort: 7182</span>
-    <span class="no">- name: parcel</span>
-      <span class="no">port: 7191</span>
-      <span class="no">protocol: TCP</span>
-      <span class="no">targetPort: 7191</span>
-    <span class="no">- name: parcel-ssl</span>
-      <span class="no">port: 4434</span>
-      <span class="no">protocol: TCP</span>
-      <span class="no">targetPort: 4434</span>
-    <span class="no">- name: parcel-ssl2</span>
-      <span class="no">port: 4433</span>
-      <span class="no">protocol: TCP</span>
-      <span class="no">targetPort: 4433</span>
-    <span class="no">selector:</span>
-        <span class="no">name: agent</span>
-        <span class="no">app: cloudera</span>
-<span class="err">-</span><span class="no">--</span>
-<span class="err">a</span><span class="no">piVersion: apps/v1</span>
-<span class="err">k</span><span class="no">ind: StatefulSet</span>
-<span class="err">m</span><span class="no">etadata:</span>
-  <span class="no">name: agent</span>
-  <span class="no">namespace: cloudera</span>
-  <span class="no">labels:</span>
-    <span class="no">name: agent-sts</span>
-    <span class="no">app: cloudera</span>
-<span class="err">s</span><span class="no">pec:</span>
-  <span class="no">selector:</span>
-    <span class="no">matchLabels:</span>
-      <span class="no">name: agent</span>
-      <span class="no">app: cloudera</span>
-  <span class="no">serviceName: agent-svc</span>
-  <span class="no">updateStrategy:</span>
-    <span class="no">type: RollingUpdate</span>
-  <span class="no">podManagementPolicy: OrderedReady</span>
-  <span class="no">replicas: 3</span>
-  <span class="no">revisionHistoryLimit: 2</span>
-  <span class="no">template:</span>
-    <span class="no">metadata:</span>
-      <span class="no">name: cagent</span>
-      <span class="no">namespace: cloudera</span>
-      <span class="no">labels:</span>
-        <span class="no">name: agent</span>
-        <span class="no">app: cloudera</span>
-    <span class="no">spec:</span>
-      <span class="no">tolerations:</span>
-      <span class="no">- effect: NoSchedule</span>
-        <span class="no">key: node-role.kubernetes.io/master</span>
-      <span class="no">restartPolicy: Always</span>
-      <span class="no">serviceAccountName: cloudera-sa</span>
-      <span class="no">automountServiceAccountToken: true</span>
-      <span class="no">containers:</span>
-      <span class="no">- name: agent</span>
-        <span class="no">image: registry-vpc.cn-hangzhou.aliyuncs.com/huaching_prod/cloudera-node:5.14.2</span>
-<span class="err">#</span><span class="no">        imagePullPolicy: IfNotPresent</span>
-        <span class="no">resources:</span>
-          <span class="no">limits:</span>
-            <span class="no">memory: "4096Mi"</span>
-            <span class="no">cpu: "1000m"</span>
-        <span class="no">lifecycle:</span>
-          <span class="no">preStop:</span>
-            <span class="no">exec:</span>
-              <span class="no">command: ["/bin/bash","-c","/cloudera-init/run/stop.sh"]</span>
-        <span class="no">volumeMounts:</span>
-        <span class="no">- name: repo</span>
-          <span class="no">mountPath: /opt/cloudera/parcel-repo/</span>
-        <span class="no">- name: lib</span>
-          <span class="no">mountPath: /opt/cm/lib/cloudera-scm-agent/</span>
-        <span class="no">- name: config</span>
-          <span class="no">mountPath: /opt/cm/etc/cloudera-scm-agent/</span>
-        <span class="no">ports:</span>
-        <span class="no">- containerPort: 9000</span>
-          <span class="no">name: agent</span>
-        <span class="no">- containerPort: 7182</span>
-          <span class="no">name: server</span>
-        <span class="no">- containerPort: 7191</span>
-          <span class="no">name: parcel</span>
-        <span class="no">- containerPort: 4434</span>
-          <span class="no">name: parcel-ssl</span>
-        <span class="no">- containerPort: 4433</span>
-          <span class="no">name: parcel-ssl2</span>
-        <span class="no">securityContext:</span>
-          <span class="no">privileged: true</span>
-      <span class="no">imagePullSecrets:</span>
-      <span class="no">- name: registrykey-vpc</span>
-      <span class="no">volumes:</span>
-      <span class="no">- name: config</span>
-        <span class="no">configMap:</span>
-          <span class="no">name: cloudera-config</span>
-          <span class="no">items:</span>
-          <span class="no">- key: config.ini</span>
-            <span class="no">path: config.ini</span>
-          <span class="no">- key: cron.tab</span>
-            <span class="no">path: cron.tab</span>
-      <span class="no">- name: repo</span>
-        <span class="no">nfs:</span>
-          <span class="no">server: 074ca49d80-ak47.cn-hangzhou.nas.aliyuncs.com</span>
-          <span class="no">path: /pv/cloudera/repo/</span>
-  <span class="no">volumeClaimTemplates:</span>
-  <span class="no">- metadata:</span>
-      <span class="no">name: lib</span>
-      <span class="no">namespace: cloudera</span>
-    <span class="no">spec:</span>
-      <span class="no">#volumeName: lib</span>
-      <span class="no">volumeMode: Filesystem</span>
-      <span class="no">accessModes: [ "ReadWriteOnce" ]</span>
-      <span class="no">storageClassName: cloudera-storage</span>
-      <span class="no">resources:</span>
-        <span class="no">requests:</span>
-          <span class="no">storage: 20Gi</span>
-<span class="err">-</span><span class="no">--</span>
-<span class="err">a</span><span class="no">piVersion: extensions/v1beta1</span>
-<span class="err">k</span><span class="no">ind: Ingress</span>
-<span class="err">m</span><span class="no">etadata:</span>
-  <span class="no">name: cdh-master-ing</span>
-  <span class="no">namespace: cloudera</span>
-<span class="err">s</span><span class="no">pec:</span>
-  <span class="no">rules:</span>
-  <span class="no">- host: cdh.docs.aliyun.com</span>
-    <span class="no">http:</span>
-      <span class="no">paths:</span>
-      <span class="no">- backend:</span>
-          <span class="no">serviceName: master-external</span>
-          <span class="no">servicePort: 7180</span>
+<span class="s">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">apps/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Deployment</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">nfs-deploy</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">nfs</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">cloudera</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">replicas</span><span class="pi">:</span> <span class="s">1</span>
+  <span class="na">revisionHistoryLimit</span><span class="pi">:</span> <span class="s">2</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">nfs</span>
+      <span class="na">app</span><span class="pi">:</span> <span class="s">cloudera</span>
+  <span class="na">template</span><span class="pi">:</span>
+    <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">nfs-client</span>
+      <span class="na">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
+      <span class="na">labels</span><span class="pi">:</span>
+        <span class="na">name</span><span class="pi">:</span> <span class="s">nfs</span>
+        <span class="na">app</span><span class="pi">:</span> <span class="s">cloudera</span>
+    <span class="na">spec</span><span class="pi">:</span>
+      <span class="na">tolerations</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">key</span><span class="pi">:</span> <span class="s">node-role.kubernetes.io/master</span>
+        <span class="na">effect</span><span class="pi">:</span> <span class="s">NoSchedule</span>
+      <span class="na">serviceAccountName</span><span class="pi">:</span> <span class="s">cloudera-sa</span>
+      <span class="na">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">image</span><span class="pi">:</span> <span class="s">registry.cn-hangzhou.aliyuncs.com/acs/alicloud-nas-controller:v1.8.4</span>
+<span class="c1">#        imagePullPolicy: Never</span>
+        <span class="na">name</span><span class="pi">:</span> <span class="s">nfs-client</span>
+<span class="c1">#        securityContext:</span>
+<span class="c1">#          privileged: true</span>
+        <span class="na">volumeMounts</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">nfs-client-root</span>
+          <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/persistentvolumes</span>
+        <span class="na">env</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">PROVISIONER_NAME</span>
+          <span class="na">value</span><span class="pi">:</span> <span class="s">alicloud/nas</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">NFS_SERVER</span>
+          <span class="na">value</span><span class="pi">:</span> <span class="s">074ca49d80-ak47.cn-hangzhou.nas.aliyuncs.com</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">NFS_PATH</span>
+          <span class="na">value</span><span class="pi">:</span> <span class="s">/pv/cloudera/agent/</span>
+      <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">nfs-client-root</span>
+        <span class="na">nfs</span><span class="pi">:</span>
+          <span class="na">server</span><span class="pi">:</span> <span class="s">074ca49d80-ak47.cn-hangzhou.nas.aliyuncs.com</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="s">/pv/cloudera/agent/</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">storage.k8s.io/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">StorageClass</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">cloudera-storage</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">storage</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">cloudera</span>
+<span class="na">reclaimPolicy</span><span class="pi">:</span> <span class="s">Delete</span>
+<span class="na">provisioner</span><span class="pi">:</span> <span class="s">alicloud/nas</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">apps/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Deployment</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">master-deploy</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">master-deploy</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">cloudera</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">replicas</span><span class="pi">:</span> <span class="s">1</span>
+  <span class="na">revisionHistoryLimit</span><span class="pi">:</span> <span class="s">2</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">master</span>
+      <span class="na">app</span><span class="pi">:</span> <span class="s">cloudera</span>
+  <span class="na">template</span><span class="pi">:</span>
+    <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">master</span>
+      <span class="na">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
+      <span class="na">labels</span><span class="pi">:</span>
+        <span class="na">name</span><span class="pi">:</span> <span class="s">master</span>
+        <span class="na">app</span><span class="pi">:</span> <span class="s">cloudera</span>
+    <span class="na">spec</span><span class="pi">:</span>
+      <span class="na">tolerations</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">effect</span><span class="pi">:</span> <span class="s">NoSchedule</span>
+        <span class="na">key</span><span class="pi">:</span> <span class="s">node-role.kubernetes.io/master</span>
+      <span class="na">restartPolicy</span><span class="pi">:</span> <span class="s">Always</span>
+      <span class="na">serviceAccountName</span><span class="pi">:</span> <span class="s">cloudera-sa</span>
+      <span class="na">automountServiceAccountToken</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">hostname</span><span class="pi">:</span> <span class="s">master-svc</span>
+      <span class="na">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">cloudera-master</span>
+        <span class="na">image</span><span class="pi">:</span> <span class="s">registry-vpc.cn-hangzhou.aliyuncs.com/huaching_prod/cloudera-master:5.14.2</span>
+<span class="c1">#        imagePullPolicy: IfNotPresent</span>
+        <span class="na">resources</span><span class="pi">:</span>
+          <span class="na">limits</span><span class="pi">:</span>
+            <span class="na">memory</span><span class="pi">:</span> <span class="s2">"</span><span class="s">4096Mi"</span>
+            <span class="na">cpu</span><span class="pi">:</span> <span class="s2">"</span><span class="s">1000m"</span>
+        <span class="na">lifecycle</span><span class="pi">:</span>
+          <span class="na">preStop</span><span class="pi">:</span>
+            <span class="na">exec</span><span class="pi">:</span>
+              <span class="na">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">/bin/bash"</span><span class="pi">,</span><span class="s2">"</span><span class="s">-c"</span><span class="pi">,</span><span class="s2">"</span><span class="s">/cloudera-init/run/stop.sh</span><span class="nv"> </span><span class="s">&gt;&gt;</span><span class="nv"> </span><span class="s">/cloudera/log/stop.log</span><span class="nv"> </span><span class="s">2&gt;&amp;1"</span><span class="pi">]</span>
+        <span class="na">volumeMounts</span><span class="pi">:</span>
+        <span class="c1">#- name: cloudera-init</span>
+          <span class="c1">#mountPath: /cloudera-init/run/</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">mysql</span>
+          <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/var/lib/mysql/</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">repo</span>
+          <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/opt/cloudera/parcel-repo/</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">config</span>
+          <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/opt/cm/etc/cloudera-scm-agent/</span>
+        <span class="na">env</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">HOSTNAME</span>
+          <span class="na">valueFrom</span><span class="pi">:</span>
+            <span class="na">configMapKeyRef</span><span class="pi">:</span>
+              <span class="na">name</span><span class="pi">:</span> <span class="s">cloudera-config</span>
+              <span class="na">key</span><span class="pi">:</span> <span class="s">master_host</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">POD_IP</span>
+          <span class="na">valueFrom</span><span class="pi">:</span>
+            <span class="na">fieldRef</span><span class="pi">:</span>
+              <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+              <span class="na">fieldPath</span><span class="pi">:</span> <span class="s">status.podIP</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">POD_NAME</span>
+          <span class="na">valueFrom</span><span class="pi">:</span>
+            <span class="na">fieldRef</span><span class="pi">:</span>
+              <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+              <span class="na">fieldPath</span><span class="pi">:</span> <span class="s">metadata.name</span>
+        <span class="na">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="s">7180</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">ui</span>
+        <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="s">9000</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">agent</span>
+        <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="s">7182</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">server</span>
+        <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="s">7191</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">parcel</span>
+        <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="s">4434</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">parcel-ssl</span>
+        <span class="na">securityContext</span><span class="pi">:</span>
+          <span class="na">privileged</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">imagePullSecrets</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">registrykey-vpc</span>
+      <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">repo</span>
+        <span class="na">nfs</span><span class="pi">:</span>
+          <span class="na">server</span><span class="pi">:</span> <span class="s">074ca49d80-ak47.cn-hangzhou.nas.aliyuncs.com</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="s">/pv/cloudera/repo/</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">mysql</span>
+        <span class="na">nfs</span><span class="pi">:</span>
+          <span class="na">server</span><span class="pi">:</span> <span class="s">074ca49d80-ak47.cn-hangzhou.nas.aliyuncs.com</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="s">/pv/cloudera/master/</span>
+      <span class="c1">#- name: cloudera-init</span>
+        <span class="c1">#configMap:</span>
+          <span class="c1">#name: cloudera-config</span>
+          <span class="c1">#defaultMode: 0751</span>
+          <span class="c1">#items:</span>
+          <span class="c1">#- key: master.start</span>
+            <span class="c1">#path: start.sh</span>
+          <span class="c1">#- key: master.stop</span>
+            <span class="c1">#path: stop.sh</span>
+          <span class="c1">#- key: mysql.sql</span>
+            <span class="c1">#path: mysql.sql</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">config</span>
+        <span class="na">configMap</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">cloudera-config</span>
+          <span class="na">items</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">key</span><span class="pi">:</span> <span class="s">config.ini</span>
+            <span class="na">path</span><span class="pi">:</span> <span class="s">config.ini</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Service</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">master-svc</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">master-svc</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">cloudera</span>
+<span class="na">spec</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">ClusterIP</span>
+    <span class="na">clusterIP</span><span class="pi">:</span> <span class="s">None</span>
+    <span class="na">ports</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">agent</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="s">9000</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="s">9000</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">server</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="s">7182</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="s">7182</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">parcel</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="s">7191</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="s">7191</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">parcel-ssl</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="s">4434</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="s">4434</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">ui</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="s">7180</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="s">7180</span>
+    <span class="na">selector</span><span class="pi">:</span>
+        <span class="na">name</span><span class="pi">:</span> <span class="s">master</span>
+        <span class="na">app</span><span class="pi">:</span> <span class="s">cloudera</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Service</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">master-external</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">master-external</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">cloudera</span>
+<span class="na">spec</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">ClusterIP</span>
+    <span class="na">ports</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">ui</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="s">7180</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="s">7180</span>
+    <span class="na">selector</span><span class="pi">:</span>
+        <span class="na">name</span><span class="pi">:</span> <span class="s">master</span>
+        <span class="na">app</span><span class="pi">:</span> <span class="s">cloudera</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">policy/v1beta1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">PodDisruptionBudget</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">agent-pdb</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">agent-pdb</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">cloudera</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">agent</span>
+      <span class="na">app</span><span class="pi">:</span> <span class="s">cloudera</span>
+  <span class="na">maxUnavailable</span><span class="pi">:</span> <span class="s">1</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Service</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">agent-svc</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">agent-svc</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">cloudera</span>
+<span class="na">spec</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">ClusterIP</span>
+    <span class="na">clusterIP</span><span class="pi">:</span> <span class="s">None</span>
+    <span class="na">ports</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">agent</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="s">9000</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="s">9000</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">server</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="s">7182</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="s">7182</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">parcel</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="s">7191</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="s">7191</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">parcel-ssl</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="s">4434</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="s">4434</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">parcel-ssl2</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="s">4433</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="s">4433</span>
+    <span class="na">selector</span><span class="pi">:</span>
+        <span class="na">name</span><span class="pi">:</span> <span class="s">agent</span>
+        <span class="na">app</span><span class="pi">:</span> <span class="s">cloudera</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">apps/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">StatefulSet</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">agent</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">agent-sts</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">cloudera</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">agent</span>
+      <span class="na">app</span><span class="pi">:</span> <span class="s">cloudera</span>
+  <span class="na">serviceName</span><span class="pi">:</span> <span class="s">agent-svc</span>
+  <span class="na">updateStrategy</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">RollingUpdate</span>
+  <span class="na">podManagementPolicy</span><span class="pi">:</span> <span class="s">OrderedReady</span>
+  <span class="na">replicas</span><span class="pi">:</span> <span class="s">3</span>
+  <span class="na">revisionHistoryLimit</span><span class="pi">:</span> <span class="s">2</span>
+  <span class="na">template</span><span class="pi">:</span>
+    <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">cagent</span>
+      <span class="na">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
+      <span class="na">labels</span><span class="pi">:</span>
+        <span class="na">name</span><span class="pi">:</span> <span class="s">agent</span>
+        <span class="na">app</span><span class="pi">:</span> <span class="s">cloudera</span>
+    <span class="na">spec</span><span class="pi">:</span>
+      <span class="na">tolerations</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">effect</span><span class="pi">:</span> <span class="s">NoSchedule</span>
+        <span class="na">key</span><span class="pi">:</span> <span class="s">node-role.kubernetes.io/master</span>
+      <span class="na">restartPolicy</span><span class="pi">:</span> <span class="s">Always</span>
+      <span class="na">serviceAccountName</span><span class="pi">:</span> <span class="s">cloudera-sa</span>
+      <span class="na">automountServiceAccountToken</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">agent</span>
+        <span class="na">image</span><span class="pi">:</span> <span class="s">registry-vpc.cn-hangzhou.aliyuncs.com/huaching_prod/cloudera-node:5.14.2</span>
+<span class="c1">#        imagePullPolicy: IfNotPresent</span>
+        <span class="na">resources</span><span class="pi">:</span>
+          <span class="na">limits</span><span class="pi">:</span>
+            <span class="na">memory</span><span class="pi">:</span> <span class="s2">"</span><span class="s">4096Mi"</span>
+            <span class="na">cpu</span><span class="pi">:</span> <span class="s2">"</span><span class="s">1000m"</span>
+        <span class="na">lifecycle</span><span class="pi">:</span>
+          <span class="na">preStop</span><span class="pi">:</span>
+            <span class="na">exec</span><span class="pi">:</span>
+              <span class="na">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">/bin/bash"</span><span class="pi">,</span><span class="s2">"</span><span class="s">-c"</span><span class="pi">,</span><span class="s2">"</span><span class="s">/cloudera-init/run/stop.sh"</span><span class="pi">]</span>
+        <span class="na">volumeMounts</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">repo</span>
+          <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/opt/cloudera/parcel-repo/</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">lib</span>
+          <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/opt/cm/lib/cloudera-scm-agent/</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">config</span>
+          <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/opt/cm/etc/cloudera-scm-agent/</span>
+        <span class="na">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="s">9000</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">agent</span>
+        <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="s">7182</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">server</span>
+        <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="s">7191</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">parcel</span>
+        <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="s">4434</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">parcel-ssl</span>
+        <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="s">4433</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">parcel-ssl2</span>
+        <span class="na">securityContext</span><span class="pi">:</span>
+          <span class="na">privileged</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">imagePullSecrets</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">registrykey-vpc</span>
+      <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">config</span>
+        <span class="na">configMap</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">cloudera-config</span>
+          <span class="na">items</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">key</span><span class="pi">:</span> <span class="s">config.ini</span>
+            <span class="na">path</span><span class="pi">:</span> <span class="s">config.ini</span>
+          <span class="pi">-</span> <span class="na">key</span><span class="pi">:</span> <span class="s">cron.tab</span>
+            <span class="na">path</span><span class="pi">:</span> <span class="s">cron.tab</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">repo</span>
+        <span class="na">nfs</span><span class="pi">:</span>
+          <span class="na">server</span><span class="pi">:</span> <span class="s">074ca49d80-ak47.cn-hangzhou.nas.aliyuncs.com</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="s">/pv/cloudera/repo/</span>
+  <span class="na">volumeClaimTemplates</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">lib</span>
+      <span class="na">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
+    <span class="na">spec</span><span class="pi">:</span>
+      <span class="c1">#volumeName: lib</span>
+      <span class="na">volumeMode</span><span class="pi">:</span> <span class="s">Filesystem</span>
+      <span class="na">accessModes</span><span class="pi">:</span> <span class="pi">[</span> <span class="s2">"</span><span class="s">ReadWriteOnce"</span> <span class="pi">]</span>
+      <span class="na">storageClassName</span><span class="pi">:</span> <span class="s">cloudera-storage</span>
+      <span class="na">resources</span><span class="pi">:</span>
+        <span class="na">requests</span><span class="pi">:</span>
+          <span class="na">storage</span><span class="pi">:</span> <span class="s">20Gi</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">extensions/v1beta1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Ingress</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">cdh-master-ing</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">rules</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">host</span><span class="pi">:</span> <span class="s">cdh.docs.aliyun.com</span>
+    <span class="na">http</span><span class="pi">:</span>
+      <span class="na">paths</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">backend</span><span class="pi">:</span>
+          <span class="na">serviceName</span><span class="pi">:</span> <span class="s">master-external</span>
+          <span class="na">servicePort</span><span class="pi">:</span> <span class="s">7180</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="注意事项">注意事项</h2>
 <ul>

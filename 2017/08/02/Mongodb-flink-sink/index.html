@@ -129,7 +129,7 @@ Mongodb 采用集群主从模式。</p>
   <li>继承RichSinkFunction，重写<code class="highlighter-rouge">open</code> 和 <code class="highlighter-rouge">invoke</code>方法，还有<code class="highlighter-rouge">close</code>。</li>
 </ul>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">e</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">sink</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">e</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">sink</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">com.alibaba.fastjson.JSON</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.e.firs.spb.utils.Mongo.MongoService</span><span class="o">;</span>
@@ -163,14 +163,13 @@ Mongodb 采用集群主从模式。</p>
         <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">};</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <h1 id="mongoservicejava">MongoService.Java</h1>
 <ul>
   <li>MongoDB Service 处理工具</li>
 </ul>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">e</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Mongo</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">e</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Mongo</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">com.alibaba.fastjson.JSONObject</span><span class="o">;</span>
 
@@ -227,15 +226,14 @@ Mongodb 采用集群主从模式。</p>
     <span class="o">}</span>
 <span class="o">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="mongomanagerjava">MongoManager.Java</h1>
 <ul>
   <li>获得mongodb链接池的工具类，获得某个DB的链接。</li>
 </ul>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">e</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Mongo</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">e</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Mongo</span><span class="o">;</span>
 
 <span class="cm">/**
  * Created by zhangjianxin on 2017/7/31.
@@ -290,15 +288,14 @@ Mongodb 采用集群主从模式。</p>
     <span class="o">}</span>
 <span class="o">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="entrydaojava">EntryDao.java</h1>
 <ul>
   <li>用来操作实体的工具类</li>
 </ul>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">e</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Mongo</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">e</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Mongo</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.net.UnknownHostException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
@@ -372,8 +369,7 @@ Mongodb 采用集群主从模式。</p>
     <span class="o">}</span>
 
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="jsonutilsjava">JsonUtils.java</h1>
 
@@ -381,7 +377,7 @@ Mongodb 采用集群主从模式。</p>
   <li>JSON的小工具类</li>
 </ul>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">tod</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Mongo</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">tod</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Mongo</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">java.io.OutputStream</span><span class="o">;</span>
 
@@ -492,8 +488,7 @@ Mongodb 采用集群主从模式。</p>
     <span class="o">}</span>
 <span class="o">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="mongodbhelperjava">MongoDBHelper.java</h1>
 
@@ -501,13 +496,13 @@ Mongodb 采用集群主从模式。</p>
   <li>用来测试MongoDB链接成功</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>package com.tod.spb.utils.Mongo;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
-import java.net.UnknownHostException;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>package com.tod.spb.utils.Mongo<span class="p">;</span>
+import com.alibaba.fastjson.JSON<span class="p">;</span>
+import com.alibaba.fastjson.JSONObject<span class="p">;</span>
+import com.mongodb.DB<span class="p">;</span>
+import com.mongodb.DBCollection<span class="p">;</span>
+import com.mongodb.DBObject<span class="p">;</span>
+import java.net.UnknownHostException<span class="p">;</span>
 
 
 /<span class="k">**</span>
@@ -515,21 +510,21 @@ import java.net.UnknownHostException;
  <span class="k">*</span>/
 public class MongoDBHelper <span class="o">{</span>
 
-    public static  String CollectionName <span class="o">=</span> <span class="s2">"collection-a"</span>;
+    public static  String CollectionName <span class="o">=</span> <span class="s2">"collection-a"</span><span class="p">;</span>
     /<span class="k">**</span>
      <span class="k">*</span> 保存
      <span class="k">*</span> @param null
      <span class="k">*</span> @throws UnknownHostException
      <span class="k">*</span>/
-    private MongoService mongoService <span class="o">=</span> new MongoService<span class="o">()</span>;
+    private MongoService mongoService <span class="o">=</span> new MongoService<span class="o">()</span><span class="p">;</span>
 
 
     public void save<span class="o">()</span> throws UnknownHostException<span class="o">{</span>
-        JSONObject data <span class="o">=</span> new JSONObject<span class="o">()</span>;
-        data.put<span class="o">(</span><span class="s2">"tableName"</span>,<span class="s2">"1"</span><span class="o">)</span>;
-        data.put<span class="o">(</span><span class="s2">"body"</span>,<span class="s2">"jsonobject"</span><span class="o">)</span>;
-        data.put<span class="o">(</span><span class="s2">"number"</span>,<span class="s2">"12345"</span><span class="o">)</span>;
-        this.mongoService.saveJson<span class="o">(</span>data,CollectionName<span class="o">)</span>;
+        JSONObject data <span class="o">=</span> new JSONObject<span class="o">()</span><span class="p">;</span>
+        data.put<span class="o">(</span><span class="s2">"tableName"</span>,<span class="s2">"1"</span><span class="o">)</span><span class="p">;</span>
+        data.put<span class="o">(</span><span class="s2">"body"</span>,<span class="s2">"jsonobject"</span><span class="o">)</span><span class="p">;</span>
+        data.put<span class="o">(</span><span class="s2">"number"</span>,<span class="s2">"12345"</span><span class="o">)</span><span class="p">;</span>
+        this.mongoService.saveJson<span class="o">(</span>data,CollectionName<span class="o">)</span><span class="p">;</span>
     <span class="o">}</span>
 
 
@@ -537,16 +532,15 @@ public class MongoDBHelper <span class="o">{</span>
     public static void main<span class="o">(</span>String[] args<span class="o">)</span> <span class="o">{</span>
 
         try <span class="o">{</span>
-            MongoDBHelper mongoDBHelper <span class="o">=</span> new MongoDBHelper<span class="o">()</span>;
-            mongoDBHelper.save<span class="o">()</span>;
+            MongoDBHelper mongoDBHelper <span class="o">=</span> new MongoDBHelper<span class="o">()</span><span class="p">;</span>
+            mongoDBHelper.save<span class="o">()</span><span class="p">;</span>
         <span class="o">}</span> catch <span class="o">(</span>UnknownHostException e<span class="o">)</span> <span class="o">{</span>
-            e.printStackTrace<span class="o">()</span>;
+            e.printStackTrace<span class="o">()</span><span class="p">;</span>
         <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 <ul>
   <li>Owner <code class="highlighter-rouge">breakEval13</code></li>
   <li>https://github.com/breakEval13</li>

@@ -148,16 +148,15 @@ author：zhangjianxin</p>
   <li>第一次没有插入SD卡的时候</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>➜  ~ df -h
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>➜  ~ df <span class="nt">-h</span>
 Filesystem                          Size   Used  Avail Capacity iused      ifree %iused  Mounted on
 /dev/disk1                         112Gi   93Gi   18Gi    84% 1444634 4293522645    0%   /
 devfs                              186Ki  186Ki    0Bi   100%     642          0  100%   /dev
-map -hosts                           0Bi    0Bi    0Bi   100%       0          0  100%   /net
+map <span class="nt">-hosts</span>                           0Bi    0Bi    0Bi   100%       0          0  100%   /net
 map auto_home                        0Bi    0Bi    0Bi   100%       0          0  100%   /home
 localhost:/fMn-YFzQfnHjvi04JpRLvc  112Gi  112Gi    0Bi   100%       0          0  100%   /Volumes/MobileBackups
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>插入sd卡的时候（多了一个/dev/disk2s1 ）</li>
@@ -165,17 +164,16 @@ localhost:/fMn-YFzQfnHjvi04JpRLvc  112Gi  112Gi    0Bi   100%       0          0
 
 <p><img src="https://zmatsh.b0.upaiyun.com/images/df-h-sd-card.png" alt="" /></p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>➜  ~ df -h
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>➜  ~ df <span class="nt">-h</span>
 Filesystem                          Size   Used  Avail Capacity iused      ifree %iused  Mounted on
 /dev/disk1                         112Gi   93Gi   18Gi    84% 1444634 4293522645    0%   /
 devfs                              186Ki  186Ki    0Bi   100%     642          0  100%   /dev
-map -hosts                           0Bi    0Bi    0Bi   100%       0          0  100%   /net
+map <span class="nt">-hosts</span>                           0Bi    0Bi    0Bi   100%       0          0  100%   /net
 map auto_home                        0Bi    0Bi    0Bi   100%       0          0  100%   /home
 localhost:/fMn-YFzQfnHjvi04JpRLvc  112Gi  112Gi    0Bi   100%       0          0  100%   /Volumes/MobileBackups
 /dev/disk2s1                       7.4Gi  2.4Mi  7.4Gi     1%      76     243827    0%   /Volumes/usb
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>通过diskutils工具进行umont这个SD卡(为了防止其他程序写入)</li>
@@ -183,12 +181,11 @@ localhost:/fMn-YFzQfnHjvi04JpRLvc  112Gi  112Gi    0Bi   100%       0          0
 
 <p><img src="https://zmatsh.b0.upaiyun.com/images/umount-mac.png" alt="" /></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>```bash
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```bash
 ➜  ~ diskutil unmountDisk /dev/disk2s1
 Unmount of all volumes on disk2 was successful
 ```
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>通过dd 写入镜像到sd卡。(10min)</li>
@@ -196,11 +193,10 @@ Unmount of all volumes on disk2 was successful
 
 <p><img src="https://zmatsh.b0.upaiyun.com/images/dd-sd-car-success.png" alt="" /></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>```bash
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```bash
 ➜  ~ sudo dd bs=512  if=2017-02-16-raspbian-jessie.img  of=/dev/disk2s1
 ```
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <blockquote>
   <p>Ethernet Gadget模式即USB网卡模式，
@@ -214,32 +210,28 @@ Unmount of all volumes on disk2 was successful
 为了进行usb连接，我们需要修改BOOT文件夹下的<code class="highlighter-rouge">config.txt</code> 与<code class="highlighter-rouge">cmdline.txt</code>配置文件。
 首先在<code class="highlighter-rouge">config.txt</code>最末行处换行添加如下代码，打开usb网卡模式：</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>  sudo vim config.txt
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">sudo </span>vim config.txt
+</code></pre></div>    </div>
   </li>
   <li>
     <p>增加内容如下：</p>
 
-    <div class="language-text highlighter-rouge"><pre class="highlight"><code> dtoverlay=dwc2
-</code></pre>
-    </div>
+    <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code> dtoverlay=dwc2
+</code></pre></div>    </div>
 
     <p><img src="https://zmatsh.b0.upaiyun.com/images/vim-config.png" alt="" /></p>
   </li>
   <li>
     <p><code class="highlighter-rouge">cmdline.txt</code>文件中找到<code class="highlighter-rouge">rootwait</code>字段，并在其后面空格添加如下信息，在打开系统时开启usb网卡模式。</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo vim cmdline.txt
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>vim cmdline.txt
+</code></pre></div>    </div>
   </li>
   <li>
     <p>增加内容如下：</p>
 
-    <div class="language-text highlighter-rouge"><pre class="highlight"><code>   modules-load=dwc2,g_ether
-</code></pre>
-    </div>
+    <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   modules-load=dwc2,g_ether
+</code></pre></div>    </div>
   </li>
 </ul>
 
@@ -262,12 +254,11 @@ ssh连接到树莓派  默认账号为<code class="highlighter-rouge">pi</code> 
     <p>看到如上图：<code class="highlighter-rouge">ssh pi@raspberrypi.local</code> 输入密码链接即可。</p>
   </li>
   <li>配置网络地址，wifi网卡
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> pi@raspberrypi:~ <span class="nv">$ </span>sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> pi@raspberrypi:~ <span class="nv">$ </span><span class="nb">sudo </span>nano /etc/wpa_supplicant/wpa_supplicant.conf
+</code></pre></div>    </div>
   </li>
   <li>添加以下内容
-    <div class="language-text highlighter-rouge"><pre class="highlight"><code> network={
+    <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code> network={
  ssid="WiFi-B"
  psk="12345678"
  key_mgmt=WPA-PSK
@@ -281,8 +272,7 @@ ssh连接到树莓派  默认账号为<code class="highlighter-rouge">pi</code> 
  #priority:连接优先级，数字越大优先级越高（不可以是负数）
 
  #scan_ssid:连接隐藏WiFi时需要指定该值为1
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>保存配置 <code class="highlighter-rouge">control + o 后 Enter</code></p>
@@ -304,34 +294,30 @@ ssh连接到树莓派  默认账号为<code class="highlighter-rouge">pi</code> 
 
 <ul>
   <li>安装软件
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo apt-get update
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt-get update
+</code></pre></div>    </div>
 
     <p><img src="https://zmatsh.b0.upaiyun.com/images/zero-update.png" alt="" /></p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo apt-get install git john
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt-get install git john
+</code></pre></div>    </div>
 
     <p><img src="https://zmatsh.b0.upaiyun.com/images/zero-install-git.png" alt="" /></p>
   </li>
   <li>
     <p>克隆代码</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>  git clone --recursive  http://github.com/mame82/P4wnP1
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  git clone <span class="nt">--recursive</span>  http://github.com/mame82/P4wnP1
+</code></pre></div>    </div>
 
     <p><img src="https://zmatsh.b0.upaiyun.com/images/git-clone-bad-usb.png" alt="" /></p>
   </li>
   <li>
     <p>安装</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> <span class="nb">cd </span>P4wnP1/
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">cd </span>P4wnP1/
  .／install.sh
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>等待 下载大约300m数据，编译需要20分钟。</p>
@@ -341,12 +327,11 @@ ssh连接到树莓派  默认账号为<code class="highlighter-rouge">pi</code> 
   <li>
     <p>提示</p>
 
-    <div class="language-text highlighter-rouge"><pre class="highlight"><code>    当然最重要的一点是安装后完毕wifi会修改为P4wnP1
+    <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    当然最重要的一点是安装后完毕wifi会修改为P4wnP1
     密码是MaMe82-P4wnP1
     ssh连接的地址是172.24.0.1账号和密码还是树莓派的初始密码
     建议修改初始密码！小心被黑(bao)吃(ju)黑(hua)！！！
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>将USB设备插到你要渗透的机器上，你会搜索到一个Wifi热点<code class="highlighter-rouge">P4wnP1</code>,密码<code class="highlighter-rouge">MaMe82-P4wnP1</code></p>
@@ -356,9 +341,8 @@ ssh连接到树莓派  默认账号为<code class="highlighter-rouge">pi</code> 
  <code class="highlighter-rouge">ssh pi@172.24.0.1</code>即可。注：蓝牙ssh连接的地址是172.26.0.1</p>
   </li>
   <li>配置文件地址如下：
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>  pi@MAME82-P4WNP1:~ <span class="nv">$ </span>nano P4wnP1/setup.cfg
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  pi@MAME82-P4WNP1:~ <span class="nv">$ </span>nano P4wnP1/setup.cfg
+</code></pre></div>    </div>
 
     <p><img src="https://zmatsh.b0.upaiyun.com/images/hack-setting.png" alt="" /></p>
 

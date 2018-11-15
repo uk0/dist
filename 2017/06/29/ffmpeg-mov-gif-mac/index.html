@@ -136,9 +136,8 @@
 
 <h2 id="2-从视频第三十秒处开始截取视频截取十秒钟片段">2. 从视频第三十秒处开始截取视频，截取十秒钟片段</h2>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>ffmpeg -ss 0 -t 150 -i Flinkdemo.mov  -s 800x600 -f gif -r 1 b.gif
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ffmpeg <span class="nt">-ss</span> 0 <span class="nt">-t</span> 150 <span class="nt">-i</span> Flinkdemo.mov  <span class="nt">-s</span> 800x600 <span class="nt">-f</span> gif <span class="nt">-r</span> 1 b.gif
+</code></pre></div></div>
 
 <p><img src="https://zmatsh.b0.upaiyun.com/posts/ffmpeg/QQ20170629-151034@2x.png" alt="描述" /></p>
 
@@ -150,25 +149,22 @@
 <p>-s 输出分辨率
 -r 帧率</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
-ffmpeg -i A.wmv -s 320x240  -r 10 B.gif
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+ffmpeg <span class="nt">-i</span> A.wmv <span class="nt">-s</span> 320x240  <span class="nt">-r</span> 10 B.gif
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="4rgb颜色限制输出rgb24位颜色gif图片">4.RGB颜色限制,输出RGB24位颜色gif图片</h2>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>ffmpeg -i A.wmv -pix_fmt rgb24   B.gif
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ffmpeg <span class="nt">-i</span> A.wmv <span class="nt">-pix_fmt</span> rgb24   B.gif
+</code></pre></div></div>
 
 <h2 id="5给gif动态图片添加字幕">5.给gif动态图片添加字幕</h2>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
-ffmpeg -i A.gif   -vf <span class="s2">"ass=test.ass"</span>   B.gif
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+ffmpeg <span class="nt">-i</span> A.gif   <span class="nt">-vf</span> <span class="s2">"ass=test.ass"</span>   B.gif
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
     </article>
     <div class="share">

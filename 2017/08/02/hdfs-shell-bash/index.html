@@ -125,27 +125,24 @@
 
 <h2 id="命令基本格式">命令基本格式:</h2>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>hadoop fs -cmd &lt; args &gt;
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hadoop fs <span class="nt">-cmd</span> &lt; args <span class="o">&gt;</span>
+</code></pre></div></div>
 <h1 id="1ls">1.ls</h1>
 
 <ul>
   <li>列出hdfs文件系统根目录下的目录和文件</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>hadoop fs -ls  /
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hadoop fs <span class="nt">-ls</span>  /
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>列出hdfs文件系统所有的目录和文件</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>hadoop fs -ls -R /
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hadoop fs <span class="nt">-ls</span> <span class="nt">-R</span> /
+</code></pre></div></div>
 
 <h1 id="2put">2.put</h1>
 
@@ -155,39 +152,35 @@
 hadoop fs -put &lt; local file &gt; &lt; hdfs file &gt;</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
  * hdfs dir 一定要存在，否则命令不会执行
 
 ```bash
 hadoop fs -put  &lt; local file or dir &gt;...&lt; hdfs dir &gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>从键盘读取输入到hdfs file中，按Ctrl+D结束输入，hdfs file不能存在，否则命令不会执行</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>hadoop fs -put - &lt; hdsf  file&gt;
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hadoop fs <span class="nt">-put</span> - &lt; hdsf  file&gt;
+</code></pre></div></div>
 
 <h1 id="21movefromlocal">2.1.moveFromLocal</h1>
 <ul>
   <li>与put相类似，命令执行后源文件 local src 被删除，也可以从从键盘读取输入到hdfs file中</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>hadoop fs -moveFromLocal  &lt; <span class="nb">local </span>src &gt; ... &lt; hdfs dst &gt;
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hadoop fs <span class="nt">-moveFromLocal</span>  &lt; <span class="nb">local </span>src <span class="o">&gt;</span> ... &lt; hdfs dst <span class="o">&gt;</span>
+</code></pre></div></div>
 
 <h1 id="22copyfromlocal">2.2.copyFromLocal</h1>
 <ul>
   <li>与put相类似，也可以从从键盘读取输入到hdfs file中</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>hadoop fs -copyFromLocal  &lt; <span class="nb">local </span>src &gt; ... &lt; hdfs dst &gt;
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hadoop fs <span class="nt">-copyFromLocal</span>  &lt; <span class="nb">local </span>src <span class="o">&gt;</span> ... &lt; hdfs dst <span class="o">&gt;</span>
+</code></pre></div></div>
 
 <h1 id="3get">3.get</h1>
 
@@ -195,107 +188,94 @@ hadoop fs -put  &lt; local file or dir &gt;...&lt; hdfs dir &gt;
   <li>local file不能和 hdfs file名字不能相同，否则会提示文件已存在，没有重名的文件会复制到本地</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>hadoop fs -get &lt; hdfs file &gt; &lt; <span class="nb">local </span>file or dir&gt;
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hadoop fs <span class="nt">-get</span> &lt; hdfs file <span class="o">&gt;</span> &lt; <span class="nb">local </span>file or dir&gt;
+</code></pre></div></div>
 <ul>
   <li>拷贝多个文件或目录到本地时，本地要为文件夹路径
 <code class="highlighter-rouge">注意</code>：如果用户不是root， local 路径要为用户文件夹下的路径，否则会出现权限问题</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>hadoop fs -get &lt; hdfs file or dir &gt; ... &lt; <span class="nb">local  </span>dir &gt;
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hadoop fs <span class="nt">-get</span> &lt; hdfs file or dir <span class="o">&gt;</span> ... &lt; <span class="nb">local  </span>dir <span class="o">&gt;</span>
+</code></pre></div></div>
 
 <h1 id="31copytolocal">3.1.copyToLocal</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>hadoop fs -copyToLocal &lt; <span class="nb">local </span>src &gt; ... &lt; hdfs dst &gt;
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hadoop fs <span class="nt">-copyToLocal</span> &lt; <span class="nb">local </span>src <span class="o">&gt;</span> ... &lt; hdfs dst <span class="o">&gt;</span>
+</code></pre></div></div>
 
 <h1 id="4rm">4.rm</h1>
 <ul>
   <li>每次可以删除多个文件或目录</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>hadoop fs -rm &lt; hdfs file &gt; ...
-hadoop fs -rm -r &lt; hdfs dir&gt;...
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hadoop fs <span class="nt">-rm</span> &lt; hdfs file <span class="o">&gt;</span> ...
+hadoop fs <span class="nt">-rm</span> <span class="nt">-r</span> &lt; hdfs dir&gt;...
+</code></pre></div></div>
 
 <h1 id="5mkdir">5.mkdir</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># 只能一级一级的建目录，父目录不存在的话使用这个命令会报错</span>
-hadoop fs -mkdir &lt; hdfs path&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 只能一级一级的建目录，父目录不存在的话使用这个命令会报错</span>
+hadoop fs <span class="nt">-mkdir</span> &lt; hdfs path&gt;
 <span class="c"># 所创建的目录如果父目录不存在就创建该父目录</span>
-hadoop fs -mkdir -p &lt; hdfs path&gt;
-</code></pre>
-</div>
+hadoop fs <span class="nt">-mkdir</span> <span class="nt">-p</span> &lt; hdfs path&gt;
+</code></pre></div></div>
 
 <h1 id="6getmerge">6.getmerge</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># 将hdfs指定目录下所有文件排序后合并到local指定的文件中，文件不存在时会自动创建，文件存在时会覆盖里面的内容</span>
-hadoop fs -getmerge &lt; hdfs dir &gt;  &lt; <span class="nb">local </span>file &gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 将hdfs指定目录下所有文件排序后合并到local指定的文件中，文件不存在时会自动创建，文件存在时会覆盖里面的内容</span>
+hadoop fs <span class="nt">-getmerge</span> &lt; hdfs dir <span class="o">&gt;</span>  &lt; <span class="nb">local </span>file <span class="o">&gt;</span>
 
 <span class="c"># 加上nl后，合并到local file中的hdfs文件之间会空出一行</span>
 
-hadoop fs -getmerge -nl  &lt; hdfs dir &gt;  &lt; <span class="nb">local </span>file &gt;
-</code></pre>
-</div>
+hadoop fs <span class="nt">-getmerge</span> <span class="nt">-nl</span>  &lt; hdfs dir <span class="o">&gt;</span>  &lt; <span class="nb">local </span>file <span class="o">&gt;</span>
+</code></pre></div></div>
 
 <h1 id="7cp">7.cp</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code> hadoop fs -cp  &lt; hdfs file &gt;  &lt; hdfs file &gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> hadoop fs <span class="nt">-cp</span>  &lt; hdfs file <span class="o">&gt;</span>  &lt; hdfs file <span class="o">&gt;</span>
 <span class="c"># 目标文件不能存在，否则命令不能执行，相当于给文件重命名并保存，源文件还存在</span>
- hadoop fs -cp &lt; hdfs file or dir &gt;... &lt; hdfs dir &gt;
+ hadoop fs <span class="nt">-cp</span> &lt; hdfs file or dir <span class="o">&gt;</span>... &lt; hdfs dir <span class="o">&gt;</span>
 <span class="c"># 目标文件夹要存在，否则命令不能执行</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="8mv">8.mv</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>hadoop fs -mv &lt; hdfs file &gt;  &lt; hdfs file &gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hadoop fs <span class="nt">-mv</span> &lt; hdfs file <span class="o">&gt;</span>  &lt; hdfs file <span class="o">&gt;</span>
 <span class="c"># 目标文件不能存在，否则命令不能执行，相当于给文件重命名并保存，源文件不存在</span>
-hadoop fs -mv  &lt; hdfs file or dir &gt;...  &lt; hdfs dir &gt;
+hadoop fs <span class="nt">-mv</span>  &lt; hdfs file or dir <span class="o">&gt;</span>...  &lt; hdfs dir <span class="o">&gt;</span>
 
 <span class="c"># 源路径有多个时，目标路径必须为目录，且必须存在。</span>
 <span class="c">#  `注意`：跨文件系统的移动（local到hdfs或者反过来）都是不允许的</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="9count">9.count</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># 统计hdfs对应路径下的目录个数，文件个数，文件总计大小</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 统计hdfs对应路径下的目录个数，文件个数，文件总计大小</span>
 <span class="c"># 显示为目录个数，文件个数，文件总计大小，输入路径</span>
-hadoop fs -count &lt; hdfs path &gt;
-</code></pre>
-</div>
+hadoop fs <span class="nt">-count</span> &lt; hdfs path <span class="o">&gt;</span>
+</code></pre></div></div>
 
 <h1 id="10du">10.du</h1>
 <ul>
   <li>显示hdfs对应路径下每个文件夹和文件的大小
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>hadoop fs -du &lt; hdsf path&gt;
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hadoop fs <span class="nt">-du</span> &lt; hdsf path&gt;
+</code></pre></div>    </div>
   </li>
   <li>显示hdfs对应路径下所有文件和的大小
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>hadoop fs -du -s &lt; hdsf path&gt;
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hadoop fs <span class="nt">-du</span> <span class="nt">-s</span> &lt; hdsf path&gt;
+</code></pre></div>    </div>
   </li>
   <li>显示hdfs对应路径下每个文件夹和文件的大小,文件的大小用方便阅读的形式表示，例如用64M代替67108864
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>hadoop fs -du - h &lt; hdsf path&gt;
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hadoop fs <span class="nt">-du</span> - h &lt; hdsf path&gt;
+</code></pre></div>    </div>
   </li>
 </ul>
 
 <h1 id="11text">11.text</h1>
 <ul>
   <li>将文本文件或某些格式的非文本文件通过文本格式输出
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>hadoop fs -text &lt; hdsf file&gt;
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hadoop fs <span class="nt">-text</span> &lt; hdsf file&gt;
+</code></pre></div>    </div>
   </li>
 </ul>
 
@@ -304,9 +284,8 @@ hadoop fs -count &lt; hdfs path &gt;
   <li>改变一个文件在hdfs中的副本个数，上述命令中数字3为所设置的副本个数，-R选项可以对一个人目录下的所有目录+文件递归执行改变副本个数的操作</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>hadoop fs -setrep -R 3 &lt; hdfs path &gt;
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hadoop fs <span class="nt">-setrep</span> <span class="nt">-R</span> 3 &lt; hdfs path <span class="o">&gt;</span>
+</code></pre></div></div>
 
 <h1 id="13stat">13.stat</h1>
 <ul>
@@ -315,24 +294,21 @@ hadoop fs -count &lt; hdfs path &gt;
 可以这样书写<code class="highlighter-rouge">hadoop fs -stat</code> %b%o%n &lt; hdfs path &gt;，不过不建议，这样每个字符输出的结果不是太容易分清楚</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>hdoop fs -stat <span class="o">[</span>format] &lt; hdfs path &gt;
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hdoop fs <span class="nt">-stat</span> <span class="o">[</span>format] &lt; hdfs path <span class="o">&gt;</span>
+</code></pre></div></div>
 
 <h1 id="14tail">14.tail</h1>
 <ul>
   <li>在标准输出中显示文件末尾的<code class="highlighter-rouge">1KB</code>数据
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>hadoop fs -tail &lt; hdfs file &gt;
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hadoop fs <span class="nt">-tail</span> &lt; hdfs file <span class="o">&gt;</span>
+</code></pre></div>    </div>
   </li>
 </ul>
 
 <h1 id="15archive">15.archive</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>hadoop archive -archiveName name.har -p &lt; hdfs parent dir &gt; &lt; src &gt;<span class="k">*</span> &lt; hdfs dst &gt;
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hadoop archive <span class="nt">-archiveName</span> name.har <span class="nt">-p</span> &lt; hdfs parent dir <span class="o">&gt;</span> &lt; src <span class="o">&gt;</span><span class="k">*</span> &lt; hdfs dst <span class="o">&gt;</span>
+</code></pre></div></div>
 
 <ul>
   <li>命令中参数name：压缩文件名，自己任意取；&lt; hdfs parent dir &gt; ：压缩文件所在的父目录；<code class="highlighter-rouge">&lt; src &gt;</code>：要压缩的文件名；<code class="highlighter-rouge">&lt; hdfs dst &gt;</code>：压缩文件存放路径
@@ -341,17 +317,15 @@ hadoop fs -count &lt; hdfs path &gt;
 显示har的内容可以用如下命令：</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>hadoop fs -ls /des/flink-des.jar
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hadoop fs <span class="nt">-ls</span> /des/flink-des.jar
+</code></pre></div></div>
 
 <ul>
   <li>显示har压缩的是那些文件可以用如下命令</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>hadoop fs -ls -R har:///des/hadoop.har
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hadoop fs <span class="nt">-ls</span> <span class="nt">-R</span> har:///des/hadoop.har
+</code></pre></div></div>
 <ul>
   <li>注意：<code class="highlighter-rouge">har</code>文件不能进行二次压缩。如果想给.har加文件，只能找到原来的文件，重新创建一个。har文件中原来文件的数据并没有变化，har文件真正的作用是减少<code class="highlighter-rouge">NameNode</code>和<code class="highlighter-rouge">DataNode</code>过多的空间浪费。</li>
 </ul>

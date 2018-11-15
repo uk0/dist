@@ -196,7 +196,7 @@
 
 <p>在~/.gitconfig中添加如下内容</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>[core]
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[core]
    quotepath = false
 [gui]
    encoding = utf-8
@@ -204,46 +204,40 @@
    commitencoding = utf-8
 [svn]
    pathnameencoding = utf-8
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>参考 <a href="http://zengrong.net/post/1249.htm">http://zengrong.net/post/1249.htm</a></p>
 
 <h4 id="如何处理本地有更改需要从服务器合入新代码的情况">如何处理本地有更改需要从服务器合入新代码的情况？</h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git stash
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git stash
 git pull
 git stash pop
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="stash">stash</h4>
 
 <p>查看 stash 列表：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git stash list
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git stash list
+</code></pre></div></div>
 
 <p>查看某一次 stash 的改动文件列表（不传最后一个参数默认显示最近一次）：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git stash show stash@{0}
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git stash show stash@{0}
+</code></pre></div></div>
 
 <p>以 patch 方式显示改动内容</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git stash show -p stash@{0}
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git stash show -p stash@{0}
+</code></pre></div></div>
 
 <h4 id="如何合并-fork-的仓库的上游更新">如何合并 fork 的仓库的上游更新？</h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git remote add upstream https://upstream-repo-url
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add upstream https://upstream-repo-url
 git fetch upstream
 git merge upstream/master
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="如何通过-tortoisesvn-带的-tortoisemergeexe-处理-git-产生的-conflict">如何通过 TortoiseSVN 带的 TortoiseMerge.exe 处理 git 产生的 conflict？</h4>
 <ul>
@@ -264,80 +258,69 @@ git merge upstream/master
 
 <h4 id="如何不建立一个没有-parent-的-branch">如何不建立一个没有 parent 的 branch？</h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git checkout --orphan newbranch
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout --orphan newbranch
+</code></pre></div></div>
 
 <p>此时 <code class="highlighter-rouge">git branch</code> 是不会显示该 branch 的，直到你做完更改首次 commit。比如你可能会想建立一个空的 gh-pages branch，那么：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git checkout --orphan gh-pages
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout --orphan gh-pages
 git rm -rf .
 // add your gh-pages branch files
 git add .
 git commit -m "init commit"
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="submodule-的常用命令">submodule 的常用命令</h4>
 
 <p><strong>添加 submodule</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git submodule add git@github.com:philsquared/Catch.git Catch
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git submodule add git@github.com:philsquared/Catch.git Catch
+</code></pre></div></div>
 
 <p>这会在仓库根目录下生成如下 .gitmodules 文件并 clone 该 submodule 到本地。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>[submodule "Catch"]
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[submodule "Catch"]
 path = Catch
 url = git@github.com:philsquared/Catch.git
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><strong>更新 submodule</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git submodule update
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git submodule update
+</code></pre></div></div>
 
 <p>当 submodule 的 remote 有更新的时候，需要</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git submodule update --remote
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git submodule update --remote
+</code></pre></div></div>
 
 <p><strong>删除 submodule</strong></p>
 
 <p>在 .gitmodules 中删除对应 submodule 的信息，然后使用如下命令删除子模块所有文件：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git rm --cached Catch
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git rm --cached Catch
+</code></pre></div></div>
 
 <p><strong>clone 仓库时拉取 submodule</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git submodule update --init --recursive
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git submodule update --init --recursive
+</code></pre></div></div>
 
 <h4 id="删除远程-tag">删除远程 tag</h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git tag -d v0.0.9
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git tag -d v0.0.9
 git push origin :refs/tags/v0.0.9
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>或</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git push origin --delete tag [tagname]
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin --delete tag [tagname]
+</code></pre></div></div>
 
 <h4 id="清除未跟踪文件">清除未跟踪文件</h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git clean
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clean
+</code></pre></div></div>
 
 <p>可选项：</p>
 
@@ -388,9 +371,8 @@ git push origin :refs/tags/v0.0.9
 
 <p>因为临时需求对某个文件 chmod 了一下，结果这个就被记为了更改，有时候这是想要的，有时候这会造成困扰。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git config --global core.filemode false
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config --global core.filemode false
+</code></pre></div></div>
 
 <p>参考：<a href="http://stackoverflow.com/questions/1580596/how-do-i-make-git-ignore-file-mode-chmod-changes">How do I make Git ignore file mode (chmod) changes?</a></p>
 
@@ -398,77 +380,66 @@ git push origin :refs/tags/v0.0.9
 
 <p>将未添加到暂存区的更改生成 patch 文件：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git diff &gt; demo.patch
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git diff &gt; demo.patch
+</code></pre></div></div>
 
 <p>将已添加到暂存区的更改生成 patch 文件：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git diff --cached &gt; demo.patch
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git diff --cached &gt; demo.patch
+</code></pre></div></div>
 
 <p>合并上面两条命令生成的 patch 文件包含的更改：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git apply demo.patch
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git apply demo.patch
+</code></pre></div></div>
 
 <p>将从 HEAD 之前的 3 次 commit 生成 3 个 patch 文件：</p>
 
 <p>（HEAD 可以换成 sha1 码）</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git format-patch -3 HEAD
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git format-patch -3 HEAD
+</code></pre></div></div>
 
 <p>生成 af8e2 与 eaf8e 之间的 commits 的 patch 文件：</p>
 
 <p>（注意 af8e2 比 eaf8e 早）</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git format-patch af8e2..eaf8e
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git format-patch af8e2..eaf8e
+</code></pre></div></div>
 
 <p>合并 format-patch 命令生成的 patch 文件：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git am 0001-Update.patch
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git am 0001-Update.patch
+</code></pre></div></div>
 
 <p>与 <code class="highlighter-rouge">git apply</code> 不同，这会直接 add 和 commit。</p>
 
 <h4 id="只下载最新代码">只下载最新代码</h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git clone --depth 1 git://xxxxxx
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone --depth 1 git://xxxxxx
+</code></pre></div></div>
 
 <p>这样 clone 出来的仓库会是一个 shallow 的状态，要让它变成一个完整的版本：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git fetch --unshallow
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git fetch --unshallow
+</code></pre></div></div>
 
 <p>或</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git pull --unshallow
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git pull --unshallow
+</code></pre></div></div>
 
 <h4 id="基于某次-commit-创建分支">基于某次 commit 创建分支</h4>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>git checkout -b <span class="nb">test </span>5234ab
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout <span class="nt">-b</span> <span class="nb">test </span>5234ab
+</code></pre></div></div>
 
 <p>表示以 commit hash 为 <code class="highlighter-rouge">5234ab</code> 的代码为基础创建分支 <code class="highlighter-rouge">test</code>。</p>
 
 <h4 id="恢复单个文件到指定版本">恢复单个文件到指定版本</h4>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>git reset 5234ab MainActivity.java
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset 5234ab MainActivity.java
+</code></pre></div></div>
 
 <p>恢复 MainActivity.java 文件到 commit hash 为 <code class="highlighter-rouge">5234ab</code> 时的状态。</p>
 

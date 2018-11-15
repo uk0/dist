@@ -123,20 +123,19 @@
     <article class="article-content markdown-body">
     <h2 id="git丢弃本地修改的所有文件新增删除修改">git丢弃本地修改的所有文件（新增、删除、修改）</h2>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>git checkout . <span class="c">#本地所有修改的。没有的提交的，都返回到原来的状态</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout <span class="nb">.</span> <span class="c">#本地所有修改的。没有的提交的，都返回到原来的状态</span>
 git stash <span class="c">#把所有没有提交的修改暂存到stash里面。可用git stash pop回复。</span>
-git reset --hard HASH <span class="c">#返回到某个节点，不保留修改。</span>
-git reset --soft HASH <span class="c">#返回到某个节点。保留修改</span>
+git reset <span class="nt">--hard</span> HASH <span class="c">#返回到某个节点，不保留修改。</span>
+git reset <span class="nt">--soft</span> HASH <span class="c">#返回到某个节点。保留修改</span>
 
-git clean -df <span class="c">#返回到某个节点</span>
+git clean <span class="nt">-df</span> <span class="c">#返回到某个节点</span>
 git clean <span class="c">#参数</span>
-    -n <span class="c">#显示 将要 删除的 文件 和  目录</span>
-    -f <span class="c">#删除 文件</span>
-    -df <span class="c">#删除 文件 和 目录</span>
+    <span class="nt">-n</span> <span class="c">#显示 将要 删除的 文件 和  目录</span>
+    <span class="nt">-f</span> <span class="c">#删除 文件</span>
+    <span class="nt">-df</span> <span class="c">#删除 文件 和 目录</span>
 
-git checkout . <span class="o">&amp;&amp;</span> git clean -xdf <span class="c"># 清除本地</span>
-</code></pre>
-</div>
+git checkout <span class="nb">.</span> <span class="o">&amp;&amp;</span> git clean <span class="nt">-xdf</span> <span class="c"># 清除本地</span>
+</code></pre></div></div>
 
 <p>原文：https://blog.csdn.net/leedaning/article/details/51304690</p>
 

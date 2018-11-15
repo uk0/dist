@@ -125,32 +125,30 @@
 
 <h3 id="看这里">看这里</h3>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#Function: gtIp</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#Function: gtIp</span>
 <span class="c">#Author: zhangjianxin</span>
 <span class="c">#Time: 2018-08-30</span>
 <span class="c">#! /bin/bash</span>
 
 
-<span class="nv">bashpath</span><span class="o">=</span><span class="k">$(</span><span class="nb">cd</span> <span class="sb">`</span>dirname <span class="nv">$0</span><span class="sb">`</span>; <span class="nb">pwd</span><span class="k">)</span>
+<span class="nv">bashpath</span><span class="o">=</span><span class="k">$(</span><span class="nb">cd</span> <span class="sb">`</span>dirname <span class="nv">$0</span><span class="sb">`</span><span class="p">;</span> <span class="nb">pwd</span><span class="k">)</span>
 <span class="nv">brokerName</span><span class="o">=</span>dev_rocketmq_4.3.0
 <span class="c">#########################setting#######################</span>
 <span class="nv">URL</span><span class="o">=</span><span class="s2">"http://ip.cn/"</span>
-<span class="nv">Result</span><span class="o">=</span><span class="sb">`</span>curl -o /dev/null -s -m 10 --connect-timeout 10 -w %<span class="o">{</span>http_code<span class="o">}</span> <span class="nv">$URL</span><span class="sb">`</span>
+<span class="nv">Result</span><span class="o">=</span><span class="sb">`</span>curl <span class="nt">-o</span> /dev/null <span class="nt">-s</span> <span class="nt">-m</span> 10 <span class="nt">--connect-timeout</span> 10 <span class="nt">-w</span> %<span class="o">{</span>http_code<span class="o">}</span> <span class="nv">$URL</span><span class="sb">`</span>
 <span class="nv">Test</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$Result</span><span class="sb">`</span>
 <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$Test</span><span class="s2">"</span> <span class="o">==</span> <span class="s2">"200"</span> <span class="o">]</span>
 <span class="k">then
-	</span>curl -s -o <span class="nv">$bashpath</span>/ip.html <span class="k">${</span><span class="nv">URL</span><span class="k">}</span>
+	</span>curl <span class="nt">-s</span> <span class="nt">-o</span> <span class="nv">$bashpath</span>/ip.html <span class="k">${</span><span class="nv">URL</span><span class="k">}</span>
 	<span class="nb">echo</span> <span class="s2">"search inter ip "</span>
-        <span class="nv">ip</span><span class="o">=</span><span class="k">$(</span>cat <span class="k">${</span><span class="nv">bashpath</span><span class="k">}</span>/ip.html  | sed  <span class="s1">'s/：/ /g'</span> | awk <span class="s1">'{print$3}'</span><span class="k">)</span>
+        <span class="nv">ip</span><span class="o">=</span><span class="k">$(</span><span class="nb">cat</span> <span class="k">${</span><span class="nv">bashpath</span><span class="k">}</span>/ip.html  | sed  <span class="s1">'s/：/ /g'</span> | awk <span class="s1">'{print$3}'</span><span class="k">)</span>
 	<span class="nb">echo</span> <span class="nv">$ip</span>
     rm <span class="k">${</span><span class="nv">bashpath</span><span class="k">}</span>/ip.html
 <span class="k">fi</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>    awk <span class="s1">'!seen[$0]++'</span> &lt;filename&gt; <span class="c"># 去重行</span>
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    awk <span class="s1">'!seen[$0]++'</span> &lt;filename&gt; <span class="c"># 去重行</span>
+</code></pre></div></div>
 
 <p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
 

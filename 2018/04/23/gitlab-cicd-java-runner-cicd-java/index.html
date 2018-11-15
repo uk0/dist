@@ -134,9 +134,9 @@
   <li>还有另一个 <code class="highlighter-rouge">yaml</code>是从 源码–&gt;Jar／tar–&gt;镜像</li>
 </ul>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="c1"># cache 这个参数用于定义全局那些文件将被 cache 到下一个  stages</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># cache 这个参数用于定义全局那些文件将被 cache 到下一个  stages</span>
 <span class="c1"># 调试开启</span>
-<span class="s">before_script</span><span class="pi">:</span>
+<span class="na">before_script</span><span class="pi">:</span>
  <span class="pi">-</span> <span class="s">pwd</span>
  <span class="pi">-</span> <span class="s">env</span>
  <span class="c1">##</span>
@@ -146,33 +146,33 @@
  <span class="pi">-</span> <span class="s">mkdir -p /root/.ssh/</span>
  <span class="pi">-</span> <span class="s">chmod  700 /root/.ssh/</span>
  <span class="pi">-</span> <span class="s">echo -e "StrictHostKeyChecking no \nUserKnownHostsFile /dev/null" &gt; ~/.ssh/config</span>
-<span class="s">cache</span><span class="pi">:</span>
-  <span class="s">key</span><span class="pi">:</span> <span class="s">$CI_PROJECT_NAME-$CI_COMMIT_REF_NAME-$CI_COMMIT_SHA</span>
-  <span class="s">paths</span><span class="pi">:</span>
+<span class="na">cache</span><span class="pi">:</span>
+  <span class="na">key</span><span class="pi">:</span> <span class="s">$CI_PROJECT_NAME-$CI_COMMIT_REF_NAME-$CI_COMMIT_SHA</span>
+  <span class="na">paths</span><span class="pi">:</span>
     <span class="pi">-</span> <span class="s">build/</span>
     <span class="pi">-</span> <span class="s">/data/repo</span>
-<span class="s">stages</span><span class="pi">:</span>
+<span class="na">stages</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="s">build-jar</span>
   <span class="pi">-</span> <span class="s">build-release</span>
   <span class="pi">-</span> <span class="s">build-dev</span>
-<span class="s">variables</span><span class="pi">:</span>
-  <span class="s">DOCKER_DRIVER</span><span class="pi">:</span> <span class="s">overlay2</span>
-  <span class="s">MAVEN_OPTS</span><span class="pi">:</span> <span class="s2">"</span><span class="s">-Dmaven.repo.local=/data/repo"</span>
-  <span class="s">CI_DEBUG_TRACE</span><span class="pi">:</span> <span class="s2">"</span><span class="s">true"</span>
-<span class="s">build-Java</span><span class="pi">:</span>
-  <span class="s">image</span><span class="pi">:</span> <span class="s2">"</span><span class="s">registry.cn-hangzhou.aliyuncs.com/emos_prod/centos7-jdk8-maven3-git-1.8:latest"</span>
-  <span class="s">stage</span><span class="pi">:</span> <span class="s">build-jar</span>
-  <span class="s">script</span><span class="pi">:</span>
+<span class="na">variables</span><span class="pi">:</span>
+  <span class="na">DOCKER_DRIVER</span><span class="pi">:</span> <span class="s">overlay2</span>
+  <span class="na">MAVEN_OPTS</span><span class="pi">:</span> <span class="s2">"</span><span class="s">-Dmaven.repo.local=/data/repo"</span>
+  <span class="na">CI_DEBUG_TRACE</span><span class="pi">:</span> <span class="s2">"</span><span class="s">true"</span>
+<span class="na">build-Java</span><span class="pi">:</span>
+  <span class="na">image</span><span class="pi">:</span> <span class="s2">"</span><span class="s">registry.cn-hangzhou.aliyuncs.com/emos_prod/centos7-jdk8-maven3-git-1.8:latest"</span>
+  <span class="na">stage</span><span class="pi">:</span> <span class="s">build-jar</span>
+  <span class="na">script</span><span class="pi">:</span>
     <span class="pi">-</span> <span class="s">chmod u+x ./maven-build-all.sh</span>
     <span class="pi">-</span> <span class="s">./maven-build-all.sh</span>
     <span class="pi">-</span> <span class="s">ls -a build/</span>
-  <span class="s">tags</span><span class="pi">:</span>
+  <span class="na">tags</span><span class="pi">:</span>
     <span class="pi">-</span> <span class="s">build_dev</span>
 
-<span class="s">release-jar-release</span><span class="pi">:</span>
-  <span class="s">image</span><span class="pi">:</span> <span class="s2">"</span><span class="s">registry.cn-hangzhou.aliyuncs.com/emos_prod/centos7-jdk8-maven3-git-1.8:latest"</span>
-  <span class="s">stage</span><span class="pi">:</span> <span class="s">build-release</span>
-  <span class="s">script</span><span class="pi">:</span>
+<span class="na">release-jar-release</span><span class="pi">:</span>
+  <span class="na">image</span><span class="pi">:</span> <span class="s2">"</span><span class="s">registry.cn-hangzhou.aliyuncs.com/emos_prod/centos7-jdk8-maven3-git-1.8:latest"</span>
+  <span class="na">stage</span><span class="pi">:</span> <span class="s">build-release</span>
+  <span class="na">script</span><span class="pi">:</span>
     <span class="pi">-</span> <span class="s">git clone http://$GITLAB_USER:$GITLAB_PASS@gitlab-cicd.com/release/build-space.git</span>
     <span class="pi">-</span> <span class="s">cd build-space &amp;&amp; rm -rf * &amp;&amp; cp -r ../build/* .</span>
     <span class="pi">-</span> <span class="s">git config --global user.name "root"</span>
@@ -180,15 +180,15 @@
     <span class="pi">-</span> <span class="s">git add --all .</span>
     <span class="pi">-</span> <span class="s">git commit -m "Gitlab CI Auto Builder master"</span>
     <span class="pi">-</span> <span class="s">git push --force --quiet http://$GITLAB_USER:$GITLAB_PASSgitlab-cicd.com/release/build-space.git master:master</span>
-  <span class="s">tags</span><span class="pi">:</span>
+  <span class="na">tags</span><span class="pi">:</span>
     <span class="pi">-</span> <span class="s">build_dev</span>
-  <span class="s">only</span><span class="pi">:</span>
+  <span class="na">only</span><span class="pi">:</span>
     <span class="pi">-</span> <span class="s">master</span>
 
-<span class="s">release-jar-dev</span><span class="pi">:</span>
-  <span class="s">image</span><span class="pi">:</span> <span class="s2">"</span><span class="s">registry.cn-hangzhou.aliyuncs.com/emos_prod/centos7-jdk8-maven3-git-1.8:latest"</span>
-  <span class="s">stage</span><span class="pi">:</span> <span class="s">build-dev</span>
-  <span class="s">script</span><span class="pi">:</span>
+<span class="na">release-jar-dev</span><span class="pi">:</span>
+  <span class="na">image</span><span class="pi">:</span> <span class="s2">"</span><span class="s">registry.cn-hangzhou.aliyuncs.com/emos_prod/centos7-jdk8-maven3-git-1.8:latest"</span>
+  <span class="na">stage</span><span class="pi">:</span> <span class="s">build-dev</span>
+  <span class="na">script</span><span class="pi">:</span>
     <span class="pi">-</span> <span class="s">git clone http://$GITLAB_USER:$GITLAB_PASS@gitlab-cicd.com/dev/build-space.git</span>
     <span class="pi">-</span> <span class="s">cd build-space &amp;&amp; rm -rf * &amp;&amp; cp -r ../build/* .</span>
     <span class="pi">-</span> <span class="s">git config user.name "root"</span>
@@ -196,12 +196,11 @@
     <span class="pi">-</span> <span class="s">git add --all .</span>
     <span class="pi">-</span> <span class="s">git commit -m "Gitlab CI Auto Builder dev"</span>
     <span class="pi">-</span> <span class="s">git push --force --quiet http://$GITLAB_USER:$GITLAB_PASS@gitlab-cicd.com/dev/build-space.git dev:dev</span>
-  <span class="s">tags</span><span class="pi">:</span>
+  <span class="na">tags</span><span class="pi">:</span>
     <span class="pi">-</span> <span class="s">build_dev</span>
-  <span class="s">only</span><span class="pi">:</span>
+  <span class="na">only</span><span class="pi">:</span>
     <span class="pi">-</span> <span class="s">dev</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>

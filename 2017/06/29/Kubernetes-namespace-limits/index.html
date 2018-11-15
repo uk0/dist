@@ -129,119 +129,116 @@
     <p>Kubernetes命名空间资源限制主要是为了多个团队一起开发来区分资源使用情况。</p>
 
 <h2 id="1-resourcequota">1. ResourceQuota</h2>
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code>
-<span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
-<span class="s">kind</span><span class="pi">:</span> <span class="s">ResourceQuota</span>
-<span class="s">metadata</span><span class="pi">:</span>
-  <span class="s">name</span><span class="pi">:</span> <span class="s">compute-resources</span>
-  <span class="s">namespace</span><span class="pi">:</span> <span class="s">test</span>
-<span class="s">spec</span><span class="pi">:</span>
-  <span class="s">hard</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ResourceQuota</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">compute-resources</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">test</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">hard</span><span class="pi">:</span>
     <span class="s">requests.cpu</span><span class="pi">:</span> <span class="s2">"</span><span class="s">1"</span>
     <span class="s">requests.memory</span><span class="pi">:</span> <span class="s">2Gi</span>
     <span class="s">limits.cpu</span><span class="pi">:</span> <span class="s2">"</span><span class="s">4"</span>
     <span class="s">limits.memory</span><span class="pi">:</span> <span class="s">12Gi</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="2-limitrange">2. LimitRange</h2>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code>
-<span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
-<span class="s">kind</span><span class="pi">:</span> <span class="s">LimitRange</span>
-<span class="s">metadata</span><span class="pi">:</span>
-  <span class="s">name</span><span class="pi">:</span> <span class="s">limits</span>
-<span class="s">spec</span><span class="pi">:</span>
-  <span class="s">limits</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="s">max</span><span class="pi">:</span>
-      <span class="s">cpu</span><span class="pi">:</span> <span class="s2">"</span><span class="s">4"</span>
-      <span class="s">memory</span><span class="pi">:</span> <span class="s">2Gi</span>
-    <span class="s">min</span><span class="pi">:</span>
-      <span class="s">cpu</span><span class="pi">:</span> <span class="s">200m</span>
-      <span class="s">memory</span><span class="pi">:</span> <span class="s">6Mi</span>
-    <span class="s">maxLimitRequestRatio</span><span class="pi">:</span>
-      <span class="s">cpu</span><span class="pi">:</span> <span class="s">3</span>
-      <span class="s">memory</span><span class="pi">:</span> <span class="s">2</span>
-    <span class="s">type</span><span class="pi">:</span> <span class="s">Pod</span>
-  <span class="pi">-</span> <span class="s">default</span><span class="pi">:</span>
-      <span class="s">cpu</span><span class="pi">:</span> <span class="s">300m</span>
-      <span class="s">memory</span><span class="pi">:</span> <span class="s">200Mi</span>
-    <span class="s">defaultRequest</span><span class="pi">:</span>
-      <span class="s">cpu</span><span class="pi">:</span> <span class="s">200m</span>
-      <span class="s">memory</span><span class="pi">:</span> <span class="s">100Mi</span>
-    <span class="s">max</span><span class="pi">:</span>
-      <span class="s">cpu</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2"</span>
-      <span class="s">memory</span><span class="pi">:</span> <span class="s">1Gi</span>
-    <span class="s">min</span><span class="pi">:</span>
-      <span class="s">cpu</span><span class="pi">:</span> <span class="s">100m</span>
-      <span class="s">memory</span><span class="pi">:</span> <span class="s">3Mi</span>
-    <span class="s">maxLimitRequestRatio</span><span class="pi">:</span>
-      <span class="s">cpu</span><span class="pi">:</span> <span class="s">5</span>
-      <span class="s">memory</span><span class="pi">:</span> <span class="s">4</span>
-    <span class="s">type</span><span class="pi">:</span> <span class="s">Container</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">LimitRange</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">limits</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">limits</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">max</span><span class="pi">:</span>
+      <span class="na">cpu</span><span class="pi">:</span> <span class="s2">"</span><span class="s">4"</span>
+      <span class="na">memory</span><span class="pi">:</span> <span class="s">2Gi</span>
+    <span class="na">min</span><span class="pi">:</span>
+      <span class="na">cpu</span><span class="pi">:</span> <span class="s">200m</span>
+      <span class="na">memory</span><span class="pi">:</span> <span class="s">6Mi</span>
+    <span class="na">maxLimitRequestRatio</span><span class="pi">:</span>
+      <span class="na">cpu</span><span class="pi">:</span> <span class="s">3</span>
+      <span class="na">memory</span><span class="pi">:</span> <span class="s">2</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">Pod</span>
+  <span class="pi">-</span> <span class="na">default</span><span class="pi">:</span>
+      <span class="na">cpu</span><span class="pi">:</span> <span class="s">300m</span>
+      <span class="na">memory</span><span class="pi">:</span> <span class="s">200Mi</span>
+    <span class="na">defaultRequest</span><span class="pi">:</span>
+      <span class="na">cpu</span><span class="pi">:</span> <span class="s">200m</span>
+      <span class="na">memory</span><span class="pi">:</span> <span class="s">100Mi</span>
+    <span class="na">max</span><span class="pi">:</span>
+      <span class="na">cpu</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2"</span>
+      <span class="na">memory</span><span class="pi">:</span> <span class="s">1Gi</span>
+    <span class="na">min</span><span class="pi">:</span>
+      <span class="na">cpu</span><span class="pi">:</span> <span class="s">100m</span>
+      <span class="na">memory</span><span class="pi">:</span> <span class="s">3Mi</span>
+    <span class="na">maxLimitRequestRatio</span><span class="pi">:</span>
+      <span class="na">cpu</span><span class="pi">:</span> <span class="s">5</span>
+      <span class="na">memory</span><span class="pi">:</span> <span class="s">4</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">Container</span>
 
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="3映射方案ceph-rbd">3.映射方案Ceph RBD</h2>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
-<span class="s">kind</span><span class="pi">:</span> <span class="s">ReplicationController</span>
-<span class="s">metadata</span><span class="pi">:</span>
-  <span class="s">name</span><span class="pi">:</span> <span class="s">demo-app-server</span>
-  <span class="s">namespace</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">namespace</span><span class="pi">]</span>
-<span class="s">spec</span><span class="pi">:</span>
-  <span class="s">replicas</span><span class="pi">:</span> <span class="s">1</span>
-  <span class="s">selector</span><span class="pi">:</span>
-    <span class="s">app</span><span class="pi">:</span> <span class="s">demo-app-server</span>
-  <span class="s">template</span><span class="pi">:</span>
-    <span class="s">metadata</span><span class="pi">:</span>
-      <span class="s">labels</span><span class="pi">:</span>
-        <span class="s">app</span><span class="pi">:</span> <span class="s">demo-app-server</span>
-    <span class="s">spec</span><span class="pi">:</span>
-      <span class="s">containers</span><span class="pi">:</span>
-        <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">demo-app-server-container</span>
-          <span class="s">image</span><span class="pi">:</span> <span class="s">image.firsh.io/demo-base/appserver:latest</span>
-          <span class="s">imagePullPolicy</span><span class="pi">:</span> <span class="s">Always</span>
-          <span class="s">ports</span><span class="pi">:</span>
-          <span class="pi">-</span> <span class="s">containerPort</span><span class="pi">:</span> <span class="s">8080</span>
-          <span class="s">env</span><span class="pi">:</span>
-            <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">APP_HOME_CONF_DIR</span>
-              <span class="s">value</span><span class="pi">:</span> <span class="s">/home/demo-app/conf</span>
-          <span class="s">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">java"</span><span class="pi">,</span><span class="s2">"</span><span class="s">-jar"</span><span class="pi">,</span><span class="s2">"</span><span class="s">/home/demo-app/demoapp.jar"</span><span class="pi">]</span>
-          <span class="s">volumeMounts</span><span class="pi">:</span>
-                <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">config-volume</span>
-                  <span class="s">mountPath</span><span class="pi">:</span> <span class="s">/home/demo-app/conf</span>
-                <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">app-log</span>
-                  <span class="s">mountPath</span><span class="pi">:</span> <span class="s">/var/log/development</span>
-      <span class="s">volumes</span><span class="pi">:</span>
-        <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">config-volume</span>
-          <span class="s">configMap</span><span class="pi">:</span>
-            <span class="s">name</span><span class="pi">:</span> <span class="s">demo-app-server</span>
-        <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">app-log</span>
-          <span class="s">hostPath</span><span class="pi">:</span>
-            <span class="s">path</span><span class="pi">:</span> <span class="s">/kube/demo-apiserver/logs</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ReplicationController</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">demo-app-server</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">namespace</span><span class="pi">]</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">replicas</span><span class="pi">:</span> <span class="s">1</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">demo-app-server</span>
+  <span class="na">template</span><span class="pi">:</span>
+    <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">labels</span><span class="pi">:</span>
+        <span class="na">app</span><span class="pi">:</span> <span class="s">demo-app-server</span>
+    <span class="na">spec</span><span class="pi">:</span>
+      <span class="na">containers</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">demo-app-server-container</span>
+          <span class="na">image</span><span class="pi">:</span> <span class="s">image.firsh.io/demo-base/appserver:latest</span>
+          <span class="na">imagePullPolicy</span><span class="pi">:</span> <span class="s">Always</span>
+          <span class="na">ports</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="s">8080</span>
+          <span class="na">env</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">APP_HOME_CONF_DIR</span>
+              <span class="na">value</span><span class="pi">:</span> <span class="s">/home/demo-app/conf</span>
+          <span class="na">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">java"</span><span class="pi">,</span><span class="s2">"</span><span class="s">-jar"</span><span class="pi">,</span><span class="s2">"</span><span class="s">/home/demo-app/demoapp.jar"</span><span class="pi">]</span>
+          <span class="na">volumeMounts</span><span class="pi">:</span>
+                <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">config-volume</span>
+                  <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/home/demo-app/conf</span>
+                <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">app-log</span>
+                  <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/var/log/development</span>
+      <span class="na">volumes</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">config-volume</span>
+          <span class="na">configMap</span><span class="pi">:</span>
+            <span class="na">name</span><span class="pi">:</span> <span class="s">demo-app-server</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">app-log</span>
+          <span class="na">hostPath</span><span class="pi">:</span>
+            <span class="na">path</span><span class="pi">:</span> <span class="s">/kube/demo-apiserver/logs</span>
 
 <span class="nn">---</span>
-<span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
-<span class="s">kind</span><span class="pi">:</span> <span class="s">Service</span>
-<span class="s">metadata</span><span class="pi">:</span>
- <span class="s">name</span><span class="pi">:</span> <span class="s">demo-app-service</span>
- <span class="s">namespace</span><span class="pi">:</span> <span class="s">demo</span>
-<span class="s">spec</span><span class="pi">:</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Service</span>
+<span class="na">metadata</span><span class="pi">:</span>
+ <span class="na">name</span><span class="pi">:</span> <span class="s">demo-app-service</span>
+ <span class="na">namespace</span><span class="pi">:</span> <span class="s">demo</span>
+<span class="na">spec</span><span class="pi">:</span>
    <span class="c1">#type: ClusterIP</span>
-   <span class="s">ports</span><span class="pi">:</span>
-   <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">demo-app-out-in</span>
-     <span class="s">port</span><span class="pi">:</span> <span class="s">1000</span>
-     <span class="s">targetPort</span><span class="pi">:</span> <span class="s">8080</span>
-   <span class="s">externalIPs</span><span class="pi">:</span>
+   <span class="na">ports</span><span class="pi">:</span>
+   <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">demo-app-out-in</span>
+     <span class="na">port</span><span class="pi">:</span> <span class="s">1000</span>
+     <span class="na">targetPort</span><span class="pi">:</span> <span class="s">8080</span>
+   <span class="na">externalIPs</span><span class="pi">:</span>
    <span class="pi">-</span> <span class="pi">[</span><span class="nv">192.168.1.100</span><span class="pi">]</span>
-   <span class="s">selector</span><span class="pi">:</span>
-     <span class="s">app</span><span class="pi">:</span> <span class="s">demo-app-server</span>
-</code></pre>
-</div>
+   <span class="na">selector</span><span class="pi">:</span>
+     <span class="na">app</span><span class="pi">:</span> <span class="s">demo-app-server</span>
+</code></pre></div></div>
 
 <blockquote>
   <p>感谢企业服务部牛总提供的解决方案</p>

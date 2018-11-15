@@ -128,25 +128,21 @@
 不好意思，为了不让该帖子沉下去，造福需要改机的机友们，所以加上了回复才能查看的内容。</p>
 
 <h2 id="1统计当前文件夹下文件的个数">1.统计当前文件夹下文件的个数</h2>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>       
-    ls -l |grep <span class="s2">"^-"</span>|wc -l
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>       
+    <span class="nb">ls</span> <span class="nt">-l</span> |grep <span class="s2">"^-"</span>|wc <span class="nt">-l</span>
+</code></pre></div></div>
 <h2 id="2-统计当前文件夹下目录的个数">2、 统计当前文件夹下目录的个数</h2>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>         ls -l |grep <span class="s2">"^d"</span>|wc -l
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>         <span class="nb">ls</span> <span class="nt">-l</span> |grep <span class="s2">"^d"</span>|wc <span class="nt">-l</span>
+</code></pre></div></div>
 
 <h2 id="3-统计当前文件夹下文件的个数包括子文件夹里的">3、 统计当前文件夹下文件的个数，包括子文件夹里的</h2>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>    ls -lR|grep <span class="s2">"^-"</span>|wc -l
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nb">ls</span> <span class="nt">-lR</span>|grep <span class="s2">"^-"</span>|wc <span class="nt">-l</span>
+</code></pre></div></div>
 <h2 id="4统计文件夹下目录的个数包括子文件夹里的">4、统计文件夹下目录的个数，包括子文件夹里的</h2>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>   ls -lR|grep <span class="s2">"^d"</span>|wc -l
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nb">ls</span> <span class="nt">-lR</span>|grep <span class="s2">"^d"</span>|wc <span class="nt">-l</span>
+</code></pre></div></div>
 <h2 id="5-说明">5. 说明</h2>
-<div class="language-text highlighter-rouge"><pre class="highlight"><code>  代码如下:
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  代码如下:
   
   ls -l 
   
@@ -162,8 +158,7 @@
   wc -l 
   
   统计输出信息的行数，因为已经过滤得只剩一般文件了，所以统计结果就是一般文件信息的行数，又由于一行信息对应一个文件，所以也就是文件的个数。
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <blockquote>
   <p>Over</p>

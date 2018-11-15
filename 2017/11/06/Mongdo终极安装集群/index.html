@@ -128,7 +128,7 @@ author：张建新</p>
 
 <h1 id="查看硬盘分配情况">查看硬盘分配情况</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>    <span class="o">[</span>root@dscn022 mongodb]# lsblk
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="o">[</span>root@dscn022 mongodb]# lsblk
     NAME             MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
     sda                8:0    0 278.5G  0 disk
     ├─sda1             8:1    0   500M  0 part /boot
@@ -163,40 +163,36 @@ author：张建新</p>
     sdm                8:192  0   3.7T  0 disk
     └─sdm1             8:193  0   3.7T  0 part
     loop0              7:0    0   3.8G  0 loop /mnt
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="进行配置">进行配置</h1>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>| ------- | ------ | ------- |
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| ------- | ------ | ------- |
 | :------| ------: | :------: |
 | curr | 1 | 2 | 3 |  4  | 5 |
 | prev | 5 | 1 | 2 |  3  | 4 |
 | next | 2 | 3 | 4 |  5  | 1 |
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="分配mongodb-目录">分配mongoDB 目录</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>    mkdir -p  /home/hadmin/data/mongodb/prev
-    mkdir -p  /home/hadmin/data/mongodb/curr
-    mkdir -p  /home/hadmin/data/mongodb/next
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    mkdir <span class="nt">-p</span>  /home/hadmin/data/mongodb/prev
+    mkdir <span class="nt">-p</span>  /home/hadmin/data/mongodb/curr
+    mkdir <span class="nt">-p</span>  /home/hadmin/data/mongodb/next
+</code></pre></div></div>
 
 <h1 id="进行mount">进行mount</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code> mount    /dev/sdf1      /home/hadmin/data/mongodb/prev
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> mount    /dev/sdf1      /home/hadmin/data/mongodb/prev
  mount    /dev/sdg1     /home/hadmin/data/mongodb/curr
  mount   /dev/sdh1     /home/hadmin/data/mongodb/next
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="查看硬盘大小">查看硬盘大小</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
-    <span class="o">[</span>root@dscn022 mongodb]# df -h
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+    <span class="o">[</span>root@dscn022 mongodb]# df <span class="nt">-h</span>
     Filesystem                Size  Used Avail Use% Mounted on
     /dev/mapper/rhel-root      50G  5.1G   45G  11% /
     devtmpfs                  126G     0  126G   0% /dev
@@ -215,8 +211,7 @@ author：张建新</p>
     /dev/sdg1                 3.6T  390M  3.4T   1% /home/hadmin/data/mongodb/curr
     /dev/sdh1                 3.6T  390M  3.4T   1% /home/hadmin/data/mongodb/next
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="脚本-傻瓜模式">脚本 （傻瓜模式）</h1>
 <ul>
@@ -226,7 +221,7 @@ author：张建新</p>
   <li>common.sh</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>    <span class="c">#!/bin/bash</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c">#!/bin/bash</span>
 
     <span class="c"># $1就是shard几</span>
     <span class="c"># $2目录，重新规划磁盘后可以修改此处</span>
@@ -235,75 +230,69 @@ author：张建新</p>
     <span class="nv">INDEX</span><span class="o">=</span><span class="nv">$1</span>
 
     <span class="nv">PORT</span><span class="o">=</span><span class="k">$((</span> <span class="m">27018</span> <span class="o">+</span> <span class="nv">$INDEX</span> <span class="k">))</span>
-    <span class="nv">HOSTNAME</span><span class="o">=</span><span class="sb">`</span>cat /etc/hostname<span class="sb">`</span>
+    <span class="nv">HOSTNAME</span><span class="o">=</span><span class="sb">`</span><span class="nb">cat</span> /etc/hostname<span class="sb">`</span>
     <span class="nv">SHARD</span><span class="o">=</span><span class="s2">"TOD-Shard-</span><span class="nv">$INDEX</span><span class="s2">"</span>
     <span class="nv">DB_PATH</span><span class="o">=</span><span class="s2">" /home/hadmin/data/mongodb/"</span><span class="nv">$2</span>
     <span class="nv">PID_FILE</span><span class="o">=</span><span class="s2">"/home/hadmin/data/pids/mongodb/</span><span class="nv">$SHARD</span><span class="s2">.pid"</span>
     <span class="nv">LOG_FILE</span><span class="o">=</span><span class="s2">"/home/hadmin/data/logs/mongodb/</span><span class="nv">$SHARD</span><span class="s2">.log"</span>
 
-    numactl --interleave<span class="o">=</span>all /home/hadmin/mongodb/bin/mongod --logpath <span class="nv">$LOG_FILE</span> --logappend --logRotate rename --timeStampFormat ctime --fork --pidfilepath <span class="nv">$PID_FILE</span> --port <span class="nv">$PORT</span> --bind_ip <span class="nv">$HOSTNAME</span> --dbpath <span class="nv">$DB_PATH</span> --journalCommitInterval 100 --storageEngine wiredTiger --wiredTigerCacheSizeGB 4 --replSet <span class="nv">$SHARD</span> --enableMajorityReadConcern --shardsvr --oplogSize 10240 <span class="nv">$3</span>
+    numactl <span class="nt">--interleave</span><span class="o">=</span>all /home/hadmin/mongodb/bin/mongod <span class="nt">--logpath</span> <span class="nv">$LOG_FILE</span> <span class="nt">--logappend</span> <span class="nt">--logRotate</span> rename <span class="nt">--timeStampFormat</span> ctime <span class="nt">--fork</span> <span class="nt">--pidfilepath</span> <span class="nv">$PID_FILE</span> <span class="nt">--port</span> <span class="nv">$PORT</span> <span class="nt">--bind_ip</span> <span class="nv">$HOSTNAME</span> <span class="nt">--dbpath</span> <span class="nv">$DB_PATH</span> <span class="nt">--journalCommitInterval</span> 100 <span class="nt">--storageEngine</span> wiredTiger <span class="nt">--wiredTigerCacheSizeGB</span> 4 <span class="nt">--replSet</span> <span class="nv">$SHARD</span> <span class="nt">--enableMajorityReadConcern</span> <span class="nt">--shardsvr</span> <span class="nt">--oplogSize</span> 10240 <span class="nv">$3</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="cfgsvrstart">cfgsvr.start</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
     <span class="c">#!/bin/bash</span>
 
-    numactl --interleave<span class="o">=</span>all /home/hadmin/mongodb/bin/mongod -f /home/hadmin/mongodb/conf/configserver.conf
+    numactl <span class="nt">--interleave</span><span class="o">=</span>all /home/hadmin/mongodb/bin/mongod <span class="nt">-f</span> /home/hadmin/mongodb/conf/configserver.conf
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="route">route</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
     <span class="c">#!/bin/bash</span>
 
-    /home/hadmin/mongodb/bin/mongos -f /home/hadmin/mongodb/conf/router.conf
+    /home/hadmin/mongodb/bin/mongos <span class="nt">-f</span> /home/hadmin/mongodb/conf/router.conf
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="shard_currstart">shard_curr.start</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
     <span class="c">#!/bin/bash</span>
 
     /home/hadmin/mongodb/sbin/common.sh 1 curr
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="shard_nextstart">shard_next.start</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
     <span class="c">#!/bin/bash</span>
 
     /home/hadmin/mongodb/sbin/common.sh 2 next
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="shard_prevstart">shard_prev.start</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
     <span class="c">#!/bin/bash</span>
 
     /home/hadmin/mongodb/sbin/common.sh 5 prev
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="initconfigsh">initConfig.sh</h1>
 <ul>
   <li>初始化副本</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
     <span class="c">#!/bin/bash</span>
-    /home/hadmin/mongodb/bin/mongo dscn022:27018 <span class="sh">&lt;&lt;EOF
+    /home/hadmin/mongodb/bin/mongo dscn022:27018 <span class="o">&lt;&lt;</span><span class="no">EOF</span><span class="sh">
     config={
         _id:"ConfigServer",
         configsvr:true,
@@ -315,10 +304,9 @@ author：张建新</p>
     };
     rs.initiate(config);
     exit;
-    EOF
+</span><span class="no">    EOF
 
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <h1 id="initshardsh">initShard.sh</h1>
 
@@ -326,9 +314,9 @@ author：张建新</p>
   <li>初始化Shard</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
     <span class="c">#!/bin/bash</span>
-        /home/hadmin/mongodb/bin/mongo dscn022:27017 <span class="sh">&lt;&lt;EOF
+        /home/hadmin/mongodb/bin/mongo dscn022:27017 <span class="o">&lt;&lt;</span><span class="no">EOF</span><span class="sh">
     sh.addShard("TOD-Shard-1/dscn022:27019,dscn023:27019,dscn026:27019");
     sh.addShard("TOD-Shard-2/dscn023:27020,dscn024:27020,dscn022:27020");
     sh.addShard("TOD-Shard-3/dscn024:27021,dscn025:27021,dscn023:27021");
@@ -336,19 +324,18 @@ author：张建新</p>
     sh.addShard("TOD-Shard-5/dscn025:27023,dscn026:27023,dscn022:27023");
     sh.setBalancerState(false);
     exit;
-    EOF
+</span><span class="no">    EOF
 
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <h1 id="initrssh">initRS.sh</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
     <span class="c">#!/bin/bash</span>
     <span class="c">############</span>
     <span class="c"># init rs1 #</span>
     <span class="c">############</span>
-    /home/hadmin/mongodb/bin/mongo dscn022:27019 <span class="sh">&lt;&lt;EOF
+    /home/hadmin/mongodb/bin/mongo dscn022:27019 <span class="o">&lt;&lt;</span><span class="no">EOF</span><span class="sh">
     config={_id:"TOD-Shard-1",
     	members:[
     		{_id:0,host:"dscn022:27019",priority:2},
@@ -357,12 +344,12 @@ author：张建新</p>
     	settings:{getLastErrorDefaults:{w:"majority",wtimeout:5000}}};
     rs.initiate(config);
     exit;
-    EOF
+</span><span class="no">    EOF
 
 </span>    <span class="c">############</span>
     <span class="c"># init rs2 #</span>
     <span class="c">############</span>
-    /home/hadmin/mongodb/bin/mongo dscn022:27020 <span class="sh">&lt;&lt;EOF
+    /home/hadmin/mongodb/bin/mongo dscn022:27020 <span class="o">&lt;&lt;</span><span class="no">EOF</span><span class="sh">
     config={_id:"TOD-Shard-2",
     	members:[
     		{_id:0,host:"dscn023:27020",priority:2},
@@ -371,12 +358,12 @@ author：张建新</p>
     	settings:{getLastErrorDefaults:{w:"majority",wtimeout:5000}}};
     rs.initiate(config);
     exit;
-    EOF
+</span><span class="no">    EOF
 
 </span>    <span class="c">############</span>
     <span class="c"># init rs3 #</span>
     <span class="c">############</span>
-    /home/hadmin/mongodb/bin/mongo dscn024:27021 <span class="sh">&lt;&lt;EOF
+    /home/hadmin/mongodb/bin/mongo dscn024:27021 <span class="o">&lt;&lt;</span><span class="no">EOF</span><span class="sh">
     config={_id:"TOD-Shard-3",
     	members:[
     		{_id:0,host:"dscn024:27021",priority:2},
@@ -385,12 +372,12 @@ author：张建新</p>
     	settings:{getLastErrorDefaults:{w:"majority",wtimeout:5000}}};
     rs.initiate(config);
     exit;
-    EOF
+</span><span class="no">    EOF
 
 </span>    <span class="c">############</span>
     <span class="c"># init rs4 #</span>
     <span class="c">############</span>
-    /home/hadmin/mongodb/bin/mongo dscn025:27022 <span class="sh">&lt;&lt;EOF
+    /home/hadmin/mongodb/bin/mongo dscn025:27022 <span class="o">&lt;&lt;</span><span class="no">EOF</span><span class="sh">
     config={_id:"TOD-Shard-4",
     	members:[
     		{_id:0,host:"dscn025:27022",priority:2},
@@ -399,12 +386,12 @@ author：张建新</p>
     	settings:{getLastErrorDefaults:{w:"majority",wtimeout:5000}}};
     rs.initiate(config);
     exit;
-    EOF
+</span><span class="no">    EOF
 
 </span>    <span class="c">############</span>
     <span class="c"># init rs5 #</span>
     <span class="c">############</span>
-    /home/hadmin/mongodb/bin/mongo dscn026:27023 <span class="sh">&lt;&lt;EOF
+    /home/hadmin/mongodb/bin/mongo dscn026:27023 <span class="o">&lt;&lt;</span><span class="no">EOF</span><span class="sh">
     config={_id:"TOD-Shard-5",
     	members:[
     		{_id:0,host:"dscn026:27023",priority:2},
@@ -413,10 +400,9 @@ author：张建新</p>
     	settings:{getLastErrorDefaults:{w:"majority",wtimeout:5000}}};
     rs.initiate(config);
     exit;
-    EOF
+</span><span class="no">    EOF
 
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <h1 id="总结总体流程">总结（总体流程）</h1>
 

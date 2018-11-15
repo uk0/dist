@@ -143,57 +143,51 @@
 
 <p>#####用 openssl 工具生成 CA 证书，请注意将其中 subject 等参数改为用户所需的数据，CN 的值通常是域名、主机名或 IP 地址。</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>$ cd /var/run/kubernetes
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd /var/run/kubernetes
 $ openssl genrsa -out dd_ca.key 2048
 $ openssl req -x509 -new -nodes -key dd_ca.key -subj "/CN=YOUDOMAIN.COM" -days 5000 -out dd_ca.crt
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>#####生成 API Server 服务端证书和私钥</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>$ openssl genrsa -out dd_server.key 2048
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ openssl genrsa -out dd_server.key 2048
 $ HN=`hostname`
 $ openssl req -new -key dd_server.key -subj "/CN=$HN" -out dd_server.csr
 $ openssl x509 -req -in dd_server.csr -CA dd_ca.crt -CAkey dd_ca.key -CAcreateserial-out dd_server.crt -days 5000
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>#####生成 Controller Manager 与 Scheduler 进程共用的证书和私钥</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>$ openssl genrsa -out dd_cs_client.key 2048
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ openssl genrsa -out dd_cs_client.key 2048
 $ openssl req -new -key dd_cs_client.key -subj "/CN=$HN" -out dd_cs_client.csr
 $ openssl x509 -req -in dd_cs_client.csr －CA dd_ca.crt -CAkey dd_ca.key -CAcreateserial -out dd_cs_client.crt -days 5000
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>#####生成 Kubelet 所用的客户端证书和私钥
 ######注意，这里假设 Kubelet 所在机器的 IP 地址为 192.168.1.129。</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>$ openssl genrsa -out dd_kubelet_client.key 2048
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ openssl genrsa -out dd_kubelet_client.key 2048
 $ openssl req -new -key dd_kubelet_client.key -subj "/CN=192.168.1.129" -out dd_kubelet_client.csr
 $ openssl x509 -req -in dd_kubelet_client.csr -CA dd_ca.crt -CAkey dd_ca.key -CAcreateserial -out dd_kubelet_client.crt -days 5000
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>#####修改 API Server 的启动参数
 #####增加 CA 根证书、Server 自身证书等参数并设置安全端口为 443.</p>
 
 <p>修改/etc/kubernetes/apiserver 配置文件的 KUBE_API_ARGS 参数：</p>
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>KUBE_API_ARGS="--log-dir=/var/log/kubernetes --secure-port=443 --client_ca_file=/var/run/kubernetes/dd_ca.crt --tls-private-key-file=/var/run/kubernetes/dd_server.key --tls-cert-file=/var/run/kubernetes/dd_server.crt"
-</code></pre>
-</div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>KUBE_API_ARGS="--log-dir=/var/log/kubernetes --secure-port=443 --client_ca_file=/var/run/kubernetes/dd_ca.crt --tls-private-key-file=/var/run/kubernetes/dd_server.key --tls-cert-file=/var/run/kubernetes/dd_server.crt"
+</code></pre></div></div>
 <p>####重启 kube-apiserver 服务：
 ####systemctl restart kube-apiserver
 ####验证 API Server 的 HTTPS 服务。</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>$ curl https://kubernetes-master:443/api/v1/nodes --cert /var/run/kubernetes/dd_cs_client.crt --key /var/run/kubernetes/dd_cs_client.key --cacert /var/run/kubernetes/dd_ca.crt
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ curl https://kubernetes-master:443/api/v1/nodes --cert /var/run/kubernetes/dd_cs_client.crt --key /var/run/kubernetes/dd_cs_client.key --cacert /var/run/kubernetes/dd_ca.crt
 修改 Controller Manager 的启动参数
 修改/etc/kubernetes/controller-manager 配置文件
 KUBE_CONTROLLER_MANAGER_ARGS="--log-dir=/var/log/kubernetes --service_account_private_key_file=/var/run/kubernetes/server.key --root-ca-file=/var/run/kubernetes/ca.crt --master=https://kubernetes-master:443 --kubeconfig=/etc/kubernetes/cmkubeconfig"
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>创建/etc/kubernetes/cmkubeconfig 文件，配置证书等相关参数，具体内容如下：</li>
 </ul>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>apiVersion: v1
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: v1
 kind: Config
 users
 - name: controllermanager
@@ -210,8 +204,7 @@ contexts:
     user: controllermanager
   name: my-context
 current-context: my-context
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>重启 kube-controller-manager 服务：</p>
 
 <h1 id="systemctl-restart-kube-controller-manager">systemctl restart kube-controller-manager</h1>
@@ -220,16 +213,15 @@ current-context: my-context
   <li>复制 Kubelet 的证书、私钥 与 CA 根证书到所有 Node 上。</li>
 </ul>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>$ scp /var/run/kubernetes/dd_kubelet* root@kubernetes-minion1:/home
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ scp /var/run/kubernetes/dd_kubelet* root@kubernetes-minion1:/home
 $ scp /var/run/kubernetes/dd_ca.* root@kubernetes-minion:/home
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>在每个 Node 上创建/var/lib/kubelet/kubeconfig 文件，内容如下：</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>apiVersion: v1
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: v1
 kind: Config
 users:
 - name: kubelet
@@ -246,17 +238,15 @@ contexts:
     user: kubelet
   name: my-context
 current-context: my-context
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>修改 Kubelet 的启动参数，以修改/etc/kubernetes/kubelet 配置文件为例：</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>KUBELET_API_SERVER="--api_servers=https://kubernetes-master:443"
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>KUBELET_API_SERVER="--api_servers=https://kubernetes-master:443"
 KUBELET_ARGS="--pod_infro_container_image=192.168.1.128:1180/google_containers/pause:latest --cluster_dns=10.2.0.100 --cluster_domain=cluster.local --kubeconfig=/var/lib/kubelet/kubeconfig"
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>#重启 kubelet 服务：</p>
 
 <p>###systemctl restart kubelet</p>
@@ -266,7 +256,7 @@ KUBELET_ARGS="--pod_infro_container_image=192.168.1.128:1180/google_containers/p
   <li>首先，创建/var/lib/kubeproxy/proxykubeconfig 文件，内容如下：</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>apiVersion: v1
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: v1
 kind: Config
 users:
 - name: kubeproxy
@@ -283,16 +273,14 @@ contexts:
     user: kubeproxy
   name: my-context
 current-context: my-context
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>然后，修改 kube-proxy 的启动参数，引用上述文件并指明 API Server 在安全模式下的访问地址，以修改配置文件/etc/kubenetes/proxy 为例：</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>KUBE_PROXY_ARGS="--kubeconfig=/var/lib/kubeproxy/proxykubeconfig --master=https://kubenetes-master:443"
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>KUBE_PROXY_ARGS="--kubeconfig=/var/lib/kubeproxy/proxykubeconfig --master=https://kubenetes-master:443"
+</code></pre></div></div>
 
 <ul>
   <li>重启 kube-proxy 服务：</li>
@@ -313,7 +301,7 @@ current-context: my-context
   <li>建立包括用户名、密码和 UID 的文件 token_auth_file：</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ cat /root/token_auth_file
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat /root/token_auth_file
 dingmingk,dingmingk,1
 admin,admin,2
 system,system,3
@@ -331,8 +319,7 @@ $ curl https://kubenetes-master:443/version --header "Authorization: Bearer ding
   "gitCommit": "xxxHASHCODE",
   "gitTreeState": "clean"
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>
@@ -343,12 +330,11 @@ $ curl https://kubenetes-master:443/version --header "Authorization: Bearer ding
   </li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ cat /root/basic_auth_file
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat /root/basic_auth_file
 dingmingk,dingmingk,1
 admin,admin,2
 system,system,3
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>修改 API Server 的配置，采用上述文件进行安全认证</li>
@@ -365,7 +351,7 @@ system,system,3
   <li>用 curl 验证连接 API Server</li>
 </ul>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>$ curl https://kubernetes-master:443/version --basic -u dingmingk:dingmingk -k
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ curl https://kubernetes-master:443/version --basic -u dingmingk:dingmingk -k
 {
   "major": "1",
   "minor": "0",
@@ -375,8 +361,7 @@ system,system,3
 }
 使用 Kubelet 时则需要指定用户名和密码来访问 API Server
 $ kubectl get nodes --server="https://kubernetes-master:443" --api-version="v1" --username="dingmingk" --password="dingmingk" --insecure-skip-tls-verify=true
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>###kubectl config set-cluster
 ####在kubeconfig配置文件中设置一个集群项。</p>
@@ -386,23 +371,20 @@ $ kubectl get nodes --server="https://kubernetes-master:443" --api-version="v1" 
   <li>在kubeconfig配置文件中设置一个集群项。 如果指定了一个已存在的名字，将合并新字段并覆盖旧字段。</li>
 </ul>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>kubectl config set-cluster NAME [--server=server] [--certificate-authority=path/to/certficate/authority] [--insecure-skip-tls-verify=true]
-</code></pre>
-</div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl config set-cluster NAME [--server=server] [--certificate-authority=path/to/certficate/authority] [--insecure-skip-tls-verify=true]
+</code></pre></div></div>
 <ul>
   <li>示例
     <h1 id="仅设置e2e集群项中的server字段不影响其他字段">仅设置e2e集群项中的server字段，不影响其他字段</h1>
   </li>
 </ul>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>kubectl config set-cluster e2e --server=https://1.2.3.4
-</code></pre>
-</div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl config set-cluster e2e --server=https://1.2.3.4
+</code></pre></div></div>
 <h1 id="向e2e集群项中添加认证鉴权数据">向e2e集群项中添加认证鉴权数据</h1>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>kubectl config set-cluster e2e --certificate-authority=~/.kube/e2e/kubernetes.ca.crt
-</code></pre>
-</div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl config set-cluster e2e --certificate-authority=~/.kube/e2e/kubernetes.ca.crt
+</code></pre></div></div>
 <p>####取消dev集群项中的证书检查</p>
 
 <p><code class="highlighter-rouge">html

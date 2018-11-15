@@ -129,27 +129,25 @@
   <li>下载工程：</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>https://github.com/ant-design/ant-design-pro
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://github.com/ant-design/ant-design-pro
+</code></pre></div></div>
 <ul>
   <li>安装依赖包</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code> npm i -dd  <span class="c"># 等待的时间很长。【可以代理出去速度更快】</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> npm i <span class="nt">-dd</span>  <span class="c"># 等待的时间很长。【可以代理出去速度更快】</span>
 
  npm start <span class="c"># 启动</span>
 
  npm run build:aot:prod <span class="c"># 编译</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>修改配置文件 <code class="highlighter-rouge">.eslintrc.js</code> WebStorm 最新版2018 可能会报错，所以需要修改<code class="highlighter-rouge">.eslintrc.js</code></li>
 </ul>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">parser</span><span class="p">:</span> <span class="s1">'babel-eslint'</span><span class="p">,</span>
   <span class="na">extends</span><span class="p">:</span> <span class="p">[</span><span class="s1">'airbnb'</span><span class="p">,</span> <span class="s1">'prettier'</span><span class="p">],</span>
   <span class="na">env</span><span class="p">:</span> <span class="p">{</span>
@@ -409,8 +407,7 @@
     <span class="na">polyfills</span><span class="p">:</span> <span class="p">[</span><span class="s1">'fetch'</span><span class="p">,</span> <span class="s1">'promises'</span><span class="p">],</span>
   <span class="p">},</span>
 <span class="p">};</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>
@@ -421,17 +418,17 @@
   </li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
-<span class="kr">import</span> <span class="nx">axios</span> <span class="nx">from</span> <span class="s1">'axios'</span><span class="p">;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">notification</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'antd'</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="s1">'axios'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">notification</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'antd'</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">checkStatus</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="p">{</span> <span class="nl">data</span><span class="p">:</span> <span class="nx">result</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">response</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="na">data</span><span class="p">:</span> <span class="nx">result</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">response</span><span class="p">;</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">response</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">result</span><span class="p">.</span><span class="nx">success</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>  <span class="c1">// get response successfully</span>
       <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
     <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
-      <span class="kr">const</span> <span class="nx">error</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+      <span class="kd">const</span> <span class="nx">error</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
       <span class="nx">result</span><span class="p">.</span><span class="nx">success</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
       <span class="nx">error</span><span class="p">.</span><span class="nx">result</span> <span class="o">=</span> <span class="nx">result</span><span class="p">;</span>
       <span class="k">throw</span> <span class="nx">error</span><span class="p">;</span>
@@ -445,11 +442,11 @@
  * @param  {object} [options] The options we want to pass to "axios"
  * @return {object}           An object containing either "data" or "err"
  */</span>
-<span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">request</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="nx">defaultOptions</span> <span class="o">=</span> <span class="p">{</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">request</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">defaultOptions</span> <span class="o">=</span> <span class="p">{</span>
     <span class="na">credentials</span><span class="p">:</span> <span class="s1">'include'</span><span class="p">,</span>
   <span class="p">};</span>
-  <span class="kr">const</span> <span class="nx">newOptions</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">defaultOptions</span><span class="p">,</span> <span class="p">...</span><span class="nx">options</span> <span class="p">};</span>
+  <span class="kd">const</span> <span class="nx">newOptions</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">defaultOptions</span><span class="p">,</span> <span class="p">...</span><span class="nx">options</span> <span class="p">};</span>
 
   <span class="k">if</span> <span class="p">(</span><span class="nx">newOptions</span><span class="p">.</span><span class="nx">method</span> <span class="o">===</span> <span class="s1">'POST'</span> <span class="o">||</span> <span class="nx">newOptions</span><span class="p">.</span><span class="nx">method</span> <span class="o">===</span> <span class="s1">'PUT'</span> <span class="o">||</span> <span class="nx">newOptions</span><span class="p">.</span><span class="nx">method</span> <span class="o">===</span> <span class="s1">'DELETE'</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">newOptions</span><span class="p">.</span><span class="nx">body</span> <span class="k">instanceof</span> <span class="nx">FormData</span><span class="p">))</span> <span class="p">{</span>
@@ -485,40 +482,39 @@
       <span class="p">}</span>
       <span class="c1">// http请求超时处理</span>
       <span class="k">if</span> <span class="p">(</span><span class="s1">'stack'</span> <span class="k">in</span> <span class="nx">error</span> <span class="o">&amp;&amp;</span> <span class="s1">'message'</span> <span class="k">in</span> <span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kr">const</span> <span class="p">{</span> <span class="nx">message</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">error</span><span class="p">;</span>
+        <span class="kd">const</span> <span class="p">{</span> <span class="nx">message</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">error</span><span class="p">;</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="nx">message</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">'timeout'</span><span class="p">))</span> <span class="p">{</span>
           <span class="nx">notification</span><span class="p">.</span><span class="nx">error</span><span class="p">({</span>
-            <span class="na">message</span><span class="p">:</span> <span class="err">`请求错误</span><span class="p">:</span> <span class="nx">$</span><span class="p">{</span><span class="nx">url</span><span class="p">}</span><span class="err">`</span><span class="p">,</span>
+            <span class="na">message</span><span class="p">:</span> <span class="s2">`请求错误: </span><span class="p">${</span><span class="nx">url</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
             <span class="na">description</span><span class="p">:</span> <span class="s1">'很抱歉您的请求已经超时了，请稍后再试！'</span><span class="p">,</span>
           <span class="p">});</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
           <span class="nx">notification</span><span class="p">.</span><span class="nx">error</span><span class="p">({</span>
-            <span class="na">message</span><span class="p">:</span> <span class="err">`请求错误</span><span class="p">:</span> <span class="nx">$</span><span class="p">{</span><span class="nx">url</span><span class="p">}</span><span class="err">`</span><span class="p">,</span>
+            <span class="na">message</span><span class="p">:</span> <span class="s2">`请求错误: </span><span class="p">${</span><span class="nx">url</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
             <span class="na">description</span><span class="p">:</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">,</span>
           <span class="p">});</span>
         <span class="p">}</span>
       <span class="p">}</span>
-      <span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">{</span> <span class="na">success</span><span class="p">:</span> <span class="kc">false</span> <span class="p">};</span>
+      <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">{</span> <span class="na">success</span><span class="p">:</span> <span class="kc">false</span> <span class="p">};</span>
       <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
     <span class="p">});</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <ul>
   <li><code class="highlighter-rouge">.roadhogrc.mock.js</code> 修改如下内容。</li>
 </ul>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nx">mockjs</span> <span class="nx">from</span> <span class="s1">'mockjs'</span><span class="p">;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">getRule</span><span class="p">,</span> <span class="nx">postRule</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./mock/rule'</span><span class="p">;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">getActivities</span><span class="p">,</span> <span class="nx">getNotice</span><span class="p">,</span> <span class="nx">getFakeList</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./mock/api'</span><span class="p">;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">getFakeChartData</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./mock/chart'</span><span class="p">;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">getProfileBasicData</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./mock/profile'</span><span class="p">;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">getProfileAdvancedData</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./mock/profile'</span><span class="p">;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">getNotices</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./mock/notices'</span><span class="p">;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">format</span><span class="p">,</span> <span class="nx">delay</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'roadhog-api-doc'</span><span class="p">;</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">mockjs</span> <span class="k">from</span> <span class="s1">'mockjs'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">getRule</span><span class="p">,</span> <span class="nx">postRule</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'./mock/rule'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">getActivities</span><span class="p">,</span> <span class="nx">getNotice</span><span class="p">,</span> <span class="nx">getFakeList</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'./mock/api'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">getFakeChartData</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'./mock/chart'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">getProfileBasicData</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'./mock/profile'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">getProfileAdvancedData</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'./mock/profile'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">getNotices</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'./mock/notices'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">format</span><span class="p">,</span> <span class="nx">delay</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'roadhog-api-doc'</span><span class="p">;</span>
 
 <span class="c1">// 代码中会兼容本地 service mock 以及部署站点的静态数据</span>
-<span class="kr">const</span> <span class="nx">proxy</span> <span class="o">=</span> <span class="p">{</span>
+<span class="kd">const</span> <span class="nx">proxy</span> <span class="o">=</span> <span class="p">{</span>
   <span class="c1">// 支持值为 Object 和 Array</span>
   <span class="s1">'GET /proxy-get/(.*)'</span><span class="p">:</span> <span class="s1">'http://127.0.0.1:8004/pay-web-rest/'</span><span class="p">,</span>
   <span class="s1">'POST /proxy-post/(.*)'</span><span class="p">:</span> <span class="s1">'http://127.0.0.1:8004/pay-web-rest/'</span><span class="p">,</span>
@@ -526,10 +522,9 @@
 <span class="p">};</span>
 
 <span class="c1">// 是否禁用代理</span>
-<span class="kr">const</span> <span class="nx">noProxy</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NO_PROXY</span> <span class="o">===</span> <span class="s1">'true'</span><span class="p">;</span>
-<span class="kr">export</span> <span class="k">default</span> <span class="nx">noProxy</span> <span class="p">?</span> <span class="p">{}</span> <span class="p">:</span> <span class="nx">delay</span><span class="p">(</span><span class="nx">proxy</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
-</code></pre>
-</div>
+<span class="kd">const</span> <span class="nx">noProxy</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NO_PROXY</span> <span class="o">===</span> <span class="s1">'true'</span><span class="p">;</span>
+<span class="k">export</span> <span class="k">default</span> <span class="nx">noProxy</span> <span class="p">?</span> <span class="p">{}</span> <span class="p">:</span> <span class="nx">delay</span><span class="p">(</span><span class="nx">proxy</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+</code></pre></div></div>
 
 <h2 id="写一个模块">写一个模块。</h2>
 
@@ -538,58 +533,55 @@
   <li>
     <p>写一个模块需要配置如下几项。</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>ant-design-pro/src/common/menu.js <span class="c"># 页面菜单，可以配置权限。</span>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ant-design-pro/src/common/menu.js <span class="c"># 页面菜单，可以配置权限。</span>
 ant-design-pro/src/common/router.js # 该文件内配置全局的 route路径，可以分配访问[models]的权限
 ant-design-pro/src/routes # 每一个单独的 route 功能的实现（同等于Page）
 ant-design-pro/src/models <span class="c"># effects 用来注册请求，访问请求。</span>
 ant-design-pro/src/services <span class="c"># 封装 request请求 供给 ‘effects’</span>
     
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>现在需要在 <code class="highlighter-rouge">route</code> 内加一个路径，也就是我们自己的route
-    <div class="language-js highlighter-rouge"><pre class="highlight"><code>    <span class="c1">// park 服务所支持的 route------start</span>
-    <span class="s1">'/payList/agent-list'</span><span class="err">:</span> <span class="p">{</span>
- <span class="nl">component</span><span class="p">:</span> <span class="nx">dynamicWrapper</span><span class="p">(</span><span class="nx">app</span><span class="p">,</span> <span class="p">[</span><span class="s1">'parkingPayManager'</span><span class="p">],</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="kr">import</span><span class="p">(</span><span class="s1">'../routes/PayManager/PayAgent'</span><span class="p">)),</span>
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1">// park 服务所支持的 route------start</span>
+    <span class="s1">'/payList/agent-list'</span><span class="p">:</span> <span class="p">{</span>
+ <span class="nl">component</span><span class="p">:</span> <span class="nx">dynamicWrapper</span><span class="p">(</span><span class="nx">app</span><span class="p">,</span> <span class="p">[</span><span class="s1">'parkingPayManager'</span><span class="p">],</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">import</span><span class="p">(</span><span class="s1">'../routes/PayManager/PayAgent'</span><span class="p">)),</span>
     <span class="p">},</span>
     <span class="c1">// 1. 其中 parkingPayManager 是一个models我们要将这个models注册进来，给这个route使用。</span>
     <span class="c1">// 2. /payList/agent-list 是`menu`的菜单路径。</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>现在需要在 <code class="highlighter-rouge">menu</code> 内加一个菜单。</li>
 </ul>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
     <span class="nl">name</span><span class="p">:</span> <span class="s1">'支付商户管理'</span><span class="p">,</span>
-    <span class="nx">icon</span><span class="err">:</span> <span class="s1">'table'</span><span class="p">,</span>
-    <span class="nx">path</span><span class="err">:</span> <span class="s1">'payList'</span><span class="p">,</span>
-    <span class="nx">children</span><span class="err">:</span> <span class="p">[</span>
+    <span class="nx">icon</span><span class="p">:</span> <span class="s1">'table'</span><span class="p">,</span>
+    <span class="nx">path</span><span class="p">:</span> <span class="s1">'payList'</span><span class="p">,</span>
+    <span class="nx">children</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
         <span class="na">name</span><span class="p">:</span> <span class="s1">'商户管理'</span><span class="p">,</span>
         <span class="na">path</span><span class="p">:</span> <span class="s1">'agent-list'</span><span class="p">,</span>
       <span class="p">}</span>
     <span class="p">],</span>
   <span class="p">},</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>添加一个model</li>
 </ul>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="p">{</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span>
   <span class="nx">queryParkManagerAgents</span><span class="p">,</span>
-<span class="p">}</span> <span class="nx">from</span> <span class="s1">'../services/parkingServices'</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">from</span> <span class="s1">'../services/parkingServices'</span><span class="p">;</span>
 
-<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
   <span class="na">namespace</span><span class="p">:</span> <span class="s1">'parkingPayManager'</span><span class="p">,</span> <span class="c1">//我们所有的 dispatch 都是通过这个namespace定位过来的。 所以当请求不通，要注意。</span>
   <span class="na">state</span><span class="p">:</span> <span class="p">{</span>
     <span class="na">QueryAgentData</span><span class="p">:</span> <span class="p">[],</span>
   <span class="p">},</span>
   <span class="na">effects</span><span class="p">:</span> <span class="p">{</span>
     <span class="o">*</span><span class="nx">queryAgentList</span><span class="p">({</span><span class="nx">callback</span><span class="p">},</span> <span class="p">{</span> <span class="nx">call</span><span class="p">,</span> <span class="nx">put</span> <span class="p">})</span> <span class="p">{</span> <span class="c1">//  `{callback}` 替换成 `_` 就是没有参数</span>
-      <span class="kr">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">yield</span> <span class="nx">call</span><span class="p">(</span><span class="nx">queryParkManagerAgents</span><span class="p">);</span> <span class="c1">//queryParkManagerAgents 是定义的service 里面放出的可调用的方法</span>
+      <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">yield</span> <span class="nx">call</span><span class="p">(</span><span class="nx">queryParkManagerAgents</span><span class="p">);</span> <span class="c1">//queryParkManagerAgents 是定义的service 里面放出的可调用的方法</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"result Data  successfully"</span><span class="p">);</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
       <span class="k">yield</span> <span class="nx">put</span><span class="p">({</span>
@@ -611,31 +603,29 @@ ant-design-pro/src/services <span class="c"># 封装 request请求 供给 ‘e
   <span class="p">},</span>
 <span class="p">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>定义一个 <code class="highlighter-rouge">Service</code></li>
 </ul>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code>
-<span class="kr">import</span> <span class="nx">request</span> <span class="nx">from</span> <span class="s1">'../utils/request2'</span><span class="p">;</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">import</span> <span class="nx">request</span> <span class="k">from</span> <span class="s1">'../utils/request2'</span><span class="p">;</span>
 
-<span class="kr">export</span> <span class="nx">async</span> <span class="kd">function</span> <span class="nx">queryParkManagerAgents</span><span class="p">()</span> <span class="p">{</span>
+<span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nx">queryParkManagerAgents</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'/proxy-get/queryAllAgent'</span><span class="p">,</span> <span class="p">{</span> <span class="c1">//其中这里面的 proxy-get 是通过 调用mock 的proxy 完成的。 也就是第一次配置的哪个 mock配置文件。</span>
     <span class="na">method</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
   <span class="p">})</span>
 <span class="p">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>最后编写一个 route （page）</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>import React, <span class="o">{</span>PureComponent<span class="o">}</span> from <span class="s1">'react'</span>;
-import <span class="o">{</span>connect<span class="o">}</span> from <span class="s1">'dva'</span>;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import React, <span class="o">{</span>PureComponent<span class="o">}</span> from <span class="s1">'react'</span><span class="p">;</span>
+import <span class="o">{</span>connect<span class="o">}</span> from <span class="s1">'dva'</span><span class="p">;</span>
 import <span class="o">{</span>
   Card,
   Button,
@@ -644,77 +634,77 @@ import <span class="o">{</span>
   Select,
   Modal,
   message,
-<span class="o">}</span> from <span class="s1">'antd'</span>;
-import StandardTable from <span class="s1">'components/StandardTable'</span>;
-import PageHeaderLayout from <span class="s1">'../../layouts/PageHeaderLayout'</span>;
+<span class="o">}</span> from <span class="s1">'antd'</span><span class="p">;</span>
+import StandardTable from <span class="s1">'components/StandardTable'</span><span class="p">;</span>
+import PageHeaderLayout from <span class="s1">'../../layouts/PageHeaderLayout'</span><span class="p">;</span>
 
-import styles from <span class="s1">'./PayAgent.less'</span>;
+import styles from <span class="s1">'./PayAgent.less'</span><span class="p">;</span>
 
-const <span class="o">{</span>Option<span class="o">}</span> <span class="o">=</span> Select;
+const <span class="o">{</span>Option<span class="o">}</span> <span class="o">=</span> Select<span class="p">;</span>
 
-const FormItem <span class="o">=</span> Form.Item;
+const FormItem <span class="o">=</span> Form.Item<span class="p">;</span>
 //定义一个 Form
-const CreateForm <span class="o">=</span> Form.create<span class="o">()(</span>props <span class="o">=</span>&gt; <span class="o">{</span>
-  const <span class="o">{</span>modalVisible, form, handleAdd, handleModalVisible, optionChildrenDataTemp<span class="o">}</span> <span class="o">=</span> props;
-  const okHandle <span class="o">=</span> <span class="o">()</span> <span class="o">=</span>&gt; <span class="o">{</span>
-    form.validateFields<span class="o">((</span>err, fieldsValue<span class="o">)</span> <span class="o">=</span>&gt; <span class="o">{</span>
-      <span class="k">if</span> <span class="o">(</span>err<span class="o">)</span> <span class="k">return</span>;
-      form.resetFields<span class="o">()</span>;
-      handleAdd<span class="o">(</span>fieldsValue<span class="o">)</span>;
-    <span class="o">})</span>;
-  <span class="o">}</span>;
+const CreateForm <span class="o">=</span> Form.create<span class="o">()(</span>props <span class="o">=&gt;</span> <span class="o">{</span>
+  const <span class="o">{</span>modalVisible, form, handleAdd, handleModalVisible, optionChildrenDataTemp<span class="o">}</span> <span class="o">=</span> props<span class="p">;</span>
+  const okHandle <span class="o">=</span> <span class="o">()</span> <span class="o">=&gt;</span> <span class="o">{</span>
+    form.validateFields<span class="o">((</span>err, fieldsValue<span class="o">)</span> <span class="o">=&gt;</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span>err<span class="o">)</span> <span class="k">return</span><span class="p">;</span>
+      form.resetFields<span class="o">()</span><span class="p">;</span>
+      handleAdd<span class="o">(</span>fieldsValue<span class="o">)</span><span class="p">;</span>
+    <span class="o">})</span><span class="p">;</span>
+  <span class="o">}</span><span class="p">;</span>
   <span class="k">return</span> <span class="o">(</span>
     &lt;Modal
       <span class="nv">title</span><span class="o">=</span><span class="s2">"新建配置"</span>
       <span class="nv">visible</span><span class="o">={</span>modalVisible<span class="o">}</span>
       <span class="nv">onOk</span><span class="o">={</span>okHandle<span class="o">}</span>
-      <span class="nv">onCancel</span><span class="o">={()</span> <span class="o">=</span>&gt; handleModalVisible<span class="o">()}</span>
-    &gt;
-      &lt;FormItem <span class="nv">labelCol</span><span class="o">=</span> <span class="nv">wrapperCol</span><span class="o">=</span> <span class="nv">label</span><span class="o">=</span><span class="s2">"商户代码"</span>&gt;
+      <span class="nv">onCancel</span><span class="o">={()</span> <span class="o">=&gt;</span> handleModalVisible<span class="o">()}</span>
+    <span class="o">&gt;</span>
+      &lt;FormItem <span class="nv">labelCol</span><span class="o">=</span> <span class="nv">wrapperCol</span><span class="o">=</span> <span class="nv">label</span><span class="o">=</span><span class="s2">"商户代码"</span><span class="o">&gt;</span>
         <span class="o">{</span>form.getFieldDecorator<span class="o">(</span><span class="s1">'mch_code'</span>, <span class="o">{</span>
           rules: <span class="o">[{</span>required: <span class="nb">true</span>, message: <span class="s1">'Please input  mch_code...'</span><span class="o">}]</span>,
         <span class="o">})(</span>&lt;Input <span class="nv">placeholder</span><span class="o">=</span><span class="s2">"目前有用"</span>/&gt;<span class="o">)}</span>
       &lt;/FormItem&gt;
-      &lt;FormItem <span class="nv">labelCol</span><span class="o">=</span> <span class="nv">wrapperCol</span><span class="o">=</span> <span class="nv">label</span><span class="o">=</span><span class="s2">"通道支付码"</span>&gt;
+      &lt;FormItem <span class="nv">labelCol</span><span class="o">=</span> <span class="nv">wrapperCol</span><span class="o">=</span> <span class="nv">label</span><span class="o">=</span><span class="s2">"通道支付码"</span><span class="o">&gt;</span>
         <span class="o">{</span>form.getFieldDecorator<span class="o">(</span><span class="s1">'mchp_code'</span>, <span class="o">{</span>
           rules: <span class="o">[{</span>required: <span class="nb">true</span>, message: <span class="s1">'Please input  mchp_code...'</span><span class="o">}]</span>,
         <span class="o">})(</span>&lt;Input <span class="nv">placeholder</span><span class="o">=</span><span class="s2">"请输入：通道支付码"</span>/&gt;<span class="o">)}</span>
       &lt;/FormItem&gt;
-      &lt;FormItem <span class="nv">labelCol</span><span class="o">=</span> <span class="nv">wrapperCol</span><span class="o">=</span> <span class="nv">label</span><span class="o">=</span><span class="s2">"商户名称"</span>&gt;
+      &lt;FormItem <span class="nv">labelCol</span><span class="o">=</span> <span class="nv">wrapperCol</span><span class="o">=</span> <span class="nv">label</span><span class="o">=</span><span class="s2">"商户名称"</span><span class="o">&gt;</span>
         <span class="o">{</span>form.getFieldDecorator<span class="o">(</span><span class="s1">'business_name'</span>, <span class="o">{</span>
           rules: <span class="o">[{</span>required: <span class="nb">true</span>, message: <span class="s1">'Please input  business_name...'</span><span class="o">}]</span>,
         <span class="o">})(</span>&lt;Input <span class="nv">placeholder</span><span class="o">=</span><span class="s2">"请输入： 商户名称"</span>/&gt;<span class="o">)}</span>
       &lt;/FormItem&gt;
-      &lt;FormItem <span class="nv">labelCol</span><span class="o">=</span> <span class="nv">wrapperCol</span><span class="o">=</span> <span class="nv">label</span><span class="o">=</span><span class="s2">"描述信息"</span>&gt;
+      &lt;FormItem <span class="nv">labelCol</span><span class="o">=</span> <span class="nv">wrapperCol</span><span class="o">=</span> <span class="nv">label</span><span class="o">=</span><span class="s2">"描述信息"</span><span class="o">&gt;</span>
         <span class="o">{</span>form.getFieldDecorator<span class="o">(</span><span class="s1">'mch_description'</span>, <span class="o">{</span>
           rules: <span class="o">[{</span>required: <span class="nb">true</span>, message: <span class="s1">'Please input  certificate_file...'</span><span class="o">}]</span>,
         <span class="o">})(</span>&lt;Input <span class="nv">placeholder</span><span class="o">=</span><span class="s2">"请输入：描述信息"</span>/&gt;<span class="o">)}</span>
       &lt;/FormItem&gt;
-      &lt;FormItem <span class="nv">labelCol</span><span class="o">=</span> <span class="nv">wrapperCol</span><span class="o">=</span> <span class="nv">label</span><span class="o">=</span><span class="s2">"商户ID"</span>&gt;
+      &lt;FormItem <span class="nv">labelCol</span><span class="o">=</span> <span class="nv">wrapperCol</span><span class="o">=</span> <span class="nv">label</span><span class="o">=</span><span class="s2">"商户ID"</span><span class="o">&gt;</span>
         <span class="o">{</span>form.getFieldDecorator<span class="o">(</span><span class="s1">'mch_id'</span>, <span class="o">{</span>
           rules: <span class="o">[{</span>required: <span class="nb">true</span>, message: <span class="s1">'Please input  mch_id...'</span><span class="o">}]</span>,
         <span class="o">})(</span>&lt;Input <span class="nv">placeholder</span><span class="o">=</span><span class="s2">"请输入：商户ID"</span>/&gt;<span class="o">)}</span>
       &lt;/FormItem&gt;
-      &lt;FormItem <span class="nv">labelCol</span><span class="o">=</span> <span class="nv">wrapperCol</span><span class="o">=</span> <span class="nv">label</span><span class="o">=</span><span class="s2">"选择通道"</span>&gt;
+      &lt;FormItem <span class="nv">labelCol</span><span class="o">=</span> <span class="nv">wrapperCol</span><span class="o">=</span> <span class="nv">label</span><span class="o">=</span><span class="s2">"选择通道"</span><span class="o">&gt;</span>
         <span class="o">{</span>form.getFieldDecorator<span class="o">(</span><span class="s1">'mchc_code'</span>, <span class="o">{</span>
           rules: <span class="o">[{</span>required: <span class="nb">true</span>, message: <span class="s1">'Please selectd...'</span><span class="o">}]</span>,
         <span class="o">})(</span>&lt;Select
           // <span class="nv">mode</span><span class="o">=</span><span class="s2">"tags"</span>  // multiple  tags combobox
           <span class="nv">style</span><span class="o">=</span>
           <span class="nv">placeholder</span><span class="o">=</span><span class="s2">"不限"</span>
-        &gt;
-          <span class="o">{</span>optionChildrenDataTemp.map<span class="o">(</span>item <span class="o">=</span>&gt; <span class="o">(</span>
-            &lt;Option <span class="nv">key</span><span class="o">={</span>item.channel_id<span class="o">}</span> <span class="nv">value</span><span class="o">={</span>item.channel_id<span class="o">}</span>&gt;
+        <span class="o">&gt;</span>
+          <span class="o">{</span>optionChildrenDataTemp.map<span class="o">(</span>item <span class="o">=&gt;</span> <span class="o">(</span>
+            &lt;Option <span class="nv">key</span><span class="o">={</span>item.channel_id<span class="o">}</span> <span class="nv">value</span><span class="o">={</span>item.channel_id<span class="o">}&gt;</span>
               <span class="o">{</span>item.channel_name<span class="o">}</span>
             &lt;/Option&gt;
           <span class="o">))}</span>
         &lt;/Select&gt;<span class="o">)}</span>
       &lt;/FormItem&gt;
     &lt;/Modal&gt;
-  <span class="o">)</span>;
-<span class="o">})</span>;
+  <span class="o">)</span><span class="p">;</span>
+<span class="o">})</span><span class="p">;</span>
 // 连接model层的state数据，然后通过this.props.state : loading.models.名<span class="o">(</span>namespace<span class="o">)</span>访问model层的state数据
-@connect<span class="o">(({</span>parkingPayManager, loading<span class="o">})</span> <span class="o">=</span>&gt; <span class="o">({</span>
+@connect<span class="o">(({</span>parkingPayManager, loading<span class="o">})</span> <span class="o">=&gt;</span> <span class="o">({</span>
   parkingPayManager, //获得整个 Model
   loading: loading.models.parkingPayManager, //   <span class="nb">true </span>or <span class="nb">false</span> 
 <span class="o">}))</span>
@@ -724,57 +714,57 @@ const CreateForm <span class="o">=</span> Form.create<span class="o">()(</span>p
     isLoading: <span class="nb">false</span>,
     modalVisible: <span class="nb">false</span>,
     optionChildrenData: <span class="o">[]</span>,
-  <span class="o">}</span>;
+  <span class="o">}</span><span class="p">;</span>
 
   componentWillMount<span class="o">()</span> <span class="o">{</span>
-    const <span class="o">{</span>dispatch<span class="o">}</span> <span class="o">=</span> this.props;
+    const <span class="o">{</span>dispatch<span class="o">}</span> <span class="o">=</span> this.props<span class="p">;</span>
     dispatch<span class="o">({</span>
       <span class="nb">type</span>: <span class="s1">'parkingPayManager/queryChannelList'</span>, //通过dispatch调用这个请求。
-      callback: <span class="o">(</span>e<span class="o">)</span> <span class="o">=</span>&gt; <span class="o">{</span> //请求内的callback  可以做刷新动作等，
-        message.success<span class="o">(</span><span class="s2">"select init success "</span> + e<span class="o">)</span>;
+      callback: <span class="o">(</span>e<span class="o">)</span> <span class="o">=&gt;</span> <span class="o">{</span> //请求内的callback  可以做刷新动作等，
+        message.success<span class="o">(</span><span class="s2">"select init success "</span> + e<span class="o">)</span><span class="p">;</span>
         this.setState<span class="o">({</span>
           optionChildrenData: e,
-        <span class="o">})</span>;
+        <span class="o">})</span><span class="p">;</span>
       <span class="o">}</span>,
-    <span class="o">})</span>;
-    console.log<span class="o">(</span><span class="s2">"初始化 =&gt; 下拉列表的数据"</span><span class="o">)</span>;
+    <span class="o">})</span><span class="p">;</span>
+    console.log<span class="o">(</span><span class="s2">"初始化 =&gt; 下拉列表的数据"</span><span class="o">)</span><span class="p">;</span>
   <span class="o">}</span>
 
   componentDidMount<span class="o">()</span> <span class="o">{</span>
     // componentWillMount -&gt; render -&gt;  componentDidMount  ..-&gt; componentWillReceiveProps
-    const <span class="o">{</span>dispatch<span class="o">}</span> <span class="o">=</span> this.props;
+    const <span class="o">{</span>dispatch<span class="o">}</span> <span class="o">=</span> this.props<span class="p">;</span>
     // 触发action触发model层的state的初始化
     dispatch<span class="o">({</span>
       <span class="nb">type</span>: <span class="s1">'parkingPayManager/queryAgentList'</span>,
-    <span class="o">})</span>;
+    <span class="o">})</span><span class="p">;</span>
   <span class="o">}</span>
 
-  handleModalVisible <span class="o">=</span> flag <span class="o">=</span>&gt; <span class="o">{</span>
+  handleModalVisible <span class="o">=</span> flag <span class="o">=&gt;</span> <span class="o">{</span>
     this.setState<span class="o">({</span>
-      modalVisible: !!flag,
-    <span class="o">})</span>;
+      modalVisible: <span class="o">!!</span>flag,
+    <span class="o">})</span><span class="p">;</span>
   <span class="o">}</span>
 
-  handleAdd <span class="o">=</span> fields <span class="o">=</span>&gt; <span class="o">{</span>
-    const <span class="o">{</span>dispatch<span class="o">}</span> <span class="o">=</span> this.props;
+  handleAdd <span class="o">=</span> fields <span class="o">=&gt;</span> <span class="o">{</span>
+    const <span class="o">{</span>dispatch<span class="o">}</span> <span class="o">=</span> this.props<span class="p">;</span>
     // 触发action触发model层的state的初始化
     dispatch<span class="o">({</span>
       <span class="nb">type</span>: <span class="s1">'parkingPayManager/insertAgent'</span>,
       payload: JSON.stringify<span class="o">(</span>fields<span class="o">)</span>,
-      callback: <span class="o">()</span> <span class="o">=</span>&gt; <span class="o">{</span>
+      callback: <span class="o">()</span> <span class="o">=&gt;</span> <span class="o">{</span>
         dispatch<span class="o">({</span>
           <span class="nb">type</span>: <span class="s1">'parkingPayManager/queryAgentList'</span>,
-        <span class="o">})</span>;
+        <span class="o">})</span><span class="p">;</span>
         this.setState<span class="o">({</span>
           modalVisible: <span class="nb">false</span>, // 清除
-        <span class="o">})</span>;
-        message.success<span class="o">(</span><span class="s1">'successfully '</span> + JSON.stringify<span class="o">(</span>fields<span class="o">))</span>;
+        <span class="o">})</span><span class="p">;</span>
+        message.success<span class="o">(</span><span class="s1">'successfully '</span> + JSON.stringify<span class="o">(</span>fields<span class="o">))</span><span class="p">;</span>
       <span class="o">}</span>,
-    <span class="o">})</span>;
-  <span class="o">}</span>;
+    <span class="o">})</span><span class="p">;</span>
+  <span class="o">}</span><span class="p">;</span>
 
   render<span class="o">()</span> <span class="o">{</span>
-    const <span class="o">{</span>parkingPayManager: <span class="o">{</span>QueryAgentData<span class="o">}}</span> <span class="o">=</span> this.props;
+    const <span class="o">{</span>parkingPayManager: <span class="o">{</span>QueryAgentData<span class="o">}}</span> <span class="o">=</span> this.props<span class="p">;</span>
     const newdata <span class="o">=</span> <span class="o">{</span>
       list: QueryAgentData,
       pagination: <span class="o">{</span>
@@ -782,14 +772,14 @@ const CreateForm <span class="o">=</span> Form.create<span class="o">()(</span>p
         pageSize: 10,// 页面量
         current: 1, // 当前第几页
       <span class="o">}</span>,
-    <span class="o">}</span>;
-    const <span class="o">{</span>isLoading, modalVisible, selectedRows, optionChildrenData<span class="o">}</span> <span class="o">=</span> this.state;
+    <span class="o">}</span><span class="p">;</span>
+    const <span class="o">{</span>isLoading, modalVisible, selectedRows, optionChildrenData<span class="o">}</span> <span class="o">=</span> this.state<span class="p">;</span>
     const columns <span class="o">=</span> <span class="o">[</span>
       <span class="o">{</span>
         title: <span class="s1">'商户伪码'</span>,
         dataIndex: <span class="s1">'mch_code'</span>,
         align: <span class="s1">'right'</span>,
-        render: text <span class="o">=</span>&gt;
+        render: text <span class="o">=&gt;</span>
           text ? <span class="o">(</span>
             text
           <span class="o">)</span> : <span class="o">(</span>
@@ -815,27 +805,27 @@ const CreateForm <span class="o">=</span> Form.create<span class="o">()(</span>p
       <span class="o">{</span>
         title: <span class="s1">'商户ID'</span>,
         dataIndex: <span class="s1">'mch_id'</span>,
-        render: text <span class="o">=</span>&gt;
+        render: text <span class="o">=&gt;</span>
           text ? <span class="o">(</span>
             text
           <span class="o">)</span> : <span class="o">(</span>
             <span class="s1">'AliPay Not MchID'</span>
           <span class="o">)</span>,
       <span class="o">}</span>,
-    <span class="o">]</span>;
+    <span class="o">]</span><span class="p">;</span>
 
     const parentMethods <span class="o">=</span> <span class="o">{</span>
       handleAdd: this.handleAdd,
       handleModalVisible: this.handleModalVisible,
       optionChildrenDataTemp: optionChildrenData,
-    <span class="o">}</span>;
+    <span class="o">}</span><span class="p">;</span>
 
     <span class="k">return</span> <span class="o">(</span>
-      &lt;PageHeaderLayout <span class="nv">title</span><span class="o">=</span><span class="s2">"商户配置信息"</span>&gt;
-        &lt;Card <span class="nv">bordered</span><span class="o">={</span><span class="nb">false</span><span class="o">}</span>&gt;
-          &lt;div <span class="nv">className</span><span class="o">={</span>styles.tableList<span class="o">}</span>&gt;
-            &lt;div <span class="nv">className</span><span class="o">={</span>styles.tableListOperator<span class="o">}</span>&gt;
-              &lt;Button <span class="nv">icon</span><span class="o">=</span><span class="s2">"plus"</span> <span class="nb">type</span><span class="o">=</span><span class="s2">"primary"</span> <span class="nv">onClick</span><span class="o">={()</span> <span class="o">=</span>&gt; this.handleModalVisible<span class="o">(</span><span class="nb">true</span><span class="o">)}</span>&gt;
+      &lt;PageHeaderLayout <span class="nv">title</span><span class="o">=</span><span class="s2">"商户配置信息"</span><span class="o">&gt;</span>
+        &lt;Card <span class="nv">bordered</span><span class="o">={</span><span class="nb">false</span><span class="o">}&gt;</span>
+          &lt;div <span class="nv">className</span><span class="o">={</span>styles.tableList<span class="o">}&gt;</span>
+            &lt;div <span class="nv">className</span><span class="o">={</span>styles.tableListOperator<span class="o">}&gt;</span>
+              &lt;Button <span class="nv">icon</span><span class="o">=</span><span class="s2">"plus"</span> <span class="nb">type</span><span class="o">=</span><span class="s2">"primary"</span> <span class="nv">onClick</span><span class="o">={()</span> <span class="o">=&gt;</span> this.handleModalVisible<span class="o">(</span><span class="nb">true</span><span class="o">)}&gt;</span>
                 添加商户配置
               &lt;/Button&gt;
             &lt;/div&gt;
@@ -849,12 +839,11 @@ const CreateForm <span class="o">=</span> Form.create<span class="o">()(</span>p
         &lt;/Card&gt;
         &lt;CreateForm <span class="o">{</span>...parentMethods<span class="o">}</span> <span class="nv">modalVisible</span><span class="o">={</span>modalVisible<span class="o">}</span>/&gt;
       &lt;/PageHeaderLayout&gt;
-    <span class="o">)</span>;
+    <span class="o">)</span><span class="p">;</span>
   <span class="o">}</span>
 <span class="o">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>最终完成这个页面，进行访问查看。</li>

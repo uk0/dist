@@ -138,7 +138,7 @@
   <li>CPS</li>
 </ul>
 
-<div class="language-scheme highlighter-rouge"><pre class="highlight"><code><span class="c1">;; A simple CPS transformer which does proper tail-call and does not</span>
+<div class="language-scheme highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">;; A simple CPS transformer which does proper tail-call and does not</span>
 <span class="c1">;; duplicate contexts for if-expressions.</span>
 
 <span class="c1">;; author: Yin Wang (yw21@cs.indiana.edu)</span>
@@ -189,14 +189,13 @@
 <span class="p">(</span><span class="k">let</span> <span class="p">(</span><span class="err">[</span><span class="nv">u</span> <span class="p">(</span><span class="nf">fv</span><span class="p">)</span><span class="err">]</span><span class="p">)</span>
 <span class="o">`</span><span class="p">(</span><span class="nf">,r</span> <span class="o">,</span><span class="nv">d</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nf">,u</span><span class="p">)</span> <span class="o">,</span><span class="p">(</span><span class="nf">ctx</span> <span class="nv">u</span><span class="p">))))</span><span class="err">]</span><span class="p">)))))</span><span class="err">]</span><span class="p">))</span><span class="err">]</span><span class="p">)</span>
 <span class="p">(</span><span class="nf">cps1</span> <span class="nv">exp</span> <span class="nv">id</span><span class="p">))))</span><span class="nv">%</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>pmatch</li>
 </ul>
 
-<div class="language-scheme highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="k">define-syntax</span> <span class="nv">pmatch</span>
+<div class="language-scheme highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="k">define-syntax</span> <span class="nv">pmatch</span>
   <span class="p">(</span><span class="k">syntax-rules</span> <span class="p">(</span><span class="k">else</span> <span class="nv">guard</span><span class="p">)</span>
     <span class="p">((</span><span class="nf">_</span> <span class="p">(</span><span class="nf">rator</span> <span class="nv">rand</span> <span class="o">...</span><span class="p">)</span> <span class="nv">cs</span> <span class="o">...</span><span class="p">)</span>
      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nf">v</span> <span class="p">(</span><span class="nf">rator</span> <span class="nv">rand</span> <span class="o">...</span><span class="p">)))</span>
@@ -223,12 +222,11 @@
        <span class="nv">kf</span><span class="p">))</span>
     <span class="p">((</span><span class="nf">_</span> <span class="nv">v</span> <span class="nv">lit</span> <span class="nv">kt</span> <span class="nv">kf</span><span class="p">)</span> <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">equal?</span> <span class="nv">v</span> <span class="p">(</span><span class="k">quote</span> <span class="nv">lit</span><span class="p">))</span> <span class="nv">kt</span> <span class="nv">kf</span><span class="p">))))</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="test">test</h2>
 
-<div class="language-scheme highlighter-rouge"><pre class="highlight"><code><span class="c1">;;; tests</span>
+<div class="language-scheme highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">;;; tests</span>
 
 <span class="c1">;; var</span>
 <span class="p">(</span><span class="nf">cps</span> <span class="ss">'x</span><span class="p">)</span>
@@ -304,8 +302,7 @@
 
 <span class="p">((</span><span class="nb">eval</span> <span class="nv">fact-cps</span><span class="p">)</span> <span class="mi">5</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nf">v</span><span class="p">)</span> <span class="nv">v</span><span class="p">))</span>
 <span class="c1">;; =&gt; 120</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="大佬的代码解析">大佬的代码解析</h2>
 

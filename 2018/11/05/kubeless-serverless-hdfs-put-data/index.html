@@ -129,7 +129,7 @@
   <li>serverless Python 操作hdfs</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># /usr/bin/env python</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># /usr/bin/env python</span>
 <span class="c"># coding=utf-8</span>
 
 import paramiko
@@ -170,17 +170,16 @@ def doupload<span class="o">()</span>:
         <span class="c"># ssh root@agent-2.agent-svc.cloudera.svc.cluster.local</span>
         print<span class="o">(</span><span class="s2">"--------------save Task To"</span> + path<span class="o">)</span>
         with client.write<span class="o">(</span>path, <span class="nv">overwrite</span><span class="o">=</span>True<span class="o">)</span> as writer:
-            writer.write<span class="o">(</span>buf<span class="o">)</span>;
+            writer.write<span class="o">(</span>buf<span class="o">)</span><span class="p">;</span>
 
     <span class="k">return</span> <span class="s1">'ok'</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>serverless.yml</li>
 </ul>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="c1"># Welcome to Serverless!</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Welcome to Serverless!</span>
 <span class="c1">#</span>
 <span class="c1"># For full config options, check the kubeless plugin docs:</span>
 <span class="c1">#    https://github.com/serverless/serverless-kubeless</span>
@@ -189,7 +188,7 @@ def doupload<span class="o">()</span>:
 <span class="c1">#    http://kubeless.io</span>
 
 <span class="c1"># Update the service name below with your own service name</span>
-<span class="s">service</span><span class="pi">:</span> <span class="s">put-taskjar</span>
+<span class="na">service</span><span class="pi">:</span> <span class="s">put-taskjar</span>
 
 <span class="c1"># Please ensure the serverless-kubeless provider plugin is installed globally.</span>
 <span class="c1"># $ npm install -g serverless-kubeless</span>
@@ -197,20 +196,19 @@ def doupload<span class="o">()</span>:
 <span class="c1"># ...before installing project dependencies to register this provider.</span>
 <span class="c1"># $ npm install</span>
 
-<span class="s">provider</span><span class="pi">:</span>
-  <span class="s">name</span><span class="pi">:</span> <span class="s">kubeless</span>
-  <span class="s">namespace</span><span class="pi">:</span> <span class="s">${env:K8S_NAMESPACE, 'cloudera'}</span>
-  <span class="s">runtime</span><span class="pi">:</span> <span class="s">python2.7</span>
+<span class="na">provider</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">kubeless</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">${env:K8S_NAMESPACE, 'cloudera'}</span>
+  <span class="na">runtime</span><span class="pi">:</span> <span class="s">python2.7</span>
 
-<span class="s">plugins</span><span class="pi">:</span>
+<span class="na">plugins</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="s">serverless-kubeless</span>
 
-<span class="s">functions</span><span class="pi">:</span>
-  <span class="s">upload</span><span class="pi">:</span>
-    <span class="s">handler</span><span class="pi">:</span> <span class="s">task.upload</span>
+<span class="na">functions</span><span class="pi">:</span>
+  <span class="na">upload</span><span class="pi">:</span>
+    <span class="na">handler</span><span class="pi">:</span> <span class="s">task.upload</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>具体信息看第一条关于 serverless 的文章。</li>

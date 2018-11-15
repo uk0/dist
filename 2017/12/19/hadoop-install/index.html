@@ -133,26 +133,24 @@
   <li>配置目录</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>scp -r zookeeper/ dscn<span class="nv">$:</span>/home/zookeeper
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scp <span class="nt">-r</span> zookeeper/ dscn<span class="nv">$:</span>/home/zookeeper
 
-scp -r hadoop/ dscn<span class="nv">$:</span>/home/hadoop
+scp <span class="nt">-r</span> hadoop/ dscn<span class="nv">$:</span>/home/hadoop
 
-mkdir  -p /home/program/hadoop/  data logs pids  <span class="c"># hadoop 文件路径</span>
+mkdir  <span class="nt">-p</span> /home/program/hadoop/  data logs pids  <span class="c"># hadoop 文件路径</span>
 
-mkdir  -p  /home/program/zookeeper data logs pids <span class="c"># zookeeper 文件</span>
+mkdir  <span class="nt">-p</span>  /home/program/zookeeper data logs pids <span class="c"># zookeeper 文件</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>hdfs haadmin -transitionToActive nn1 --forcemanual
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hdfs haadmin <span class="nt">-transitionToActive</span> nn1 <span class="nt">--forcemanual</span>
 解决启动节点都为 <span class="sb">`</span>standby<span class="sb">`</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="环境变量-hadoop">环境变量 Hadoop</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>  <span class="nb">echo</span> <span class="s2">"
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">echo</span> <span class="s2">"
         export JAVA_HOME=/usr/java/jdk1.8.0_73
         export HADOOP_HOME=/home/dscs/hadoop
         export HADOOP_LOG_DIR=/home/program/hadoop/logs
@@ -163,20 +161,18 @@ mkdir  -p  /home/program/zookeeper data logs pids <span class="c"># zookeeper �
         export YARN_IDENT_STRING=dscs
         export CLASSPATH=.:</span><span class="nv">$JAVA_HOME</span><span class="s2">/lib/dt.jar:</span><span class="nv">$JAVA_HOME</span><span class="s2">/lib/tools.jar
         PATH=</span><span class="nv">$HADOOP_HOME</span><span class="s2">/bin:</span><span class="nv">$HADOOP_HOME</span><span class="s2">/sbin:</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin:</span><span class="nv">$PATH</span><span class="s2">
-        "</span> &gt;&gt;~/.bash_profile
+        "</span> <span class="o">&gt;&gt;</span>~/.bash_profile
     <span class="nb">source</span> ~/.bash_profile
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="环境变量-java">环境变量 Java</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>    <span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span><span class="k">$(</span>dirname <span class="k">$(</span>dirname <span class="k">$(</span>readlink -f <span class="k">$(</span>which javac<span class="k">))))</span>
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span><span class="k">$(</span>dirname <span class="k">$(</span>dirname <span class="k">$(</span>readlink <span class="nt">-f</span> <span class="k">$(</span>which javac<span class="k">))))</span>
+</code></pre></div></div>
 
 <h1 id="zookeeper-config">zookeeper config</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
     <span class="nv">dataDir</span><span class="o">=</span>/usr/local/program/zookeeper/data
     <span class="nv">dataLogDir</span><span class="o">=</span>/usr/local/program/zookeeper/logs
     <span class="nv">clientPort</span><span class="o">=</span>2181
@@ -187,17 +183,15 @@ mkdir  -p  /home/program/zookeeper data logs pids <span class="c"># zookeeper �
     server.2<span class="o">=</span>dscn2:2888:3888
     server.3<span class="o">=</span>dscn3:2888:3888
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>    <span class="k">for </span>i <span class="k">in </span>1 2 3
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">for </span>i <span class="k">in </span>1 2 3
     <span class="k">do 
 
-        </span>ssh dscn<span class="nv">$i</span> mkdir -p /home/program/zookeeper/data/ <span class="nb">echo</span> <span class="nv">$i</span> &gt; /home/program/zookeeper/data/myid
+        </span>ssh dscn<span class="nv">$i</span> mkdir <span class="nt">-p</span> /home/program/zookeeper/data/ <span class="nb">echo</span> <span class="nv">$i</span> <span class="o">&gt;</span> /home/program/zookeeper/data/myid
 
     <span class="k">done</span> 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="hadoop-启动流程">hadoop 启动流程</h1>
 
@@ -205,11 +199,10 @@ mkdir  -p  /home/program/zookeeper data logs pids <span class="c"># zookeeper �
   <li>
     <p>启动 zookeeper (3个节点)</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code> ```bash
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ```bash
      ./zkServer.sh start ../conf/zoo.cfg
  ```
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>启动 JournalNode (3个节点) 
      <code class="highlighter-rouge">bash
@@ -222,47 +215,41 @@ mkdir  -p  /home/program/zookeeper data logs pids <span class="c"># zookeeper �
   <li>
     <p>启动刚刚格式化的namenode:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code> ```bash
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ```bash
      sbin/hadoop-daemon.sh start namenode
  ```
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>在另一个没有格式化的namenode上执行</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>         bin/hdfs namenode -bootstrapStandby 
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>         bin/hdfs namenode <span class="nt">-bootstrapStandby</span> 
             
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>启动第二个namenode</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>      sbin/hadoop-daemon.sh start namenode
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      sbin/hadoop-daemon.sh start namenode
+</code></pre></div>    </div>
   </li>
   <li>
     <p>启动第二个datanode(3个节点)</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>      sbin/hadoop-daemon.sh start datanode
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      sbin/hadoop-daemon.sh start datanode
+</code></pre></div>    </div>
   </li>
   <li>
     <p>在其中一个namenode上初始化zkfc：</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>     bin/hdfs zkfc -formatZK
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     bin/hdfs zkfc <span class="nt">-formatZK</span>
+</code></pre></div>    </div>
   </li>
   <li>启动 JobHistory</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>    sbin/mr-jobhistory-daemon.sh start historyserver
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    sbin/mr-jobhistory-daemon.sh start historyserver
+</code></pre></div></div>
 
 <p># 异常描述</p>
 <ul>
@@ -272,51 +259,47 @@ mkdir  -p  /home/program/zookeeper data logs pids <span class="c"># zookeeper �
   <li>停止集群 hadoop</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>        hdfs zkfc -formatZK
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        hdfs zkfc <span class="nt">-formatZK</span>
+</code></pre></div></div>
 
 <p># 插曲 scp 发现存储不够了</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
  <span class="o">[</span>root@dscn1 hadoop]# vgs
   VG   <span class="c">#PV #LV #SN Attr   VSize    VFree</span>
   VG00   1  10   0 wz--n- &lt;199.51g &lt;1.26g
 
 
-  lvextend -L +173G /dev/mapper/VG00-lvroot
+  lvextend <span class="nt">-L</span> +173G /dev/mapper/VG00-lvroot
 
 
   xfs_growfs /dev/mapper/VG00-lvroot
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="读取文件里面的文件路径参数转译">读取文件里面的文件路径参数【转译】</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
-<span class="nv">HBASE_TMP_DIR</span><span class="o">=</span><span class="k">$(</span>cat <span class="nv">$HBASE_PACKAGE_PATH</span>/config | grep HBASE_TMP_DIR | awk -F <span class="s2">"="</span> <span class="s1">'{print$2}'</span><span class="k">)</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nv">HBASE_TMP_DIR</span><span class="o">=</span><span class="k">$(</span><span class="nb">cat</span> <span class="nv">$HBASE_PACKAGE_PATH</span>/config | <span class="nb">grep </span>HBASE_TMP_DIR | awk <span class="nt">-F</span> <span class="s2">"="</span> <span class="s1">'{print$2}'</span><span class="k">)</span>
 
 <span class="nv">HBASE_TMP_DIR_STR</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="nv">$HBASE_TMP_DIR</span> | sed <span class="s1">'s#\/#\\\/#g'</span><span class="k">)</span>
 
-sed -i <span class="s2">"s/HBASE_TMP_DIR/</span><span class="nv">$HBASE_TMP_DIR_STR</span><span class="s2">/"</span> <span class="nv">$HBASE_HOME</span>/conf/hbase-site.xml
+sed <span class="nt">-i</span> <span class="s2">"s/HBASE_TMP_DIR/</span><span class="nv">$HBASE_TMP_DIR_STR</span><span class="s2">/"</span> <span class="nv">$HBASE_HOME</span>/conf/hbase-site.xml
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="读取节点配置合理配置主从节点">读取节点配置合理配置主从节点</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nv">OLD_IFS</span><span class="o">=</span><span class="s2">"</span><span class="nv">$IFS</span><span class="s2">"</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">OLD_IFS</span><span class="o">=</span><span class="s2">"</span><span class="nv">$IFS</span><span class="s2">"</span>
 <span class="nv">IFS</span><span class="o">=</span><span class="s2">","</span>
 <span class="nv">arr</span><span class="o">=(</span><span class="nv">$HBASE_REGION</span><span class="o">)</span>
 <span class="nv">IFS</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OLD_IFS</span><span class="s2">"</span>
 <span class="k">for </span>s <span class="k">in</span> <span class="k">${</span><span class="nv">arr</span><span class="p">[@]</span><span class="k">}</span>
 <span class="k">do
-    </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$s</span><span class="s2">"</span> &gt;&gt;<span class="nv">$HBASE_HOME</span>/conf/regionservers
+    </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$s</span><span class="s2">"</span> <span class="o">&gt;&gt;</span><span class="nv">$HBASE_HOME</span>/conf/regionservers
 <span class="k">done</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
     </article>
     <div class="share">

@@ -132,7 +132,7 @@
 
 <h1 id="flink-source定义">Flink Source定义</h1>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">flink</span><span class="o">.</span><span class="na">source</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">flink</span><span class="o">.</span><span class="na">source</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.alibaba.rocketmq.client.consumer.DefaultMQPushConsumer</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.alibaba.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.alibaba.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus</span><span class="o">;</span>
@@ -234,12 +234,11 @@
     <span class="o">}</span>
 <span class="o">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="main方法调用flink启动jobmanager">Main方法调用Flink启动JobManager</h2>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="kd">final</span> <span class="n">ParameterTool</span> <span class="n">parameterTool</span> <span class="o">=</span> <span class="n">ParameterTool</span><span class="o">.</span><span class="na">fromArgs</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">final</span> <span class="n">ParameterTool</span> <span class="n">parameterTool</span> <span class="o">=</span> <span class="n">ParameterTool</span><span class="o">.</span><span class="na">fromArgs</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
 
         <span class="k">if</span> <span class="o">(</span><span class="n">parameterTool</span><span class="o">.</span><span class="na">getNumberOfParameters</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Missing parameters!"</span><span class="o">);</span>
@@ -258,8 +257,7 @@
                   <span class="o">,</span><span class="n">parameterTool</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span><span class="s">"qsize"</span><span class="o">,</span><span class="mi">1000</span><span class="o">)</span>
                   <span class="o">,</span><span class="n">parameterTool</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span><span class="s">"consumer"</span><span class="o">,</span><span class="mi">1</span><span class="o">)</span>
           <span class="o">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="禁止转载盗版必究倒贴必须ddos你">禁止转载，盗版必究。<code class="highlighter-rouge">倒贴必须DDOS你！</code></h2>
 

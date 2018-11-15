@@ -130,26 +130,22 @@ author：zhangjianxin</p>
 <p>[TOC]</p>
 
 <h1 id="1下载arangodb-rpm">1.下载ArangoDB rpm</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>wget https://zmatsh.b0.upaiyun.com/blog/arangodb3-3.2.0-1.x86_64.rpm
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://zmatsh.b0.upaiyun.com/blog/arangodb3-3.2.0-1.x86_64.rpm
+</code></pre></div></div>
 <h1 id="2install-arangodb">2.Install ArangoDB</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>rpm -ivh arangodb3-3.2.0-1.x86_64.rpm
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rpm <span class="nt">-ivh</span> arangodb3-3.2.0-1.x86_64.rpm
+</code></pre></div></div>
 <h1 id="3start">3.start</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>systemctl start arangodb3
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl start arangodb3
+</code></pre></div></div>
 <h1 id="4status">4.status</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 systemctl status arangodb3
-</code></pre>
-</div>
+</code></pre></div></div>
 <h1 id="5配置arangosh">5.配置arangosh</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>/etc/arangodb3/arangosh.conf
-----------------------------------------------
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/etc/arangodb3/arangosh.conf
+<span class="nt">----------------------------------------------</span>
 <span class="o">[</span>console]
 pretty-print <span class="o">=</span> <span class="nb">true</span>
 
@@ -165,10 +161,9 @@ file <span class="o">=</span> -
 <span class="o">[</span>javascript]
 startup-directory <span class="o">=</span> /usr/share/arangodb3/js
 
-</code></pre>
-</div>
+</code></pre></div></div>
 <h1 id="6配置arangod">6.配置arangod</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># ArangoDB configuration file</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># ArangoDB configuration file</span>
 <span class="c">#</span>
 <span class="c"># Documentation:</span>
 <span class="c"># https://docs.arangodb.com/Manual/Administration/Configuration/</span>
@@ -246,26 +241,23 @@ file <span class="o">=</span> /var/log/arangodb3/arangod.log
 
 <span class="o">[</span>rocksdb]
 <span class="c"># encryption-keyfile=/your-encryption-file</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><strong>以上完成安装</strong></p>
 
 <h1 id="7访问测试">7.访问测试</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>arangosh
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>arangosh
 <span class="c"># 进入arangodb bash</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <p><img src="https://zmatsh.b0.upaiyun.com/blog/20E4E40601E232AFEB557A2260F5BA20.png" alt="" /></p>
 
 <h1 id="8解决没有权限问题">8.解决没有权限问题</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code> <span class="c"># 停止 `systemctl stop arangodb3`</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># 停止 `systemctl stop arangodb3`</span>
  <span class="c"># 不启用授权启动arangodb</span>
-/usr/sbin/arangod --server.authentication <span class="nb">false</span>
+/usr/sbin/arangod <span class="nt">--server</span>.authentication <span class="nb">false</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><img src="https://zmatsh.b0.upaiyun.com/blog/WX20170817-231202@2x.png" alt="" /></p>
 <ul>
@@ -279,10 +271,9 @@ file <span class="o">=</span> /var/log/arangodb3/arangod.log
   <li>在出现的arangodb shell 里面执行如下命令。</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>require<span class="o">(</span><span class="s2">"@arangodb/users"</span><span class="o">)</span>.replace<span class="o">(</span><span class="s2">"root"</span>, <span class="s2">"new-password"</span><span class="o">)</span>;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require<span class="o">(</span><span class="s2">"@arangodb/users"</span><span class="o">)</span>.replace<span class="o">(</span><span class="s2">"root"</span>, <span class="s2">"new-password"</span><span class="o">)</span><span class="p">;</span>
 <span class="c">#通过他的客户端进行直接修改`root`密码</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <ul>
   <li>输入完密码，进行退出<code class="highlighter-rouge">exit</code></li>
   <li>退出后去第一个shell窗口执行 <code class="highlighter-rouge">Control + C </code>。</li>

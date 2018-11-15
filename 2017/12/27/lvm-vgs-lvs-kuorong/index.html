@@ -132,7 +132,7 @@
   <li>1.1 查看硬盘信息</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@pgb lvm]# fdisk -l
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@pgb lvm]# fdisk <span class="nt">-l</span>
 
 Disk /dev/hda: 19.3 GB, 19327352832 bytes
 255 heads, 63 sectors/track, 2349 cylinders
@@ -166,16 +166,15 @@ Units <span class="o">=</span> cylinders of 1008 <span class="k">*</span> 512 <s
   
   <span class="c">#备注：根据 fdisk 和 pvscan 命令输出，知道 /dev/hdb2 还没有加入 VG， 可以使用，接下来将 /dev/hdb2 加入  VG vg01_pgdata。</span>
   
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>1.2 查看 VG 信息</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="o">[</span>root@pgb lvm]# vgdisplay
-  --- Volume group ---
+  <span class="nt">---</span> Volume group <span class="nt">---</span>
   VG Name               vg01_pgdata
   System ID             
   Format                lvm2
@@ -196,14 +195,13 @@ Units <span class="o">=</span> cylinders of 1008 <span class="k">*</span> 512 <s
   Free  PE / Size       243 / 972.00 MB
   VG UUID               B5pg8R-2AGm-6DEp-K7HK-TI1I-HC3h-gWx32m
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>1.3 格式化文件系统</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@pgb lvm]# mkfs -t ext3 -c /dev/hdb2
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@pgb lvm]# mkfs <span class="nt">-t</span> ext3 <span class="nt">-c</span> /dev/hdb2
 mke2fs 1.39 <span class="o">(</span>29-May-2006<span class="o">)</span>
 Filesystem <span class="nv">label</span><span class="o">=</span>
 OS <span class="nb">type</span>: Linux
@@ -219,30 +217,28 @@ Maximum filesystem <span class="nv">blocks</span><span class="o">=</span>2810183
 Superblock backups stored on blocks: 
         32768, 98304, 163840, 229376
 
-Checking <span class="k">for </span>bad blocks <span class="o">(</span><span class="nb">read</span>-only <span class="nb">test</span><span class="o">)</span>: <span class="k">done                                
+Checking <span class="k">for </span>bad blocks <span class="o">(</span>read-only <span class="nb">test</span><span class="o">)</span>: <span class="k">done                                
 </span>Writing inode tables: <span class="k">done                            
 </span>Creating journal <span class="o">(</span>8192 blocks<span class="o">)</span>: <span class="k">done
 </span>Writing superblocks and filesystem accounting information: <span class="k">done
 
 </span>This filesystem will be automatically checked every 28 mounts or
-180 days, whichever comes first.  Use tune2fs -c or -i to override.
-</code></pre>
-</div>
+180 days, whichever comes first.  Use tune2fs <span class="nt">-c</span> or <span class="nt">-i</span> to override.
+</code></pre></div></div>
 
 <ul>
   <li>1.4 创建PV</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@pgb lvm]# pvcreate /dev/hdb2
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@pgb lvm]# pvcreate /dev/hdb2
   Physical volume <span class="s2">"/dev/hdb2"</span> successfully created  
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>1.5 在线扩容 VG</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@pgb lvm]# vgs
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@pgb lvm]# vgs
   VG          <span class="c">#PV #LV #SN Attr   VSize VFree  </span>
   vg01_pgdata   2   1   0 wz--n- 1.95G 972.00M
 
@@ -253,16 +249,15 @@ Checking <span class="k">for </span>bad blocks <span class="o">(</span><span cla
   VG          <span class="c">#PV #LV #SN Attr   VSize VFree</span>
   vg01_pgdata   3   1   0 wz--n- 2.99G 1.99G
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>1.6 再次查看 VG，查看是否扩容</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="o">[</span>root@pgb lvm]# vgdisplay
-  --- Volume group ---
+  <span class="nt">---</span> Volume group <span class="nt">---</span>
   VG Name               vg01_pgdata
   System ID             
   Format                lvm2
@@ -284,20 +279,18 @@ Checking <span class="k">for </span>bad blocks <span class="o">(</span><span cla
   VG UUID               B5pg8R-2AGm-6DEp-K7HK-TI1I-HC3h-gWx32m    
   
   <span class="c">#  备注：现在 vg01_pgdata 大小为 3 GB 左右，已成功扩容 1 GB。</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="动态扩容-lv">动态扩容 LV</h1>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>  * 目标给已在线上使用的LV 扩容，在以下例子中，给目录 /database/pgdata1 扩容 512 M。
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  * 目标给已在线上使用的LV 扩容，在以下例子中，给目录 /database/pgdata1 扩容 512 M。
+</code></pre></div></div>
 
 <ul>
   <li>2.1 查看目录使用情况</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@pgb lvm]# df -hv
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@pgb lvm]# df <span class="nt">-hv</span>
 Filesystem            Size  Used Avail Use% Mounted on
 /dev/hda3              17G  9.8G  5.8G  64% /
 /dev/hda1              99M   18M   76M  20% /boot
@@ -305,15 +298,14 @@ tmpfs                 217M     0  217M   0% /dev/shm
 none                  217M  104K  217M   1% /var/lib/xenstored
 /dev/mapper/vg01_pgdata-lv_pgdata1
                      1008M   34M  924M   4% /database/pgdata1  
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>2.2 查看所属 VG 信息</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@pgb lvm]# vgdisplay
-  --- Volume group ---
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@pgb lvm]# vgdisplay
+  <span class="nt">---</span> Volume group <span class="nt">---</span>
   VG Name               vg01_pgdata
   System ID             
   Format                lvm2
@@ -335,19 +327,18 @@ none                  217M  104K  217M   1% /var/lib/xenstored
   VG UUID               B5pg8R-2AGm-6DEp-K7HK-TI1I-HC3h-gWx32m
   
 <span class="c">#备注：从上面看出，VG vg01_pgdata 最大可用空间为 2.99 GB, 目前已分配 1 GB，还剩余 1.99 GB 可以分配。</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>2.3 增加 LV 大小</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@pgb lvm]#  lvextend  -L +512M /dev/mapper/vg01_pgdata-lv_pgdata1 
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@pgb lvm]#  lvextend  <span class="nt">-L</span> +512M /dev/mapper/vg01_pgdata-lv_pgdata1 
   Extending logical volume lv_pgdata1 to 1.50 GB
   Logical volume lv_pgdata1 successfully resized
  
 
-<span class="o">[</span>root@pgb lvm]# df -hv
+<span class="o">[</span>root@pgb lvm]# df <span class="nt">-hv</span>
 Filesystem            Size  Used Avail Use% Mounted on
 /dev/hda3              17G  9.9G  5.8G  64% /
 /dev/hda1              99M   18M   76M  20% /boot
@@ -359,26 +350,24 @@ none                  217M  104K  217M   1% /var/lib/xenstored
   <span class="c">#备注： LV 扩容成功，但目录 /database/pgdata1 大小仍然为 1G，没有变化。还需要 resize2fs 命令处理下。</span>
 
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>2.4 resize2fs</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@pgb lvm]# resize2fs -f /dev/mapper/vg01_pgdata-lv_pgdata1
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@pgb lvm]# resize2fs <span class="nt">-f</span> /dev/mapper/vg01_pgdata-lv_pgdata1
 resize2fs 1.39 <span class="o">(</span>29-May-2006<span class="o">)</span>
-Filesystem at /dev/mapper/vg01_pgdata-lv_pgdata1 is mounted on /database/pgdata1; on-line resizing required
+Filesystem at /dev/mapper/vg01_pgdata-lv_pgdata1 is mounted on /database/pgdata1<span class="p">;</span> on-line resizing required
 Performing an on-line resize of /dev/mapper/vg01_pgdata-lv_pgdata1 to 524288 <span class="o">(</span>4k<span class="o">)</span> blocks.
 The filesystem on /dev/mapper/vg01_pgdata-lv_pgdata1 is now 524288 blocks long.
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>2.5 再次查看</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@pgb lvm]# df -hv
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@pgb lvm]# df <span class="nt">-hv</span>
 Filesystem            Size  Used Avail Use% Mounted on
 /dev/hda3              17G  9.8G  5.8G  64% /
 /dev/hda1              99M   18M   76M  20% /boot
@@ -386,8 +375,7 @@ tmpfs                 217M     0  217M   0% /dev/shm
 none                  217M  104K  217M   1% /var/lib/xenstored
 /dev/mapper/vg01_pgdata-lv_pgdata1
                       1.5G   34M  1.4G   3% /database/pgdata1      
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>备注：目录  /database/pgdata1  空间果然变大了。</p>
 

@@ -131,9 +131,8 @@
  需要编写与实体对应的DAO类（XxDao.java类中有包含对应实体的增、删、改、查基本操作）。在这些实体类中通常都是一些属性方法以及属性对应的get/set方法、而实体对应的DAO类中也基本会包含有增、删、改、查这些与数据库操作相关的方法。在编写了那么多的实体类和Dao类的过程中 你是否发现了这些代码中有很多地方都相似或者差不多、只是名字不同而已呢？对、那么这个时候其实我们可以定义一个模板、通过模板我们来让代码自动生成去吧。</p>
 
 <h2 id="一前言为什么要有代码的自动生成">一、前言：为什么要有代码的自动生成？</h2>
-<div class="language-text highlighter-rouge"><pre class="highlight"><code>  对于这个问题 最简洁直接的回答就是：代替手动编写代码、提高工作效率。
-</code></pre>
-</div>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  对于这个问题 最简洁直接的回答就是：代替手动编写代码、提高工作效率。
+</code></pre></div></div>
 <h2 id="二freemarker的简单介绍">二、FreeMarker的简单介绍</h2>
 <p>在进入正文前，让我们首先简单、快速了解一下FreeMarker。
   （做过Web开发的朋友肯定都是相当熟悉的 我当时 也是在做Web开发的时候第一次接触了FreeMarker）</p>
@@ -149,24 +148,23 @@
   <li>2通过一个简单的例子来展示如何使用FreeMarker定义模板、绑定模型数据、生成最终显示的Html页面：
 2.1.新建项目 在项目根目录下新建”template”文件夹，用来存放我们的Template file,
  如我们新建模板文件test.ftl  内容如下：
-    <div class="language-html highlighter-rouge"><pre class="highlight"><code> <span class="nt">&lt;html&gt;</span>  
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;html&gt;</span>  
  <span class="nt">&lt;head&gt;</span>  
  <span class="nt">&lt;title&gt;</span>Welcome!<span class="nt">&lt;/title&gt;</span>  
  <span class="nt">&lt;/head&gt;</span>  
  <span class="nt">&lt;body&gt;</span>  
  <span class="nt">&lt;h1&gt;</span>  
- Welcome ${user}<span class="err">&lt;</span>#if user == "Big Joe"&gt;, our beloved leader<span class="err">&lt;</span>/#if&gt;!  
+ Welcome ${user}<span class="nt">&lt;</span><span class="err">#</span><span class="na">if</span> <span class="na">user =</span><span class="s">=</span> <span class="err">"</span><span class="na">Big</span> <span class="na">Joe</span><span class="err">"</span><span class="nt">&gt;</span>, our beloved leader<span class="nt">&lt;/</span><span class="err">#</span><span class="nt">if&gt;</span>!  
  <span class="nt">&lt;/h1&gt;</span>  
  <span class="nt">&lt;p&gt;</span>Our latest product:  
  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"${latestProduct.url}"</span><span class="nt">&gt;</span>${latestProduct.name}<span class="nt">&lt;/a&gt;</span>!  
  <span class="nt">&lt;/body&gt;</span>  
  <span class="nt">&lt;/html&gt;</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <p>2.2.项目引入freemarker.jar（下载地址：https://jarfiles.pandaidea.com/freemarker.html），
     在Java类中使用FreeMarker API方法引用模板文件、创建数据模型、合并数据模型与模板文件最终输入，
  代码如下：</p>
-    <div class="language-java highlighter-rouge"><pre class="highlight"><code> <span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>  
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>  
  <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>  
  <span class="kn">import</span> <span class="nn">java.io.OutputStreamWriter</span><span class="o">;</span>  
  <span class="kn">import</span> <span class="nn">java.io.Writer</span><span class="o">;</span>  
@@ -212,11 +210,10 @@
      <span class="o">}</span>  
      
  <span class="o">}</span>  
-</code></pre>
-    </div>
+</code></pre></div>    </div>
 
     <p>2.3.最终生成的HTML的页面代码如下：</p>
-    <div class="language-html highlighter-rouge"><pre class="highlight"><code> <span class="nt">&lt;html&gt;</span>  
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;html&gt;</span>  
  <span class="nt">&lt;head&gt;</span>  
  <span class="nt">&lt;title&gt;</span>Welcome!<span class="nt">&lt;/title&gt;</span>  
  <span class="nt">&lt;/head&gt;</span>  
@@ -228,14 +225,13 @@
  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"products/greenmouse.html"</span><span class="nt">&gt;</span>green mouse<span class="nt">&lt;/a&gt;</span>!  
  <span class="nt">&lt;/body&gt;</span>  
  <span class="nt">&lt;/html&gt;</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <h2 id="三如何使用freemerker完成java类代码的自动生成">三、如何使用FreeMerker完成Java类代码的自动生成</h2>
   </li>
   <li>
     <p>1、属性类型的枚举类 PropertyType.java</p>
 
-    <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="cm">/** 
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="cm">/** 
    * 属性类型枚举类 
    * @author github.com/zmatsh 
    * 
@@ -243,13 +239,12 @@
   <span class="kd">public</span> <span class="kd">enum</span> <span class="n">PropertyType</span> <span class="o">{</span>  
       <span class="n">Byte</span><span class="o">,</span> <span class="n">Short</span><span class="o">,</span> <span class="n">Int</span><span class="o">,</span> <span class="n">Long</span><span class="o">,</span> <span class="n">Boolean</span><span class="o">,</span> <span class="n">Float</span><span class="o">,</span> <span class="n">Double</span><span class="o">,</span> <span class="n">String</span><span class="o">,</span> <span class="n">ByteArray</span><span class="o">,</span> <span class="n">Date</span>  
   <span class="o">}</span> 
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>2、实体对应的字段属性类 Property.java</li>
 </ul>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="cm">/** 
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/** 
  * 实体对应的属性类 
  * @author github.com/zmatsh 
  * 
@@ -287,14 +282,13 @@
     <span class="o">}</span>  
           
 <span class="o">}</span>  
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>3、实体模型类 Entity.java</li>
 </ul>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>  
   
 <span class="cm">/** 
@@ -355,14 +349,13 @@
     <span class="o">}</span>     
   
 <span class="o">}</span>  
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>4、在项目根目录下新建”template”文件夹，用来存放我们的Template file, 新建实体模板entity.ftl 内容如下：</li>
 </ul>
 
-<div class="language-text highlighter-rouge"><pre class="highlight"><code>package ${entity.javaPackage};  
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>package ${entity.javaPackage};  
   
 /**  
  * This code is generated by FreeMarker  
@@ -401,14 +394,13 @@ public class ${entity.className}&lt;#if entity.superclass?has_content&gt; extend
       
 &lt;/#list&gt;  
 }  
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>5、自动生成实体类 客户端代码 EntityGeneratorClient.java</li>
 </ul>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>  
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>  
 <span class="kn">import</span> <span class="nn">java.io.FileWriter</span><span class="o">;</span>  
 <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>  
 <span class="kn">import</span> <span class="nn">java.io.OutputStreamWriter</span><span class="o">;</span>  
@@ -533,8 +525,7 @@ public class ${entity.className}&lt;#if entity.superclass?has_content&gt; extend
   
 <span class="o">}</span>  
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="四背后的思考">四、背后的思考</h1>
 <p>通过上面两个简单的示例我们了解到所谓的自动生成代码其实就是：

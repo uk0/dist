@@ -129,8 +129,8 @@ author：zhangjianxin</p>
 
 <p>[TOC]</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code>
-<span class="kn">import</span> <span class="nn">socket</span><span class="o">,</span><span class="nn">asyncore</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="nn">socket</span><span class="p">,</span><span class="n">asyncore</span>
 
 <span class="k">class</span> <span class="nc">forwarder</span><span class="p">(</span><span class="n">asyncore</span><span class="o">.</span><span class="n">dispatcher</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">remoteip</span><span class="p">,</span><span class="n">remoteport</span><span class="p">,</span><span class="n">backlog</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
@@ -233,8 +233,7 @@ author：zhangjianxin</p>
 
     <span class="n">asyncore</span><span class="o">.</span><span class="n">loop</span><span class="p">()</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>以上操作经过验证可以直接拿去。</li>

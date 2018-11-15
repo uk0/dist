@@ -134,7 +134,7 @@
   <li>将音频数据分析的结果存储到数据库</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
 <span class="c"># -*- coding: utf-8 -*-</span>
 <span class="kn">from</span> <span class="nn">dejavu</span> <span class="kn">import</span> <span class="n">Dejavu</span>
 
@@ -155,14 +155,13 @@
 <span class="n">djv</span><span class="o">.</span><span class="n">fingerprint_directory</span><span class="p">(</span><span class="s">"/Users/zhangjianxin/home/mp3/"</span><span class="p">,</span> <span class="p">[</span><span class="s">".mp3"</span><span class="p">])</span>
 <span class="k">print</span><span class="p">(</span><span class="n">djv</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">get_num_fingerprints</span><span class="p">())</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>监听麦克风进行识别歌曲</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
 <span class="c"># -*- coding: utf-8 -*-</span>
 
 
@@ -187,19 +186,18 @@
     <span class="k">print</span> <span class="s">"No Match"</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="n">song</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="需要用到的工具">需要用到的工具</h2>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>python 2.7
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python 2.7
 
 brew install portaudio
 brew install ffmpeg
 brew install mysql-connector-c <span class="c"># my_config.h</span>
 brew install mysql
 <span class="c">#!!!  mysql-connector-c (my_config.h) -&gt;  mysql</span>
-ln -s  ../../../../mysql-connector-c/6.1.11/include/my_config.h ./
+ln <span class="nt">-s</span>  ../../../../mysql-connector-c/6.1.11/include/my_config.h ./
 
 
 brew link mysql <span class="c"># create links</span>
@@ -208,8 +206,7 @@ pip install mysql-python
 pip install <span class="nv">numpy</span><span class="o">==</span>1.10.2 <span class="c"># 版本兼容性问题</span>
 pip install PyDejavu
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><img src="http://zmatsh.b0.upaiyun.com/demos/788db197-f796-42d2-8ea5-ef655160e7c5.png" alt="" /></p>
 

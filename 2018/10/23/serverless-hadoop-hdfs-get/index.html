@@ -154,7 +154,7 @@
   <li>Python</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">hdfs</span> <span class="kn">import</span> <span class="n">Client</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">hdfs</span> <span class="kn">import</span> <span class="n">Client</span>
 <span class="kn">from</span> <span class="nn">bottle</span> <span class="kn">import</span> <span class="n">route</span><span class="p">,</span><span class="n">HTTPResponse</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="s">"http://hdfs-web-svc.cloudera:50070"</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="s">"/"</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
@@ -168,14 +168,13 @@
         <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">,</span> <span class="s">'ignore'</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">'gbk'</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">HTTPResponse</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">content</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>serverless.yml</li>
 </ul>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="c1"># Welcome to Serverless!</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Welcome to Serverless!</span>
 <span class="c1">#</span>
 <span class="c1"># For full config options, check the kubeless plugin docs:</span>
 <span class="c1">#    https://github.com/serverless/serverless-kubeless</span>
@@ -184,7 +183,7 @@
 <span class="c1">#    http://kubeless.io</span>
 
 <span class="c1"># Update the service name below with your own service name</span>
-<span class="s">service</span><span class="pi">:</span> <span class="s">getfile</span>
+<span class="na">service</span><span class="pi">:</span> <span class="s">getfile</span>
 
 <span class="c1"># Please ensure the serverless-kubeless provider plugin is installed globally.</span>
 <span class="c1"># $ npm install -g serverless-kubeless</span>
@@ -192,20 +191,19 @@
 <span class="c1"># ...before installing project dependencies to register this provider.</span>
 <span class="c1"># $ npm install</span>
 
-<span class="s">provider</span><span class="pi">:</span>
-  <span class="s">name</span><span class="pi">:</span> <span class="s">kubeless</span>
-  <span class="s">namespace</span><span class="pi">:</span> <span class="s">${env:K8S_NAMESPACE, 'cloudera'}</span>
-  <span class="s">runtime</span><span class="pi">:</span> <span class="s">python2.7</span>
+<span class="na">provider</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">kubeless</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">${env:K8S_NAMESPACE, 'cloudera'}</span>
+  <span class="na">runtime</span><span class="pi">:</span> <span class="s">python2.7</span>
 
-<span class="s">plugins</span><span class="pi">:</span>
+<span class="na">plugins</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="s">serverless-kubeless</span>
 
-<span class="s">functions</span><span class="pi">:</span>
-  <span class="s">getfile</span><span class="pi">:</span>
-    <span class="s">handler</span><span class="pi">:</span> <span class="s">handler.getfile</span>
+<span class="na">functions</span><span class="pi">:</span>
+  <span class="na">getfile</span><span class="pi">:</span>
+    <span class="na">handler</span><span class="pi">:</span> <span class="s">handler.getfile</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>requirements.txt</li>
@@ -219,21 +217,20 @@ hdfs==2.1.0
   <li>kubernetes Ingress</li>
 </ul>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">extensions/v1beta1</span>
-<span class="s">kind</span><span class="pi">:</span> <span class="s">Ingress</span>
-<span class="s">metadata</span><span class="pi">:</span>
-  <span class="s">name</span><span class="pi">:</span> <span class="s">getfile-ing</span>
-  <span class="s">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
-<span class="s">spec</span><span class="pi">:</span>
-  <span class="s">rules</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="s">host</span><span class="pi">:</span> <span class="s">getfile.kube.ibm-testing.com</span>
-    <span class="s">http</span><span class="pi">:</span>
-      <span class="s">paths</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="s">backend</span><span class="pi">:</span>
-          <span class="s">serviceName</span><span class="pi">:</span> <span class="s">getfile</span>
-          <span class="s">servicePort</span><span class="pi">:</span> <span class="s">8080</span>
-</code></pre>
-</div>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">extensions/v1beta1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Ingress</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">getfile-ing</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">cloudera</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">rules</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">host</span><span class="pi">:</span> <span class="s">getfile.kube.ibm-testing.com</span>
+    <span class="na">http</span><span class="pi">:</span>
+      <span class="na">paths</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">backend</span><span class="pi">:</span>
+          <span class="na">serviceName</span><span class="pi">:</span> <span class="s">getfile</span>
+          <span class="na">servicePort</span><span class="pi">:</span> <span class="s">8080</span>
+</code></pre></div></div>
 
 <h3 id="相关地址">相关地址</h3>
 

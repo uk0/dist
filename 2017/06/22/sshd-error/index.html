@@ -129,9 +129,8 @@
   <li>今天帮别人部署东西，远程连接服务器的时候发现发生了错误：。</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code> Unable to negotiate with 182.158.68.5 port 22: no matching host key <span class="nb">type </span>found. Their offer: ssh-dss
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Unable to negotiate with 182.158.68.5 port 22: no matching host key <span class="nb">type </span>found. Their offer: ssh-dss
+</code></pre></div></div>
 
 <h2 id="解决方案">解决方案</h2>
 
@@ -140,19 +139,17 @@
 In a nutshell, you should add the option -oHostKeyAlgorithms=+ssh-dss to the SSH command:</p>
 </blockquote>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>ssh -oHostKeyAlgorithms<span class="o">=</span>+ssh-dss root@182.158.68.5
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh <span class="nt">-oHostKeyAlgorithms</span><span class="o">=</span>+ssh-dss root@182.158.68.5
+</code></pre></div></div>
 <blockquote>
   <p>成功登录</p>
 </blockquote>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>➜  ~ ssh -oHostKeyAlgorithms<span class="o">=</span>+ssh-dss root@182.158.68.5
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>➜  ~ ssh <span class="nt">-oHostKeyAlgorithms</span><span class="o">=</span>+ssh-dss root@182.158.68.5
 The authenticity of host <span class="s1">'182.158.68.55 (182.158.68.5)'</span> can<span class="s1">'t be established.
 DSA key fingerprint is SHA256:LVWhbgb8q5TdW2QEsFjOVNp8ekW8UqPVE/KCbMOI4CM.
 Are you sure you want to continue connecting (yes/no)? 
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 
     </article>

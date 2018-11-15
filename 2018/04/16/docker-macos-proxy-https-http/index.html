@@ -141,30 +141,28 @@
 </li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 brew install privoxy
 <span class="c"># brew</span>
-/usr/bin/ruby -e <span class="s2">"</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
+/usr/bin/ruby <span class="nt">-e</span> <span class="s2">"</span><span class="k">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
 
 <span class="c"># Addr: https://brew.sh</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 <ul>
   <li>privoxy 配置文件</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>    cat /usr/local/etc/privoxy/config
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nb">cat</span> /usr/local/etc/privoxy/config
     <span class="c"># 转发地址</span>
-    forward-socks5   /               localhost:1083 .
+    forward-socks5   /               localhost:1083 <span class="nb">.</span>
     <span class="c"># 监听地址</span>
     listen-address  0.0.0.0:8118
     <span class="c"># local network do not use proxy</span>
-    forward         192.168.<span class="k">*</span>.<span class="k">*</span>/     .
-    forward            10.<span class="k">*</span>.<span class="k">*</span>.<span class="k">*</span>/     .
-    forward           127.<span class="k">*</span>.<span class="k">*</span>.<span class="k">*</span>/     .
-</code></pre>
-</div>
+    forward         192.168.<span class="k">*</span>.<span class="k">*</span>/     <span class="nb">.</span>
+    forward            10.<span class="k">*</span>.<span class="k">*</span>.<span class="k">*</span>/     <span class="nb">.</span>
+    forward           127.<span class="k">*</span>.<span class="k">*</span>.<span class="k">*</span>/     <span class="nb">.</span>
+</code></pre></div></div>
 
 <ol>
   <li>将本机的 lo0 网络接口设置成任意 IP</li>
@@ -172,18 +170,16 @@ brew install privoxy
 
 <p>lo0 接口被称作 loopback，默认是 127.0.0.1，这里可以设置任意可用 IP 地址：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo ifconfig lo0 <span class="nb">alias </span>10.200.10.1/24    <span class="c"># 24是掩码</span>
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ifconfig lo0 <span class="nb">alias </span>10.200.10.1/24    <span class="c"># 24是掩码</span>
+</code></pre></div></div>
 
 <ol>
   <li>在 Docker for Mac 里设置代理 你可以看看自己的本地代理是在监听哪个端 <code class="highlighter-rouge">privoxy</code></li>
 </ol>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code> <span class="c"># 监听地址</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># 监听地址</span>
     listen-address  0.0.0.0:8118
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>不同的软件使用的端口可能不一样，根据情况设置，最后的代理地址就是上面第二部分的 IP 加上这个端口，如下图：</p>
 
 <p><img src="http://zmatsh.b0.upaiyun.com/demos/f6838f96-60db-4123-a907-450351efda7a.png" alt="" /></p>

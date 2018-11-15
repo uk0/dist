@@ -153,11 +153,10 @@
   <li>配置Docker 代理下载镜像速度能快一点。</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>minikube start --docker-env <span class="nv">HTTP_PROXY</span><span class="o">=</span>http://192.168.155.2:8118 <span class="se">\</span>
-                 --docker-env <span class="nv">HTTPS_PROXY</span><span class="o">=</span>https://192.168.155.2:8118
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>minikube start <span class="nt">--docker-env</span> <span class="nv">HTTP_PROXY</span><span class="o">=</span>http://192.168.155.2:8118 <span class="se">\</span>
+                 <span class="nt">--docker-env</span> <span class="nv">HTTPS_PROXY</span><span class="o">=</span>https://192.168.155.2:8118
 
-</code></pre>
-</div>
+</code></pre></div></div>
 <ul>
   <li>检查kubernetes 是否已经启动完成。</li>
 </ul>
@@ -210,28 +209,26 @@
   </li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>    serverless create --template kubeless-python
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    serverless create <span class="nt">--template</span> kubeless-python
+</code></pre></div></div>
 
 <ul>
   <li>结果</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>➜  demo2 serverless create --template kubeless-python
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>➜  demo2 serverless create <span class="nt">--template</span> kubeless-python
     Serverless: Generating boilerplate...
     _______                             __
     |   _   .-----.----.--.--.-----.----|  .-----.-----.-----.
-    |   |___|  -__|   _|  |  |  -__|   _|  |  -__|__ --|__ --|
+    |   |___|  <span class="nt">-__</span>|   _|  |  |  <span class="nt">-__</span>|   _|  |  <span class="nt">-__</span>|__ <span class="nt">--</span>|__ <span class="nt">--</span>|
     |____   |_____|__|  <span class="se">\_</span>__/|_____|__| |__|_____|_____|_____|
     |   |   |             The Serverless Application Framework
     |       |                           serverless.com, v1.25.0
-    -------<span class="s1">'
+    <span class="nt">-------</span><span class="s1">'
 
     Serverless: Successfully generated boilerplate for template: "kubeless-python"
     Serverless: NOTE: Please update the "service" property in serverless.yml with your service name
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 <ul>
   <li>目录介绍</li>
 </ul>
@@ -248,7 +245,7 @@
   <li>handler.py</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">json</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">json</span>
 <span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s">"message"</span><span class="p">:</span> <span class="s">"Go Serverless v1.0! Your function executed successfully!"</span><span class="p">,</span>
@@ -259,13 +256,12 @@
         <span class="s">"body"</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">response</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <ul>
   <li>serverless.yml</li>
 </ul>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code>    <span class="c1"># Welcome to Serverless!</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1"># Welcome to Serverless!</span>
     <span class="c1">#</span>
     <span class="c1"># For full config options, check the kubeless plugin docs:</span>
     <span class="c1">#    https://github.com/serverless/serverless-kubeless</span>
@@ -274,7 +270,7 @@
     <span class="c1">#    http://kubeless.io</span>
 
     <span class="c1"># Update the service name below with your own service name</span>
-    <span class="s">service</span><span class="pi">:</span> <span class="s">hello-world</span>
+    <span class="na">service</span><span class="pi">:</span> <span class="s">hello-world</span>
 
     <span class="c1"># Please ensure the serverless-kubeless provider plugin is installed globally.</span>
     <span class="c1"># $ npm install -g serverless-kubeless</span>
@@ -282,19 +278,18 @@
     <span class="c1"># ...before installing project dependencies to register this provider.</span>
     <span class="c1"># $ npm install</span>
 
-    <span class="s">provider</span><span class="pi">:</span>
-    <span class="s">name</span><span class="pi">:</span> <span class="s">kubeless</span>
-    <span class="s">runtime</span><span class="pi">:</span> <span class="s">python2.7</span>
+    <span class="na">provider</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">kubeless</span>
+    <span class="na">runtime</span><span class="pi">:</span> <span class="s">python2.7</span>
 
-    <span class="s">plugins</span><span class="pi">:</span>
+    <span class="na">plugins</span><span class="pi">:</span>
     <span class="pi">-</span> <span class="s">serverless-kubeless</span>
 
-    <span class="s">functions</span><span class="pi">:</span>
-    <span class="s">demo2</span><span class="pi">:</span>  <span class="c1"># 有重名 hello 所以改成demo2</span>
-        <span class="s">handler</span><span class="pi">:</span> <span class="s">handler.hello</span>
+    <span class="na">functions</span><span class="pi">:</span>
+    <span class="na">demo2</span><span class="pi">:</span>  <span class="c1"># 有重名 hello 所以改成demo2</span>
+        <span class="na">handler</span><span class="pi">:</span> <span class="s">handler.hello</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>
@@ -311,14 +306,13 @@
   </li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>    ➜  demo2 serverless deploy
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    ➜  demo2 serverless deploy
     Serverless: Packaging service...
     Serverless: Excluding development dependencies...
     Serverless: Deploying <span class="k">function </span>demo2...
     Serverless: Function demo2 successfully deployed
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>查看是否部署成功</li>
@@ -330,21 +324,19 @@
   <li>创建<code class="highlighter-rouge">Ingress</code></li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>kubeless ingress create ingress-demo2  -n default --function demo2
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubeless ingress create ingress-demo2  <span class="nt">-n</span> default <span class="nt">--function</span> demo2
 <span class="c"># 参数介绍</span>
 <span class="c"># ingress-demo 是ingress 的名字</span>
 <span class="c"># -n 是kubernetes 的命名空间</span>
 <span class="c"># --function 是你要绑定到那个 function</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>执行命令 没有错误即可，检查 ingress 是否创建</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>    kubeless ingress list
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    kubeless ingress list
+</code></pre></div></div>
 
 <p><img src="http://zmatsh.b0.upaiyun.com/demos/e2839acc-e728-4f81-99e1-97474ec53a40.png" alt="" /></p>
 
@@ -352,9 +344,8 @@
   <li>找到我们的链接</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>    demo2.192.168.64.2.nip.io
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    demo2.192.168.64.2.nip.io
+</code></pre></div></div>
 
 <ul>
   <li>用postman进行测试。</li>

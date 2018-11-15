@@ -144,9 +144,8 @@ It’s based on the excellent work of <a href="https://registry.hub.docker.com/u
 
 <p>Supposing you’ve an Apache or Nginx Docker container named <code class="highlighter-rouge">web_service_container</code> listening on port 80:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ docker run --rm -it --link web_service_container wernight/ngrok ngrok http web_service_container:80
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker run --rm -it --link web_service_container wernight/ngrok ngrok http web_service_container:80
+</code></pre></div></div>
 
 <h3 id="environment-variables">Environment variables</h3>
 
@@ -176,33 +175,29 @@ then you can use instead envrionment variables magic below.</p>
   <li>
     <p>We’ll set up a simple example HTTP server in a docker container named <code class="highlighter-rouge">www</code>:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ docker run -v /usr/share/nginx/html --name www_data busybox true
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker run -v /usr/share/nginx/html --name www_data busybox true
 $ docker run --rm --volumes-from www_data busybox /bin/sh -c 'echo "&lt;h1&gt;Yo&lt;/h1&gt;" &gt; /usr/share/nginx/html/index.html'
 $ docker run -d -p 80 --volumes-from www_data --name www nginx
 $ curl $(docker port www 80)
 &lt;h1&gt;Yo&lt;/h1&gt;
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Now we’ll link that HTTP server into an ngrok container to expose it on the internet:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ docker run -d -p 4040 --link www:http --name www_ngrok wernight/ngrok
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker run -d -p 4040 --link www:http --name www_ngrok wernight/ngrok
+</code></pre></div>    </div>
   </li>
   <li>
     <p>You can now access the <a href="https://ngrok.com/docs#client-api">API</a> to find the assigned domain:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ curl $(docker port www_ngrok 4040)/api/tunnels
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ curl $(docker port www_ngrok 4040)/api/tunnels
+</code></pre></div>    </div>
 
     <p>or access the web UI to see requests and responses:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ xdg-open http://$(docker port www_ngrok 4040)
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ xdg-open http://$(docker port www_ngrok 4040)
+</code></pre></div>    </div>
   </li>
 </ol>
 
@@ -210,13 +205,12 @@ $ curl $(docker port www 80)
 
 <p>For common cases you may want to create an alias in your <code class="highlighter-rouge">~/.profile</code> (or <code class="highlighter-rouge">~/.bashrc</code>, <code class="highlighter-rouge">~/.zshrc</code>, or equivalent):</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>function docker-ngrok() {
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function docker-ngrok() {
   docker run --rm -it --link "$1":http wernight/ngrok ngrok http http:80
 }
 # For ZSH with Oh-My-Zsh! and 'docker' plugin enabled, you can also enable auto-completion:
 #compdef __docker_containers docker-ngrok
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Then to the simple example just do <code class="highlighter-rouge">docker-ngrok web_service_container</code>.</p>
 

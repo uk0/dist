@@ -130,7 +130,7 @@ author：zhangjianxin</p>
 <p>[TOC]</p>
 
 <h1 id="1-concurrentblockingqueue">1. ConcurrentBlockingQueue</h1>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">me</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">tools</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">me</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">tools</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.util.concurrent.TimeUnit</span><span class="o">;</span>
@@ -229,11 +229,10 @@ author：zhangjianxin</p>
         <span class="o">}</span>
 
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <h1 id="2lengthbytearrayencoder">2.LengthByteArrayEncoder</h1>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Sharable</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Sharable</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">LengthByteArrayEncoder</span> <span class="kd">extends</span> <span class="n">MessageToMessageEncoder</span><span class="o">&lt;</span><span class="kt">byte</span><span class="o">[]&gt;</span> <span class="o">{</span>
 	<span class="nd">@Override</span>
 	<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">encode</span><span class="o">(</span><span class="n">ChannelHandlerContext</span> <span class="n">ctx</span><span class="o">,</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">msg</span><span class="o">,</span>
@@ -378,8 +377,7 @@ author：zhangjianxin</p>
 		<span class="o">}</span>
 	<span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="推荐在必要时候使用移位">推荐在必要时候使用移位。</h2>
 

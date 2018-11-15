@@ -146,14 +146,14 @@ broker-b.properties
 broker-c.properties
 修改下面配置文件的 <code class="highlighter-rouge">brokerName</code>即可</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>    <span class="c">#所属集群名字</span>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c">#所属集群名字</span>
     <span class="nv">brokerClusterName</span><span class="o">=</span>rocketmq-aom
     <span class="c">#broker名字，注意此处不同的配置文件填写的不一样</span>
     <span class="nv">brokerName</span><span class="o">=</span>broker-a|b|c
     <span class="c">#0 表示 Master，&gt;0 表示 Slave</span>
     <span class="nv">brokerId</span><span class="o">=</span>0
     <span class="c">#nameServer地址，分号分割</span>
-    <span class="nv">namesrvAddr</span><span class="o">=</span>tod1:9876;tod2:9876;tod3:9876
+    <span class="nv">namesrvAddr</span><span class="o">=</span>tod1:9876<span class="p">;</span>tod2:9876<span class="p">;</span>tod3:9876
     <span class="c">#在发送消息时，自动创建服务器不存在的topic，默认创建的队列数</span>
     <span class="nv">defaultTopicQueueNums</span><span class="o">=</span>4
     <span class="c">#是否允许 Broker 自动创建Topic，建议线下开启，线上关闭</span>
@@ -206,8 +206,7 @@ broker-c.properties
     <span class="c">#sendMessageThreadPoolNums=128</span>
     <span class="c">#拉消息线程池数量</span>
     <span class="c">#pullMessageThreadPoolNums=128</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
 </ul>
 
@@ -216,29 +215,27 @@ broker-c.properties
   <li>
     <p>修改脚本参数</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>   <span class="c">#runbroker.sh</span>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="c">#runbroker.sh</span>
     <span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">JAVA_OPT</span><span class="k">}</span><span class="s2"> -server -Xms1g  -Xmx1g -Xmn512m -XX:PermSize=128m -XX:MaxPermSize=320m"</span>
    <span class="c">#runserver.sh</span>
    <span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">JAVA_OPT</span><span class="k">}</span><span class="s2"> -server -Xms1g -Xmx1g -Xmn512m -XX:PermSize=128m -XX:MaxPermSize=320m
-</span></code></pre>
-    </div>
+</span></code></pre></div>    </div>
   </li>
   <li>
     <p>启动RocketMQ</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
    <span class="c">#先启动Nameserv（三台机器）</span>
     nohup sh mqnamesrv &amp;
     nohup sh mqnamesrv &amp;
     nohup sh mqnamesrv &amp;
    <span class="c"># 启动 broker（三台机器）</span>
-    nohup sh mqbroker -c /home/rocketmq/conf/2m-noslave/broker-a.properties &gt;/dev/null 2&gt;&amp;1 &amp; 
+    nohup sh mqbroker <span class="nt">-c</span> /home/rocketmq/conf/2m-noslave/broker-a.properties <span class="o">&gt;</span>/dev/null 2&gt;&amp;1 &amp; 
 
-    nohup sh mqbroker -c /home/rocketmq/conf/2m-noslave/broker-b.properties &gt;/dev/null 2&gt;&amp;1 &amp; 
+    nohup sh mqbroker <span class="nt">-c</span> /home/rocketmq/conf/2m-noslave/broker-b.properties <span class="o">&gt;</span>/dev/null 2&gt;&amp;1 &amp; 
 
-    nohup sh mqbroker -c /home/rocketmq/conf/2m-noslave/broker-c.properties &gt;/dev/null 2&gt;&amp;1 &amp; 
-</code></pre>
-    </div>
+    nohup sh mqbroker <span class="nt">-c</span> /home/rocketmq/conf/2m-noslave/broker-c.properties <span class="o">&gt;</span>/dev/null 2&gt;&amp;1 &amp; 
+</code></pre></div>    </div>
   </li>
 </ul>
 
@@ -248,15 +245,14 @@ broker-c.properties
   <li>
     <p>test RocketMQ</p>
 
-    <div class="language-text highlighter-rouge"><pre class="highlight"><code>    [root@tod1 bin]# ./mqadmin clusterList -n 192.168.1.149:9876
+    <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    [root@tod1 bin]# ./mqadmin clusterList -n 192.168.1.149:9876
     Java HotSpot(TM) 64-Bit Server VM warning: ignoring option PermSize=128m; support was removed in 8.0
     Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=128m; support was removed in 8.0
     #Cluster Name     #Broker Name            #BID  #Addr                  #Version                #InTPS(LOAD)       #OutTPS(LOAD) #PCWait(ms) #Hour #SPACE
     rocketmq-aom      broker-a                0     192.168.1.149:10911    V4_2_0_SNAPSHOT          0.00(0,0ms)         0.00(0,0ms)          0 421335.24 0.0128
     rocketmq-aom      broker-b                0     192.168.1.150:10911    V4_2_0_SNAPSHOT          0.00(0,0ms)         0.00(0,0ms)          0 421335.24 0.0116
     rocketmq-aom      broker-c                0     192.168.1.151:10911    V4_2_0_SNAPSHOT          0.00(0,0ms)         0.00(0,0ms)          0 421335.24 0.0116
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
 </ul>
 

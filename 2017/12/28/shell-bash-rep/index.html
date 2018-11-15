@@ -128,16 +128,15 @@
     <article class="article-content markdown-body">
     <h1 id="quick--start">quick  start</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
 <span class="nv">ZK_IP</span><span class="o">=</span><span class="s2">"192.168.1.1"</span>
-cat <span class="k">${</span><span class="nv">template_path</span><span class="k">}</span> |
+<span class="nb">cat</span> <span class="k">${</span><span class="nv">template_path</span><span class="k">}</span> |
 awk <span class="s1">'$0 !~ /^\s*#.*$/'</span> |
 sed <span class="s1">'s/[ "]/\\&amp;/g'</span> |
-<span class="k">while </span><span class="nb">read</span> -r line;do
-    <span class="nb">eval echo</span> <span class="k">${</span><span class="nv">line</span><span class="k">}</span>
-<span class="k">done</span> &gt;<span class="k">${</span><span class="nv">dst_path</span><span class="k">}</span>
-</code></pre>
-</div>
+<span class="k">while </span><span class="nb">read</span> <span class="nt">-r</span> line<span class="p">;</span><span class="k">do
+    </span><span class="nb">eval echo</span> <span class="k">${</span><span class="nv">line</span><span class="k">}</span>
+<span class="k">done</span> <span class="o">&gt;</span><span class="k">${</span><span class="nv">dst_path</span><span class="k">}</span>
+</code></pre></div></div>
 
 <p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
 

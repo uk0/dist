@@ -132,29 +132,26 @@ HDFS + Docker 采用集群主从模式。</p>
 </ul>
 
 <h1 id="start">start</h1>
-<div class="highlighter-rouge"><pre class="highlight"><code>* docker pull mdouchement/hdfs
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* docker pull mdouchement/hdfs
+</code></pre></div></div>
 
 <h1 id="local-build">Local build</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>docker build -t mdouchement/hdfs .
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker build <span class="nt">-t</span> mdouchement/hdfs <span class="nb">.</span>
+</code></pre></div></div>
 
 <h1 id="running-hdfs-container">Running HDFS container</h1>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># Running and get a Bash interpreter</span>
-<span class="gp">$ </span>docker run -p 22022:22 -p 8020:8020 -p 50010:50010 -p 50020:50020 -p 50070:50070 -p 50075:50075 -it mdouchement/hdfs
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Running and get a Bash interpreter</span>
+<span class="nv">$ </span>docker run <span class="nt">-p</span> 22022:22 <span class="nt">-p</span> 8020:8020 <span class="nt">-p</span> 50010:50010 <span class="nt">-p</span> 50020:50020 <span class="nt">-p</span> 50070:50070 <span class="nt">-p</span> 50075:50075 <span class="nt">-it</span> mdouchement/hdfs
 
 <span class="c"># With NFS</span>
-<span class="gp">$ </span>docker run -p 22022:22 -p 8020:8020 -p 50010:50010 -p 50020:50020 -p 50070:50070 -p 50075:50075 -p 111:111 -p 2049:2049 -it mdouchement/hdfs
+<span class="nv">$ </span>docker run <span class="nt">-p</span> 22022:22 <span class="nt">-p</span> 8020:8020 <span class="nt">-p</span> 50010:50010 <span class="nt">-p</span> 50020:50020 <span class="nt">-p</span> 50070:50070 <span class="nt">-p</span> 50075:50075 <span class="nt">-p</span> 111:111 <span class="nt">-p</span> 2049:2049 <span class="nt">-it</span> mdouchement/hdfs
 
 <span class="c"># Running as daemon</span>
-<span class="gp">$ </span>docker run -p 22022:22 -p 8020:8020 -p 50010:50010 -p 50020:50020 -p 50070:50070 -p 50075:50075 -d mdouchement/hdfs
+<span class="nv">$ </span>docker run <span class="nt">-p</span> 22022:22 <span class="nt">-p</span> 8020:8020 <span class="nt">-p</span> 50010:50010 <span class="nt">-p</span> 50020:50020 <span class="nt">-p</span> 50070:50070 <span class="nt">-p</span> 50075:50075 <span class="nt">-d</span> mdouchement/hdfs
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>Ports
@@ -186,10 +183,9 @@ HDFS + Docker 采用集群主从模式。</p>
 </ul>
 
 <h1 id="dev">dev</h1>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code> <span class="cm">/**HDFS Config*/</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="cm">/**HDFS Config*/</span>
   <span class="n">configuration</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="s">"fs.default.name"</span><span class="o">,</span> <span class="s">"hdfs://localhost:8020"</span><span class="o">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="docker这个是为了快速测试代码以及快速开发"><code class="highlighter-rouge">Docker</code>这个是为了快速测试代码，以及快速开发。</h1>
 <ul>

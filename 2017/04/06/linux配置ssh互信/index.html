@@ -132,7 +132,7 @@ author：杨然儿</p>
 
 <p>配置ssh互信的步骤如下：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>1. 首先，在要配置互信的机器上，生成各自的经过认证的key文件；
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 首先，在要配置互信的机器上，生成各自的经过认证的key文件；
 
 2. 其次，将所有的key文件汇总到一个总的认证文件中；
 
@@ -143,12 +143,11 @@ author：杨然儿</p>
 在主机名为node1,node2,node3上以相同的用户test(root用户也行，经过测试了)创建ssh互信；
 
 注意：以下所有，主机名都可以换成IP；
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>1.在每个节点上创建 RSA密钥和公钥</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>使用test(或者root)用户登陆
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>使用test(或者root)用户登陆
 
 mkdir ~/.ssh
 
@@ -161,8 +160,7 @@ cd ~/.ssh
 ssh-keygen -t rsa
 
 #需要输入一些信息，全部回车，可以不用输入
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>2.整合公钥文件</p>
 
@@ -170,37 +168,34 @@ ssh-keygen -t rsa
 
 <p>#以下命令可能提示需要输入密码，应该是各节点的密码(我的机器所有密码都一样，这是我的猜测)；</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>ssh node1 cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh node1 cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
 
 ssh node2 cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
 
 ssh node3 cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
 
 chmod 600 ~/.ssh/authorized_keys
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>3.分发整合后的公钥文件</p>
 
 <p>在node1上执行以下命令</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>scp ~/.ssh/authorized_keys  node2:~/.ssh/
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scp ~/.ssh/authorized_keys  node2:~/.ssh/
 
 scp ~/.ssh/authorized_keys  node3:~/.ssh/
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>4.测试ssh互信</p>
 
 <p>在各个节点上运行以下命令，若不需要输入密码就显示系统当前日期，就说明SSH互信已经配置成功了。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>ssh node1 date
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh node1 date
 
 ssh node2 date
 
 ssh node3 date
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>以上操作经过验证可以直接拿去。</li>

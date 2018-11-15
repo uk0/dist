@@ -127,20 +127,18 @@
   <li>下载二进制文件</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>wget http://apache.osuosl.org/geode/1.3.0/apache-geode-1.3.0.zip
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget http://apache.osuosl.org/geode/1.3.0/apache-geode-1.3.0.zip
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>复制到其他多个节点进行解压</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 unzip apache-geode-1.3.0.zip
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>
@@ -154,32 +152,29 @@ unzip apache-geode-1.3.0.zip
   </li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mkdir -p cluster_config/cluster
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir <span class="nt">-p</span> cluster_config/cluster
+</code></pre></div></div>
 
 <ul>
   <li>将<code class="highlighter-rouge">/home/hadmin/geode/config</code>内的文件复制到刚才创建的目录内，并且进行相应的修改文件名。</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 gemfire.properties	mv -&gt; cluster.properties
 
 cache.xml	mv -&gt; cluster.xml
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>结果</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
-<span class="o">[</span>root@dscn022 geode]# ls cluster_config/cluster/
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="o">[</span>root@dscn022 geode]# <span class="nb">ls </span>cluster_config/cluster/
 cluster.properties  cluster.xml
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>
@@ -190,7 +185,7 @@ cluster.properties  cluster.xml
   </li>
 </ul>
 
-<div class="language-text highlighter-rouge"><pre class="highlight"><code>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 create region --name=example-region --type=REPLICATE_PERSISTENT
 
 start server --name=server1 --server-port=40411
@@ -234,8 +229,7 @@ start server --name=server13 --locators=10.11.0.224[10334]
 
 start server --name=server20 --server-port=40431  --locators=10.11.0.224[10334]
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
     </article>
     <div class="share">

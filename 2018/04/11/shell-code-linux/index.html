@@ -133,17 +133,16 @@
 
 <h2 id="首先我们需要了解一下windows的运行机制我们先写一个简单的开启本地cmd窗口的程序">首先我们需要了解一下windows的运行机制。我们先写一个简单的开启本地cmd窗口的程序：</h2>
 
-<div class="language-c highlighter-rouge"><pre class="highlight"><code><span class="cp">#include&lt;windows.h&gt;  
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;windows.h&gt;  
 </span><span class="n">Void</span> <span class="nf">main</span><span class="p">()</span>  
 <span class="p">{</span>  
    <span class="n">WinExec</span><span class="p">(</span><span class="s">"cmd.exe"</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>  
 <span class="p">}</span> 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="在visual-c上按f10进入反汇编代码">在Visual C++上按F10进入反汇编代码:</h3>
 
-<div class="language-c highlighter-rouge"><pre class="highlight"><code><span class="o">:</span><span class="err">#</span><span class="n">include</span><span class="err">”</span><span class="n">windows</span><span class="p">.</span><span class="n">h</span><span class="err">”</span>  
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">:</span><span class="err">#</span><span class="n">include</span><span class="err">”</span><span class="n">windows</span><span class="p">.</span><span class="n">h</span><span class="err">”</span>  
 <span class="mi">2</span><span class="o">:</span><span class="kt">void</span> <span class="n">main</span><span class="p">()</span>  
 <span class="mi">3</span><span class="o">:</span>    <span class="p">{</span>  
 <span class="mo">00401010</span>   <span class="n">push</span>        <span class="n">ebp</span>  
@@ -164,8 +163,7 @@
 <span class="mo">00401037</span>   <span class="n">cmp</span>         <span class="n">esi</span><span class="p">,</span><span class="n">esp</span>  
 <span class="mo">0040103</span><span class="mi">9</span>   <span class="n">call</span>        <span class="n">__chkesp</span> <span class="p">(</span><span class="mo">00401070</span><span class="p">)</span>  
 <span class="mi">5</span><span class="o">:</span>    <span class="p">}</span>  
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>通过这个程序我们可以清楚的看到计算机在调用WinExec函数的时候是先把两个参数从右至左一次压入栈，然后调用call函数转到WinExec的地址去。但是要注意的是call函数除了实现地址的跳转还有一点就是把当前的EIP压入栈。</p>
 
@@ -179,7 +177,7 @@
 
 <p>有了入口地址，我们可以用汇编来编写我们的shellcode，</p>
 
-<div class="language-c highlighter-rouge"><pre class="highlight"><code><span class="cp">#include&lt;windows.h&gt;  
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;windows.h&gt;  
 </span><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>  
 <span class="p">{</span>  
     <span class="n">_asm</span>  
@@ -205,8 +203,7 @@
     <span class="p">};</span>  
 <span class="p">}</span>  
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>按F10进入反汇编调试器中，在按Alt+8看到汇编代码，此时并没有机器码啊，别着急，在空白的地方右击出现的下拉菜单中选中Code Byte一项。看看出现了什么？在每一行汇编代码前出现了机器码！如下图</p>
 
@@ -214,7 +211,7 @@
 
 <p>下面要做的工作就是把这些机器码抄下来了，这个是体力活。直接抄在一起比如：558BEC83EC……那么我们还要在每两个字母前手动添加/x么？当然不用，写一个小程序，一劳永逸：</p>
 
-<div class="language-c highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "stdio.h"  
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include "stdio.h"  
 #include "stdlib.h"  
 </span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>  
 <span class="p">{</span>  
@@ -247,14 +244,12 @@
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>  
       
 <span class="p">}</span>  
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>最终转换的shellcode就是</p>
 
-<div class="language-c highlighter-rouge"><pre class="highlight"><code><span class="o">/</span><span class="n">x55</span><span class="o">/</span><span class="n">x8B</span><span class="o">/</span><span class="n">xEX</span><span class="o">/</span><span class="n">x83</span><span class="o">/</span><span class="n">xEC</span><span class="o">/</span><span class="n">x40</span><span class="o">/</span><span class="n">x53</span><span class="o">/</span><span class="n">x56</span><span class="o">/</span><span class="n">x57</span><span class="o">/</span><span class="n">x8D</span><span class="o">/</span><span class="n">x7D</span><span class="o">/</span><span class="n">xC0</span><span class="o">/</span><span class="n">xB9</span><span class="o">/</span><span class="n">x10</span><span class="o">/</span><span class="n">x11</span><span class="o">/</span><span class="n">x11</span><span class="o">/</span><span class="n">x11</span><span class="o">/</span><span class="n">xB8</span><span class="o">/</span><span class="n">xCC</span><span class="o">/</span><span class="n">xCC</span><span class="o">/</span><span class="n">xCC</span><span class="o">/</span><span class="n">xCC</span><span class="o">/</span><span class="n">xF3</span><span class="o">/</span><span class="n">x1B</span><span class="o">/</span><span class="n">x55</span><span class="o">/</span><span class="n">x8B</span><span class="o">/</span><span class="n">xEC</span><span class="o">/</span><span class="n">x33</span><span class="o">/</span><span class="n">xFF</span><span class="o">/</span><span class="n">x57</span><span class="o">/</span><span class="n">x83</span><span class="o">/</span><span class="n">xEC</span><span class="o">/</span><span class="n">x04</span><span class="o">/</span><span class="n">xC6</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xF8</span><span class="o">/</span><span class="n">x63</span><span class="o">/</span><span class="n">xC6</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xF9</span><span class="o">/</span><span class="n">x6D</span><span class="o">/</span><span class="n">xC6</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xFA</span><span class="o">/</span><span class="n">x64</span><span class="o">/</span><span class="n">xC6</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xFB</span><span class="o">/</span><span class="n">x2E</span><span class="o">/</span><span class="n">xC6</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xFC</span><span class="o">/</span><span class="n">x65</span><span class="o">/</span><span class="n">xC6</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xFD</span><span class="o">/</span><span class="n">x78</span><span class="o">/</span><span class="n">xC6</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xFE</span><span class="o">/</span><span class="n">x65</span><span class="o">/</span><span class="n">x6A</span><span class="o">/</span><span class="n">x01</span><span class="o">/</span><span class="n">x8D</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xF8</span><span class="o">/</span><span class="n">x50</span><span class="o">/</span><span class="n">xBA</span><span class="o">/</span><span class="n">x0D</span><span class="o">/</span><span class="n">x25</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">x7C</span><span class="o">/</span><span class="n">xFF</span><span class="o">/</span><span class="n">xD2</span><span class="o">/</span><span class="n">xC9</span>
-</code></pre>
-</div>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">/</span><span class="n">x55</span><span class="o">/</span><span class="n">x8B</span><span class="o">/</span><span class="n">xEX</span><span class="o">/</span><span class="n">x83</span><span class="o">/</span><span class="n">xEC</span><span class="o">/</span><span class="n">x40</span><span class="o">/</span><span class="n">x53</span><span class="o">/</span><span class="n">x56</span><span class="o">/</span><span class="n">x57</span><span class="o">/</span><span class="n">x8D</span><span class="o">/</span><span class="n">x7D</span><span class="o">/</span><span class="n">xC0</span><span class="o">/</span><span class="n">xB9</span><span class="o">/</span><span class="n">x10</span><span class="o">/</span><span class="n">x11</span><span class="o">/</span><span class="n">x11</span><span class="o">/</span><span class="n">x11</span><span class="o">/</span><span class="n">xB8</span><span class="o">/</span><span class="n">xCC</span><span class="o">/</span><span class="n">xCC</span><span class="o">/</span><span class="n">xCC</span><span class="o">/</span><span class="n">xCC</span><span class="o">/</span><span class="n">xF3</span><span class="o">/</span><span class="n">x1B</span><span class="o">/</span><span class="n">x55</span><span class="o">/</span><span class="n">x8B</span><span class="o">/</span><span class="n">xEC</span><span class="o">/</span><span class="n">x33</span><span class="o">/</span><span class="n">xFF</span><span class="o">/</span><span class="n">x57</span><span class="o">/</span><span class="n">x83</span><span class="o">/</span><span class="n">xEC</span><span class="o">/</span><span class="n">x04</span><span class="o">/</span><span class="n">xC6</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xF8</span><span class="o">/</span><span class="n">x63</span><span class="o">/</span><span class="n">xC6</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xF9</span><span class="o">/</span><span class="n">x6D</span><span class="o">/</span><span class="n">xC6</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xFA</span><span class="o">/</span><span class="n">x64</span><span class="o">/</span><span class="n">xC6</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xFB</span><span class="o">/</span><span class="n">x2E</span><span class="o">/</span><span class="n">xC6</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xFC</span><span class="o">/</span><span class="n">x65</span><span class="o">/</span><span class="n">xC6</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xFD</span><span class="o">/</span><span class="n">x78</span><span class="o">/</span><span class="n">xC6</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xFE</span><span class="o">/</span><span class="n">x65</span><span class="o">/</span><span class="n">x6A</span><span class="o">/</span><span class="n">x01</span><span class="o">/</span><span class="n">x8D</span><span class="o">/</span><span class="n">x45</span><span class="o">/</span><span class="n">xF8</span><span class="o">/</span><span class="n">x50</span><span class="o">/</span><span class="n">xBA</span><span class="o">/</span><span class="n">x0D</span><span class="o">/</span><span class="n">x25</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">x7C</span><span class="o">/</span><span class="n">xFF</span><span class="o">/</span><span class="n">xD2</span><span class="o">/</span><span class="n">xC9</span>
+</code></pre></div></div>
 <p>到这里该讲的都讲完了，还是那一句话，菜鸟言论，大牛飘过。。。</p>
 
 <h3 id="原文httpsblogcsdnnetyiyefangzhou24articledetails6440239">原文：https://blog.csdn.net/yiyefangzhou24/article/details/6440239</h3>

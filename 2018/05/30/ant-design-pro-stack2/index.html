@@ -142,9 +142,9 @@
   <li>
     <p>开始这个演示，注意注释描述,代码不一定能运行，只是整体做个介绍</p>
 
-    <div class="language-js highlighter-rouge"><pre class="highlight"><code>    <span class="kr">const</span> <span class="nx">CreateForm</span> <span class="o">=</span> <span class="nx">Form</span><span class="p">.</span><span class="nx">create</span><span class="p">()(</span><span class="nx">props</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="kr">const</span> <span class="p">{</span><span class="nx">modalVisible</span><span class="p">,</span> <span class="nx">form</span><span class="p">,</span> <span class="nx">handleAdd</span><span class="p">,</span> <span class="nx">handleEdit</span><span class="p">,</span> <span class="nx">handleModalVisible</span><span class="p">,</span> <span class="nx">formData</span><span class="p">,</span> <span class="nx">formType</span><span class="p">}</span> <span class="o">=</span> <span class="nx">props</span><span class="p">;</span>  <span class="cm">/** 传入的可变变量 **/</span>
-    <span class="kr">const</span> <span class="nx">okHandle</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">const</span> <span class="nx">CreateForm</span> <span class="o">=</span> <span class="nx">Form</span><span class="p">.</span><span class="nx">create</span><span class="p">()(</span><span class="nx">props</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="p">{</span><span class="nx">modalVisible</span><span class="p">,</span> <span class="nx">form</span><span class="p">,</span> <span class="nx">handleAdd</span><span class="p">,</span> <span class="nx">handleEdit</span><span class="p">,</span> <span class="nx">handleModalVisible</span><span class="p">,</span> <span class="nx">formData</span><span class="p">,</span> <span class="nx">formType</span><span class="p">}</span> <span class="o">=</span> <span class="nx">props</span><span class="p">;</span>  <span class="cm">/** 传入的可变变量 **/</span>
+    <span class="kd">const</span> <span class="nx">okHandle</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="nx">form</span><span class="p">.</span><span class="nx">validateFields</span><span class="p">((</span><span class="nx">err</span><span class="p">,</span> <span class="nx">fieldsValue</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
         <span class="nx">form</span><span class="p">.</span><span class="nx">resetFields</span><span class="p">();</span>
@@ -191,8 +191,8 @@
 
       <span class="nx">handleEdit</span> <span class="o">=</span> <span class="nx">fields</span> <span class="o">=&gt;</span> <span class="p">{</span>
             <span class="nx">message</span><span class="p">.</span><span class="nx">success</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">fields</span><span class="p">))</span>
-            <span class="kr">const</span> <span class="p">{</span><span class="nx">paymentConfigId</span><span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">;</span>
-            <span class="kr">const</span> <span class="p">{</span><span class="nx">dispatch</span><span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">;</span>
+            <span class="kd">const</span> <span class="p">{</span><span class="nx">paymentConfigId</span><span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">;</span>
+            <span class="kd">const</span> <span class="p">{</span><span class="nx">dispatch</span><span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">;</span>
             <span class="nx">fields</span><span class="p">.</span><span class="nx">channel_id</span> <span class="o">=</span> <span class="nx">paymentConfigId</span><span class="p">;</span>
             <span class="nx">dispatch</span><span class="p">({</span>
             <span class="na">type</span><span class="p">:</span> <span class="s1">'parkingPayManager/modifyChannel'</span><span class="p">,</span>
@@ -212,7 +212,7 @@
         <span class="p">}</span>
 
         <span class="nx">handleAdd</span> <span class="o">=</span> <span class="nx">fields</span> <span class="o">=&gt;</span> <span class="p">{</span>
-            <span class="kr">const</span> <span class="p">{</span><span class="nx">dispatch</span><span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">;</span>
+            <span class="kd">const</span> <span class="p">{</span><span class="nx">dispatch</span><span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">;</span>
             <span class="cm">/**switchPress true = 0, fasle = 1 方便数据存储*/</span> 
             <span class="nx">fields</span><span class="p">.</span><span class="nx">channel_status</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">switchPress</span><span class="p">(</span><span class="nx">fields</span><span class="p">.</span><span class="nx">channel_status</span><span class="p">);</span>
             <span class="cm">/**触发action触发model层的state的初始化*/</span>
@@ -263,9 +263,9 @@
     * @param  {state:Object} ... 里面多个参数 
     *
     */</span>
-    <span class="kr">const</span> <span class="p">{</span><span class="nx">isLoading</span><span class="p">,...</span><span class="err"></span><span class="p">[</span><span class="err">省略</span><span class="p">]}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="p">{</span><span class="nx">isLoading</span><span class="p">,...</span><span class="err"></span><span class="p">[</span><span class="err">省略</span><span class="p">]}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">;</span>
 
-    <span class="kr">const</span> <span class="nx">parentMethods</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">parentMethods</span> <span class="o">=</span> <span class="p">{</span>
         <span class="na">handleAdd</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleAdd</span><span class="p">,</span>
         <span class="na">handleModalVisible</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleModalVisible</span><span class="p">,</span>
         <span class="na">optionChildrenDataTemp</span><span class="p">:</span> <span class="nx">optionChildrenData</span><span class="p">,</span>
@@ -293,7 +293,7 @@
      **/</span>
      <span class="na">effects</span><span class="p">:</span> <span class="p">{</span>
         <span class="o">*</span> <span class="nx">insertChannelCfg</span><span class="p">({</span><span class="nx">payload</span><span class="p">,</span> <span class="nx">callback</span><span class="p">},</span> <span class="p">{</span><span class="nx">call</span><span class="p">,</span> <span class="nx">put</span><span class="p">})</span> <span class="p">{</span>
-            <span class="kr">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">yield</span> <span class="nx">call</span><span class="p">(</span><span class="nx">insertParkManagerChannelCfg</span><span class="p">,</span> <span class="nx">payload</span><span class="p">);</span>
+            <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">yield</span> <span class="nx">call</span><span class="p">(</span><span class="nx">insertParkManagerChannelCfg</span><span class="p">,</span> <span class="nx">payload</span><span class="p">);</span>
             <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"result Data  successfully"</span><span class="p">);</span>
             <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
             <span class="k">yield</span> <span class="nx">put</span><span class="p">({</span>
@@ -337,13 +337,12 @@
     *@param {JSON} params 我们传递的参数，
     *@func  request 是自己封装的一个请求的方法。
     **/</span>
-    <span class="kr">export</span> <span class="nx">async</span> <span class="kd">function</span> <span class="nx">insertParkManagerChannelCfg</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nx">insertParkManagerChannelCfg</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'/proxy-post/insertChannelCfg'</span><span class="p">,</span> <span class="p">{</span>
             <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span> <span class="na">data</span><span class="p">:</span> <span class="nx">params</span> <span class="o">||</span> <span class="p">{},</span>
         <span class="p">})</span>
     <span class="p">}</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
 </ul>
 
@@ -353,12 +352,12 @@
   <li>
     <p>开始演示</p>
 
-    <div class="language-js highlighter-rouge"><pre class="highlight"><code>
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
      <span class="cm">/**
      * 我们通过 model获得的数据将如何渲染出去是个问题，StandardTable是一个 ant封装的组件，如果你要用他的组件就要满足他的数据格式
      **/</span>
-         <span class="kr">const</span> <span class="p">{</span><span class="nl">parkingPayManager</span><span class="p">:</span> <span class="p">{</span><span class="nx">channelData</span><span class="p">}}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">;</span>
-             <span class="kr">const</span> <span class="nx">newdata</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="kd">const</span> <span class="p">{</span><span class="na">parkingPayManager</span><span class="p">:</span> <span class="p">{</span><span class="nx">channelData</span><span class="p">}}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">;</span>
+             <span class="kd">const</span> <span class="nx">newdata</span> <span class="o">=</span> <span class="p">{</span>
              <span class="na">list</span><span class="p">:</span> <span class="nx">channelData</span><span class="p">,</span>
              <span class="na">pagination</span><span class="p">:</span> <span class="p">{</span>
                  <span class="na">total</span><span class="p">:</span> <span class="nx">channelData</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
@@ -375,8 +374,7 @@
              <span class="nx">data</span><span class="o">=</span><span class="p">{</span><span class="nx">newdata</span><span class="p">}</span>
              <span class="nx">columns</span><span class="o">=</span><span class="p">{</span><span class="nx">columns</span><span class="p">}</span>
              <span class="sr">/</span><span class="err">&gt;
-</span></code></pre>
-    </div>
+</span></code></pre></div>    </div>
   </li>
 </ul>
 
@@ -386,7 +384,7 @@
   <li>
     <p>按钮定义</p>
 
-    <div class="language-js highlighter-rouge"><pre class="highlight"><code>      <span class="cm">/**
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="cm">/**
       * ()=&gt;this.ModifyHandleModalVisible(row,true) 用匿名函数的方式定义不会再加载的时候被触发
       *
       * this.ModifyHandleModalVisible(row,true)  这样会直接被触发（渲染周期开始）。
@@ -394,8 +392,7 @@
       <span class="o">&lt;</span><span class="nx">Button</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"edit"</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span><span class="o">=&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">ModifyHandleModalVisible</span><span class="p">(</span><span class="nx">row</span><span class="p">,</span><span class="kc">true</span><span class="p">)}</span><span class="o">&gt;</span>
               <span class="err">修改</span>
       <span class="o">&lt;</span><span class="sr">/Button</span><span class="err">&gt;
-</span></code></pre>
-    </div>
+</span></code></pre></div>    </div>
     <h4 id="dispatch-type-payload-获得数据的流程redux-"><span id="form_4"><font>dispatch type payload 获得数据的流程(Redux) </font></span></h4>
   </li>
   <li>
@@ -414,23 +411,22 @@
   <li>Store如何接收来自Views的Action?
     <ol>
       <li>每一个Store实例都拥有dispatch方法，Views只需要通过调用该方法，并传入action对象作为形参，Store自然就就可以收到Action，就像这样：
-        <div class="language-js highlighter-rouge"><pre class="highlight"><code>      <span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">({</span>
+        <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">({</span>
   <span class="na">type</span><span class="p">:</span> <span class="s1">'modal(namespace)/function Name'</span>
 <span class="p">});</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </li>
     </ol>
   </li>
   <li>Store在接收到Action之后，需要根据Action.type和Action.payload修改存储数据，那么，这部分逻辑写在哪里，且怎么将这部分逻辑传递给Store知道呢？
     <ol>
       <li>数据修改逻辑写在Reducer（一个纯函数）里，Store实例在创建的时候，就会被传递这样一个reducer作为形参，这样Store就可以通过Reducer的返回值更新内部数据了，先看一个简单的例子(具体的关于reducer我们后面再讲)：
-        <div class="language-js highlighter-rouge"><pre class="highlight"><code> <span class="c1">// 一个reducer</span>
+        <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">// 一个reducer</span>
  <span class="kd">function</span> <span class="nx">counterReducer</span><span class="p">(</span><span class="nx">state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">{</span>
  <span class="k">switch</span> <span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
-     <span class="k">case</span> <span class="s1">'INCREASE'</span><span class="err">:</span>
+     <span class="k">case</span> <span class="s1">'INCREASE'</span><span class="p">:</span>
      <span class="k">return</span> <span class="nx">state</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-     <span class="k">case</span> <span class="s1">'DECREASE'</span><span class="err">:</span>
+     <span class="k">case</span> <span class="s1">'DECREASE'</span><span class="p">:</span>
      <span class="k">return</span> <span class="nx">state</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
      <span class="nl">default</span><span class="p">:</span>
      <span class="k">return</span> <span class="nx">state</span><span class="p">;</span>
@@ -439,8 +435,7 @@
 
  <span class="c1">// 传递reducer作为形参</span>
  <span class="kd">let</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">Redux</span><span class="p">.</span><span class="nx">createStore</span><span class="p">(</span><span class="nx">counterReducer</span><span class="p">);</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </li>
     </ol>
   </li>
@@ -449,7 +444,7 @@
       <li>每一个Store实例都提供一个subscribe方法，Views只需要调用该方法注册一个回调（内含setState操作），之后在每次dispatch(action)时，该回调都会被触发，从而实现重新渲染；对于最新的Store数据，可以通过Store实例提供的另一个方法getState来获取，就像下面这样：</li>
     </ol>
 
-    <div class="language-js highlighter-rouge"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">unsubscribe</span> <span class="o">=</span> <span class="nx">store</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(()</span> <span class="o">=&gt;</span>
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">unsubscribe</span> <span class="o">=</span> <span class="nx">store</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(()</span> <span class="o">=&gt;</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">store</span><span class="p">.</span><span class="nx">getState</span><span class="p">())</span>
   <span class="p">);</span>
   <span class="c1">//如下</span>
@@ -472,8 +467,7 @@
           <span class="nx">replaceReducer</span>
       <span class="p">}</span>
   <span class="p">}</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>归纳总结</p>
@@ -498,15 +492,15 @@
   <li>
     <p>path 携带参数 <code class="highlighter-rouge">props.params</code></p>
 
-    <div class="language-js highlighter-rouge"><pre class="highlight"><code>  <span class="cm">/**传递*/</span>
-  <span class="kr">import</span> <span class="p">{</span> <span class="nx">Router</span><span class="p">,</span><span class="nx">Route</span><span class="p">,</span><span class="nx">hashHistory</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">'react-router'</span><span class="p">;</span>
-  <span class="kr">class</span> <span class="nx">App</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="cm">/**传递*/</span>
+  <span class="k">import</span> <span class="p">{</span> <span class="nx">Router</span><span class="p">,</span><span class="nx">Route</span><span class="p">,</span><span class="nx">hashHistory</span><span class="p">}</span> <span class="k">from</span> <span class="s1">'react-router'</span><span class="p">;</span>
+  <span class="kd">class</span> <span class="nx">App</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
       <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
       <span class="p">...</span>
       <span class="cm">/**使用方式*/</span>
       <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span><span class="na">id</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="na">name</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="na">age</span><span class="p">:</span><span class="mi">1</span><span class="p">};</span>
       <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-      <span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="err">`</span><span class="o">/</span><span class="nx">user</span><span class="o">/</span><span class="nx">$</span><span class="p">{</span><span class="nx">data</span><span class="p">}</span><span class="err">`</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="s2">`/user/</span><span class="p">${</span><span class="nx">data</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
       <span class="p">...</span>
       <span class="k">return</span> <span class="p">(</span>
           <span class="o">&lt;</span><span class="nx">Router</span> <span class="nx">history</span><span class="o">=</span><span class="p">{</span><span class="nx">hashHistory</span><span class="p">}</span><span class="o">&gt;</span>
@@ -517,21 +511,20 @@
   <span class="p">}</span>
   <span class="cm">/**接收**/</span>
 
-  <span class="kr">export</span> <span class="k">default</span> <span class="kr">class</span> <span class="nx">UserPage</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="p">{</span>
-      <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">){</span>
-          <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+  <span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">UserPage</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="p">{</span>
+      <span class="kd">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">){</span>
+          <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
       <span class="p">}</span>
       <span class="nx">render</span><span class="p">(){</span>
           <span class="k">return</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">name</span><span class="o">&lt;</span><span class="sr">/div&gt;</span><span class="err">)
 </span>      <span class="p">}</span>
   <span class="p">}</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>query 类似<code class="highlighter-rouge">request</code>的<code class="highlighter-rouge">get</code></p>
 
-    <div class="language-js highlighter-rouge"><pre class="highlight"><code>    <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s1">'/user'</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">UserPage</span><span class="p">}</span><span class="o">&gt;&lt;</span><span class="sr">/Route</span><span class="err">&gt;
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s1">'/user'</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">UserPage</span><span class="p">}</span><span class="o">&gt;&lt;</span><span class="sr">/Route</span><span class="err">&gt;
 </span>
    <span class="p">...</span>
    <span class="cm">/**使用方式**/</span>
@@ -544,13 +537,12 @@
     <span class="cm">/**获取数据**/</span>
     <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">query</span><span class="p">;</span>
     <span class="kd">var</span> <span class="p">{</span><span class="nx">id</span><span class="p">,</span><span class="nx">name</span><span class="p">,</span><span class="nx">age</span><span class="p">}</span> <span class="o">=</span> <span class="nx">data</span><span class="p">;</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>state方式类似于post方式，使用方式和query类似，首先定义路由：</p>
 
-    <div class="language-js highlighter-rouge"><pre class="highlight"><code>     <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s1">'/user'</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">UserPage</span><span class="p">}</span><span class="o">&gt;&lt;</span><span class="sr">/Route</span><span class="err">&gt;
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s1">'/user'</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">UserPage</span><span class="p">}</span><span class="o">&gt;&lt;</span><span class="sr">/Route</span><span class="err">&gt;
 </span>     <span class="p">...</span>
      <span class="err"></span><span class="cm">/**使用*/</span>
      <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span><span class="na">id</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="na">name</span><span class="p">:</span><span class="nx">sam</span><span class="p">,</span><span class="na">age</span><span class="p">:</span><span class="mi">36</span><span class="p">};</span>
@@ -562,8 +554,7 @@
      <span class="cm">/**获取数据*/</span>
      <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">state</span><span class="p">;</span>
      <span class="kd">var</span> <span class="p">{</span><span class="nx">id</span><span class="p">,</span><span class="nx">name</span><span class="p">,</span><span class="nx">age</span><span class="p">}</span> <span class="o">=</span> <span class="nx">data</span><span class="p">;</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <p><code class="highlighter-rouge">state</code>方式依然可以传递任意类型的数据，而且可以不以明文方式传输.</p>

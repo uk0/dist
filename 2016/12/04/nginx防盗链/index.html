@@ -131,7 +131,7 @@
   <li>
     <p>code-nginx.conf</p>
 
-    <div class="language-html highlighter-rouge"><pre class="highlight"><code>  location ~* \.(gif|jpg|png|jpeg)$ {
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  location ~* \.(gif|jpg|png|jpeg)$ {
       expires     30d;
       valid_referers *.firsh.me firsh.me;
       if ($invalid_referer) {
@@ -139,8 +139,7 @@
       #return 404;
       }
    }
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
 </ul>
 
