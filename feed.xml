@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-11-15T17:08:56+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html">git丢弃本地修改的所有文件（新增、删除、修改）</title><link href="http://firsh.me/2018/11/15/git-check-out-reject/" rel="alternate" type="text/html" title="git丢弃本地修改的所有文件（新增、删除、修改）" /><published>2018-11-15T17:03:19+08:00</published><updated>2018-11-15T17:03:19+08:00</updated><id>http://firsh.me/2018/11/15/git-check-out-reject</id><content type="html" xml:base="http://firsh.me/2018/11/15/git-check-out-reject/">&lt;h2 id=&quot;git丢弃本地修改的所有文件新增删除修改&quot;&gt;git丢弃本地修改的所有文件（新增、删除、修改）&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-11-15T20:41:15+08:00</updated><id>http://firsh.me/</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html">git丢弃本地修改的所有文件（新增、删除、修改）</title><link href="http://firsh.me/2018/11/15/git-check-out-reject/" rel="alternate" type="text/html" title="git丢弃本地修改的所有文件（新增、删除、修改）" /><published>2018-11-15T17:03:19+08:00</published><updated>2018-11-15T17:03:19+08:00</updated><id>http://firsh.me/2018/11/15/git-check-out-reject</id><content type="html" xml:base="http://firsh.me/2018/11/15/git-check-out-reject/">&lt;h2 id=&quot;git丢弃本地修改的所有文件新增删除修改&quot;&gt;git丢弃本地修改的所有文件（新增、删除、修改）&lt;/h2&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout . &lt;span class=&quot;c&quot;&gt;#本地所有修改的。没有的提交的，都返回到原来的状态&lt;/span&gt;
 git stash &lt;span class=&quot;c&quot;&gt;#把所有没有提交的修改暂存到stash里面。可用git stash pop回复。&lt;/span&gt;
@@ -261,6 +261,27 @@ usbmon
 jackuser
 vboxusers
 aln
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;清除 Javascript 脚本里面的所有console(包含即删除整行)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; sed -i &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/console/d&quot;&lt;/span&gt; app.txt &lt;span class=&quot;c&quot;&gt;# Mac （Mac默认会要求你操作源文件的时候备份）&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# 可以配合 find 使用&lt;/span&gt;
+ find . -name &lt;span class=&quot;s2&quot;&gt;&quot;*.js&quot;&lt;/span&gt;
+ sed -i &lt;span class=&quot;s2&quot;&gt;&quot;/console/d&quot;&lt;/span&gt; app.txt &lt;span class=&quot;c&quot;&gt;# Linux&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;#Mac &lt;/span&gt;
+
+find . -name &lt;span class=&quot;s2&quot;&gt;&quot;*.js&quot;&lt;/span&gt; | awk &lt;span class=&quot;s1&quot;&gt;'{print$1}'&lt;/span&gt; | xargs -L1  -I NAME sed -i &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;  &lt;span class=&quot;s2&quot;&gt;&quot;/console/d&quot;&lt;/span&gt; NAME
+
+&lt;span class=&quot;c&quot;&gt;# 如果失败或者遇到问题&lt;/span&gt;
+git checkout . &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git clean -xdf
+
+
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 

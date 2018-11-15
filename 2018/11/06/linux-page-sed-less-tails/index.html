@@ -271,6 +271,27 @@ aln
 </code></pre>
 </div>
 
+<ul>
+  <li>清除 Javascript 脚本里面的所有console(包含即删除整行)</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code> sed -i <span class="s2">""</span> <span class="s2">"/console/d"</span> app.txt <span class="c"># Mac （Mac默认会要求你操作源文件的时候备份）</span>
+
+<span class="c"># 可以配合 find 使用</span>
+ find . -name <span class="s2">"*.js"</span>
+ sed -i <span class="s2">"/console/d"</span> app.txt <span class="c"># Linux</span>
+
+<span class="c">#Mac </span>
+
+find . -name <span class="s2">"*.js"</span> | awk <span class="s1">'{print$1}'</span> | xargs -L1  -I NAME sed -i <span class="s2">""</span>  <span class="s2">"/console/d"</span> NAME
+
+<span class="c"># 如果失败或者遇到问题</span>
+git checkout . <span class="o">&amp;&amp;</span> git clean -xdf
+
+
+</code></pre>
+</div>
+
 <p>一个Linux 大佬 https://blog.csdn.net/imxiangzi/article/details/50387073</p>
 
 <p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
