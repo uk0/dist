@@ -1,5 +1,11 @@
 {
   
+  "2018-11-15-git-check-out-reject": {
+    "title": "git丢弃本地修改的所有文件（新增、删除、修改）",
+    "url": " /2018/11/15/git-check-out-reject/",
+    "category": "git"
+  },
+  
   "2018-11-08-golang-zlib-en-de-text": {
     "title": "Golang PHP zlib (php)加密&lt;=&gt;解密(go).",
     "url": " /2018/11/08/golang-zlib-en-de-text/",
@@ -1534,6 +1540,12 @@
     "title": "Golang PHP zlib (php)加密&lt;=&gt;解密(go).",
     "url": "/2018/11/08/golang-zlib-en-de-text/",
     "category": "[&quot;zlib&quot;, &quot;golang&quot;, &quot;php&quot;]"
+  },
+  
+  "2018-11-15-git-check-out-reject": {
+    "title": "git丢弃本地修改的所有文件（新增、删除、修改）",
+    "url": "/2018/11/15/git-check-out-reject/",
+    "category": "[&quot;git&quot;]"
   },
   
   "wiki-android-studio": {

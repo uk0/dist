@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Python &mdash; 张建新</title>
+    <title>git丢弃本地修改的所有文件（新增、删除、修改） &mdash; 张建新</title>
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
@@ -21,23 +21,23 @@
     
 
     
-    <link rel="canonical" href="http://firsh.me/wiki/python/">
+    <link rel="canonical" href="http://firsh.me/2018/11/15/git-check-out-reject/">
     <link rel="alternate" type="application/atom+xml" title="张建新" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="Python">
+    <meta property="og:title" content="git丢弃本地修改的所有文件（新增、删除、修改）">
       
-    <meta name="keywords" content="Python">
-    <meta name="og:keywords" content="Python">
+    <meta name="keywords" content="git 丢弃本地修改">
+    <meta name="og:keywords" content="git 丢弃本地修改">
       
-    <meta name="description" content="requests">
-    <meta name="og:description" content="requests">
+    <meta name="description" content="git丢弃本地修改的所有文件（新增、删除、修改）">
+    <meta name="og:description" content="git丢弃本地修改的所有文件（新增、删除、修改）">
       
     
     
         
     
-    <meta property="og:url" content="http://firsh.me/wiki/python/">
+    <meta property="og:url" content="http://firsh.me/2018/11/15/git-check-out-reject/">
     <meta property="og:site_name" content="张建新">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -85,89 +85,62 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="Python">
+    <section class="collection-head small geopattern" data-pattern-id="git丢弃本地修改的所有文件（">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">Python</h1>
+        <h1 class="collection-header">git丢弃本地修改的所有文件（新增、删除、修改）</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2018/11/15
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#git" title="git">git</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
 </div>
 </section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3969253077255521",
+        enable_page_level_ads: true
+    });
+</script>
 <!-- / .banner -->
 <section class="container content">
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <h3 id="requests">requests</h3>
+    <h2 id="git丢弃本地修改的所有文件新增删除修改">git丢弃本地修改的所有文件（新增、删除、修改）</h2>
 
-<p>优雅简单的 HTTP 模块。</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>git checkout . <span class="c">#本地所有修改的。没有的提交的，都返回到原来的状态</span>
+git stash <span class="c">#把所有没有提交的修改暂存到stash里面。可用git stash pop回复。</span>
+git reset --hard HASH <span class="c">#返回到某个节点，不保留修改。</span>
+git reset --soft HASH <span class="c">#返回到某个节点。保留修改</span>
 
-<h3 id="beautifulsoup">BeautifulSoup</h3>
+git clean -df <span class="c">#返回到某个节点</span>
+git clean <span class="c">#参数</span>
+    -n <span class="c">#显示 将要 删除的 文件 和  目录</span>
+    -f <span class="c">#删除 文件</span>
+    -df <span class="c">#删除 文件 和 目录</span>
 
-<p>很好用的 HTML/XML 解析器。</p>
-
-<h3 id="json">json</h3>
-
-<p>JSON 编码解码器。</p>
-
-<p>应用举例：</p>
-
-<ul>
-  <li>
-    <p>格式化 JSON 文件</p>
-
-    <div class="language-sh highlighter-rouge"><pre class="highlight"><code>python -m json.tool src.json &gt; dst.json
+git checkout . <span class="o">&amp;&amp;</span> git clean -xdf <span class="c"># 清除本地</span>
 </code></pre>
-    </div>
+</div>
 
-    <p>在 Vim 里格式化 JSON：</p>
+<p>原文：https://blog.csdn.net/leedaning/article/details/51304690</p>
 
-    <div class="language-sh highlighter-rouge"><pre class="highlight"><code>:%!python -m json.tool
-</code></pre>
-    </div>
-  </li>
-</ul>
-
-<h3 id="cgihttpserver">CGIHTTPServer</h3>
-
-<p>简单实用的 HTTP 服务器。</p>
-
-<p>应用举例：</p>
-
-<ul>
-  <li>
-    <p>运行一个简易的 HTTP 服务器</p>
-
-    <div class="language-sh highlighter-rouge"><pre class="highlight"><code>python -m CGIHTTPServer 80
-</code></pre>
-    </div>
-  </li>
-</ul>
-
-<h3 id="base64">base64</h3>
-
-<p>方便地进行 base64 编解码的模块。</p>
-
-<p>应用举例：</p>
-
-<ul>
-  <li>
-    <p>解码 base64</p>
-
-    <div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="nb">echo </span><span class="nv">aGVsbG93b3JsZA</span><span class="o">==</span> | python -m base64 -d
-</code></pre>
-    </div>
-
-    <p>则能看到输出</p>
-
-    <div class="language-sh highlighter-rouge"><pre class="highlight"><code>helloworld
-</code></pre>
-    </div>
-  </li>
-</ul>
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
 
     </article>
     <div class="share">
@@ -184,9 +157,9 @@
           <div id="disqus_thread"></div>
           <script>
             var disqus_config = function () {
-              this.page.url = 'http://firsh.me/wiki/python/';
-              this.page.identifier = '/wiki/python/';
-              this.page.title = 'Python';
+              this.page.url = 'http://firsh.me/2018/11/15/git-check-out-reject/';
+              this.page.identifier = '/2018/11/15/git-check-out-reject/';
+              this.page.title = 'git丢弃本地修改的所有文件（新增、删除、修改）';
             };
             (function() { // DON'T EDIT BELOW THIS LINE
               var d = document, s = d.createElement('script');
