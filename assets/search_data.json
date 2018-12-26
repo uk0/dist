@@ -1,5 +1,11 @@
 {
   
+  "2018-12-26-python-logview-simple": {
+    "title": "python 远程启动mapreduce作业",
+    "url": " /2018/12/26/python-logview-simple/",
+    "category": "python"
+  },
+  
   "2018-12-26-hadoop-mapreduce-review1": {
     "title": "MapReduce 基于文件的 join数据清洗",
     "url": " /2018/12/26/hadoop-mapreduce-review1/",
@@ -1554,6 +1560,12 @@
     "title": "MapReduce 基于文件的 join数据清洗",
     "url": "/2018/12/26/hadoop-mapreduce-review1/",
     "category": "[&quot;mapreduce&quot;]"
+  },
+  
+  "2018-12-26-python-logview-simple": {
+    "title": "python 远程启动mapreduce作业",
+    "url": "/2018/12/26/python-logview-simple/",
+    "category": "[&quot;python&quot;]"
   },
   
   "wiki-android-studio": {

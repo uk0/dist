@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>python 远程启动mapreduce作业 &mdash; 张建新</title>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2018/12/26/python-logview-simple/">
+    <link rel="alternate" type="application/atom+xml" title="张建新" href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="python 远程启动mapreduce作业">
+      
+    <meta name="keywords" content="python">
+    <meta name="og:keywords" content="python">
+      
+    <meta name="description" content="本文基于Python2.7 进行测试">
+    <meta name="og:description" content="本文基于Python2.7 进行测试">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2018/12/26/python-logview-simple/">
+    <meta property="og:site_name" content="张建新">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2018-12-26">
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-3969253077255521",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+            src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="张建新"><span class="octicon octicon-mark-github"></span> 张建新</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="INDEX">INDEX</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="CATEGORIES">CATEGORIES</a>
+                
+                <a href="/open-source/" class=" site-header-nav-item" target="" title="OPEN-SOURCE">OPEN-SOURCE</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="WIKI">WIKI</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="LINKS">LINKS</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="ABOUT">ABOUT</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="python 远程启动mapr">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">python 远程启动mapreduce作业</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2018/12/26
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#python" title="python">python</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <p>本文基于Python2.7 进行测试</p>
+
+<h2 id="源码">源码</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># -*- coding:utf-8 -*-</span>
+<span class="kn">import</span> <span class="nn">BaseHTTPServer</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">urlparse</span>
+<span class="kn">import</span> <span class="nn">shlex</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">io</span><span class="p">,</span> <span class="n">shutil</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Queue</span><span class="p">,</span> <span class="n">Pool</span>
+<span class="kn">import</span> <span class="nn">multiprocessing</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">random</span>
+<span class="k">class</span> <span class="nc">RequestHandler</span><span class="p">(</span><span class="n">BaseHTTPServer</span><span class="o">.</span><span class="n">BaseHTTPRequestHandler</span><span class="p">):</span>
+    <span class="s">'''处理请求并返回页面'''</span>
+
+    <span class="k">def</span> <span class="nf">do_GET</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">None</span> <span class="o">!=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'/api/v1/startjar*'</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">path</span><span class="p">)</span> <span class="ow">and</span> <span class="s">'?'</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">"in controller"</span><span class="p">)</span>
+                <span class="n">content</span> <span class="o">=</span> <span class="s">""</span>
+                <span class="n">startjar</span> <span class="o">=</span> <span class="s">""</span>
+                <span class="n">query</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">splitquery</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+                <span class="n">action</span> <span class="o">=</span> <span class="n">query</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">query</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>  <span class="c"># 接收get参数</span>
+                    <span class="n">queryParams</span> <span class="o">=</span> <span class="p">{}</span>
+                    <span class="k">for</span> <span class="n">qp</span> <span class="ow">in</span> <span class="n">query</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'&amp;'</span><span class="p">):</span>
+                        <span class="n">kv</span> <span class="o">=</span> <span class="n">qp</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'='</span><span class="p">)</span>
+                        <span class="n">queryParams</span><span class="p">[</span><span class="n">kv</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">unquote</span><span class="p">(</span><span class="n">kv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">,</span> <span class="s">'ignore'</span><span class="p">)</span>
+                        <span class="n">content</span> <span class="o">+=</span> <span class="n">kv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">':'</span> <span class="o">+</span> <span class="n">queryParams</span><span class="p">[</span><span class="n">kv</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> <span class="s">"</span><span class="se">\r\n</span><span class="s">"</span>
+                        <span class="k">if</span> <span class="n">kv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">'jar'</span><span class="p">:</span>
+                            <span class="n">startjar</span> <span class="o">=</span> <span class="n">queryParams</span><span class="p">[</span><span class="n">kv</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+
+                <span class="n">shell_cmd</span> <span class="o">=</span> <span class="s">' hadoop fs -copyToLocal /task/mr/'</span><span class="o">+</span><span class="n">startjar</span><span class="o">+</span><span class="s">' /opt/cm/lib/cloudera-scm-agent/jobs/myjar.jar &amp;&amp; hadoop jar /opt/cm/lib/cloudera-scm-agent/jobs/myjar.jar &amp;&amp; yes|rm /opt/cm/lib/cloudera-scm-agent/jobs/myjar.jar'</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">"cmd is "</span> <span class="o">+</span> <span class="n">shell_cmd</span><span class="p">)</span>
+                <span class="n">cmd</span> <span class="o">=</span> <span class="n">shlex</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">shell_cmd</span><span class="p">)</span>
+                <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">STDOUT</span><span class="p">)</span>
+                <span class="k">while</span> <span class="n">p</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="n">line</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+                    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">line</span><span class="p">:</span>
+                        <span class="n">s</span><span class="o">.</span><span class="n">wfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">'Subprogram success'</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">'Subprogram failed'</span><span class="p">)</span>
+        <span class="k">except</span> <span class="nb">Exception</span><span class="p">:</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">wfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"Error "</span><span class="p">)</span>
+
+
+<span class="c"># ---------------------------------------------------------------------</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">serverAddress</span> <span class="o">=</span> <span class="p">(</span><span class="s">''</span><span class="p">,</span> <span class="mi">8881</span><span class="p">)</span>
+    <span class="n">server</span> <span class="o">=</span> <span class="n">BaseHTTPServer</span><span class="o">.</span><span class="n">HTTPServer</span><span class="p">(</span><span class="n">serverAddress</span><span class="p">,</span> <span class="n">RequestHandler</span><span class="p">)</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<h2 id="python-远程执行作业作业通过serverless-上传到hdfs">python 远程执行作业，（作业通过serverless 上传到hdfs）</h2>
+
+<ul>
+  <li>用的http服务是python2.7 自带的（简单）</li>
+  <li>实现比较简单就是利用了 subprocess 的PIPE 通过管道将结果输出，实现一个watch on 的效果（大佬勿喷）</li>
+</ul>
+
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+      
+        
+        
+        
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'http://firsh.me/2018/12/26/python-logview-simple/';
+              this.page.identifier = '/2018/12/26/python-logview-simple/';
+              this.page.title = 'python 远程启动mapreduce作业';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+
+              s.type = 'text/javascript';
+              s.async = true;
+              var shortname = 'zmatsh';
+
+              s.src = '//' + shortname + '.disqus.com/embed.js';
+
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        
+        
+      
+    
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    <h3>Affiliate</h3>
+<a href="https://www.vultr.com/?ref=7142633"><img src="https://www.vultr.com/media/banner_3.png" width="300" height="250"></a>
+
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="https://zmatsh.b0.upaiyun.com/assets/css/modules/sidebar-search.css">
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="unknow :)">unknow :)</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/uk0/uk0.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="INDEX" target="">INDEX</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="CATEGORIES" target="">CATEGORIES</a>
+                </li>
+                
+                <li>
+                    <a href="/open-source/" title="OPEN-SOURCE" target="">OPEN-SOURCE</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="WIKI" target="">WIKI</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="LINKS" target="">LINKS</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="ABOUT" target="">ABOUT</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130872028-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-130872028-1');
+        </script>
+    </div>
+    
+</body>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>
