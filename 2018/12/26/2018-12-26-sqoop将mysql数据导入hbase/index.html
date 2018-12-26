@@ -113,16 +113,14 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <p>使用sqoop 将数据从mysql 导入到hbase 分为 整张表 和 部分数据，其中部分数据基于 where 条件等。</p>
+    <p>使用sqoop 将数据从mysql 导入到hbase 分为 整张表 和 部分数据，其中部分数据基于 where条件等。</p>
 
 <h3 id="相关的命令">相关的命令</h3>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="c"># 整个表导入</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 整个表导入</span>
 ./bin/sqoop import <span class="nt">--driver</span> com.mysql.jdbc.Driver <span class="nt">--connect</span> <span class="s2">"jdbc:mysql://rm-adfagga.mysql.rds.aliyuncs.com/parking?zeroDateTimeBehavior=convertToNull"</span> <span class="nt">--username</span> user1 <span class="nt">--password</span> 123123 <span class="nt">--table</span> parking_ths_car_record <span class="nt">--hbase-table</span> parking_ths_car_record_all <span class="nt">--column-family</span> id <span class="nt">--hbase-row-key</span> id <span class="nt">--split-by</span> park_id <span class="nt">--hbase-create-table</span>
 
 ./bin/sqoop import <span class="nt">--driver</span> com.mysql.jdbc.Driver <span class="nt">--connect</span> <span class="s2">"jdbc:mysql://rm-asfagag.mysql.rds.aliyuncs.com:3306/pp_parking?zeroDateTimeBehavior=convertToNull"</span> <span class="nt">--username</span> user1 <span class="nt">--password</span> 123123 <span class="nt">--table</span> parking_car_user <span class="nt">--hbase-table</span> car_user <span class="nt">--column-family</span> id <span class="nt">--hbase-row-key</span> id <span class="nt">--hbase-create-table</span>
-
 
 <span class="c"># 执行sql （任意）</span>
 
@@ -134,11 +132,9 @@
 /opt/cloudera/parcels/CDH-5.14.4-1.cdh5.14.4.p0.3/lib/hadoop/lib/
 
 
-
 ./bin/sqoop import <span class="nt">--driver</span> com.mysql.jdbc.Driver <span class="nt">--connect</span> <span class="s2">"jdbc:mysql://rm-aasdasdasd.mysql.rds.aliyuncs.com/pp_parking?zeroDateTimeBehavior=convertToNull"</span> <span class="nt">--username</span> user1 <span class="nt">--password</span> 123123 <span class="nt">--table</span> parking_ths_car_record <span class="nt">--hbase-table</span> parking_ths_car_record <span class="nt">--column-family</span> id <span class="nt">--hbase-row-key</span> id <span class="nt">--split-by</span> park_id <span class="nt">--hbase-create-table</span>
 
-
-<span class="c"># 导出部分数据需要Mysql驱动版本较高 </span>
+<span class="c"># 导出部分数据需要Mysql驱动版本较高</span>
 
 <span class="c"># 导出到文件</span>
 ./bin/sqoop import <span class="nt">--connect</span> <span class="s2">"jdbc:mysql://rm-aaaaaaaaa.mysql.rds.aliyuncs.com/pp_parking?zeroDateTimeBehavior=convertToNull"</span> <span class="nt">--username</span> user1 <span class="nt">--password</span> 123123 <span class="nt">--query</span> <span class="s2">"select * from parking_ths_car_record  where createtime  BETWEEN '2018-09-01 00:00:00' AND '2018-12-26 00:00:00' AND </span><span class="se">\$</span><span class="s2">CONDITIONS "</span> <span class="nt">--split-by</span> id  <span class="nt">--target-dir</span> /public/csv/mysql_export
