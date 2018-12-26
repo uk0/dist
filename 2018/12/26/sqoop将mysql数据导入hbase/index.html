@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>张建新</title>
+    <title>使用Sqoop将mysql数据导入到Hbase[整表,部分数据] &mdash; 张建新</title>
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
@@ -21,17 +21,23 @@
     
 
     
-    <link rel="canonical" href="http://firsh.me/2018/12/26/2018-12-26-sqoop%E5%B0%86mysql%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5hbase/">
+    <link rel="canonical" href="http://firsh.me/2018/12/26/sqoop%E5%B0%86mysql%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5hbase/">
     <link rel="alternate" type="application/atom+xml" title="张建新" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta name="keywords" content="张建新,docker,Github, 张建新博客 Google Kubernetes, kubernetes, Flink,Graphx Spark,hadoop,hbase,mongodb,hdfs,Geek,hack,Spring boot,spring boot,spring,Docker,Dockerfile,Java ,Python 冷漠">
-    <meta name="description" content="Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。">
+    <meta property="og:title" content="使用Sqoop将mysql数据导入到Hbase[整表,部分数据]">
+      
+    <meta name="keywords" content="sqoop">
+    <meta name="og:keywords" content="sqoop">
+      
+    <meta name="description" content="使用sqoop 将数据从mysql 导入到hbase 分为 整张表 和 部分数据，其中部分数据基于 where条件等。">
+    <meta name="og:description" content="使用sqoop 将数据从mysql 导入到hbase 分为 整张表 和 部分数据，其中部分数据基于 where条件等。">
+      
     
     
         
     
-    <meta property="og:url" content="http://firsh.me/2018/12/26/2018-12-26-sqoop%E5%B0%86mysql%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5hbase/">
+    <meta property="og:url" content="http://firsh.me/2018/12/26/sqoop%E5%B0%86mysql%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5hbase/">
     <meta property="og:site_name" content="张建新">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -89,18 +95,28 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="">
+    <section class="collection-head small geopattern" data-pattern-id="使用Sqoop将mysql数据">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header"></h1>
+        <h1 class="collection-header">使用Sqoop将mysql数据导入到Hbase[整表,部分数据]</h1>
         <div class="collection-info">
           
           <span class="meta-info">
             <span class="octicon octicon-calendar"></span> 2018/12/26
           </span>
           
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#hbase" title="hbase">hbase</a>
+          </span>
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#sqoop" title="sqoop">sqoop</a>
+          </span>
           
         </div>
       </div>
@@ -113,12 +129,11 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <p>使用sqoop 将数据从mysql 导入到hbase 分为 整张表 和 部分数据，其中部分数据基于 where 条件等。</p>
+    <p>使用sqoop 将数据从mysql 导入到hbase 分为 整张表 和 部分数据，其中部分数据基于 where条件等。</p>
 
 <h3 id="相关的命令">相关的命令</h3>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="c"># 整个表导入</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 整个表导入</span>
 ./bin/sqoop import <span class="nt">--driver</span> com.mysql.jdbc.Driver <span class="nt">--connect</span> <span class="s2">"jdbc:mysql://rm-adfagga.mysql.rds.aliyuncs.com/parking?zeroDateTimeBehavior=convertToNull"</span> <span class="nt">--username</span> user1 <span class="nt">--password</span> 123123 <span class="nt">--table</span> parking_ths_car_record <span class="nt">--hbase-table</span> parking_ths_car_record_all <span class="nt">--column-family</span> id <span class="nt">--hbase-row-key</span> id <span class="nt">--split-by</span> park_id <span class="nt">--hbase-create-table</span>
 
 ./bin/sqoop import <span class="nt">--driver</span> com.mysql.jdbc.Driver <span class="nt">--connect</span> <span class="s2">"jdbc:mysql://rm-asfagag.mysql.rds.aliyuncs.com:3306/pp_parking?zeroDateTimeBehavior=convertToNull"</span> <span class="nt">--username</span> user1 <span class="nt">--password</span> 123123 <span class="nt">--table</span> parking_car_user <span class="nt">--hbase-table</span> car_user <span class="nt">--column-family</span> id <span class="nt">--hbase-row-key</span> id <span class="nt">--hbase-create-table</span>
@@ -162,9 +177,9 @@
           <div id="disqus_thread"></div>
           <script>
             var disqus_config = function () {
-              this.page.url = 'http://firsh.me/2018/12/26/2018-12-26-sqoop%E5%B0%86mysql%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5hbase/';
-              this.page.identifier = '/2018/12/26/2018-12-26-sqoop%E5%B0%86mysql%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5hbase/';
-              this.page.title = '';
+              this.page.url = 'http://firsh.me/2018/12/26/sqoop%E5%B0%86mysql%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5hbase/';
+              this.page.identifier = '/2018/12/26/sqoop%E5%B0%86mysql%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5hbase/';
+              this.page.title = '使用Sqoop将mysql数据导入到Hbase[整表,部分数据]';
             };
             (function() { // DON'T EDIT BELOW THIS LINE
               var d = document, s = d.createElement('script');
