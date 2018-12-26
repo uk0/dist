@@ -198,6 +198,56 @@
   <li>实现比较简单就是利用了 subprocess 的PIPE 通过管道将结果输出，实现一个watch on 的效果（大佬勿喷）</li>
 </ul>
 
+<h2 id="补充-serverless-上传jar的代码">补充 serverless 上传jar的代码</h2>
+
+<ul>
+  <li>注意 kubeless 1.0.0版本 Python 的runtime是基于<code class="highlighter-rouge">bottle</code>还是可以做点手脚的。</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># /usr/bin/env python</span>
+<span class="c"># coding=utf-8</span>
+
+<span class="kn">import</span> <span class="nn">paramiko</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">hdfs</span> <span class="kn">import</span> <span class="n">Client</span>
+<span class="kn">from</span> <span class="nn">bottle</span> <span class="kn">import</span> <span class="n">route</span><span class="p">,</span> <span class="n">run</span>
+<span class="kn">from</span> <span class="nn">bottle</span> <span class="kn">import</span> <span class="n">request</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="s">"http://hdfs-web-svc.cloudera:50070"</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="s">"/"</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="c"># 文件上传的HTML模板，这里没有额外去写html模板了，直接写在这里，方便点吧</span>
+<span class="nd">@route</span><span class="p">(</span><span class="s">'/upload'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">upload</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">'''
+        &lt;html&gt;
+            &lt;head&gt;
+            &lt;/head&gt;
+            &lt;body&gt;
+                &lt;form action"/upload" method="post" enctype="multipart/form-data"&gt;
+                    &lt;input type="file" name="data" /&gt;
+                    &lt;input type="submit" value="Upload" /&gt;
+                &lt;/form&gt;
+            &lt;/body&gt;
+        &lt;/html&gt;
+    '''</span>
+<span class="c"># 文件上传，overwrite=True为覆盖原有的文件，</span>
+<span class="c"># 如果不加这参数，当服务器已存在同名文件时，将返回“IOError: File exists.”错误</span>
+<span class="nd">@route</span><span class="p">(</span><span class="s">'/upload'</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">'POST'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">doupload</span><span class="p">():</span>
+    <span class="n">upload</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">getall</span><span class="p">(</span><span class="s">'data'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">meta</span> <span class="ow">in</span> <span class="n">upload</span><span class="p">:</span>
+        <span class="n">buf</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="nb">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">name</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ext</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s">'.jar'</span><span class="p">,</span> <span class="s">'.tar'</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s">'File extension not allowed. type [JAR]'</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s">'/task/mr/'</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="n">ext</span>
+        <span class="c"># ssh root@agent-2.agent-svc.cloudera.svc.cluster.local</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"--------------save Task To"</span> <span class="o">+</span> <span class="n">path</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">client</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">writer</span><span class="p">:</span>
+            <span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+    <span class="k">return</span> <span class="s">'ok'</span>
+
+</code></pre></div></div>
+
 <p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
 
     </article>
