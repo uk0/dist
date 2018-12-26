@@ -1,5 +1,11 @@
 {
   
+  "2018-12-26-2018-12-26-sqoop-import-mysql-to-hbase": {
+    "title": "",
+    "url": " /2018/12/26/2018-12-26-sqoop-import-mysql-to-hbase/",
+    "category": ""
+  },
+  
   "2018-12-26-python-logview-simple": {
     "title": "python 远程启动mapreduce作业",
     "url": " /2018/12/26/python-logview-simple/",
@@ -1566,6 +1572,12 @@
     "title": "python 远程启动mapreduce作业",
     "url": "/2018/12/26/python-logview-simple/",
     "category": "[&quot;python&quot;]"
+  },
+  
+  "2018-12-26-2018-12-26-sqoop-import-mysql-to-hbase": {
+    "title": "",
+    "url": "/2018/12/26/2018-12-26-sqoop-import-mysql-to-hbase/",
+    "category": "[]"
   },
   
   "wiki-android-studio": {

@@ -1,4 +1,40 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-12-26T18:19:43+08:00</updated><id>http://firsh.me/feed.xml</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html">python 远程启动mapreduce作业</title><link href="http://firsh.me/2018/12/26/python-logview-simple/" rel="alternate" type="text/html" title="python 远程启动mapreduce作业" /><published>2018-12-26T18:08:19+08:00</published><updated>2018-12-26T18:08:19+08:00</updated><id>http://firsh.me/2018/12/26/python-logview-simple</id><content type="html" xml:base="http://firsh.me/2018/12/26/python-logview-simple/">&lt;p&gt;本文基于Python2.7 进行测试&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://firsh.me/" rel="alternate" type="text/html" /><updated>2018-12-26T18:30:31+08:00</updated><id>http://firsh.me/feed.xml</id><title type="html">张建新</title><subtitle>Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。</subtitle><author><name>unknow :)</name></author><entry><title type="html"></title><link href="http://firsh.me/2018/12/26/2018-12-26-sqoop-import-mysql-to-hbase/" rel="alternate" type="text/html" title="" /><published>2018-12-26T18:30:31+08:00</published><updated>2018-12-26T18:30:31+08:00</updated><id>http://firsh.me/2018/12/26/2018-12-26-sqoop-import-mysql-to-hbase</id><content type="html" xml:base="http://firsh.me/2018/12/26/2018-12-26-sqoop-import-mysql-to-hbase/">&lt;p&gt;使用sqoop 将数据从mysql 导入到hbase 分为 整张表 和 部分数据，其中部分数据基于 where 条件等。&lt;/p&gt;
+
+&lt;h3 id=&quot;相关的命令&quot;&gt;相关的命令&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;c&quot;&gt;# 整个表导入&lt;/span&gt;
+./bin/sqoop import &lt;span class=&quot;nt&quot;&gt;--driver&lt;/span&gt; com.mysql.jdbc.Driver &lt;span class=&quot;nt&quot;&gt;--connect&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;jdbc:mysql://rm-adfagga.mysql.rds.aliyuncs.com/parking?zeroDateTimeBehavior=convertToNull&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--username&lt;/span&gt; user1 &lt;span class=&quot;nt&quot;&gt;--password&lt;/span&gt; 123123 &lt;span class=&quot;nt&quot;&gt;--table&lt;/span&gt; parking_ths_car_record &lt;span class=&quot;nt&quot;&gt;--hbase-table&lt;/span&gt; parking_ths_car_record_all &lt;span class=&quot;nt&quot;&gt;--column-family&lt;/span&gt; id &lt;span class=&quot;nt&quot;&gt;--hbase-row-key&lt;/span&gt; id &lt;span class=&quot;nt&quot;&gt;--split-by&lt;/span&gt; park_id &lt;span class=&quot;nt&quot;&gt;--hbase-create-table&lt;/span&gt;
+
+./bin/sqoop import &lt;span class=&quot;nt&quot;&gt;--driver&lt;/span&gt; com.mysql.jdbc.Driver &lt;span class=&quot;nt&quot;&gt;--connect&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;jdbc:mysql://rm-asfagag.mysql.rds.aliyuncs.com:3306/pp_parking?zeroDateTimeBehavior=convertToNull&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--username&lt;/span&gt; user1 &lt;span class=&quot;nt&quot;&gt;--password&lt;/span&gt; 123123 &lt;span class=&quot;nt&quot;&gt;--table&lt;/span&gt; parking_car_user &lt;span class=&quot;nt&quot;&gt;--hbase-table&lt;/span&gt; car_user &lt;span class=&quot;nt&quot;&gt;--column-family&lt;/span&gt; id &lt;span class=&quot;nt&quot;&gt;--hbase-row-key&lt;/span&gt; id &lt;span class=&quot;nt&quot;&gt;--hbase-create-table&lt;/span&gt;
+
+
+&lt;span class=&quot;c&quot;&gt;# 执行sql （任意）&lt;/span&gt;
+
+./bin/sqoop &lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--connect&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;jdbc:mysql://rm-asdasdfffaf.mysql.rds.aliyuncs.com/parking&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--username&lt;/span&gt; user1 &lt;span class=&quot;nt&quot;&gt;--password&lt;/span&gt; 123123  &lt;span class=&quot;nt&quot;&gt;--query&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;SELECT * FROM parking_ths_car_record LIMIT 10&quot;&lt;/span&gt;
+
+
+&lt;span class=&quot;c&quot;&gt;# 驱动更换位置&lt;/span&gt;
+/opt/cloudera/parcels/CDH-5.14.4-1.cdh5.14.4.p0.3/lib/sqoop/lib/
+/opt/cloudera/parcels/CDH-5.14.4-1.cdh5.14.4.p0.3/lib/hadoop/lib/
+
+
+
+./bin/sqoop import &lt;span class=&quot;nt&quot;&gt;--driver&lt;/span&gt; com.mysql.jdbc.Driver &lt;span class=&quot;nt&quot;&gt;--connect&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;jdbc:mysql://rm-aasdasdasd.mysql.rds.aliyuncs.com/pp_parking?zeroDateTimeBehavior=convertToNull&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--username&lt;/span&gt; user1 &lt;span class=&quot;nt&quot;&gt;--password&lt;/span&gt; 123123 &lt;span class=&quot;nt&quot;&gt;--table&lt;/span&gt; parking_ths_car_record &lt;span class=&quot;nt&quot;&gt;--hbase-table&lt;/span&gt; parking_ths_car_record &lt;span class=&quot;nt&quot;&gt;--column-family&lt;/span&gt; id &lt;span class=&quot;nt&quot;&gt;--hbase-row-key&lt;/span&gt; id &lt;span class=&quot;nt&quot;&gt;--split-by&lt;/span&gt; park_id &lt;span class=&quot;nt&quot;&gt;--hbase-create-table&lt;/span&gt;
+
+
+&lt;span class=&quot;c&quot;&gt;# 导出部分数据需要Mysql驱动版本较高 &lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# 导出到文件&lt;/span&gt;
+./bin/sqoop import &lt;span class=&quot;nt&quot;&gt;--connect&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;jdbc:mysql://rm-aaaaaaaaa.mysql.rds.aliyuncs.com/pp_parking?zeroDateTimeBehavior=convertToNull&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--username&lt;/span&gt; user1 &lt;span class=&quot;nt&quot;&gt;--password&lt;/span&gt; 123123 &lt;span class=&quot;nt&quot;&gt;--query&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;select * from parking_ths_car_record  where createtime  BETWEEN '2018-09-01 00:00:00' AND '2018-12-26 00:00:00' AND &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\$&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;CONDITIONS &quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--split-by&lt;/span&gt; id  &lt;span class=&quot;nt&quot;&gt;--target-dir&lt;/span&gt; /public/csv/mysql_export
+
+
+&lt;span class=&quot;c&quot;&gt;#导出到hbase&lt;/span&gt;
+./bin/sqoop import &lt;span class=&quot;nt&quot;&gt;--connect&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;jdbc:mysql://rm-aaasdadadad.mysql.rds.aliyuncs.com/pp_parking?zeroDateTimeBehavior=convertToNull&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--username&lt;/span&gt; user1 &lt;span class=&quot;nt&quot;&gt;--password&lt;/span&gt; 123123 &lt;span class=&quot;nt&quot;&gt;--query&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;select * from parking_ths_car_record  where createtime  BETWEEN '2018-09-01 00:00:00' AND '2018-12-26 00:00:00' AND &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\$&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;CONDITIONS &quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--hbase-table&lt;/span&gt; 9_12_parking_ths_car_record &lt;span class=&quot;nt&quot;&gt;--column-family&lt;/span&gt; id &lt;span class=&quot;nt&quot;&gt;--hbase-row-key&lt;/span&gt; id &lt;span class=&quot;nt&quot;&gt;--split-by&lt;/span&gt; park_id &lt;span class=&quot;nt&quot;&gt;--hbase-create-table&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author></entry><entry><title type="html">python 远程启动mapreduce作业</title><link href="http://firsh.me/2018/12/26/python-logview-simple/" rel="alternate" type="text/html" title="python 远程启动mapreduce作业" /><published>2018-12-26T18:08:19+08:00</published><updated>2018-12-26T18:08:19+08:00</updated><id>http://firsh.me/2018/12/26/python-logview-simple</id><content type="html" xml:base="http://firsh.me/2018/12/26/python-logview-simple/">&lt;p&gt;本文基于Python2.7 进行测试&lt;/p&gt;
 
 &lt;h3 id=&quot;源码&quot;&gt;源码&lt;/h3&gt;
 
@@ -1581,71 +1617,4 @@ hdfs==2.1.0
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    awk &lt;span class=&quot;s1&quot;&gt;'!seen[$0]++'&lt;/span&gt; &amp;lt;filename&amp;gt; &lt;span class=&quot;c&quot;&gt;# 去重行&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">阿里云外网服务器如何获得外网IP。</summary></entry><entry><title type="html">Go实现 静态页面服务器与反向代理在同一个端口进行工作.</title><link href="http://firsh.me/2018/08/08/go_proxy_and_static_web/" rel="alternate" type="text/html" title="Go实现 静态页面服务器与反向代理在同一个端口进行工作." /><published>2018-08-08T15:03:28+08:00</published><updated>2018-08-08T15:03:28+08:00</updated><id>http://firsh.me/2018/08/08/go_proxy_and_static_web</id><content type="html" xml:base="http://firsh.me/2018/08/08/go_proxy_and_static_web/">&lt;h1 id=&quot;这是一个简单的-静态服务器自带反向代理&quot;&gt;这是一个简单的 静态服务器，自带反向代理.&lt;/h1&gt;
-
-&lt;h3 id=&quot;quick&quot;&gt;quick&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;1，如何配置
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&quot;firsh.cc&quot;&lt;/span&gt;: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;# 这个url需要在 host文件里面修改一下下面会讲&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&quot;/api&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;localhost:8005&quot;&lt;/span&gt;,  &lt;span class=&quot;c&quot;&gt;# 需要代理的服务器地址 与mock一致即可 忽略POST，GET DELETE等方法&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&quot;*&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;/Users/zhangjianxin/home/GO_LIB/src/github.com/breakEval13/libs/lib/staticweb/root&quot;&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# 上面的文件路径为dist目录&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;2 host如何进行映射&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-➜  Desktop &lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /etc/hosts
-&lt;span class=&quot;c&quot;&gt;##&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# Host Database&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
-127.0.0.1    firsh.me &lt;span class=&quot;c&quot;&gt;# 这里&lt;/span&gt;
-127.0.0.1    firsh.cc &lt;span class=&quot;c&quot;&gt;# 这里&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;windows 同理进行修改hosts文件&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;如何启动&quot;&gt;如何启动&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;start
-  ```bash
-#windows 直接双击
-#mac or linux
-chmod +x  xxxx
-./xxx #即可&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;```&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;配置文件和可执行文件放在统一目录(目录级别一致)))&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;需要修改代理的服务器IP直接编辑文件即可,程序会自动更新代理。&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;演示&quot;&gt;演示&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;GIF&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://zmatsh.b0.upaiyun.com/demos/1f4abb63-ed08-4004-a612-427a32ee6fb5.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Github&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;https://github.com/uk0/web-container-proxy&lt;/p&gt;
-
-&lt;h2 id=&quot;小白手段大佬勿喷&quot;&gt;！！！小白手段，大佬勿喷。&lt;/h2&gt;
-
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">这是一个简单的 静态服务器，自带反向代理.</summary></entry></feed>
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>unknow :)</name></author><summary type="html">阿里云外网服务器如何获得外网IP。</summary></entry></feed>

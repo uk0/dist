@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>张建新</title>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://firsh.me/2018/12/26/2018-12-26-sqoop-import-mysql-to-hbase/">
+    <link rel="alternate" type="application/atom+xml" title="张建新" href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta name="keywords" content="张建新,docker,Github, 张建新博客 Google Kubernetes, kubernetes, Flink,Graphx Spark,hadoop,hbase,mongodb,hdfs,Geek,hack,Spring boot,spring boot,spring,Docker,Dockerfile,Java ,Python 冷漠">
+    <meta name="description" content="Flink，张建新技术博客，Kubernetes技术，虚拟化技术，微服务，容器技术,docker,Github, Google Kubernetes, kubernetes, Flink,Graphx,Spark,docker。">
+    
+    
+        
+    
+    <meta property="og:url" content="http://firsh.me/2018/12/26/2018-12-26-sqoop-import-mysql-to-hbase/">
+    <meta property="og:site_name" content="张建新">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2018-12-26">
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-3969253077255521",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+            src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="张建新"><span class="octicon octicon-mark-github"></span> 张建新</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="INDEX">INDEX</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="CATEGORIES">CATEGORIES</a>
+                
+                <a href="/open-source/" class=" site-header-nav-item" target="" title="OPEN-SOURCE">OPEN-SOURCE</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="WIKI">WIKI</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="LINKS">LINKS</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="ABOUT">ABOUT</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header"></h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2018/12/26
+          </span>
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <p>使用sqoop 将数据从mysql 导入到hbase 分为 整张表 和 部分数据，其中部分数据基于 where 条件等。</p>
+
+<h3 id="相关的命令">相关的命令</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c"># 整个表导入</span>
+./bin/sqoop import <span class="nt">--driver</span> com.mysql.jdbc.Driver <span class="nt">--connect</span> <span class="s2">"jdbc:mysql://rm-adfagga.mysql.rds.aliyuncs.com/parking?zeroDateTimeBehavior=convertToNull"</span> <span class="nt">--username</span> user1 <span class="nt">--password</span> 123123 <span class="nt">--table</span> parking_ths_car_record <span class="nt">--hbase-table</span> parking_ths_car_record_all <span class="nt">--column-family</span> id <span class="nt">--hbase-row-key</span> id <span class="nt">--split-by</span> park_id <span class="nt">--hbase-create-table</span>
+
+./bin/sqoop import <span class="nt">--driver</span> com.mysql.jdbc.Driver <span class="nt">--connect</span> <span class="s2">"jdbc:mysql://rm-asfagag.mysql.rds.aliyuncs.com:3306/pp_parking?zeroDateTimeBehavior=convertToNull"</span> <span class="nt">--username</span> user1 <span class="nt">--password</span> 123123 <span class="nt">--table</span> parking_car_user <span class="nt">--hbase-table</span> car_user <span class="nt">--column-family</span> id <span class="nt">--hbase-row-key</span> id <span class="nt">--hbase-create-table</span>
+
+
+<span class="c"># 执行sql （任意）</span>
+
+./bin/sqoop <span class="nb">eval</span> <span class="nt">--connect</span> <span class="s2">"jdbc:mysql://rm-asdasdfffaf.mysql.rds.aliyuncs.com/parking"</span> <span class="nt">--username</span> user1 <span class="nt">--password</span> 123123  <span class="nt">--query</span> <span class="s2">"SELECT * FROM parking_ths_car_record LIMIT 10"</span>
+
+
+<span class="c"># 驱动更换位置</span>
+/opt/cloudera/parcels/CDH-5.14.4-1.cdh5.14.4.p0.3/lib/sqoop/lib/
+/opt/cloudera/parcels/CDH-5.14.4-1.cdh5.14.4.p0.3/lib/hadoop/lib/
+
+
+
+./bin/sqoop import <span class="nt">--driver</span> com.mysql.jdbc.Driver <span class="nt">--connect</span> <span class="s2">"jdbc:mysql://rm-aasdasdasd.mysql.rds.aliyuncs.com/pp_parking?zeroDateTimeBehavior=convertToNull"</span> <span class="nt">--username</span> user1 <span class="nt">--password</span> 123123 <span class="nt">--table</span> parking_ths_car_record <span class="nt">--hbase-table</span> parking_ths_car_record <span class="nt">--column-family</span> id <span class="nt">--hbase-row-key</span> id <span class="nt">--split-by</span> park_id <span class="nt">--hbase-create-table</span>
+
+
+<span class="c"># 导出部分数据需要Mysql驱动版本较高 </span>
+
+<span class="c"># 导出到文件</span>
+./bin/sqoop import <span class="nt">--connect</span> <span class="s2">"jdbc:mysql://rm-aaaaaaaaa.mysql.rds.aliyuncs.com/pp_parking?zeroDateTimeBehavior=convertToNull"</span> <span class="nt">--username</span> user1 <span class="nt">--password</span> 123123 <span class="nt">--query</span> <span class="s2">"select * from parking_ths_car_record  where createtime  BETWEEN '2018-09-01 00:00:00' AND '2018-12-26 00:00:00' AND </span><span class="se">\$</span><span class="s2">CONDITIONS "</span> <span class="nt">--split-by</span> id  <span class="nt">--target-dir</span> /public/csv/mysql_export
+
+
+<span class="c">#导出到hbase</span>
+./bin/sqoop import <span class="nt">--connect</span> <span class="s2">"jdbc:mysql://rm-aaasdadadad.mysql.rds.aliyuncs.com/pp_parking?zeroDateTimeBehavior=convertToNull"</span> <span class="nt">--username</span> user1 <span class="nt">--password</span> 123123 <span class="nt">--query</span> <span class="s2">"select * from parking_ths_car_record  where createtime  BETWEEN '2018-09-01 00:00:00' AND '2018-12-26 00:00:00' AND </span><span class="se">\$</span><span class="s2">CONDITIONS "</span> <span class="nt">--hbase-table</span> 9_12_parking_ths_car_record <span class="nt">--column-family</span> id <span class="nt">--hbase-row-key</span> id <span class="nt">--split-by</span> park_id <span class="nt">--hbase-create-table</span>
+
+</code></pre></div></div>
+
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+      
+        
+        
+        
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'http://firsh.me/2018/12/26/2018-12-26-sqoop-import-mysql-to-hbase/';
+              this.page.identifier = '/2018/12/26/2018-12-26-sqoop-import-mysql-to-hbase/';
+              this.page.title = '';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+
+              s.type = 'text/javascript';
+              s.async = true;
+              var shortname = 'zmatsh';
+
+              s.src = '//' + shortname + '.disqus.com/embed.js';
+
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        
+        
+      
+    
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    <h3>Affiliate</h3>
+<a href="https://www.vultr.com/?ref=7142633"><img src="https://www.vultr.com/media/banner_3.png" width="300" height="250"></a>
+
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="https://zmatsh.b0.upaiyun.com/assets/css/modules/sidebar-search.css">
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="unknow :)">unknow :)</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/uk0/uk0.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="INDEX" target="">INDEX</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="CATEGORIES" target="">CATEGORIES</a>
+                </li>
+                
+                <li>
+                    <a href="/open-source/" title="OPEN-SOURCE" target="">OPEN-SOURCE</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="WIKI" target="">WIKI</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="LINKS" target="">LINKS</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="ABOUT" target="">ABOUT</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130872028-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-130872028-1');
+        </script>
+    </div>
+    
+</body>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>
