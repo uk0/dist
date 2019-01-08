@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Linux/Unix &mdash; 张建新</title>
+    <title>结束也是开始 &mdash; 张建新</title>
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
@@ -21,23 +21,23 @@
     
 
     
-    <link rel="canonical" href="http://firsh.me/wiki/linux/">
+    <link rel="canonical" href="http://firsh.me/2019/01/08/learn-something-real/">
     <link rel="alternate" type="application/atom+xml" title="张建新" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="Linux/Unix">
+    <meta property="og:title" content="结束也是开始">
       
-    <meta name="keywords" content="Linux">
-    <meta name="og:keywords" content="Linux">
+    <meta name="keywords" content="张建新,docker,Github, 张建新博客 Google Kubernetes, kubernetes, Flink,Graphx Spark,hadoop,hbase,mongodb,hdfs,Geek,hack,Spring boot,spring boot,spring,Docker,Dockerfile,Java ,Python 冷漠">
+    <meta name="og:keywords" content="张建新,docker,Github, 张建新博客 Google Kubernetes, kubernetes, Flink,Graphx Spark,hadoop,hbase,mongodb,hdfs,Geek,hack,Spring boot,spring boot,spring,Docker,Dockerfile,Java ,Python 冷漠">
       
-    <meta name="description" content="类 Unix 系统下的一些常用命令和用法。">
-    <meta name="og:description" content="类 Unix 系统下的一些常用命令和用法。">
+    <meta name="description" content="给自己道个歉，以前的盲目自大，导致现在的一瓶子不满半瓶子咣当。 2019 年初给自己一些忠告，不要做浅哥。 送自己一句话，好自为之。 不要在听别人说那些东西好，就要去学，建议性的听听，不要在盲目了。 打好地基。">
+    <meta name="og:description" content="给自己道个歉，以前的盲目自大，导致现在的一瓶子不满半瓶子咣当。 2019 年初给自己一些忠告，不要做浅哥。 送自己一句话，好自为之。 不要在听别人说那些东西好，就要去学，建议性的听听，不要在盲目了。 打好地基。">
       
     
     
         
     
-    <meta property="og:url" content="http://firsh.me/wiki/linux/">
+    <meta property="og:url" content="http://firsh.me/2019/01/08/learn-something-real/">
     <meta property="og:site_name" content="张建新">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -95,12 +95,20 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="Linux/Unix">
+    <section class="collection-head small geopattern" data-pattern-id="结束也是开始">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">Linux/Unix</h1>
+        <h1 class="collection-header">结束也是开始</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2019/01/08
+          </span>
+          
+          
+        </div>
       </div>
     </div>
   </div>
@@ -111,57 +119,16 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <p>类 Unix 系统下的一些常用命令和用法。</p>
+    <p>给自己道个歉，以前的盲目自大，导致现在的一瓶子不满半瓶子咣当。
+ 2019 年初给自己一些忠告，不要做浅哥。
+ 送自己一句话，好自为之。
+ 不要在听别人说那些东西好，就要去学，建议性的听听，不要在盲目了。
+ 打好地基。</p>
 
-<h2 id="实用命令">实用命令</h2>
-
-<h3 id="fuser">fuser</h3>
-
-<p>查看文件被谁占用。</p>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fuser <span class="nt">-u</span> .linux.md.swp
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        勿忘初心 方得始终。
 </code></pre></div></div>
 
-<h3 id="id">id</h3>
-
-<p>查看当前用户、组 id。</p>
-
-<h3 id="lsof">lsof</h3>
-
-<p>查看打开的文件列表。</p>
-
-<blockquote>
-  <p>An  open  file  may  be  a  regular  file,  a directory, a block special file, a character special file, an executing text reference, a library, a stream or a network file (Internet socket, NFS file or UNIX domain socket.)  A specific file or all the files in a file system may be selected by path.</p>
-</blockquote>
-
-<h4 id="查看网络相关的文件占用">查看网络相关的文件占用</h4>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lsof <span class="nt">-i</span>
-</code></pre></div></div>
-
-<h4 id="查看端口占用">查看端口占用</h4>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lsof <span class="nt">-i</span> tcp:5037
-</code></pre></div></div>
-
-<h4 id="查看某个文件被谁占用">查看某个文件被谁占用</h4>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lsof .linux.md.swp
-</code></pre></div></div>
-
-<h4 id="查看某个用户占用的文件信息">查看某个用户占用的文件信息</h4>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lsof <span class="nt">-u</span> mazhuang
-</code></pre></div></div>
-
-<p><code class="highlighter-rouge">-u</code> 后面可以跟 uid 或 login name。</p>
-
-<h4 id="查看某个程序占用的文件信息">查看某个程序占用的文件信息</h4>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lsof <span class="nt">-c</span> Vim
-</code></pre></div></div>
-
-<p>注意程序名区分大小写。</p>
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
 
     </article>
     <div class="share">
@@ -177,9 +144,9 @@
           <div id="disqus_thread"></div>
           <script>
             var disqus_config = function () {
-              this.page.url = 'http://firsh.me/wiki/linux/';
-              this.page.identifier = '/wiki/linux/';
-              this.page.title = 'Linux/Unix';
+              this.page.url = 'http://firsh.me/2019/01/08/learn-something-real/';
+              this.page.identifier = '/2019/01/08/learn-something-real/';
+              this.page.title = '结束也是开始';
             };
             (function() { // DON'T EDIT BELOW THIS LINE
               var d = document, s = d.createElement('script');
