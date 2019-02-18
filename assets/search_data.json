@@ -1,5 +1,11 @@
 {
   
+  "2019-02-18-mount-disk-some": {
+    "title": "一次磁盘挂载",
+    "url": " /2019/02/18/mount-disk-some/",
+    "category": "linux"
+  },
+  
   "2019-01-08-learn-something-real": {
     "title": "结束也是开始",
     "url": " /2019/01/08/learn-something-real/",
@@ -1590,6 +1596,12 @@
     "title": "结束也是开始",
     "url": "/2019/01/08/learn-something-real/",
     "category": "[]"
+  },
+  
+  "2019-02-18-mount-disk-some": {
+    "title": "一次磁盘挂载",
+    "url": "/2019/02/18/mount-disk-some/",
+    "category": "[&quot;linux&quot;]"
   },
   
   "wiki-android-studio": {

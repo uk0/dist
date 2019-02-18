@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Javascript 一行能装逼的JavaScript代码 [fork] &mdash; 张建新</title>
+    <title>一次磁盘挂载 &mdash; 张建新</title>
       <!-- or -->
 
     <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
@@ -25,28 +25,28 @@
     
 
     
-    <link rel="canonical" href="https://firsh.me/2017/08/28/javascript-nb/">
+    <link rel="canonical" href="https://firsh.me/2019/02/18/mount-disk-some/">
     <link rel="alternate" type="application/atom+xml" title="张建新" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="Javascript 一行能装逼的JavaScript代码 [fork]">
+    <meta property="og:title" content="一次磁盘挂载">
       
-    <meta name="keywords" content="javascript,java">
-    <meta name="og:keywords" content="javascript,java">
+    <meta name="keywords" content="lvm linux">
+    <meta name="og:keywords" content="lvm linux">
       
-    <meta name="description" content="一行能装逼的JavaScript代码。">
-    <meta name="og:description" content="一行能装逼的JavaScript代码。">
+    <meta name="description" content="一次磁盘挂载（Centos7）">
+    <meta name="og:description" content="一次磁盘挂载（Centos7）">
       
     
     
         
     
-    <meta property="og:url" content="https://firsh.me/2017/08/28/javascript-nb/">
+    <meta property="og:url" content="https://firsh.me/2019/02/18/mount-disk-some/">
     <meta property="og:site_name" content="张建新">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
     
-    <meta property="article:published_time" content="2017-08-28">
+    <meta property="article:published_time" content="2019-02-18">
     
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
@@ -97,22 +97,22 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="Javascript 一行能装">
+    <section class="collection-head small geopattern" data-pattern-id="一次磁盘挂载">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">Javascript 一行能装逼的JavaScript代码 [fork]</h1>
+        <h1 class="collection-header">一次磁盘挂载</h1>
         <div class="collection-info">
           
           <span class="meta-info">
-            <span class="octicon octicon-calendar"></span> 2017/08/28
+            <span class="octicon octicon-calendar"></span> 2019/02/18
           </span>
           
           
           <span class="meta-info">
             <span class="octicon octicon-file-directory"></span>
-            <a href="/categories/#javascript" title="javascript">javascript</a>
+            <a href="/categories/#linux" title="linux">linux</a>
           </span>
           
         </div>
@@ -126,110 +126,108 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <p>一行能装逼的JavaScript代码。</p>
+    <h3 id="一次磁盘挂载centos7">一次磁盘挂载（Centos7）</h3>
 
-<h1 id="代码学习">代码学习</h1>
-<p>date：2017-05-01
-author：zhangjianxin</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
+<span class="c">################## base ###############</span>
+<span class="nv">bashPath</span><span class="o">=</span><span class="k">$(</span><span class="nb">cd</span> <span class="sb">`</span>dirname <span class="nv">$0</span><span class="sb">`</span><span class="p">;</span> <span class="nb">pwd</span><span class="k">)</span>
 
-<p>[TOC]</p>
+<span class="k">${</span><span class="nv">bashPath</span><span class="k">}</span>/lvms.sh
 
-<h1 id="1-一行神奇的js代码当时我就震惊了这不就是传说中的zb神奇么--哈哈">1. 一行神奇的JS代码，当时我就震惊了，这不就是传说中的ZB神奇么… … 哈哈。</h1>
+sleep 2
 
-<ul>
-  <li>
-    <p>写本篇文章的缘由是之前看到了一段js代码，如下：</p>
-  </li>
-  <li>
-    <p>(!(~+[])+{})[–[~+””][+[]]<em>[~+[]] + ~~!+[]]+({}+[])[[~!+[]]</em>~+[]]</p>
-  </li>
-  <li>
-    <p>然后让大家运行，出来的结果让人有点出乎意料，请看：</p>
-  </li>
-</ul>
-
-<p><img src="https://zmatsh.b0.upaiyun.com/blog/66042438.jpg" alt="" /></p>
-
-<ul>
-  <li>
-    <blockquote>
-      <p>太风骚了有木有！如果有人诋毁前端瞧不起JS的话，那就可以把这段代码发给他了~</p>
-    </blockquote>
-  </li>
-</ul>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* &gt; 不过话说回来了，这到底是什么原理呢？为什么一堆符号运算结果竟然能是两个字符，而且恰巧还是个sb！
-
-* &gt; 其实靠的是js的类型转化的一些基本原理，本篇就来揭密”sb”是如何炼成的。相信你如果能把这个理清楚了，以后遇到类型转化之类的题目，就可以瞬间秒杀了。
+<span class="k">${</span><span class="nv">bashPath</span><span class="k">}</span>/parted.sh
 </code></pre></div></div>
 
-<h1 id="一js运算符的优先级">一、JS运算符的优先级</h1>
 <ul>
-  <li>
-    <p>首先要运用到的第一个知识就是js运算符的优先级，因为这么长一段运算看的人眼花，我们必须得先根据优先级分成n小段，然后再各个击破。优先级的排列如下表：</p>
-  </li>
-  <li>
-    <p>优先级从高到低：
-   <img src="https://zmatsh.b0.upaiyun.com/blog/-365094845.png" alt="" /></p>
-  </li>
+  <li>lvms.sh</li>
 </ul>
 
-<h1 id="二根据此规则我们把这一串运算分为以下16个子表达式">二、根据此规则，我们把这一串运算分为以下16个子表达式：</h1>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+yum install <span class="nt">-y</span> lvm2
 
-<p><img src="https://zmatsh.b0.upaiyun.com/blog/-238288323.jpg" alt="" /></p>
+<span class="c">## disk---&gt;pv---&gt;vg---&gt;lv</span>
 
-<ul>
-  <li>运算符用红色标出，有一点可能大家会意识不到，其实中括号[]也是一个运算符，用来通过索引访问数组项，另外也可以访问字符串的子字符，有点类似charAt方法，如：’abcd’[1] // 返回’b’。而且中括号的优先级还是最高的哦。</li>
-</ul>
+<span class="nv">disk_index</span><span class="o">=</span>14                  <span class="c"># 第14块盘</span>
 
-<h1 id="三js的类型转化">三、JS的类型转化</h1>
+<span class="nv">partition</span><span class="o">=</span>/data            <span class="c"># 定义最终挂载的名称</span>
 
-<p>预处理结束，接下来需要运用的就是javascript的类型转化知识了。我们先说说什么情况下需要进行类型转化。当操作符两边的操作数类型不一致或者不是基本类型（也叫原始类型）时，需要进行类型转化。先按运算符来分一下类：</p>
+<span class="nv">j</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$disk_index</span>|awk <span class="s1">'{printf "%c",97+$disk_index}'</span><span class="sb">`</span>
 
-<p>减号-，乘号*，肯定是进行数学运算，所以操作数需转化为number类型。</p>
+<span class="c">## 直接disk</span>
+fdisk /dev/sd<span class="nv">$j</span> <span class="o">&lt;&lt;</span> <span class="no">FORMAT</span><span class="sh">
+d
+w
+</span><span class="no">FORMAT
 
-<p>加号+，可能是字符串拼接，也可能是数学运算，所以可能会转化为number或string</p>
+</span>parted /dev/sd<span class="nv">$j</span> <span class="o">&lt;&lt;</span><span class="no">ESXU</span><span class="sh">
+mklabel gpt
+yes
+mkpart primary 0 100%
+ignore
+quit
+</span><span class="no">ESXU
 
-<p>一元运算，如+[]，只有一个操作数的，转化为number类型</p>
+</span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\0</span><span class="s2">33[32m disk successfully lvm </span><span class="nv">$j</span><span class="s2"> </span><span class="se">\0</span><span class="s2">33[0m"</span>
 
-<p>下面来看一下转化规则。</p>
+mkdir <span class="nt">-p</span> <span class="nv">$partition</span>
 
-<ol>
-  <li>对于非原始类型的，通过ToPrimitive() 将值转换成原始类型：
-ToPrimitive(input, PreferredType?)</li>
-</ol>
+pvcreate /dev/sd<span class="k">${</span><span class="nv">j</span><span class="k">}</span>1
 
-<p>可选参数PreferredType是Number或者是String。返回值为任何原始值。如果PreferredType是Number，执行顺序如下：</p>
+vgcreate vg_data_<span class="k">${</span><span class="nv">j</span><span class="k">}</span>  /dev/sd<span class="k">${</span><span class="nv">j</span><span class="k">}</span>1
 
-<p>如果input为primitive，返回</p>
+lvcreate  <span class="nt">-l</span> 100%FREE  <span class="nt">-n</span>  lv_data_<span class="k">${</span><span class="nv">j</span><span class="k">}</span>  vg_data_<span class="k">${</span><span class="nv">j</span><span class="k">}</span>
 
-<p>否则，input为Object。调用 obj.valueOf()。如果结果是primitive，返回。</p>
+mkfs.ext4  /dev/vg_data_<span class="k">${</span><span class="nv">j</span><span class="k">}</span>/lv_data_<span class="k">${</span><span class="nv">j</span><span class="k">}</span>
 
-<p>否则，调用obj.toString(). 如果结果是primitive，返回</p>
+<span class="nv">mount</span><span class="o">=</span><span class="s2">"/dev/mapper/vg_data_</span><span class="k">${</span><span class="nv">j</span><span class="k">}</span><span class="s2">-lv_data_</span><span class="k">${</span><span class="nv">j</span><span class="k">}</span><span class="s2">      </span><span class="k">${</span><span class="nv">partition</span><span class="k">}</span><span class="s2">  ext4    defaults        0       0"</span>
 
-<p>否则，抛出TypeError</p>
+<span class="nb">echo</span> <span class="nv">$mount</span> <span class="o">&gt;&gt;</span>/etc/fstab                <span class="c">#写入分区表</span>
 
-<p>如果 PreferredType是String，步骤2跟3互换，如果PreferredType没有，Date实例被设置成String，其他都是Number</p>
+sleep 1s
 
-<ol>
-  <li>
-    <p>通过ToNumber()把值转换成Number，直接看ECMA 9.3的表格
-规则如下：
-<img src="https://zmatsh.b0.upaiyun.com/blog/823282545.png" alt="" /></p>
-  </li>
-  <li>
-    <p>通过ToString()把值转化成字符串， 直接看ECMA 9.8的表格</p>
-  </li>
-</ol>
+mount <span class="nt">-a</span>
 
-<p>规则如下：
-   <img src="https://zmatsh.b0.upaiyun.com/blog/-376644909.png" alt="" /></p>
+
+</code></pre></div></div>
 
 <ul>
-  <li>以上操作经过验证可以直接拿去。</li>
-  <li>Owner <code class="highlighter-rouge">breakEval13</code></li>
-  <li>https://github.com/breakEval13</li>
+  <li>parted.sh</li>
 </ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="nv">PATH</span><span class="o">=</span>/bin:/sbin:/usr/bin:/usr/sbin
+<span class="nb">export </span>PATH
+<span class="nv">i</span><span class="o">=</span>1
+<span class="k">while</span> <span class="o">[</span> <span class="nv">$i</span> <span class="nt">-lt</span> 14 <span class="o">]</span>                  <span class="c">#硬盘数量,除系统盘之外是13块</span>
+<span class="k">do
+</span><span class="nv">j</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$i</span>|awk <span class="s1">'{printf "%c",97+$i}'</span><span class="sb">`</span> <span class="c">#系统盘是sda1,如果是其它的需要修改脚本97=a</span>
+
+unmount <span class="nt">-v</span> /dev/sd<span class="nv">$j</span>
+
+parted /dev/sd<span class="nv">$j</span> <span class="o">&lt;&lt;</span><span class="no">FORMAT</span><span class="sh">
+mklabel gpt
+mkpart primary 0 100%
+ignore
+quit
+</span><span class="no">FORMAT
+</span>mkfs.ext4 <span class="nt">-T</span> largefile  /dev/sd<span class="k">${</span><span class="nv">j</span><span class="k">}</span>1    <span class="c">#格式化磁盘</span>
+mkdir <span class="nt">-p</span> /data/disk<span class="k">${</span><span class="nv">i</span><span class="k">}</span>
+<span class="nv">mount</span><span class="o">=</span><span class="s2">"/dev/sd</span><span class="k">${</span><span class="nv">j</span><span class="k">}</span><span class="s2">1       /data/disk</span><span class="k">${</span><span class="nv">i</span><span class="k">}</span><span class="s2">  ext4    defaults        0       0"</span>
+rm <span class="nt">-rf</span> /data/disk<span class="k">${</span><span class="nv">i</span><span class="k">}</span>/<span class="k">*</span>
+<span class="nb">echo</span> <span class="nv">$mount</span> <span class="o">&gt;&gt;</span>/etc/fstab                <span class="c">#写入分区表</span>
+<span class="nv">i</span><span class="o">=</span><span class="k">$((</span><span class="nv">$i</span><span class="o">+</span><span class="m">1</span><span class="k">))</span>
+<span class="k">done
+</span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\0</span><span class="s2">33[32m *****Formating  and Mounting have finished wait 5s **** </span><span class="se">\0</span><span class="s2">33[0m"</span>
+
+chmod <span class="nt">-R</span> 777 /data/<span class="k">*</span>
+
+sleep 5
+
+mount <span class="nt">-a</span>
+</code></pre></div></div>
+
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
 
     </article>
     <div class="share">
@@ -243,7 +241,7 @@ ToPrimitive(input, PreferredType?)</li>
         <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
         <script>
         var gitalk = new Gitalk({
-            id: '/2017/08/28/javascript-nb/',
+            id: '/2019/02/18/mount-disk-some/',
             clientID: '0dc80b46a482ec78f3e0',
             clientSecret: '8cae5d306b3703ad240b74142995473086fcbbab',
             repo: 'blog-comments',
