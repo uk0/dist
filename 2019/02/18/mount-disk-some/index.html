@@ -31,11 +31,11 @@
     
     <meta property="og:title" content="一次磁盘挂载">
       
-    <meta name="keywords" content="lvm linux">
-    <meta name="og:keywords" content="lvm linux">
+    <meta name="keywords" content="Linux">
+    <meta name="og:keywords" content="Linux">
       
-    <meta name="description" content="一次磁盘挂载（Centos7）">
-    <meta name="og:description" content="一次磁盘挂载（Centos7）">
+    <meta name="description" content="服务器10台每台16块盘 其中两块系统盘,剩下的皆为数据盘，因为涉及到扩容，所以有一个大目录采用lvm挂载。">
+    <meta name="og:description" content="服务器10台每台16块盘 其中两块系统盘,剩下的皆为数据盘，因为涉及到扩容，所以有一个大目录采用lvm挂载。">
       
     
     
@@ -112,7 +112,7 @@
           
           <span class="meta-info">
             <span class="octicon octicon-file-directory"></span>
-            <a href="/categories/#linux" title="linux">linux</a>
+            <a href="/categories/#Linux" title="Linux">Linux</a>
           </span>
           
         </div>
@@ -126,7 +126,9 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <h3 id="一次磁盘挂载centos7">一次磁盘挂载（Centos7）</h3>
+    <p>服务器10台每台16块盘 其中两块系统盘,剩下的皆为数据盘，因为涉及到扩容，所以有一个大目录采用lvm挂载。</p>
+
+<h3 id="一次磁盘挂载centos7">一次磁盘挂载（Centos7）</h3>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
 <span class="c">################## base ###############</span>
