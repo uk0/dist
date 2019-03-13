@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>python 监控binlog实现hue一个小插件 &mdash; 张建新</title>
+      <!-- or -->
+
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/collection.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/common.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="https://firsh.me/2019/03/13/python-mysql-rs-binlog/">
+    <link rel="alternate" type="application/atom+xml" title="张建新" href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="python 监控binlog实现hue一个小插件">
+      
+    <meta name="keywords" content="python binlog">
+    <meta name="og:keywords" content="python binlog">
+      
+    <meta name="description" content="代码Python可以使用">
+    <meta name="og:description" content="代码Python可以使用">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="https://firsh.me/2019/03/13/python-mysql-rs-binlog/">
+    <meta property="og:site_name" content="张建新">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2019-03-13">
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-3969253077255521",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+            src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="张建新"><span class="octicon octicon-mark-github"></span> 张建新</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="首页">首页</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="分类">分类</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="维基">维基</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="链接">链接</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="python 监控binlog">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">python 监控binlog实现hue一个小插件</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2019/03/13
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#python" title="python">python</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <h3 id="代码python可以使用">代码Python可以使用</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pymysqlreplication</span> <span class="kn">import</span> <span class="n">BinLogStreamReader</span>
+<span class="kn">from</span> <span class="nn">pymysqlreplication.row_event</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DeleteRowsEvent</span><span class="p">,</span>
+    <span class="n">UpdateRowsEvent</span><span class="p">,</span>
+    <span class="n">WriteRowsEvent</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">paramiko</span>
+<span class="kn">import</span> <span class="nn">logging.handlers</span>
+
+<span class="n">LOG_FILE</span> <span class="o">=</span> <span class="s">r'hue_auto_create_user.log'</span>
+
+<span class="n">handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">RotatingFileHandler</span><span class="p">(</span><span class="n">LOG_FILE</span><span class="p">,</span> <span class="n">maxBytes</span><span class="o">=</span><span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">,</span> <span class="n">backupCount</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span>  <span class="c"># 实例化handler</span>
+<span class="n">fmt</span> <span class="o">=</span> <span class="s">'</span><span class="si">%(asctime)</span><span class="s">s - </span><span class="si">%(levelname)</span><span class="s">s - </span><span class="si">%(message)</span><span class="s">s'</span>
+
+<span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span>  <span class="c"># 实例化formatter</span>
+<span class="n">handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>  <span class="c"># 为handler添加formatter</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">'hue_auto_create_user'</span><span class="p">)</span>  <span class="c"># 获取名为hue_auto_create_user的logger</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>  <span class="c"># 为logger添加handler</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
+
+<span class="n">MYSQL_SETTINGS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"host"</span><span class="p">:</span> <span class="s">"cdh-m1.temp.online"</span><span class="p">,</span>
+    <span class="s">"port"</span><span class="p">:</span> <span class="mi">3306</span><span class="p">,</span>
+    <span class="s">"user"</span><span class="p">:</span> <span class="s">"root"</span><span class="p">,</span>
+    <span class="s">"passwd"</span><span class="p">:</span> <span class="s">"12345"</span>
+<span class="p">}</span>
+
+<span class="n">HOST_ARRAY</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">'10.50.40.1'</span><span class="p">,</span>
+    <span class="s">'10.50.40.2'</span><span class="p">,</span>
+    <span class="s">'10.50.40.3'</span><span class="p">,</span>
+    <span class="s">'10.50.40.4'</span><span class="p">,</span>
+    <span class="s">'10.50.40.5'</span><span class="p">,</span>
+    <span class="s">'10.50.40.6'</span><span class="p">,</span>
+    <span class="s">'10.50.40.7'</span><span class="p">,</span>
+    <span class="s">'10.50.40.8'</span><span class="p">,</span>
+    <span class="s">'10.50.40.9'</span><span class="p">,</span>
+    <span class="s">'10.50.40.10'</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">ssh_host_createUserAndGroup</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">passwd</span><span class="p">,</span> <span class="n">cmd</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c"># 指定本地的RSA私钥文件,如果建立密钥对时设置的有密码，password为设定的密码，如无不用指定password参数</span>
+        <span class="c"># pkey = paramiko.RSAKey.from_private_key_file('/home/super/.ssh/id_rsa')</span>
+        <span class="n">ssh</span> <span class="o">=</span> <span class="n">paramiko</span><span class="o">.</span><span class="n">SSHClient</span><span class="p">()</span>
+        <span class="n">ssh</span><span class="o">.</span><span class="n">set_missing_host_key_policy</span><span class="p">(</span><span class="n">paramiko</span><span class="o">.</span><span class="n">AutoAddPolicy</span><span class="p">())</span>
+        <span class="n">ssh</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">passwd</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">cmd</span><span class="p">:</span>
+            <span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">ssh</span><span class="o">.</span><span class="n">exec_command</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">stdout</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+            <span class="c"># 屏幕输出</span>
+            <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">out</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">u"ssh 远程执行 {} Success"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ip</span><span class="p">))</span>
+        <span class="n">ssh</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">u"ssh 远程执行 {} Error"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ip</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">startTask</span><span class="p">(</span><span class="n">user</span><span class="p">):</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s">'useradd {}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user</span><span class="p">),</span> <span class="s">'groupadd {}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user</span><span class="p">),</span>
+           <span class="s">'usermod  -a  -G {} {}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">user</span><span class="p">)]</span>  <span class="c"># 你要执行的命令列表</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="s">"root"</span>  <span class="c"># 用户名</span>
+    <span class="n">passwd</span> <span class="o">=</span> <span class="s">"123456"</span>  <span class="c"># 密码</span>
+
+    <span class="k">for</span> <span class="n">ip</span> <span class="ow">in</span> <span class="n">HOST_ARRAY</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">ssh_host_createUserAndGroup</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">passwd</span><span class="p">,</span> <span class="n">cmd</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">u"Host {} 执行命令 {}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span><span class="n">cmd</span><span class="p">))</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">updateMysql</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span><span class="n">userName</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">pymysql</span>
+    <span class="n">cnx</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="s">'root'</span><span class="p">,</span>
+                          <span class="n">password</span><span class="o">=</span><span class="s">'123456'</span><span class="p">,</span>
+                          <span class="n">host</span><span class="o">=</span><span class="s">'cdh-m1.temop.online'</span><span class="p">,</span>
+                          <span class="n">database</span><span class="o">=</span><span class="s">'hue'</span><span class="p">,</span>
+                          <span class="n">port</span><span class="o">=</span><span class="mi">3306</span><span class="p">,</span>
+                          <span class="n">charset</span><span class="o">=</span><span class="s">'utf8'</span>
+                          <span class="p">)</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">cnx</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"update auth_user set is_superuser=0 where id={}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uid</span><span class="p">))</span>
+        <span class="c">#INSERT IGNORE INTO</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"insert INTO hue.auth_group ( id, name) SELECT  (auth_group.id+1), '{}' FROM hue.auth_group order by id DESC limit 1"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">userName</span><span class="p">))</span>
+    <span class="k">except</span> <span class="nb">Exception</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">"已经存在 Group {}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">userName</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"已经存在 Group {}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">userName</span><span class="p">))</span>
+
+
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"insert INTO hue.auth_user_groups(user_id,group_id)  SELECT {},auth_group.id FROM hue.auth_group where hue.auth_group.name='{}'"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">userName</span><span class="p">))</span>
+    <span class="n">cnx</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="n">cnx</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">stream</span> <span class="o">=</span> <span class="n">BinLogStreamReader</span><span class="p">(</span>
+        <span class="n">connection_settings</span><span class="o">=</span><span class="n">MYSQL_SETTINGS</span><span class="p">,</span>
+        <span class="n">server_id</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">blocking</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">resume_stream</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">only_events</span><span class="o">=</span><span class="p">[</span><span class="n">DeleteRowsEvent</span><span class="p">,</span> <span class="n">WriteRowsEvent</span><span class="p">,</span> <span class="n">UpdateRowsEvent</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">binlogevent</span> <span class="ow">in</span> <span class="n">stream</span><span class="p">:</span>
+        <span class="n">e_start_pos</span><span class="p">,</span> <span class="n">last_pos</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">log_pos</span><span class="p">,</span> <span class="n">stream</span><span class="o">.</span><span class="n">log_pos</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">binlogevent</span><span class="o">.</span><span class="n">rows</span><span class="p">:</span>
+            <span class="n">event</span> <span class="o">=</span> <span class="p">{</span><span class="s">"schema"</span><span class="p">:</span> <span class="n">binlogevent</span><span class="o">.</span><span class="n">schema</span><span class="p">,</span>
+                     <span class="s">"table"</span><span class="p">:</span> <span class="n">binlogevent</span><span class="o">.</span><span class="n">table</span><span class="p">,</span>
+                     <span class="s">"type"</span><span class="p">:</span> <span class="nb">type</span><span class="p">(</span><span class="n">binlogevent</span><span class="p">)</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
+                     <span class="s">"row"</span><span class="p">:</span> <span class="n">row</span>
+                     <span class="p">};</span>
+            <span class="k">if</span> <span class="n">binlogevent</span><span class="o">.</span><span class="n">table</span> <span class="o">==</span> <span class="s">"auth_user"</span> <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="n">binlogevent</span><span class="p">)</span><span class="o">.</span><span class="n">__name__</span> <span class="o">==</span> <span class="s">"DeleteRowsEvent"</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">u"DELETE User "</span> <span class="o">+</span> <span class="n">row</span><span class="p">[</span><span class="s">'values'</span><span class="p">][</span><span class="s">'username'</span><span class="p">])</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">u"DELETE User "</span> <span class="o">+</span> <span class="n">row</span><span class="p">[</span><span class="s">'values'</span><span class="p">][</span><span class="s">'username'</span><span class="p">])</span>
+
+            <span class="k">if</span> <span class="n">binlogevent</span><span class="o">.</span><span class="n">table</span> <span class="o">==</span> <span class="s">"auth_user"</span> <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="n">binlogevent</span><span class="p">)</span><span class="o">.</span><span class="n">__name__</span> <span class="o">==</span> <span class="s">"WriteRowsEvent"</span><span class="p">:</span>
+                <span class="n">userName</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s">'values'</span><span class="p">][</span><span class="s">'username'</span><span class="p">];</span>
+                <span class="n">uid</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s">'values'</span><span class="p">][</span><span class="s">'id'</span><span class="p">];</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">u"INSERT User {} Uid {}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s">'values'</span><span class="p">][</span><span class="s">'username'</span><span class="p">],</span><span class="n">uid</span><span class="p">))</span>
+
+                <span class="n">startTask</span><span class="p">(</span><span class="n">userName</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">u"[INFO] 添加用户到集群所有节点 -&gt; {}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">userName</span><span class="p">)</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+                <span class="n">updateMysql</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span><span class="n">userName</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">u"[INFO] 去掉Hue SuperUser {} Uid={}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">userName</span><span class="p">,</span> <span class="n">uid</span><span class="p">)</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+
+
+</code></pre></div></div>
+
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+        <div id="gitalk-container"></div>
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+        var gitalk = new Gitalk({
+            id: '/2019/03/13/python-mysql-rs-binlog/',
+            clientID: '0dc80b46a482ec78f3e0',
+            clientSecret: '8cae5d306b3703ad240b74142995473086fcbbab',
+            repo: 'blog-comments',
+            owner: 'uk0',
+            admin: ['uk0'],
+            labels: ['gitment'],
+            perPage: 50,
+        })
+        gitalk.render('gitalk-container')
+        </script>
+      <!-- 多说公共JS代码 END -->
+      <!-- Duoshuo Comment END -->
+  
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    <h3>Affiliate</h3>
+<a href="https://www.vultr.com/?ref=7142633"><img src="https://www.vultr.com/media/banner_3.png" width="300" height="250"></a>
+
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="https://zmatsh.b0.upaiyun.com/assets/css/modules/sidebar-search.css">
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/lunr.min.js"></script>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+<script src="https://zmatsh.b0.upaiyun.com/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="ZhangJianXin">ZhangJianXin</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="https://github.com/uk0/uk0.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="首页" target="">首页</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="分类" target="">分类</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="维基" target="">维基</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="链接" target="">链接</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="关于" target="">关于</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="https://zmatsh.b0.upaiyun.com/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/geopattern.js"></script>
+    <script src="https://zmatsh.b0.upaiyun.com/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="https://zmatsh.b0.upaiyun.com/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130872028-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-130872028-1');
+        </script>
+    </div>
+    
+</body>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>

@@ -1,5 +1,11 @@
 {
   
+  "2019-03-13-python-mysql-rs-binlog": {
+    "title": "python 监控binlog实现hue一个小插件",
+    "url": " /2019/03/13/python-mysql-rs-binlog/",
+    "category": "python"
+  },
+  
   "2019-02-18-mount-disk-some": {
     "title": "一次磁盘挂载",
     "url": " /2019/02/18/mount-disk-some/",
@@ -1602,6 +1608,12 @@
     "title": "一次磁盘挂载",
     "url": "/2019/02/18/mount-disk-some/",
     "category": "[&quot;Linux&quot;]"
+  },
+  
+  "2019-03-13-python-mysql-rs-binlog": {
+    "title": "python 监控binlog实现hue一个小插件",
+    "url": "/2019/03/13/python-mysql-rs-binlog/",
+    "category": "[&quot;python&quot;]"
   },
   
   "wiki-android-studio": {
