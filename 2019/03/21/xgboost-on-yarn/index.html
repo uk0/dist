@@ -176,7 +176,7 @@ make <span class="nt">-j4</span>
 </code></pre></div></div>
 <h2 id="install-jvm-package-on-env">install jvm-package on env</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>jvm-packages/ <span class="o">&amp;&amp;</span> mvn clean package <span class="o">&amp;&amp;</span> mvn install 
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>jvm-packages/ <span class="o">&amp;&amp;</span> mvn install:install-file <span class="nt">-Dfile</span><span class="o">=</span>xgboost4j-spark-0.83-jar-with-dependencies.jar <span class="nt">-DgroupId</span><span class="o">=</span>ml.dmlc <span class="nt">-DartifactId</span><span class="o">=</span>xgboost4j-spark <span class="nt">-Dversion</span><span class="o">=</span>0.7 <span class="nt">-Dpackaging</span><span class="o">=</span>jar
 </code></pre></div></div>
 
 <p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
