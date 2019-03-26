@@ -1,4 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="https://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://firsh.me/" rel="alternate" type="text/html" /><updated>2019-03-13T21:48:48+08:00</updated><id>https://firsh.me/feed.xml</id><title type="html">张建新</title><subtitle>张建新个人博客</subtitle><author><name>ZhangJianXin</name></author><entry><title type="html">python 监控binlog实现hue一个小插件</title><link href="https://firsh.me/2019/03/13/python-mysql-rs-binlog/" rel="alternate" type="text/html" title="python 监控binlog实现hue一个小插件" /><published>2019-03-13T21:43:56+08:00</published><updated>2019-03-13T21:43:56+08:00</updated><id>https://firsh.me/2019/03/13/python-mysql-rs-binlog</id><content type="html" xml:base="https://firsh.me/2019/03/13/python-mysql-rs-binlog/">&lt;h3 id=&quot;代码python可以使用&quot;&gt;代码Python可以使用&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="https://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://firsh.me/" rel="alternate" type="text/html" /><updated>2019-03-26T10:53:29+08:00</updated><id>https://firsh.me/feed.xml</id><title type="html">张建新</title><subtitle>张建新个人博客</subtitle><author><name>ZhangJianXin</name></author><entry><title type="html">xgboost on yarn (cdh,cloudera)</title><link href="https://firsh.me/2019/03/21/xgboost-on-yarn/" rel="alternate" type="text/html" title="xgboost on yarn (cdh,cloudera)" /><published>2019-03-21T13:20:52+08:00</published><updated>2019-03-21T13:20:52+08:00</updated><id>https://firsh.me/2019/03/21/xgboost-on-yarn</id><content type="html" xml:base="https://firsh.me/2019/03/21/xgboost-on-yarn/">&lt;p&gt;Xgboost install by cluster yarn&lt;/p&gt;
+
+&lt;h2 id=&quot;yum-安装基础的依赖&quot;&gt;yum 安装基础的依赖&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;yum install gcc-c++ fuse-devel git  hadoop-libhdfs-devel
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;配置环境变量&quot;&gt;配置环境变量&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;MVN_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/soft/apache-maven-3.6.0
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$MVN_HOME&lt;/span&gt;/bin:&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;XGB_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/download
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$XGB_HOME&lt;/span&gt;:&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HDFS_LIB_PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;XGB_HOME&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;/xgboost-packages/libhdfs
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;LD_LIBRARY_PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;XGB_HOME&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;/xgboost-packages/lib64:&lt;span class=&quot;nv&quot;&gt;$JAVA_HOME&lt;/span&gt;/jre/lib/amd64/server:/&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;XGB_HOME&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;/xgboost-packages/libhdfs:&lt;span class=&quot;nv&quot;&gt;$LD_LIBRARY_PATH&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HADOOP_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/cloudera/parcels/CDH/lib/hadoop
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HADOOP_COMMON_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HADOOP_HOME&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HADOOP_HDFS_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/cloudera/parcels/CDH/lib/hadoop-hdfs
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HADOOP_MAPRED_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/cloudera/parcels/CDH/lib/hadoop-yarn
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HADOOP_YARN_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HADOOP_MAPRED_HOME&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HADOOP_CONF_DIR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HADOOP_HOME&lt;/span&gt;/etc/hadoop
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;xgboost-git-clone--and-install&quot;&gt;xgboost git clone  and install&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkdir &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; xgboost-packages/lib64
+
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;xgboost-packages
+
+
+git clone &lt;span class=&quot;nt&quot;&gt;--recursive&lt;/span&gt; https://github.com/dmlc/xgboost
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;xgboost
+cp make/config.mk ./
+vim config.mk
+add line &lt;span class=&quot;c&quot;&gt;# HADOOP_HOME = /usr/lib/hadoop&lt;/span&gt;
+
+mkdir build
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;build
+cmake .. &lt;span class=&quot;nv&quot;&gt;USE_HDFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ON &lt;span class=&quot;c&quot;&gt;# 开启HDFS&lt;/span&gt;
+make &lt;span class=&quot;nt&quot;&gt;-j4&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;install-python-package-on-env&quot;&gt;install python package on env&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;python-package/ &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; python setup.py install 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id=&quot;install-jvm-package-on-env&quot;&gt;install jvm-package on env&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;jvm-packages/ &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; mvn clean package &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; mvn install 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">Xgboost install by cluster yarn</summary></entry><entry><title type="html">python 监控binlog实现hue一个小插件</title><link href="https://firsh.me/2019/03/13/python-mysql-rs-binlog/" rel="alternate" type="text/html" title="python 监控binlog实现hue一个小插件" /><published>2019-03-13T21:43:56+08:00</published><updated>2019-03-13T21:43:56+08:00</updated><id>https://firsh.me/2019/03/13/python-mysql-rs-binlog</id><content type="html" xml:base="https://firsh.me/2019/03/13/python-mysql-rs-binlog/">&lt;h3 id=&quot;代码python可以使用&quot;&gt;代码Python可以使用&lt;/h3&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pymysqlreplication&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BinLogStreamReader&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pymysqlreplication.row_event&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
@@ -913,97 +966,4 @@ git checkout &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quo
 
 &lt;p&gt;一个Linux 大佬 https://blog.csdn.net/imxiangzi/article/details/50387073&lt;/p&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">Linux awk less grep sed 等命令使用</summary></entry><entry><title type="html">seerverless操作hdfs上传数据。</title><link href="https://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data/" rel="alternate" type="text/html" title="seerverless操作hdfs上传数据。" /><published>2018-11-05T20:00:33+08:00</published><updated>2018-11-05T20:00:33+08:00</updated><id>https://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data</id><content type="html" xml:base="https://firsh.me/2018/11/05/kubeless-serverless-hdfs-put-data/">&lt;p&gt;这只是一次尝试。。。。&lt;/p&gt;
-
-&lt;h2 id=&quot;kubernetes-serverless-操作-hadoop-hdfs&quot;&gt;kubernetes serverless 操作 Hadoop Hdfs&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;serverless Python 操作hdfs&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# /usr/bin/env python&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# coding=utf-8&lt;/span&gt;
-
-import paramiko
-import os
-from hdfs import Client
-from bottle import route, run
-from bottle import request
-
-client &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Client&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http://hdfs-web-svc.cloudera:50070&quot;&lt;/span&gt;, &lt;span class=&quot;nv&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/&quot;&lt;/span&gt;, &lt;span class=&quot;nv&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;100, &lt;span class=&quot;nv&quot;&gt;session&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;False&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# 文件上传的HTML模板，这里没有额外去写html模板了，直接写在这里，方便点吧&lt;/span&gt;
-@route&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'/upload'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-def upload&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;:
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'''
-        &amp;lt;html&amp;gt;
-            &amp;lt;head&amp;gt;
-            &amp;lt;/head&amp;gt;
-            &amp;lt;body&amp;gt;
-                &amp;lt;form action&quot;/upload&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&amp;gt;
-                    &amp;lt;input type=&quot;file&quot; name=&quot;data&quot; /&amp;gt;
-                    &amp;lt;input type=&quot;submit&quot; value=&quot;Upload&quot; /&amp;gt;
-                &amp;lt;/form&amp;gt;
-            &amp;lt;/body&amp;gt;
-        &amp;lt;/html&amp;gt;
-    '''&lt;/span&gt;
-
-
-&lt;span class=&quot;c&quot;&gt;# 文件上传，overwrite=True为覆盖原有的文件，&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# 如果不加这参数，当服务器已存在同名文件时，将返回“IOError: File exists.”错误&lt;/span&gt;
-@route&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'/upload'&lt;/span&gt;, &lt;span class=&quot;nv&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'POST'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-def doupload&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;:
-    upload &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; request.files.getall&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'data'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;meta &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;upload:
-        buf &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; meta.file.read&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-        name, ext &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; os.path.splitext&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;meta.filename&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;ext not &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'.jar'&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;'.tar'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'File extension not allowed. type [JAR]'&lt;/span&gt;
-        path &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/task/mr/'&lt;/span&gt; + name + ext
-        &lt;span class=&quot;c&quot;&gt;# ssh root@agent-2.agent-svc.cloudera.svc.cluster.local&lt;/span&gt;
-        print&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;--------------save Task To&quot;&lt;/span&gt; + path&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        with client.write&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;path, &lt;span class=&quot;nv&quot;&gt;overwrite&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;True&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; as writer:
-            writer.write&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;buf&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'ok'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;serverless.yml&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Welcome to Serverless!&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# For full config options, check the kubeless plugin docs:&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#    https://github.com/serverless/serverless-kubeless&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# For documentation on kubeless itself:&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#    http://kubeless.io&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# Update the service name below with your own service name&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;service&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;put-taskjar&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# Please ensure the serverless-kubeless provider plugin is installed globally.&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# $ npm install -g serverless-kubeless&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# ...before installing project dependencies to register this provider.&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# $ npm install&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;provider&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;kubeless&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;${env:K8S_NAMESPACE, 'cloudera'}&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;runtime&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;python2.7&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;serverless-kubeless&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;functions&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;upload&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;task.upload&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;具体信息看第一条关于 serverless 的文章。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">这只是一次尝试。。。。</summary></entry></feed>
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">Linux awk less grep sed 等命令使用</summary></entry></feed>

@@ -1,5 +1,11 @@
 {
   
+  "2019-03-21-xgboost-on-yarn": {
+    "title": "xgboost on yarn (cdh,cloudera)",
+    "url": " /2019/03/21/xgboost-on-yarn/",
+    "category": "xgboost"
+  },
+  
   "2019-03-13-python-mysql-rs-binlog": {
     "title": "python 监控binlog实现hue一个小插件",
     "url": " /2019/03/13/python-mysql-rs-binlog/",
@@ -1614,6 +1620,12 @@
     "title": "python 监控binlog实现hue一个小插件",
     "url": "/2019/03/13/python-mysql-rs-binlog/",
     "category": "[&quot;python&quot;]"
+  },
+  
+  "2019-03-21-xgboost-on-yarn": {
+    "title": "xgboost on yarn (cdh,cloudera)",
+    "url": "/2019/03/21/xgboost-on-yarn/",
+    "category": "[&quot;xgboost&quot;]"
   },
   
   "wiki-android-studio": {
