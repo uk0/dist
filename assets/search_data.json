@@ -1,5 +1,11 @@
 {
   
+  "2019-08-03-file-to-rocketmq-middleware": {
+    "title": "读取数据发送到MQ",
+    "url": " /2019/08/03/file_to_rocketmq_middleware/",
+    "category": "rocketmq"
+  },
+  
   "2019-03-21-xgboost-on-yarn": {
     "title": "xgboost on yarn (cdh,cloudera)",
     "url": " /2019/03/21/xgboost-on-yarn/",
@@ -1626,6 +1632,12 @@
     "title": "xgboost on yarn (cdh,cloudera)",
     "url": "/2019/03/21/xgboost-on-yarn/",
     "category": "[&quot;xgboost&quot;]"
+  },
+  
+  "2019-08-03-file-to-rocketmq-middleware": {
+    "title": "读取数据发送到MQ",
+    "url": "/2019/08/03/file_to_rocketmq_middleware/",
+    "category": "[&quot;rocketmq&quot;, &quot;golang&quot;]"
   },
   
   "wiki-android-studio": {

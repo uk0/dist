@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Mac OS X &mdash; 张建新</title>
+    <title>读取数据发送到MQ &mdash; 张建新</title>
       <!-- or -->
 
     <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
@@ -25,23 +25,23 @@
     
 
     
-    <link rel="canonical" href="https://firsh.me/wiki/mac/">
+    <link rel="canonical" href="https://firsh.me/2019/08/03/file_to_rocketmq_middleware/">
     <link rel="alternate" type="application/atom+xml" title="张建新" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="Mac OS X">
+    <meta property="og:title" content="读取数据发送到MQ">
       
-    <meta name="keywords" content="Mac">
-    <meta name="og:keywords" content="Mac">
+    <meta name="keywords" content="张建新,docker,Github, 张建新博客 Google Kubernetes, kubernetes, Flink,Graphx Spark,hadoop,hbase,mongodb,hdfs,Geek,hack,Spring boot,spring boot,spring,Docker,Dockerfile,Java ,Python 冷漠">
+    <meta name="og:keywords" content="张建新,docker,Github, 张建新博客 Google Kubernetes, kubernetes, Flink,Graphx Spark,hadoop,hbase,mongodb,hdfs,Geek,hack,Spring boot,spring boot,spring,Docker,Dockerfile,Java ,Python 冷漠">
       
-    <meta name="description" content="快捷键约定：">
-    <meta name="og:description" content="快捷键约定：">
+    <meta name="description" content="转载请注明出处，本文采用 CC4.0 协议授权">
+    <meta name="og:description" content="转载请注明出处，本文采用 CC4.0 协议授权">
       
     
     
         
     
-    <meta property="og:url" content="https://firsh.me/wiki/mac/">
+    <meta property="og:url" content="https://firsh.me/2019/08/03/file_to_rocketmq_middleware/">
     <meta property="og:site_name" content="张建新">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -97,12 +97,30 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="Mac OS X">
+    <section class="collection-head small geopattern" data-pattern-id="读取数据发送到MQ">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">Mac OS X</h1>
+        <h1 class="collection-header">读取数据发送到MQ</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2019/08/03
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#rocketmq" title="rocketmq">rocketmq</a>
+          </span>
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#golang" title="golang">golang</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
@@ -113,263 +131,7 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <p>快捷键约定：</p>
-
-<p>C –&gt; Ctrl</p>
-
-<p>S –&gt; Shift</p>
-
-<p>M –&gt; Alt/Option</p>
-
-<p>Cmd –&gt; Command</p>
-
-<p><a href="https://support.apple.com/zh-cn/HT201236">Mac 键盘快捷键官方参考</a></p>
-
-<h3 id="窗口">窗口</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">功能</th>
-      <th style="text-align: left">快捷键</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">显示桌面</td>
-      <td style="text-align: left">F11</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">切换窗口全屏状态</td>
-      <td style="text-align: left">C-Cmd-F</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">隐藏当前程序的所有窗口</td>
-      <td style="text-align: left">Cmd-H</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">最小化窗口</td>
-      <td style="text-align: left">Cmd-M</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">关闭窗口</td>
-      <td style="text-align: left">Cmd-W</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">关闭当前程序</td>
-      <td style="text-align: left">Cmd-Q</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">新建标签</td>
-      <td style="text-align: left">Cmd-T</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">新建窗口</td>
-      <td style="text-align: left">Cmd-N</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="程序">程序</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">功能</th>
-      <th style="text-align: left">快捷键</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">打开 emoji 表情窗口</td>
-      <td style="text-align: left">C-Cmd-空格</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">打开 Spotlight</td>
-      <td style="text-align: left">C-空格</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">切换输入法</td>
-      <td style="text-align: left">Cmd-空格</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">打开 Alfred</td>
-      <td style="text-align: left">M-空格</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">打开 Finder 并查找</td>
-      <td style="text-align: left">C-M-空格</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">打开 Launchpad</td>
-      <td style="text-align: left">四指合拢</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="搜索">搜索</h3>
-
-<ul>
-  <li>
-    <p>使用 <code class="highlighter-rouge">find</code> 命令，例如：</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find ~ -iname aapt
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>使用 <code class="highlighter-rouge">mdfind</code> 命令，例如：</p>
-
-    <p>全局搜索</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mdfind -name aapt
-</code></pre></div>    </div>
-
-    <p>或搜索指定文件夹</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mdfind -onlyin ~/Library aapt
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>使用 <code class="highlighter-rouge">locate</code> 命令，例如：</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>locate aapt
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h3 id="复制文件路径">复制文件路径</h3>
-
-<ul>
-  <li>
-    <p>在 Finder 下</p>
-
-    <p>先按键 Cmd-i，然后从弹出的窗口里复制。</p>
-  </li>
-  <li>
-    <p>在 Terminal 下</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pwd|pbcopy
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h3 id="safari">Safari</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">功能</th>
-      <th style="text-align: left">快捷键</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">定位到地址栏</td>
-      <td style="text-align: left">Cmd-L</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">切换标签</td>
-      <td style="text-align: left">Cmd-S-Left/Right</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">收藏页面</td>
-      <td style="text-align: left">Cmd-D</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="保存-safari-里正在播放的视频">保存 Safari 里正在播放的视频</h3>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>su
-<span class="c"># cd /private/var/folders</span>
-<span class="c"># ls</span>
-nk zz
-<span class="c"># cd nk</span>
-<span class="c"># ls</span>
-zy3770994vqg83xvmbc9pd0m0000gn
-<span class="c"># cd zy3770994vqg83xvmbc9pd0m0000gn/T</span>
-<span class="c"># open .</span>
-</code></pre></div></div>
-
-<p>然后复制里面叫 FlashTmp.xxx 的文件，改名为 FlashTmp.flv。（操作过程中保持视频在播放状态）</p>
-
-<h3 id="terminal">Terminal</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">功能</th>
-      <th style="text-align: left">快捷键</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">新建标签</td>
-      <td style="text-align: left">Cmd-T</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">上/下个标签</td>
-      <td style="text-align: left">Cmd-{/}</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">删除光标前的输入</td>
-      <td style="text-align: left">C-U</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="wireshark">WireShark</h3>
-
-<p>使用 WireShark 1.99 开发版，可以不依赖于 X11，界面基于 Qt，更加美观，符合 Mac 界面风格。</p>
-
-<h3 id="截图">截图</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">功能</th>
-      <th style="text-align: left">快捷键</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">全屏截图保存到桌面</td>
-      <td style="text-align: left">Cmd-S-3</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">选区截图保存到桌面</td>
-      <td style="text-align: left">Cmd-S-4</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">窗口截图保存到桌面</td>
-      <td style="text-align: left">Cmd-S-4 空格</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">QQ 截图</td>
-      <td style="text-align: left">Cmd-S-A</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>去除窗口截图时的阴影：</p>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>defaults write com.apple.screencapture disable-shadow <span class="nt">-bool</span> TRUE
-Killall SystemUIServer
-</code></pre></div></div>
-
-<p>如果要保留窗口截图时的阴影，则将 TRUE 改为 FALSE。</p>
-
-<h3 id="ibooks-里的电子书保存路径">iBooks 里的电子书保存路径</h3>
-
-<p><code class="highlighter-rouge">/Users/&lt;username&gt;/Library/Containers/com.apple.BKAgentService/Data/Documents/iBooks/Books</code></p>
-
-<h3 id="安装-mpv-没有图形界面">安装 mpv 没有图形界面</h3>
-
-<p>使用 <code class="highlighter-rouge">brew options mpv</code> 可以看到有个 <code class="highlighter-rouge">--with-bundle</code> 是安装时创建 .app 文件。</p>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew install mpv <span class="nt">--with-bundle</span>
-brew linkapps mpv
-</code></pre></div></div>
+    <p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
 
     </article>
     <div class="share">
@@ -383,7 +145,7 @@ brew linkapps mpv
         <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
         <script>
         var gitalk = new Gitalk({
-            id: '/wiki/mac/',
+            id: '/2019/08/03/file_to_rocketmq_middleware/',
             clientID: '0dc80b46a482ec78f3e0',
             clientSecret: '8cae5d306b3703ad240b74142995473086fcbbab',
             repo: 'blog-comments',
