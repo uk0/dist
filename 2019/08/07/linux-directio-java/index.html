@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>OneNote &mdash; 张建新</title>
+    <title>Java实现DirectIo文件方式操作文件系统 &mdash; 张建新</title>
       <!-- or -->
 
     <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
@@ -25,23 +25,23 @@
     
 
     
-    <link rel="canonical" href="https://firsh.me/wiki/onenote/">
+    <link rel="canonical" href="https://firsh.me/2019/08/07/linux-directio-java/">
     <link rel="alternate" type="application/atom+xml" title="张建新" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="OneNote">
+    <meta property="og:title" content="Java实现DirectIo文件方式操作文件系统">
       
-    <meta name="keywords" content="OneNote, GTD">
-    <meta name="og:keywords" content="OneNote, GTD">
+    <meta name="keywords" content="directio java">
+    <meta name="og:keywords" content="directio java">
       
-    <meta name="description" content="快捷键">
-    <meta name="og:description" content="快捷键">
+    <meta name="description" content="转载请注明出处，本文采用 CC4.0 协议授权">
+    <meta name="og:description" content="转载请注明出处，本文采用 CC4.0 协议授权">
       
     
     
         
     
-    <meta property="og:url" content="https://firsh.me/wiki/onenote/">
+    <meta property="og:url" content="https://firsh.me/2019/08/07/linux-directio-java/">
     <meta property="og:site_name" content="张建新">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -97,12 +97,35 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="OneNote">
+    <section class="collection-head small geopattern" data-pattern-id="Java实现DirectIo文">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">OneNote</h1>
+        <h1 class="collection-header">Java实现DirectIo文件方式操作文件系统</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2019/08/07
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#Java" title="Java">Java</a>
+          </span>
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#Linux" title="Linux">Linux</a>
+          </span>
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#directio" title="directio">directio</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
@@ -113,82 +136,7 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <h2 id="快捷键">快捷键</h2>
-
-<p>C –&gt; Ctrl</p>
-
-<p>S –&gt; Shift</p>
-
-<p>M –&gt; Alt</p>
-
-<p>Cmd –&gt; Command</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">功能</th>
-      <th style="text-align: left">Windows</th>
-      <th style="text-align: left">Mac OS X</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">插入日期</td>
-      <td style="text-align: left">M-S-d</td>
-      <td style="text-align: left">Cmd-d</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">插入日期+时间</td>
-      <td style="text-align: left">M-S-f</td>
-      <td style="text-align: left">Cmd-S-d</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">插入链接</td>
-      <td style="text-align: left">C-k</td>
-      <td style="text-align: left">Cmd-k</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">新建页面</td>
-      <td style="text-align: left">C-n</td>
-      <td style="text-align: left">Cmd-n</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">返回访问的上一页</td>
-      <td style="text-align: left">M-Left</td>
-      <td style="text-align: left">C-Cmd-Left</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">返回访问的下一页</td>
-      <td style="text-align: left">M-Right</td>
-      <td style="text-align: left">C-Cmd-Right</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">清除所有格式</td>
-      <td style="text-align: left">C-S-n</td>
-      <td style="text-align: left"> </td>
-    </tr>
-    <tr>
-      <td style="text-align: left">停靠到桌面</td>
-      <td style="text-align: left">C-M-d</td>
-      <td style="text-align: left"> </td>
-    </tr>
-  </tbody>
-</table>
-
-<p>参考：<a href="https://support.office.com/zh-cn/article/OneNote-2010-%E7%9A%84%E9%94%AE%E7%9B%98%E5%BF%AB%E6%8D%B7%E9%94%AE-7504cf95-1a03-40d9-9544-090901174620?ui=zh-CN&amp;rs=zh-CN&amp;ad=CN&amp;fromAR=1">OneNote 2010 的键盘快捷键</a></p>
-
-<h2 id="小技巧">小技巧</h2>
-
-<ul>
-  <li>
-    <p>搜索带特殊字符如「空格」等，用 <code class="highlighter-rouge">"</code> 将搜索关键字括起来。</p>
-  </li>
-  <li>
-    <p>删除「我的模板」</p>
-
-    <p>在 Windows 下的 <code class="highlighter-rouge">C:\Users\&lt;username&gt;\AppData\Roaming\Microsoft\Templates</code> 里找到文件 <code class="highlighter-rouge">我的模板.one</code>，双击打开将显示你所有的模板页面，删除你想要删除的然后关闭即可。</p>
-  </li>
-</ul>
+    <p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
 
     </article>
     <div class="share">
@@ -202,7 +150,7 @@
         <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
         <script>
         var gitalk = new Gitalk({
-            id: '/wiki/onenote/',
+            id: '/2019/08/07/linux-directio-java/',
             clientID: '0dc80b46a482ec78f3e0',
             clientSecret: '8cae5d306b3703ad240b74142995473086fcbbab',
             repo: 'blog-comments',

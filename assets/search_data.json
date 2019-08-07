@@ -1,5 +1,11 @@
 {
   
+  "2019-08-07-linux-directio-java": {
+    "title": "Java实现DirectIo文件方式操作文件系统",
+    "url": " /2019/08/07/linux-directio-java/",
+    "category": "Java"
+  },
+  
   "2019-08-03-file-to-rocketmq-middleware": {
     "title": "读取数据发送到MQ",
     "url": " /2019/08/03/file_to_rocketmq_middleware/",
@@ -858,6 +864,8 @@
   
   
   
+  
+  
 
   
   "2016-05-21-enable-https-for-github-pages": {
@@ -1638,6 +1646,12 @@
     "title": "读取数据发送到MQ",
     "url": "/2019/08/03/file_to_rocketmq_middleware/",
     "category": "[&quot;rocketmq&quot;, &quot;golang&quot;]"
+  },
+  
+  "2019-08-07-linux-directio-java": {
+    "title": "Java实现DirectIo文件方式操作文件系统",
+    "url": "/2019/08/07/linux-directio-java/",
+    "category": "[&quot;Java&quot;, &quot;Linux&quot;, &quot;directio&quot;]"
   },
   
   "wiki-android-studio": {
