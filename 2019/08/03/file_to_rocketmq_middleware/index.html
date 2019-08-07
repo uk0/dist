@@ -31,11 +31,11 @@
     
     <meta property="og:title" content="读取数据发送到MQ">
       
-    <meta name="keywords" content="张建新,docker,Github, 张建新博客 Google Kubernetes, kubernetes, Flink,Graphx Spark,hadoop,hbase,mongodb,hdfs,Geek,hack,Spring boot,spring boot,spring,Docker,Dockerfile,Java ,Python 冷漠">
-    <meta name="og:keywords" content="张建新,docker,Github, 张建新博客 Google Kubernetes, kubernetes, Flink,Graphx Spark,hadoop,hbase,mongodb,hdfs,Geek,hack,Spring boot,spring boot,spring,Docker,Dockerfile,Java ,Python 冷漠">
+    <meta name="keywords" content="RocketMQ Golang">
+    <meta name="og:keywords" content="RocketMQ Golang">
       
-    <meta name="description" content="转载请注明出处，本文采用 CC4.0 协议授权">
-    <meta name="og:description" content="转载请注明出处，本文采用 CC4.0 协议授权">
+    <meta name="description" content="缘由">
+    <meta name="og:description" content="缘由">
       
     
     
@@ -131,7 +131,206 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
+    <h2 id="缘由">缘由</h2>
+
+<ul>
+  <li>数据通过FTP上传到服务器要求将数据发送到RocketMQ原版本用Java写的（不是本人）TPS上不去资源消耗大等问题。</li>
+  <li>解决方案：采用Golang 重新实现，用到了Golang的 Go关键字 WaitGroup MMAP等。</li>
+  <li>目前TPS 在虚拟机上跑 TPS稳定 5600 - 4700 </li>
+  <li>链接如下：https://github.com/uk0/file_to_rocketmq_middleware</li>
+</ul>
+
+<h2 id="核心代码介绍">核心代码介绍</h2>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span><span class="x"> </span><span class="n">main</span><span class="x">
+
+</span><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="x">
+	</span><span class="s">"fmt"</span><span class="x">
+	</span><span class="s">"github.com/astaxie/beego/logs"</span><span class="x">
+	</span><span class="s">"github.com/zjykzk/rocketmq-client-go/log"</span><span class="x">
+	</span><span class="s">"github.com/zjykzk/rocketmq-client-go/message"</span><span class="x">
+	</span><span class="s">"github.com/zjykzk/rocketmq-client-go/producer"</span><span class="x">
+	</span><span class="s">"math/rand"</span><span class="x">
+	</span><span class="s">"os"</span><span class="x">
+	</span><span class="s">"runtime"</span><span class="x">
+	</span><span class="s">"strings"</span><span class="x">
+	</span><span class="s">"sync/atomic"</span><span class="x">
+	</span><span class="s">"time"</span><span class="x">
+	</span><span class="s">"unsafe"</span><span class="x">
+</span><span class="p">)</span><span class="x">
+
+</span><span class="k">type</span><span class="x"> </span><span class="n">Client</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="n">P</span><span class="x">            </span><span class="o">*</span><span class="n">producer</span><span class="o">.</span><span class="n">Producer</span><span class="x">
+	</span><span class="n">Group</span><span class="x">        </span><span class="kt">string</span><span class="x">
+	</span><span class="n">NamesrvAddrs</span><span class="x"> </span><span class="kt">string</span><span class="x">
+	</span><span class="n">DataChan</span><span class="x">     </span><span class="k">chan</span><span class="x"> </span><span class="n">Message</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="n">newLogger</span><span class="p">(</span><span class="n">filename</span><span class="x"> </span><span class="kt">string</span><span class="p">)</span><span class="x"> </span><span class="p">(</span><span class="n">log</span><span class="o">.</span><span class="n">Logger</span><span class="p">,</span><span class="x"> </span><span class="kt">error</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="n">file</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">os</span><span class="o">.</span><span class="n">OpenFile</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="x"> </span><span class="n">os</span><span class="o">.</span><span class="n">O_RDWR</span><span class="o">|</span><span class="n">os</span><span class="o">.</span><span class="n">O_CREATE</span><span class="o">|</span><span class="n">os</span><span class="o">.</span><span class="n">O_APPEND</span><span class="p">,</span><span class="x"> </span><span class="m">0666</span><span class="p">)</span><span class="x">
+	</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+		</span><span class="nb">println</span><span class="p">(</span><span class="s">"create file error"</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="o">.</span><span class="n">Error</span><span class="p">())</span><span class="x">
+		</span><span class="k">return</span><span class="x"> </span><span class="no">nil</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x">
+	</span><span class="p">}</span><span class="x">
+
+	</span><span class="n">logger</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">log</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="x"> </span><span class="s">""</span><span class="p">,</span><span class="x"> </span><span class="n">log</span><span class="o">.</span><span class="n">Ldefault</span><span class="p">)</span><span class="x">
+	</span><span class="n">logger</span><span class="o">.</span><span class="n">Level</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">log</span><span class="o">.</span><span class="n">Ldebug</span><span class="x">
+
+	</span><span class="k">return</span><span class="x"> </span><span class="n">logger</span><span class="p">,</span><span class="x"> </span><span class="no">nil</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="p">(</span><span class="n">cli</span><span class="x"> </span><span class="o">*</span><span class="n">Client</span><span class="p">)</span><span class="x"> </span><span class="n">SendMsg</span><span class="p">(</span><span class="n">stati</span><span class="x"> </span><span class="o">*</span><span class="n">statiBenchmarkProducerSnapshot</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="n">now</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">time</span><span class="o">.</span><span class="n">Now</span><span class="p">()</span><span class="x">
+	</span><span class="k">var</span><span class="x"> </span><span class="n">count</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="m">1</span><span class="p">;</span><span class="x">
+	</span><span class="k">for</span><span class="x"> </span><span class="n">messageBody</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">range</span><span class="x"> </span><span class="n">cli</span><span class="o">.</span><span class="n">DataChan</span><span class="x"> </span><span class="p">{</span><span class="x">
+		</span><span class="n">m</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="o">&amp;</span><span class="n">message</span><span class="o">.</span><span class="n">Message</span><span class="p">{</span><span class="n">Topic</span><span class="o">:</span><span class="x"> </span><span class="n">messageBody</span><span class="o">.</span><span class="n">topic</span><span class="p">,</span><span class="x"> </span><span class="n">Body</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">(</span><span class="n">messageBody</span><span class="o">.</span><span class="n">line</span><span class="p">)}</span><span class="x">
+
+		</span><span class="n">r</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">cli</span><span class="o">.</span><span class="n">P</span><span class="o">.</span><span class="n">SendSync</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="x">
+		</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+			</span><span class="n">logs</span><span class="o">.</span><span class="n">Debug</span><span class="p">(</span><span class="s">"Send with sync error:%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="p">)</span><span class="x">
+			</span><span class="k">continue</span><span class="x">
+		</span><span class="p">}</span><span class="x">
+
+		</span><span class="c">// 取模</span><span class="x">
+		</span><span class="c">//var BatchLines = []message.Data{};</span><span class="x">
+		</span><span class="c">//BatchLines = append(BatchLines, message.Data{Body: []byte(messageBody.line)})</span><span class="x">
+		</span><span class="c">//if count%defaultSendLimitbatch == 0 {</span><span class="x">
+		</span><span class="c">//</span><span class="x">
+		</span><span class="c">//	r, err3 := client.SendBatchSync(&amp;message.Batch{Topic: messageBody.topic, Datas: BatchLines})</span><span class="x">
+		</span><span class="c">//	if err3 != nil {</span><span class="x">
+		</span><span class="c">//		logs.Debug("SendWithBatchSync error:%s\n", err3)</span><span class="x">
+		</span><span class="c">//		continue</span><span class="x">
+		</span><span class="c">//	}</span><span class="x">
+		</span><span class="c">//	logs.Debug(fmt.Sprintf("BatchSendMessageResult: %s FileName = %s  Process = %f%%  ProcessCount = %d , TotalCount = %d", r.OffsetID, messageBody.FileName, float32(messageBody.ProcessCount)/float32(messageBody.TotalCount)*100, messageBody.ProcessCount, messageBody.TotalCount))</span><span class="x">
+		</span><span class="c">//}</span><span class="x">
+
+		</span><span class="c">//selector</span><span class="x">
+		</span><span class="c">//r, err2 := client.SendSyncWithSelector(m, messageQueueSelector{}, count)</span><span class="x">
+		</span><span class="c">//if err2 != nil {</span><span class="x">
+		</span><span class="c">//	logs.Debug("SendWithSelector error:%s\n", err2)</span><span class="x">
+		</span><span class="c">//	continue</span><span class="x">
+		</span><span class="c">//}</span><span class="x">
+
+		</span><span class="k">if</span><span class="x"> </span><span class="n">r</span><span class="o">.</span><span class="n">Status</span><span class="x"> </span><span class="o">==</span><span class="x"> </span><span class="n">producer</span><span class="o">.</span><span class="n">OK</span><span class="x"> </span><span class="p">{</span><span class="x">
+			</span><span class="n">atomic</span><span class="o">.</span><span class="n">AddInt64</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stati</span><span class="o">.</span><span class="n">receiveResponseSuccessCount</span><span class="p">,</span><span class="x"> </span><span class="m">1</span><span class="p">)</span><span class="x">
+			</span><span class="n">atomic</span><span class="o">.</span><span class="n">AddInt64</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stati</span><span class="o">.</span><span class="n">sendRequestSuccessCount</span><span class="p">,</span><span class="x"> </span><span class="m">1</span><span class="p">)</span><span class="x">
+			</span><span class="n">currentRT</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="kt">int64</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">Since</span><span class="p">(</span><span class="n">now</span><span class="p">)</span><span class="x"> </span><span class="o">/</span><span class="x"> </span><span class="n">time</span><span class="o">.</span><span class="n">Millisecond</span><span class="p">)</span><span class="x">
+			</span><span class="n">atomic</span><span class="o">.</span><span class="n">AddInt64</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stati</span><span class="o">.</span><span class="n">sendMessageSuccessTimeTotal</span><span class="p">,</span><span class="x"> </span><span class="n">currentRT</span><span class="p">)</span><span class="x">
+			</span><span class="n">prevRT</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">atomic</span><span class="o">.</span><span class="n">LoadInt64</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stati</span><span class="o">.</span><span class="n">sendMessageMaxRT</span><span class="p">)</span><span class="x">
+			</span><span class="k">for</span><span class="x"> </span><span class="n">currentRT</span><span class="x"> </span><span class="o">&gt;</span><span class="x"> </span><span class="n">prevRT</span><span class="x"> </span><span class="p">{</span><span class="x">
+				</span><span class="k">if</span><span class="x"> </span><span class="n">atomic</span><span class="o">.</span><span class="n">CompareAndSwapInt64</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stati</span><span class="o">.</span><span class="n">sendMessageMaxRT</span><span class="p">,</span><span class="x"> </span><span class="n">prevRT</span><span class="p">,</span><span class="x"> </span><span class="n">currentRT</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">
+					</span><span class="k">break</span><span class="x">
+				</span><span class="p">}</span><span class="x">
+				</span><span class="n">prevRT</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">atomic</span><span class="o">.</span><span class="n">LoadInt64</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stati</span><span class="o">.</span><span class="n">sendMessageMaxRT</span><span class="p">)</span><span class="x">
+			</span><span class="p">}</span><span class="x">
+			</span><span class="k">if</span><span class="x"> </span><span class="n">count</span><span class="o">%</span><span class="m">1000</span><span class="x"> </span><span class="o">==</span><span class="x"> </span><span class="m">0</span><span class="x"> </span><span class="p">{</span><span class="x">
+				</span><span class="n">logs</span><span class="o">.</span><span class="n">Debug</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">Sprintf</span><span class="p">(</span><span class="s">"SendMessageResultQueueOffset : %d FileName = %s  Process = %f%%  ProcessCount = %d , TotalCount = %d"</span><span class="p">,</span><span class="x"> </span><span class="n">r</span><span class="o">.</span><span class="n">QueueOffset</span><span class="p">,</span><span class="x"> </span><span class="n">messageBody</span><span class="o">.</span><span class="n">FileName</span><span class="p">,</span><span class="x"> </span><span class="kt">float32</span><span class="p">(</span><span class="n">messageBody</span><span class="o">.</span><span class="n">ProcessCount</span><span class="p">)</span><span class="o">/</span><span class="kt">float32</span><span class="p">(</span><span class="n">messageBody</span><span class="o">.</span><span class="n">TotalCount</span><span class="p">)</span><span class="o">*</span><span class="m">100</span><span class="p">,</span><span class="x"> </span><span class="n">messageBody</span><span class="o">.</span><span class="n">ProcessCount</span><span class="p">,</span><span class="x"> </span><span class="n">messageBody</span><span class="o">.</span><span class="n">TotalCount</span><span class="p">))</span><span class="x">
+			</span><span class="p">}</span><span class="x">
+		</span><span class="p">}</span><span class="x">
+		</span><span class="n">count</span><span class="o">++</span><span class="p">;</span><span class="x">
+	</span><span class="p">}</span><span class="x">
+	</span><span class="n">logs</span><span class="o">.</span><span class="n">Debug</span><span class="p">(</span><span class="s">"DONE"</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="n">NewMQSender</span><span class="p">(</span><span class="n">groupId</span><span class="x"> </span><span class="kt">string</span><span class="p">,</span><span class="n">nameSvr</span><span class="x"> </span><span class="kt">string</span><span class="p">)</span><span class="x"> </span><span class="p">(</span><span class="n">cli</span><span class="x"> </span><span class="o">*</span><span class="n">Client</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="kt">error</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="n">cli</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="o">&amp;</span><span class="n">Client</span><span class="p">{</span><span class="x">
+		</span><span class="n">Group</span><span class="o">:</span><span class="n">groupId</span><span class="p">,</span><span class="x">
+		</span><span class="n">NamesrvAddrs</span><span class="o">:</span><span class="n">nameSvr</span><span class="p">,</span><span class="x">
+		</span><span class="n">DataChan</span><span class="o">:</span><span class="n">data</span><span class="p">,</span><span class="x">
+	</span><span class="p">}</span><span class="x">
+	</span><span class="n">stati</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">statiBenchmarkProducerSnapshot</span><span class="p">{}</span><span class="x">
+	</span><span class="n">snapshots</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">produceSnapshots</span><span class="p">{</span><span class="n">cur</span><span class="o">:</span><span class="x"> </span><span class="o">&amp;</span><span class="n">stati</span><span class="p">}</span><span class="x">
+
+
+	</span><span class="n">logger</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">newLogger</span><span class="p">(</span><span class="s">"producer.log"</span><span class="p">)</span><span class="x">
+	</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+		</span><span class="n">logs</span><span class="o">.</span><span class="n">Debug</span><span class="p">(</span><span class="s">"new logger of producer.loge error:%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="p">)</span><span class="x">
+		</span><span class="k">return</span><span class="x">
+	</span><span class="p">}</span><span class="x">
+
+	</span><span class="n">client</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">producer</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="n">groupId</span><span class="p">,</span><span class="x"> </span><span class="n">strings</span><span class="o">.</span><span class="n">Split</span><span class="p">(</span><span class="n">nameSvr</span><span class="p">,</span><span class="x"> </span><span class="s">";"</span><span class="p">),</span><span class="x"> </span><span class="n">logger</span><span class="p">)</span><span class="x">
+
+	</span><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">client</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span><span class="x">
+	</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+		</span><span class="n">logs</span><span class="o">.</span><span class="n">Debug</span><span class="p">(</span><span class="s">"start producer error: "</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="p">)</span><span class="x">
+		</span><span class="k">return</span><span class="x">
+	</span><span class="p">}</span><span class="x">
+	</span><span class="c">//defer client.Shutdown()</span><span class="x">
+
+	</span><span class="n">cli</span><span class="o">.</span><span class="n">P</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">client</span><span class="x">
+	</span><span class="c">// 根据CPU来协商启动协程数</span><span class="x">
+	</span><span class="k">for</span><span class="x"> </span><span class="n">i</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">0</span><span class="p">;</span><span class="x"> </span><span class="n">i</span><span class="x"> </span><span class="o">&lt;</span><span class="x"> </span><span class="n">runtime</span><span class="o">.</span><span class="n">GOMAXPROCS</span><span class="p">(</span><span class="n">runtime</span><span class="o">.</span><span class="n">NumCPU</span><span class="p">());</span><span class="x"> </span><span class="n">i</span><span class="o">++</span><span class="x"> </span><span class="p">{</span><span class="x">
+		</span><span class="k">go</span><span class="x"> </span><span class="k">func</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
+			</span><span class="n">waitgroup</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="m">1</span><span class="p">)</span><span class="x">
+			</span><span class="n">cli</span><span class="o">.</span><span class="n">SendMsg</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stati</span><span class="p">)</span><span class="x">
+			</span><span class="n">waitgroup</span><span class="o">.</span><span class="n">Done</span><span class="p">()</span><span class="x">
+		</span><span class="p">}()</span><span class="x">
+	</span><span class="p">}</span><span class="x">
+	</span><span class="c">// snapshot</span><span class="x">
+	</span><span class="k">go</span><span class="x"> </span><span class="k">func</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
+		</span><span class="n">waitgroup</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="m">1</span><span class="p">)</span><span class="x">
+		</span><span class="k">defer</span><span class="x"> </span><span class="n">waitgroup</span><span class="o">.</span><span class="n">Done</span><span class="p">()</span><span class="x">
+		</span><span class="n">ticker</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">time</span><span class="o">.</span><span class="n">NewTicker</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">Second</span><span class="p">)</span><span class="x">
+		</span><span class="k">for</span><span class="x"> </span><span class="p">{</span><span class="x">
+			</span><span class="k">select</span><span class="x"> </span><span class="p">{</span><span class="x">
+			</span><span class="k">case</span><span class="x"> </span><span class="o">&lt;-</span><span class="n">ticker</span><span class="o">.</span><span class="n">C</span><span class="o">:</span><span class="x">
+				</span><span class="n">snapshots</span><span class="o">.</span><span class="n">TakeSnapshot</span><span class="p">()</span><span class="x">
+			</span><span class="p">}</span><span class="x">
+		</span><span class="p">}</span><span class="x">
+	</span><span class="p">}()</span><span class="x">
+	</span><span class="c">// print statistic</span><span class="x">
+	</span><span class="k">go</span><span class="x"> </span><span class="k">func</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
+		</span><span class="n">waitgroup</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="m">1</span><span class="p">)</span><span class="x">
+		</span><span class="k">defer</span><span class="x"> </span><span class="n">waitgroup</span><span class="o">.</span><span class="n">Done</span><span class="p">()</span><span class="x">
+		</span><span class="n">ticker</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">time</span><span class="o">.</span><span class="n">NewTicker</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">Second</span><span class="x"> </span><span class="o">*</span><span class="x"> </span><span class="m">10</span><span class="p">)</span><span class="x">
+		</span><span class="k">for</span><span class="x"> </span><span class="p">{</span><span class="x">
+			</span><span class="k">select</span><span class="x"> </span><span class="p">{</span><span class="x">
+			</span><span class="k">case</span><span class="x"> </span><span class="o">&lt;-</span><span class="n">ticker</span><span class="o">.</span><span class="n">C</span><span class="o">:</span><span class="x">
+				</span><span class="n">snapshots</span><span class="o">.</span><span class="n">TrintStati</span><span class="p">()</span><span class="x">
+			</span><span class="p">}</span><span class="x">
+		</span><span class="p">}</span><span class="x">
+	</span><span class="p">}()</span><span class="x">
+	</span><span class="k">return</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="k">type</span><span class="x"> </span><span class="n">messageQueueSelector</span><span class="x"> </span><span class="k">struct</span><span class="p">{}</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="p">(</span><span class="n">s</span><span class="x"> </span><span class="n">messageQueueSelector</span><span class="p">)</span><span class="x"> </span><span class="n">Select</span><span class="p">(</span><span class="n">mqs</span><span class="x"> </span><span class="p">[]</span><span class="o">*</span><span class="n">message</span><span class="o">.</span><span class="n">Queue</span><span class="p">,</span><span class="x"> </span><span class="n">m</span><span class="x"> </span><span class="o">*</span><span class="n">message</span><span class="o">.</span><span class="n">Message</span><span class="p">,</span><span class="x"> </span><span class="n">arg</span><span class="x"> </span><span class="k">interface</span><span class="p">{})</span><span class="x"> </span><span class="o">*</span><span class="n">message</span><span class="o">.</span><span class="n">Queue</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="n">orderID</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">arg</span><span class="o">.</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="x">
+	</span><span class="k">return</span><span class="x"> </span><span class="n">mqs</span><span class="p">[</span><span class="n">orderID</span><span class="o">%</span><span class="nb">len</span><span class="p">(</span><span class="n">mqs</span><span class="p">)]</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="k">const</span><span class="x"> </span><span class="p">(</span><span class="x">
+	</span><span class="n">letterBytes</span><span class="x">   </span><span class="o">=</span><span class="x"> </span><span class="s">"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"</span><span class="x">
+	</span><span class="n">letterIdxMask</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="m">1</span><span class="o">&lt;&lt;</span><span class="m">6</span><span class="x"> </span><span class="o">-</span><span class="x"> </span><span class="m">1</span><span class="x"> </span><span class="c">// All 1-bits, as many as 6</span><span class="x">
+</span><span class="p">)</span><span class="x">
+
+</span><span class="c">// 随机</span><span class="x">
+</span><span class="k">var</span><span class="x"> </span><span class="n">src</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">rand</span><span class="o">.</span><span class="n">NewSource</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">Now</span><span class="p">()</span><span class="o">.</span><span class="n">UnixNano</span><span class="p">())</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="n">RandStringBytesMaskImprSrc</span><span class="p">(</span><span class="n">n</span><span class="x"> </span><span class="kt">int</span><span class="p">)</span><span class="x"> </span><span class="kt">string</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="n">b</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span><span class="x"> </span><span class="n">n</span><span class="p">)</span><span class="x">
+	</span><span class="c">// A src.Int63() generates 63 random bits, enough for 10 characters!</span><span class="x">
+	</span><span class="k">for</span><span class="x"> </span><span class="n">i</span><span class="p">,</span><span class="x"> </span><span class="n">cache</span><span class="p">,</span><span class="x"> </span><span class="n">remain</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">n</span><span class="o">-</span><span class="m">1</span><span class="p">,</span><span class="x"> </span><span class="n">src</span><span class="o">.</span><span class="n">Int63</span><span class="p">(),</span><span class="x"> </span><span class="m">10</span><span class="p">;</span><span class="x"> </span><span class="n">i</span><span class="x"> </span><span class="o">&gt;=</span><span class="x"> </span><span class="m">0</span><span class="p">;</span><span class="x"> </span><span class="p">{</span><span class="x">
+		</span><span class="k">if</span><span class="x"> </span><span class="n">remain</span><span class="x"> </span><span class="o">==</span><span class="x"> </span><span class="m">0</span><span class="x"> </span><span class="p">{</span><span class="x">
+			</span><span class="n">cache</span><span class="p">,</span><span class="x"> </span><span class="n">remain</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">src</span><span class="o">.</span><span class="n">Int63</span><span class="p">(),</span><span class="x"> </span><span class="m">10</span><span class="x">
+		</span><span class="p">}</span><span class="x">
+		</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">letterBytes</span><span class="p">[</span><span class="kt">int</span><span class="p">(</span><span class="n">cache</span><span class="o">&amp;</span><span class="n">letterIdxMask</span><span class="p">)</span><span class="o">%</span><span class="nb">len</span><span class="p">(</span><span class="n">letterBytes</span><span class="p">)]</span><span class="x">
+		</span><span class="n">i</span><span class="o">--</span><span class="x">
+		</span><span class="n">cache</span><span class="x"> </span><span class="o">&gt;&gt;=</span><span class="x"> </span><span class="m">6</span><span class="x">
+		</span><span class="n">remain</span><span class="o">--</span><span class="x">
+	</span><span class="p">}</span><span class="x">
+	</span><span class="k">return</span><span class="x"> </span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="kt">string</span><span class="p">)(</span><span class="n">unsafe</span><span class="o">.</span><span class="n">Pointer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">))</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+
+</span></code></pre></div></div>
+<ul>
+  <li>调用方式 `	_, _ = NewMQSender(TConfig.SendGroup, TConfig.RocketMQNameserver)
+`</li>
+</ul>
+
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
 
     </article>
     <div class="share">
