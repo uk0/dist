@@ -1,5 +1,11 @@
 {
   
+  "2019-09-02-use-whois-send-file-hack": {
+    "title": "利用Whois传输小文件。",
+    "url": " /2019/09/02/use-whois-send-file-hack/",
+    "category": "CTF"
+  },
+  
   "2019-08-07-linux-directio-java": {
     "title": "Java实现DirectIo文件方式操作文件系统",
     "url": " /2019/08/07/linux-directio-java/",
@@ -1652,6 +1658,12 @@
     "title": "Java实现DirectIo文件方式操作文件系统",
     "url": "/2019/08/07/linux-directio-java/",
     "category": "[&quot;Java&quot;, &quot;Linux&quot;, &quot;Directio&quot;]"
+  },
+  
+  "2019-09-02-use-whois-send-file-hack": {
+    "title": "利用Whois传输小文件。",
+    "url": "/2019/09/02/use-whois-send-file-hack/",
+    "category": "[&quot;CTF&quot;]"
   },
   
   "wiki-android-studio": {
