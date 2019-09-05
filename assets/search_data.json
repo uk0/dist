@@ -1,5 +1,11 @@
 {
   
+  "2019-09-05-arp-dniff-url-sslniff": {
+    "title": "Arp 欺骗获取设备信息",
+    "url": " /2019/09/05/arp-dniff-url-sslniff/",
+    "category": "ctf"
+  },
+  
   "2019-09-02-use-whois-send-file-hack": {
     "title": "利用Whois传输小文件。",
     "url": " /2019/09/02/use-whois-send-file-hack/",
@@ -1664,6 +1670,12 @@
     "title": "利用Whois传输小文件。",
     "url": "/2019/09/02/use-whois-send-file-hack/",
     "category": "[&quot;CTF&quot;]"
+  },
+  
+  "2019-09-05-arp-dniff-url-sslniff": {
+    "title": "Arp 欺骗获取设备信息",
+    "url": "/2019/09/05/arp-dniff-url-sslniff/",
+    "category": "[&quot;ctf&quot;]"
   },
   
   "wiki-android-studio": {
