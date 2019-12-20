@@ -135,10 +135,10 @@ author：zhangjianxin</p>
 <p>[TOC]</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="c">#!/usr/bin/env py262</span>
-
-<span class="c">#导入方法模块</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<span class="c1">#!/usr/bin/env py262
+</span>
+<span class="c1">#导入方法模块
+</span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">re</span>
 
@@ -161,29 +161,29 @@ author：zhangjianxin</p>
     <span class="s">''' Fork the current process as a daemon, redirecting standard file
         descriptors (by default, redirects them to /dev/null).
     '''</span>
-    <span class="c"># Perform first fork.</span>
-    <span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Perform first fork.
+</span>    <span class="k">try</span><span class="p">:</span>
         <span class="n">pid</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">fork</span><span class="p">(</span> <span class="p">)</span>
         <span class="k">if</span> <span class="n">pid</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c"># Exit first parent.</span>
-    <span class="k">except</span> <span class="nb">OSError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Exit first parent.
+</span>    <span class="k">except</span> <span class="nb">OSError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"fork #1 failed: (</span><span class="si">%</span><span class="s">d) </span><span class="si">%</span><span class="s">s</span><span class="se">\n</span><span class="s">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">errno</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">strerror</span><span class="p">))</span>
         <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="c"># Decouple from parent environment.</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s">"/"</span><span class="p">)</span>
+    <span class="c1"># Decouple from parent environment.
+</span>    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s">"/"</span><span class="p">)</span>
     <span class="n">os</span><span class="o">.</span><span class="n">umask</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">os</span><span class="o">.</span><span class="n">setsid</span><span class="p">(</span> <span class="p">)</span>
-    <span class="c"># Perform second fork.</span>
-
+    <span class="c1"># Perform second fork.
+</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">pid</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">fork</span><span class="p">(</span> <span class="p">)</span>
         <span class="k">if</span> <span class="n">pid</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c"># Exit second parent.</span>
-    <span class="k">except</span> <span class="nb">OSError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Exit second parent.
+</span>    <span class="k">except</span> <span class="nb">OSError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"fork #2 failed: (</span><span class="si">%</span><span class="s">d) </span><span class="si">%</span><span class="s">s</span><span class="se">\n</span><span class="s">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">errno</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">strerror</span><span class="p">))</span>
         <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="c"># The process is now daemonized, redirect standard file descriptors.</span>
-    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">flush</span><span class="p">(</span> <span class="p">)</span>
+    <span class="c1"># The process is now daemonized, redirect standard file descriptors.
+</span>    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">flush</span><span class="p">(</span> <span class="p">)</span>
     <span class="n">si</span> <span class="o">=</span> <span class="nb">file</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span>
     <span class="n">so</span> <span class="o">=</span> <span class="nb">file</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="s">'a+'</span><span class="p">)</span>
     <span class="n">se</span> <span class="o">=</span> <span class="nb">file</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">'a+'</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -198,17 +198,17 @@ author：zhangjianxin</p>
     <span class="n">f_x</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
     <span class="n">root</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span>
-    <span class="c">#print root</span>
-    <span class="c">#print type(root)</span>
-    <span class="n">NS</span> <span class="o">=</span> <span class="s">'{http://accelerator.com/config}'</span>
+    <span class="c1">#print root
+</span>    <span class="c1">#print type(root)
+</span>    <span class="n">NS</span> <span class="o">=</span> <span class="s">'{http://accelerator.com/config}'</span>
 
     <span class="n">r_t_element</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span> <span class="n">NS</span>  <span class="o">+</span> <span class="n">r_t</span><span class="p">)</span>
-    <span class="c">#print r_t_element</span>
-    <span class="c">#print type(r_t_element)</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="c">#if tg[-2] is None:</span>
-           <span class="c">#print tg[-2]</span>
-        <span class="n">s_t_element</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">"//"</span> <span class="o">+</span> <span class="n">NS</span>  <span class="o">+</span> <span class="n">tg</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+    <span class="c1">#print r_t_element
+</span>    <span class="c1">#print type(r_t_element)
+</span>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tg</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="c1">#if tg[-2] is None:
+</span>           <span class="c1">#print tg[-2]
+</span>        <span class="n">s_t_element</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">"//"</span> <span class="o">+</span> <span class="n">NS</span>  <span class="o">+</span> <span class="n">tg</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
         <span class="n">tg1_element</span> <span class="o">=</span> <span class="n">s_t_element</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">NS</span> <span class="o">+</span> <span class="n">tg</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">b</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tg1_element</span><span class="p">:</span>
@@ -245,16 +245,16 @@ author：zhangjianxin</p>
     <span class="n">fok</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">sub</span><span class="p">)</span>
     <span class="n">fok</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<span class="c">#www.iplaypy.com</span>
-<span class="k">def</span> <span class="nf">fetch_conf</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span><span class="n">conf</span><span class="p">):</span>  <span class="c">#conf maybe: IPADDR|NETMASK|NETWORK|GATEWAY</span>
-    <span class="c">#file_nw = file('/etc/sysconfig/network','r')</span>
-    <span class="c">#file_nw.seek(0,0)</span>
-    <span class="n">fn</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1">#www.iplaypy.com
+</span><span class="k">def</span> <span class="nf">fetch_conf</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span><span class="n">conf</span><span class="p">):</span>  <span class="c1">#conf maybe: IPADDR|NETMASK|NETWORK|GATEWAY
+</span>    <span class="c1">#file_nw = file('/etc/sysconfig/network','r')
+</span>    <span class="c1">#file_nw.seek(0,0)
+</span>    <span class="n">fn</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">conf</span> <span class="o">==</span> <span class="s">'GATEWAY'</span><span class="p">:</span>
-        <span class="c">#file_nw = file('/etc/sysconfig/network','r')</span>
-        <span class="k">for</span> <span class="n">eachLine</span> <span class="ow">in</span> <span class="n">fn</span><span class="p">:</span>
-            <span class="c">#alist = eachLine.strip().split('=')</span>
-            <span class="n">m1</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'^#|^$'</span><span class="p">,</span><span class="n">eachLine</span><span class="p">)</span>
+        <span class="c1">#file_nw = file('/etc/sysconfig/network','r')
+</span>        <span class="k">for</span> <span class="n">eachLine</span> <span class="ow">in</span> <span class="n">fn</span><span class="p">:</span>
+            <span class="c1">#alist = eachLine.strip().split('=')
+</span>            <span class="n">m1</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'^#|^$'</span><span class="p">,</span><span class="n">eachLine</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">m1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
                 <span class="k">continue</span>
             <span class="k">else</span><span class="p">:</span>
@@ -262,13 +262,13 @@ author：zhangjianxin</p>
                 <span class="k">if</span> <span class="n">m1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
                     <span class="n">alist</span> <span class="o">=</span> <span class="n">eachLine</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'='</span><span class="p">)</span>
                     <span class="n">nw</span><span class="p">[</span><span class="n">alist</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">=</span><span class="n">alist</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="c">#print nw[conf]</span>
-        <span class="k">return</span>  <span class="n">nw</span><span class="p">[</span><span class="n">conf</span><span class="p">]</span>
+        <span class="c1">#print nw[conf]
+</span>        <span class="k">return</span>  <span class="n">nw</span><span class="p">[</span><span class="n">conf</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="c">#file_eth1_pu = file('/etc/sysconfig/network-scripts/ifcfg-eth0','r')</span>
-        <span class="k">for</span> <span class="n">eachLine</span> <span class="ow">in</span> <span class="n">fn</span><span class="p">:</span>
-            <span class="c">#alist = eachLine.strip().split('=')</span>
-            <span class="n">m1</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'^#|^$'</span><span class="p">,</span><span class="n">eachLine</span><span class="p">)</span>
+        <span class="c1">#file_eth1_pu = file('/etc/sysconfig/network-scripts/ifcfg-eth0','r')
+</span>        <span class="k">for</span> <span class="n">eachLine</span> <span class="ow">in</span> <span class="n">fn</span><span class="p">:</span>
+            <span class="c1">#alist = eachLine.strip().split('=')
+</span>            <span class="n">m1</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'^#|^$'</span><span class="p">,</span><span class="n">eachLine</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">m1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
                 <span class="k">continue</span>
             <span class="k">else</span><span class="p">:</span>
@@ -293,8 +293,8 @@ author：zhangjianxin</p>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">print</span> <span class="s">"ip is wrong"</span><span class="p">,</span><span class="n">xml_ip</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">conf_ip</span>
         <span class="n">file_replace</span><span class="p">(</span><span class="n">file_eth1</span><span class="p">,</span><span class="n">conf_ip</span><span class="p">,</span><span class="n">xml_ip</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="c">#os.system('''sudo sed -i 's|wrong|right|g' /etc/sysconfig/network-scripts/ifcfg-eth1''')</span>
-    <span class="s">'''check public netmask'''</span>
+        <span class="c1">#os.system('''sudo sed -i 's|wrong|right|g' /etc/sysconfig/network-scripts/ifcfg-eth1''')
+</span>    <span class="s">'''check public netmask'''</span>
     <span class="k">if</span> <span class="n">xml_mk</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">conf_mk</span><span class="p">:</span>
         <span class="k">print</span> <span class="s">"netmask is ok"</span><span class="p">,</span><span class="n">xml_mk</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">conf_mk</span>
     <span class="k">else</span><span class="p">:</span>
@@ -398,17 +398,17 @@ author：zhangjianxin</p>
 <span class="k">def</span> <span class="nf">gen_backend_str</span><span class="p">():</span>
     <span class="n">k</span> <span class="o">=</span> <span class="s">""</span>
     <span class="n">xml_varnish_origin</span> <span class="o">=</span> <span class="n">parse_xml</span><span class="p">(</span><span class="n">filexml</span><span class="p">,</span><span class="s">"varnish"</span><span class="p">,</span><span class="s">"origin"</span><span class="p">,</span><span class="s">"value"</span><span class="p">)</span>
-    <span class="c">#print xml_varnish_origin[0].split('|')[0],xml_varnish_origin[0].split('|')[1],xml_varnish_origin[0].split('|')[2]</span>
-    <span class="n">ft_bk</span> <span class="o">=</span> <span class="s">"#origin_backend_start#"</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span> <span class="o">+</span> <span class="s">"backend  "</span> <span class="o">+</span> <span class="n">xml_varnish_origin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">" {</span><span class="se">\n</span><span class="s">"</span> <span class="o">+</span> <span class="s">"</span><span class="se">\t</span><span class="s">.host = </span><span class="se">\"</span><span class="s">"</span> <span class="o">+</span> <span class="n">xml_varnish_origin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s">"</span><span class="se">\"</span><span class="s">;</span><span class="se">\n\t</span><span class="s">.port = </span><span class="se">\"</span><span class="s">"</span> <span class="o">+</span> <span class="n">xml_varnish_origin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>  <span class="o">+</span> <span class="s">"</span><span class="se">\"</span><span class="s">;</span><span class="se">\n</span><span class="s">}</span><span class="se">\n</span><span class="s">"</span>
+    <span class="c1">#print xml_varnish_origin[0].split('|')[0],xml_varnish_origin[0].split('|')[1],xml_varnish_origin[0].split('|')[2]
+</span>    <span class="n">ft_bk</span> <span class="o">=</span> <span class="s">"#origin_backend_start#"</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span> <span class="o">+</span> <span class="s">"backend  "</span> <span class="o">+</span> <span class="n">xml_varnish_origin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">" {</span><span class="se">\n</span><span class="s">"</span> <span class="o">+</span> <span class="s">"</span><span class="se">\t</span><span class="s">.host = </span><span class="se">\"</span><span class="s">"</span> <span class="o">+</span> <span class="n">xml_varnish_origin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s">"</span><span class="se">\"</span><span class="s">;</span><span class="se">\n\t</span><span class="s">.port = </span><span class="se">\"</span><span class="s">"</span> <span class="o">+</span> <span class="n">xml_varnish_origin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>  <span class="o">+</span> <span class="s">"</span><span class="se">\"</span><span class="s">;</span><span class="se">\n</span><span class="s">}</span><span class="se">\n</span><span class="s">"</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xml_varnish_origin</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
-        <span class="c">#print i.split('|')[0],i.split('|')[1],i.split('|')[2]</span>
-        <span class="n">j</span> <span class="o">=</span> <span class="s">"backend  "</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">" {</span><span class="se">\n</span><span class="s">"</span> <span class="o">+</span> <span class="s">"</span><span class="se">\t</span><span class="s">.host = </span><span class="se">\"</span><span class="s">"</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s">"</span><span class="se">\"</span><span class="s">;</span><span class="se">\n\t</span><span class="s">.port = </span><span class="se">\"</span><span class="s">"</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>  <span class="o">+</span> <span class="s">"</span><span class="se">\"</span><span class="s">;</span><span class="se">\n</span><span class="s">}</span><span class="se">\n</span><span class="s">"</span>
+        <span class="c1">#print i.split('|')[0],i.split('|')[1],i.split('|')[2]
+</span>        <span class="n">j</span> <span class="o">=</span> <span class="s">"backend  "</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">" {</span><span class="se">\n</span><span class="s">"</span> <span class="o">+</span> <span class="s">"</span><span class="se">\t</span><span class="s">.host = </span><span class="se">\"</span><span class="s">"</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s">"</span><span class="se">\"</span><span class="s">;</span><span class="se">\n\t</span><span class="s">.port = </span><span class="se">\"</span><span class="s">"</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>  <span class="o">+</span> <span class="s">"</span><span class="se">\"</span><span class="s">;</span><span class="se">\n</span><span class="s">}</span><span class="se">\n</span><span class="s">"</span>
         <span class="n">k</span> <span class="o">+=</span> <span class="n">j</span>
-    <span class="c">#print xml_varnish_origin[-1].split('|')[0],xml_varnish_origin[-1].split('|')[1],xml_varnish_origin[-1].split('|')[2]</span>
-    <span class="n">lt_bk</span> <span class="o">=</span> <span class="s">"backend  "</span> <span class="o">+</span> <span class="n">xml_varnish_origin</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">" {</span><span class="se">\n</span><span class="s">"</span> <span class="o">+</span> <span class="s">"</span><span class="se">\t</span><span class="s">.host = </span><span class="se">\"</span><span class="s">"</span> <span class="o">+</span> <span class="n">xml_varnish_origin</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s">"</span><span class="se">\"</span><span class="s">;</span><span class="se">\n\t</span><span class="s">.port = </span><span class="se">\"</span><span class="s">"</span> <span class="o">+</span> <span class="n">xml_varnish_origin</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>  <span class="o">+</span> <span class="s">"</span><span class="se">\"</span><span class="s">;</span><span class="se">\n</span><span class="s">}</span><span class="se">\n</span><span class="s">#origin_backend_end#</span><span class="se">\n</span><span class="s">"</span>
+    <span class="c1">#print xml_varnish_origin[-1].split('|')[0],xml_varnish_origin[-1].split('|')[1],xml_varnish_origin[-1].split('|')[2]
+</span>    <span class="n">lt_bk</span> <span class="o">=</span> <span class="s">"backend  "</span> <span class="o">+</span> <span class="n">xml_varnish_origin</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">" {</span><span class="se">\n</span><span class="s">"</span> <span class="o">+</span> <span class="s">"</span><span class="se">\t</span><span class="s">.host = </span><span class="se">\"</span><span class="s">"</span> <span class="o">+</span> <span class="n">xml_varnish_origin</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s">"</span><span class="se">\"</span><span class="s">;</span><span class="se">\n\t</span><span class="s">.port = </span><span class="se">\"</span><span class="s">"</span> <span class="o">+</span> <span class="n">xml_varnish_origin</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>  <span class="o">+</span> <span class="s">"</span><span class="se">\"</span><span class="s">;</span><span class="se">\n</span><span class="s">}</span><span class="se">\n</span><span class="s">#origin_backend_end#</span><span class="se">\n</span><span class="s">"</span>
     <span class="n">all_str</span><span class="o">=</span> <span class="n">ft_bk</span> <span class="o">+</span> <span class="n">k</span> <span class="o">+</span> <span class="n">lt_bk</span>
-    <span class="c">#print all_str</span>
-    <span class="k">return</span> <span class="n">all_str</span>
+    <span class="c1">#print all_str
+</span>    <span class="k">return</span> <span class="n">all_str</span>
 
 
 <span class="k">def</span> <span class="nf">gen_origin_str</span><span class="p">():</span>
@@ -416,15 +416,15 @@ author：zhangjianxin</p>
     <span class="n">xml_varnish_origin</span> <span class="o">=</span> <span class="n">parse_xml</span><span class="p">(</span><span class="n">filexml</span><span class="p">,</span><span class="s">"varnish"</span><span class="p">,</span><span class="s">"origin"</span><span class="p">,</span><span class="s">"value"</span><span class="p">)</span>
 
     <span class="n">ft_o</span> <span class="o">=</span> <span class="s">"#origin_start#"</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span> <span class="o">+</span> <span class="s">"if (req.http.host ~ </span><span class="se">\"</span><span class="s">^"</span> <span class="o">+</span> <span class="n">xml_varnish_origin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  <span class="o">+</span>  <span class="s">"$</span><span class="se">\"</span><span class="s">) {</span><span class="se">\n</span><span class="s">"</span> <span class="o">+</span> <span class="s">"set req.backend="</span> <span class="o">+</span> <span class="n">xml_varnish_origin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">" ;</span><span class="se">\n</span><span class="s">}"</span>
-    <span class="c">#print ft_o</span>
-    <span class="c">#print xml_varnish_origin[1:]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xml_varnish_origin</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-       <span class="c">#print i</span>
-       <span class="n">j</span> <span class="o">=</span> <span class="s">"  elsif (req.http.host ~ </span><span class="se">\"</span><span class="s">^"</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  <span class="o">+</span>  <span class="s">"$</span><span class="se">\"</span><span class="s">) {</span><span class="se">\n</span><span class="s">"</span> <span class="o">+</span> <span class="s">"set req.backend="</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">" ;</span><span class="se">\n</span><span class="s">}"</span>
+    <span class="c1">#print ft_o
+</span>    <span class="c1">#print xml_varnish_origin[1:]
+</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xml_varnish_origin</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+       <span class="c1">#print i
+</span>       <span class="n">j</span> <span class="o">=</span> <span class="s">"  elsif (req.http.host ~ </span><span class="se">\"</span><span class="s">^"</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  <span class="o">+</span>  <span class="s">"$</span><span class="se">\"</span><span class="s">) {</span><span class="se">\n</span><span class="s">"</span> <span class="o">+</span> <span class="s">"set req.backend="</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">" ;</span><span class="se">\n</span><span class="s">}"</span>
        <span class="n">k</span> <span class="o">+=</span> <span class="n">j</span>
     <span class="n">lt_o</span> <span class="o">=</span> <span class="s">"  else {</span><span class="se">\n</span><span class="s">"</span> <span class="o">+</span> <span class="s">"error 404 </span><span class="se">\"</span><span class="s">Unknown virtual host</span><span class="se">\"</span><span class="s">;</span><span class="se">\n</span><span class="s">"</span> <span class="o">+</span> <span class="s">"}</span><span class="se">\n</span><span class="s">#origin_end#</span><span class="se">\n</span><span class="s">"</span>
-    <span class="c">#print ft_o + k + lt_o</span>
-    <span class="k">return</span> <span class="n">ft_o</span> <span class="o">+</span> <span class="n">k</span> <span class="o">+</span> <span class="n">lt_o</span>
+    <span class="c1">#print ft_o + k + lt_o
+</span>    <span class="k">return</span> <span class="n">ft_o</span> <span class="o">+</span> <span class="n">k</span> <span class="o">+</span> <span class="n">lt_o</span>
 
 
 
@@ -432,8 +432,8 @@ author：zhangjianxin</p>
     <span class="n">file_vd_cf</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_vd</span><span class="p">,</span><span class="s">'r'</span><span class="p">)</span>
     <span class="n">xml_varnish_status</span> <span class="o">=</span> <span class="n">parse_xml</span><span class="p">(</span><span class="n">filexml</span><span class="p">,</span><span class="s">"varnish"</span><span class="p">,</span><span class="s">"status"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">xml_varnish_storage</span> <span class="o">=</span> <span class="n">parse_xml</span><span class="p">(</span><span class="n">filexml</span><span class="p">,</span><span class="s">"varnish"</span><span class="p">,</span><span class="s">"storage"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="c">#xml_varnish_origin = parse_xml(filexml,"varnish","origin","value")</span>
-    <span class="n">conf_varnish_status</span> <span class="o">=</span> <span class="n">bu_cv0</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">'ps aux | grep -v grep | grep -q varnishd'</span><span class="p">)))</span>
+    <span class="c1">#xml_varnish_origin = parse_xml(filexml,"varnish","origin","value")
+</span>    <span class="n">conf_varnish_status</span> <span class="o">=</span> <span class="n">bu_cv0</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">'ps aux | grep -v grep | grep -q varnishd'</span><span class="p">)))</span>
     <span class="n">conf_varnish_storage</span> <span class="o">=</span> <span class="s">"VARNISH_STORAGE_SIZE="</span> <span class="o">+</span> <span class="n">fetch_conf</span><span class="p">(</span><span class="n">file_vd_cf</span><span class="p">,</span><span class="s">'VARNISH_STORAGE_SIZE'</span><span class="p">)</span>
     <span class="n">file_vd_cf</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
@@ -461,8 +461,8 @@ author：zhangjianxin</p>
         <span class="k">print</span> <span class="n">xml_varnishd_backend</span>
         <span class="k">print</span> <span class="n">conf_varnishd_backend</span>
         <span class="n">file_replace</span><span class="p">(</span><span class="s">'/usr/local/varnish_214/etc/varnish_01.conf'</span><span class="p">,</span><span class="n">conf_varnishd_backend</span><span class="p">,</span><span class="n">xml_varnishd_backend</span><span class="p">)</span>
-        <span class="c">#os.system('service varnishd restart')</span>
-    <span class="k">else</span><span class="p">:</span>
+        <span class="c1">#os.system('service varnishd restart')
+</span>    <span class="k">else</span><span class="p">:</span>
         <span class="k">print</span> <span class="n">xml_varnishd_backend</span>
         <span class="k">print</span> <span class="n">conf_varnishd_backend</span>
         <span class="k">print</span> <span class="s">"conf_varnishd_backend is ok"</span>
@@ -472,8 +472,8 @@ author：zhangjianxin</p>
         <span class="k">print</span> <span class="n">conf_varnishd_origin</span>
         <span class="k">print</span> <span class="s">"conf_varnishd_origin is wrong, Begin replace the wrong conf..."</span>
         <span class="n">file_replace_escap</span><span class="p">(</span><span class="s">'/usr/local/varnish_214/etc/varnish_01.conf'</span><span class="p">,</span><span class="n">conf_varnishd_origin</span><span class="p">,</span><span class="n">xml_varnishd_origin</span><span class="p">)</span>
-        <span class="c">#os.system('service varnishd restart')</span>
-    <span class="k">else</span><span class="p">:</span>
+        <span class="c1">#os.system('service varnishd restart')
+</span>    <span class="k">else</span><span class="p">:</span>
         <span class="k">print</span> <span class="n">xml_varnishd_origin</span>
         <span class="k">print</span> <span class="s">'------------------'</span>
         <span class="k">print</span> <span class="n">conf_varnishd_origin</span>
@@ -501,7 +501,7 @@ author：zhangjianxin</p>
 
 <ul>
   <li>以上操作经过验证可以直接拿去。</li>
-  <li>Owner <code class="highlighter-rouge">breakEval13</code></li>
+  <li>Owner <code class="language-plaintext highlighter-rouge">breakEval13</code></li>
   <li>https://github.com/breakEval13</li>
 </ul>
 

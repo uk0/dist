@@ -135,10 +135,10 @@ author：YangRaner</p>
 <p>[TOC]</p>
 
 <h1 id="1检查安装依赖程序">1.检查安装依赖程序</h1>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum install <span class="nt">-y</span> tcl gcc-c++ wget
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum <span class="nb">install</span> <span class="nt">-y</span> tcl gcc-c++ wget
 </code></pre></div></div>
 <h1 id="2下载redis">2.下载Redis</h1>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir /opt/redis/
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> /opt/redis/
 <span class="nb">cd</span> /opt/redis/
 wget http://download.redis.io/releases/redis-3.0.4.tar.gz
 </code></pre></div></div>
@@ -148,7 +148,7 @@ wget http://download.redis.io/releases/redis-3.0.4.tar.gz
 <h1 id="4编译安装redis">4.编译安装Redis</h1>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>redis-3.0.4
 make
-make install	
+make <span class="nb">install</span>	
 <span class="nt">-------------------------------------------------------------</span>
 make install安装完成后，会在/usr/local/bin目录下生成下面几个可执行文件，它们的作用分别是：
 redis-server：Redis服务器端启动程序
@@ -158,10 +158,10 @@ redis-check-aof：数据修复工具
 redis-check-dump：检查导出工具
 </code></pre></div></div>
 <h1 id="5配置redis">5.配置Redis</h1>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp redis.conf /etc/   复制配置文件到/etc/目录
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp </span>redis.conf /etc/   复制配置文件到/etc/目录
 vim /etc/redis.conf    修改redis文件
 <span class="nt">----------------------------------------------</span>
-daemonize yes     修改daemonize配置项为yes，使Redis进程在后台运行
+daemonize <span class="nb">yes     </span>修改daemonize配置项为yes，使Redis进程在后台运行
 requirepass Ejtone   <span class="c"># 设置密码，以提供远程登陆</span>
 </code></pre></div></div>
 <h1 id="6启动redis">6.启动Redis</h1>
@@ -182,19 +182,19 @@ root  18443  1  0 13:05 ?    00:00:00 ./redis-server <span class="k">*</span>:63
 <blockquote>
   <ul>
     <li>在前面的操作中，我们用到了使Redis进程在后台运行的参数，下面介绍其它一些常用的Redis启动参数：**
-<code class="highlighter-rouge">daemonize</code>：是否以后台daemon方式运行
-<code class="highlighter-rouge">pidfile</code>：pid文件位置
-<code class="highlighter-rouge">port</code>：监听的端口号
-<code class="highlighter-rouge">timeout</code>：请求超时时间
-<code class="highlighter-rouge">loglevel</code>：log信息级别
-<code class="highlighter-rouge">logfile</code>：log文件位置
-<code class="highlighter-rouge">databases</code>：开启数据库的数量
-<code class="highlighter-rouge">save</code> * <em>：保存快照的频率，第一个</em>表示多长时间，第二个*表示执行多少次写操作。在一定时间内执行一定数量的写操作时，自动保存快照。可设置多个条件。
-<code class="highlighter-rouge">rdbcompression</code>：是否使用压缩
-<code class="highlighter-rouge">dbfilename</code>：数据快照文件名（只是文件名）
-<code class="highlighter-rouge">dir</code>：数据快照的保存目录（仅目录）
-<code class="highlighter-rouge">appendonly</code>：是否开启appendonlylog，开启的话每次写操作会记一条log，这会提高数据抗风险能力，但影响效率。
-<code class="highlighter-rouge">appendfsync</code>：appendonlylog如何同步到磁盘。三个选项，分别是每次写都强制调用fsync、每秒启用一次fsync、不调用fsync等待系统自己同步</li>
+<code class="language-plaintext highlighter-rouge">daemonize</code>：是否以后台daemon方式运行
+<code class="language-plaintext highlighter-rouge">pidfile</code>：pid文件位置
+<code class="language-plaintext highlighter-rouge">port</code>：监听的端口号
+<code class="language-plaintext highlighter-rouge">timeout</code>：请求超时时间
+<code class="language-plaintext highlighter-rouge">loglevel</code>：log信息级别
+<code class="language-plaintext highlighter-rouge">logfile</code>：log文件位置
+<code class="language-plaintext highlighter-rouge">databases</code>：开启数据库的数量
+<code class="language-plaintext highlighter-rouge">save</code> * <em>：保存快照的频率，第一个</em>表示多长时间，第二个*表示执行多少次写操作。在一定时间内执行一定数量的写操作时，自动保存快照。可设置多个条件。
+<code class="language-plaintext highlighter-rouge">rdbcompression</code>：是否使用压缩
+<code class="language-plaintext highlighter-rouge">dbfilename</code>：数据快照文件名（只是文件名）
+<code class="language-plaintext highlighter-rouge">dir</code>：数据快照的保存目录（仅目录）
+<code class="language-plaintext highlighter-rouge">appendonly</code>：是否开启appendonlylog，开启的话每次写操作会记一条log，这会提高数据抗风险能力，但影响效率。
+<code class="language-plaintext highlighter-rouge">appendfsync</code>：appendonlylog如何同步到磁盘。三个选项，分别是每次写都强制调用fsync、每秒启用一次fsync、不调用fsync等待系统自己同步</li>
   </ul>
 </blockquote>
 
@@ -213,7 +213,7 @@ root  18443  1  0 13:05 ?    00:00:00 ./redis-server <span class="k">*</span>:63
 </code></pre></div>    </div>
   </li>
   <li>以上代码经过验证可以直接拿去修改调用</li>
-  <li>Owner <code class="highlighter-rouge">breakEval13</code></li>
+  <li>Owner <code class="language-plaintext highlighter-rouge">breakEval13</code></li>
   <li>https://github.com/breakEval13</li>
 </ul>
 

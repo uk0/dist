@@ -142,13 +142,13 @@
 /usr/bin/expect <span class="o">&lt;&lt;</span><span class="no">EOF</span><span class="sh">
     spawn ssh </span><span class="nv">$USER</span><span class="sh">@</span><span class="nv">$current_node</span><span class="sh">
     expect "*(yes/no)?*" {
-        send -- "yes\r"
+        send -- "yes</span><span class="se">\r</span><span class="sh">"
         expect "*?assword:*"
-        send -- "</span><span class="nv">$PASSWD</span><span class="sh">\r"
+        send -- "</span><span class="nv">$PASSWD</span><span class="se">\r</span><span class="sh">"
     }  "*?assword:*"
-        send -- "</span><span class="nv">$PASSWD</span><span class="sh">\r"
+        send -- "</span><span class="nv">$PASSWD</span><span class="se">\r</span><span class="sh">"
         expect "*# "
-    send -- "exit \r"
+    send -- "exit </span><span class="se">\r</span><span class="sh">"
 </span><span class="no">EOF
 
 </span></code></pre></div></div>
@@ -156,7 +156,7 @@
 <p># 2017-12-21  [shell]</p>
 
 <ul>
-  <li>用<code class="highlighter-rouge">,</code>劈分数据。</li>
+  <li>用<code class="language-plaintext highlighter-rouge">,</code>劈分数据。</li>
 </ul>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">HBASE_REGION</span><span class="o">=</span>dscn1,dscn2,dscn3

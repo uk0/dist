@@ -146,7 +146,7 @@
 </code></pre></div></div>
 
 <ul>
-  <li>tc-config.xml (ehcache3.4.0)版本已经被合并了里面包含<code class="highlighter-rouge">terracotta</code></li>
+  <li>tc-config.xml (ehcache3.4.0)版本已经被合并了里面包含<code class="language-plaintext highlighter-rouge">terracotta</code></li>
 </ul>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
@@ -239,9 +239,9 @@
 </ul>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 1</span>
-nohup ./bin/start-tc-server.sh  <span class="nt">-f</span> conf/tc-config.xml  <span class="nt">-n</span> s1 &amp;
+<span class="nb">nohup</span> ./bin/start-tc-server.sh  <span class="nt">-f</span> conf/tc-config.xml  <span class="nt">-n</span> s1 &amp;
 <span class="c"># 2</span>
-nohup ./bin/start-tc-server.sh  <span class="nt">-f</span> conf/tc-config.xml  <span class="nt">-n</span> s2 &amp;
+<span class="nb">nohup</span> ./bin/start-tc-server.sh  <span class="nt">-f</span> conf/tc-config.xml  <span class="nt">-n</span> s2 &amp;
 
 </code></pre></div></div>
 
@@ -282,27 +282,27 @@ nohup ./bin/start-tc-server.sh  <span class="nt">-f</span> conf/tc-config.xml  <
 <span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">slf4j</span><span class="o">.</span><span class="na">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ClusteredProgrammatic</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Logger</span> <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">getLogger</span><span class="o">(</span><span class="n">ClusteredProgrammatic</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Logger</span> <span class="no">LOGGER</span> <span class="o">=</span> <span class="n">getLogger</span><span class="o">(</span><span class="nc">ClusteredProgrammatic</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
 
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">LOGGER</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"Creating clustered cache manager"</span><span class="o">);</span>
-        <span class="kd">final</span> <span class="n">URI</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">create</span><span class="o">(</span><span class="s">"terracotta://10.11.0.224:9410/s1"</span><span class="o">);</span>
-        <span class="k">try</span> <span class="o">(</span><span class="n">CacheManager</span> <span class="n">cacheManager</span> <span class="o">=</span> <span class="n">newCacheManagerBuilder</span><span class="o">()</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="no">LOGGER</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"Creating clustered cache manager"</span><span class="o">);</span>
+        <span class="kd">final</span> <span class="no">URI</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">create</span><span class="o">(</span><span class="s">"terracotta://10.11.0.224:9410/s1"</span><span class="o">);</span>
+        <span class="k">try</span> <span class="o">(</span><span class="nc">CacheManager</span> <span class="n">cacheManager</span> <span class="o">=</span> <span class="n">newCacheManagerBuilder</span><span class="o">()</span>
                 <span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="n">cluster</span><span class="o">(</span><span class="n">uri</span><span class="o">).</span><span class="na">autoCreate</span><span class="o">().</span><span class="na">defaultServerResource</span><span class="o">(</span><span class="s">"main"</span><span class="o">))</span>
                 <span class="o">.</span><span class="na">withCache</span><span class="o">(</span><span class="s">"basicCache"</span><span class="o">,</span>
-                        <span class="n">newCacheConfigurationBuilder</span><span class="o">(</span><span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
-                                <span class="n">heap</span><span class="o">(</span><span class="mi">100</span><span class="o">).</span><span class="na">offheap</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">MB</span><span class="o">).</span><span class="na">with</span><span class="o">(</span><span class="n">clusteredDedicated</span><span class="o">(</span><span class="mi">512</span><span class="o">,</span> <span class="n">MB</span><span class="o">))))</span>
+                        <span class="n">newCacheConfigurationBuilder</span><span class="o">(</span><span class="nc">Long</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
+                                <span class="n">heap</span><span class="o">(</span><span class="mi">100</span><span class="o">).</span><span class="na">offheap</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="no">MB</span><span class="o">).</span><span class="na">with</span><span class="o">(</span><span class="n">clusteredDedicated</span><span class="o">(</span><span class="mi">512</span><span class="o">,</span> <span class="no">MB</span><span class="o">))))</span>
                 <span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="kc">true</span><span class="o">))</span> <span class="o">{</span>
-            <span class="n">Cache</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">basicCache</span> <span class="o">=</span> <span class="n">cacheManager</span><span class="o">.</span><span class="na">getCache</span><span class="o">(</span><span class="s">"basicCache"</span><span class="o">,</span> <span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+            <span class="nc">Cache</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">basicCache</span> <span class="o">=</span> <span class="n">cacheManager</span><span class="o">.</span><span class="na">getCache</span><span class="o">(</span><span class="s">"basicCache"</span><span class="o">,</span> <span class="nc">Long</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
 
-            <span class="n">LOGGER</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"Putting to cache"</span><span class="o">);</span>
+            <span class="no">LOGGER</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"Putting to cache"</span><span class="o">);</span>
 <span class="c1">//            basicCache.put(100L, "da one!");</span>
 <span class="c1">//            basicCache.put(1L, "da one1L!");</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">basicCache</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">1L</span><span class="o">));</span>
-            <span class="n">LOGGER</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"Closing cache manager"</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">basicCache</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">1L</span><span class="o">));</span>
+            <span class="no">LOGGER</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"Closing cache manager"</span><span class="o">);</span>
         <span class="o">}</span>
 
-        <span class="n">LOGGER</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"Exiting"</span><span class="o">);</span>
+        <span class="no">LOGGER</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"Exiting"</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
 

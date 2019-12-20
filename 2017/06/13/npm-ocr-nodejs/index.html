@@ -135,7 +135,7 @@ We use <a href="https://github.com/antimatter15/ocrad.js/">ocrad.js</a>.</p>
 
 <h2 id="install">Install</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm install ng-ocr <span class="nt">-S</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nb">install </span>ng-ocr <span class="nt">-S</span>
 </code></pre></div></div>
 
 <h2 id="how-to-use">How to use</h2>
@@ -144,17 +144,17 @@ We use <a href="https://github.com/antimatter15/ocrad.js/">ocrad.js</a>.</p>
 
 <p>Simple :</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Ngocr</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"Ngocr"</span><span class="p">);</span>
-<span class="nx">Ngocr</span><span class="p">.</span><span class="nx">decodeFile</span><span class="p">(</span><span class="s2">"test/fixture/hello_world.png"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">){</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Ngocr</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">Ngocr</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">Ngocr</span><span class="p">.</span><span class="nx">decodeFile</span><span class="p">(</span><span class="dl">"</span><span class="s2">test/fixture/hello_world.png</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">){</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span> <span class="c1">// Hello World!</span>
 <span class="p">});</span>
 </code></pre></div></div>
 
 <p>From Buffer:</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Ngocr</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"Ngocr"</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"fs"</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">buffer</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s2">"test/fixture/hello_world.png"</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Ngocr</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">Ngocr</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">fs</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">buffer</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="dl">"</span><span class="s2">test/fixture/hello_world.png</span><span class="dl">"</span><span class="p">);</span>
 <span class="nx">Ngocr</span><span class="p">.</span><span class="nx">decodeBuffer</span><span class="p">(</span><span class="nx">buffer</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">){</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span> <span class="c1">// Hello World!</span>
 <span class="p">});</span>
@@ -162,9 +162,9 @@ We use <a href="https://github.com/antimatter15/ocrad.js/">ocrad.js</a>.</p>
 
 <p>From Stream:</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Ngocr</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"Ngocr"</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"fs"</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">stream</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">(</span><span class="s2">"test/fixture/hello_world.png"</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Ngocr</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">Ngocr</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">fs</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">stream</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">(</span><span class="dl">"</span><span class="s2">test/fixture/hello_world.png</span><span class="dl">"</span><span class="p">);</span>
 <span class="nx">Ngocr</span><span class="p">.</span><span class="nx">decodeStream</span><span class="p">(</span><span class="nx">stream</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">){</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span> <span class="c1">// Hello World!</span>
 <span class="p">});</span>

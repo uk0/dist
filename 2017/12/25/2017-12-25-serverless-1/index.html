@@ -232,19 +232,19 @@
   <span class="na">image</span><span class="pi">:</span> <span class="s">registry.timeondata.com/firsh_demo/kubeless_runtime_python:2.7.1</span>
   <span class="na">runtime</span><span class="pi">:</span> <span class="s">python2.7</span>
   <span class="na">deps</span><span class="pi">:</span> <span class="pi">|</span>
-    <span class="no">cowpy</span>
+    <span class="s">cowpy</span>
   <span class="na">function</span><span class="pi">:</span> <span class="pi">|</span>
-      <span class="no">import time</span>
-      <span class="no">import random</span>
-      <span class="no">from cowpy import cow</span>
-      <span class="no">def foobar():</span>
-        <span class="no"># NB: delay will be negative and sleep will raise an error</span>
-        <span class="no"># occasionally.  This is a feature for demoing errors.</span>
-        <span class="no">delay = random.normalvariate(0.3, 0.2)</span>
-        <span class="no">time.sleep(delay)</span>
-        <span class="no">msg = "hello world - with a %0.2fs artificial delay" % delay</span>
-        <span class="no">c = cow.get_cow()</span>
-        <span class="no">return c().milk(msg)</span>
+      <span class="s">import time</span>
+      <span class="s">import random</span>
+      <span class="s">from cowpy import cow</span>
+      <span class="s">def foobar():</span>
+        <span class="s"># NB: delay will be negative and sleep will raise an error</span>
+        <span class="s"># occasionally.  This is a feature for demoing errors.</span>
+        <span class="s">delay = random.normalvariate(0.3, 0.2)</span>
+        <span class="s">time.sleep(delay)</span>
+        <span class="s">msg = "hello world - with a %0.2fs artificial delay" % delay</span>
+        <span class="s">c = cow.get_cow()</span>
+        <span class="s">return c().milk(msg)</span>
 </code></pre></div></div>
 
 <ul>

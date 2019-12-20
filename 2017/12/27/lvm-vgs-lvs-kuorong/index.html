@@ -216,8 +216,8 @@ Fragment <span class="nv">size</span><span class="o">=</span>4096 <span class="o
 13708 blocks <span class="o">(</span>5.00%<span class="o">)</span> reserved <span class="k">for </span>the super user
 First data <span class="nv">block</span><span class="o">=</span>0
 Maximum filesystem <span class="nv">blocks</span><span class="o">=</span>281018368
-9 block groups
-32768 blocks per group, 32768 fragments per group
+9 block <span class="nb">groups
+</span>32768 blocks per group, 32768 fragments per group
 15232 inodes per group
 Superblock backups stored on blocks: 
         32768, 98304, 163840, 229376
@@ -288,14 +288,14 @@ Checking <span class="k">for </span>bad blocks <span class="o">(</span>read-only
 
 <h1 id="动态扩容-lv">动态扩容 LV</h1>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  * 目标给已在线上使用的LV 扩容，在以下例子中，给目录 /database/pgdata1 扩容 512 M。
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  * 目标给已在线上使用的LV 扩容，在以下例子中，给目录 /database/pgdata1 扩容 512 M。
 </code></pre></div></div>
 
 <ul>
   <li>2.1 查看目录使用情况</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@pgb lvm]# df <span class="nt">-hv</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@pgb lvm]# <span class="nb">df</span> <span class="nt">-hv</span>
 Filesystem            Size  Used Avail Use% Mounted on
 /dev/hda3              17G  9.8G  5.8G  64% /
 /dev/hda1              99M   18M   76M  20% /boot
@@ -343,7 +343,7 @@ none                  217M  104K  217M   1% /var/lib/xenstored
   Logical volume lv_pgdata1 successfully resized
  
 
-<span class="o">[</span>root@pgb lvm]# df <span class="nt">-hv</span>
+<span class="o">[</span>root@pgb lvm]# <span class="nb">df</span> <span class="nt">-hv</span>
 Filesystem            Size  Used Avail Use% Mounted on
 /dev/hda3              17G  9.9G  5.8G  64% /
 /dev/hda1              99M   18M   76M  20% /boot
@@ -372,7 +372,7 @@ The filesystem on /dev/mapper/vg01_pgdata-lv_pgdata1 is now 524288 blocks long.
   <li>2.5 再次查看</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@pgb lvm]# df <span class="nt">-hv</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@pgb lvm]# <span class="nb">df</span> <span class="nt">-hv</span>
 Filesystem            Size  Used Avail Use% Mounted on
 /dev/hda3              17G  9.8G  5.8G  64% /
 /dev/hda1              99M   18M   76M  20% /boot

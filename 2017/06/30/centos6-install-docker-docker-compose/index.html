@@ -140,7 +140,7 @@
 </ul>
 
 <h2 id="一安装-docker">一、安装 Docker</h2>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    这一节主要来自于：How To Install Docker on CentOS 6
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    这一节主要来自于：How To Install Docker on CentOS 6
 
     以下 命令都是在 root 权限下运行的。
 
@@ -158,14 +158,14 @@
   <li>现在让我们通过安装 docker-io 软件包来安装 Docker：</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    yum <span class="nt">-y</span> install docker-io
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    yum <span class="nt">-y</span> <span class="nb">install </span>docker-io
 </code></pre></div></div>
 
 <ul>
   <li>安装完成后，我们需要启动 Docker 守护进程：</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```bash
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```bash
 service docker start
 ```
 </code></pre></div></div>
@@ -230,7 +230,7 @@ wget https://bootstrap.pypa.io/get-pip.py
 python get-pip.py 
 </code></pre></div></div>
 <p>2.3、安装 docker-compose</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> pip install docker-compose
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> pip <span class="nb">install </span>docker-compose
 </code></pre></div></div>
 
 <ul>
@@ -258,9 +258,9 @@ python get-pip.py
 
 <p>打印出如下：</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="c">#!/usr/bin/python</span>
-<span class="c"># EASY-INSTALL-ENTRY-SCRIPT: 'pip==8.1.0','console_scripts','pip'</span>
-<span class="n">__requires__</span> <span class="o">=</span> <span class="s">'pip==8.1.0'</span>
+<span class="c1">#!/usr/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'pip==8.1.0','console_scripts','pip'
+</span><span class="n">__requires__</span> <span class="o">=</span> <span class="s">'pip==8.1.0'</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">pkg_resources</span> <span class="kn">import</span> <span class="n">load_entry_point</span>
 
@@ -301,7 +301,7 @@ Google 了一下，在 StackOverflow 上找到个降 docker-compose 版本的方
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip uninstall docker-compose
 </code></pre></div></div>
 <p>再安装指定版本：</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> pip install docker-compose<span class="o">==</span>1.5.2
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> pip <span class="nb">install </span>docker-compose<span class="o">==</span>1.5.2
 </code></pre></div></div>
 <ul>
   <li>至此，docker-compose 降版本成功！</li>

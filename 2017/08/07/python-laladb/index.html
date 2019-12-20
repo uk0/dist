@@ -232,8 +232,8 @@
 <h2 id="100多行的数据库代码">100多行的数据库代码</h2>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-    <span class="c"># -*- coding:utf-8 -*-</span>
-    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="c1"># -*- coding:utf-8 -*-
+</span>    <span class="kn">import</span> <span class="nn">os</span>
     <span class="kn">import</span> <span class="nn">time</span>
     <span class="kn">import</span> <span class="nn">bisect</span>
     <span class="kn">import</span> <span class="nn">itertools</span>
@@ -268,8 +268,8 @@
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">key</span><span class="p">,</span> <span class="n">offset</span>  <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">__update_index</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">offset</span><span class="p">)</span>
-                <span class="k">except</span> <span class="nb">ValueError</span><span class="p">:</span> <span class="c"># 索引如果没有flush的话，可能读到有半行的数据</span>
-                    <span class="k">pass</span>
+                <span class="k">except</span> <span class="nb">ValueError</span><span class="p">:</span> <span class="c1"># 索引如果没有flush的话，可能读到有半行的数据
+</span>                    <span class="k">pass</span>
 
         <span class="k">def</span> <span class="nf">append_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">offset</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">index_count</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -360,7 +360,7 @@
                 <span class="k">return</span> <span class="n">inner2</span>
             <span class="k">return</span> <span class="n">inner</span>
 
-        <span class="nd">@time_test</span><span class="p">(</span><span class="s">'gen_test_data'</span><span class="p">)</span>
+        <span class="o">@</span><span class="n">time_test</span><span class="p">(</span><span class="s">'gen_test_data'</span><span class="p">)</span>
         <span class="k">def</span> <span class="nf">gen_test_data</span><span class="p">(</span><span class="n">db</span><span class="p">):</span>
             <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
             <span class="n">begin_time</span> <span class="o">=</span> <span class="n">now</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
@@ -370,22 +370,22 @@
                     <span class="n">db</span><span class="o">.</span><span class="n">append_data</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000</span><span class="p">))</span><span class="o">+</span> <span class="s">' '</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid1</span><span class="p">()),</span> <span class="n">begin_time</span><span class="p">)</span>
                 <span class="n">begin_time</span> <span class="o">+=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-        <span class="nd">@time_test</span><span class="p">(</span><span class="s">'test_get_data'</span><span class="p">)</span>
+        <span class="o">@</span><span class="n">time_test</span><span class="p">(</span><span class="s">'test_get_data'</span><span class="p">)</span>
         <span class="k">def</span> <span class="nf">test_get_data</span><span class="p">(</span><span class="n">db</span><span class="p">):</span>
             <span class="n">begin_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
             <span class="n">end_time</span> <span class="o">=</span> <span class="n">begin_time</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
             <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">begin_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'1024'</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
             <span class="k">print</span> <span class="s">'test_get_data get </span><span class="si">%</span><span class="s">s results'</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 
-        <span class="nd">@time_test</span><span class="p">(</span><span class="s">'get_db'</span><span class="p">)</span>
+        <span class="o">@</span><span class="n">time_test</span><span class="p">(</span><span class="s">'get_db'</span><span class="p">)</span>
         <span class="k">def</span> <span class="nf">get_db</span><span class="p">():</span>
             <span class="k">return</span> <span class="n">WawaDB</span><span class="p">(</span><span class="s">'test'</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s">'./data/test.db'</span><span class="p">):</span>
             <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
             <span class="n">gen_test_data</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
-            <span class="c">#db.index.fp_index.flush()</span>
-
+            <span class="c1">#db.index.fp_index.flush()
+</span>
         <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
         <span class="n">test_get_data</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
 
@@ -397,7 +397,7 @@
 
 <ul>
   <li>以上代码经过验证可以直接拿去修改调用</li>
-  <li>Owner <code class="highlighter-rouge">breakEval13</code></li>
+  <li>Owner <code class="language-plaintext highlighter-rouge">breakEval13</code></li>
   <li>https://github.com/breakEval13</li>
 </ul>
 

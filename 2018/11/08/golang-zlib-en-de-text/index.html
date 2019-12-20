@@ -142,64 +142,64 @@
 
 <h3 id="golang-代码">Golang 代码</h3>
 
-<div class="language-golang highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span><span class="x"> </span><span class="n">main</span><span class="x">
+<div class="language-golang highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">main</span>
 
-</span><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="x">
-	</span><span class="s">"bytes"</span><span class="x">
-	</span><span class="s">"compress/zlib"</span><span class="x">
-	</span><span class="s">"encoding/base64"</span><span class="x">
-	</span><span class="s">"fmt"</span><span class="x">
-	</span><span class="s">"io"</span><span class="x">
-</span><span class="p">)</span><span class="x">
-</span><span class="c">//进行zlib压缩</span><span class="x">
-</span><span class="k">func</span><span class="x"> </span><span class="n">DoZlibCompress</span><span class="p">(</span><span class="n">src</span><span class="x"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">)</span><span class="x"> </span><span class="p">[]</span><span class="kt">byte</span><span class="x"> </span><span class="p">{</span><span class="x">
-	</span><span class="k">var</span><span class="x"> </span><span class="n">in</span><span class="x"> </span><span class="n">bytes</span><span class="o">.</span><span class="n">Buffer</span><span class="x">
-	</span><span class="n">w</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">zlib</span><span class="o">.</span><span class="n">NewWriterLevelDict</span><span class="p">(</span><span class="o">&amp;</span><span class="n">in</span><span class="p">,</span><span class="o">-</span><span class="m">1</span><span class="p">,</span><span class="n">src</span><span class="p">)</span><span class="x">
-	</span><span class="n">w</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="n">src</span><span class="p">)</span><span class="x">
-	</span><span class="n">w</span><span class="o">.</span><span class="n">Close</span><span class="p">()</span><span class="x">
-	</span><span class="k">return</span><span class="x"> </span><span class="n">in</span><span class="o">.</span><span class="n">Bytes</span><span class="p">()</span><span class="x">
-</span><span class="p">}</span><span class="x">
+<span class="k">import</span> <span class="p">(</span>
+	<span class="s">"bytes"</span>
+	<span class="s">"compress/zlib"</span>
+	<span class="s">"encoding/base64"</span>
+	<span class="s">"fmt"</span>
+	<span class="s">"io"</span>
+<span class="p">)</span>
+<span class="c">//进行zlib压缩</span>
+<span class="k">func</span> <span class="n">DoZlibCompress</span><span class="p">(</span><span class="n">src</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">[]</span><span class="kt">byte</span> <span class="p">{</span>
+	<span class="k">var</span> <span class="n">in</span> <span class="n">bytes</span><span class="o">.</span><span class="n">Buffer</span>
+	<span class="n">w</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">zlib</span><span class="o">.</span><span class="n">NewWriterLevelDict</span><span class="p">(</span><span class="o">&amp;</span><span class="n">in</span><span class="p">,</span><span class="o">-</span><span class="m">1</span><span class="p">,</span><span class="n">src</span><span class="p">)</span>
+	<span class="n">w</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+	<span class="n">w</span><span class="o">.</span><span class="n">Close</span><span class="p">()</span>
+	<span class="k">return</span> <span class="n">in</span><span class="o">.</span><span class="n">Bytes</span><span class="p">()</span>
+<span class="p">}</span>
 
-</span><span class="k">func</span><span class="x"> </span><span class="n">DoZlibCompress2</span><span class="p">(</span><span class="n">src</span><span class="x"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">)</span><span class="x"> </span><span class="p">[]</span><span class="kt">byte</span><span class="x"> </span><span class="p">{</span><span class="x">
-	</span><span class="k">var</span><span class="x"> </span><span class="n">bufs</span><span class="x"> </span><span class="n">bytes</span><span class="o">.</span><span class="n">Buffer</span><span class="x">
-	</span><span class="n">w</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">zlib</span><span class="o">.</span><span class="n">NewWriterLevel</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bufs</span><span class="p">,</span><span class="x"> </span><span class="o">-</span><span class="m">1</span><span class="p">)</span><span class="x">
-	</span><span class="n">w</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="n">src</span><span class="p">)</span><span class="x">
-	</span><span class="k">defer</span><span class="x"> </span><span class="n">w</span><span class="o">.</span><span class="n">Flush</span><span class="p">()</span><span class="x">
-		</span><span class="n">w</span><span class="o">.</span><span class="n">Close</span><span class="p">()</span><span class="x">
-	</span><span class="k">return</span><span class="x"> </span><span class="n">bufs</span><span class="o">.</span><span class="n">Bytes</span><span class="p">()</span><span class="x">
-</span><span class="p">}</span><span class="x">
+<span class="k">func</span> <span class="n">DoZlibCompress2</span><span class="p">(</span><span class="n">src</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">[]</span><span class="kt">byte</span> <span class="p">{</span>
+	<span class="k">var</span> <span class="n">bufs</span> <span class="n">bytes</span><span class="o">.</span><span class="n">Buffer</span>
+	<span class="n">w</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">zlib</span><span class="o">.</span><span class="n">NewWriterLevel</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bufs</span><span class="p">,</span> <span class="o">-</span><span class="m">1</span><span class="p">)</span>
+	<span class="n">w</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+	<span class="k">defer</span> <span class="n">w</span><span class="o">.</span><span class="n">Flush</span><span class="p">()</span>
+		<span class="n">w</span><span class="o">.</span><span class="n">Close</span><span class="p">()</span>
+	<span class="k">return</span> <span class="n">bufs</span><span class="o">.</span><span class="n">Bytes</span><span class="p">()</span>
+<span class="p">}</span>
 
-</span><span class="c">//进行zlib解压缩</span><span class="x">
-</span><span class="k">func</span><span class="x"> </span><span class="n">DoZlibUnCompress</span><span class="p">(</span><span class="n">compressSrc</span><span class="x"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">)</span><span class="x"> </span><span class="p">[]</span><span class="kt">byte</span><span class="x"> </span><span class="p">{</span><span class="x">
-	</span><span class="n">b</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">bytes</span><span class="o">.</span><span class="n">NewReader</span><span class="p">(</span><span class="n">compressSrc</span><span class="p">)</span><span class="x">
-	</span><span class="k">var</span><span class="x"> </span><span class="n">out</span><span class="x"> </span><span class="n">bytes</span><span class="o">.</span><span class="n">Buffer</span><span class="x">
-	</span><span class="n">r</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">zlib</span><span class="o">.</span><span class="n">NewReader</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="x">
-	</span><span class="n">io</span><span class="o">.</span><span class="n">Copy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">out</span><span class="p">,</span><span class="x"> </span><span class="n">r</span><span class="p">)</span><span class="x">
-	</span><span class="k">return</span><span class="x"> </span><span class="n">out</span><span class="o">.</span><span class="n">Bytes</span><span class="p">()</span><span class="x">
-</span><span class="p">}</span><span class="x">
+<span class="c">//进行zlib解压缩</span>
+<span class="k">func</span> <span class="n">DoZlibUnCompress</span><span class="p">(</span><span class="n">compressSrc</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">[]</span><span class="kt">byte</span> <span class="p">{</span>
+	<span class="n">b</span> <span class="o">:=</span> <span class="n">bytes</span><span class="o">.</span><span class="n">NewReader</span><span class="p">(</span><span class="n">compressSrc</span><span class="p">)</span>
+	<span class="k">var</span> <span class="n">out</span> <span class="n">bytes</span><span class="o">.</span><span class="n">Buffer</span>
+	<span class="n">r</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">zlib</span><span class="o">.</span><span class="n">NewReader</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+	<span class="n">io</span><span class="o">.</span><span class="n">Copy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">out</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">out</span><span class="o">.</span><span class="n">Bytes</span><span class="p">()</span>
+<span class="p">}</span>
 
-</span><span class="k">func</span><span class="x"> </span><span class="n">main</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
-	</span><span class="c">//buff, _ := base64.StdEncoding.DecodeString("eJxLTEoGAAJNASc=")</span><span class="x">
-	</span><span class="n">buff</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">base64</span><span class="o">.</span><span class="n">StdEncoding</span><span class="o">.</span><span class="n">DecodeString</span><span class="p">(</span><span class="s">"eJxKTEoGBAAA//8CTQEn"</span><span class="p">)</span><span class="x">
-	</span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="kt">string</span><span class="p">(</span><span class="n">DoZlibUnCompress</span><span class="p">(</span><span class="n">buff</span><span class="p">)))</span><span class="x">
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="c">//buff, _ := base64.StdEncoding.DecodeString("eJxLTEoGAAJNASc=")</span>
+	<span class="n">buff</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">base64</span><span class="o">.</span><span class="n">StdEncoding</span><span class="o">.</span><span class="n">DecodeString</span><span class="p">(</span><span class="s">"eJxKTEoGBAAA//8CTQEn"</span><span class="p">)</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="kt">string</span><span class="p">(</span><span class="n">DoZlibUnCompress</span><span class="p">(</span><span class="n">buff</span><span class="p">)))</span>
 
 
 
-	</span><span class="c">//zip := DoZlibCompress([]byte("abc"))</span><span class="x">
-	</span><span class="n">zip</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">DoZlibCompress2</span><span class="p">([]</span><span class="kt">byte</span><span class="p">(</span><span class="s">"abc"</span><span class="p">))</span><span class="x">
-	</span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">zip</span><span class="p">)</span><span class="x">
+	<span class="c">//zip := DoZlibCompress([]byte("abc"))</span>
+	<span class="n">zip</span> <span class="o">:=</span> <span class="n">DoZlibCompress2</span><span class="p">([]</span><span class="kt">byte</span><span class="p">(</span><span class="s">"abc"</span><span class="p">))</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">zip</span><span class="p">)</span>
 
-	</span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">StdEncoding</span><span class="o">.</span><span class="n">EncodeToString</span><span class="p">(</span><span class="n">zip</span><span class="p">))</span><span class="x">
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">StdEncoding</span><span class="o">.</span><span class="n">EncodeToString</span><span class="p">(</span><span class="n">zip</span><span class="p">))</span>
 
-	</span><span class="c">//</span><span class="x">
-	</span><span class="c">//fmt.Println(string(DoZlibUnCompress(zip)))</span><span class="x">
-</span><span class="p">}</span><span class="x">
+	<span class="c">//</span>
+	<span class="c">//fmt.Println(string(DoZlibUnCompress(zip)))</span>
+<span class="p">}</span>
 
-</span><span class="o">...</span><span class="x">
-</span><span class="n">abc</span><span class="x">
-</span><span class="p">[</span><span class="m">120</span><span class="x"> </span><span class="m">156</span><span class="x"> </span><span class="m">74</span><span class="x"> </span><span class="m">76</span><span class="x"> </span><span class="m">74</span><span class="x"> </span><span class="m">6</span><span class="x"> </span><span class="m">4</span><span class="x"> </span><span class="m">0</span><span class="x"> </span><span class="m">0</span><span class="x"> </span><span class="m">255</span><span class="x"> </span><span class="m">255</span><span class="x"> </span><span class="m">2</span><span class="x"> </span><span class="m">77</span><span class="x"> </span><span class="m">1</span><span class="x"> </span><span class="m">39</span><span class="p">]</span><span class="x">
-</span><span class="n">eJxKTEoGBAAA</span><span class="c">//8CTQEn</span><span class="x">
-</span></code></pre></div></div>
+<span class="o">...</span>
+<span class="n">abc</span>
+<span class="p">[</span><span class="m">120</span> <span class="m">156</span> <span class="m">74</span> <span class="m">76</span> <span class="m">74</span> <span class="m">6</span> <span class="m">4</span> <span class="m">0</span> <span class="m">0</span> <span class="m">255</span> <span class="m">255</span> <span class="m">2</span> <span class="m">77</span> <span class="m">1</span> <span class="m">39</span><span class="p">]</span>
+<span class="n">eJxKTEoGBAAA</span><span class="c">//8CTQEn</span>
+</code></pre></div></div>
 
 <h3 id="php-代码">PHP 代码</h3>
 
@@ -209,12 +209,12 @@
 <span class="nv">$code</span> <span class="o">=</span><span class="nb">zlib_encode</span><span class="p">(</span><span class="s2">"abc"</span><span class="p">,</span><span class="nx">ZLIB_ENCODING_DEFLATE</span><span class="p">);</span>
 <span class="nv">$code</span> <span class="o">=</span> <span class="nb">base64_encode</span><span class="p">(</span><span class="nv">$code</span><span class="p">);</span>
 <span class="k">echo</span>  <span class="s2">"</span><span class="nv">$code</span><span class="s2">"</span><span class="p">;</span>
-<span class="c1">// eJxLTEoGAAJNASc=
-</span>
+<span class="c1">// eJxLTEoGAAJNASc=</span>
+
 <span class="nv">$code</span> <span class="o">=</span> <span class="nb">bin2hex</span><span class="p">(</span><span class="nv">$code</span><span class="p">);</span>
 <span class="k">echo</span>  <span class="s2">"</span><span class="nv">$code</span><span class="s2">"</span><span class="p">;</span>
-<span class="c1">// 654a784c54456f4741414a4e4153633d
-</span>
+<span class="c1">// 654a784c54456f4741414a4e4153633d</span>
+
 <span class="cp">?&gt;</span>
 </code></pre></div></div>
 

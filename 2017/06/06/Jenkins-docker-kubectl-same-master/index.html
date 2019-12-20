@@ -143,7 +143,7 @@
 
 <h2 id="导入-jenkins-源">导入 jenkins 源</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins.io/redhat-stable/jenkins.repo
 rpm --import http://pkg.jenkins.io/redhat-stable/jenkins.io.key
 
@@ -153,7 +153,7 @@ yum -y install jenkins
 
 <h2 id="修改jenkins配置">修改jenkins配置</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vi /etc/sysconfig/jenkins
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vi /etc/sysconfig/jenkins
 
 # 修改jenkins 目录
 JENKINS_HOME="/opt/jenkins"
@@ -164,24 +164,24 @@ JENKINS_PORT="9999"
 
 <h2 id="移动目录">移动目录</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 将目录移动过来，否则程序报错
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 将目录移动过来，否则程序报错
 mv /var/lib/jenkins /opt/
 </code></pre></div></div>
 
 <h2 id="启动服务">启动服务</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl start jenkins
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl start jenkins
 systemctl enable jenkins
 </code></pre></div></div>
 
 <h2 id="访问web-ui">访问WEB UI</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://myip:9999/ 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://myip:9999/ 
 </code></pre></div></div>
 
 <p>生成密钥</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 切换用户
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 切换用户
 su jenkins
 
 
@@ -204,7 +204,7 @@ cat /home/jenkins/.ssh/id_rsa.pub
   <li>添加 Git plugin 插件</li>
 </ol>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>常用插件
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>常用插件
 
 Build WIth Parameters   # 执行 构建 前手工输入参数
 
@@ -246,7 +246,7 @@ Multiple SCMs Plugin #多项目构建工具
 
 <h2 id="构建触发器">构建触发器</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 勾选 Poll SCM
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 勾选 Poll SCM
 
 # 每两分钟检查一次git代码是否有更新
 H/2 * * * *
@@ -274,7 +274,7 @@ H/2 * * * *
 
 <p>Default Content Type 选择 HTML (text/html)</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Default Subject =  构建通知:$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Default Subject =  构建通知:$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!
 
 
 Default Content = 

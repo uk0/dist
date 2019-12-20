@@ -141,7 +141,7 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>搭建一个高可用的Flink 集群HA
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>搭建一个高可用的Flink 集群HA
     用于项目测试
 </code></pre></div></div>
 
@@ -152,25 +152,25 @@
     <p>flink-conf.yaml</p>
 
     <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-     <span class="s">jobmanager.rpc.port</span><span class="pi">:</span> <span class="s">6123</span>
+     <span class="s">jobmanager.rpc.port</span><span class="pi">:</span> <span class="m">6123</span>
 
 
-     <span class="s">jobmanager.heap.mb</span><span class="pi">:</span> <span class="s">512</span>
+     <span class="s">jobmanager.heap.mb</span><span class="pi">:</span> <span class="m">512</span>
 
 
-     <span class="s">taskmanager.heap.mb</span><span class="pi">:</span> <span class="s">512</span>
+     <span class="s">taskmanager.heap.mb</span><span class="pi">:</span> <span class="m">512</span>
 
-     <span class="s">taskmanager.numberOfTaskSlots</span><span class="pi">:</span> <span class="s">2</span>
+     <span class="s">taskmanager.numberOfTaskSlots</span><span class="pi">:</span> <span class="m">2</span>
 
      <span class="s">taskmanager.memory.preallocate</span><span class="pi">:</span> <span class="no">false</span>
 
 
-     <span class="s">parallelism.default</span><span class="pi">:</span> <span class="s">1</span>
+     <span class="s">parallelism.default</span><span class="pi">:</span> <span class="m">1</span>
 
 
      <span class="s">jobmanager.web.address</span><span class="pi">:</span> <span class="s">0.0.0.0</span>
 
-     <span class="s">jobmanager.web.port</span><span class="pi">:</span> <span class="s">8081</span>
+     <span class="s">jobmanager.web.port</span><span class="pi">:</span> <span class="m">8081</span>
 
 
      <span class="s">jobmanager.archive.fs.dir</span><span class="pi">:</span> <span class="s">hdfs://ns/flink/completed_jobs/</span>
@@ -178,13 +178,13 @@
      <span class="s">historyserver.web.address</span><span class="pi">:</span> <span class="s">0.0.0.0</span>
 
 
-     <span class="s">historyserver.web.port</span><span class="pi">:</span> <span class="s">8082</span>
+     <span class="s">historyserver.web.port</span><span class="pi">:</span> <span class="m">8082</span>
 
 
      <span class="s">historyserver.archive.fs.dir</span><span class="pi">:</span> <span class="s">hdfs://ns/flink/completed_jobs/</span>
 
 
-     <span class="s">historyserver.archive.fs.refresh-interval</span><span class="pi">:</span> <span class="s">10000</span>
+     <span class="s">historyserver.archive.fs.refresh-interval</span><span class="pi">:</span> <span class="m">10000</span>
 
 
 

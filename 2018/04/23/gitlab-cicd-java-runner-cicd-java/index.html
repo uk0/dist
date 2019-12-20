@@ -134,9 +134,9 @@
     <h2 id="just-now">just now</h2>
 <ul>
   <li>上个文章介绍了 如何配置Gitlab 的Runner，这次介绍如何将Runner 利用起来。</li>
-  <li>创建一个<code class="highlighter-rouge">Java</code>项目，配置它的<code class="highlighter-rouge">gitlab-ci</code>文件.</li>
-  <li>下面的这个<code class="highlighter-rouge">yaml</code>文件是用来配置从源码到 Jar/Tar的一个过程，在提交到另一个仓库的yaml</li>
-  <li>还有另一个 <code class="highlighter-rouge">yaml</code>是从 源码–&gt;Jar／tar–&gt;镜像</li>
+  <li>创建一个<code class="language-plaintext highlighter-rouge">Java</code>项目，配置它的<code class="language-plaintext highlighter-rouge">gitlab-ci</code>文件.</li>
+  <li>下面的这个<code class="language-plaintext highlighter-rouge">yaml</code>文件是用来配置从源码到 Jar/Tar的一个过程，在提交到另一个仓库的yaml</li>
+  <li>还有另一个 <code class="language-plaintext highlighter-rouge">yaml</code>是从 源码–&gt;Jar／tar–&gt;镜像</li>
 </ul>
 
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># cache 这个参数用于定义全局那些文件将被 cache 到下一个  stages</span>
@@ -209,7 +209,7 @@
 
 <ul>
   <li>
-    <p>文件主要是为了给Gitlab中的某个项目绑定一个<code class="highlighter-rouge">Job</code>运行这个Job的就是我们在上次讲的在<code class="highlighter-rouge">gitlab</code> <code class="highlighter-rouge">runner</code> 。</p>
+    <p>文件主要是为了给Gitlab中的某个项目绑定一个<code class="language-plaintext highlighter-rouge">Job</code>运行这个Job的就是我们在上次讲的在<code class="language-plaintext highlighter-rouge">gitlab</code> <code class="language-plaintext highlighter-rouge">runner</code> 。</p>
   </li>
   <li>
     <p>看一下目录结构</p>
@@ -220,10 +220,10 @@
 
 <ul>
   <li>
-    <p>这个总体配置很简单都是<code class="highlighter-rouge">yaml</code>文件规范，主要还是项介绍一下里面的<code class="highlighter-rouge">cache</code> cache 是做CICD避免不掉的东西，可以用来 将编译好的文件传送到下一个 <code class="highlighter-rouge">stage</code> 实现方式大概是 将你要<code class="highlighter-rouge">cache</code>的包 打成一个<code class="highlighter-rouge">zip</code>包,启动下一个<code class="highlighter-rouge">stage</code>在进行<code class="highlighter-rouge">unzip</code>到当初的目录地址。</p>
+    <p>这个总体配置很简单都是<code class="language-plaintext highlighter-rouge">yaml</code>文件规范，主要还是项介绍一下里面的<code class="language-plaintext highlighter-rouge">cache</code> cache 是做CICD避免不掉的东西，可以用来 将编译好的文件传送到下一个 <code class="language-plaintext highlighter-rouge">stage</code> 实现方式大概是 将你要<code class="language-plaintext highlighter-rouge">cache</code>的包 打成一个<code class="language-plaintext highlighter-rouge">zip</code>包,启动下一个<code class="language-plaintext highlighter-rouge">stage</code>在进行<code class="language-plaintext highlighter-rouge">unzip</code>到当初的目录地址。</p>
   </li>
   <li>
-    <p>在以上的配置中 <code class="highlighter-rouge">GITLAB_USER</code>,<code class="highlighter-rouge">GITLAB_PASS</code></p>
+    <p>在以上的配置中 <code class="language-plaintext highlighter-rouge">GITLAB_USER</code>,<code class="language-plaintext highlighter-rouge">GITLAB_PASS</code></p>
   </li>
 </ul>
 

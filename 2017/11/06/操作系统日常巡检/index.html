@@ -135,7 +135,7 @@ author：杨然儿</p>
 
 <h1 id="0查询是否被攻击">0.查询是否被攻击</h1>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>统计登录成功的IP
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>统计登录成功的IP
         last | awk '{ print $3}' | sort | uniq -c | sort -n
 登录失败的IP
         lastb | awk '{ print $3}' | sort | uniq -c | sort -n
@@ -149,44 +149,44 @@ author：杨然儿</p>
 </code></pre></div></div>
 
 <h1 id="1查操作系统日志是否存在错误">1.查操作系统日志是否存在错误:</h1>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>more /var/log/messages|grep -E '[Ee]erro|fail|[Ww]arning'
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>more /var/log/messages|grep -E '[Ee]erro|fail|[Ww]arning'
 </code></pre></div></div>
 
 <h1 id="2查主机是否存在硬件错误">2.查主机是否存在硬件错误</h1>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dmesg|more
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dmesg|more
 </code></pre></div></div>
 
 <h1 id="3文件使用率">3.文件使用率</h1>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>df -h
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>df -h
 </code></pre></div></div>
 
 <h1 id="4检查是否存在僵尸进程">4.检查是否存在僵尸进程</h1>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps -ef|grep defunct
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps -ef|grep defunct
 </code></pre></div></div>
 
 <h1 id="5检查网关是否正确">5.检查网关是否正确</h1>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>netstat -nr
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>netstat -nr
 ping  网关
 </code></pre></div></div>
 
 <h1 id="6检查网络通信是否正常">6.检查网络通信是否正常</h1>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>netstat -ni
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>netstat -ni
 RX-DRP 值为0或者保持稳定
 </code></pre></div></div>
 
 <h1 id="7查网络连接状态">7.查网络连接状态</h1>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>netstat -an|egrep 'ESTABLISHED|FIN_WAIT_1|FIN_WAIT_2|TIME_WAIT|CLOSING|CLOSE_WAIT|LAST_ACK'
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>netstat -an|egrep 'ESTABLISHED|FIN_WAIT_1|FIN_WAIT_2|TIME_WAIT|CLOSING|CLOSE_WAIT|LAST_ACK'
 
 netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
 </code></pre></div></div>
 
 <h1 id="8查看是否丢包">8.查看是否丢包</h1>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat /proc/net/dev
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat /proc/net/dev
 注意：dropped:0==&gt; 如果这个值不为 0 , 则说明有丢包现象
 </code></pre></div></div>
 
 <h1 id="9网卡的工作状态">9.网卡的工作状态</h1>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ifconfig -a
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ifconfig -a
 如果网卡中状态无为down状态
 
 ethtool eth1
@@ -197,7 +197,7 @@ fftop -i eth1 -B -n  -N -p
 </code></pre></div></div>
 
 <h1 id="10cpu是否存在瓶颈">10.CPU是否存在瓶颈</h1>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.CPU IDel大于90％则OK
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.CPU IDel大于90％则OK
         top -i -n 1|grep id|awk '{print $8}'
 
 .CPU load average 正常值：&lt; CPU个数 * 核数 *0.7
@@ -209,7 +209,7 @@ fftop -i eth1 -B -n  -N -p
 </code></pre></div></div>
 
 <h1 id="11检查内存是否充足">11.检查内存是否充足</h1>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>内存有足够空间
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>内存有足够空间
 free -m
 
 没有发生换页
@@ -219,7 +219,7 @@ vmstat 1 6
 </code></pre></div></div>
 
 <h1 id="12检查io">12.检查IO</h1>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>查看读写速度
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>查看读写速度
         iostat -d -x -k 1 5
 
         Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await  svctm  %util
@@ -294,7 +294,7 @@ vmstat 1 6
 
 <ul>
   <li>以上操作经过验证可以直接拿去。</li>
-  <li>auther <code class="highlighter-rouge">breakEval13</code>
+  <li>auther <code class="language-plaintext highlighter-rouge">breakEval13</code>
 </li>
   <li>https://github.com/breakEval13</li>
 </ul>

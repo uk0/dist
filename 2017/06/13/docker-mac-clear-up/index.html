@@ -141,7 +141,7 @@ Google搜了一圏发现一个叫Théo Chamley的法国人写了一个脚本释
 
 <h2 id="命令行">命令行</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>sh docker-clean.sh <span class="k">$(</span>docker images | awk <span class="s1">'NR&gt;1 {print $1":"$2}'</span><span class="k">)</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>sh docker-clean.sh <span class="si">$(</span>docker images | <span class="nb">awk</span> <span class="s1">'NR&gt;1 {print $1":"$2}'</span><span class="si">)</span>
 </code></pre></div></div>
 
 <h2 id="脚本">脚本</h2>
@@ -161,7 +161,7 @@ Google搜了一圏发现一个叫Théo Chamley的法国人写了一个脚本释
 <span class="k">fi
 
 
-</span><span class="nv">TMP_DIR</span><span class="o">=</span><span class="k">$(</span>mktemp <span class="nt">-d</span><span class="k">)</span>
+</span><span class="nv">TMP_DIR</span><span class="o">=</span><span class="si">$(</span><span class="nb">mktemp</span> <span class="nt">-d</span><span class="si">)</span>
 
 <span class="nb">pushd</span> <span class="nv">$TMP_DIR</span> <span class="o">&gt;</span>/dev/null
 
@@ -169,7 +169,7 @@ open <span class="nt">-a</span> Docker
 <span class="nb">echo</span> <span class="s2">"=&gt; Saving the specified images"</span>
 <span class="k">for </span>image <span class="k">in</span> <span class="k">${</span><span class="nv">IMAGES</span><span class="k">}</span><span class="p">;</span> <span class="k">do
 	</span><span class="nb">echo</span> <span class="s2">"==&gt; Saving </span><span class="k">${</span><span class="nv">image</span><span class="k">}</span><span class="s2">"</span>
-	<span class="nb">tar</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="nt">-n</span> <span class="k">${</span><span class="nv">image</span><span class="k">}</span> | base64<span class="k">)</span>
+	<span class="nb">tar</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nt">-n</span> <span class="k">${</span><span class="nv">image</span><span class="k">}</span> | <span class="nb">base64</span><span class="si">)</span>
 	docker save <span class="nt">-o</span> <span class="k">${</span><span class="nv">tar</span><span class="k">}</span>.tar <span class="k">${</span><span class="nv">image</span><span class="k">}</span>
 	<span class="nb">echo</span> <span class="s2">"==&gt; Done."</span>
 <span class="k">done
@@ -179,19 +179,19 @@ open <span class="nt">-a</span> Docker
 osascript <span class="nt">-e</span> <span class="s1">'quit app "Docker"'</span>
 <span class="k">while </span>docker info <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">do
 	</span><span class="nb">echo</span> <span class="nt">-n</span> <span class="s2">"."</span>
-	sleep 1
+	<span class="nb">sleep </span>1
 <span class="k">done</span><span class="p">;</span>
 <span class="nb">echo</span> <span class="s2">""</span>
 
 <span class="nb">echo</span> <span class="s2">"==&gt; Removing Docker.qcow2 file"</span>
-rm ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/Docker.qcow2
+<span class="nb">rm</span> ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/Docker.qcow2
 
 <span class="nb">echo</span> <span class="s2">"==&gt; Launching Docker"</span>
 open <span class="nt">-a</span> Docker
 <span class="nb">echo</span> <span class="nt">-n</span> <span class="s2">"==&gt; Waiting for Docker to start"</span>
 <span class="k">until </span>docker info <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">do
 	</span><span class="nb">echo</span> <span class="nt">-n</span> <span class="s2">"."</span>
-	sleep 1
+	<span class="nb">sleep </span>1
 <span class="k">done</span><span class="p">;</span>
 <span class="nb">echo</span> <span class="s2">""</span>
 
@@ -200,13 +200,13 @@ open <span class="nt">-a</span> Docker
 <span class="nb">echo</span> <span class="s2">"=&gt; Loading saved images"</span>
 <span class="k">for </span>image <span class="k">in</span> <span class="k">${</span><span class="nv">IMAGES</span><span class="k">}</span><span class="p">;</span> <span class="k">do
 	</span><span class="nb">echo</span> <span class="s2">"==&gt; Loading </span><span class="k">${</span><span class="nv">image</span><span class="k">}</span><span class="s2">"</span>
-	<span class="nb">tar</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="nt">-n</span> <span class="k">${</span><span class="nv">image</span><span class="k">}</span> | base64<span class="k">)</span>
+	<span class="nb">tar</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nt">-n</span> <span class="k">${</span><span class="nv">image</span><span class="k">}</span> | <span class="nb">base64</span><span class="si">)</span>
 	docker load <span class="nt">-q</span> <span class="nt">-i</span> <span class="k">${</span><span class="nv">tar</span><span class="k">}</span>.tar <span class="o">||</span> <span class="nb">exit </span>1
 	<span class="nb">echo</span> <span class="s2">"==&gt; Done."</span>
 <span class="k">done
 
 </span><span class="nb">popd</span> <span class="o">&gt;</span>/dev/null
-rm <span class="nt">-r</span> <span class="k">${</span><span class="nv">TMP_DIR</span><span class="k">}</span>
+<span class="nb">rm</span> <span class="nt">-r</span> <span class="k">${</span><span class="nv">TMP_DIR</span><span class="k">}</span>
 </code></pre></div></div>
 
 <h2 id="貌似更好">貌似更好</h2>
@@ -220,7 +220,7 @@ rm <span class="nt">-r</span> <span class="k">${</span><span class="nv">TMP_DIR<
 <span class="nb">cd</span> ~/Library/Containers/com.docker.docker/Data/database/
 git checkout master
 git reset <span class="nt">--hard</span>
-mkdir <span class="nt">-p</span> com.docker.driver.amd64-linux/disk
+<span class="nb">mkdir</span> <span class="nt">-p</span> com.docker.driver.amd64-linux/disk
 <span class="nb">echo </span>262144 <span class="o">&gt;</span> com.docker.driver.amd64-linux/disk/compact-after
 <span class="nb">echo </span>262144 <span class="o">&gt;</span> com.docker.driver.amd64-linux/disk/keep-erased
 <span class="nb">echo</span> <span class="nt">-n</span> <span class="nb">true</span> <span class="o">&gt;</span> com.docker.driver.amd64-linux/disk/trim

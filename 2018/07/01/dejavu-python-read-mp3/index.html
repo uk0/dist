@@ -139,9 +139,9 @@
   <li>将音频数据分析的结果存储到数据库</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
-<span class="c"># -*- coding: utf-8 -*-</span>
-<span class="kn">from</span> <span class="nn">dejavu</span> <span class="kn">import</span> <span class="n">Dejavu</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/python
+# -*- coding: utf-8 -*-
+</span><span class="kn">from</span> <span class="nn">dejavu</span> <span class="kn">import</span> <span class="n">Dejavu</span>
 
 <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">"database"</span><span class="p">:</span> <span class="p">{</span>
@@ -153,8 +153,8 @@
     <span class="s">"database_type"</span><span class="p">:</span> <span class="s">"mysql"</span><span class="p">,</span>
 <span class="p">}</span>
 
-<span class="c"># 将数据提取到Mysql （音乐的指纹）</span>
-
+<span class="c1"># 将数据提取到Mysql （音乐的指纹）
+</span>
 <span class="n">djv</span> <span class="o">=</span> <span class="n">Dejavu</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 
 <span class="n">djv</span><span class="o">.</span><span class="n">fingerprint_directory</span><span class="p">(</span><span class="s">"/Users/zhangjianxin/home/mp3/"</span><span class="p">,</span> <span class="p">[</span><span class="s">".mp3"</span><span class="p">])</span>
@@ -166,9 +166,9 @@
   <li>监听麦克风进行识别歌曲</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
-<span class="c"># -*- coding: utf-8 -*-</span>
-
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/python
+# -*- coding: utf-8 -*-
+</span>
 
 <span class="kn">from</span> <span class="nn">dejavu</span> <span class="kn">import</span> <span class="n">Dejavu</span>
 <span class="kn">from</span> <span class="nn">dejavu.recognize</span> <span class="kn">import</span> <span class="n">FileRecognizer</span><span class="p">,</span> <span class="n">MicrophoneRecognizer</span>
@@ -184,8 +184,8 @@
 <span class="p">}</span>
 <span class="n">djv</span> <span class="o">=</span> <span class="n">Dejavu</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 
-<span class="c"># 识别从mic输入的音频 只获得5秒的音频</span>
-<span class="n">secs</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="c1"># 识别从mic输入的音频 只获得5秒的音频
+</span><span class="n">secs</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">song</span> <span class="o">=</span> <span class="n">djv</span><span class="o">.</span><span class="n">recognize</span><span class="p">(</span><span class="n">MicrophoneRecognizer</span><span class="p">,</span> <span class="n">seconds</span><span class="o">=</span><span class="n">secs</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">song</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
     <span class="k">print</span> <span class="s">"No Match"</span>
@@ -197,19 +197,19 @@
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python 2.7
 
-brew install portaudio
-brew install ffmpeg
-brew install mysql-connector-c <span class="c"># my_config.h</span>
-brew install mysql
+brew <span class="nb">install </span>portaudio
+brew <span class="nb">install </span>ffmpeg
+brew <span class="nb">install </span>mysql-connector-c <span class="c"># my_config.h</span>
+brew <span class="nb">install </span>mysql
 <span class="c">#!!!  mysql-connector-c (my_config.h) -&gt;  mysql</span>
-ln <span class="nt">-s</span>  ../../../../mysql-connector-c/6.1.11/include/my_config.h ./
+<span class="nb">ln</span> <span class="nt">-s</span>  ../../../../mysql-connector-c/6.1.11/include/my_config.h ./
 
 
-brew link mysql <span class="c"># create links</span>
+brew <span class="nb">link </span>mysql <span class="c"># create links</span>
 
-pip install mysql-python
-pip install <span class="nv">numpy</span><span class="o">==</span>1.10.2 <span class="c"># 版本兼容性问题</span>
-pip install PyDejavu
+pip <span class="nb">install </span>mysql-python
+pip <span class="nb">install </span><span class="nv">numpy</span><span class="o">==</span>1.10.2 <span class="c"># 版本兼容性问题</span>
+pip <span class="nb">install </span>PyDejavu
 
 </code></pre></div></div>
 

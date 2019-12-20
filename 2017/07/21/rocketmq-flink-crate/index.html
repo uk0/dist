@@ -131,7 +131,7 @@
 <h2 id="摘要-rocketmqflinkcratedb">摘要: RocketMQ–&gt;Flink–&gt;CrateDB</h2>
 <ul>
   <li>本文不涉及Sink的定义</li>
-  <li>详情关注 <code class="highlighter-rouge">Github</code> https://github.com/zmatsh</li>
+  <li>详情关注 <code class="language-plaintext highlighter-rouge">Github</code> https://github.com/zmatsh</li>
   <li>稍后会整理成插件放到GitHub ：https://github.com/zmatsh/rocketmq-flink-source-plugin</li>
 </ul>
 
@@ -157,79 +157,79 @@
 <span class="cm">/**
  * Created by zhangjianxin on 2017/7/20.
  */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RocketMQSource</span> <span class="kd">extends</span> <span class="n">RichSourceFunction</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">MessageListenerConcurrently</span>  <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="n">DefaultMQPushConsumer</span> <span class="n">consumer</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="n">LinkedBlockingQueue</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">queue</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RocketMQSource</span> <span class="kd">extends</span> <span class="nc">RichSourceFunction</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="nc">MessageListenerConcurrently</span>  <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">DefaultMQPushConsumer</span> <span class="n">consumer</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">LinkedBlockingQueue</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">queue</span><span class="o">;</span>
 
     <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="n">ConsumeConcurrentlyStatus</span> <span class="nf">consumeMessage</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">MessageExt</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">,</span> <span class="n">ConsumeConcurrentlyContext</span> <span class="n">consumeConcurrentlyContext</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">ConsumeConcurrentlyStatus</span> <span class="nf">consumeMessage</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">MessageExt</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">,</span> <span class="nc">ConsumeConcurrentlyContext</span> <span class="n">consumeConcurrentlyContext</span><span class="o">)</span> <span class="o">{</span>
         <span class="kt">long</span> <span class="n">offset</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">getQueueOffset</span><span class="o">();</span>
-        <span class="n">String</span> <span class="n">maxOffset</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">getProperty</span><span class="o">(</span><span class="s">"MAX_OFFSET"</span><span class="o">);</span>
-        <span class="kt">long</span> <span class="n">diff</span> <span class="o">=</span> <span class="n">Long</span><span class="o">.</span><span class="na">parseLong</span><span class="o">(</span><span class="n">maxOffset</span><span class="o">)</span> <span class="o">-</span> <span class="n">offset</span><span class="o">;</span>
+        <span class="nc">String</span> <span class="n">maxOffset</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">getProperty</span><span class="o">(</span><span class="s">"MAX_OFFSET"</span><span class="o">);</span>
+        <span class="kt">long</span> <span class="n">diff</span> <span class="o">=</span> <span class="nc">Long</span><span class="o">.</span><span class="na">parseLong</span><span class="o">(</span><span class="n">maxOffset</span><span class="o">)</span> <span class="o">-</span> <span class="n">offset</span><span class="o">;</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">diff</span> <span class="o">&gt;</span> <span class="mi">100000</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"消息堆积"</span><span class="o">);</span>
-            <span class="k">return</span> <span class="n">ConsumeConcurrentlyStatus</span><span class="o">.</span><span class="na">CONSUME_SUCCESS</span><span class="o">;</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"消息堆积"</span><span class="o">);</span>
+            <span class="k">return</span> <span class="nc">ConsumeConcurrentlyStatus</span><span class="o">.</span><span class="na">CONSUME_SUCCESS</span><span class="o">;</span>
         <span class="o">}</span>
         <span class="kt">byte</span><span class="o">[]</span> <span class="n">body</span><span class="o">;</span>
-        <span class="n">String</span> <span class="n">message</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="n">Message</span> <span class="n">msg</span> <span class="o">:</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">message</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Message</span> <span class="n">msg</span> <span class="o">:</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">if</span><span class="o">(</span><span class="n">msg</span><span class="o">.</span><span class="na">getTopic</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">"user"</span><span class="o">)){</span>
                 <span class="n">body</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="na">getBody</span><span class="o">();</span>
-                <span class="n">message</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">body</span><span class="o">,</span> <span class="n">Charset</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">"GBK"</span><span class="o">));</span>
+                <span class="n">message</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="n">body</span><span class="o">,</span> <span class="nc">Charset</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">"GBK"</span><span class="o">));</span>
                 <span class="k">try</span> <span class="o">{</span>
                     <span class="n">queue</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
-                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"------------------user:"</span><span class="o">+</span><span class="n">message</span><span class="o">+</span><span class="s">"------------------"</span><span class="o">);</span>
-                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"------------------user:"</span><span class="o">+</span><span class="n">message</span><span class="o">+</span><span class="s">"------------------"</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
                     <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
                 <span class="o">}</span>
             <span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">msg</span><span class="o">.</span><span class="na">getTopic</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">"org"</span><span class="o">)){</span>
                 <span class="n">body</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="na">getBody</span><span class="o">();</span>
-                <span class="n">message</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">body</span><span class="o">,</span> <span class="n">Charset</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">"GBK"</span><span class="o">));</span>
+                <span class="n">message</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="n">body</span><span class="o">,</span> <span class="nc">Charset</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">"GBK"</span><span class="o">));</span>
                 <span class="k">try</span> <span class="o">{</span>
                     <span class="n">queue</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
-                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"------------------org:"</span><span class="o">+</span><span class="n">message</span><span class="o">+</span><span class="s">"------------------"</span><span class="o">);</span>
-                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"------------------org:"</span><span class="o">+</span><span class="n">message</span><span class="o">+</span><span class="s">"------------------"</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
                     <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
                 <span class="o">}</span>
             <span class="o">}</span>
         <span class="o">}</span>
-        <span class="k">return</span> <span class="n">ConsumeConcurrentlyStatus</span><span class="o">.</span><span class="na">CONSUME_SUCCESS</span><span class="o">;</span>
+        <span class="k">return</span> <span class="nc">ConsumeConcurrentlyStatus</span><span class="o">.</span><span class="na">CONSUME_SUCCESS</span><span class="o">;</span>
     <span class="o">}</span>
     <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">open</span><span class="o">(</span><span class="n">Configuration</span> <span class="n">parameters</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-        <span class="n">String</span> <span class="n">consumerGroupName</span> <span class="o">=</span> <span class="s">"flink-crate"</span><span class="o">;</span>
-        <span class="n">String</span> <span class="n">namesrvAddr</span> <span class="o">=</span> <span class="s">"127.0.0.1:9876"</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">open</span><span class="o">(</span><span class="nc">Configuration</span> <span class="n">parameters</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">consumerGroupName</span> <span class="o">=</span> <span class="s">"flink-crate"</span><span class="o">;</span>
+        <span class="nc">String</span> <span class="n">namesrvAddr</span> <span class="o">=</span> <span class="s">"127.0.0.1:9876"</span><span class="o">;</span>
         <span class="kt">int</span> <span class="n">queueSize</span><span class="o">=</span><span class="mi">1000</span><span class="o">;</span>
         <span class="kt">int</span> <span class="n">consumeMessageMAXSize</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-        <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedBlockingQueue</span><span class="o">&lt;&gt;(</span><span class="n">queueSize</span><span class="o">);</span>
-        <span class="n">consumer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultMQPushConsumer</span><span class="o">(</span><span class="n">consumerGroupName</span><span class="o">);</span>
+        <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinkedBlockingQueue</span><span class="o">&lt;&gt;(</span><span class="n">queueSize</span><span class="o">);</span>
+        <span class="n">consumer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DefaultMQPushConsumer</span><span class="o">(</span><span class="n">consumerGroupName</span><span class="o">);</span>
         <span class="n">consumer</span><span class="o">.</span><span class="na">setNamesrvAddr</span><span class="o">(</span><span class="n">namesrvAddr</span><span class="o">);</span>
-        <span class="n">consumer</span><span class="o">.</span><span class="na">setInstanceName</span><span class="o">(</span><span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
+        <span class="n">consumer</span><span class="o">.</span><span class="na">setInstanceName</span><span class="o">(</span><span class="no">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
         <span class="n">consumer</span><span class="o">.</span><span class="na">setConsumeMessageBatchMaxSize</span><span class="o">(</span><span class="n">consumeMessageMAXSize</span><span class="o">);</span><span class="c1">//消息数量每次读取的消息数量</span>
-        <span class="n">consumer</span><span class="o">.</span><span class="na">setMessageModel</span><span class="o">(</span><span class="n">MessageModel</span><span class="o">.</span><span class="na">CLUSTERING</span><span class="o">);</span>
-        <span class="n">consumer</span><span class="o">.</span><span class="na">setConsumeFromWhere</span><span class="o">(</span><span class="n">ConsumeFromWhere</span><span class="o">.</span><span class="na">CONSUME_FROM_FIRST_OFFSET</span><span class="o">);</span>
+        <span class="n">consumer</span><span class="o">.</span><span class="na">setMessageModel</span><span class="o">(</span><span class="nc">MessageModel</span><span class="o">.</span><span class="na">CLUSTERING</span><span class="o">);</span>
+        <span class="n">consumer</span><span class="o">.</span><span class="na">setConsumeFromWhere</span><span class="o">(</span><span class="nc">ConsumeFromWhere</span><span class="o">.</span><span class="na">CONSUME_FROM_FIRST_OFFSET</span><span class="o">);</span>
         <span class="n">consumer</span><span class="o">.</span><span class="na">registerMessageListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
         <span class="n">consumer</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="s">"user"</span><span class="o">,</span> <span class="s">"*"</span><span class="o">);</span>
         <span class="n">consumer</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="s">"org"</span><span class="o">,</span> <span class="s">"*"</span><span class="o">);</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"启动线程"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"启动线程"</span><span class="o">);</span>
         <span class="n">consumer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"RocketMQ Started."</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"RocketMQ Started."</span><span class="o">);</span>
         <span class="kd">super</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">parameters</span><span class="o">);</span>
     <span class="o">}</span>
 
     <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(</span><span class="n">SourceContext</span> <span class="n">sourceContext</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"run"</span><span class="o">);</span>
-        <span class="n">String</span> <span class="n">obj</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(</span><span class="nc">SourceContext</span> <span class="n">sourceContext</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"run"</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">obj</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
         <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"------------------queue = "</span><span class="o">+</span><span class="n">queue</span><span class="o">+</span><span class="s">"------------------------"</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"------------------queue = "</span><span class="o">+</span><span class="n">queue</span><span class="o">+</span><span class="s">"------------------------"</span><span class="o">);</span>
             <span class="k">if</span><span class="o">(</span><span class="n">queue</span><span class="o">!=</span><span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">queue</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()){</span>
-                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"------------------size = "</span><span class="o">+</span><span class="n">queue</span><span class="o">.</span><span class="na">size</span><span class="o">()+</span><span class="s">"------------------------"</span><span class="o">);</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"------------------size = "</span><span class="o">+</span><span class="n">queue</span><span class="o">.</span><span class="na">size</span><span class="o">()+</span><span class="s">"------------------------"</span><span class="o">);</span>
                 <span class="n">obj</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">take</span><span class="o">();</span>
                 <span class="n">sourceContext</span><span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span>
             <span class="o">}</span><span class="k">else</span> <span class="o">{</span>
-                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"休眠1s"</span><span class="o">);</span>
-                <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"休眠1s"</span><span class="o">);</span>
+                <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
             <span class="o">}</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -243,11 +243,11 @@
 
 <h2 id="main方法调用flink启动jobmanager">Main方法调用Flink启动JobManager</h2>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">final</span> <span class="n">ParameterTool</span> <span class="n">parameterTool</span> <span class="o">=</span> <span class="n">ParameterTool</span><span class="o">.</span><span class="na">fromArgs</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">final</span> <span class="nc">ParameterTool</span> <span class="n">parameterTool</span> <span class="o">=</span> <span class="nc">ParameterTool</span><span class="o">.</span><span class="na">fromArgs</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
 
         <span class="k">if</span> <span class="o">(</span><span class="n">parameterTool</span><span class="o">.</span><span class="na">getNumberOfParameters</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Missing parameters!"</span><span class="o">);</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\nUsage: Flink-&gt;MQ-&gt;CrateDB \n"</span> <span class="o">+</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Missing parameters!"</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\nUsage: Flink-&gt;MQ-&gt;CrateDB \n"</span> <span class="o">+</span>
                     <span class="s">"--consumerGroupName &lt;消费组名称&gt; \n"</span> <span class="o">+</span>
                     <span class="s">"--parallelism &lt;并发数量&gt; \n"</span><span class="o">+</span>
                     <span class="s">"--qsize &lt;转发队列的大小&gt;\n"</span> <span class="o">+</span>
@@ -256,7 +256,7 @@
             <span class="k">return</span><span class="o">;</span>
         <span class="o">}</span>
 
-   <span class="n">RocketMQSource</span> <span class="n">rocketMQSource2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RocketMQSource</span><span class="o">(</span>
+   <span class="nc">RocketMQSource</span> <span class="n">rocketMQSource2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RocketMQSource</span><span class="o">(</span>
                    <span class="n">parameterTool</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"consumerGroupName"</span><span class="o">,</span><span class="s">"DEMO"</span><span class="o">)</span>
                   <span class="o">,</span><span class="n">parameterTool</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"mqaddr"</span><span class="o">,</span><span class="s">"127.0.0.1:9876"</span><span class="o">)</span>
                   <span class="o">,</span><span class="n">parameterTool</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span><span class="s">"qsize"</span><span class="o">,</span><span class="mi">1000</span><span class="o">)</span>
@@ -264,7 +264,7 @@
           <span class="o">);</span>
 </code></pre></div></div>
 
-<h2 id="禁止转载盗版必究倒贴必须ddos你">禁止转载，盗版必究。<code class="highlighter-rouge">倒贴必须DDOS你！</code></h2>
+<h2 id="禁止转载盗版必究倒贴必须ddos你">禁止转载，盗版必究。<code class="language-plaintext highlighter-rouge">倒贴必须DDOS你！</code></h2>
 
 
     </article>

@@ -140,32 +140,32 @@
 
 <h3 id="解法一">解法一</h3>
 
-<p>填入内容 <code class="highlighter-rouge">true){System.out.print("a");}if(false</code>。</p>
+<p>填入内容 <code class="language-plaintext highlighter-rouge">true){System.out.print("a");}if(false</code>。</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"a"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"a"</span><span class="o">);</span>
     <span class="o">}</span>
 
     <span class="k">if</span> <span class="o">(</span><span class="kc">false</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"a"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"a"</span><span class="o">);</span>
     <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"b"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"b"</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>类似地也可以填入 <code class="highlighter-rouge">true){System.out.print("ab");return;}if(false</code> 等。</p>
+<p>类似地也可以填入 <code class="language-plaintext highlighter-rouge">true){System.out.print("ab");return;}if(false</code> 等。</p>
 
 <p>当初大学时单纯的少年可是很难想出这样的套路的，时间改变了我们啊。</p>
 
 <h2 id="思路二">思路二</h2>
 
-<p>如果正经遵从题目的原代码结构，那就得想办法构造一段代码，既能输出 <code class="highlighter-rouge">a</code>，又能返回 <code class="highlighter-rouge">false</code>。</p>
+<p>如果正经遵从题目的原代码结构，那就得想办法构造一段代码，既能输出 <code class="language-plaintext highlighter-rouge">a</code>，又能返回 <code class="language-plaintext highlighter-rouge">false</code>。</p>
 
 <h3 id="解法二">解法二</h3>
 
-<p>我也想到能否使用 <code class="highlighter-rouge">System.out.print</code> 的返回值来做文章，但奈何并不记得它返回什么，首先让我们复习一下 <code class="highlighter-rouge">PrintStream</code> 的 <code class="highlighter-rouge">print</code>、<code class="highlighter-rouge">println</code> 和 <code class="highlighter-rouge">printf</code> 方法的区别：</p>
+<p>我也想到能否使用 <code class="language-plaintext highlighter-rouge">System.out.print</code> 的返回值来做文章，但奈何并不记得它返回什么，首先让我们复习一下 <code class="language-plaintext highlighter-rouge">PrintStream</code> 的 <code class="language-plaintext highlighter-rouge">print</code>、<code class="language-plaintext highlighter-rouge">println</code> 和 <code class="language-plaintext highlighter-rouge">printf</code> 方法的区别：</p>
 
 <table>
   <thead>
@@ -194,20 +194,20 @@
   </tbody>
 </table>
 
-<p>所以适用的是 <code class="highlighter-rouge">printf</code>，它的返回值是 <code class="highlighter-rouge">PrintStream</code> 类型的 <code class="highlighter-rouge">System.out</code>，判它是否为空即可。</p>
+<p>所以适用的是 <code class="language-plaintext highlighter-rouge">printf</code>，它的返回值是 <code class="language-plaintext highlighter-rouge">PrintStream</code> 类型的 <code class="language-plaintext highlighter-rouge">System.out</code>，判它是否为空即可。</p>
 
-<p>填入内容 <code class="highlighter-rouge">System.out.printf("a") == null</code>。</p>
+<p>填入内容 <code class="language-plaintext highlighter-rouge">System.out.printf("a") == null</code>。</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"a"</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"a"</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"a"</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"a"</span><span class="o">);</span>
     <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"b"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"b"</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>经测试填入 <code class="highlighter-rouge">System.out.append("a") == null</code> 也是可以达到效果的。</p>
+<p>经测试填入 <code class="language-plaintext highlighter-rouge">System.out.append("a") == null</code> 也是可以达到效果的。</p>
 
 <h3 id="解法三">解法三</h3>
 
@@ -216,15 +216,15 @@
 <p>实现代码：</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="k">new</span> <span class="n">Object</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="k">new</span> <span class="nc">Object</span><span class="o">()</span> <span class="o">{</span>
         <span class="kt">boolean</span> <span class="nf">print</span><span class="o">()</span> <span class="o">{</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"a"</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"a"</span><span class="o">);</span>
             <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
         <span class="o">}</span>
     <span class="o">}.</span><span class="na">print</span><span class="o">())</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"a"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"a"</span><span class="o">);</span>
     <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"b"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"b"</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
@@ -236,15 +236,15 @@
 <p>使用 Java 8 里的 lambda 来实现思路二。</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(((</span><span class="n">BooleanSupplier</span><span class="o">)(()</span> <span class="o">-&gt;</span> <span class="o">{</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"a"</span><span class="o">);</span><span class="k">return</span> <span class="kc">false</span><span class="o">;})).</span><span class="na">getAsBoolean</span><span class="o">())</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"a"</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(((</span><span class="nc">BooleanSupplier</span><span class="o">)(()</span> <span class="o">-&gt;</span> <span class="o">{</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"a"</span><span class="o">);</span><span class="k">return</span> <span class="kc">false</span><span class="o">;})).</span><span class="na">getAsBoolean</span><span class="o">())</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"a"</span><span class="o">);</span>
     <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"b"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"b"</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>严格来讲这个不一定能算作正确答案，因为要增加 <code class="highlighter-rouge">import java.util.function.BooleanSupplier;</code>。</p>
+<p>严格来讲这个不一定能算作正确答案，因为要增加 <code class="language-plaintext highlighter-rouge">import java.util.function.BooleanSupplier;</code>。</p>
 
 <h2 id="脑洞大开">脑洞大开</h2>
 
@@ -252,9 +252,9 @@
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">()</span> <span class="o">{</span>
 <span class="c1">//    if ( ) {</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"a"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"a"</span><span class="o">);</span>
 <span class="c1">//    } else {</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"b"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"b"</span><span class="o">);</span>
 <span class="c1">//    }</span>
 <span class="o">}</span>
 </code></pre></div></div>

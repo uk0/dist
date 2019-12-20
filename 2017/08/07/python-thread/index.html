@@ -181,31 +181,31 @@ thread 进行二次封装，提供了更方便的 api 来处理线程。</p>
 
 <p>Thread方法说明</p>
 
-<p><code class="highlighter-rouge">t.start() </code>: 激活线程，</p>
+<p><code class="language-plaintext highlighter-rouge">t.start() </code>: 激活线程，</p>
 
-<p><code class="highlighter-rouge">t.getName()</code> : 获取线程的名称</p>
+<p><code class="language-plaintext highlighter-rouge">t.getName()</code> : 获取线程的名称</p>
 
-<p><code class="highlighter-rouge">t.setName() </code>： 设置线程的名称</p>
+<p><code class="language-plaintext highlighter-rouge">t.setName() </code>： 设置线程的名称</p>
 
-<p><code class="highlighter-rouge">t.name</code> : 获取或设置线程的名称</p>
+<p><code class="language-plaintext highlighter-rouge">t.name</code> : 获取或设置线程的名称</p>
 
-<p><code class="highlighter-rouge">t.is_alive() </code>： 判断线程是否为激活状态</p>
+<p><code class="language-plaintext highlighter-rouge">t.is_alive() </code>： 判断线程是否为激活状态</p>
 
-<p><code class="highlighter-rouge">t.isAlive() </code>：判断线程是否为激活状态</p>
+<p><code class="language-plaintext highlighter-rouge">t.isAlive() </code>：判断线程是否为激活状态</p>
 
-<p><code class="highlighter-rouge">t.setDaemon() </code>设置为后台线程或前台线程（默认：<code class="highlighter-rouge">False</code>）;通过一个布尔值设置线程是否为守护线程，必须在执行start()方法之后才可以使用。
+<p><code class="language-plaintext highlighter-rouge">t.setDaemon() </code>设置为后台线程或前台线程（默认：<code class="language-plaintext highlighter-rouge">False</code>）;通过一个布尔值设置线程是否为守护线程，必须在执行start()方法之后才可以使用。
 如果是后台线程，主线程执行过程中，后台线程也在进行，主线程执行完毕后，后台线程不论成功与否，均停止；如果是前台线程，主线程执行过程中，前台线程也在进行，主线
 程执行完毕后，等待前台线程也执行完成后，程序停止</p>
 
-<p><code class="highlighter-rouge">t.isDaemon()</code> ： 判断是否为守护线程</p>
+<p><code class="language-plaintext highlighter-rouge">t.isDaemon()</code> ： 判断是否为守护线程</p>
 
-<p><code class="highlighter-rouge">t.ident</code> ：获取线程的标识符。线程标识符是一个非零整数，只有在调用了start()方法之后该属性才有效，否则它只返回None。</p>
+<p><code class="language-plaintext highlighter-rouge">t.ident</code> ：获取线程的标识符。线程标识符是一个非零整数，只有在调用了start()方法之后该属性才有效，否则它只返回None。</p>
 
-<p><code class="highlighter-rouge">t.join() </code>：逐个执行每个线程，执行完毕后继续往下执行，该方法使得多线程变得无意义</p>
+<p><code class="language-plaintext highlighter-rouge">t.join() </code>：逐个执行每个线程，执行完毕后继续往下执行，该方法使得多线程变得无意义</p>
 
-<p><code class="highlighter-rouge">t.run() </code> ：线程被cpu调度后自动执行线程对象的run方法</p>
+<p><code class="language-plaintext highlighter-rouge">t.run() </code> ：线程被cpu调度后自动执行线程对象的run方法</p>
 
-<h3 id="2线程锁threadingrlock和threadinglock">2、线程锁<code class="highlighter-rouge">threading.RLock和threading.Lock</code></h3>
+<h3 id="2线程锁threadingrlock和threadinglock">2、线程锁<code class="language-plaintext highlighter-rouge">threading.RLock和threading.Lock</code></h3>
 
 <p>由于线程之间是进行随机调度，并且每个线程可能只执行n条执行之后，CPU接着执行其他线程。为了保证数据的准确性，引入了锁的概念。所以，可能出现如下问题：</p>
 
@@ -232,7 +232,7 @@ thread 进行二次封装，提供了更方便的 api 来处理线程。</p>
         t.start()
 </code></pre>
 
-<h3 id="3threadingrlock和threadinglock-的区别">3、<code class="highlighter-rouge">threading.RLock和threading.Lock</code> 的区别</h3>
+<h3 id="3threadingrlock和threadinglock-的区别">3、<code class="language-plaintext highlighter-rouge">threading.RLock和threading.Lock</code> 的区别</h3>
 
 <p>RLock允许在同一线程中被多次acquire。而Lock却不允许这种情况。
 如果使用RLock，那么acquire和release必须成对出现，即调用了n次acquire，必须调用n次的release才能真正释放所占用的琐。</p>
@@ -251,18 +251,18 @@ thread 进行二次封装，提供了更方便的 api 来处理线程。</p>
     rLock.release()
 </code></pre>
 
-<h3 id="4threadingevent">4、<code class="highlighter-rouge">threading.Event</code></h3>
+<h3 id="4threadingevent">4、<code class="language-plaintext highlighter-rouge">threading.Event</code></h3>
 
 <p>python线程的事件用于主线程控制其他线程的执行，事件主要提供了三个方法 set、wait、clear。</p>
 
 <p>事件处理的机制：全局定义了一个“Flag”，如果“Flag”值为 False，那么当程序执行 event.wait
 方法时就会阻塞，如果“Flag”值为True，那么event.wait 方法时便不再阻塞。</p>
 
-<p><code class="highlighter-rouge">clear</code>：将“Flag”设置为False</p>
+<p><code class="language-plaintext highlighter-rouge">clear</code>：将“Flag”设置为False</p>
 
-<p><code class="highlighter-rouge">set</code>：将“Flag”设置为True</p>
+<p><code class="language-plaintext highlighter-rouge">set</code>：将“Flag”设置为True</p>
 
-<p><code class="highlighter-rouge">Event.isSet()</code> ：判断标识位是否为Ture。</p>
+<p><code class="language-plaintext highlighter-rouge">Event.isSet()</code> ：判断标识位是否为Ture。</p>
 
 <pre><code class="language-pyhton">    import threading
       
@@ -284,29 +284,29 @@ thread 进行二次封装，提供了更方便的 api 来处理线程。</p>
 
 <p>当线程执行的时候，如果flag为False，则线程会阻塞，当flag为True的时候，线程不会阻塞。它提供了本地和远程的并发性。</p>
 
-<h3 id="5threadingcondition">5、<code class="highlighter-rouge">threading.Condition</code></h3>
+<h3 id="5threadingcondition">5、<code class="language-plaintext highlighter-rouge">threading.Condition</code></h3>
 
-<p>一个<code class="highlighter-rouge">condition</code>变量总是与某些类型的锁相联系，这个可以使用默认的情况或创建一个，当几个condition变量必须共享和同一个锁的时候，是很有用的。锁是
+<p>一个<code class="language-plaintext highlighter-rouge">condition</code>变量总是与某些类型的锁相联系，这个可以使用默认的情况或创建一个，当几个condition变量必须共享和同一个锁的时候，是很有用的。锁是
 conditon对象的一部分：没有必要分别跟踪。</p>
 
-<p><code class="highlighter-rouge">condition</code>变量服从上下文管理协议：with语句块封闭之前可以获取与锁的联系。 <code class="highlighter-rouge">acquire()</code> 和 ` release()`
+<p><code class="language-plaintext highlighter-rouge">condition</code>变量服从上下文管理协议：with语句块封闭之前可以获取与锁的联系。 <code class="language-plaintext highlighter-rouge">acquire()</code> 和 ` release()`
 会调用与锁相关联的相应的方法。</p>
 
-<p>其他和锁关联的方法必须被调用，<code class="highlighter-rouge">wait()</code>方法会释放锁，当另外一个线程使用 <code class="highlighter-rouge">notify()</code> or
-<code class="highlighter-rouge">notify_all()</code>唤醒它之前会一直阻塞。一旦被唤醒，wait()会重新获得锁并返回，</p>
+<p>其他和锁关联的方法必须被调用，<code class="language-plaintext highlighter-rouge">wait()</code>方法会释放锁，当另外一个线程使用 <code class="language-plaintext highlighter-rouge">notify()</code> or
+<code class="language-plaintext highlighter-rouge">notify_all()</code>唤醒它之前会一直阻塞。一旦被唤醒，wait()会重新获得锁并返回，</p>
 
-<p><code class="highlighter-rouge">Condition</code> 类实现了一个conditon变量。 这个conditiaon变量允许一个或多个线程等待，直到他们被另一个线程通知。
+<p><code class="language-plaintext highlighter-rouge">Condition</code> 类实现了一个conditon变量。 这个conditiaon变量允许一个或多个线程等待，直到他们被另一个线程通知。
 如果lock参数，被给定一个非空的值，，那么他必须是一个lock或者Rlock对象，它用来做底层锁。否则，会创建一个新的Rlock对象，用来做底层锁。</p>
 
-<p><code class="highlighter-rouge">wait(timeout=None) </code>：
+<p><code class="language-plaintext highlighter-rouge">wait(timeout=None) </code>：
 等待通知，或者等到设定的超时时间。当调用这wait()方法时，如果调用它的线程没有得到锁，那么会抛出一个RuntimeError 异常。
-wati()释放锁以后，在被调用相同条件的另一个进程用<code class="highlighter-rouge">notify()</code> or <code class="highlighter-rouge">notify_all()</code> 叫醒之前 会一直阻塞。wait()
+wati()释放锁以后，在被调用相同条件的另一个进程用<code class="language-plaintext highlighter-rouge">notify()</code> or <code class="language-plaintext highlighter-rouge">notify_all()</code> 叫醒之前 会一直阻塞。wait()
 还可以指定一个超时时间。</p>
 
-<p>如果有等待的线程，<code class="highlighter-rouge">notify()</code>方法会唤醒一个在等待conditon变量的线程。<code class="highlighter-rouge">notify_all()</code> 则会唤醒所有在等待conditon变量的线程。</p>
+<p>如果有等待的线程，<code class="language-plaintext highlighter-rouge">notify()</code>方法会唤醒一个在等待conditon变量的线程。<code class="language-plaintext highlighter-rouge">notify_all()</code> 则会唤醒所有在等待conditon变量的线程。</p>
 
-<p>注意： <code class="highlighter-rouge">notify()</code>和<code class="highlighter-rouge">notify_all()</code>不会释放锁，也就是说，线程被唤醒后不会立刻返回他们的<code class="highlighter-rouge">wait()</code>
-调用。除非线程调用<code class="highlighter-rouge">notify()</code>和<code class="highlighter-rouge">notify_all()</code>之后放弃了锁的所有权。</p>
+<p>注意： <code class="language-plaintext highlighter-rouge">notify()</code>和<code class="language-plaintext highlighter-rouge">notify_all()</code>不会释放锁，也就是说，线程被唤醒后不会立刻返回他们的<code class="language-plaintext highlighter-rouge">wait()</code>
+调用。除非线程调用<code class="language-plaintext highlighter-rouge">notify()</code>和<code class="language-plaintext highlighter-rouge">notify_all()</code>之后放弃了锁的所有权。</p>
 
 <p>在典型的设计风格里，利用condition变量用锁去通许访问一些共享状态，线程在获取到它想得到的状态前，会反复调用wait()。修改状态的线程在他们状态改变
 时调用 notify() or notify_all()，用这种方式，线程会尽可能的获取到想要的一个等待者状态。 例子： 生产者-消费者模型，</p>
@@ -338,9 +338,9 @@ wati()释放锁以后，在被调用相同条件的另一个进程用<code class
     p.start()
 </code></pre>
 
-<h3 id="6queue模块">6、<code class="highlighter-rouge">queue</code>模块</h3>
+<h3 id="6queue模块">6、<code class="language-plaintext highlighter-rouge">queue</code>模块</h3>
 
-<p><code class="highlighter-rouge">Queue</code> 就是对队列，它是线程安全的</p>
+<p><code class="language-plaintext highlighter-rouge">Queue</code> 就是对队列，它是线程安全的</p>
 
 <p>举例来说，我们去麦当劳吃饭。饭店里面有厨师职位，前台负责把厨房做好的饭卖给顾客，顾客则去前台领取做好的饭。这里的前台就相当于我们的队列。形成管道样，厨师做好
 饭通过前台传送给顾客，所谓单向队列</p>
@@ -594,7 +594,7 @@ ctypes.c_double</p>
   <li>（2）multiprocessing，Manager</li>
 </ul>
 
-<p>由<code class="highlighter-rouge">Manager()</code>返回的<code class="highlighter-rouge">manager</code>提供list, dict, Namespace, Lock, RLock, Semaphore,
+<p>由<code class="language-plaintext highlighter-rouge">Manager()</code>返回的<code class="language-plaintext highlighter-rouge">manager</code>提供list, dict, Namespace, Lock, RLock, Semaphore,
 BoundedSemaphore, Condition, Event, Barrier, Queue, Value and Array类型的支持。</p>
 
 <pre><code class="language-pyhton">    from multiprocessing import Process,Manager
@@ -696,12 +696,12 @@ c()更适合并发执行，另外，func函数仅被pool中的一个进程运行
 变体，会返回一个结果对象。如果callback被指定，那么callback可以接收一个参数然后被调用，当结果准备好回调时会调用callback，调用失败时，
 则用error_callback替换callback。 Callbacks应被立即完成，否则处理结果的线程会被阻塞。</p>
 
-<p><code class="highlighter-rouge">close() </code>： 阻止更多的任务提交到pool，待任务完成后，工作进程会退出。</p>
+<p><code class="language-plaintext highlighter-rouge">close() </code>： 阻止更多的任务提交到pool，待任务完成后，工作进程会退出。</p>
 
-<p><code class="highlighter-rouge">terminate() </code>： 不管任务是否完成，立即停止工作进程。在对pool对象进程垃圾回收的时候，会立即调用terminate()。</p>
+<p><code class="language-plaintext highlighter-rouge">terminate() </code>： 不管任务是否完成，立即停止工作进程。在对pool对象进程垃圾回收的时候，会立即调用terminate()。</p>
 
-<p><code class="highlighter-rouge">join()</code> : wait工作线程的退出，在调用join()前，必须调用close() or
-<code class="highlighter-rouge">terminate()</code>。这样是因为被终止的进程需要被父进程调用wait（join等价与wait），否则进程会成为僵尸进程。</p>
+<p><code class="language-plaintext highlighter-rouge">join()</code> : wait工作线程的退出，在调用join()前，必须调用close() or
+<code class="language-plaintext highlighter-rouge">terminate()</code>。这样是因为被终止的进程需要被父进程调用wait（join等价与wait），否则进程会成为僵尸进程。</p>
 
 <p>map(func, iterable[, chunksize])¶</p>
 
@@ -740,12 +740,12 @@ c()更适合并发执行，另外，func函数仅被pool中的一个进程运行
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">import</span><span class="err"> </span><span class="n">asyncio</span>
     <span class="err">  </span>
-    <span class="n">async</span><span class="err"> </span><span class="n">def</span><span class="err"> </span><span class="n">cor1</span><span class="p">():</span>
+    <span class="k">async</span><span class="err"> </span><span class="n">def</span><span class="err"> </span><span class="n">cor1</span><span class="p">():</span>
     <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"COR1 start"</span><span class="p">)</span>
-    <span class="err">    </span><span class="n">await</span><span class="err"> </span><span class="n">cor2</span><span class="p">()</span>
+    <span class="err">    </span><span class="k">await</span><span class="err"> </span><span class="n">cor2</span><span class="p">()</span>
     <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"COR1 end"</span><span class="p">)</span>
     <span class="err">  </span>
-    <span class="n">async</span><span class="err"> </span><span class="n">def</span><span class="err"> </span><span class="n">cor2</span><span class="p">():</span>
+    <span class="k">async</span><span class="err"> </span><span class="n">def</span><span class="err"> </span><span class="n">cor2</span><span class="p">():</span>
     <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"COR2"</span><span class="p">)</span>
     <span class="err">  </span>
     <span class="n">loop</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>
@@ -755,11 +755,11 @@ c()更适合并发执行，另外，func函数仅被pool中的一个进程运行
 
 <p>最后三行是重点。</p>
 
-<p><code class="highlighter-rouge">asyncio.get_event_loop()</code>  : asyncio启动默认的event loop</p>
+<p><code class="language-plaintext highlighter-rouge">asyncio.get_event_loop()</code>  : asyncio启动默认的event loop</p>
 
-<p><code class="highlighter-rouge">run_until_complete()</code>  :  这个函数是阻塞执行的，知道所有的异步函数执行完成，</p>
+<p><code class="language-plaintext highlighter-rouge">run_until_complete()</code>  :  这个函数是阻塞执行的，知道所有的异步函数执行完成，</p>
 
-<p><code class="highlighter-rouge">close()</code>  :  关闭event loop。</p>
+<p><code class="language-plaintext highlighter-rouge">close()</code>  :  关闭event loop。</p>
 
 <h3 id="1greenlet">1、greenlet</h3>
 
@@ -792,15 +792,15 @@ c()更适合并发执行，另外，func函数仅被pool中的一个进程运行
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">import</span><span class="err"> </span><span class="n">gevent</span>
     <span class="err"> </span>
     <span class="n">def</span><span class="err"> </span><span class="n">fun1</span><span class="p">():</span>
-    <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"www.baidu.com"</span><span class="p">)</span><span class="err">   </span><span class="c"># 第一步</span>
-    <span class="err">    </span><span class="n">gevent</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"end the baidu.com"</span><span class="p">)</span><span class="err">  </span><span class="c"># 第三步</span>
-    <span class="err"> </span>
+    <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"www.baidu.com"</span><span class="p">)</span><span class="err">   </span><span class="c1"># 第一步
+</span>    <span class="err">    </span><span class="n">gevent</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"end the baidu.com"</span><span class="p">)</span><span class="err">  </span><span class="c1"># 第三步
+</span>    <span class="err"> </span>
     <span class="n">def</span><span class="err"> </span><span class="n">fun2</span><span class="p">():</span>
-    <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"www.zhihu.com"</span><span class="p">)</span><span class="err">   </span><span class="c"># 第二步</span>
-    <span class="err">    </span><span class="n">gevent</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"end th zhihu.com"</span><span class="p">)</span><span class="err">  </span><span class="c"># 第四步</span>
-    <span class="err"> </span>
+    <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"www.zhihu.com"</span><span class="p">)</span><span class="err">   </span><span class="c1"># 第二步
+</span>    <span class="err">    </span><span class="n">gevent</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"end th zhihu.com"</span><span class="p">)</span><span class="err">  </span><span class="c1"># 第四步
+</span>    <span class="err"> </span>
     <span class="n">gevent</span><span class="o">.</span><span class="n">joinall</span><span class="p">([</span>
     <span class="err">    </span><span class="n">gevent</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">fun1</span><span class="p">),</span>
     <span class="err">    </span><span class="n">gevent</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">fun2</span><span class="p">),</span>
@@ -828,7 +828,7 @@ c()更适合并发执行，另外，func函数仅被pool中的一个进程运行
 
 <ul>
   <li>以上代码经过验证可以直接拿去修改调用</li>
-  <li>Owner <code class="highlighter-rouge">breakEval13</code></li>
+  <li>Owner <code class="language-plaintext highlighter-rouge">breakEval13</code></li>
   <li>https://github.com/breakEval13</li>
 </ul>
 

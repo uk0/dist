@@ -165,8 +165,8 @@
       <span class="na">cpu</span><span class="pi">:</span> <span class="s">200m</span>
       <span class="na">memory</span><span class="pi">:</span> <span class="s">6Mi</span>
     <span class="na">maxLimitRequestRatio</span><span class="pi">:</span>
-      <span class="na">cpu</span><span class="pi">:</span> <span class="s">3</span>
-      <span class="na">memory</span><span class="pi">:</span> <span class="s">2</span>
+      <span class="na">cpu</span><span class="pi">:</span> <span class="m">3</span>
+      <span class="na">memory</span><span class="pi">:</span> <span class="m">2</span>
     <span class="na">type</span><span class="pi">:</span> <span class="s">Pod</span>
   <span class="pi">-</span> <span class="na">default</span><span class="pi">:</span>
       <span class="na">cpu</span><span class="pi">:</span> <span class="s">300m</span>
@@ -181,8 +181,8 @@
       <span class="na">cpu</span><span class="pi">:</span> <span class="s">100m</span>
       <span class="na">memory</span><span class="pi">:</span> <span class="s">3Mi</span>
     <span class="na">maxLimitRequestRatio</span><span class="pi">:</span>
-      <span class="na">cpu</span><span class="pi">:</span> <span class="s">5</span>
-      <span class="na">memory</span><span class="pi">:</span> <span class="s">4</span>
+      <span class="na">cpu</span><span class="pi">:</span> <span class="m">5</span>
+      <span class="na">memory</span><span class="pi">:</span> <span class="m">4</span>
     <span class="na">type</span><span class="pi">:</span> <span class="s">Container</span>
 
 
@@ -196,7 +196,7 @@
   <span class="na">name</span><span class="pi">:</span> <span class="s">demo-app-server</span>
   <span class="na">namespace</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">namespace</span><span class="pi">]</span>
 <span class="na">spec</span><span class="pi">:</span>
-  <span class="na">replicas</span><span class="pi">:</span> <span class="s">1</span>
+  <span class="na">replicas</span><span class="pi">:</span> <span class="m">1</span>
   <span class="na">selector</span><span class="pi">:</span>
     <span class="na">app</span><span class="pi">:</span> <span class="s">demo-app-server</span>
   <span class="na">template</span><span class="pi">:</span>
@@ -209,7 +209,7 @@
           <span class="na">image</span><span class="pi">:</span> <span class="s">image.firsh.io/demo-base/appserver:latest</span>
           <span class="na">imagePullPolicy</span><span class="pi">:</span> <span class="s">Always</span>
           <span class="na">ports</span><span class="pi">:</span>
-          <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="s">8080</span>
+          <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">8080</span>
           <span class="na">env</span><span class="pi">:</span>
             <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">APP_HOME_CONF_DIR</span>
               <span class="na">value</span><span class="pi">:</span> <span class="s">/home/demo-app/conf</span>
@@ -237,8 +237,8 @@
    <span class="c1">#type: ClusterIP</span>
    <span class="na">ports</span><span class="pi">:</span>
    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">demo-app-out-in</span>
-     <span class="na">port</span><span class="pi">:</span> <span class="s">1000</span>
-     <span class="na">targetPort</span><span class="pi">:</span> <span class="s">8080</span>
+     <span class="na">port</span><span class="pi">:</span> <span class="m">1000</span>
+     <span class="na">targetPort</span><span class="pi">:</span> <span class="m">8080</span>
    <span class="na">externalIPs</span><span class="pi">:</span>
    <span class="pi">-</span> <span class="pi">[</span><span class="nv">192.168.1.100</span><span class="pi">]</span>
    <span class="na">selector</span><span class="pi">:</span>

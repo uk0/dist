@@ -168,7 +168,7 @@
 
 <h2 id="12配置ssh-key-登陆">1.2、配置SSH Key 登陆</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 确保本机也可以 ssh 连接，否则下面部署失败
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 确保本机也可以 ssh 连接，否则下面部署失败
 
 ssh-keygen -t rsa -N ""
 
@@ -195,7 +195,7 @@ https://github.com/kubernetes-incubator/kargo</p>
   <p>Kargo 是基于 ansible 统一部署，所以必须安装 ansible</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 安装 centos 额外的yum源
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 安装 centos 额外的yum源
 yum install -y epel-release
 
 # 安装 软件
@@ -207,12 +207,12 @@ pip install --upgrade Jinja2
 
 <h2 id="22获取源码">2.2、获取源码</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/kubernetes-incubator/kargo
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/kubernetes-incubator/kargo
 </code></pre></div></div>
 
 <h2 id="23编辑配置文件">2.3、编辑配置文件</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd kargo
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd kargo
 
 vim inventory/group_vars/k8s-cluster.yml
 
@@ -224,7 +224,7 @@ vim inventory/group_vars/k8s-cluster.yml
 
 <h2 id="24生成集群配置文件">2.4、生成集群配置文件</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd kargo
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd kargo
 
 CONFIG_FILE=inventory/inventory.cfg python3 contrib/inventory_builder/inventory.py 10.6.0.52 10.6.0.53 10.6.0.55 10.6.0.56
 
@@ -287,7 +287,7 @@ kube-master
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 1.6.4 镜像下载
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 1.6.4 镜像下载
 
 http://pan.baidu.com/s/1nvUc5mx
 
@@ -296,7 +296,7 @@ http://pan.baidu.com/s/1nvUc5mx
 
 <h2 id="25部署集群">2.5、部署集群</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 执行如下命令，请确保SSH KEY 登陆, 端口一致
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 执行如下命令，请确保SSH KEY 登陆, 端口一致
 
 ansible-playbook -i inventory/inventory.cfg cluster.yml -b -v --private-key=~/.ssh/id_rsa
 
@@ -304,7 +304,7 @@ ansible-playbook -i inventory/inventory.cfg cluster.yml -b -v --private-key=~/.s
 
 <h2 id="26测试">2.6、测试</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 两个 master 中使用 kubectl get nodes
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 两个 master 中使用 kubectl get nodes
 
 [root@k8s-node-1 ~]# kubectl get nodes
 NAME         STATUS    AGE       VERSION
@@ -368,7 +368,7 @@ netchecker-server                1/1       Running   0          16m
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 配置一个 nginx deplyment 与 nginx  service
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 配置一个 nginx deplyment 与 nginx  service
 
 apiVersion: extensions/v1beta1 
 kind: Deployment 
@@ -390,7 +390,7 @@ spec:
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: v1 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: v1 
 kind: Service
 metadata: 
   name: nginx-dm 
@@ -403,7 +403,7 @@ spec:
     name: nginx
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 导入 yaml 文件
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 导入 yaml 文件
 
 
 [root@k8s-node-1 ~]# kubectl apply -f nginx.yaml 
@@ -426,7 +426,7 @@ nginx-dm             10.233.56.138   &lt;none&gt;        80/TCP           10m   
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 部署一个  curl 的 pods 用来测试 内部通信
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 部署一个  curl 的 pods 用来测试 内部通信
 
 
 apiVersion: v1
@@ -444,7 +444,7 @@ spec:
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 导入 yaml 文件
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 导入 yaml 文件
 
 [root@k8s-node-1 ~]# kubectl apply -f curl.yaml 
 pod "curl" created
@@ -457,41 +457,41 @@ curl                             1/1       Running   0          2m        10.233
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 测试 curl --&gt; nginx-svc
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 测试 curl --&gt; nginx-svc
 
 
 [root@k8s-node-1 ~]# kubectl exec -it curl curl nginx-dm
 
 
-<span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-<span class="nt">&lt;title&gt;</span>Welcome to nginx!<span class="nt">&lt;/title&gt;</span>
-<span class="nt">&lt;style&gt;</span>
-    <span class="nt">body</span> <span class="p">{</span>
-        <span class="nl">width</span><span class="p">:</span> <span class="m">35em</span><span class="p">;</span>
-        <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span> <span class="nb">auto</span><span class="p">;</span>
-        <span class="nl">font-family</span><span class="p">:</span> <span class="n">Tahoma</span><span class="p">,</span> <span class="n">Verdana</span><span class="p">,</span> <span class="n">Arial</span><span class="p">,</span> <span class="nb">sans-serif</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="nt">&lt;/style&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;body&gt;</span>
-<span class="nt">&lt;h1&gt;</span>Welcome to nginx!<span class="nt">&lt;/h1&gt;</span>
-<span class="nt">&lt;p&gt;</span>If you see this page, the nginx web server is successfully installed and
-working. Further configuration is required.<span class="nt">&lt;/p&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
 
-<span class="nt">&lt;p&gt;</span>For online documentation and support please refer to
-<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://nginx.org/"</span><span class="nt">&gt;</span>nginx.org<span class="nt">&lt;/a&gt;</span>.<span class="nt">&lt;br/&gt;</span>
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href="http://nginx.org/"&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
 Commercial support is available at
-<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://nginx.com/"</span><span class="nt">&gt;</span>nginx.com<span class="nt">&lt;/a&gt;</span>.<span class="nt">&lt;/p&gt;</span>
+&lt;a href="http://nginx.com/"&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
 
-<span class="nt">&lt;p&gt;&lt;em&gt;</span>Thank you for using nginx.<span class="nt">&lt;/em&gt;&lt;/p&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
+&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 创建一个 zk  集群 zk-deplyment  和 service
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 创建一个 zk  集群 zk-deplyment  和 service
 
 
 apiVersion: extensions/v1beta1
@@ -519,7 +519,7 @@ spec:
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: extensions/v1beta1 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: extensions/v1beta1 
 kind: Deployment
 metadata:
   name: zookeeper-2
@@ -544,7 +544,7 @@ spec:
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: extensions/v1beta1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: zookeeper-3
@@ -568,7 +568,7 @@ spec:
           - containerPort: 2181
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: v1 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: v1 
 kind: Service 
 metadata: 
   name: zookeeper-1 
@@ -590,7 +590,7 @@ spec:
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 apiVersion: v1 
 kind: Service 
 metadata: 
@@ -613,7 +613,7 @@ spec:
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 apiVersion: v1 
 kind: Service 
 metadata: 
@@ -636,7 +636,7 @@ spec:
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 查看状态  pods 与 service
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 查看状态  pods 与 service
 
 [root@k8s-node-1 ~]# kubectl get pods -o wide
 NAME                             READY     STATUS    RESTARTS   AGE       IP              NODE
@@ -661,13 +661,13 @@ zookeeper-3          10.233.50.206   &lt;none&gt;        2181/TCP,2888/TCP,3888/
 什么是 Ingress ?  Ingress 就是利用 nginx haproxy 等负载均衡工具来暴露 Kubernetes 服务。</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 # 首先 部署一个 http-backend, 用于统一转发 没有的域名 到指定页面。
 # 官方 nginx  ingress 库 https://github.com/kubernetes/ingress/tree/master/examples/deployment/nginx
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 下载官方的 nginx  backend 文件
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 下载官方的 nginx  backend 文件
 
 curl -O https://raw.githubusercontent.com/kubernetes/ingress/master/examples/deployment/nginx/default-backend.yaml
 
@@ -690,11 +690,11 @@ default-http-backend    10.233.20.232   &lt;none&gt;        80/TCP          33m
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 部署 Ingress Controller 组件
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 部署 Ingress Controller 组件
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 下载 官方 nginx-ingress-controller 的yaml文件
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 下载 官方 nginx-ingress-controller 的yaml文件
 
 curl -O https://raw.githubusercontent.com/kubernetes/ingress/master/examples/deployment/nginx/nginx-ingress-controller.yaml
 
@@ -728,7 +728,7 @@ nginx-ingress-controller   4         4         4         &lt;none&gt;          1
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 最后开始 部署 Ingress
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 最后开始 部署 Ingress
 # 这里请先看看官方 ingress 的 yaml 写法
 # https://kubernetes.io/docs/user-guide/ingress/
 
@@ -797,7 +797,7 @@ nginx-ingress   nginx.jicki.me             80        17s
 
 <h1 id="维护-faq">维护 FAQ</h1>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 卸载
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 卸载
 
 cd kargo
 
@@ -805,7 +805,7 @@ ansible-playbook -i inventory/inventory.cfg reset.yml -b -v --private-key=~/.ssh
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 增加节点
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 增加节点
 
 # 首先编辑 inventory/inventory.cfg  增加一个节点 例：node5
 
@@ -824,14 +824,14 @@ ansible-playbook -i inventory/inventory.cfg cluster.yml -b -v --private-key=~/.s
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 报错1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 报错1
 # hostname 的问题
 # 部署 kargo 必须配置 hostname 否则 多 master 会出现 无法创建 api 等 pods
 # 如果 执行了 ansible-playbook 之前没改 hostname 必须删除 /tmp 下的 node[N]
 # 否则更改 /etc/hosts 失败
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 报错 2
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 报错 2
 
 TASK [vault : check_vault | Set fact about the Vault cluster's initialization state] ***
 Monday 10 April 2017  17:47:42 +0800 (0:00:00.088)       0:01:22.030 ********** 

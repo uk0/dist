@@ -130,7 +130,7 @@
 
 <h2 id="yum-安装基础的依赖">yum 安装基础的依赖</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum install gcc-c++ fuse-devel git  hadoop-libhdfs-devel
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum <span class="nb">install </span>gcc-c++ fuse-devel git  hadoop-libhdfs-devel
 </code></pre></div></div>
 
 <h2 id="配置环境变量">配置环境变量</h2>
@@ -151,18 +151,18 @@
 
 <h2 id="xgboost-git-clone--and-install">xgboost git clone  and install</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir <span class="nt">-p</span> xgboost-packages/lib64
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> xgboost-packages/lib64
 
 <span class="nb">cd </span>xgboost-packages
 
 
 git clone <span class="nt">--recursive</span> https://github.com/dmlc/xgboost
 <span class="nb">cd </span>xgboost
-cp make/config.mk ./
+<span class="nb">cp </span>make/config.mk ./
 vim config.mk
 add line <span class="c"># HADOOP_HOME = /usr/lib/hadoop</span>
 
-mkdir build
+<span class="nb">mkdir </span>build
 <span class="nb">cd </span>build
 cmake .. <span class="nv">USE_HDFS</span><span class="o">=</span>ON <span class="c"># 开启HDFS</span>
 make <span class="nt">-j4</span>
@@ -172,11 +172,11 @@ make <span class="nt">-j4</span>
 <h2 id="install-python-package-on-env">install python package on env</h2>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="nb">cd </span>python-package/ <span class="o">&amp;&amp;</span> python setup.py install 
+<span class="nb">cd </span>python-package/ <span class="o">&amp;&amp;</span> python setup.py <span class="nb">install</span> 
 </code></pre></div></div>
 <h2 id="install-jvm-package-on-env">install jvm-package on env</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>jvm-packages/ <span class="o">&amp;&amp;</span> mvn install:install-file <span class="nt">-Dfile</span><span class="o">=</span>xgboost4j-spark-0.83-jar-with-dependencies.jar <span class="nt">-DgroupId</span><span class="o">=</span>ml.dmlc <span class="nt">-DartifactId</span><span class="o">=</span>xgboost4j-spark <span class="nt">-Dversion</span><span class="o">=</span>0.7 <span class="nt">-Dpackaging</span><span class="o">=</span>jar
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>jvm-packages/ <span class="o">&amp;&amp;</span> mvn <span class="nb">install</span>:install-file <span class="nt">-Dfile</span><span class="o">=</span>xgboost4j-spark-0.83-jar-with-dependencies.jar <span class="nt">-DgroupId</span><span class="o">=</span>ml.dmlc <span class="nt">-DartifactId</span><span class="o">=</span>xgboost4j-spark <span class="nt">-Dversion</span><span class="o">=</span>0.7 <span class="nt">-Dpackaging</span><span class="o">=</span>jar
 </code></pre></div></div>
 
 <p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>

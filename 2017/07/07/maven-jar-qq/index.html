@@ -134,8 +134,8 @@
  
 </code></pre></div></div>
 <ul>
-  <li>如图所示，成功的倒入了·<code class="highlighter-rouge">org.apache.thrift</code>
-但是工具里面没有找到 <code class="highlighter-rouge">clearBit</code>，<code class="highlighter-rouge">setBit</code>等方法。</li>
+  <li>如图所示，成功的倒入了·<code class="language-plaintext highlighter-rouge">org.apache.thrift</code>
+但是工具里面没有找到 <code class="language-plaintext highlighter-rouge">clearBit</code>，<code class="language-plaintext highlighter-rouge">setBit</code>等方法。</li>
 </ul>
 
 <p><img src="http://112firshme11224.test.upcdn.net/blog/QQ20170708-002142@2x.png" alt="" /></p>
@@ -174,7 +174,7 @@
   <li>通过这种方式进行包的摘除，(结果还不是很理想，还是有问题。)
     <ul>
       <li>于是仔细查看pom.xml文件的内容，发现了问题，怀疑Maven加载包的顺序是有优先级的(从上到下)</li>
-      <li>于是将 <code class="highlighter-rouge">org.apache.thrift</code> 放到了MSF4J包的上面。</li>
+      <li>于是将 <code class="language-plaintext highlighter-rouge">org.apache.thrift</code> 放到了MSF4J包的上面。</li>
       <li>成功解决问题：
 <img src="http://112firshme11224.test.upcdn.net/blog/th3.png" alt="" /></li>
     </ul>

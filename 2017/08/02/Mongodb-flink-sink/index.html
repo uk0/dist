@@ -131,7 +131,7 @@ Mongodb 采用集群主从模式。</p>
 
 <h1 id="mongosinkjava">MongoSink.Java</h1>
 <ul>
-  <li>继承RichSinkFunction，重写<code class="highlighter-rouge">open</code> 和 <code class="highlighter-rouge">invoke</code>方法，还有<code class="highlighter-rouge">close</code>。</li>
+  <li>继承RichSinkFunction，重写<code class="language-plaintext highlighter-rouge">open</code> 和 <code class="language-plaintext highlighter-rouge">invoke</code>方法，还有<code class="language-plaintext highlighter-rouge">close</code>。</li>
 </ul>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">e</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">sink</span><span class="o">;</span>
@@ -147,23 +147,23 @@ Mongodb 采用集群主从模式。</p>
 <span class="cm">/**
  * Created by zhangjianxin on 2017/7/31.
  */</span>
-<span class="kd">public</span>  <span class="kd">class</span> <span class="nc">MongoSink</span> <span class="kd">extends</span> <span class="n">RichSinkFunction</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span>  <span class="n">String</span> <span class="n">CollectionName</span> <span class="o">=</span> <span class="s">"collection-a"</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="n">MongoService</span> <span class="n">mongoService</span><span class="o">;</span>
+<span class="kd">public</span>  <span class="kd">class</span> <span class="nc">MongoSink</span> <span class="kd">extends</span> <span class="nc">RichSinkFunction</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span>  <span class="nc">String</span> <span class="nc">CollectionName</span> <span class="o">=</span> <span class="s">"collection-a"</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">MongoService</span> <span class="n">mongoService</span><span class="o">;</span>
     <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">invoke</span><span class="o">(</span><span class="n">String</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">invoke</span><span class="o">(</span><span class="nc">String</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">try</span> <span class="o">{</span>
-            <span class="k">this</span><span class="o">.</span><span class="na">mongoService</span><span class="o">.</span><span class="na">saveJson</span><span class="o">(</span><span class="n">JSON</span><span class="o">.</span><span class="na">parseObject</span><span class="o">(</span><span class="n">t</span><span class="o">),</span><span class="n">CollectionName</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">UnknownHostException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">mongoService</span><span class="o">.</span><span class="na">saveJson</span><span class="o">(</span><span class="no">JSON</span><span class="o">.</span><span class="na">parseObject</span><span class="o">(</span><span class="n">t</span><span class="o">),</span><span class="nc">CollectionName</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">UnknownHostException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
         <span class="o">}</span>
     <span class="o">}</span>
     <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">open</span><span class="o">(</span><span class="n">Configuration</span> <span class="n">config</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">mongoService</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MongoService</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">open</span><span class="o">(</span><span class="nc">Configuration</span> <span class="n">config</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">mongoService</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MongoService</span><span class="o">();</span>
         <span class="k">try</span> <span class="o">{</span>
             <span class="kd">super</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">config</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -188,15 +188,15 @@ Mongodb 采用集群主从模式。</p>
 
 
 
-    <span class="kd">private</span> <span class="n">EntryDao</span> <span class="n">EntryDao</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EntryDao</span><span class="o">();</span>
+    <span class="kd">private</span> <span class="nc">EntryDao</span> <span class="nc">EntryDao</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">EntryDao</span><span class="o">();</span>
 
     <span class="cm">/**
      * 保存
      * @param saveJson
      * @throws UnknownHostException
      */</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">saveJson</span><span class="o">(</span><span class="n">JSONObject</span> <span class="n">saveJson</span><span class="o">,</span> <span class="n">String</span> <span class="n">CollectionName</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">UnknownHostException</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">EntryDao</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">CollectionName</span><span class="o">,</span><span class="n">saveJson</span><span class="o">,</span><span class="kc">true</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">saveJson</span><span class="o">(</span><span class="nc">JSONObject</span> <span class="n">saveJson</span><span class="o">,</span> <span class="nc">String</span> <span class="nc">CollectionName</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">UnknownHostException</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">EntryDao</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="nc">CollectionName</span><span class="o">,</span><span class="n">saveJson</span><span class="o">,</span><span class="kc">true</span><span class="o">);</span>
     <span class="o">}</span>
 
 
@@ -207,8 +207,8 @@ Mongodb 采用集群主从模式。</p>
      * @param Entry
      * @throws UnknownHostException
      */</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">update</span><span class="o">(</span><span class="n">Entry</span> <span class="n">Entry</span><span class="o">,</span><span class="n">String</span> <span class="n">CollectionName</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">UnknownHostException</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">EntryDao</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">Entry</span><span class="o">,</span><span class="n">CollectionName</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">update</span><span class="o">(</span><span class="nc">Entry</span> <span class="nc">Entry</span><span class="o">,</span><span class="nc">String</span> <span class="nc">CollectionName</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">UnknownHostException</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">EntryDao</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="nc">Entry</span><span class="o">,</span><span class="nc">CollectionName</span><span class="o">);</span>
     <span class="o">}</span>
 
     <span class="cm">/**
@@ -216,8 +216,8 @@ Mongodb 采用集群主从模式。</p>
      * @return
      * @throws UnknownHostException
      */</span>
-    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Entry</span><span class="o">&gt;</span> <span class="nf">findAll</span><span class="o">(</span><span class="n">String</span> <span class="n">CollectionName</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">UnknownHostException</span><span class="o">{</span>
-        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">EntryDao</span><span class="o">.</span><span class="na">findAll</span><span class="o">(</span><span class="n">CollectionName</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Entry</span><span class="o">&gt;</span> <span class="nf">findAll</span><span class="o">(</span><span class="nc">String</span> <span class="nc">CollectionName</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">UnknownHostException</span><span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">EntryDao</span><span class="o">.</span><span class="na">findAll</span><span class="o">(</span><span class="nc">CollectionName</span><span class="o">);</span>
     <span class="o">}</span>
 
 
@@ -226,8 +226,8 @@ Mongodb 采用集群主从模式。</p>
      * @param id
      * @throws UnknownHostException
      */</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">remove</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">,</span><span class="n">String</span> <span class="n">CollectionName</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">UnknownHostException</span><span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">EntryDao</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">id</span><span class="o">,</span><span class="n">CollectionName</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">remove</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">,</span><span class="nc">String</span> <span class="nc">CollectionName</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">UnknownHostException</span><span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">EntryDao</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">id</span><span class="o">,</span><span class="nc">CollectionName</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
 
@@ -250,18 +250,18 @@ Mongodb 采用集群主从模式。</p>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MongoManager</span> <span class="o">{</span>
 
-    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Mongo</span> <span class="n">mongo</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="n">MongoClient</span> <span class="n">mongoClient</span><span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Mongo</span> <span class="n">mongo</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">MongoClient</span> <span class="n">mongoClient</span><span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
     <span class="kd">private</span> <span class="nf">MongoManager</span><span class="o">()</span> <span class="o">{</span> <span class="o">}</span>
 
     <span class="kd">static</span> <span class="o">{</span>
         <span class="n">initDBPrompties</span><span class="o">();</span>
     <span class="o">}</span>
 
-    <span class="kd">public</span> <span class="kd">static</span> <span class="n">DB</span> <span class="nf">getDB</span><span class="o">(</span><span class="n">String</span> <span class="n">dbName</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="no">DB</span> <span class="nf">getDB</span><span class="o">(</span><span class="nc">String</span> <span class="n">dbName</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">return</span> <span class="n">mongo</span><span class="o">.</span><span class="na">getDB</span><span class="o">(</span><span class="n">dbName</span><span class="o">);</span>
     <span class="o">}</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="n">MongoDatabase</span> <span class="nf">getDatabase</span><span class="o">(</span><span class="n">String</span> <span class="n">dbName</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">MongoDatabase</span> <span class="nf">getDatabase</span><span class="o">(</span><span class="nc">String</span> <span class="n">dbName</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">return</span> <span class="n">mongoClient</span><span class="o">.</span><span class="na">getDatabase</span><span class="o">(</span><span class="n">dbName</span><span class="o">);</span>
     <span class="o">}</span>
 
@@ -271,23 +271,23 @@ Mongodb 采用集群主从模式。</p>
     <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">initDBPrompties</span><span class="o">()</span> <span class="o">{</span>
         <span class="k">try</span> <span class="o">{</span>
 
-            <span class="n">MongoClientOptions</span><span class="o">.</span><span class="na">Builder</span> <span class="n">mcob</span> <span class="o">=</span> <span class="n">MongoClientOptions</span><span class="o">.</span><span class="na">builder</span><span class="o">();</span>
+            <span class="nc">MongoClientOptions</span><span class="o">.</span><span class="na">Builder</span> <span class="n">mcob</span> <span class="o">=</span> <span class="nc">MongoClientOptions</span><span class="o">.</span><span class="na">builder</span><span class="o">();</span>
             <span class="n">mcob</span><span class="o">.</span><span class="na">connectionsPerHost</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
             <span class="n">mcob</span><span class="o">.</span><span class="na">socketKeepAlive</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-            <span class="n">mcob</span><span class="o">.</span><span class="na">readPreference</span><span class="o">(</span><span class="n">ReadPreference</span><span class="o">.</span><span class="na">secondaryPreferred</span><span class="o">());</span>
-            <span class="n">MongoClientOptions</span> <span class="n">mco</span> <span class="o">=</span> <span class="n">mcob</span><span class="o">.</span><span class="na">build</span><span class="o">();</span>
+            <span class="n">mcob</span><span class="o">.</span><span class="na">readPreference</span><span class="o">(</span><span class="nc">ReadPreference</span><span class="o">.</span><span class="na">secondaryPreferred</span><span class="o">());</span>
+            <span class="nc">MongoClientOptions</span> <span class="n">mco</span> <span class="o">=</span> <span class="n">mcob</span><span class="o">.</span><span class="na">build</span><span class="o">();</span>
 
-            <span class="n">mongoClient</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MongoClient</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span>
+            <span class="n">mongoClient</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MongoClient</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span>
                     <span class="k">new</span> <span class="nf">ServerAddress</span><span class="o">(</span><span class="s">"127.0.0.1"</span><span class="o">,</span> <span class="mi">27017</span><span class="o">),</span>
                     <span class="k">new</span> <span class="nf">ServerAddress</span><span class="o">(</span><span class="s">"127.0.0.1"</span><span class="o">,</span> <span class="mi">27017</span><span class="o">),</span>
                     <span class="k">new</span> <span class="nf">ServerAddress</span><span class="o">(</span><span class="s">"127.0.0.1"</span><span class="o">,</span> <span class="mi">27017</span><span class="o">)),</span> <span class="n">mco</span><span class="o">);</span>
 
 
-            <span class="n">mongo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mongo</span><span class="o">(</span><span class="n">MongoDBConstant</span><span class="o">.</span><span class="na">HOST</span><span class="o">,</span> <span class="n">MongoDBConstant</span><span class="o">.</span><span class="na">PORT</span><span class="o">);</span>
-            <span class="n">MongoOptions</span> <span class="n">opt</span> <span class="o">=</span> <span class="n">mongo</span><span class="o">.</span><span class="na">getMongoOptions</span><span class="o">();</span>
-            <span class="n">opt</span><span class="o">.</span><span class="na">connectionsPerHost</span> <span class="o">=</span> <span class="n">MongoDBConstant</span><span class="o">.</span><span class="na">POOLSIZE</span><span class="o">;</span>
-            <span class="n">opt</span><span class="o">.</span><span class="na">threadsAllowedToBlockForConnectionMultiplier</span> <span class="o">=</span> <span class="n">MongoDBConstant</span><span class="o">.</span><span class="na">BLOCKSIZE</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">MongoException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">mongo</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Mongo</span><span class="o">(</span><span class="nc">MongoDBConstant</span><span class="o">.</span><span class="na">HOST</span><span class="o">,</span> <span class="nc">MongoDBConstant</span><span class="o">.</span><span class="na">PORT</span><span class="o">);</span>
+            <span class="nc">MongoOptions</span> <span class="n">opt</span> <span class="o">=</span> <span class="n">mongo</span><span class="o">.</span><span class="na">getMongoOptions</span><span class="o">();</span>
+            <span class="n">opt</span><span class="o">.</span><span class="na">connectionsPerHost</span> <span class="o">=</span> <span class="nc">MongoDBConstant</span><span class="o">.</span><span class="na">POOLSIZE</span><span class="o">;</span>
+            <span class="n">opt</span><span class="o">.</span><span class="na">threadsAllowedToBlockForConnectionMultiplier</span> <span class="o">=</span> <span class="nc">MongoDBConstant</span><span class="o">.</span><span class="na">BLOCKSIZE</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">MongoException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -325,12 +325,12 @@ Mongodb 采用集群主从模式。</p>
      * @param id
      * @throws UnknownHostException
      */</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">remove</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">,</span><span class="n">String</span> <span class="n">CollectionName</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">UnknownHostException</span><span class="o">{</span>
-        <span class="n">MongoDatabase</span> <span class="n">mongo</span> <span class="o">=</span> <span class="n">MongoManager</span><span class="o">.</span><span class="na">getDatabase</span><span class="o">(</span><span class="n">MongoDBConstant</span><span class="o">.</span><span class="na">DB</span><span class="o">);</span>
-        <span class="n">MongoCollection</span> <span class="n">coll</span> <span class="o">=</span> <span class="n">mongo</span><span class="o">.</span><span class="na">getCollection</span><span class="o">(</span><span class="n">CollectionName</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">remove</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">,</span><span class="nc">String</span> <span class="nc">CollectionName</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">UnknownHostException</span><span class="o">{</span>
+        <span class="nc">MongoDatabase</span> <span class="n">mongo</span> <span class="o">=</span> <span class="nc">MongoManager</span><span class="o">.</span><span class="na">getDatabase</span><span class="o">(</span><span class="nc">MongoDBConstant</span><span class="o">.</span><span class="na">DB</span><span class="o">);</span>
+        <span class="nc">MongoCollection</span> <span class="n">coll</span> <span class="o">=</span> <span class="n">mongo</span><span class="o">.</span><span class="na">getCollection</span><span class="o">(</span><span class="nc">CollectionName</span><span class="o">);</span>
 
 
-        <span class="n">Document</span> <span class="n">baseDBO</span> <span class="o">=</span><span class="k">new</span> <span class="n">Document</span><span class="o">();</span>
+        <span class="nc">Document</span> <span class="n">baseDBO</span> <span class="o">=</span><span class="k">new</span> <span class="nc">Document</span><span class="o">();</span>
         <span class="n">baseDBO</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="n">id</span><span class="o">);</span>
 
         <span class="c1">//删除某一条记录</span>
@@ -345,28 +345,28 @@ Mongodb 采用集群主从模式。</p>
      * @param useDefaultId  未传入_id时，若为true则使用MongoDB自动生成的_id。若为false则生成UUID作为主键
      * @return
      */</span>
-    <span class="kd">public</span> <span class="n">JSONObject</span> <span class="nf">save</span><span class="o">(</span><span class="n">String</span> <span class="n">CollectionName</span><span class="o">,</span> <span class="n">JSONObject</span> <span class="n">saveJson</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">useDefaultId</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">JSONObject</span> <span class="n">resp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JSONObject</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="nc">JSONObject</span> <span class="nf">save</span><span class="o">(</span><span class="nc">String</span> <span class="nc">CollectionName</span><span class="o">,</span> <span class="nc">JSONObject</span> <span class="n">saveJson</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">useDefaultId</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">JSONObject</span> <span class="n">resp</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JSONObject</span><span class="o">();</span>
         <span class="k">try</span> <span class="o">{</span>
-            <span class="n">MongoDatabase</span> <span class="n">mongo</span> <span class="o">=</span> <span class="n">MongoManager</span><span class="o">.</span><span class="na">getDatabase</span><span class="o">(</span><span class="n">MongoDBConstant</span><span class="o">.</span><span class="na">DB</span><span class="o">);</span>
-            <span class="n">MongoCollection</span> <span class="n">coll</span> <span class="o">=</span> <span class="n">mongo</span><span class="o">.</span><span class="na">getCollection</span><span class="o">(</span><span class="n">CollectionName</span><span class="o">);</span>
-            <span class="n">Object</span> <span class="n">_id</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+            <span class="nc">MongoDatabase</span> <span class="n">mongo</span> <span class="o">=</span> <span class="nc">MongoManager</span><span class="o">.</span><span class="na">getDatabase</span><span class="o">(</span><span class="nc">MongoDBConstant</span><span class="o">.</span><span class="na">DB</span><span class="o">);</span>
+            <span class="nc">MongoCollection</span> <span class="n">coll</span> <span class="o">=</span> <span class="n">mongo</span><span class="o">.</span><span class="na">getCollection</span><span class="o">(</span><span class="nc">CollectionName</span><span class="o">);</span>
+            <span class="nc">Object</span> <span class="n">_id</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
            <span class="k">if</span> <span class="o">(!</span><span class="n">saveJson</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="s">"_id"</span><span class="o">)){</span>
                 <span class="k">if</span> <span class="o">(!</span><span class="n">useDefaultId</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="n">_id</span> <span class="o">=</span> <span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
+                    <span class="n">_id</span> <span class="o">=</span> <span class="no">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
                     <span class="n">saveJson</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"Data"</span><span class="o">,</span> <span class="n">_id</span><span class="o">);</span>
                 <span class="o">}</span>
             <span class="o">}</span> <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">saveJson</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="s">"_id"</span><span class="o">))</span>  <span class="o">{</span>
                 <span class="n">_id</span> <span class="o">=</span> <span class="n">saveJson</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"_id"</span><span class="o">);</span>
             <span class="o">}</span>
-            <span class="n">Document</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">saveJson</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+            <span class="nc">Document</span> <span class="n">doc</span> <span class="o">=</span> <span class="nc">Document</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">saveJson</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
             <span class="n">coll</span><span class="o">.</span><span class="na">insertOne</span><span class="o">(</span><span class="n">doc</span><span class="o">);</span>
             <span class="n">resp</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"Data"</span><span class="o">,</span> <span class="n">_id</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">MongoTimeoutException</span> <span class="n">e1</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">MongoTimeoutException</span> <span class="n">e1</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e1</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
             <span class="n">resp</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"ReasonMessage"</span><span class="o">,</span><span class="n">e1</span><span class="o">.</span><span class="na">getClass</span><span class="o">()</span> <span class="o">+</span> <span class="s">":"</span> <span class="o">+</span> <span class="n">e1</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
             <span class="k">return</span> <span class="n">resp</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
             <span class="n">resp</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"ReasonMessage"</span><span class="o">,</span><span class="n">e</span><span class="o">.</span><span class="na">getClass</span><span class="o">()</span> <span class="o">+</span> <span class="s">":"</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
         <span class="o">}</span>
@@ -395,7 +395,7 @@ Mongodb 采用集群主从模式。</p>
  * Created by zhangjianxin on 2017/7/31.
  */</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">JsonUtils</span> <span class="o">{</span>
-    <span class="kd">static</span> <span class="n">ObjectMapper</span> <span class="n">objectMapper</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ObjectMapper</span><span class="o">();</span>
+    <span class="kd">static</span> <span class="nc">ObjectMapper</span> <span class="n">objectMapper</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectMapper</span><span class="o">();</span>
 
     <span class="cm">/**
      * java 对象转换为json 存入流中
@@ -403,11 +403,11 @@ Mongodb 采用集群主从模式。</p>
      * @param obj
      * @return  s
      */</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">toJson</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">toJson</span><span class="o">(</span><span class="nc">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">s</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
         <span class="k">try</span> <span class="o">{</span>
             <span class="n">s</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
         <span class="o">}</span>
         <span class="k">return</span> <span class="n">s</span><span class="o">;</span>
@@ -419,10 +419,10 @@ Mongodb 采用集群主从模式。</p>
      * @param obj
      * @param out
      */</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">toJson</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">,</span> <span class="n">OutputStream</span> <span class="n">out</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">toJson</span><span class="o">(</span><span class="nc">Object</span> <span class="n">obj</span><span class="o">,</span> <span class="nc">OutputStream</span> <span class="n">out</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">try</span> <span class="o">{</span>
             <span class="n">objectMapper</span><span class="o">.</span><span class="na">writeValue</span><span class="o">(</span><span class="n">out</span><span class="o">,</span> <span class="n">obj</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -434,10 +434,10 @@ Mongodb 采用集群主从模式。</p>
      * @param obj
      */</span>
     <span class="nd">@SuppressWarnings</span><span class="o">({</span> <span class="s">"rawtypes"</span><span class="o">,</span> <span class="s">"unchecked"</span> <span class="o">})</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">fromJson</span><span class="o">(</span><span class="n">String</span> <span class="n">json</span><span class="o">,</span> <span class="n">Object</span> <span class="n">obj</span><span class="o">,</span> <span class="n">Class</span> <span class="n">valueType</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">fromJson</span><span class="o">(</span><span class="nc">String</span> <span class="n">json</span><span class="o">,</span> <span class="nc">Object</span> <span class="n">obj</span><span class="o">,</span> <span class="nc">Class</span> <span class="n">valueType</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">try</span> <span class="o">{</span>
             <span class="n">obj</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">readValue</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">valueType</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -449,10 +449,10 @@ Mongodb 采用集群主从模式。</p>
      * @param valueTypeRef
      */</span>
     <span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">"rawtypes"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">fromJson</span><span class="o">(</span><span class="n">String</span> <span class="n">json</span><span class="o">,</span> <span class="n">Object</span> <span class="n">obj</span><span class="o">,</span> <span class="n">TypeReference</span> <span class="n">valueTypeRef</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">fromJson</span><span class="o">(</span><span class="nc">String</span> <span class="n">json</span><span class="o">,</span> <span class="nc">Object</span> <span class="n">obj</span><span class="o">,</span> <span class="nc">TypeReference</span> <span class="n">valueTypeRef</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">try</span> <span class="o">{</span>
             <span class="n">obj</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">readValue</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">valueTypeRef</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -464,11 +464,11 @@ Mongodb 采用集群主从模式。</p>
      * @return obj
      */</span>
     <span class="nd">@SuppressWarnings</span><span class="o">({</span> <span class="s">"rawtypes"</span><span class="o">,</span> <span class="s">"unchecked"</span> <span class="o">})</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Object</span> <span class="nf">fromJson</span><span class="o">(</span><span class="n">String</span> <span class="n">json</span><span class="o">,</span> <span class="n">Class</span> <span class="n">valueType</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">Object</span> <span class="n">obj</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Object</span> <span class="nf">fromJson</span><span class="o">(</span><span class="nc">String</span> <span class="n">json</span><span class="o">,</span> <span class="nc">Class</span> <span class="n">valueType</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Object</span> <span class="n">obj</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
         <span class="k">try</span> <span class="o">{</span>
             <span class="n">obj</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">readValue</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">valueType</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
         <span class="o">}</span>
         <span class="k">return</span> <span class="n">obj</span><span class="o">;</span>
@@ -482,11 +482,11 @@ Mongodb 采用集群主从模式。</p>
      * @param valueTypeRef
      */</span>
     <span class="nd">@SuppressWarnings</span><span class="o">({</span> <span class="s">"rawtypes"</span><span class="o">,</span> <span class="s">"hiding"</span> <span class="o">})</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">Object</span> <span class="nf">fromJson</span><span class="o">(</span><span class="n">String</span> <span class="n">json</span><span class="o">,</span> <span class="n">TypeReference</span> <span class="n">valueTypeRef</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">Object</span> <span class="n">obj</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="nc">Object</span><span class="o">&gt;</span> <span class="nc">Object</span> <span class="nf">fromJson</span><span class="o">(</span><span class="nc">String</span> <span class="n">json</span><span class="o">,</span> <span class="nc">TypeReference</span> <span class="n">valueTypeRef</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Object</span> <span class="n">obj</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
         <span class="k">try</span> <span class="o">{</span>
             <span class="n">obj</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">readValue</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">valueTypeRef</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
         <span class="o">}</span>
         <span class="k">return</span> <span class="n">obj</span><span class="o">;</span>
@@ -547,7 +547,7 @@ public class MongoDBHelper <span class="o">{</span>
 
 </code></pre></div></div>
 <ul>
-  <li>Owner <code class="highlighter-rouge">breakEval13</code></li>
+  <li>Owner <code class="language-plaintext highlighter-rouge">breakEval13</code></li>
   <li>https://github.com/breakEval13</li>
 </ul>
 

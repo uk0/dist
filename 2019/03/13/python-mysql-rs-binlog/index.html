@@ -140,15 +140,15 @@
 
 <span class="n">LOG_FILE</span> <span class="o">=</span> <span class="s">r'hue_auto_create_user.log'</span>
 
-<span class="n">handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">RotatingFileHandler</span><span class="p">(</span><span class="n">LOG_FILE</span><span class="p">,</span> <span class="n">maxBytes</span><span class="o">=</span><span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">,</span> <span class="n">backupCount</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span>  <span class="c"># 实例化handler</span>
-<span class="n">fmt</span> <span class="o">=</span> <span class="s">'</span><span class="si">%(asctime)</span><span class="s">s - </span><span class="si">%(levelname)</span><span class="s">s - </span><span class="si">%(message)</span><span class="s">s'</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">RotatingFileHandler</span><span class="p">(</span><span class="n">LOG_FILE</span><span class="p">,</span> <span class="n">maxBytes</span><span class="o">=</span><span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">,</span> <span class="n">backupCount</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span>  <span class="c1"># 实例化handler
+</span><span class="n">fmt</span> <span class="o">=</span> <span class="s">'</span><span class="si">%(asctime)</span><span class="s">s - </span><span class="si">%(levelname)</span><span class="s">s - </span><span class="si">%(message)</span><span class="s">s'</span>
 
-<span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span>  <span class="c"># 实例化formatter</span>
-<span class="n">handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>  <span class="c"># 为handler添加formatter</span>
-
-<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">'hue_auto_create_user'</span><span class="p">)</span>  <span class="c"># 获取名为hue_auto_create_user的logger</span>
-<span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>  <span class="c"># 为logger添加handler</span>
-<span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span>  <span class="c1"># 实例化formatter
+</span><span class="n">handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>  <span class="c1"># 为handler添加formatter
+</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">'hue_auto_create_user'</span><span class="p">)</span>  <span class="c1"># 获取名为hue_auto_create_user的logger
+</span><span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>  <span class="c1"># 为logger添加handler
+</span><span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
 
 
 <span class="n">MYSQL_SETTINGS</span> <span class="o">=</span> <span class="p">{</span>
@@ -174,32 +174,32 @@
 
 <span class="k">def</span> <span class="nf">ssh_host_createUserAndGroup</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">passwd</span><span class="p">,</span> <span class="n">cmd</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="c"># 指定本地的RSA私钥文件,如果建立密钥对时设置的有密码，password为设定的密码，如无不用指定password参数</span>
-        <span class="c"># pkey = paramiko.RSAKey.from_private_key_file('/home/super/.ssh/id_rsa')</span>
-        <span class="n">ssh</span> <span class="o">=</span> <span class="n">paramiko</span><span class="o">.</span><span class="n">SSHClient</span><span class="p">()</span>
+        <span class="c1"># 指定本地的RSA私钥文件,如果建立密钥对时设置的有密码，password为设定的密码，如无不用指定password参数
+</span>        <span class="c1"># pkey = paramiko.RSAKey.from_private_key_file('/home/super/.ssh/id_rsa')
+</span>        <span class="n">ssh</span> <span class="o">=</span> <span class="n">paramiko</span><span class="o">.</span><span class="n">SSHClient</span><span class="p">()</span>
         <span class="n">ssh</span><span class="o">.</span><span class="n">set_missing_host_key_policy</span><span class="p">(</span><span class="n">paramiko</span><span class="o">.</span><span class="n">AutoAddPolicy</span><span class="p">())</span>
         <span class="n">ssh</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">passwd</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">cmd</span><span class="p">:</span>
             <span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">ssh</span><span class="o">.</span><span class="n">exec_command</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
             <span class="n">out</span> <span class="o">=</span> <span class="n">stdout</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-            <span class="c"># 屏幕输出</span>
-            <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">out</span><span class="p">:</span>
+            <span class="c1"># 屏幕输出
+</span>            <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">out</span><span class="p">:</span>
                 <span class="k">print</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">u"ssh 远程执行 {} Success"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ip</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">u"ssh 远程执行 {} Success"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">ip</span><span class="p">))</span>
         <span class="n">ssh</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="k">except</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">u"ssh 远程执行 {} Error"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ip</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">u"ssh 远程执行 {} Error"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">ip</span><span class="p">))</span>
 
 
 <span class="k">def</span> <span class="nf">startTask</span><span class="p">(</span><span class="n">user</span><span class="p">):</span>
-    <span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s">'useradd {}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user</span><span class="p">),</span> <span class="s">'groupadd {}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user</span><span class="p">),</span>
-           <span class="s">'usermod  -a  -G {} {}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">user</span><span class="p">)]</span>  <span class="c"># 你要执行的命令列表</span>
-    <span class="n">username</span> <span class="o">=</span> <span class="s">"root"</span>  <span class="c"># 用户名</span>
-    <span class="n">passwd</span> <span class="o">=</span> <span class="s">"123456"</span>  <span class="c"># 密码</span>
-
+    <span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s">'useradd {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">user</span><span class="p">),</span> <span class="s">'groupadd {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">user</span><span class="p">),</span>
+           <span class="s">'usermod  -a  -G {} {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">user</span><span class="p">)]</span>  <span class="c1"># 你要执行的命令列表
+</span>    <span class="n">username</span> <span class="o">=</span> <span class="s">"root"</span>  <span class="c1"># 用户名
+</span>    <span class="n">passwd</span> <span class="o">=</span> <span class="s">"123456"</span>  <span class="c1"># 密码
+</span>
     <span class="k">for</span> <span class="n">ip</span> <span class="ow">in</span> <span class="n">HOST_ARRAY</span><span class="p">:</span>
         <span class="n">a</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">ssh_host_createUserAndGroup</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">passwd</span><span class="p">,</span> <span class="n">cmd</span><span class="p">))</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">u"Host {} 执行命令 {}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span><span class="n">cmd</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">u"Host {} 执行命令 {}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span><span class="n">cmd</span><span class="p">))</span>
         <span class="n">a</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 
 
@@ -214,15 +214,15 @@
                           <span class="p">)</span>
     <span class="n">cursor</span> <span class="o">=</span> <span class="n">cnx</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"update auth_user set is_superuser=0 where id={}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uid</span><span class="p">))</span>
-        <span class="c">#INSERT IGNORE INTO</span>
-        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"insert INTO hue.auth_group ( id, name) SELECT  (auth_group.id+1), '{}' FROM hue.auth_group order by id DESC limit 1"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">userName</span><span class="p">))</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"update auth_user set is_superuser=0 where id={}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">uid</span><span class="p">))</span>
+        <span class="c1">#INSERT IGNORE INTO
+</span>        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"insert INTO hue.auth_group ( id, name) SELECT  (auth_group.id+1), '{}' FROM hue.auth_group order by id DESC limit 1"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">userName</span><span class="p">))</span>
     <span class="k">except</span> <span class="nb">Exception</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">"已经存在 Group {}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">userName</span><span class="p">))</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">"已经存在 Group {}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">userName</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">"已经存在 Group {}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">userName</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"已经存在 Group {}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">userName</span><span class="p">))</span>
 
 
-    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"insert INTO hue.auth_user_groups(user_id,group_id)  SELECT {},auth_group.id FROM hue.auth_group where hue.auth_group.name='{}'"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">userName</span><span class="p">))</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"insert INTO hue.auth_user_groups(user_id,group_id)  SELECT {},auth_group.id FROM hue.auth_group where hue.auth_group.name='{}'"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">userName</span><span class="p">))</span>
     <span class="n">cnx</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
     <span class="n">cnx</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
@@ -249,12 +249,12 @@
             <span class="k">if</span> <span class="n">binlogevent</span><span class="o">.</span><span class="n">table</span> <span class="o">==</span> <span class="s">"auth_user"</span> <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="n">binlogevent</span><span class="p">)</span><span class="o">.</span><span class="n">__name__</span> <span class="o">==</span> <span class="s">"WriteRowsEvent"</span><span class="p">:</span>
                 <span class="n">userName</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s">'values'</span><span class="p">][</span><span class="s">'username'</span><span class="p">];</span>
                 <span class="n">uid</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s">'values'</span><span class="p">][</span><span class="s">'id'</span><span class="p">];</span>
-                <span class="k">print</span><span class="p">(</span><span class="s">u"INSERT User {} Uid {}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s">'values'</span><span class="p">][</span><span class="s">'username'</span><span class="p">],</span><span class="n">uid</span><span class="p">))</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">u"INSERT User {} Uid {}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s">'values'</span><span class="p">][</span><span class="s">'username'</span><span class="p">],</span><span class="n">uid</span><span class="p">))</span>
 
                 <span class="n">startTask</span><span class="p">(</span><span class="n">userName</span><span class="p">)</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">u"[INFO] 添加用户到集群所有节点 -&gt; {}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">userName</span><span class="p">)</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">u"[INFO] 添加用户到集群所有节点 -&gt; {}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">userName</span><span class="p">)</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
                 <span class="n">updateMysql</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span><span class="n">userName</span><span class="p">)</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">u"[INFO] 去掉Hue SuperUser {} Uid={}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">userName</span><span class="p">,</span> <span class="n">uid</span><span class="p">)</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">u"[INFO] 去掉Hue SuperUser {} Uid={}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">userName</span><span class="p">,</span> <span class="n">uid</span><span class="p">)</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
 
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>

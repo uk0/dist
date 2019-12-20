@@ -135,11 +135,11 @@
 <span class="k">do
     </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"dscn0</span><span class="nv">$i</span><span class="s2"> Disk"</span>
     <span class="nb">echo</span> <span class="s2">"剩余可用大小GB"</span>
-    <span class="nv">temp</span><span class="o">=</span><span class="sb">`</span>ssh dscn0<span class="nv">$i</span> df <span class="nt">-m</span>|grep hadoop | awk <span class="s1">'$4~/^[0-9]/ {split($4,array,"[A-Z]");b+=array[1]} END {print b/1024}'</span><span class="sb">`</span>
-    <span class="nv">DISK_SIZE</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$DISK_SIZE</span><span class="s2"> + </span><span class="nv">$temp</span><span class="s2">"</span> | bc<span class="k">)</span>
+    <span class="nv">temp</span><span class="o">=</span><span class="sb">`</span>ssh dscn0<span class="nv">$i</span> <span class="nb">df</span> <span class="nt">-m</span>|grep hadoop | <span class="nb">awk</span> <span class="s1">'$4~/^[0-9]/ {split($4,array,"[A-Z]");b+=array[1]} END {print b/1024}'</span><span class="sb">`</span>
+    <span class="nv">DISK_SIZE</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$DISK_SIZE</span><span class="s2"> + </span><span class="nv">$temp</span><span class="s2">"</span> | bc<span class="si">)</span>
 
     <span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"总数 剩余 占比 目录"</span>
-    ssh dscn0<span class="nv">$i</span> df <span class="nt">-h</span> | <span class="nb">grep </span>hadoop  | awk <span class="s1">'{print$2, $4, $5, $6}'</span>
+    ssh dscn0<span class="nv">$i</span> <span class="nb">df</span> <span class="nt">-h</span> | <span class="nb">grep </span>hadoop  | <span class="nb">awk</span> <span class="s1">'{print$2, $4, $5, $6}'</span>
 <span class="k">done
 </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\0</span><span class="s2">33[32m 剩余总大小: </span><span class="nv">$DISK_SIZE</span><span class="s2"> GB </span><span class="se">\0</span><span class="s2">33[0m"</span>
 
@@ -155,7 +155,7 @@
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
 
-<span class="nv">TIME_LINE</span><span class="o">=</span><span class="k">$(</span>date +%Y%m%d%H%M%S<span class="k">)</span>
+<span class="nv">TIME_LINE</span><span class="o">=</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d%H%M%S<span class="si">)</span>
 
 
 <span class="k">function </span>getOne<span class="o">(){</span>
@@ -166,16 +166,16 @@
         <span class="nb">exit </span>1
     <span class="k">fi
     </span><span class="nv">log</span><span class="o">=</span><span class="nv">$1</span>
-    <span class="nv">s</span><span class="o">=</span><span class="sb">`</span>date <span class="nt">-d</span> yesterday +%F<span class="sb">`</span> <span class="c">#前一天</span>
+    <span class="nv">s</span><span class="o">=</span><span class="sb">`</span><span class="nb">date</span> <span class="nt">-d</span> yesterday +%F<span class="sb">`</span> <span class="c">#前一天</span>
     <span class="c">#s=$(date +%F) #今天</span>
-    <span class="nv">e</span><span class="o">=</span><span class="k">$(</span>date +%F<span class="k">)</span> <span class="c">#今天</span>
+    <span class="nv">e</span><span class="o">=</span><span class="si">$(</span><span class="nb">date</span> +%F<span class="si">)</span> <span class="c">#今天</span>
     <span class="c"># 根据条件获得开始和结束的行号</span>
-    <span class="nv">sl</span><span class="o">=</span><span class="sb">`</span><span class="nb">cat</span> <span class="nt">-n</span> <span class="nv">$log</span> | <span class="nb">grep</span> <span class="nv">$s</span> | head <span class="nt">-1</span> | sed <span class="s1">'s/^[ \t]*//g'</span> | cut <span class="nt">-f</span> 1<span class="sb">`</span>
-    <span class="nv">el</span><span class="o">=</span><span class="sb">`</span><span class="nb">cat</span> <span class="nt">-n</span> <span class="nv">$log</span> | <span class="nb">grep</span> <span class="nv">$e</span> | tail <span class="nt">-1</span> | sed <span class="s1">'s/^[ \t]*//g'</span> | cut <span class="nt">-f</span> 1<span class="sb">`</span>
+    <span class="nv">sl</span><span class="o">=</span><span class="sb">`</span><span class="nb">cat</span> <span class="nt">-n</span> <span class="nv">$log</span> | <span class="nb">grep</span> <span class="nv">$s</span> | <span class="nb">head</span> <span class="nt">-1</span> | <span class="nb">sed</span> <span class="s1">'s/^[ \t]*//g'</span> | <span class="nb">cut</span> <span class="nt">-f</span> 1<span class="sb">`</span>
+    <span class="nv">el</span><span class="o">=</span><span class="sb">`</span><span class="nb">cat</span> <span class="nt">-n</span> <span class="nv">$log</span> | <span class="nb">grep</span> <span class="nv">$e</span> | <span class="nb">tail</span> <span class="nt">-1</span> | <span class="nb">sed</span> <span class="s1">'s/^[ \t]*//g'</span> | <span class="nb">cut</span> <span class="nt">-f</span> 1<span class="sb">`</span>
     <span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\0</span><span class="s2">33[32m start Line </span><span class="nv">$sl</span><span class="s2"> </span><span class="se">\0</span><span class="s2">33[0m"</span>
     <span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\0</span><span class="s2">33[32m end Line </span><span class="nv">$el</span><span class="s2"> </span><span class="se">\0</span><span class="s2">33[0m"</span>
     <span class="c"># 获取结果并输出到 `date`.log 文件</span>
-    sed <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$sl</span><span class="s2">,</span><span class="nv">$el</span><span class="s2">"</span><span class="s1">'p'</span> <span class="nv">$log</span> <span class="o">&gt;&gt;</span> check_auto_<span class="nv">$TIME_LINE</span>.log
+    <span class="nb">sed</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$sl</span><span class="s2">,</span><span class="nv">$el</span><span class="s2">"</span><span class="s1">'p'</span> <span class="nv">$log</span> <span class="o">&gt;&gt;</span> check_auto_<span class="nv">$TIME_LINE</span>.log
 <span class="o">}</span>
 
 <span class="k">case</span> <span class="nv">$1</span> <span class="k">in</span>

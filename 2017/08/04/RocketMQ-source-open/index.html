@@ -131,13 +131,13 @@
 <h1 id="部分代码">部分代码：</h1>
 <ul>
   <li>Flink程序入口</li>
-  <li>继承RichSinkFunction，重写<code class="highlighter-rouge">open</code> 和 <code class="highlighter-rouge">invoke</code>方法，还有<code class="highlighter-rouge">close</code>。</li>
+  <li>继承RichSinkFunction，重写<code class="language-plaintext highlighter-rouge">open</code> 和 <code class="language-plaintext highlighter-rouge">invoke</code>方法，还有<code class="language-plaintext highlighter-rouge">close</code>。</li>
 </ul>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">final</span> <span class="n">ParameterTool</span> <span class="n">parameterTool</span> <span class="o">=</span> <span class="n">ParameterTool</span><span class="o">.</span><span class="na">fromArgs</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">final</span> <span class="nc">ParameterTool</span> <span class="n">parameterTool</span> <span class="o">=</span> <span class="nc">ParameterTool</span><span class="o">.</span><span class="na">fromArgs</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">parameterTool</span><span class="o">.</span><span class="na">getNumberOfParameters</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Missing parameters!"</span><span class="o">);</span>
-                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\nUsage: RocketMQ \n"</span> <span class="o">+</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Missing parameters!"</span><span class="o">);</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\nUsage: RocketMQ \n"</span> <span class="o">+</span>
                         <span class="s">"--topic &lt;topic&gt; \n"</span> <span class="o">+</span>
                         <span class="s">"--cgroup &lt;consumerGroupName&gt; \n"</span> <span class="o">+</span>
                         <span class="s">"--conf &lt;consumerGroupName&gt; \n"</span> <span class="o">+</span>
@@ -146,20 +146,20 @@
                 <span class="k">return</span><span class="o">;</span>
         <span class="o">}</span>
             <span class="n">env</span><span class="o">.</span><span class="na">getConfig</span><span class="o">().</span><span class="na">enableSysoutLogging</span><span class="o">();</span>
-            <span class="n">env</span><span class="o">.</span><span class="na">getConfig</span><span class="o">().</span><span class="na">setRestartStrategy</span><span class="o">(</span><span class="n">RestartStrategies</span>
+            <span class="n">env</span><span class="o">.</span><span class="na">getConfig</span><span class="o">().</span><span class="na">setRestartStrategy</span><span class="o">(</span><span class="nc">RestartStrategies</span>
                     <span class="o">.</span><span class="na">fixedDelayRestart</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="mi">100</span><span class="o">));</span>
             <span class="n">env</span><span class="o">.</span><span class="na">enableCheckpointing</span><span class="o">(</span><span class="mi">5000</span><span class="o">);</span>
             <span class="n">env</span><span class="o">.</span><span class="na">setMaxParallelism</span><span class="o">(</span><span class="mi">72</span><span class="o">);</span>
                <span class="cm">/**创建 Configuration 对象**/</span>
-            <span class="n">Configuration</span> <span class="n">conf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Configuration</span><span class="o">();</span>
+            <span class="nc">Configuration</span> <span class="n">conf</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Configuration</span><span class="o">();</span>
             <span class="n">conf</span><span class="o">.</span><span class="na">setString</span><span class="o">(</span><span class="s">"topic"</span><span class="o">,</span><span class="n">parameterTool</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"topic"</span><span class="o">));</span>
             <span class="n">conf</span><span class="o">.</span><span class="na">setString</span><span class="o">(</span><span class="s">"cgroup"</span><span class="o">,</span><span class="n">parameterTool</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"cgroup"</span><span class="o">));</span>
             <span class="n">conf</span><span class="o">.</span><span class="na">setString</span><span class="o">(</span><span class="s">"conf"</span><span class="o">,</span><span class="n">parameterTool</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"conf"</span><span class="o">));</span>
             <span class="n">conf</span><span class="o">.</span><span class="na">setString</span><span class="o">(</span><span class="s">"hdfs"</span><span class="o">,</span><span class="n">parameterTool</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"hdfs"</span><span class="o">));</span>
             <span class="cm">/**将Configuration存入数据，放入全局执行环境内*/</span>
             <span class="n">env</span><span class="o">.</span><span class="na">getConfig</span><span class="o">().</span><span class="na">setGlobalJobParameters</span><span class="o">(</span><span class="n">conf</span><span class="o">);</span>
-            <span class="n">RocketMQSource</span> <span class="n">rocketMQSource</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RocketMQSource</span><span class="o">();</span>
-            <span class="n">DataStream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">sourceStream</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="na">addSource</span><span class="o">(</span><span class="n">rocketMQSource</span><span class="o">);</span>
+            <span class="nc">RocketMQSource</span> <span class="n">rocketMQSource</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RocketMQSource</span><span class="o">();</span>
+            <span class="nc">DataStream</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">sourceStream</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="na">addSource</span><span class="o">(</span><span class="n">rocketMQSource</span><span class="o">);</span>
 </code></pre></div></div>
 <h1 id="source-重点">Source [重点]</h1>
 <ul>
@@ -167,35 +167,35 @@
 </ul>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">open</span><span class="o">(</span><span class="n">Configuration</span> <span class="n">parameters</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">open</span><span class="o">(</span><span class="nc">Configuration</span> <span class="n">parameters</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
         <span class="kd">super</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">parameters</span><span class="o">);</span>
         <span class="cm">/**获取运行环境内的参数**/</span>
-        <span class="n">ExecutionConfig</span><span class="o">.</span><span class="na">GlobalJobParameters</span> <span class="n">globalParams</span> <span class="o">=</span> <span class="n">getRuntimeContext</span><span class="o">().</span><span class="na">getExecutionConfig</span><span class="o">().</span><span class="na">getGlobalJobParameters</span><span class="o">();</span>
+        <span class="nc">ExecutionConfig</span><span class="o">.</span><span class="na">GlobalJobParameters</span> <span class="n">globalParams</span> <span class="o">=</span> <span class="n">getRuntimeContext</span><span class="o">().</span><span class="na">getExecutionConfig</span><span class="o">().</span><span class="na">getGlobalJobParameters</span><span class="o">();</span>
         <span class="cm">/**执行参数提取**/</span>
-        <span class="n">Configuration</span> <span class="n">globConf</span> <span class="o">=</span> <span class="o">(</span><span class="n">Configuration</span><span class="o">)</span> <span class="n">globalParams</span><span class="o">;</span>
-        <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedBlockingQueue</span><span class="o">&lt;&gt;(</span><span class="mi">1000</span><span class="o">);</span>
-        <span class="n">MQConfig</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">globConf</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"conf"</span><span class="o">,</span><span class="kc">null</span><span class="o">));</span>
+        <span class="nc">Configuration</span> <span class="n">globConf</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Configuration</span><span class="o">)</span> <span class="n">globalParams</span><span class="o">;</span>
+        <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinkedBlockingQueue</span><span class="o">&lt;&gt;(</span><span class="mi">1000</span><span class="o">);</span>
+        <span class="nc">MQConfig</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">globConf</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"conf"</span><span class="o">,</span><span class="kc">null</span><span class="o">));</span>
         <span class="cm">/**拿到存入参数，并且设置默认值**/</span>
-        <span class="n">consumer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultMQPushConsumer</span><span class="o">(</span> <span class="n">globConf</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"cgroup"</span><span class="o">,</span> <span class="kc">null</span><span class="o">));</span>
-        <span class="n">consumer</span><span class="o">.</span><span class="na">setNamesrvAddr</span><span class="o">(</span> <span class="n">MQConfig</span><span class="o">.</span><span class="na">getMQ</span><span class="o">());</span>
-        <span class="n">consumer</span><span class="o">.</span><span class="na">setInstanceName</span><span class="o">(</span><span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
-        <span class="n">consumer</span><span class="o">.</span><span class="na">setMessageModel</span><span class="o">(</span><span class="n">MessageModel</span><span class="o">.</span><span class="na">CLUSTERING</span><span class="o">);</span><span class="c1">// 消费模式</span>
-        <span class="n">consumer</span><span class="o">.</span><span class="na">setConsumeFromWhere</span><span class="o">(</span><span class="n">ConsumeFromWhere</span><span class="o">.</span><span class="na">CONSUME_FROM_FIRST_OFFSET</span><span class="o">);</span>
+        <span class="n">consumer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DefaultMQPushConsumer</span><span class="o">(</span> <span class="n">globConf</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"cgroup"</span><span class="o">,</span> <span class="kc">null</span><span class="o">));</span>
+        <span class="n">consumer</span><span class="o">.</span><span class="na">setNamesrvAddr</span><span class="o">(</span> <span class="nc">MQConfig</span><span class="o">.</span><span class="na">getMQ</span><span class="o">());</span>
+        <span class="n">consumer</span><span class="o">.</span><span class="na">setInstanceName</span><span class="o">(</span><span class="no">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
+        <span class="n">consumer</span><span class="o">.</span><span class="na">setMessageModel</span><span class="o">(</span><span class="nc">MessageModel</span><span class="o">.</span><span class="na">CLUSTERING</span><span class="o">);</span><span class="c1">// 消费模式</span>
+        <span class="n">consumer</span><span class="o">.</span><span class="na">setConsumeFromWhere</span><span class="o">(</span><span class="nc">ConsumeFromWhere</span><span class="o">.</span><span class="na">CONSUME_FROM_FIRST_OFFSET</span><span class="o">);</span>
         <span class="n">consumer</span><span class="o">.</span><span class="na">registerMessageListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
         <span class="n">consumer</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="n">globConf</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"topic"</span><span class="o">,</span> <span class="kc">null</span><span class="o">),</span> <span class="s">"*"</span><span class="o">);</span>
         <span class="n">consumer</span><span class="o">.</span><span class="na">setConsumeThreadMax</span><span class="o">(</span><span class="mi">64</span><span class="o">);</span>
         <span class="n">consumer</span><span class="o">.</span><span class="na">setConsumeThreadMin</span><span class="o">(</span><span class="mi">8</span><span class="o">);</span>
         <span class="n">consumer</span><span class="o">.</span><span class="na">setConsumeMessageBatchMaxSize</span><span class="o">(</span><span class="mi">8</span><span class="o">);</span><span class="c1">//消息数量每次读取的消息数量</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"启动线程"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"启动线程"</span><span class="o">);</span>
         <span class="n">consumer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"RocketMQ Started."</span><span class="o">);</span>
-        <span class="n">LOG</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"consumeBatchSize:{} pullBatchSize:{} consumeThread:{}"</span><span class="o">,</span><span class="n">consumer</span><span class="o">.</span><span class="na">getConsumeMessageBatchMaxSize</span><span class="o">(),</span><span class="n">consumer</span><span class="o">.</span><span class="na">getPullBatchSize</span><span class="o">(),</span><span class="n">consumer</span><span class="o">.</span><span class="na">getConsumeThreadMax</span><span class="o">());</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"RocketMQ Started."</span><span class="o">);</span>
+        <span class="no">LOG</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"consumeBatchSize:{} pullBatchSize:{} consumeThread:{}"</span><span class="o">,</span><span class="n">consumer</span><span class="o">.</span><span class="na">getConsumeMessageBatchMaxSize</span><span class="o">(),</span><span class="n">consumer</span><span class="o">.</span><span class="na">getPullBatchSize</span><span class="o">(),</span><span class="n">consumer</span><span class="o">.</span><span class="na">getConsumeThreadMax</span><span class="o">());</span>
     <span class="o">}</span>
 </code></pre></div></div>
 
 <ul>
   <li>以上代码经过验证可以直接拿去修改调用</li>
-  <li>Owner <code class="highlighter-rouge">breakEval13</code></li>
+  <li>Owner <code class="language-plaintext highlighter-rouge">breakEval13</code></li>
   <li>https://github.com/breakEval13</li>
 </ul>
 

@@ -205,7 +205,7 @@ author：zhangjianxin</p>
 <span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">23</span><span class="p">];</span>
 <span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">);</span>  <span class="c1">// 66</span>
 <span class="kd">var</span> <span class="nx">even</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">v</span> <span class="o">=&gt;</span> <span class="nx">v</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">// [6, 0, 18]</span>
-<span class="kd">var</span> <span class="kr">double</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">v</span> <span class="o">=&gt;</span> <span class="nx">v</span> <span class="o">*</span> <span class="mi">2</span><span class="p">);</span>       <span class="c1">// [10, 12, 26, 0, 2, 36, 46]</span>
+<span class="kd">var</span> <span class="nx">double</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">v</span> <span class="o">=&gt;</span> <span class="nx">v</span> <span class="o">*</span> <span class="mi">2</span><span class="p">);</span>       <span class="c1">// [10, 12, 26, 0, 2, 36, 46]</span>
 
 </code></pre></div></div>
 
@@ -280,7 +280,7 @@ author：zhangjianxin</p>
 <span class="nx">result</span> <span class="o">=</span> <span class="nx">fact</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
 </code></pre></div></div>
 
-<p>在匿名函数下，这个递归该怎么写呢？对于匿名函数来说，<code class="highlighter-rouge">我们可以把匿名函数当成一个参数传给另外一个函数，因为函数的参数有名字，所以就可以调用自己了</code>。
+<p>在匿名函数下，这个递归该怎么写呢？对于匿名函数来说，<code class="language-plaintext highlighter-rouge">我们可以把匿名函数当成一个参数传给另外一个函数，因为函数的参数有名字，所以就可以调用自己了</code>。
 如下所示：</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">combinator</span><span class="p">(</span><span class="nx">func</span><span class="p">)</span> <span class="p">{</span>
@@ -356,7 +356,7 @@ author：zhangjianxin</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">HighOrderFact</span> <span class="p">(</span> <span class="nx">HighOrderFact</span> <span class="p">)</span> <span class="p">(</span> <span class="mi">5</span> <span class="p">)</span>
 </code></pre></div></div>
 
-<p>但是，这样让用户来调用很不爽，所以，以我们一个<code class="highlighter-rouge">函数</code>把 <code class="highlighter-rouge">HighOrderFact</code> ( <code class="highlighter-rouge">HighOrderFact</code> ) 给代理一下：</p>
+<p>但是，这样让用户来调用很不爽，所以，以我们一个<code class="language-plaintext highlighter-rouge">函数</code>把 <code class="language-plaintext highlighter-rouge">HighOrderFact</code> ( <code class="language-plaintext highlighter-rouge">HighOrderFact</code> ) 给代理一下：</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fact</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">hifunc</span> <span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nx">hifunc</span> <span class="p">(</span> <span class="nx">hifunc</span> <span class="p">);</span>
@@ -447,7 +447,7 @@ author：zhangjianxin</p>
     </ul>
   </li>
   <li>以上操作经过验证可以直接拿去。</li>
-  <li>Owner <code class="highlighter-rouge">breakEval13</code></li>
+  <li>Owner <code class="language-plaintext highlighter-rouge">breakEval13</code></li>
   <li>https://github.com/breakEval13</li>
 </ul>
 

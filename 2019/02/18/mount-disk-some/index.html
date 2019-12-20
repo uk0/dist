@@ -132,11 +132,11 @@
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
 <span class="c">################## base ###############</span>
-<span class="nv">bashPath</span><span class="o">=</span><span class="k">$(</span><span class="nb">cd</span> <span class="sb">`</span>dirname <span class="nv">$0</span><span class="sb">`</span><span class="p">;</span> <span class="nb">pwd</span><span class="k">)</span>
+<span class="nv">bashPath</span><span class="o">=</span><span class="si">$(</span><span class="nb">cd</span> <span class="sb">`</span><span class="nb">dirname</span> <span class="nv">$0</span><span class="sb">`</span><span class="p">;</span> <span class="nb">pwd</span><span class="si">)</span>
 
 <span class="k">${</span><span class="nv">bashPath</span><span class="k">}</span>/lvms.sh
 
-sleep 2
+<span class="nb">sleep </span>2
 
 <span class="k">${</span><span class="nv">bashPath</span><span class="k">}</span>/parted.sh
 </code></pre></div></div>
@@ -146,7 +146,7 @@ sleep 2
 </ul>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
-yum install <span class="nt">-y</span> lvm2
+yum <span class="nb">install</span> <span class="nt">-y</span> lvm2
 
 <span class="c">## disk---&gt;pv---&gt;vg---&gt;lv</span>
 
@@ -172,7 +172,7 @@ quit
 
 </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\0</span><span class="s2">33[32m disk successfully lvm </span><span class="nv">$j</span><span class="s2"> </span><span class="se">\0</span><span class="s2">33[0m"</span>
 
-mkdir <span class="nt">-p</span> <span class="nv">$partition</span>
+<span class="nb">mkdir</span> <span class="nt">-p</span> <span class="nv">$partition</span>
 
 pvcreate /dev/sd<span class="k">${</span><span class="nv">j</span><span class="k">}</span>1
 
@@ -186,7 +186,7 @@ mkfs.ext4  /dev/vg_data_<span class="k">${</span><span class="nv">j</span><span 
 
 <span class="nb">echo</span> <span class="nv">$mount</span> <span class="o">&gt;&gt;</span>/etc/fstab                <span class="c">#写入分区表</span>
 
-sleep 1s
+<span class="nb">sleep </span>1s
 
 mount <span class="nt">-a</span>
 
@@ -214,17 +214,17 @@ ignore
 quit
 </span><span class="no">FORMAT
 </span>mkfs.ext4 <span class="nt">-T</span> largefile  /dev/sd<span class="k">${</span><span class="nv">j</span><span class="k">}</span>1    <span class="c">#格式化磁盘</span>
-mkdir <span class="nt">-p</span> /data/disk<span class="k">${</span><span class="nv">i</span><span class="k">}</span>
+<span class="nb">mkdir</span> <span class="nt">-p</span> /data/disk<span class="k">${</span><span class="nv">i</span><span class="k">}</span>
 <span class="nv">mount</span><span class="o">=</span><span class="s2">"/dev/sd</span><span class="k">${</span><span class="nv">j</span><span class="k">}</span><span class="s2">1       /data/disk</span><span class="k">${</span><span class="nv">i</span><span class="k">}</span><span class="s2">  ext4    defaults        0       0"</span>
-rm <span class="nt">-rf</span> /data/disk<span class="k">${</span><span class="nv">i</span><span class="k">}</span>/<span class="k">*</span>
+<span class="nb">rm</span> <span class="nt">-rf</span> /data/disk<span class="k">${</span><span class="nv">i</span><span class="k">}</span>/<span class="k">*</span>
 <span class="nb">echo</span> <span class="nv">$mount</span> <span class="o">&gt;&gt;</span>/etc/fstab                <span class="c">#写入分区表</span>
 <span class="nv">i</span><span class="o">=</span><span class="k">$((</span><span class="nv">$i</span><span class="o">+</span><span class="m">1</span><span class="k">))</span>
 <span class="k">done
 </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\0</span><span class="s2">33[32m *****Formating  and Mounting have finished wait 5s **** </span><span class="se">\0</span><span class="s2">33[0m"</span>
 
-chmod <span class="nt">-R</span> 777 /data/<span class="k">*</span>
+<span class="nb">chmod</span> <span class="nt">-R</span> 777 /data/<span class="k">*</span>
 
-sleep 5
+<span class="nb">sleep </span>5
 
 mount <span class="nt">-a</span>
 </code></pre></div></div>

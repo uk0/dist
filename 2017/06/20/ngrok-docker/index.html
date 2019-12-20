@@ -137,40 +137,40 @@ It’s based on the excellent work of <a href="https://registry.hub.docker.com/u
 
 <ul>
   <li><strong>Small</strong>: Built using <a href="https://registry.hub.docker.com/_/busybox">busybox</a>.</li>
-  <li><strong>Simple</strong>: Just link as <code class="highlighter-rouge">http</code> or <code class="highlighter-rouge">https</code> in most cases, see below; exposes ngrok server <code class="highlighter-rouge">4040</code> port.</li>
-  <li><strong>Secure</strong>: Runs as non-root user with a random UID <code class="highlighter-rouge">6737</code> (to avoid mapping to an existing UID).</li>
+  <li><strong>Simple</strong>: Just link as <code class="language-plaintext highlighter-rouge">http</code> or <code class="language-plaintext highlighter-rouge">https</code> in most cases, see below; exposes ngrok server <code class="language-plaintext highlighter-rouge">4040</code> port.</li>
+  <li><strong>Secure</strong>: Runs as non-root user with a random UID <code class="language-plaintext highlighter-rouge">6737</code> (to avoid mapping to an existing UID).</li>
 </ul>
 
 <h2 id="configuration">Configuration</h2>
 
-<p>To see command-line options, run <code class="highlighter-rouge">docker run --rm wernight/ngrok ngrok --help</code>.</p>
+<p>To see command-line options, run <code class="language-plaintext highlighter-rouge">docker run --rm wernight/ngrok ngrok --help</code>.</p>
 
 <h2 id="usage">Usage</h2>
 
-<p>Supposing you’ve an Apache or Nginx Docker container named <code class="highlighter-rouge">web_service_container</code> listening on port 80:</p>
+<p>Supposing you’ve an Apache or Nginx Docker container named <code class="language-plaintext highlighter-rouge">web_service_container</code> listening on port 80:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker run --rm -it --link web_service_container wernight/ngrok ngrok http web_service_container:80
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker run --rm -it --link web_service_container wernight/ngrok ngrok http web_service_container:80
 </code></pre></div></div>
 
 <h3 id="environment-variables">Environment variables</h3>
 
 <p><em>Please consider using directly the command-line arguments of Ngrok.</em></p>
 
-<p>If you use the default <code class="highlighter-rouge">CMD</code> (i.e. don’t specify the ngrok command-line but only <code class="highlighter-rouge">wernight/ngrok</code>),
+<p>If you use the default <code class="language-plaintext highlighter-rouge">CMD</code> (i.e. don’t specify the ngrok command-line but only <code class="language-plaintext highlighter-rouge">wernight/ngrok</code>),
 then you can use instead envrionment variables magic below.</p>
 
-<p>You simply have to link the Ngrok container to the application under the <code class="highlighter-rouge">app</code> or <code class="highlighter-rouge">http</code> or <code class="highlighter-rouge">https</code> aliases, and all of the configuration will be done for you by default.</p>
+<p>You simply have to link the Ngrok container to the application under the <code class="language-plaintext highlighter-rouge">app</code> or <code class="language-plaintext highlighter-rouge">http</code> or <code class="language-plaintext highlighter-rouge">https</code> aliases, and all of the configuration will be done for you by default.</p>
 
-<p>Additionally, you can specify one of several environment variable (via <code class="highlighter-rouge">-e</code>) to configure your Ngrok tunnel:</p>
+<p>Additionally, you can specify one of several environment variable (via <code class="language-plaintext highlighter-rouge">-e</code>) to configure your Ngrok tunnel:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">NGROK_AUTH</code> - Authentication key for your Ngrok account. This is needed for custom subdomains, custom domains, and HTTP authentication.</li>
-  <li><code class="highlighter-rouge">NGROK_SUBDOMAIN</code> - Name of the custom subdomain to use for your tunnel. You must also provide the authentication token.</li>
-  <li><code class="highlighter-rouge">NGROK_HOSTNAME</code> - Paying Ngrok customers can specify a custom domain. Only one subdomain or domain can be specified, with the domain taking priority.</li>
-  <li><code class="highlighter-rouge">NGROK_USERNAME</code> - Username to use for HTTP authentication on the tunnel. You must also specify an authentication token.</li>
-  <li><code class="highlighter-rouge">NGROK_PASSWORD</code> - Password to use for HTTP authentication on the tunnel. You must also specify an authentication token.</li>
-  <li><code class="highlighter-rouge">NGROK_PROTOCOL</code> - Can either be <code class="highlighter-rouge">HTTP</code> or <code class="highlighter-rouge">TCP</code>, and it defaults to <code class="highlighter-rouge">HTTP</code> if not specified. If set to <code class="highlighter-rouge">TCP</code>, Ngrok will allocate a port instead of a subdomain and proxy TCP requests directly to your application.</li>
-  <li><code class="highlighter-rouge">NGROK_PORT</code> - Port to expose (defaults to <code class="highlighter-rouge">80</code> for <code class="highlighter-rouge">HTTP</code> protocol).</li>
+  <li><code class="language-plaintext highlighter-rouge">NGROK_AUTH</code> - Authentication key for your Ngrok account. This is needed for custom subdomains, custom domains, and HTTP authentication.</li>
+  <li><code class="language-plaintext highlighter-rouge">NGROK_SUBDOMAIN</code> - Name of the custom subdomain to use for your tunnel. You must also provide the authentication token.</li>
+  <li><code class="language-plaintext highlighter-rouge">NGROK_HOSTNAME</code> - Paying Ngrok customers can specify a custom domain. Only one subdomain or domain can be specified, with the domain taking priority.</li>
+  <li><code class="language-plaintext highlighter-rouge">NGROK_USERNAME</code> - Username to use for HTTP authentication on the tunnel. You must also specify an authentication token.</li>
+  <li><code class="language-plaintext highlighter-rouge">NGROK_PASSWORD</code> - Password to use for HTTP authentication on the tunnel. You must also specify an authentication token.</li>
+  <li><code class="language-plaintext highlighter-rouge">NGROK_PROTOCOL</code> - Can either be <code class="language-plaintext highlighter-rouge">HTTP</code> or <code class="language-plaintext highlighter-rouge">TCP</code>, and it defaults to <code class="language-plaintext highlighter-rouge">HTTP</code> if not specified. If set to <code class="language-plaintext highlighter-rouge">TCP</code>, Ngrok will allocate a port instead of a subdomain and proxy TCP requests directly to your application.</li>
+  <li><code class="language-plaintext highlighter-rouge">NGROK_PORT</code> - Port to expose (defaults to <code class="language-plaintext highlighter-rouge">80</code> for <code class="language-plaintext highlighter-rouge">HTTP</code> protocol).</li>
   <li></li>
 </ul>
 
@@ -178,9 +178,9 @@ then you can use instead envrionment variables magic below.</p>
 
 <ol>
   <li>
-    <p>We’ll set up a simple example HTTP server in a docker container named <code class="highlighter-rouge">www</code>:</p>
+    <p>We’ll set up a simple example HTTP server in a docker container named <code class="language-plaintext highlighter-rouge">www</code>:</p>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker run -v /usr/share/nginx/html --name www_data busybox true
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker run -v /usr/share/nginx/html --name www_data busybox true
 $ docker run --rm --volumes-from www_data busybox /bin/sh -c 'echo "&lt;h1&gt;Yo&lt;/h1&gt;" &gt; /usr/share/nginx/html/index.html'
 $ docker run -d -p 80 --volumes-from www_data --name www nginx
 $ curl $(docker port www 80)
@@ -190,34 +190,34 @@ $ curl $(docker port www 80)
   <li>
     <p>Now we’ll link that HTTP server into an ngrok container to expose it on the internet:</p>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker run -d -p 4040 --link www:http --name www_ngrok wernight/ngrok
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker run -d -p 4040 --link www:http --name www_ngrok wernight/ngrok
 </code></pre></div>    </div>
   </li>
   <li>
     <p>You can now access the <a href="https://ngrok.com/docs#client-api">API</a> to find the assigned domain:</p>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ curl $(docker port www_ngrok 4040)/api/tunnels
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ curl $(docker port www_ngrok 4040)/api/tunnels
 </code></pre></div>    </div>
 
     <p>or access the web UI to see requests and responses:</p>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ xdg-open http://$(docker port www_ngrok 4040)
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ xdg-open http://$(docker port www_ngrok 4040)
 </code></pre></div>    </div>
   </li>
 </ol>
 
 <h3 id="helper">Helper</h3>
 
-<p>For common cases you may want to create an alias in your <code class="highlighter-rouge">~/.profile</code> (or <code class="highlighter-rouge">~/.bashrc</code>, <code class="highlighter-rouge">~/.zshrc</code>, or equivalent):</p>
+<p>For common cases you may want to create an alias in your <code class="language-plaintext highlighter-rouge">~/.profile</code> (or <code class="language-plaintext highlighter-rouge">~/.bashrc</code>, <code class="language-plaintext highlighter-rouge">~/.zshrc</code>, or equivalent):</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function docker-ngrok() {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function docker-ngrok() {
   docker run --rm -it --link "$1":http wernight/ngrok ngrok http http:80
 }
 # For ZSH with Oh-My-Zsh! and 'docker' plugin enabled, you can also enable auto-completion:
 #compdef __docker_containers docker-ngrok
 </code></pre></div></div>
 
-<p>Then to the simple example just do <code class="highlighter-rouge">docker-ngrok web_service_container</code>.</p>
+<p>Then to the simple example just do <code class="language-plaintext highlighter-rouge">docker-ngrok web_service_container</code>.</p>
 
 <h2 id="feedbacks">Feedbacks</h2>
 

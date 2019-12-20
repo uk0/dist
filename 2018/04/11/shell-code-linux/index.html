@@ -148,7 +148,7 @@
 <h3 id="在visual-c上按f10进入反汇编代码">在Visual C++上按F10进入反汇编代码:</h3>
 
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">:</span><span class="err">#</span><span class="n">include</span><span class="err">”</span><span class="n">windows</span><span class="p">.</span><span class="n">h</span><span class="err">”</span>  
-<span class="mi">2</span><span class="o">:</span><span class="kt">void</span> <span class="n">main</span><span class="p">()</span>  
+<span class="mi">2</span><span class="o">:</span><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>  
 <span class="mi">3</span><span class="o">:</span>    <span class="p">{</span>  
 <span class="mo">00401010</span>   <span class="n">push</span>        <span class="n">ebp</span>  
 <span class="mo">00401011</span>   <span class="n">mov</span>         <span class="n">ebp</span><span class="p">,</span><span class="n">esp</span>  
@@ -167,7 +167,7 @@
 <span class="mo">00401031</span>   <span class="n">call</span>        <span class="n">dword</span> <span class="n">ptr</span> <span class="p">[</span><span class="n">__imp__WinExec</span><span class="err">@</span><span class="mi">8</span> <span class="p">(</span><span class="mo">0042413</span><span class="n">c</span><span class="p">)]</span>  
 <span class="mo">00401037</span>   <span class="n">cmp</span>         <span class="n">esi</span><span class="p">,</span><span class="n">esp</span>  
 <span class="mo">0040103</span><span class="mi">9</span>   <span class="n">call</span>        <span class="n">__chkesp</span> <span class="p">(</span><span class="mo">00401070</span><span class="p">)</span>  
-<span class="mi">5</span><span class="o">:</span>    <span class="p">}</span>  
+<span class="mi">5</span><span class="o">:</span>    <span class="err">}</span>  
 </code></pre></div></div>
 
 <p>通过这个程序我们可以清楚的看到计算机在调用WinExec函数的时候是先把两个参数从右至左一次压入栈，然后调用call函数转到WinExec的地址去。但是要注意的是call函数除了实现地址的跳转还有一点就是把当前的EIP压入栈。</p>
@@ -199,12 +199,12 @@
         <span class="n">mov</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mo">04</span><span class="n">h</span><span class="p">],</span><span class="mi">65</span><span class="n">h</span>  
         <span class="n">mov</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mo">03</span><span class="n">h</span><span class="p">],</span><span class="mi">78</span><span class="n">h</span>  
         <span class="n">mov</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mo">02</span><span class="n">h</span><span class="p">],</span><span class="mi">65</span><span class="n">h</span>  
-        <span class="n">push</span> <span class="mi">1</span>         <span class="c1">//压入第一个参数  
-</span>        <span class="n">lea</span> <span class="n">eax</span><span class="p">,[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">08</span><span class="n">h</span><span class="p">]</span>           
-        <span class="n">push</span> <span class="n">eax</span>           <span class="c1">//压入第二个参数  
-</span>        <span class="n">mov</span> <span class="n">edx</span><span class="p">,</span><span class="mh">0x7C86250D</span>  
-        <span class="n">call</span> <span class="n">edx</span>            <span class="c1">//调用WinExec  
-</span>        <span class="n">leave</span>  
+        <span class="n">push</span> <span class="mi">1</span>         <span class="c1">//压入第一个参数  </span>
+        <span class="n">lea</span> <span class="n">eax</span><span class="p">,[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">08</span><span class="n">h</span><span class="p">]</span>           
+        <span class="n">push</span> <span class="n">eax</span>           <span class="c1">//压入第二个参数  </span>
+        <span class="n">mov</span> <span class="n">edx</span><span class="p">,</span><span class="mh">0x7C86250D</span>  
+        <span class="n">call</span> <span class="n">edx</span>            <span class="c1">//调用WinExec  </span>
+        <span class="n">leave</span>  
     <span class="p">};</span>  
 <span class="p">}</span>  
 
@@ -237,8 +237,8 @@
     <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">feof</span><span class="p">(</span><span class="n">fp1</span><span class="p">))</span>  
     <span class="p">{</span>  
         <span class="n">ch</span><span class="o">=</span><span class="n">fgetc</span><span class="p">(</span><span class="n">fp1</span><span class="p">);</span>  
-        <span class="n">fputc</span><span class="p">(</span><span class="err">'</span><span class="c1">//',fp2);  
-</span>        <span class="n">fputc</span><span class="p">(</span><span class="sc">'x'</span><span class="p">,</span><span class="n">fp2</span><span class="p">);</span>  
+        <span class="n">fputc</span><span class="p">(</span><span class="err">'</span><span class="c1">//',fp2);  </span>
+        <span class="n">fputc</span><span class="p">(</span><span class="sc">'x'</span><span class="p">,</span><span class="n">fp2</span><span class="p">);</span>  
         <span class="n">fputc</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span><span class="n">fp2</span><span class="p">);</span>  
         <span class="n">ch</span><span class="o">=</span><span class="n">fgetc</span><span class="p">(</span><span class="n">fp1</span><span class="p">);</span>  
         <span class="n">fputc</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span><span class="n">fp2</span><span class="p">);</span>  

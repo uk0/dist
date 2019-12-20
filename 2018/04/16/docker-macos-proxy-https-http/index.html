@@ -142,14 +142,14 @@
 <p>在本地设置代理时，把监听地址从 127.0.0.1 调整到 0.0.0.0。不同的软件设置方法不太相同，我用的privoxy。</p>
 
 <ul>
-  <li>Mac 安装 <code class="highlighter-rouge">privoxy</code>
+  <li>Mac 安装 <code class="language-plaintext highlighter-rouge">privoxy</code>
 </li>
 </ul>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-brew install privoxy
+brew <span class="nb">install </span>privoxy
 <span class="c"># brew</span>
-/usr/bin/ruby <span class="nt">-e</span> <span class="s2">"</span><span class="k">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
+/usr/bin/ruby <span class="nt">-e</span> <span class="s2">"</span><span class="si">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/master/install<span class="si">)</span><span class="s2">"</span>
 
 <span class="c"># Addr: https://brew.sh</span>
 
@@ -179,7 +179,7 @@ brew install privoxy
 </code></pre></div></div>
 
 <ol>
-  <li>在 Docker for Mac 里设置代理 你可以看看自己的本地代理是在监听哪个端 <code class="highlighter-rouge">privoxy</code></li>
+  <li>在 Docker for Mac 里设置代理 你可以看看自己的本地代理是在监听哪个端 <code class="language-plaintext highlighter-rouge">privoxy</code></li>
 </ol>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># 监听地址</span>

@@ -141,15 +141,15 @@ author：zhangjianxin</p>
 <span class="kn">import</span> <span class="nn">java.util.concurrent.TimeUnit</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.util.concurrent.atomic.AtomicLong</span><span class="o">;</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ConcurrentBlockingQueue</span><span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Exchengeable</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ConcurrentBlockingQueue</span><span class="o">&lt;</span><span class="no">T</span> <span class="kd">extends</span> <span class="nc">Exchengeable</span><span class="o">&gt;</span> <span class="o">{</span>
         <span class="kd">public</span> <span class="kt">long</span> <span class="n">p1</span><span class="o">,</span> <span class="n">p2</span><span class="o">,</span> <span class="n">p3</span><span class="o">,</span> <span class="n">p4</span><span class="o">,</span> <span class="n">p5</span><span class="o">,</span> <span class="n">p6</span><span class="o">,</span> <span class="n">p7</span><span class="o">;</span> <span class="c1">// cache line padding</span>
         <span class="kd">private</span> <span class="kd">volatile</span> <span class="kt">long</span> <span class="n">proCursor</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
         <span class="kd">public</span> <span class="kt">long</span> <span class="n">p8</span><span class="o">,</span> <span class="n">p9</span><span class="o">,</span> <span class="n">p10</span><span class="o">,</span> <span class="n">p11</span><span class="o">,</span> <span class="n">p12</span><span class="o">,</span> <span class="n">p13</span><span class="o">,</span> <span class="n">p14</span><span class="o">;</span> <span class="c1">// cache line padding</span>
         <span class="kd">private</span> <span class="kd">volatile</span> <span class="kt">long</span> <span class="n">comsumeCursor</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-        <span class="kd">private</span> <span class="kd">final</span> <span class="n">AtomicLong</span> <span class="n">produceSequence</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AtomicLong</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
-        <span class="kd">private</span> <span class="kd">final</span> <span class="n">AtomicLong</span> <span class="n">comsumeSequence</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AtomicLong</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+        <span class="kd">private</span> <span class="kd">final</span> <span class="nc">AtomicLong</span> <span class="n">produceSequence</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AtomicLong</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+        <span class="kd">private</span> <span class="kd">final</span> <span class="nc">AtomicLong</span> <span class="n">comsumeSequence</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AtomicLong</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
 
-        <span class="kd">private</span> <span class="kd">final</span> <span class="n">Exchengeable</span><span class="o">[]</span> <span class="n">entries</span><span class="o">;</span>
+        <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Exchengeable</span><span class="o">[]</span> <span class="n">entries</span><span class="o">;</span>
         <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">ringModMask</span><span class="o">;</span>
 
         <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="nf">nextHighestPowerOfTwo</span><span class="o">(</span><span class="kt">int</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
@@ -164,17 +164,17 @@ author：zhangjianxin</p>
         <span class="o">}</span>
 
         <span class="kd">public</span> <span class="nf">ConcurrentBlockingQueue</span><span class="o">(</span><span class="kd">final</span> <span class="kt">int</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
-                <span class="kt">int</span> <span class="n">sizeAsPowerOfTwo</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">nextHighestPowerOfTwo</span><span class="o">(</span><span class="n">size</span><span class="o">),</span> <span class="mi">1</span><span class="o">);</span>
+                <span class="kt">int</span> <span class="n">sizeAsPowerOfTwo</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">nextHighestPowerOfTwo</span><span class="o">(</span><span class="n">size</span><span class="o">),</span> <span class="mi">1</span><span class="o">);</span>
                 <span class="n">ringModMask</span> <span class="o">=</span> <span class="n">sizeAsPowerOfTwo</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-                <span class="n">entries</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Exchengeable</span><span class="o">[</span><span class="n">sizeAsPowerOfTwo</span><span class="o">];</span>
+                <span class="n">entries</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Exchengeable</span><span class="o">[</span><span class="n">sizeAsPowerOfTwo</span><span class="o">];</span>
         <span class="o">}</span>
 
         <span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">"unchecked"</span><span class="o">)</span>
-		<span class="kd">private</span> <span class="n">T</span> <span class="nf">getEntry</span><span class="o">(</span><span class="kd">final</span> <span class="kt">long</span> <span class="n">sequence</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">return</span> <span class="o">(</span><span class="n">T</span><span class="o">)</span> <span class="n">entries</span><span class="o">[(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">sequence</span> <span class="o">&amp;</span> <span class="n">ringModMask</span><span class="o">)];</span>
+		<span class="kd">private</span> <span class="no">T</span> <span class="nf">getEntry</span><span class="o">(</span><span class="kd">final</span> <span class="kt">long</span> <span class="n">sequence</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="o">(</span><span class="no">T</span><span class="o">)</span> <span class="n">entries</span><span class="o">[(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">sequence</span> <span class="o">&amp;</span> <span class="n">ringModMask</span><span class="o">)];</span>
         <span class="o">}</span>
 
-        <span class="kd">private</span> <span class="kt">void</span> <span class="nf">setEntry</span><span class="o">(</span><span class="kd">final</span> <span class="kt">long</span> <span class="n">sequence</span><span class="o">,</span> <span class="n">T</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">private</span> <span class="kt">void</span> <span class="nf">setEntry</span><span class="o">(</span><span class="kd">final</span> <span class="kt">long</span> <span class="n">sequence</span><span class="o">,</span> <span class="no">T</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
                 <span class="kd">final</span> <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">sequence</span> <span class="o">&amp;</span> <span class="n">ringModMask</span><span class="o">);</span>
                 <span class="k">if</span> <span class="o">(</span><span class="n">entries</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
                         <span class="n">entries</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">t</span><span class="o">;</span>
@@ -189,15 +189,15 @@ author：zhangjianxin</p>
                                 <span class="k">return</span> <span class="n">produceSequence</span><span class="o">.</span><span class="na">incrementAndGet</span><span class="o">();</span>
                         <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
                                 <span class="k">try</span> <span class="o">{</span>
-                                        <span class="n">Thread</span><span class="o">.</span><span class="na">yield</span><span class="o">();</span>
-                                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                                        <span class="nc">Thread</span><span class="o">.</span><span class="na">yield</span><span class="o">();</span>
+                                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
                                         <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
                                 <span class="o">}</span>
                         <span class="o">}</span>
                 <span class="o">}</span>
         <span class="o">}</span>
 
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">put</span><span class="o">(</span><span class="n">T</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">put</span><span class="o">(</span><span class="no">T</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
                 <span class="kt">long</span> <span class="n">sequence</span> <span class="o">=</span> <span class="n">waitForNextProduce</span><span class="o">();</span>
                 <span class="n">setEntry</span><span class="o">(</span><span class="n">sequence</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">t</span><span class="o">);</span>
                 <span class="n">proCursor</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">;</span>
@@ -210,26 +210,26 @@ author：zhangjianxin</p>
                                 <span class="k">return</span> <span class="n">comsumeSequence</span><span class="o">.</span><span class="na">incrementAndGet</span><span class="o">();</span>
                         <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
                                 <span class="k">try</span> <span class="o">{</span>
-                                        <span class="n">Thread</span><span class="o">.</span><span class="na">yield</span><span class="o">();</span>
-                                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                                        <span class="nc">Thread</span><span class="o">.</span><span class="na">yield</span><span class="o">();</span>
+                                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
                                         <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
                                 <span class="o">}</span>
                         <span class="o">}</span>
                 <span class="o">}</span>
         <span class="o">}</span>
 
-        <span class="kd">public</span> <span class="n">T</span> <span class="nf">take</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="no">T</span> <span class="nf">take</span><span class="o">()</span> <span class="o">{</span>
                 <span class="kt">long</span> <span class="n">nextSequence</span> <span class="o">=</span> <span class="n">waitForComsume</span><span class="o">();</span>
                 <span class="n">comsumeCursor</span> <span class="o">=</span> <span class="n">nextSequence</span><span class="o">;</span>
                 <span class="k">return</span> <span class="nf">getEntry</span><span class="o">(</span><span class="n">nextSequence</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
         <span class="o">}</span>
 
-        <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">put</span><span class="o">(</span><span class="n">T</span> <span class="n">t</span><span class="o">,</span> <span class="kt">long</span> <span class="n">time</span><span class="o">,</span> <span class="n">TimeUnit</span> <span class="n">unit</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">put</span><span class="o">(</span><span class="no">T</span> <span class="n">t</span><span class="o">,</span> <span class="kt">long</span> <span class="n">time</span><span class="o">,</span> <span class="nc">TimeUnit</span> <span class="n">unit</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
                 <span class="n">put</span><span class="o">(</span><span class="n">t</span><span class="o">);</span>
                 <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
         <span class="o">}</span>
 
-        <span class="kd">public</span> <span class="n">T</span> <span class="nf">take</span><span class="o">(</span><span class="kt">long</span> <span class="n">time</span><span class="o">,</span> <span class="n">TimeUnit</span> <span class="n">unit</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="no">T</span> <span class="nf">take</span><span class="o">(</span><span class="kt">long</span> <span class="n">time</span><span class="o">,</span> <span class="nc">TimeUnit</span> <span class="n">unit</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
                 <span class="k">return</span> <span class="nf">take</span><span class="o">();</span>
         <span class="o">}</span>
 
@@ -238,141 +238,141 @@ author：zhangjianxin</p>
 <h1 id="2lengthbytearrayencoder">2.LengthByteArrayEncoder</h1>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Sharable</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LengthByteArrayEncoder</span> <span class="kd">extends</span> <span class="n">MessageToMessageEncoder</span><span class="o">&lt;</span><span class="kt">byte</span><span class="o">[]&gt;</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LengthByteArrayEncoder</span> <span class="kd">extends</span> <span class="nc">MessageToMessageEncoder</span><span class="o">&lt;</span><span class="kt">byte</span><span class="o">[]&gt;</span> <span class="o">{</span>
 	<span class="nd">@Override</span>
-	<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">encode</span><span class="o">(</span><span class="n">ChannelHandlerContext</span> <span class="n">ctx</span><span class="o">,</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">msg</span><span class="o">,</span>
-			<span class="n">List</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">out</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+	<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">encode</span><span class="o">(</span><span class="nc">ChannelHandlerContext</span> <span class="n">ctx</span><span class="o">,</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">msg</span><span class="o">,</span>
+			<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Object</span><span class="o">&gt;</span> <span class="n">out</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
 		<span class="kt">byte</span><span class="o">[]</span> <span class="n">b1</span> <span class="o">=</span> <span class="n">toBytes</span><span class="o">(</span><span class="n">msg</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
 		<span class="c1">// out.add(Unpooled.wrappedBuffer(b1)); // length</span>
 		<span class="c1">// out.add(Unpooled.wrappedBuffer(msg)); // data</span>
 
-		<span class="n">ByteBuf</span> <span class="n">buf</span> <span class="o">=</span> <span class="n">Unpooled</span><span class="o">.</span><span class="na">wrappedBuffer</span><span class="o">(</span><span class="n">b1</span><span class="o">,</span> <span class="n">msg</span><span class="o">);</span> <span class="c1">// length , data</span>
+		<span class="nc">ByteBuf</span> <span class="n">buf</span> <span class="o">=</span> <span class="nc">Unpooled</span><span class="o">.</span><span class="na">wrappedBuffer</span><span class="o">(</span><span class="n">b1</span><span class="o">,</span> <span class="n">msg</span><span class="o">);</span> <span class="c1">// length , data</span>
 		<span class="n">out</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">buf</span><span class="o">);</span>
 	<span class="o">}</span>
 
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">N1</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_N1</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I0</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_0</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I1</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_1</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I2</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_2</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I3</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_3</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I4</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_4</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I5</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_5</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I6</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_6</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I7</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_7</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I8</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_8</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I9</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_9</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I10</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_10</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I11</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_11</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I12</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_12</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I13</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_13</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I14</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_14</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I15</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_15</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I16</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_16</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I17</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_17</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I18</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_18</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I19</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_19</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I20</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_20</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I21</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_21</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I22</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_22</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I23</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_23</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I24</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_24</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I25</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_25</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I26</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_26</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I27</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_27</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I28</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_28</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I29</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_29</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I30</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_30</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I31</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_31</span> <span class="o">};</span>
-	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">I32</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_32</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">N1</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_N1</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I0</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_0</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I1</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_1</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I2</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_2</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I3</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_3</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I4</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_4</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I5</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_5</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I6</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_6</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I7</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_7</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I8</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_8</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I9</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_9</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I10</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_10</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I11</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_11</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I12</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_12</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I13</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_13</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I14</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_14</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I15</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_15</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I16</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_16</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I17</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_17</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I18</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_18</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I19</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_19</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I20</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_20</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I21</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_21</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I22</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_22</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I23</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_23</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I24</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_24</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I25</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_25</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I26</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_26</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I27</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_27</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I28</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_28</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I29</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_29</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I30</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_30</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I31</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_31</span> <span class="o">};</span>
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="no">I32</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_32</span> <span class="o">};</span>
 
 	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">toBytes</span><span class="o">(</span><span class="kt">int</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
 		<span class="k">switch</span> <span class="o">(</span><span class="n">v</span><span class="o">)</span> <span class="o">{</span>
 		<span class="k">case</span> <span class="o">-</span><span class="mi">1</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">N1</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">N1</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I0</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I0</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I1</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I1</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I2</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I2</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I3</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I3</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I4</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I4</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">5</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I5</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I5</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">6</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I6</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I6</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">7</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I7</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I7</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">8</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I8</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I8</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">9</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I9</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I9</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">10</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I10</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I10</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">11</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I11</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I11</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">12</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I12</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I12</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">13</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I13</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I13</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">14</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I14</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I14</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">15</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I15</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I15</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">16</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I16</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I16</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">17</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I17</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I17</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">18</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I18</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I18</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">19</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I19</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I19</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">20</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I20</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I20</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">21</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I21</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I21</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">22</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I22</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I22</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">23</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I23</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I23</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">24</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I24</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I24</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">25</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I25</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I25</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">26</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I26</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I26</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">27</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I27</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I27</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">28</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I28</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I28</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">29</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I29</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I29</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">30</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I30</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I30</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">31</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I31</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I31</span><span class="o">;</span>
 		<span class="k">case</span> <span class="mi">32</span><span class="o">:</span>
-			<span class="k">return</span> <span class="n">I32</span><span class="o">;</span>
+			<span class="k">return</span> <span class="no">I32</span><span class="o">;</span>
 		<span class="k">default</span><span class="o">:</span>
-			<span class="k">if</span> <span class="o">(</span><span class="n">v</span> <span class="o">&gt;=</span> <span class="n">NumEx</span><span class="o">.</span><span class="na">BYTE_MIN_VALUE</span> <span class="o">&amp;&amp;</span> <span class="n">v</span> <span class="o">&lt;=</span> <span class="n">NumEx</span><span class="o">.</span><span class="na">BYTE_MAX_VALUE</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">if</span> <span class="o">(</span><span class="n">v</span> <span class="o">&gt;=</span> <span class="nc">NumEx</span><span class="o">.</span><span class="na">BYTE_MIN_VALUE</span> <span class="o">&amp;&amp;</span> <span class="n">v</span> <span class="o">&lt;=</span> <span class="nc">NumEx</span><span class="o">.</span><span class="na">BYTE_MAX_VALUE</span><span class="o">)</span> <span class="o">{</span>
 				<span class="c1">// byte[] r2 = new byte[2];</span>
 				<span class="c1">// r2[0] = B2Type.INT_8B;</span>
-				<span class="kt">byte</span><span class="o">[]</span> <span class="n">r2</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_8B</span><span class="o">,</span> <span class="mi">1</span> <span class="o">};</span>
+				<span class="kt">byte</span><span class="o">[]</span> <span class="n">r2</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_8B</span><span class="o">,</span> <span class="mi">1</span> <span class="o">};</span>
 				<span class="n">r2</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span> <span class="o">(</span><span class="n">v</span> <span class="o">&amp;</span> <span class="mh">0xff</span><span class="o">);</span>
 				<span class="k">return</span> <span class="n">r2</span><span class="o">;</span>
-			<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">v</span> <span class="o">&gt;=</span> <span class="n">NumEx</span><span class="o">.</span><span class="na">SHORT_MIN_VALUE</span> <span class="o">&amp;&amp;</span> <span class="n">v</span> <span class="o">&lt;=</span> <span class="n">NumEx</span><span class="o">.</span><span class="na">SHORT_MAX_VALUE</span><span class="o">)</span> <span class="o">{</span>
+			<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">v</span> <span class="o">&gt;=</span> <span class="nc">NumEx</span><span class="o">.</span><span class="na">SHORT_MIN_VALUE</span> <span class="o">&amp;&amp;</span> <span class="n">v</span> <span class="o">&lt;=</span> <span class="nc">NumEx</span><span class="o">.</span><span class="na">SHORT_MAX_VALUE</span><span class="o">)</span> <span class="o">{</span>
 				<span class="c1">// byte[] r2 = new byte[3];</span>
 				<span class="c1">// r2[0] = B2Type.INT_16B;</span>
-				<span class="kt">byte</span><span class="o">[]</span> <span class="n">r2</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_16B</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span> <span class="o">};</span>
+				<span class="kt">byte</span><span class="o">[]</span> <span class="n">r2</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_16B</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span> <span class="o">};</span>
 				<span class="n">r2</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span> <span class="o">((</span><span class="n">v</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="o">)</span> <span class="o">&amp;</span> <span class="mh">0xff</span><span class="o">);</span>
 				<span class="n">r2</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span> <span class="o">((</span><span class="n">v</span> <span class="o">&gt;&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">&amp;</span> <span class="mh">0xff</span><span class="o">);</span>
 				<span class="k">return</span> <span class="n">r2</span><span class="o">;</span>
 			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
 				<span class="c1">// byte[] r2 = new byte[5];</span>
 				<span class="c1">// r2[0] = B2Type.INT_32B;</span>
-				<span class="kt">byte</span><span class="o">[]</span> <span class="n">r2</span> <span class="o">=</span> <span class="o">{</span> <span class="n">B2Type</span><span class="o">.</span><span class="na">INT_32B</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span> <span class="o">};</span>
+				<span class="kt">byte</span><span class="o">[]</span> <span class="n">r2</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">B2Type</span><span class="o">.</span><span class="na">INT_32B</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span> <span class="o">};</span>
 				<span class="n">r2</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span> <span class="o">((</span><span class="n">v</span> <span class="o">&gt;&gt;</span> <span class="mi">24</span><span class="o">)</span> <span class="o">&amp;</span> <span class="mh">0xff</span><span class="o">);</span>
 				<span class="n">r2</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span> <span class="o">((</span><span class="n">v</span> <span class="o">&gt;&gt;</span> <span class="mi">16</span><span class="o">)</span> <span class="o">&amp;</span> <span class="mh">0xff</span><span class="o">);</span>
 				<span class="n">r2</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span> <span class="o">((</span><span class="n">v</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="o">)</span> <span class="o">&amp;</span> <span class="mh">0xff</span><span class="o">);</span>
@@ -388,7 +388,7 @@ author：zhangjianxin</p>
 
 <ul>
   <li>以上操作经过验证可以直接拿去。</li>
-  <li>Owner <code class="highlighter-rouge">breakEval13</code></li>
+  <li>Owner <code class="language-plaintext highlighter-rouge">breakEval13</code></li>
   <li>https://github.com/breakEval13</li>
 </ul>
 

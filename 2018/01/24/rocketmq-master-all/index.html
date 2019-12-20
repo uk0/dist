@@ -149,7 +149,7 @@
 broker-a.properties
 broker-b.properties
 broker-c.properties
-修改下面配置文件的 <code class="highlighter-rouge">brokerName</code>即可</p>
+修改下面配置文件的 <code class="language-plaintext highlighter-rouge">brokerName</code>即可</p>
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c">#所属集群名字</span>
     <span class="nv">brokerClusterName</span><span class="o">=</span>rocketmq-aom
@@ -231,15 +231,15 @@ broker-c.properties
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
    <span class="c">#先启动Nameserv（三台机器）</span>
-    nohup sh mqnamesrv &amp;
-    nohup sh mqnamesrv &amp;
-    nohup sh mqnamesrv &amp;
+    <span class="nb">nohup </span>sh mqnamesrv &amp;
+    <span class="nb">nohup </span>sh mqnamesrv &amp;
+    <span class="nb">nohup </span>sh mqnamesrv &amp;
    <span class="c"># 启动 broker（三台机器）</span>
-    nohup sh mqbroker <span class="nt">-c</span> /home/rocketmq/conf/2m-noslave/broker-a.properties <span class="o">&gt;</span>/dev/null 2&gt;&amp;1 &amp; 
+    <span class="nb">nohup </span>sh mqbroker <span class="nt">-c</span> /home/rocketmq/conf/2m-noslave/broker-a.properties <span class="o">&gt;</span>/dev/null 2&gt;&amp;1 &amp; 
 
-    nohup sh mqbroker <span class="nt">-c</span> /home/rocketmq/conf/2m-noslave/broker-b.properties <span class="o">&gt;</span>/dev/null 2&gt;&amp;1 &amp; 
+    <span class="nb">nohup </span>sh mqbroker <span class="nt">-c</span> /home/rocketmq/conf/2m-noslave/broker-b.properties <span class="o">&gt;</span>/dev/null 2&gt;&amp;1 &amp; 
 
-    nohup sh mqbroker <span class="nt">-c</span> /home/rocketmq/conf/2m-noslave/broker-c.properties <span class="o">&gt;</span>/dev/null 2&gt;&amp;1 &amp; 
+    <span class="nb">nohup </span>sh mqbroker <span class="nt">-c</span> /home/rocketmq/conf/2m-noslave/broker-c.properties <span class="o">&gt;</span>/dev/null 2&gt;&amp;1 &amp; 
 </code></pre></div>    </div>
   </li>
 </ul>

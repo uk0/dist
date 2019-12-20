@@ -159,7 +159,7 @@
  <span class="nt">&lt;/head&gt;</span>  
  <span class="nt">&lt;body&gt;</span>  
  <span class="nt">&lt;h1&gt;</span>  
- Welcome ${user}<span class="nt">&lt;</span><span class="err">#</span><span class="na">if</span> <span class="na">user =</span><span class="s">=</span> <span class="err">"</span><span class="na">Big</span> <span class="na">Joe</span><span class="err">"</span><span class="nt">&gt;</span>, our beloved leader<span class="nt">&lt;/</span><span class="err">#</span><span class="nt">if&gt;</span>!  
+ Welcome ${user}<span class="nt">&lt;</span><span class="na">#if</span> <span class="na">user =</span><span class="s">=</span> <span class="err">"</span><span class="na">Big</span> <span class="na">Joe</span><span class="err">"</span><span class="nt">&gt;</span>, our beloved leader<span class="nt">&lt;/</span><span class="err">#</span><span class="nt">if&gt;</span>!  
  <span class="nt">&lt;/h1&gt;</span>  
  <span class="nt">&lt;p&gt;</span>Our latest product:  
  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"${latestProduct.url}"</span><span class="nt">&gt;</span>${latestProduct.name}<span class="nt">&lt;/a&gt;</span>!  
@@ -183,32 +183,32 @@
      
  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">HtmlGeneratorClient</span> <span class="o">{</span>  
      
-     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>  
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>  
          <span class="k">try</span> <span class="o">{</span>  
-             <span class="n">Configuration</span> <span class="n">cfg</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Configuration</span><span class="o">();</span>  
+             <span class="nc">Configuration</span> <span class="n">cfg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Configuration</span><span class="o">();</span>  
              <span class="cm">/* 指定模板文件从何处加载的数据源，这里设置成一个文件目录   */</span>
-             <span class="n">cfg</span><span class="o">.</span><span class="na">setDirectoryForTemplateLoading</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">"./template"</span><span class="o">));</span>  
-             <span class="n">cfg</span><span class="o">.</span><span class="na">setObjectWrapper</span><span class="o">(</span><span class="k">new</span> <span class="n">DefaultObjectWrapper</span><span class="o">());</span>  
+             <span class="n">cfg</span><span class="o">.</span><span class="na">setDirectoryForTemplateLoading</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"./template"</span><span class="o">));</span>  
+             <span class="n">cfg</span><span class="o">.</span><span class="na">setObjectWrapper</span><span class="o">(</span><span class="k">new</span> <span class="nc">DefaultObjectWrapper</span><span class="o">());</span>  
                  
              <span class="cm">/* 获取或创建模板   */</span>
-             <span class="n">Template</span> <span class="n">template</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="na">getTemplate</span><span class="o">(</span><span class="s">"test.ftl"</span><span class="o">);</span>  
+             <span class="nc">Template</span> <span class="n">template</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="na">getTemplate</span><span class="o">(</span><span class="s">"test.ftl"</span><span class="o">);</span>  
                  
              <span class="cm">/* 创建数据模型   */</span>
-             <span class="n">Map</span> <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">();</span>  
+             <span class="nc">Map</span> <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">();</span>  
              <span class="n">root</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"user"</span><span class="o">,</span> <span class="s">"Big Joe"</span><span class="o">);</span>          
-             <span class="n">Map</span> <span class="n">latest</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">();</span>  
+             <span class="nc">Map</span> <span class="n">latest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">();</span>  
              <span class="n">root</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"latestProduct"</span><span class="o">,</span> <span class="n">latest</span><span class="o">);</span>  
              <span class="n">latest</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"url"</span><span class="o">,</span> <span class="s">"products/greenmouse.html"</span><span class="o">);</span>  
              <span class="n">latest</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"green mouse"</span><span class="o">);</span>  
                  
              <span class="cm">/* 将模板和数据模型合并 输出到Console  */</span>
-             <span class="n">Writer</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputStreamWriter</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">);</span>  
+             <span class="nc">Writer</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">OutputStreamWriter</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">);</span>  
              <span class="n">template</span><span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="n">out</span><span class="o">);</span>  
              <span class="n">out</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span>  
                  
-         <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>  
+         <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>  
              <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>  
-         <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">TemplateException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>  
+         <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">TemplateException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>  
              <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>  
          <span class="o">}</span>  
      
@@ -241,8 +241,8 @@
    * @author github.com/zmatsh 
    * 
    */</span>  
-  <span class="kd">public</span> <span class="kd">enum</span> <span class="n">PropertyType</span> <span class="o">{</span>  
-      <span class="n">Byte</span><span class="o">,</span> <span class="n">Short</span><span class="o">,</span> <span class="n">Int</span><span class="o">,</span> <span class="n">Long</span><span class="o">,</span> <span class="n">Boolean</span><span class="o">,</span> <span class="n">Float</span><span class="o">,</span> <span class="n">Double</span><span class="o">,</span> <span class="n">String</span><span class="o">,</span> <span class="n">ByteArray</span><span class="o">,</span> <span class="n">Date</span>  
+  <span class="kd">public</span> <span class="kd">enum</span> <span class="nc">PropertyType</span> <span class="o">{</span>  
+      <span class="nc">Byte</span><span class="o">,</span> <span class="nc">Short</span><span class="o">,</span> <span class="nc">Int</span><span class="o">,</span> <span class="nc">Long</span><span class="o">,</span> <span class="nc">Boolean</span><span class="o">,</span> <span class="nc">Float</span><span class="o">,</span> <span class="nc">Double</span><span class="o">,</span> <span class="nc">String</span><span class="o">,</span> <span class="nc">ByteArray</span><span class="o">,</span> <span class="nc">Date</span>  
   <span class="o">}</span> 
 </code></pre></div>    </div>
   </li>
@@ -256,33 +256,33 @@
  */</span>  
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Property</span> <span class="o">{</span>  
     <span class="c1">// 属性数据类型  </span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">javaType</span><span class="o">;</span>  
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">javaType</span><span class="o">;</span>  
     <span class="c1">// 属性名称  </span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">propertyName</span><span class="o">;</span>  
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">propertyName</span><span class="o">;</span>  
       
-    <span class="kd">private</span> <span class="n">PropertyType</span> <span class="n">propertyType</span><span class="o">;</span>  
+    <span class="kd">private</span> <span class="nc">PropertyType</span> <span class="n">propertyType</span><span class="o">;</span>  
       
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getJavaType</span><span class="o">()</span> <span class="o">{</span>  
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getJavaType</span><span class="o">()</span> <span class="o">{</span>  
         <span class="k">return</span> <span class="n">javaType</span><span class="o">;</span>  
     <span class="o">}</span>  
   
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setJavaType</span><span class="o">(</span><span class="n">String</span> <span class="n">javaType</span><span class="o">)</span> <span class="o">{</span>  
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setJavaType</span><span class="o">(</span><span class="nc">String</span> <span class="n">javaType</span><span class="o">)</span> <span class="o">{</span>  
         <span class="k">this</span><span class="o">.</span><span class="na">javaType</span> <span class="o">=</span> <span class="n">javaType</span><span class="o">;</span>  
     <span class="o">}</span>  
   
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getPropertyName</span><span class="o">()</span> <span class="o">{</span>  
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getPropertyName</span><span class="o">()</span> <span class="o">{</span>  
         <span class="k">return</span> <span class="n">propertyName</span><span class="o">;</span>  
     <span class="o">}</span>  
   
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPropertyName</span><span class="o">(</span><span class="n">String</span> <span class="n">propertyName</span><span class="o">)</span> <span class="o">{</span>  
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPropertyName</span><span class="o">(</span><span class="nc">String</span> <span class="n">propertyName</span><span class="o">)</span> <span class="o">{</span>  
         <span class="k">this</span><span class="o">.</span><span class="na">propertyName</span> <span class="o">=</span> <span class="n">propertyName</span><span class="o">;</span>  
     <span class="o">}</span>  
   
-    <span class="kd">public</span> <span class="n">PropertyType</span> <span class="nf">getPropertyType</span><span class="o">()</span> <span class="o">{</span>  
+    <span class="kd">public</span> <span class="nc">PropertyType</span> <span class="nf">getPropertyType</span><span class="o">()</span> <span class="o">{</span>  
         <span class="k">return</span> <span class="n">propertyType</span><span class="o">;</span>  
     <span class="o">}</span>  
   
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPropertyType</span><span class="o">(</span><span class="n">PropertyType</span> <span class="n">propertyType</span><span class="o">)</span> <span class="o">{</span>  
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPropertyType</span><span class="o">(</span><span class="nc">PropertyType</span> <span class="n">propertyType</span><span class="o">)</span> <span class="o">{</span>  
         <span class="k">this</span><span class="o">.</span><span class="na">propertyType</span> <span class="o">=</span> <span class="n">propertyType</span><span class="o">;</span>  
     <span class="o">}</span>  
           
@@ -303,45 +303,45 @@
  */</span>  
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Entity</span> <span class="o">{</span>  
     <span class="c1">// 实体所在的包名  </span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">javaPackage</span><span class="o">;</span>  
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">javaPackage</span><span class="o">;</span>  
     <span class="c1">// 实体类名  </span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">className</span><span class="o">;</span>  
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">className</span><span class="o">;</span>  
     <span class="c1">// 父类名  </span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">superclass</span><span class="o">;</span>  
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">superclass</span><span class="o">;</span>  
     <span class="c1">// 属性集合  </span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">Property</span><span class="o">&gt;</span> <span class="n">properties</span><span class="o">;</span>  
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Property</span><span class="o">&gt;</span> <span class="n">properties</span><span class="o">;</span>  
     <span class="c1">// 是否有构造函数  </span>
     <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">constructors</span><span class="o">;</span>     
       
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getJavaPackage</span><span class="o">()</span> <span class="o">{</span>  
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getJavaPackage</span><span class="o">()</span> <span class="o">{</span>  
         <span class="k">return</span> <span class="n">javaPackage</span><span class="o">;</span>  
     <span class="o">}</span>  
       
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setJavaPackage</span><span class="o">(</span><span class="n">String</span> <span class="n">javaPackage</span><span class="o">)</span> <span class="o">{</span>  
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setJavaPackage</span><span class="o">(</span><span class="nc">String</span> <span class="n">javaPackage</span><span class="o">)</span> <span class="o">{</span>  
         <span class="k">this</span><span class="o">.</span><span class="na">javaPackage</span> <span class="o">=</span> <span class="n">javaPackage</span><span class="o">;</span>  
     <span class="o">}</span>  
       
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getClassName</span><span class="o">()</span> <span class="o">{</span>  
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getClassName</span><span class="o">()</span> <span class="o">{</span>  
         <span class="k">return</span> <span class="n">className</span><span class="o">;</span>  
     <span class="o">}</span>  
       
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setClassName</span><span class="o">(</span><span class="n">String</span> <span class="n">className</span><span class="o">)</span> <span class="o">{</span>  
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setClassName</span><span class="o">(</span><span class="nc">String</span> <span class="n">className</span><span class="o">)</span> <span class="o">{</span>  
         <span class="k">this</span><span class="o">.</span><span class="na">className</span> <span class="o">=</span> <span class="n">className</span><span class="o">;</span>  
     <span class="o">}</span>  
       
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getSuperclass</span><span class="o">()</span> <span class="o">{</span>  
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getSuperclass</span><span class="o">()</span> <span class="o">{</span>  
         <span class="k">return</span> <span class="n">superclass</span><span class="o">;</span>  
     <span class="o">}</span>  
       
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSuperclass</span><span class="o">(</span><span class="n">String</span> <span class="n">superclass</span><span class="o">)</span> <span class="o">{</span>  
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSuperclass</span><span class="o">(</span><span class="nc">String</span> <span class="n">superclass</span><span class="o">)</span> <span class="o">{</span>  
         <span class="k">this</span><span class="o">.</span><span class="na">superclass</span> <span class="o">=</span> <span class="n">superclass</span><span class="o">;</span>  
     <span class="o">}</span>  
       
-    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Property</span><span class="o">&gt;</span> <span class="nf">getProperties</span><span class="o">()</span> <span class="o">{</span>  
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Property</span><span class="o">&gt;</span> <span class="nf">getProperties</span><span class="o">()</span> <span class="o">{</span>  
         <span class="k">return</span> <span class="n">properties</span><span class="o">;</span>  
     <span class="o">}</span>  
       
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setProperties</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Property</span><span class="o">&gt;</span> <span class="n">properties</span><span class="o">)</span> <span class="o">{</span>  
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setProperties</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Property</span><span class="o">&gt;</span> <span class="n">properties</span><span class="o">)</span> <span class="o">{</span>  
         <span class="k">this</span><span class="o">.</span><span class="na">properties</span> <span class="o">=</span> <span class="n">properties</span><span class="o">;</span>  
     <span class="o">}</span>  
       
@@ -426,40 +426,40 @@ public class ${entity.className}&lt;#if entity.superclass?has_content&gt; extend
  */</span>  
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">EntityGeneratorClient</span> <span class="o">{</span>  
       
-    <span class="kd">private</span> <span class="kd">static</span> <span class="n">File</span> <span class="n">javaFile</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>  
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">File</span> <span class="n">javaFile</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>  
   
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>  
-        <span class="n">Configuration</span> <span class="n">cfg</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Configuration</span><span class="o">();</span>      
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>  
+        <span class="nc">Configuration</span> <span class="n">cfg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Configuration</span><span class="o">();</span>      
         <span class="k">try</span> <span class="o">{</span>   
             <span class="c1">// 步骤一：指定 模板文件从何处加载的数据源，这里设置一个文件目录  </span>
-            <span class="n">cfg</span><span class="o">.</span><span class="na">setDirectoryForTemplateLoading</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">"./template"</span><span class="o">));</span>  
-            <span class="n">cfg</span><span class="o">.</span><span class="na">setObjectWrapper</span><span class="o">(</span><span class="k">new</span> <span class="n">DefaultObjectWrapper</span><span class="o">());</span>  
+            <span class="n">cfg</span><span class="o">.</span><span class="na">setDirectoryForTemplateLoading</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"./template"</span><span class="o">));</span>  
+            <span class="n">cfg</span><span class="o">.</span><span class="na">setObjectWrapper</span><span class="o">(</span><span class="k">new</span> <span class="nc">DefaultObjectWrapper</span><span class="o">());</span>  
               
             <span class="c1">// 步骤二：获取 模板文件  </span>
-            <span class="n">Template</span> <span class="n">template</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="na">getTemplate</span><span class="o">(</span><span class="s">"entity.ftl"</span><span class="o">);</span>  
+            <span class="nc">Template</span> <span class="n">template</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="na">getTemplate</span><span class="o">(</span><span class="s">"entity.ftl"</span><span class="o">);</span>  
               
             <span class="c1">// 步骤三：创建 数据模型  </span>
-            <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">root</span> <span class="o">=</span> <span class="n">createDataModel</span><span class="o">();</span>  
+            <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">root</span> <span class="o">=</span> <span class="n">createDataModel</span><span class="o">();</span>  
               
             <span class="c1">// 步骤四：合并 模板 和 数据模型  </span>
             <span class="c1">// 创建.java类文件  </span>
             <span class="k">if</span><span class="o">(</span><span class="n">javaFile</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">){</span>  
-                <span class="n">Writer</span> <span class="n">javaWriter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileWriter</span><span class="o">(</span><span class="n">javaFile</span><span class="o">);</span>  
+                <span class="nc">Writer</span> <span class="n">javaWriter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileWriter</span><span class="o">(</span><span class="n">javaFile</span><span class="o">);</span>  
                 <span class="n">template</span><span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="n">javaWriter</span><span class="o">);</span>  
                 <span class="n">javaWriter</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span>  
-                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"文件生成路径："</span> <span class="o">+</span> <span class="n">javaFile</span><span class="o">.</span><span class="na">getCanonicalPath</span><span class="o">());</span>  
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"文件生成路径："</span> <span class="o">+</span> <span class="n">javaFile</span><span class="o">.</span><span class="na">getCanonicalPath</span><span class="o">());</span>  
                   
                 <span class="n">javaWriter</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>  
             <span class="o">}</span>  
             <span class="c1">// 输出到Console控制台  </span>
-            <span class="n">Writer</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputStreamWriter</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">);</span>  
+            <span class="nc">Writer</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">OutputStreamWriter</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">);</span>  
             <span class="n">template</span><span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="n">out</span><span class="o">);</span>  
             <span class="n">out</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span>  
             <span class="n">out</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>  
               
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>  
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>  
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>  
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">TemplateException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>  
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">TemplateException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>  
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>  
         <span class="o">}</span>  
   
@@ -470,27 +470,27 @@ public class ${entity.className}&lt;#if entity.superclass?has_content&gt; extend
      * 创建数据模型 
      * @return 
      */</span>  
-    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="nf">createDataModel</span><span class="o">()</span> <span class="o">{</span>  
-        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>  
-        <span class="n">Entity</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Entity</span><span class="o">();</span>  
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="nf">createDataModel</span><span class="o">()</span> <span class="o">{</span>  
+        <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;();</span>  
+        <span class="nc">Entity</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Entity</span><span class="o">();</span>  
         <span class="n">user</span><span class="o">.</span><span class="na">setJavaPackage</span><span class="o">(</span><span class="s">"com.study.entity"</span><span class="o">);</span> <span class="c1">// 创建包名  </span>
         <span class="n">user</span><span class="o">.</span><span class="na">setClassName</span><span class="o">(</span><span class="s">"User"</span><span class="o">);</span>  <span class="c1">// 创建类名  </span>
         <span class="n">user</span><span class="o">.</span><span class="na">setConstructors</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> <span class="c1">// 是否创建构造函数  </span>
         <span class="c1">// user.setSuperclass("person");  </span>
           
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">Property</span><span class="o">&gt;</span> <span class="n">propertyList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Property</span><span class="o">&gt;();</span>  
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Property</span><span class="o">&gt;</span> <span class="n">propertyList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Property</span><span class="o">&gt;();</span>  
           
         <span class="c1">// 创建实体属性一   </span>
-        <span class="n">Property</span> <span class="n">attribute1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Property</span><span class="o">();</span>  
+        <span class="nc">Property</span> <span class="n">attribute1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Property</span><span class="o">();</span>  
         <span class="n">attribute1</span><span class="o">.</span><span class="na">setJavaType</span><span class="o">(</span><span class="s">"String"</span><span class="o">);</span>  
         <span class="n">attribute1</span><span class="o">.</span><span class="na">setPropertyName</span><span class="o">(</span><span class="s">"name"</span><span class="o">);</span>  
-        <span class="n">attribute1</span><span class="o">.</span><span class="na">setPropertyType</span><span class="o">(</span><span class="n">PropertyType</span><span class="o">.</span><span class="na">String</span><span class="o">);</span>  
+        <span class="n">attribute1</span><span class="o">.</span><span class="na">setPropertyType</span><span class="o">(</span><span class="nc">PropertyType</span><span class="o">.</span><span class="na">String</span><span class="o">);</span>  
           
         <span class="c1">// 创建实体属性二  </span>
-        <span class="n">Property</span> <span class="n">attribute2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Property</span><span class="o">();</span>  
+        <span class="nc">Property</span> <span class="n">attribute2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Property</span><span class="o">();</span>  
         <span class="n">attribute2</span><span class="o">.</span><span class="na">setJavaType</span><span class="o">(</span><span class="s">"int"</span><span class="o">);</span>  
         <span class="n">attribute2</span><span class="o">.</span><span class="na">setPropertyName</span><span class="o">(</span><span class="s">"age"</span><span class="o">);</span>  
-        <span class="n">attribute2</span><span class="o">.</span><span class="na">setPropertyType</span><span class="o">(</span><span class="n">PropertyType</span><span class="o">.</span><span class="na">Int</span><span class="o">);</span>  
+        <span class="n">attribute2</span><span class="o">.</span><span class="na">setPropertyType</span><span class="o">(</span><span class="nc">PropertyType</span><span class="o">.</span><span class="na">Int</span><span class="o">);</span>  
           
         <span class="n">propertyList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">attribute1</span><span class="o">);</span>  
         <span class="n">propertyList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">attribute2</span><span class="o">);</span>  
@@ -499,7 +499,7 @@ public class ${entity.className}&lt;#if entity.superclass?has_content&gt; extend
         <span class="n">user</span><span class="o">.</span><span class="na">setProperties</span><span class="o">(</span><span class="n">propertyList</span><span class="o">);</span>  
           
         <span class="c1">// 创建.java类文件  </span>
-        <span class="n">File</span> <span class="n">outDirFile</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">"./src-template"</span><span class="o">);</span>  
+        <span class="nc">File</span> <span class="n">outDirFile</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"./src-template"</span><span class="o">);</span>  
         <span class="k">if</span><span class="o">(!</span><span class="n">outDirFile</span><span class="o">.</span><span class="na">exists</span><span class="o">()){</span>  
             <span class="n">outDirFile</span><span class="o">.</span><span class="na">mkdir</span><span class="o">();</span>  
         <span class="o">}</span>  
@@ -518,10 +518,10 @@ public class ${entity.className}&lt;#if entity.superclass?has_content&gt; extend
      * @param javaClassName java类名 
      * @return 
      */</span>  
-    <span class="kd">private</span> <span class="kd">static</span> <span class="n">File</span> <span class="nf">toJavaFilename</span><span class="o">(</span><span class="n">File</span> <span class="n">outDirFile</span><span class="o">,</span> <span class="n">String</span> <span class="n">javaPackage</span><span class="o">,</span> <span class="n">String</span> <span class="n">javaClassName</span><span class="o">)</span> <span class="o">{</span>  
-        <span class="n">String</span> <span class="n">packageSubPath</span> <span class="o">=</span> <span class="n">javaPackage</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="sc">'.'</span><span class="o">,</span> <span class="sc">'/'</span><span class="o">);</span>  
-        <span class="n">File</span> <span class="n">packagePath</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">outDirFile</span><span class="o">,</span> <span class="n">packageSubPath</span><span class="o">);</span>  
-        <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">packagePath</span><span class="o">,</span> <span class="n">javaClassName</span> <span class="o">+</span> <span class="s">".java"</span><span class="o">);</span>  
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">File</span> <span class="nf">toJavaFilename</span><span class="o">(</span><span class="nc">File</span> <span class="n">outDirFile</span><span class="o">,</span> <span class="nc">String</span> <span class="n">javaPackage</span><span class="o">,</span> <span class="nc">String</span> <span class="n">javaClassName</span><span class="o">)</span> <span class="o">{</span>  
+        <span class="nc">String</span> <span class="n">packageSubPath</span> <span class="o">=</span> <span class="n">javaPackage</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="sc">'.'</span><span class="o">,</span> <span class="sc">'/'</span><span class="o">);</span>  
+        <span class="nc">File</span> <span class="n">packagePath</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">outDirFile</span><span class="o">,</span> <span class="n">packageSubPath</span><span class="o">);</span>  
+        <span class="nc">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">packagePath</span><span class="o">,</span> <span class="n">javaClassName</span> <span class="o">+</span> <span class="s">".java"</span><span class="o">);</span>  
         <span class="k">if</span><span class="o">(!</span><span class="n">packagePath</span><span class="o">.</span><span class="na">exists</span><span class="o">()){</span>  
             <span class="n">packagePath</span><span class="o">.</span><span class="na">mkdirs</span><span class="o">();</span>  
         <span class="o">}</span>  

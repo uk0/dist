@@ -139,31 +139,31 @@
 <span class="cm">/**
  * Created by zhangjianxin on 2017/6/29.
  */</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="n">ResponseInfo</span> <span class="o">{</span>
-    <span class="n">SERVER_ERROR</span><span class="o">(</span><span class="s">"返回码异常"</span><span class="o">,</span> <span class="s">"6666"</span><span class="o">),</span>
-    <span class="n">SUCCESS</span><span class="o">(</span><span class="s">"success"</span><span class="o">,</span> <span class="s">"200"</span><span class="o">),</span> <span class="n">ERROR</span><span class="o">(</span><span class="s">"Not Fount"</span><span class="o">,</span> <span class="s">"404"</span><span class="o">),</span> <span class="n">GATEWAY</span><span class="o">(</span><span class="s">"Fuck Server"</span><span class="o">,</span> <span class="s">"502"</span><span class="o">),</span> <span class="n">CREATE</span><span class="o">(</span><span class="s">"Created"</span><span class="o">,</span> <span class="s">"201"</span><span class="o">);</span>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="nc">ResponseInfo</span> <span class="o">{</span>
+    <span class="no">SERVER_ERROR</span><span class="o">(</span><span class="s">"返回码异常"</span><span class="o">,</span> <span class="s">"6666"</span><span class="o">),</span>
+    <span class="no">SUCCESS</span><span class="o">(</span><span class="s">"success"</span><span class="o">,</span> <span class="s">"200"</span><span class="o">),</span> <span class="no">ERROR</span><span class="o">(</span><span class="s">"Not Fount"</span><span class="o">,</span> <span class="s">"404"</span><span class="o">),</span> <span class="no">GATEWAY</span><span class="o">(</span><span class="s">"Fuck Server"</span><span class="o">,</span> <span class="s">"502"</span><span class="o">),</span> <span class="no">CREATE</span><span class="o">(</span><span class="s">"Created"</span><span class="o">,</span> <span class="s">"201"</span><span class="o">);</span>
 
 
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">code</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">msg</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="nf">ResponseInfo</span><span class="o">(</span><span class="n">String</span> <span class="n">code</span><span class="o">,</span> <span class="n">String</span> <span class="n">msg</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">code</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">msg</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nf">ResponseInfo</span><span class="o">(</span><span class="nc">String</span> <span class="n">code</span><span class="o">,</span> <span class="nc">String</span> <span class="n">msg</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">this</span><span class="o">.</span><span class="na">code</span> <span class="o">=</span> <span class="n">code</span><span class="o">;</span>
         <span class="k">this</span><span class="o">.</span><span class="na">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">;</span>
     <span class="o">}</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getReturnCode</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getReturnCode</span><span class="o">()</span> <span class="o">{</span>
         <span class="k">return</span> <span class="n">code</span><span class="o">;</span>
     <span class="o">}</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getReturnMsg</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getReturnMsg</span><span class="o">()</span> <span class="o">{</span>
         <span class="k">return</span> <span class="n">msg</span><span class="o">;</span>
     <span class="o">}</span>
 
-    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">getResponseMsg</span><span class="o">(</span><span class="n">String</span> <span class="n">code</span><span class="o">){</span>
-        <span class="k">for</span><span class="o">(</span><span class="n">ResponseInfo</span> <span class="nl">responseInfo:</span><span class="n">ResponseInfo</span><span class="o">.</span><span class="na">values</span><span class="o">()){</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">getResponseMsg</span><span class="o">(</span><span class="nc">String</span> <span class="n">code</span><span class="o">){</span>
+        <span class="k">for</span><span class="o">(</span><span class="nc">ResponseInfo</span> <span class="nl">responseInfo:</span><span class="nc">ResponseInfo</span><span class="o">.</span><span class="na">values</span><span class="o">()){</span>
             <span class="k">if</span><span class="o">(</span><span class="n">code</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">responseInfo</span><span class="o">.</span><span class="na">getReturnCode</span><span class="o">())){</span>
                 <span class="k">return</span> <span class="n">responseInfo</span><span class="o">.</span><span class="na">getReturnMsg</span><span class="o">();</span>
             <span class="o">}</span>
         <span class="o">}</span>
-        <span class="k">return</span> <span class="n">SERVER_ERROR</span><span class="o">.</span><span class="na">getReturnMsg</span><span class="o">();</span>
+        <span class="k">return</span> <span class="no">SERVER_ERROR</span><span class="o">.</span><span class="na">getReturnMsg</span><span class="o">();</span>
     <span class="o">}</span>
 <span class="o">}</span>
 
@@ -177,10 +177,10 @@
  * Created by zhangjianxin on 2017/6/29.
  */</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ResponseInfoTest</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">ResponseInfo</span><span class="o">.</span><span class="na">SUCCESS</span><span class="o">.</span><span class="na">getReturnCode</span><span class="o">());</span>
-        <span class="n">String</span> <span class="n">code</span> <span class="o">=</span> <span class="n">ResponseInfo</span><span class="o">.</span><span class="na">SUCCESS</span><span class="o">.</span><span class="na">getReturnCode</span><span class="o">();</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">ResponseInfo</span><span class="o">.</span><span class="na">getResponseMsg</span><span class="o">(</span><span class="n">code</span><span class="o">));</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">ResponseInfo</span><span class="o">.</span><span class="na">SUCCESS</span><span class="o">.</span><span class="na">getReturnCode</span><span class="o">());</span>
+        <span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">ResponseInfo</span><span class="o">.</span><span class="na">SUCCESS</span><span class="o">.</span><span class="na">getReturnCode</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">ResponseInfo</span><span class="o">.</span><span class="na">getResponseMsg</span><span class="o">(</span><span class="n">code</span><span class="o">));</span>
     <span class="o">}</span>
 <span class="o">}</span>
 
@@ -198,37 +198,37 @@
 <span class="cm">/**
  * Created by zhangjianxin on 2017/6/29.
  */</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="n">ReturnCode</span> <span class="o">{</span>
-    <span class="n">SUCCESS</span><span class="o">(</span><span class="s">"success"</span><span class="o">,</span> <span class="mi">200</span><span class="o">),</span> <span class="n">ERROR</span><span class="o">(</span><span class="s">"Not Fount"</span><span class="o">,</span> <span class="mi">404</span><span class="o">),</span> <span class="n">GATEWAY</span><span class="o">(</span><span class="s">"Fuck Server"</span><span class="o">,</span> <span class="mi">502</span><span class="o">),</span> <span class="n">CREATE</span><span class="o">(</span><span class="s">"Created"</span><span class="o">,</span> <span class="mi">201</span><span class="o">);</span>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="nc">ReturnCode</span> <span class="o">{</span>
+    <span class="no">SUCCESS</span><span class="o">(</span><span class="s">"success"</span><span class="o">,</span> <span class="mi">200</span><span class="o">),</span> <span class="no">ERROR</span><span class="o">(</span><span class="s">"Not Fount"</span><span class="o">,</span> <span class="mi">404</span><span class="o">),</span> <span class="no">GATEWAY</span><span class="o">(</span><span class="s">"Fuck Server"</span><span class="o">,</span> <span class="mi">502</span><span class="o">),</span> <span class="no">CREATE</span><span class="o">(</span><span class="s">"Created"</span><span class="o">,</span> <span class="mi">201</span><span class="o">);</span>
      <span class="cm">/** 成员变量 */</span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">CodeData</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">CodeIndex</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="nc">CodeData</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="nc">CodeIndex</span><span class="o">;</span>
     <span class="cm">/**     构造方法*/</span>
-    <span class="kd">private</span> <span class="nf">ReturnCode</span><span class="o">(</span><span class="n">String</span> <span class="n">CodeData</span><span class="o">,</span> <span class="kt">int</span> <span class="n">CodeIndex</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">CodeData</span> <span class="o">=</span> <span class="n">CodeData</span><span class="o">;</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">CodeIndex</span> <span class="o">=</span> <span class="n">CodeIndex</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nf">ReturnCode</span><span class="o">(</span><span class="nc">String</span> <span class="nc">CodeData</span><span class="o">,</span> <span class="kt">int</span> <span class="nc">CodeIndex</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">CodeData</span> <span class="o">=</span> <span class="nc">CodeData</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">CodeIndex</span> <span class="o">=</span> <span class="nc">CodeIndex</span><span class="o">;</span>
     <span class="o">}</span>
      <span class="cm">/** 普通方法*/</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">getCodeData</span><span class="o">(</span><span class="kt">int</span> <span class="n">CodeIndex</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">for</span> <span class="o">(</span><span class="n">ReturnCode</span> <span class="n">c</span> <span class="o">:</span> <span class="n">ReturnCode</span><span class="o">.</span><span class="na">values</span><span class="o">())</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">c</span><span class="o">.</span><span class="na">getCodeIndex</span><span class="o">()</span> <span class="o">==</span> <span class="n">CodeIndex</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">getCodeData</span><span class="o">(</span><span class="kt">int</span> <span class="nc">CodeIndex</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">ReturnCode</span> <span class="n">c</span> <span class="o">:</span> <span class="nc">ReturnCode</span><span class="o">.</span><span class="na">values</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">c</span><span class="o">.</span><span class="na">getCodeIndex</span><span class="o">()</span> <span class="o">==</span> <span class="nc">CodeIndex</span><span class="o">)</span> <span class="o">{</span>
                 <span class="k">return</span> <span class="n">c</span><span class="o">.</span><span class="na">CodeData</span><span class="o">;</span>
             <span class="o">}</span>
         <span class="o">}</span>
         <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
     <span class="o">}</span>
      <span class="cm">/** get set 方法*/</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getCodeData</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">CodeData</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getCodeData</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">CodeData</span><span class="o">;</span>
     <span class="o">}</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCodeData</span><span class="o">(</span><span class="n">String</span> <span class="n">CodeData</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">CodeData</span> <span class="o">=</span> <span class="n">CodeData</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCodeData</span><span class="o">(</span><span class="nc">String</span> <span class="nc">CodeData</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">CodeData</span> <span class="o">=</span> <span class="nc">CodeData</span><span class="o">;</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getCodeIndex</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">CodeIndex</span><span class="o">;</span>
+        <span class="k">return</span> <span class="nc">CodeIndex</span><span class="o">;</span>
     <span class="o">}</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCodeIndex</span><span class="o">(</span><span class="kt">int</span> <span class="n">CodeIndex</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">CodeIndex</span> <span class="o">=</span> <span class="n">CodeIndex</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCodeIndex</span><span class="o">(</span><span class="kt">int</span> <span class="nc">CodeIndex</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">CodeIndex</span> <span class="o">=</span> <span class="nc">CodeIndex</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
@@ -242,29 +242,29 @@
 <span class="cm">/**
  * Created by zhangjianxin on 2017/6/29.
  */</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="n">ReturnCode2</span> <span class="kd">implements</span> <span class="n">ReturnCodeIns</span><span class="o">{</span>
-    <span class="n">SUCCESS</span><span class="o">(</span><span class="s">"success"</span><span class="o">,</span> <span class="mi">200</span><span class="o">),</span> <span class="n">ERROR</span><span class="o">(</span><span class="s">"Not Fount"</span><span class="o">,</span> <span class="mi">404</span><span class="o">),</span> <span class="n">GATEWAY</span><span class="o">(</span><span class="s">"Fuck Server"</span><span class="o">,</span> <span class="mi">502</span><span class="o">),</span> <span class="n">CREATE</span><span class="o">(</span><span class="s">"Created"</span><span class="o">,</span> <span class="mi">201</span><span class="o">);</span>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="nc">ReturnCode2</span> <span class="kd">implements</span> <span class="nc">ReturnCodeIns</span><span class="o">{</span>
+    <span class="no">SUCCESS</span><span class="o">(</span><span class="s">"success"</span><span class="o">,</span> <span class="mi">200</span><span class="o">),</span> <span class="no">ERROR</span><span class="o">(</span><span class="s">"Not Fount"</span><span class="o">,</span> <span class="mi">404</span><span class="o">),</span> <span class="no">GATEWAY</span><span class="o">(</span><span class="s">"Fuck Server"</span><span class="o">,</span> <span class="mi">502</span><span class="o">),</span> <span class="no">CREATE</span><span class="o">(</span><span class="s">"Created"</span><span class="o">,</span> <span class="mi">201</span><span class="o">);</span>
     <span class="cm">/** 成员变量*/</span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">index</span><span class="o">;</span>
      <span class="cm">/** 构造方法*/</span>
-    <span class="kd">private</span> <span class="nf">ReturnCode2</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nf">ReturnCode2</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
         <span class="k">this</span><span class="o">.</span><span class="na">index</span> <span class="o">=</span> <span class="n">index</span><span class="o">;</span>
     <span class="o">}</span>
      <span class="cm">/**接口方法*/</span>
     <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="n">JSONObject</span> <span class="nf">getInfo</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">JSONObject</span> <span class="nf">getInfo</span><span class="o">()</span> <span class="o">{</span>
         <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">QueryData</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
     <span class="o">}</span>
      <span class="cm">/**接口方法*/</span>
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">index</span><span class="o">+</span><span class="s">":"</span><span class="o">+</span><span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">index</span><span class="o">+</span><span class="s">":"</span><span class="o">+</span><span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
     <span class="o">}</span>
 
-    <span class="kd">public</span> <span class="kd">static</span> <span class="n">JSONObject</span> <span class="nf">QueryData</span><span class="o">(</span><span class="n">String</span> <span class="n">Name</span><span class="o">){</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Name</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">JSONObject</span> <span class="nf">QueryData</span><span class="o">(</span><span class="nc">String</span> <span class="nc">Name</span><span class="o">){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Name</span><span class="o">);</span>
         <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
@@ -280,7 +280,7 @@
  */</span>
 <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ReturnCodeIns</span> <span class="o">{</span>
     <span class="kt">void</span> <span class="nf">print</span><span class="o">();</span>
-    <span class="n">JSONObject</span> <span class="nf">getInfo</span><span class="o">();</span>
+    <span class="nc">JSONObject</span> <span class="nf">getInfo</span><span class="o">();</span>
 <span class="o">}</span>
 
 </code></pre></div></div>
@@ -292,8 +292,8 @@
  */</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReturnCodeMain</span> <span class="o">{</span>
 
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">ReturnCode</span><span class="o">.</span><span class="na">getCodeData</span><span class="o">(</span><span class="mi">200</span><span class="o">));</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">ReturnCode</span><span class="o">.</span><span class="na">getCodeData</span><span class="o">(</span><span class="mi">200</span><span class="o">));</span>
 
     <span class="o">}</span>
 <span class="o">}</span>

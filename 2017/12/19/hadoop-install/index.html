@@ -142,9 +142,9 @@
 
 scp <span class="nt">-r</span> hadoop/ dscn<span class="nv">$:</span>/home/hadoop
 
-mkdir  <span class="nt">-p</span> /home/program/hadoop/  data logs pids  <span class="c"># hadoop 文件路径</span>
+<span class="nb">mkdir</span>  <span class="nt">-p</span> /home/program/hadoop/  data logs pids  <span class="c"># hadoop 文件路径</span>
 
-mkdir  <span class="nt">-p</span>  /home/program/zookeeper data logs pids <span class="c"># zookeeper 文件</span>
+<span class="nb">mkdir</span>  <span class="nt">-p</span>  /home/program/zookeeper data logs pids <span class="c"># zookeeper 文件</span>
 
 </code></pre></div></div>
 
@@ -172,7 +172,7 @@ mkdir  <span class="nt">-p</span>  /home/program/zookeeper data logs pids <span 
 
 <h1 id="环境变量-java">环境变量 Java</h1>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span><span class="k">$(</span>dirname <span class="k">$(</span>dirname <span class="k">$(</span>readlink <span class="nt">-f</span> <span class="k">$(</span>which javac<span class="k">))))</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span><span class="si">$(</span><span class="nb">dirname</span> <span class="si">$(</span><span class="nb">dirname</span> <span class="si">$(</span><span class="nb">readlink</span> <span class="nt">-f</span> <span class="si">$(</span>which javac<span class="si">))))</span>
 </code></pre></div></div>
 
 <h1 id="zookeeper-config">zookeeper config</h1>
@@ -193,7 +193,7 @@ mkdir  <span class="nt">-p</span>  /home/program/zookeeper data logs pids <span 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">for </span>i <span class="k">in </span>1 2 3
     <span class="k">do 
 
-        </span>ssh dscn<span class="nv">$i</span> mkdir <span class="nt">-p</span> /home/program/zookeeper/data/ <span class="nb">echo</span> <span class="nv">$i</span> <span class="o">&gt;</span> /home/program/zookeeper/data/myid
+        </span>ssh dscn<span class="nv">$i</span> <span class="nb">mkdir</span> <span class="nt">-p</span> /home/program/zookeeper/data/ <span class="nb">echo</span> <span class="nv">$i</span> <span class="o">&gt;</span> /home/program/zookeeper/data/myid
 
     <span class="k">done</span> 
 </code></pre></div></div>
@@ -204,23 +204,23 @@ mkdir  <span class="nt">-p</span>  /home/program/zookeeper data logs pids <span 
   <li>
     <p>启动 zookeeper (3个节点)</p>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ```bash
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ```bash
      ./zkServer.sh start ../conf/zoo.cfg
  ```
 </code></pre></div>    </div>
   </li>
   <li>启动 JournalNode (3个节点) 
-     <code class="highlighter-rouge">bash
+     <code class="language-plaintext highlighter-rouge">bash
          sbin/hadoop-daemon.sh start journalnode
     </code></li>
   <li>在其中一个namenode上格式化：
-     <code class="highlighter-rouge">bash
+     <code class="language-plaintext highlighter-rouge">bash
           bin/hdfs namenode -format -bjsxt 
     </code></li>
   <li>
     <p>启动刚刚格式化的namenode:</p>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ```bash
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ```bash
      sbin/hadoop-daemon.sh start namenode
  ```
 </code></pre></div>    </div>
@@ -285,11 +285,11 @@ mkdir  <span class="nt">-p</span>  /home/program/zookeeper data logs pids <span 
 <h1 id="读取文件里面的文件路径参数转译">读取文件里面的文件路径参数【转译】</h1>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="nv">HBASE_TMP_DIR</span><span class="o">=</span><span class="k">$(</span><span class="nb">cat</span> <span class="nv">$HBASE_PACKAGE_PATH</span>/config | <span class="nb">grep </span>HBASE_TMP_DIR | awk <span class="nt">-F</span> <span class="s2">"="</span> <span class="s1">'{print$2}'</span><span class="k">)</span>
+<span class="nv">HBASE_TMP_DIR</span><span class="o">=</span><span class="si">$(</span><span class="nb">cat</span> <span class="nv">$HBASE_PACKAGE_PATH</span>/config | <span class="nb">grep </span>HBASE_TMP_DIR | <span class="nb">awk</span> <span class="nt">-F</span> <span class="s2">"="</span> <span class="s1">'{print$2}'</span><span class="si">)</span>
 
-<span class="nv">HBASE_TMP_DIR_STR</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="nv">$HBASE_TMP_DIR</span> | sed <span class="s1">'s#\/#\\\/#g'</span><span class="k">)</span>
+<span class="nv">HBASE_TMP_DIR_STR</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nv">$HBASE_TMP_DIR</span> | <span class="nb">sed</span> <span class="s1">'s#\/#\\\/#g'</span><span class="si">)</span>
 
-sed <span class="nt">-i</span> <span class="s2">"s/HBASE_TMP_DIR/</span><span class="nv">$HBASE_TMP_DIR_STR</span><span class="s2">/"</span> <span class="nv">$HBASE_HOME</span>/conf/hbase-site.xml
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"s/HBASE_TMP_DIR/</span><span class="nv">$HBASE_TMP_DIR_STR</span><span class="s2">/"</span> <span class="nv">$HBASE_HOME</span>/conf/hbase-site.xml
 
 </code></pre></div></div>
 

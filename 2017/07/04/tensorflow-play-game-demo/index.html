@@ -152,8 +152,8 @@
 
 <h2 id="部分代码">部分代码</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c">#!/usr/bin/env python</span>
- <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">#!/usr/bin/env python
+</span> <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
  
  <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
  <span class="kn">import</span> <span class="nn">cv2</span>
@@ -164,16 +164,16 @@
  <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
  <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
  
- <span class="n">GAME</span> <span class="o">=</span> <span class="s">'bird'</span> <span class="c"># the name of the game being played for log files</span>
- <span class="n">ACTIONS</span> <span class="o">=</span> <span class="mi">2</span> <span class="c"># number of valid actions</span>
- <span class="n">GAMMA</span> <span class="o">=</span> <span class="mf">0.99</span> <span class="c"># decay rate of past observations</span>
- <span class="n">OBSERVE</span> <span class="o">=</span> <span class="mf">100000.</span> <span class="c"># timesteps to observe before training</span>
- <span class="n">EXPLORE</span> <span class="o">=</span> <span class="mf">2000000.</span> <span class="c"># frames over which to anneal epsilon</span>
- <span class="n">FINAL_EPSILON</span> <span class="o">=</span> <span class="mf">0.0001</span> <span class="c"># final value of epsilon</span>
- <span class="n">INITIAL_EPSILON</span> <span class="o">=</span> <span class="mf">0.0001</span> <span class="c"># starting value of epsilon</span>
- <span class="n">REPLAY_MEMORY</span> <span class="o">=</span> <span class="mi">50000</span> <span class="c"># number of previous transitions to remember</span>
- <span class="n">BATCH</span> <span class="o">=</span> <span class="mi">32</span> <span class="c"># size of minibatch</span>
- <span class="n">FRAME_PER_ACTION</span> <span class="o">=</span> <span class="mi">1</span>
+ <span class="n">GAME</span> <span class="o">=</span> <span class="s">'bird'</span> <span class="c1"># the name of the game being played for log files
+</span> <span class="n">ACTIONS</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># number of valid actions
+</span> <span class="n">GAMMA</span> <span class="o">=</span> <span class="mf">0.99</span> <span class="c1"># decay rate of past observations
+</span> <span class="n">OBSERVE</span> <span class="o">=</span> <span class="mf">100000.</span> <span class="c1"># timesteps to observe before training
+</span> <span class="n">EXPLORE</span> <span class="o">=</span> <span class="mf">2000000.</span> <span class="c1"># frames over which to anneal epsilon
+</span> <span class="n">FINAL_EPSILON</span> <span class="o">=</span> <span class="mf">0.0001</span> <span class="c1"># final value of epsilon
+</span> <span class="n">INITIAL_EPSILON</span> <span class="o">=</span> <span class="mf">0.0001</span> <span class="c1"># starting value of epsilon
+</span> <span class="n">REPLAY_MEMORY</span> <span class="o">=</span> <span class="mi">50000</span> <span class="c1"># number of previous transitions to remember
+</span> <span class="n">BATCH</span> <span class="o">=</span> <span class="mi">32</span> <span class="c1"># size of minibatch
+</span> <span class="n">FRAME_PER_ACTION</span> <span class="o">=</span> <span class="mi">1</span>
  
  <span class="k">def</span> <span class="nf">weight_variable</span><span class="p">(</span><span class="n">shape</span><span class="p">):</span>
      <span class="n">initial</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">)</span>
@@ -190,8 +190,8 @@
      <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">max_pool</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ksize</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span> <span class="o">=</span> <span class="s">"SAME"</span><span class="p">)</span>
  
  <span class="k">def</span> <span class="nf">createNetwork</span><span class="p">():</span>
-     <span class="c"># network weights</span>
-     <span class="n">W_conv1</span> <span class="o">=</span> <span class="n">weight_variable</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">32</span><span class="p">])</span>
+     <span class="c1"># network weights
+</span>     <span class="n">W_conv1</span> <span class="o">=</span> <span class="n">weight_variable</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">32</span><span class="p">])</span>
      <span class="n">b_conv1</span> <span class="o">=</span> <span class="n">bias_variable</span><span class="p">([</span><span class="mi">32</span><span class="p">])</span>
  
      <span class="n">W_conv2</span> <span class="o">=</span> <span class="n">weight_variable</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">])</span>
@@ -206,57 +206,57 @@
      <span class="n">W_fc2</span> <span class="o">=</span> <span class="n">weight_variable</span><span class="p">([</span><span class="mi">512</span><span class="p">,</span> <span class="n">ACTIONS</span><span class="p">])</span>
      <span class="n">b_fc2</span> <span class="o">=</span> <span class="n">bias_variable</span><span class="p">([</span><span class="n">ACTIONS</span><span class="p">])</span>
  
-     <span class="c"># input layer</span>
-     <span class="n">s</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+     <span class="c1"># input layer
+</span>     <span class="n">s</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
  
-     <span class="c"># hidden layers</span>
-     <span class="n">h_conv1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">conv2d</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">W_conv1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_conv1</span><span class="p">)</span>
+     <span class="c1"># hidden layers
+</span>     <span class="n">h_conv1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">conv2d</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">W_conv1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_conv1</span><span class="p">)</span>
      <span class="n">h_pool1</span> <span class="o">=</span> <span class="n">max_pool_2x2</span><span class="p">(</span><span class="n">h_conv1</span><span class="p">)</span>
  
      <span class="n">h_conv2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">conv2d</span><span class="p">(</span><span class="n">h_pool1</span><span class="p">,</span> <span class="n">W_conv2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_conv2</span><span class="p">)</span>
-     <span class="c">#h_pool2 = max_pool_2x2(h_conv2)</span>
- 
+     <span class="c1">#h_pool2 = max_pool_2x2(h_conv2)
+</span> 
      <span class="n">h_conv3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">conv2d</span><span class="p">(</span><span class="n">h_conv2</span><span class="p">,</span> <span class="n">W_conv3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_conv3</span><span class="p">)</span>
-     <span class="c">#h_pool3 = max_pool_2x2(h_conv3)</span>
- 
-     <span class="c">#h_pool3_flat = tf.reshape(h_pool3, [-1, 256])</span>
-     <span class="n">h_conv3_flat</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">h_conv3</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1600</span><span class="p">])</span>
+     <span class="c1">#h_pool3 = max_pool_2x2(h_conv3)
+</span> 
+     <span class="c1">#h_pool3_flat = tf.reshape(h_pool3, [-1, 256])
+</span>     <span class="n">h_conv3_flat</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">h_conv3</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1600</span><span class="p">])</span>
  
      <span class="n">h_fc1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">h_conv3_flat</span><span class="p">,</span> <span class="n">W_fc1</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_fc1</span><span class="p">)</span>
  
-     <span class="c"># readout layer</span>
-     <span class="n">readout</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">h_fc1</span><span class="p">,</span> <span class="n">W_fc2</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_fc2</span>
+     <span class="c1"># readout layer
+</span>     <span class="n">readout</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">h_fc1</span><span class="p">,</span> <span class="n">W_fc2</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_fc2</span>
  
      <span class="k">return</span> <span class="n">s</span><span class="p">,</span> <span class="n">readout</span><span class="p">,</span> <span class="n">h_fc1</span>
  
  <span class="k">def</span> <span class="nf">trainNetwork</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">readout</span><span class="p">,</span> <span class="n">h_fc1</span><span class="p">,</span> <span class="n">sess</span><span class="p">):</span>
-     <span class="c"># define the cost function</span>
-     <span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="n">ACTIONS</span><span class="p">])</span>
+     <span class="c1"># define the cost function
+</span>     <span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="n">ACTIONS</span><span class="p">])</span>
      <span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">])</span>
      <span class="n">readout_action</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">readout</span><span class="p">,</span> <span class="n">a</span><span class="p">),</span> <span class="n">reduction_indices</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
      <span class="n">cost</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">readout_action</span><span class="p">))</span>
      <span class="n">train_step</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
  
-     <span class="c"># open up a game state to communicate with emulator</span>
-     <span class="n">game_state</span> <span class="o">=</span> <span class="n">game</span><span class="o">.</span><span class="n">GameState</span><span class="p">()</span>
+     <span class="c1"># open up a game state to communicate with emulator
+</span>     <span class="n">game_state</span> <span class="o">=</span> <span class="n">game</span><span class="o">.</span><span class="n">GameState</span><span class="p">()</span>
  
-     <span class="c"># store the previous observations in replay memory</span>
-     <span class="n">D</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+     <span class="c1"># store the previous observations in replay memory
+</span>     <span class="n">D</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
  
-     <span class="c"># printing</span>
-     <span class="n">a_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"logs_"</span> <span class="o">+</span> <span class="n">GAME</span> <span class="o">+</span> <span class="s">"/readout.txt"</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
+     <span class="c1"># printing
+</span>     <span class="n">a_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"logs_"</span> <span class="o">+</span> <span class="n">GAME</span> <span class="o">+</span> <span class="s">"/readout.txt"</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
      <span class="n">h_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"logs_"</span> <span class="o">+</span> <span class="n">GAME</span> <span class="o">+</span> <span class="s">"/hidden.txt"</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
  
-     <span class="c"># get the first state by doing nothing and preprocess the image to 80x80x4</span>
-     <span class="n">do_nothing</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ACTIONS</span><span class="p">)</span>
+     <span class="c1"># get the first state by doing nothing and preprocess the image to 80x80x4
+</span>     <span class="n">do_nothing</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ACTIONS</span><span class="p">)</span>
      <span class="n">do_nothing</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
      <span class="n">x_t</span><span class="p">,</span> <span class="n">r_0</span><span class="p">,</span> <span class="n">terminal</span> <span class="o">=</span> <span class="n">game_state</span><span class="o">.</span><span class="n">frame_step</span><span class="p">(</span><span class="n">do_nothing</span><span class="p">)</span>
      <span class="n">x_t</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">x_t</span><span class="p">,</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">)),</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
      <span class="n">ret</span><span class="p">,</span> <span class="n">x_t</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">x_t</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span>
      <span class="n">s_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">((</span><span class="n">x_t</span><span class="p">,</span> <span class="n">x_t</span><span class="p">,</span> <span class="n">x_t</span><span class="p">,</span> <span class="n">x_t</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
  
-     <span class="c"># saving and loading networks</span>
-     <span class="n">saver</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Saver</span><span class="p">()</span>
+     <span class="c1"># saving and loading networks
+</span>     <span class="n">saver</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Saver</span><span class="p">()</span>
      <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">initialize_all_variables</span><span class="p">())</span>
      <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">get_checkpoint_state</span><span class="p">(</span><span class="s">"saved_networks"</span><span class="p">)</span>
      <span class="k">if</span> <span class="n">checkpoint</span> <span class="ow">and</span> <span class="n">checkpoint</span><span class="o">.</span><span class="n">model_checkpoint_path</span><span class="p">:</span>
@@ -265,12 +265,12 @@
      <span class="k">else</span><span class="p">:</span>
          <span class="k">print</span><span class="p">(</span><span class="s">"Could not find old network weights"</span><span class="p">)</span>
  
-     <span class="c"># start training</span>
-     <span class="n">epsilon</span> <span class="o">=</span> <span class="n">INITIAL_EPSILON</span>
+     <span class="c1"># start training
+</span>     <span class="n">epsilon</span> <span class="o">=</span> <span class="n">INITIAL_EPSILON</span>
      <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
      <span class="k">while</span> <span class="s">"flappy bird"</span> <span class="o">!=</span> <span class="s">"angry bird"</span><span class="p">:</span>
-         <span class="c"># choose an action epsilon greedily</span>
-         <span class="n">readout_t</span> <span class="o">=</span> <span class="n">readout</span><span class="o">.</span><span class="nb">eval</span><span class="p">(</span><span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">s</span> <span class="p">:</span> <span class="p">[</span><span class="n">s_t</span><span class="p">]})[</span><span class="mi">0</span><span class="p">]</span>
+         <span class="c1"># choose an action epsilon greedily
+</span>         <span class="n">readout_t</span> <span class="o">=</span> <span class="n">readout</span><span class="o">.</span><span class="nb">eval</span><span class="p">(</span><span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">s</span> <span class="p">:</span> <span class="p">[</span><span class="n">s_t</span><span class="p">]})[</span><span class="mi">0</span><span class="p">]</span>
          <span class="n">a_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">ACTIONS</span><span class="p">])</span>
          <span class="n">action_index</span> <span class="o">=</span> <span class="mi">0</span>
          <span class="k">if</span> <span class="n">t</span> <span class="o">%</span> <span class="n">FRAME_PER_ACTION</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -282,32 +282,32 @@
                  <span class="n">action_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">readout_t</span><span class="p">)</span>
                  <span class="n">a_t</span><span class="p">[</span><span class="n">action_index</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
          <span class="k">else</span><span class="p">:</span>
-             <span class="n">a_t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c"># do nothing</span>
- 
-         <span class="c"># scale down epsilon</span>
-         <span class="k">if</span> <span class="n">epsilon</span> <span class="o">&gt;</span> <span class="n">FINAL_EPSILON</span> <span class="ow">and</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="n">OBSERVE</span><span class="p">:</span>
+             <span class="n">a_t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># do nothing
+</span> 
+         <span class="c1"># scale down epsilon
+</span>         <span class="k">if</span> <span class="n">epsilon</span> <span class="o">&gt;</span> <span class="n">FINAL_EPSILON</span> <span class="ow">and</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="n">OBSERVE</span><span class="p">:</span>
              <span class="n">epsilon</span> <span class="o">-=</span> <span class="p">(</span><span class="n">INITIAL_EPSILON</span> <span class="o">-</span> <span class="n">FINAL_EPSILON</span><span class="p">)</span> <span class="o">/</span> <span class="n">EXPLORE</span>
  
-         <span class="c"># run the selected action and observe next state and reward</span>
-         <span class="n">x_t1_colored</span><span class="p">,</span> <span class="n">r_t</span><span class="p">,</span> <span class="n">terminal</span> <span class="o">=</span> <span class="n">game_state</span><span class="o">.</span><span class="n">frame_step</span><span class="p">(</span><span class="n">a_t</span><span class="p">)</span>
+         <span class="c1"># run the selected action and observe next state and reward
+</span>         <span class="n">x_t1_colored</span><span class="p">,</span> <span class="n">r_t</span><span class="p">,</span> <span class="n">terminal</span> <span class="o">=</span> <span class="n">game_state</span><span class="o">.</span><span class="n">frame_step</span><span class="p">(</span><span class="n">a_t</span><span class="p">)</span>
          <span class="n">x_t1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">x_t1_colored</span><span class="p">,</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">)),</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
          <span class="n">ret</span><span class="p">,</span> <span class="n">x_t1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">x_t1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span>
          <span class="n">x_t1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_t1</span><span class="p">,</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-         <span class="c">#s_t1 = np.append(x_t1, s_t[:,:,1:], axis = 2)</span>
-         <span class="n">s_t1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_t1</span><span class="p">,</span> <span class="n">s_t</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+         <span class="c1">#s_t1 = np.append(x_t1, s_t[:,:,1:], axis = 2)
+</span>         <span class="n">s_t1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_t1</span><span class="p">,</span> <span class="n">s_t</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
  
-         <span class="c"># store the transition in D</span>
-         <span class="n">D</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">s_t</span><span class="p">,</span> <span class="n">a_t</span><span class="p">,</span> <span class="n">r_t</span><span class="p">,</span> <span class="n">s_t1</span><span class="p">,</span> <span class="n">terminal</span><span class="p">))</span>
+         <span class="c1"># store the transition in D
+</span>         <span class="n">D</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">s_t</span><span class="p">,</span> <span class="n">a_t</span><span class="p">,</span> <span class="n">r_t</span><span class="p">,</span> <span class="n">s_t1</span><span class="p">,</span> <span class="n">terminal</span><span class="p">))</span>
          <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">D</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">REPLAY_MEMORY</span><span class="p">:</span>
              <span class="n">D</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
  
-         <span class="c"># only train if done observing</span>
-         <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="n">OBSERVE</span><span class="p">:</span>
-             <span class="c"># sample a minibatch to train on</span>
-             <span class="n">minibatch</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">BATCH</span><span class="p">)</span>
+         <span class="c1"># only train if done observing
+</span>         <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="n">OBSERVE</span><span class="p">:</span>
+             <span class="c1"># sample a minibatch to train on
+</span>             <span class="n">minibatch</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">BATCH</span><span class="p">)</span>
  
-             <span class="c"># get the batch variables</span>
-             <span class="n">s_j_batch</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">minibatch</span><span class="p">]</span>
+             <span class="c1"># get the batch variables
+</span>             <span class="n">s_j_batch</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">minibatch</span><span class="p">]</span>
              <span class="n">a_batch</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">minibatch</span><span class="p">]</span>
              <span class="n">r_batch</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">minibatch</span><span class="p">]</span>
              <span class="n">s_j1_batch</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">minibatch</span><span class="p">]</span>
@@ -316,29 +316,29 @@
              <span class="n">readout_j1_batch</span> <span class="o">=</span> <span class="n">readout</span><span class="o">.</span><span class="nb">eval</span><span class="p">(</span><span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">s</span> <span class="p">:</span> <span class="n">s_j1_batch</span><span class="p">})</span>
              <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">minibatch</span><span class="p">)):</span>
                  <span class="n">terminal</span> <span class="o">=</span> <span class="n">minibatch</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span>
-                 <span class="c"># if terminal, only equals reward</span>
-                 <span class="k">if</span> <span class="n">terminal</span><span class="p">:</span>
+                 <span class="c1"># if terminal, only equals reward
+</span>                 <span class="k">if</span> <span class="n">terminal</span><span class="p">:</span>
                      <span class="n">y_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r_batch</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
                  <span class="k">else</span><span class="p">:</span>
                      <span class="n">y_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r_batch</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">GAMMA</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="nb">max</span><span class="p">(</span><span class="n">readout_j1_batch</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
  
-             <span class="c"># perform gradient step</span>
-             <span class="n">train_step</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span>
+             <span class="c1"># perform gradient step
+</span>             <span class="n">train_step</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span>
                  <span class="n">y</span> <span class="p">:</span> <span class="n">y_batch</span><span class="p">,</span>
                  <span class="n">a</span> <span class="p">:</span> <span class="n">a_batch</span><span class="p">,</span>
                  <span class="n">s</span> <span class="p">:</span> <span class="n">s_j_batch</span><span class="p">}</span>
              <span class="p">)</span>
  
-         <span class="c"># update the old values</span>
-         <span class="n">s_t</span> <span class="o">=</span> <span class="n">s_t1</span>
+         <span class="c1"># update the old values
+</span>         <span class="n">s_t</span> <span class="o">=</span> <span class="n">s_t1</span>
          <span class="n">t</span> <span class="o">+=</span> <span class="mi">1</span>
  
-         <span class="c"># save progress every 10000 iterations</span>
-         <span class="k">if</span> <span class="n">t</span> <span class="o">%</span> <span class="mi">10000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+         <span class="c1"># save progress every 10000 iterations
+</span>         <span class="k">if</span> <span class="n">t</span> <span class="o">%</span> <span class="mi">10000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
              <span class="n">saver</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="s">'saved_networks/'</span> <span class="o">+</span> <span class="n">GAME</span> <span class="o">+</span> <span class="s">'-dqn'</span><span class="p">,</span> <span class="n">global_step</span> <span class="o">=</span> <span class="n">t</span><span class="p">)</span>
  
-         <span class="c"># print info</span>
-         <span class="n">state</span> <span class="o">=</span> <span class="s">""</span>
+         <span class="c1"># print info
+</span>         <span class="n">state</span> <span class="o">=</span> <span class="s">""</span>
          <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="n">OBSERVE</span><span class="p">:</span>
              <span class="n">state</span> <span class="o">=</span> <span class="s">"observe"</span>
          <span class="k">elif</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="n">OBSERVE</span> <span class="ow">and</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="n">OBSERVE</span> <span class="o">+</span> <span class="n">EXPLORE</span><span class="p">:</span>
@@ -349,8 +349,8 @@
          <span class="k">print</span><span class="p">(</span><span class="s">"TIMESTEP"</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="s">"/ STATE"</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> \
              <span class="s">"/ EPSILON"</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="s">"/ ACTION"</span><span class="p">,</span> <span class="n">action_index</span><span class="p">,</span> <span class="s">"/ REWARD"</span><span class="p">,</span> <span class="n">r_t</span><span class="p">,</span> \
              <span class="s">"/ Q_MAX </span><span class="si">%</span><span class="s">e"</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="nb">max</span><span class="p">(</span><span class="n">readout_t</span><span class="p">))</span>
-         <span class="c"># write info to files</span>
-         <span class="s">'''
+         <span class="c1"># write info to files
+</span>         <span class="s">'''
          if t </span><span class="si">% 10000</span><span class="s"> &lt;= 100:
              a_file.write(",".join([str(x) for x in readout_t]) + '</span><span class="se">\n</span><span class="s">')
              h_file.write(",".join([str(x) for x in h_fc1.eval(feed_dict={s:[s_t]})[0]]) + '</span><span class="se">\n</span><span class="s">')

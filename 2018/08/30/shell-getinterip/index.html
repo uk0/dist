@@ -136,7 +136,7 @@
 <span class="c">#! /bin/bash</span>
 
 
-<span class="nv">bashpath</span><span class="o">=</span><span class="k">$(</span><span class="nb">cd</span> <span class="sb">`</span>dirname <span class="nv">$0</span><span class="sb">`</span><span class="p">;</span> <span class="nb">pwd</span><span class="k">)</span>
+<span class="nv">bashpath</span><span class="o">=</span><span class="si">$(</span><span class="nb">cd</span> <span class="sb">`</span><span class="nb">dirname</span> <span class="nv">$0</span><span class="sb">`</span><span class="p">;</span> <span class="nb">pwd</span><span class="si">)</span>
 <span class="nv">brokerName</span><span class="o">=</span>dev_rocketmq_4.3.0
 <span class="c">#########################setting#######################</span>
 <span class="nv">URL</span><span class="o">=</span><span class="s2">"http://ip.cn/"</span>
@@ -146,13 +146,13 @@
 <span class="k">then
 	</span>curl <span class="nt">-s</span> <span class="nt">-o</span> <span class="nv">$bashpath</span>/ip.html <span class="k">${</span><span class="nv">URL</span><span class="k">}</span>
 	<span class="nb">echo</span> <span class="s2">"search inter ip "</span>
-        <span class="nv">ip</span><span class="o">=</span><span class="k">$(</span><span class="nb">cat</span> <span class="k">${</span><span class="nv">bashpath</span><span class="k">}</span>/ip.html  | sed  <span class="s1">'s/：/ /g'</span> | awk <span class="s1">'{print$3}'</span><span class="k">)</span>
+        <span class="nv">ip</span><span class="o">=</span><span class="si">$(</span><span class="nb">cat</span> <span class="k">${</span><span class="nv">bashpath</span><span class="k">}</span>/ip.html  | <span class="nb">sed</span>  <span class="s1">'s/：/ /g'</span> | <span class="nb">awk</span> <span class="s1">'{print$3}'</span><span class="si">)</span>
 	<span class="nb">echo</span> <span class="nv">$ip</span>
-    rm <span class="k">${</span><span class="nv">bashpath</span><span class="k">}</span>/ip.html
+    <span class="nb">rm</span> <span class="k">${</span><span class="nv">bashpath</span><span class="k">}</span>/ip.html
 <span class="k">fi</span>
 </code></pre></div></div>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    awk <span class="s1">'!seen[$0]++'</span> &lt;filename&gt; <span class="c"># 去重行</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nb">awk</span> <span class="s1">'!seen[$0]++'</span> &lt;filename&gt; <span class="c"># 去重行</span>
 </code></pre></div></div>
 
 <p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>

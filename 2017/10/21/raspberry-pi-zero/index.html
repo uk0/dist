@@ -153,7 +153,7 @@ author：zhangjianxin</p>
   <li>第一次没有插入SD卡的时候</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>➜  ~ df <span class="nt">-h</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>➜  ~ <span class="nb">df</span> <span class="nt">-h</span>
 Filesystem                          Size   Used  Avail Capacity iused      ifree %iused  Mounted on
 /dev/disk1                         112Gi   93Gi   18Gi    84% 1444634 4293522645    0%   /
 devfs                              186Ki  186Ki    0Bi   100%     642          0  100%   /dev
@@ -169,7 +169,7 @@ localhost:/fMn-YFzQfnHjvi04JpRLvc  112Gi  112Gi    0Bi   100%       0          0
 
 <p><img src="http://112firshme11224.test.upcdn.net/images/df-h-sd-card.png" alt="" /></p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>➜  ~ df <span class="nt">-h</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>➜  ~ <span class="nb">df</span> <span class="nt">-h</span>
 Filesystem                          Size   Used  Avail Capacity iused      ifree %iused  Mounted on
 /dev/disk1                         112Gi   93Gi   18Gi    84% 1444634 4293522645    0%   /
 devfs                              186Ki  186Ki    0Bi   100%     642          0  100%   /dev
@@ -186,7 +186,7 @@ localhost:/fMn-YFzQfnHjvi04JpRLvc  112Gi  112Gi    0Bi   100%       0          0
 
 <p><img src="http://112firshme11224.test.upcdn.net/images/umount-mac.png" alt="" /></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```bash
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```bash
 ➜  ~ diskutil unmountDisk /dev/disk2s1
 Unmount of all volumes on disk2 was successful
 ```
@@ -198,7 +198,7 @@ Unmount of all volumes on disk2 was successful
 
 <p><img src="http://112firshme11224.test.upcdn.net/images/dd-sd-car-success.png" alt="" /></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```bash
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```bash
 ➜  ~ sudo dd bs=512  if=2017-02-16-raspbian-jessie.img  of=/dev/disk2s1
 ```
 </code></pre></div></div>
@@ -212,8 +212,8 @@ Unmount of all volumes on disk2 was successful
 <ul>
   <li>
     <p>1、修改配置文件
-为了进行usb连接，我们需要修改BOOT文件夹下的<code class="highlighter-rouge">config.txt</code> 与<code class="highlighter-rouge">cmdline.txt</code>配置文件。
-首先在<code class="highlighter-rouge">config.txt</code>最末行处换行添加如下代码，打开usb网卡模式：</p>
+为了进行usb连接，我们需要修改BOOT文件夹下的<code class="language-plaintext highlighter-rouge">config.txt</code> 与<code class="language-plaintext highlighter-rouge">cmdline.txt</code>配置文件。
+首先在<code class="language-plaintext highlighter-rouge">config.txt</code>最末行处换行添加如下代码，打开usb网卡模式：</p>
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">sudo </span>vim config.txt
 </code></pre></div>    </div>
@@ -227,7 +227,7 @@ Unmount of all volumes on disk2 was successful
     <p><img src="http://112firshme11224.test.upcdn.net/images/vim-config.png" alt="" /></p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">cmdline.txt</code>文件中找到<code class="highlighter-rouge">rootwait</code>字段，并在其后面空格添加如下信息，在打开系统时开启usb网卡模式。</p>
+    <p><code class="language-plaintext highlighter-rouge">cmdline.txt</code>文件中找到<code class="language-plaintext highlighter-rouge">rootwait</code>字段，并在其后面空格添加如下信息，在打开系统时开启usb网卡模式。</p>
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>vim cmdline.txt
 </code></pre></div>    </div>
@@ -244,9 +244,9 @@ Unmount of all volumes on disk2 was successful
 
 <ul>
   <li>
-    <p>通过usb连接设备树莓派zero有两个<code class="highlighter-rouge">MicroUSB</code>口，一个是<code class="highlighter-rouge">电源</code>插口，职司供电的功能，
-另外一个就是usb接口，它除了供电以外还提供<code class="highlighter-rouge">OTG</code>的功能，我们也是通过这个接口来连接pc
-ssh连接到树莓派  默认账号为<code class="highlighter-rouge">pi</code> 密码为<code class="highlighter-rouge">raspberry</code></p>
+    <p>通过usb连接设备树莓派zero有两个<code class="language-plaintext highlighter-rouge">MicroUSB</code>口，一个是<code class="language-plaintext highlighter-rouge">电源</code>插口，职司供电的功能，
+另外一个就是usb接口，它除了供电以外还提供<code class="language-plaintext highlighter-rouge">OTG</code>的功能，我们也是通过这个接口来连接pc
+ssh连接到树莓派  默认账号为<code class="language-plaintext highlighter-rouge">pi</code> 密码为<code class="language-plaintext highlighter-rouge">raspberry</code></p>
   </li>
   <li>将树莓派的第二个USB口链接，并且链接到MacBook的USB口(Win10都可以)。</li>
   <li>等待启动，树莓派zero的灯成黄色急闪状态(在load内核。)</li>
@@ -256,7 +256,7 @@ ssh连接到树莓派  默认账号为<code class="highlighter-rouge">pi</code> 
     <p><img src="http://112firshme11224.test.upcdn.net/images/usb-otg.png" alt="" /></p>
   </li>
   <li>
-    <p>看到如上图：<code class="highlighter-rouge">ssh pi@raspberrypi.local</code> 输入密码链接即可。</p>
+    <p>看到如上图：<code class="language-plaintext highlighter-rouge">ssh pi@raspberrypi.local</code> 输入密码链接即可。</p>
   </li>
   <li>配置网络地址，wifi网卡
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> pi@raspberrypi:~ <span class="nv">$ </span><span class="nb">sudo </span>nano /etc/wpa_supplicant/wpa_supplicant.conf
@@ -280,13 +280,13 @@ ssh连接到树莓派  默认账号为<code class="highlighter-rouge">pi</code> 
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>保存配置 <code class="highlighter-rouge">control + o 后 Enter</code></p>
+    <p>保存配置 <code class="language-plaintext highlighter-rouge">control + o 后 Enter</code></p>
   </li>
   <li>
-    <p>退出 <code class="highlighter-rouge">control + x </code></p>
+    <p>退出 <code class="language-plaintext highlighter-rouge">control + x </code></p>
   </li>
   <li>
-    <p>重启ZeroW <code class="highlighter-rouge">sudo reboot</code></p>
+    <p>重启ZeroW <code class="language-plaintext highlighter-rouge">sudo reboot</code></p>
   </li>
   <li>
     <p>ping Test</p>
@@ -304,7 +304,7 @@ ssh连接到树莓派  默认账号为<code class="highlighter-rouge">pi</code> 
 
     <p><img src="http://112firshme11224.test.upcdn.net/images/zero-update.png" alt="" /></p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt-get install git john
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt-get <span class="nb">install </span>git john
 </code></pre></div>    </div>
 
     <p><img src="http://112firshme11224.test.upcdn.net/images/zero-install-git.png" alt="" /></p>
@@ -339,11 +339,11 @@ ssh连接到树莓派  默认账号为<code class="highlighter-rouge">pi</code> 
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>将USB设备插到你要渗透的机器上，你会搜索到一个Wifi热点<code class="highlighter-rouge">P4wnP1</code>,密码<code class="highlighter-rouge">MaMe82-P4wnP1</code></p>
+    <p>将USB设备插到你要渗透的机器上，你会搜索到一个Wifi热点<code class="language-plaintext highlighter-rouge">P4wnP1</code>,密码<code class="language-plaintext highlighter-rouge">MaMe82-P4wnP1</code></p>
   </li>
   <li>
     <p>链接后进行SSH链接
- <code class="highlighter-rouge">ssh pi@172.24.0.1</code>即可。注：蓝牙ssh连接的地址是172.26.0.1</p>
+ <code class="language-plaintext highlighter-rouge">ssh pi@172.24.0.1</code>即可。注：蓝牙ssh连接的地址是172.26.0.1</p>
   </li>
   <li>配置文件地址如下：
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  pi@MAME82-P4WNP1:~ <span class="nv">$ </span>nano P4wnP1/setup.cfg
@@ -371,7 +371,7 @@ ssh连接到树莓派  默认账号为<code class="highlighter-rouge">pi</code> 
 
 <ul>
   <li>以上操作经过验证可以直接拿去。</li>
-  <li>auther <code class="highlighter-rouge">breakEval13</code></li>
+  <li>auther <code class="language-plaintext highlighter-rouge">breakEval13</code></li>
   <li>https://github.com/breakEval13</li>
 </ul>
 

@@ -140,7 +140,7 @@
 
 <h2 id="搭建轻量级git服务器程序解决了git权限管理的问题">搭建轻量级git服务器程序，解决了git权限管理的问题。</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>轻量级git服务器程序，解决了git权限管理的问题。（git是一个分布式版本控制系统，就是说每个人作为客户端的同时又是服务器）
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>轻量级git服务器程序，解决了git权限管理的问题。（git是一个分布式版本控制系统，就是说每个人作为客户端的同时又是服务器）
 项目GitHub地址：https://github.com/sitaramc/gitolite
 项目官方文档：http://gitolite.com/gitolite/
 当前环境：centos 7
@@ -148,7 +148,7 @@
 
 <h2 id="安装前准备">安装前准备</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 在客户端机器安装git,并生成秘钥
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 在客户端机器安装git,并生成秘钥
  各操作系统安装方法均很简单，请自行安装。
  使用git安装目录下的 usr/bin/ssh-keygen生成rsa秘钥:
 </code></pre></div></div>
@@ -161,7 +161,7 @@
   <li>安装没有安装的依赖包</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> yum install <span class="nt">-y</span> gcc gcc-c++ pcre pcre-devel zlib zlib-devel openssl openssl-devel perl<span class="k">*</span> git
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> yum <span class="nb">install</span> <span class="nt">-y</span> gcc gcc-c++ pcre pcre-devel zlib zlib-devel openssl openssl-devel perl<span class="k">*</span> git
  <span class="c"># 需要注意：gitolite对以上软件版本有一定的要求，如果报错，升级软件即可。</span>
  yum update <span class="nt">-y</span>  Softname
 </code></pre></div></div>
@@ -174,14 +174,14 @@
  passwd git
 </code></pre></div></div>
 <p>! 如果已有用户，请确认
-       * <code class="highlighter-rouge">~/.ssh/authorized_keys</code> 文件是空的或者不存在
-       * 客户机ssh-keygen生成的id_rsa.pub公钥已经拷贝到：<code class="highlighter-rouge">~/YourName.pub </code>，改成自己的名字，为了多人协作时便于区分，并不是硬性规定</p>
+       * <code class="language-plaintext highlighter-rouge">~/.ssh/authorized_keys</code> 文件是空的或者不存在
+       * 客户机ssh-keygen生成的id_rsa.pub公钥已经拷贝到：<code class="language-plaintext highlighter-rouge">~/YourName.pub </code>，改成自己的名字，为了多人协作时便于区分，并不是硬性规定</p>
 
 <h2 id="开始安装">开始安装</h2>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> su git  <span class="c"># 切换到git用户</span>
  git clone git://github.com/sitaramc/gitolite
- mkdir <span class="nt">-p</span> ~/bin   <span class="c">#一定要创建bin文件夹 </span>
+ <span class="nb">mkdir</span> <span class="nt">-p</span> ~/bin   <span class="c">#一定要创建bin文件夹 </span>
  ~/gitolite/install <span class="nt">-to</span> ~/bin
  ~/bin/gitolite setup <span class="nt">-pk</span> YourName.pub <span class="c">#生成下面所要用的管理库gitolite-admin和测试用库testing</span>
 </code></pre></div></div>

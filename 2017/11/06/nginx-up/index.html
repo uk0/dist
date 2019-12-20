@@ -166,7 +166,7 @@ author：zhangjianxin</p>
 
         keepalive_timeout  65<span class="p">;</span>
 
-        gzip  on<span class="p">;</span>
+        <span class="nb">gzip  </span>on<span class="p">;</span>
         include /etc/nginx/conf.d/upstream/<span class="k">*</span>.conf<span class="p">;</span>
         include /etc/nginx/conf.d/vhost/<span class="k">*</span>.conf<span class="p">;</span>
     <span class="o">}</span>
@@ -174,7 +174,7 @@ author：zhangjianxin</p>
 
 <h1 id="nginx-upstream-config">nginx upstream config</h1>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```bash
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```bash
 
 upstream post_servers {
     ip_hash;
@@ -205,7 +205,7 @@ server <span class="o">{</span>
 
 <ul>
   <li>以上操作经过验证可以直接拿去。</li>
-  <li>auther <code class="highlighter-rouge">breakEval13</code></li>
+  <li>auther <code class="language-plaintext highlighter-rouge">breakEval13</code></li>
   <li>https://github.com/breakEval13</li>
 </ul>
 

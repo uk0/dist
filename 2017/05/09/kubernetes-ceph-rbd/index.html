@@ -138,7 +138,7 @@
 
 <h2 id="部署环境">部署环境</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Ceph.Mon = 2n+1 个 ，3个的情况下只能掉线一个，如果同时2个掉线
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Ceph.Mon = 2n+1 个 ，3个的情况下只能掉线一个，如果同时2个掉线
 # 集群会出现无法仲裁，集群会一直等待 Ceph.Mon 恢复超过半数。
 
 172.16.1.37  Ceph.admin + Ceph.Mon
@@ -150,7 +150,7 @@
 
 <h2 id="初始化环境">初始化环境</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 1. ceph 对时间要求很严格， 一定要同步所有的服务器时间
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 1. ceph 对时间要求很严格， 一定要同步所有的服务器时间
 
 # 2. 配置 hosts
 
@@ -203,7 +203,7 @@ Host ceph-node-4
 
 <h2 id="安装-ceph-deploy">安装 Ceph-deploy</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 管理节点 安装 ceph-deploy 管理工具
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 管理节点 安装 ceph-deploy 管理工具
 # 配置 官方 的 Ceph 源
 
 rpm --import https://download.ceph.com/keys/release.asc
@@ -221,7 +221,7 @@ rpm -Uvh http://mirrors.ustc.edu.cn/centos/7/extras/x86_64/Packages/epel-release
 
 <h2 id="创建-ceph-mon">创建 Ceph-Mon</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 创建集群目录，用于存放配置文件，证书等信息
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 创建集群目录，用于存放配置文件，证书等信息
 
 mkdir -p /opt/ceph-cluster
 
@@ -260,7 +260,7 @@ echo 'osd max object namespace len = 64' &gt;&gt; ./ceph.conf
 
 <h2 id="安装-ceph">安装 Ceph</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 可通过 ceph-deploy 安装，也可以登陆node 本地安装
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 可通过 ceph-deploy 安装，也可以登陆node 本地安装
 # 命令: ceph-deploy install {ceph-node}[{ceph-node} ...]
 
 [root@ceph-node-1 ceph-cluster]# ceph-deploy install ceph-node-1 ceph-node-2 ceph-node-3 ceph-node-4
@@ -283,7 +283,7 @@ ceph version 10.2.7 (50e863e0f4bc8f4b9e31156de690d765af245185)
 
 <h2 id="初始化-ceph-mon-节点">初始化 ceph-mon 节点</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 请务必在 ceph-cluster 目录下
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 请务必在 ceph-cluster 目录下
 
 [root@ceph-node-1 ceph-cluster]# ceph-deploy mon create-initial
 
@@ -300,7 +300,7 @@ ceph version 10.2.7 (50e863e0f4bc8f4b9e31156de690d765af245185)
 
 <h2 id="初始化-cephosd-节点">初始化 ceph.osd 节点</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 首先创建 存储空间, 如果使用分区，可略过
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 首先创建 存储空间, 如果使用分区，可略过
 
 [root@ceph-node-2 ~]# mkdir -p /opt/ceph-osd-1 &amp;&amp; chown ceph:ceph /opt/ceph-osd-1
 [root@ceph-node-3 ~]# mkdir -p /opt/ceph-osd-2 &amp;&amp; chown ceph:ceph /opt/ceph-osd-2
@@ -315,16 +315,16 @@ ceph version 10.2.7 (50e863e0f4bc8f4b9e31156de690d765af245185)
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 激活 所有 osd 节点
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 激活 所有 osd 节点
 
 [root@ceph-node-1 ceph-cluster]# ceph-deploy osd activate ceph-node-2:/opt/ceph-osd-1 ceph-node-3:/opt/ceph-osd-2 ceph-node-4:/opt/ceph-osd-3
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 把管理节点的配置文件与keyring同步至其它节点
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 把管理节点的配置文件与keyring同步至其它节点
 [root@ceph-node-1 ceph-cluster]# ceph-deploy admin ceph-node-1 ceph-node-2 ceph-node-3 ceph-node-4
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 没有出现 红色的 ERROR 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 没有出现 红色的 ERROR 
 # 查看状态
 
 [root@ceph-node-1 ceph-cluster]# ceph -s
@@ -339,7 +339,7 @@ ceph version 10.2.7 (50e863e0f4bc8f4b9e31156de690d765af245185)
                   64 active+clean
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 查看 osd tree
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 查看 osd tree
 
 [root@ceph-node-1 ceph-cluster]# ceph osd tree
 ID WEIGHT  TYPE NAME            UP/DOWN REWEIGHT PRIMARY-AFFINITY 
@@ -353,7 +353,7 @@ ID WEIGHT  TYPE NAME            UP/DOWN REWEIGHT PRIMARY-AFFINITY
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 设置所有开机启动
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 设置所有开机启动
 
 systemctl enable ceph-osd.target
 systemctl enable ceph-mon.target
@@ -361,7 +361,7 @@ systemctl enable ceph-mon.target
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 重启系统以后重启 osd
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 重启系统以后重启 osd
 
 #查看处于down 的 osd
 ceph osd tree
@@ -379,7 +379,7 @@ systemctl start ceph-osd@id
 
 <h2 id="k8s-安装-ceph-common">k8s 安装 ceph-common</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 1. 在所有的 k8s node 里面安装 ceph-common
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 1. 在所有的 k8s node 里面安装 ceph-common
 yum -y install ceph-common
 
 # 2. 拷贝 ceph.conf 与 ceph.client.admin.keyring
@@ -408,7 +408,7 @@ with: rbd: failed to modprobe rbd error:exit status 1
 
 <h2 id="修改-ceph-配置">修改 ceph 配置</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 修改配置
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 修改配置
 # rbd image有4个 features，layering, exclusive-lock, object-map, fast-diff, deep-flatten
 因为目前内核仅支持layering，修改默认配置。
 
@@ -424,7 +424,7 @@ rbd_default_features = 1
 
 <h2 id="创建-ceph-secret">创建 ceph-secret</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 获取 client.admin 的值
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 获取 client.admin 的值
 [root@ceph-node-1 ceph-cluster]# ceph auth get-key client.admin
 AQBpUAxZGmDBBxAAVbgeRss9jv39dE0biTE7qQ==
 
@@ -453,7 +453,7 @@ ceph-secret           Opaque                                1         53s
 
 <h2 id="创建-ceph--image">创建 ceph  image</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 创建一个 1G 的 image
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 创建一个 1G 的 image
 [root@ceph-node-1 ceph-cluster]# rbd create test-image -s 1G
 
 # 查看 image
@@ -474,7 +474,7 @@ rbd image 'test-image':
 
 <h2 id="创建一个-pv">创建一个 pv</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 创建 test-pv.yaml
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 创建 test-pv.yaml
 
 apiVersion: v1
 kind: PersistentVolume
@@ -513,7 +513,7 @@ test-pv   1Gi        RWO           Recycle         Available                    
 
 <h2 id="创建一个-pvc">创建一个 pvc</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># vi test-pvc.yaml
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># vi test-pvc.yaml
 
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -541,7 +541,7 @@ test-claim   Bound     test-pv   1Gi        RWO                          31s
 
 <h2 id="创建一个-deployment">创建一个 deployment</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vi nginx-deplyment.yaml
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vi nginx-deplyment.yaml
 
 
 apiVersion: extensions/v1beta1 
@@ -586,7 +586,7 @@ nginx-dm-1697116629-j4m1g   1/1       Running   0          8m
 
 <h2 id="测试">测试</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 查看 分区文件
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 查看 分区文件
 
 [root@k8s-node-28 cephrbd]# kubectl exec -it nginx-dm-1697116629-j4m1g -- df -h
 Filesystem                Size      Used Available Use% Mounted on
@@ -634,7 +634,7 @@ total 16
 
 <h2 id="faq-1">FAQ 1</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># ceph 挂载关于 namespace != default 的情况下
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># ceph 挂载关于 namespace != default 的情况下
 
 
 1. 需要配置 secret = namespace
@@ -663,7 +663,7 @@ ceph timeout expired waiting for volumes to attach/mount for pod
 
 <h2 id="error-1">Error 1</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 删除 osd 如果创建出错，请删除 osd
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 删除 osd 如果创建出错，请删除 osd
 
 # 使用 ceph osd tree 查看出错的 osd.id
 
@@ -695,7 +695,7 @@ ceph-disk zap /dev/sdb
 
 <h2 id="error-2">Error 2</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 如果暴力删除了 osd 然后重建了 osd
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 如果暴力删除了 osd 然后重建了 osd
 
 ceph -s
 

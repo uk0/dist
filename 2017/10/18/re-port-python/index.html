@@ -149,8 +149,8 @@ author：zhangjianxin</p>
 
     <span class="k">def</span> <span class="nf">handle_accept</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">conn</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
-        <span class="c"># print '--- Connect --- '</span>
-        <span class="n">sender</span><span class="p">(</span><span class="n">receiver</span><span class="p">(</span><span class="n">conn</span><span class="p">),</span><span class="bp">self</span><span class="o">.</span><span class="n">remoteip</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">remoteport</span><span class="p">)</span>
+        <span class="c1"># print '--- Connect --- '
+</span>        <span class="n">sender</span><span class="p">(</span><span class="n">receiver</span><span class="p">(</span><span class="n">conn</span><span class="p">),</span><span class="bp">self</span><span class="o">.</span><span class="n">remoteip</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">remoteport</span><span class="p">)</span>
 
 <span class="k">class</span> <span class="nc">receiver</span><span class="p">(</span><span class="n">asyncore</span><span class="o">.</span><span class="n">dispatcher</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">conn</span><span class="p">):</span>
@@ -164,16 +164,16 @@ author：zhangjianxin</p>
 
     <span class="k">def</span> <span class="nf">handle_read</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">read</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">4096</span><span class="p">)</span>
-        <span class="c"># print '%04i --&gt;'%len(read)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">from_remote_buffer</span> <span class="o">+=</span> <span class="n">read</span>
+        <span class="c1"># print '%04i --&gt;'%len(read)
+</span>        <span class="bp">self</span><span class="o">.</span><span class="n">from_remote_buffer</span> <span class="o">+=</span> <span class="n">read</span>
 
     <span class="k">def</span> <span class="nf">writable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_remote_buffer</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">handle_write</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">sent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_remote_buffer</span><span class="p">)</span>
-        <span class="c"># print '%04i &lt;--'%sent</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">to_remote_buffer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_remote_buffer</span><span class="p">[</span><span class="n">sent</span><span class="p">:]</span>
+        <span class="c1"># print '%04i &lt;--'%sent
+</span>        <span class="bp">self</span><span class="o">.</span><span class="n">to_remote_buffer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_remote_buffer</span><span class="p">[</span><span class="n">sent</span><span class="p">:]</span>
 
     <span class="k">def</span> <span class="nf">handle_close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -189,20 +189,20 @@ author：zhangjianxin</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="n">remoteaddr</span><span class="p">,</span> <span class="n">remoteport</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">handle_connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>  <span class="c">#www.iplaypy.com</span>
-
+        <span class="k">pass</span>  <span class="c1">#www.iplaypy.com
+</span>
     <span class="k">def</span> <span class="nf">handle_read</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">read</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">4096</span><span class="p">)</span>
-        <span class="c"># print '&lt;-- %04i'%len(read)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">receiver</span><span class="o">.</span><span class="n">to_remote_buffer</span> <span class="o">+=</span> <span class="n">read</span>
+        <span class="c1"># print '&lt;-- %04i'%len(read)
+</span>        <span class="bp">self</span><span class="o">.</span><span class="n">receiver</span><span class="o">.</span><span class="n">to_remote_buffer</span> <span class="o">+=</span> <span class="n">read</span>
 
     <span class="k">def</span> <span class="nf">writable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">receiver</span><span class="o">.</span><span class="n">from_remote_buffer</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">handle_write</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">sent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">receiver</span><span class="o">.</span><span class="n">from_remote_buffer</span><span class="p">)</span>
-        <span class="c"># print '--&gt; %04i'%sent</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">receiver</span><span class="o">.</span><span class="n">from_remote_buffer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">receiver</span><span class="o">.</span><span class="n">from_remote_buffer</span><span class="p">[</span><span class="n">sent</span><span class="p">:]</span>
+        <span class="c1"># print '--&gt; %04i'%sent
+</span>        <span class="bp">self</span><span class="o">.</span><span class="n">receiver</span><span class="o">.</span><span class="n">from_remote_buffer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">receiver</span><span class="o">.</span><span class="n">from_remote_buffer</span><span class="p">[</span><span class="n">sent</span><span class="p">:]</span>
 
     <span class="k">def</span> <span class="nf">handle_close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -242,7 +242,7 @@ author：zhangjianxin</p>
 
 <ul>
   <li>以上操作经过验证可以直接拿去。</li>
-  <li>Owner <code class="highlighter-rouge">breakEval13</code></li>
+  <li>Owner <code class="language-plaintext highlighter-rouge">breakEval13</code></li>
   <li>https://github.com/breakEval13</li>
 </ul>
 

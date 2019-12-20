@@ -226,7 +226,7 @@ $ scp /var/run/kubernetes/dd_ca.* root@kubernetes-minion:/home
   <li>在每个 Node 上创建/var/lib/kubelet/kubeconfig 文件，内容如下：</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: v1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: v1
 kind: Config
 users:
 - name: kubelet
@@ -249,7 +249,7 @@ current-context: my-context
   <li>修改 Kubelet 的启动参数，以修改/etc/kubernetes/kubelet 配置文件为例：</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>KUBELET_API_SERVER="--api_servers=https://kubernetes-master:443"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>KUBELET_API_SERVER="--api_servers=https://kubernetes-master:443"
 KUBELET_ARGS="--pod_infro_container_image=192.168.1.128:1180/google_containers/pause:latest --cluster_dns=10.2.0.100 --cluster_domain=cluster.local --kubeconfig=/var/lib/kubelet/kubeconfig"
 </code></pre></div></div>
 <p>#重启 kubelet 服务：</p>
@@ -261,7 +261,7 @@ KUBELET_ARGS="--pod_infro_container_image=192.168.1.128:1180/google_containers/p
   <li>首先，创建/var/lib/kubeproxy/proxykubeconfig 文件，内容如下：</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: v1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: v1
 kind: Config
 users:
 - name: kubeproxy
@@ -284,7 +284,7 @@ current-context: my-context
   <li>然后，修改 kube-proxy 的启动参数，引用上述文件并指明 API Server 在安全模式下的访问地址，以修改配置文件/etc/kubenetes/proxy 为例：</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>KUBE_PROXY_ARGS="--kubeconfig=/var/lib/kubeproxy/proxykubeconfig --master=https://kubenetes-master:443"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>KUBE_PROXY_ARGS="--kubeconfig=/var/lib/kubeproxy/proxykubeconfig --master=https://kubenetes-master:443"
 </code></pre></div></div>
 
 <ul>
@@ -306,7 +306,7 @@ current-context: my-context
   <li>建立包括用户名、密码和 UID 的文件 token_auth_file：</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat /root/token_auth_file
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat /root/token_auth_file
 dingmingk,dingmingk,1
 admin,admin,2
 system,system,3
@@ -335,7 +335,7 @@ $ curl https://kubenetes-master:443/version --header "Authorization: Bearer ding
   </li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat /root/basic_auth_file
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat /root/basic_auth_file
 dingmingk,dingmingk,1
 admin,admin,2
 system,system,3
@@ -345,9 +345,9 @@ system,system,3
   <li>修改 API Server 的配置，采用上述文件进行安全认证</li>
 </ul>
 
-<p><code class="highlighter-rouge">$ vi /etc/kubernetes/apiserver</code></p>
+<p><code class="language-plaintext highlighter-rouge">$ vi /etc/kubernetes/apiserver</code></p>
 
-<p><code class="highlighter-rouge">KUBE_API_ARGS="--secure-port=443 --basic_auth_file=/root/basic_auth_file"</code></p>
+<p><code class="language-plaintext highlighter-rouge">KUBE_API_ARGS="--secure-port=443 --basic_auth_file=/root/basic_auth_file"</code></p>
 
 <h3 id="重启-api-server-服务">重启 API Server 服务</h3>
 
@@ -392,7 +392,7 @@ $ kubectl get nodes --server="https://kubernetes-master:443" --api-version="v1" 
 </code></pre></div></div>
 <p>####取消dev集群项中的证书检查</p>
 
-<p><code class="highlighter-rouge">html
+<p><code class="language-plaintext highlighter-rouge">html
 kubectl config set-cluster e2e --insecure-skip-tls-verify=true
 选项
       --api-version="": 设置kuebconfig配置文件中集群选项中的api-version。

@@ -154,7 +154,7 @@
 	<span class="nx">$</span><span class="p">.</span><span class="nx">support</span><span class="p">.</span><span class="nx">cors</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 	<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span> <span class="p">{</span>
 		<span class="na">url</span> <span class="p">:</span><span class="nx">actionUrl</span><span class="p">,</span> <span class="cm">/**请求的url地址*/</span>
-		<span class="na">dataType</span> <span class="p">:</span> <span class="s2">"json"</span><span class="p">,</span> <span class="cm">/**返回格式为json*/</span>
+		<span class="na">dataType</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">json</span><span class="dl">"</span><span class="p">,</span> <span class="cm">/**返回格式为json*/</span>
 		<span class="na">async</span> <span class="p">:</span> <span class="kc">true</span><span class="p">,</span><span class="cm">/**请求是否异步，默认为异步，这也是ajax重要特性 */</span>
 		<span class="na">data</span> <span class="p">:</span> <span class="nx">parems</span><span class="p">,</span> <span class="cm">/**参数值*/</span>
 		<span class="na">type</span> <span class="p">:</span><span class="nx">sendMethod</span><span class="p">,</span> <span class="cm">/**请求方式*/</span>
@@ -190,11 +190,11 @@
 		<span class="cm">/*设置正在显示通知*/</span>
 		<span class="nx">isToasting</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 		<span class="cm">/*创建通知控件*/</span>
-		<span class="kd">var</span> <span class="nx">toast</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"div"</span><span class="p">);</span>
+		<span class="kd">var</span> <span class="nx">toast</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">div</span><span class="dl">"</span><span class="p">);</span>
 		<span class="cm">/*设置通知文本*/</span>
 		<span class="nx">toast</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">toastText</span><span class="p">;</span>
 		<span class="cm">/*设置通知样式*/</span>
-		<span class="nx">toast</span><span class="p">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">"Toast"</span><span class="p">;</span>
+		<span class="nx">toast</span><span class="p">.</span><span class="nx">className</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Toast</span><span class="dl">"</span><span class="p">;</span>
 		<span class="cm">/*延时3秒销毁控件*/</span>
 		<span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>	
 			<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">toast</span><span class="p">);</span>
@@ -226,17 +226,17 @@
 	<span class="nx">option</span> <span class="o">=</span> <span class="p">{</span>
 		<span class="na">title</span><span class="p">:</span> <span class="p">{</span>
 			<span class="na">text</span><span class="p">:</span> <span class="nx">title</span><span class="p">,</span>
-			<span class="na">x</span><span class="p">:</span> <span class="s1">'center'</span>
+			<span class="na">x</span><span class="p">:</span> <span class="dl">'</span><span class="s1">center</span><span class="dl">'</span>
 		<span class="p">},</span>
 		<span class="na">tooltip</span><span class="p">:</span> <span class="p">{</span>
-			<span class="na">trigger</span><span class="p">:</span> <span class="s1">'axis'</span>
+			<span class="na">trigger</span><span class="p">:</span> <span class="dl">'</span><span class="s1">axis</span><span class="dl">'</span>
 		<span class="p">},</span>
 		<span class="na">legend</span><span class="p">:</span> <span class="p">{</span>
-			<span class="na">orient</span><span class="p">:</span> <span class="s1">'horizontal'</span><span class="p">,</span><span class="cm">/**默认为 水平布局，垂直布局为 'vertical*/</span>
+			<span class="na">orient</span><span class="p">:</span> <span class="dl">'</span><span class="s1">horizontal</span><span class="dl">'</span><span class="p">,</span><span class="cm">/**默认为 水平布局，垂直布局为 'vertical*/</span>
 			<span class="na">padding</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
 			<span class="na">data</span><span class="p">:</span> <span class="nx">analyzeItems</span><span class="p">,</span>
-			<span class="na">x</span><span class="p">:</span> <span class="s1">'center'</span><span class="p">,</span>
-			<span class="na">y</span><span class="p">:</span> <span class="s1">'bottom'</span>
+			<span class="na">x</span><span class="p">:</span> <span class="dl">'</span><span class="s1">center</span><span class="dl">'</span><span class="p">,</span>
+			<span class="na">y</span><span class="p">:</span> <span class="dl">'</span><span class="s1">bottom</span><span class="dl">'</span>
 		<span class="p">},</span>
 		<span class="na">toolbox</span><span class="p">:</span> <span class="p">{</span>
 			<span class="na">show</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
@@ -250,7 +250,7 @@
 				<span class="p">},</span>
 				<span class="na">magicType</span><span class="p">:</span> <span class="p">{</span>
 					<span class="na">show</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-					<span class="na">type</span><span class="p">:</span> <span class="p">[</span><span class="s1">'line'</span><span class="p">,</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'stack'</span><span class="p">,</span> <span class="s1">'tiled'</span><span class="p">]</span>
+					<span class="na">type</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">line</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">bar</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">stack</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">tiled</span><span class="dl">'</span><span class="p">]</span>
 				<span class="p">},</span>
 				<span class="na">restore</span><span class="p">:</span> <span class="p">{</span>
 					<span class="na">show</span><span class="p">:</span> <span class="kc">false</span>
@@ -262,15 +262,15 @@
 		<span class="p">},</span>
 		<span class="na">calculable</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="cm">/**启用拖拽重计算特性*/</span>
 		<span class="na">xAxis</span><span class="p">:</span> <span class="p">[{</span>
-			<span class="na">type</span><span class="p">:</span> <span class="s1">'category'</span><span class="p">,</span>
+			<span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">category</span><span class="dl">'</span><span class="p">,</span>
            <span class="cm">/**	boundaryGap: false,*/</span>
 			<span class="na">data</span><span class="p">:</span> <span class="nx">getXAxisData</span><span class="p">(</span><span class="nx">datas</span><span class="p">)</span>
 		<span class="p">}],</span>
 		<span class="na">yAxis</span><span class="p">:</span> <span class="p">[{</span>
-			<span class="na">type</span><span class="p">:</span> <span class="s1">'value'</span><span class="p">,</span>
+			<span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">value</span><span class="dl">'</span><span class="p">,</span>
 			<span class="na">name</span><span class="p">:</span><span class="nx">yTitle</span><span class="p">,</span>
 			<span class="na">axisLabel</span> <span class="p">:</span> <span class="p">{</span>
-                <span class="na">formatter</span><span class="p">:</span> <span class="s1">'{value}'</span>      
+                <span class="na">formatter</span><span class="p">:</span> <span class="dl">'</span><span class="s1">{value}</span><span class="dl">'</span>      
             <span class="p">}</span>
 		<span class="p">}],</span>
 		<span class="na">series</span> <span class="p">:</span> <span class="nx">getSeriesData</span><span class="p">(</span><span class="nx">analyzeItems</span><span class="p">,</span> <span class="nx">datas</span><span class="p">,</span> <span class="nx">pictrueType</span><span class="p">)</span>
@@ -328,27 +328,27 @@
 	<span class="kd">var</span> <span class="nx">option</span> <span class="o">=</span> <span class="p">{</span>
 		<span class="na">title</span><span class="p">:</span> <span class="p">{</span>
 			<span class="na">text</span><span class="p">:</span> <span class="nx">title</span><span class="p">,</span>
-			<span class="na">x</span><span class="p">:</span> <span class="s1">'center'</span><span class="p">,</span>
+			<span class="na">x</span><span class="p">:</span> <span class="dl">'</span><span class="s1">center</span><span class="dl">'</span><span class="p">,</span>
 			<span class="na">textStyle</span><span class="p">:{</span>
-				<span class="na">color</span><span class="p">:</span> <span class="s1">'#333'</span><span class="p">,</span>
-				<span class="na">fontStyle</span><span class="p">:</span> <span class="s1">'normal'</span><span class="p">,</span>
-				<span class="na">fontWeight</span><span class="p">:</span> <span class="s1">'normal'</span><span class="p">,</span>
-				<span class="na">fontFamily</span><span class="p">:</span> <span class="s1">'sans-serief'</span><span class="p">,</span>
+				<span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#333</span><span class="dl">'</span><span class="p">,</span>
+				<span class="na">fontStyle</span><span class="p">:</span> <span class="dl">'</span><span class="s1">normal</span><span class="dl">'</span><span class="p">,</span>
+				<span class="na">fontWeight</span><span class="p">:</span> <span class="dl">'</span><span class="s1">normal</span><span class="dl">'</span><span class="p">,</span>
+				<span class="na">fontFamily</span><span class="p">:</span> <span class="dl">'</span><span class="s1">sans-serief</span><span class="dl">'</span><span class="p">,</span>
 				<span class="na">fontSize</span><span class="p">:</span> <span class="mi">25</span>
 			<span class="p">}</span>
 		<span class="p">},</span>
 		<span class="na">tooltip</span><span class="p">:</span> <span class="p">{</span>
-			<span class="na">trigger</span><span class="p">:</span> <span class="s1">'item'</span><span class="p">,</span>
-			<span class="na">formatter</span><span class="p">:</span> <span class="s2">"{a} &lt;br/&gt;{b} : {c} ({d}%)"</span>
+			<span class="na">trigger</span><span class="p">:</span> <span class="dl">'</span><span class="s1">item</span><span class="dl">'</span><span class="p">,</span>
+			<span class="na">formatter</span><span class="p">:</span> <span class="dl">"</span><span class="s2">{a} &lt;br/&gt;{b} : {c} ({d}%)</span><span class="dl">"</span>
 		<span class="p">},</span>
 		<span class="na">legend</span><span class="p">:</span> <span class="p">{</span>
-			<span class="na">orient</span><span class="p">:</span> <span class="s1">'vertical'</span><span class="p">,</span>
-			<span class="na">x</span><span class="p">:</span> <span class="s1">'left'</span><span class="p">,</span>
+			<span class="na">orient</span><span class="p">:</span> <span class="dl">'</span><span class="s1">vertical</span><span class="dl">'</span><span class="p">,</span>
+			<span class="na">x</span><span class="p">:</span> <span class="dl">'</span><span class="s1">left</span><span class="dl">'</span><span class="p">,</span>
 			<span class="na">data</span><span class="p">:</span> <span class="nx">analyzeItems</span><span class="p">,</span>
 			<span class="na">textStyle</span><span class="p">:{</span>
-				<span class="na">fontStyle</span><span class="p">:</span> <span class="s1">'normal'</span><span class="p">,</span>
-				<span class="na">fontWeight</span><span class="p">:</span> <span class="s1">'normal'</span><span class="p">,</span>
-				<span class="na">fontFamily</span><span class="p">:</span> <span class="s1">'sans-serief'</span><span class="p">,</span>
+				<span class="na">fontStyle</span><span class="p">:</span> <span class="dl">'</span><span class="s1">normal</span><span class="dl">'</span><span class="p">,</span>
+				<span class="na">fontWeight</span><span class="p">:</span> <span class="dl">'</span><span class="s1">normal</span><span class="dl">'</span><span class="p">,</span>
+				<span class="na">fontFamily</span><span class="p">:</span> <span class="dl">'</span><span class="s1">sans-serief</span><span class="dl">'</span><span class="p">,</span>
 				<span class="na">fontSize</span><span class="p">:</span> <span class="mi">15</span>
 			<span class="p">}</span>
 		<span class="p">},</span>
@@ -364,12 +364,12 @@
 				<span class="p">},</span>
 				<span class="na">magicType</span><span class="p">:</span> <span class="p">{</span>
 					<span class="na">show</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-					<span class="na">type</span><span class="p">:</span> <span class="p">[</span><span class="s1">'pie'</span><span class="p">,</span> <span class="s1">'funnel'</span><span class="p">],</span>
+					<span class="na">type</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">pie</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">funnel</span><span class="dl">'</span><span class="p">],</span>
 					<span class="na">option</span><span class="p">:</span> <span class="p">{</span>
 						<span class="na">funnel</span><span class="p">:</span> <span class="p">{</span>
-							<span class="na">x</span><span class="p">:</span> <span class="s1">'25%'</span><span class="p">,</span>
-							<span class="na">width</span><span class="p">:</span> <span class="s1">'50%'</span><span class="p">,</span>
-							<span class="na">funnelAlign</span><span class="p">:</span> <span class="s1">'left'</span><span class="p">,</span>
+							<span class="na">x</span><span class="p">:</span> <span class="dl">'</span><span class="s1">25%</span><span class="dl">'</span><span class="p">,</span>
+							<span class="na">width</span><span class="p">:</span> <span class="dl">'</span><span class="s1">50%</span><span class="dl">'</span><span class="p">,</span>
+							<span class="na">funnelAlign</span><span class="p">:</span> <span class="dl">'</span><span class="s1">left</span><span class="dl">'</span><span class="p">,</span>
 							<span class="na">max</span><span class="p">:</span> <span class="mi">1548</span>
 						<span class="p">}</span>
 					<span class="p">}</span>
@@ -384,19 +384,19 @@
 		<span class="p">},</span>
 		<span class="na">calculable</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
 		<span class="na">series</span><span class="p">:</span> <span class="p">[{</span>
-			<span class="na">type</span><span class="p">:</span> <span class="s1">'pie'</span><span class="p">,</span>
-			<span class="na">radius</span><span class="p">:</span> <span class="s1">'55%'</span><span class="p">,</span>
-			<span class="na">center</span><span class="p">:</span> <span class="p">[</span><span class="s1">'50%'</span><span class="p">,</span> <span class="s1">'60%'</span><span class="p">],</span>
+			<span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">pie</span><span class="dl">'</span><span class="p">,</span>
+			<span class="na">radius</span><span class="p">:</span> <span class="dl">'</span><span class="s1">55%</span><span class="dl">'</span><span class="p">,</span>
+			<span class="na">center</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">50%</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">60%</span><span class="dl">'</span><span class="p">],</span>
 			<span class="na">data</span><span class="p">:</span> <span class="nx">datas</span><span class="p">,</span>
 			<span class="na">itemStyle</span><span class="p">:</span> <span class="p">{</span>
 				<span class="na">normal</span><span class="p">:</span> <span class="p">{</span>
 					<span class="na">label</span><span class="p">:</span> <span class="p">{</span>
 						<span class="na">show</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-						<span class="na">formatter</span><span class="p">:</span> <span class="s1">'{b} : {c}'</span> <span class="o">+</span> <span class="s1">'吨标煤'</span> <span class="o">+</span> <span class="s1">' ({d}%)'</span><span class="p">,</span>
+						<span class="na">formatter</span><span class="p">:</span> <span class="dl">'</span><span class="s1">{b} : {c}</span><span class="dl">'</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">吨标煤</span><span class="dl">'</span> <span class="o">+</span> <span class="dl">'</span><span class="s1"> ({d}%)</span><span class="dl">'</span><span class="p">,</span>
 						<span class="na">textStyle</span><span class="p">:{</span>
-							<span class="na">fontStyle</span><span class="p">:</span> <span class="s1">'normal'</span><span class="p">,</span>
-							<span class="na">fontWeight</span><span class="p">:</span> <span class="s1">'normal'</span><span class="p">,</span>
-							<span class="na">fontFamily</span><span class="p">:</span> <span class="s1">'sans-serief'</span><span class="p">,</span>
+							<span class="na">fontStyle</span><span class="p">:</span> <span class="dl">'</span><span class="s1">normal</span><span class="dl">'</span><span class="p">,</span>
+							<span class="na">fontWeight</span><span class="p">:</span> <span class="dl">'</span><span class="s1">normal</span><span class="dl">'</span><span class="p">,</span>
+							<span class="na">fontFamily</span><span class="p">:</span> <span class="dl">'</span><span class="s1">sans-serief</span><span class="dl">'</span><span class="p">,</span>
 							<span class="na">fontSize</span><span class="p">:</span> <span class="mi">15</span>
 						<span class="p">}</span>
 					<span class="p">},</span>
@@ -417,28 +417,28 @@
 	<span class="kd">var</span> <span class="nx">option</span> <span class="o">=</span> <span class="p">{</span>
 		<span class="na">title</span><span class="p">:</span> <span class="p">{</span>
 			<span class="na">text</span><span class="p">:</span> <span class="nx">echartsTitle</span><span class="p">,</span>
-			<span class="na">x</span><span class="p">:</span> <span class="s1">'center'</span>
+			<span class="na">x</span><span class="p">:</span> <span class="dl">'</span><span class="s1">center</span><span class="dl">'</span>
 		<span class="p">},</span>
 		<span class="na">tooltip</span><span class="p">:</span> <span class="p">{</span>
-			<span class="na">trigger</span><span class="p">:</span> <span class="s1">'axis'</span>
+			<span class="na">trigger</span><span class="p">:</span> <span class="dl">'</span><span class="s1">axis</span><span class="dl">'</span>
 		<span class="p">},</span>
 		<span class="na">legend</span><span class="p">:</span> <span class="p">{</span>
-			<span class="na">orient</span><span class="p">:</span> <span class="s1">'horizontal'</span><span class="p">,</span>
+			<span class="na">orient</span><span class="p">:</span> <span class="dl">'</span><span class="s1">horizontal</span><span class="dl">'</span><span class="p">,</span>
 			<span class="na">padding</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
 			<span class="na">data</span><span class="p">:</span> <span class="nx">analyzeItems</span><span class="p">,</span>
-			<span class="na">x</span><span class="p">:</span> <span class="s1">'center'</span><span class="p">,</span>
-			<span class="na">y</span><span class="p">:</span> <span class="s1">'bottom'</span>
+			<span class="na">x</span><span class="p">:</span> <span class="dl">'</span><span class="s1">center</span><span class="dl">'</span><span class="p">,</span>
+			<span class="na">y</span><span class="p">:</span> <span class="dl">'</span><span class="s1">bottom</span><span class="dl">'</span>
 		<span class="p">},</span>
 		<span class="na">xAxis</span><span class="p">:</span> <span class="p">[{</span>
-			<span class="na">type</span><span class="p">:</span> <span class="s1">'category'</span><span class="p">,</span>
-			<span class="na">data</span><span class="p">:</span> <span class="p">[</span><span class="s1">'系统效率'</span><span class="p">]</span>
+			<span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">category</span><span class="dl">'</span><span class="p">,</span>
+			<span class="na">data</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">系统效率</span><span class="dl">'</span><span class="p">]</span>
 		<span class="p">}],</span>
 		<span class="na">yAxis</span><span class="p">:</span> <span class="p">[{</span>
-			<span class="na">type</span><span class="p">:</span> <span class="s1">'value'</span>
+			<span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">value</span><span class="dl">'</span>
 		<span class="p">}],</span>
 		<span class="na">series</span><span class="p">:</span> <span class="p">[{</span>
-			<span class="na">name</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
-			<span class="na">type</span><span class="p">:</span> <span class="s1">'bar'</span><span class="p">,</span>
+			<span class="na">name</span><span class="p">:</span> <span class="dl">''</span><span class="p">,</span>
+			<span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">bar</span><span class="dl">'</span><span class="p">,</span>
 			<span class="na">data</span><span class="p">:</span> <span class="p">[]</span>
 		<span class="p">}]</span>
 	<span class="p">};</span>
@@ -455,17 +455,17 @@
 	<span class="nx">option</span> <span class="o">=</span> <span class="p">{</span>
 		<span class="na">title</span><span class="p">:</span> <span class="p">{</span>
 			<span class="na">text</span><span class="p">:</span> <span class="nx">title</span><span class="p">,</span>
-			<span class="na">x</span><span class="p">:</span> <span class="s1">'center'</span>
+			<span class="na">x</span><span class="p">:</span> <span class="dl">'</span><span class="s1">center</span><span class="dl">'</span>
 		<span class="p">},</span>
 		<span class="na">tooltip</span><span class="p">:</span> <span class="p">{</span>
-			<span class="na">trigger</span><span class="p">:</span> <span class="s1">'axis'</span>
+			<span class="na">trigger</span><span class="p">:</span> <span class="dl">'</span><span class="s1">axis</span><span class="dl">'</span>
 		<span class="p">},</span>
 		<span class="na">legend</span><span class="p">:</span> <span class="p">{</span>
-			<span class="na">orient</span><span class="p">:</span> <span class="s1">'horizontal'</span><span class="p">,</span>
+			<span class="na">orient</span><span class="p">:</span> <span class="dl">'</span><span class="s1">horizontal</span><span class="dl">'</span><span class="p">,</span>
 			<span class="na">padding</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
 			<span class="na">data</span><span class="p">:</span> <span class="nx">analyzeItems</span><span class="p">,</span>
-			<span class="na">x</span><span class="p">:</span> <span class="s1">'center'</span><span class="p">,</span>
-			<span class="na">y</span><span class="p">:</span> <span class="s1">'bottom'</span><span class="p">,</span>
+			<span class="na">x</span><span class="p">:</span> <span class="dl">'</span><span class="s1">center</span><span class="dl">'</span><span class="p">,</span>
+			<span class="na">y</span><span class="p">:</span> <span class="dl">'</span><span class="s1">bottom</span><span class="dl">'</span><span class="p">,</span>
 			<span class="na">itemWidth</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>             <span class="cm">/** 图例图形宽度*/</span>
         	<span class="na">itemHeight</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>  		   <span class="cm">/** 图例图形高度*/</span>
         	<span class="na">textStyle</span><span class="p">:</span> <span class="p">{</span>
@@ -484,7 +484,7 @@
 				<span class="p">},</span>
 				<span class="na">magicType</span><span class="p">:</span> <span class="p">{</span>
 					<span class="na">show</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-					<span class="na">type</span><span class="p">:</span> <span class="p">[</span><span class="s1">'line'</span><span class="p">,</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'stack'</span><span class="p">,</span> <span class="s1">'tiled'</span><span class="p">]</span>
+					<span class="na">type</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">line</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">bar</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">stack</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">tiled</span><span class="dl">'</span><span class="p">]</span>
 				<span class="p">},</span>
 				<span class="na">restore</span><span class="p">:</span> <span class="p">{</span>
 					<span class="na">show</span><span class="p">:</span> <span class="kc">false</span>
@@ -496,11 +496,11 @@
 		<span class="p">},</span>
 		<span class="na">calculable</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="cm">/**启用拖拽重计算特性*/</span>
 		<span class="na">xAxis</span><span class="p">:</span> <span class="p">[{</span>
-			<span class="na">type</span><span class="p">:</span> <span class="s1">'category'</span><span class="p">,</span>
+			<span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">category</span><span class="dl">'</span><span class="p">,</span>
 			<span class="na">data</span><span class="p">:</span> <span class="nx">getXAxisDataOne</span><span class="p">(</span><span class="nx">datas</span><span class="p">)</span>
 		<span class="p">}],</span>
 		<span class="na">yAxis</span><span class="p">:</span> <span class="p">[{</span>
-			<span class="na">type</span><span class="p">:</span> <span class="s1">'value'</span><span class="p">,</span>
+			<span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">value</span><span class="dl">'</span><span class="p">,</span>
 			<span class="na">name</span><span class="p">:</span><span class="nx">yTitle</span>
 		<span class="p">}],</span>
 		<span class="na">series</span><span class="p">:</span> <span class="nx">getSeriesDataOne</span><span class="p">(</span><span class="nx">analyzeItems</span><span class="p">,</span> <span class="nx">datas</span><span class="p">)</span>
@@ -521,7 +521,7 @@
 					<span class="kd">var</span> <span class="nx">dataItem</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span>
 					<span class="nx">dataItem</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="nx">getAnalyzeItem</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">pictrueDatas</span><span class="p">);</span>
 					<span class="nx">dataItem</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">testAnalyzeItems</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
-					<span class="nx">dataItem</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">'bar'</span><span class="p">;</span>
+					<span class="nx">dataItem</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">bar</span><span class="dl">'</span><span class="p">;</span>
 					<span class="nx">dataItem</span><span class="p">.</span><span class="nx">smooth</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 					<span class="nx">seriesData</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">dataItem</span><span class="p">;</span>
 				<span class="p">}</span>
@@ -548,30 +548,30 @@
      * @param {Object} h 高度
      **/</span>
     <span class="kd">function</span> <span class="nx">alertWin</span><span class="p">(</span><span class="nx">title</span><span class="p">,</span> <span class="nx">msg</span><span class="p">,</span> <span class="nx">w</span><span class="p">,</span> <span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">titleheight</span> <span class="o">=</span> <span class="s2">"22px"</span><span class="p">;</span> <span class="cm">/** 提示窗口标题高度 */</span>
-        <span class="kd">var</span> <span class="nx">bordercolor</span> <span class="o">=</span> <span class="s2">"#364751"</span><span class="p">;</span> <span class="cm">/** 提示窗口的边框颜色 */</span>
-        <span class="kd">var</span> <span class="nx">titlecolor</span> <span class="o">=</span> <span class="s2">"#FFFFFF"</span><span class="p">;</span> <span class="cm">/** 提示窗口的标题颜色 */</span>
-        <span class="kd">var</span> <span class="nx">titlebgcolor</span> <span class="o">=</span> <span class="s2">"#364751"</span><span class="p">;</span> <span class="cm">/** 提示窗口的标题背景色 */</span>
-        <span class="kd">var</span> <span class="nx">bgcolor</span> <span class="o">=</span> <span class="s2">"#FFFFFF"</span><span class="p">;</span> <span class="cm">/** 提示内容的背景色 */</span>
+        <span class="kd">var</span> <span class="nx">titleheight</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">22px</span><span class="dl">"</span><span class="p">;</span> <span class="cm">/** 提示窗口标题高度 */</span>
+        <span class="kd">var</span> <span class="nx">bordercolor</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">#364751</span><span class="dl">"</span><span class="p">;</span> <span class="cm">/** 提示窗口的边框颜色 */</span>
+        <span class="kd">var</span> <span class="nx">titlecolor</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">#FFFFFF</span><span class="dl">"</span><span class="p">;</span> <span class="cm">/** 提示窗口的标题颜色 */</span>
+        <span class="kd">var</span> <span class="nx">titlebgcolor</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">#364751</span><span class="dl">"</span><span class="p">;</span> <span class="cm">/** 提示窗口的标题背景色 */</span>
+        <span class="kd">var</span> <span class="nx">bgcolor</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">#FFFFFF</span><span class="dl">"</span><span class="p">;</span> <span class="cm">/** 提示内容的背景色 */</span>
     
         <span class="kd">var</span> <span class="nx">iWidth</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientWidth</span><span class="p">;</span>
         <span class="kd">var</span> <span class="nx">iHeight</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientHeight</span><span class="p">;</span>
-        <span class="kd">var</span> <span class="nx">bgObj</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"div"</span><span class="p">);</span>
-        <span class="nx">bgObj</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">=</span> <span class="s2">"position:absolute;left:0px;top:0px;width:"</span> <span class="o">+</span> <span class="nx">iWidth</span> <span class="o">+</span> <span class="s2">"px;height:"</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">clientHeight</span><span class="p">,</span> <span class="nx">iHeight</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"px;filter:Alpha(Opacity=30);opacity:0.3;background-color:#000000;z-index:101;"</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">bgObj</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">div</span><span class="dl">"</span><span class="p">);</span>
+        <span class="nx">bgObj</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">position:absolute;left:0px;top:0px;width:</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">iWidth</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">px;height:</span><span class="dl">"</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">clientHeight</span><span class="p">,</span> <span class="nx">iHeight</span><span class="p">)</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">px;filter:Alpha(Opacity=30);opacity:0.3;background-color:#000000;z-index:101;</span><span class="dl">"</span><span class="p">;</span>
         <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">bgObj</span><span class="p">);</span>
     
-        <span class="kd">var</span> <span class="nx">msgObj</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"div"</span><span class="p">);</span>
-        <span class="nx">msgObj</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">=</span> <span class="s2">"position:absolute;font:11px '宋体';top:"</span> <span class="o">+</span> <span class="p">(</span><span class="nx">iHeight</span> <span class="o">-</span> <span class="nx">h</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="s2">"px;left:"</span> <span class="o">+</span> <span class="p">(</span><span class="nx">iWidth</span> <span class="o">-</span> <span class="nx">w</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="s2">"px;width:"</span> <span class="o">+</span> <span class="nx">w</span> <span class="o">+</span> <span class="s2">"px;height:"</span> <span class="o">+</span> <span class="nx">h</span> <span class="o">+</span> <span class="s2">"px;text-align:center;border:1px solid "</span> <span class="o">+</span> <span class="nx">bordercolor</span> <span class="o">+</span> <span class="s2">";background-color:"</span> <span class="o">+</span> <span class="nx">bgcolor</span> <span class="o">+</span> <span class="s2">";line-height:22px;z-index:102;"</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">msgObj</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">div</span><span class="dl">"</span><span class="p">);</span>
+        <span class="nx">msgObj</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">position:absolute;font:11px '宋体';top:</span><span class="dl">"</span> <span class="o">+</span> <span class="p">(</span><span class="nx">iHeight</span> <span class="o">-</span> <span class="nx">h</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">px;left:</span><span class="dl">"</span> <span class="o">+</span> <span class="p">(</span><span class="nx">iWidth</span> <span class="o">-</span> <span class="nx">w</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">px;width:</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">w</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">px;height:</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">h</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">px;text-align:center;border:1px solid </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">bordercolor</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">;background-color:</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">bgcolor</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">;line-height:22px;z-index:102;</span><span class="dl">"</span><span class="p">;</span>
         <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">msgObj</span><span class="p">);</span>
     
-        <span class="kd">var</span> <span class="nx">table</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"table"</span><span class="p">);</span> <span class="cm">/** */</span>
+        <span class="kd">var</span> <span class="nx">table</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">table</span><span class="dl">"</span><span class="p">);</span> <span class="cm">/** */</span>
         <span class="nx">msgObj</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">table</span><span class="p">);</span>
-        <span class="nx">table</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">=</span> <span class="s2">"margin:0px;border:0px;padding:0px;"</span><span class="p">;</span>
+        <span class="nx">table</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">margin:0px;border:0px;padding:0px;</span><span class="dl">"</span><span class="p">;</span>
         <span class="nx">table</span><span class="p">.</span><span class="nx">cellSpacing</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
         <span class="kd">var</span> <span class="nx">tr</span> <span class="o">=</span> <span class="nx">table</span><span class="p">.</span><span class="nx">insertRow</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
         <span class="kd">var</span> <span class="nx">titleBar</span> <span class="o">=</span> <span class="nx">tr</span><span class="p">.</span><span class="nx">insertCell</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-        <span class="nx">titleBar</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">=</span> <span class="s2">"width:100%;height:"</span> <span class="o">+</span> <span class="nx">titleheight</span> <span class="o">+</span> <span class="s2">"px;text-align:left;padding:3px;margin:0px;font:bold 13px '宋体';color:"</span> <span class="o">+</span> <span class="nx">titlecolor</span> <span class="o">+</span> <span class="s2">";border:1px solid "</span> <span class="o">+</span> <span class="nx">bordercolor</span> <span class="o">+</span> <span class="s2">";cursor:move;background-color:"</span> <span class="o">+</span> <span class="nx">titlebgcolor</span><span class="p">;</span>
-        <span class="nx">titleBar</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">paddingLeft</span> <span class="o">=</span> <span class="s2">"10px"</span><span class="p">;</span>
+        <span class="nx">titleBar</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">width:100%;height:</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">titleheight</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">px;text-align:left;padding:3px;margin:0px;font:bold 13px '宋体';color:</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">titlecolor</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">;border:1px solid </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">bordercolor</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">;cursor:move;background-color:</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">titlebgcolor</span><span class="p">;</span>
+        <span class="nx">titleBar</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">paddingLeft</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">10px</span><span class="dl">"</span><span class="p">;</span>
         <span class="nx">titleBar</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">title</span><span class="p">;</span>
         <span class="kd">var</span> <span class="nx">moveX</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
         <span class="kd">var</span> <span class="nx">moveY</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -594,8 +594,8 @@
                     <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">moveLeft</span> <span class="o">+</span> <span class="nx">evt</span><span class="p">.</span><span class="nx">clientX</span> <span class="o">-</span> <span class="nx">moveX</span><span class="p">;</span> <span class="cm">/***/</span>
                     <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">moveTop</span> <span class="o">+</span> <span class="nx">evt</span><span class="p">.</span><span class="nx">clientY</span> <span class="o">-</span> <span class="nx">moveY</span><span class="p">;</span>
                     <span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">w</span> <span class="o">&lt;</span> <span class="nx">iWidth</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">y</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">y</span> <span class="o">+</span> <span class="nx">h</span> <span class="o">&lt;</span> <span class="nx">iHeight</span><span class="p">))</span> <span class="p">{</span>
-                        <span class="nx">msgObj</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">+</span> <span class="s2">"px"</span><span class="p">;</span>
-                        <span class="nx">msgObj</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="nx">y</span> <span class="o">+</span> <span class="s2">"px"</span><span class="p">;</span>
+                        <span class="nx">msgObj</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">px</span><span class="dl">"</span><span class="p">;</span>
+                        <span class="nx">msgObj</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="nx">y</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">px</span><span class="dl">"</span><span class="p">;</span>
                     <span class="p">}</span>
                 <span class="p">}</span>
             <span class="p">};</span>
@@ -613,14 +613,14 @@
         <span class="p">}</span>
     
         <span class="kd">var</span> <span class="nx">closeBtn</span> <span class="o">=</span> <span class="nx">tr</span><span class="p">.</span><span class="nx">insertCell</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-        <span class="nx">closeBtn</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">=</span> <span class="s2">"cursor:pointer; padding:2px;background-color:"</span> <span class="o">+</span> <span class="nx">titlebgcolor</span><span class="p">;</span>
-        <span class="nx">closeBtn</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">"&lt;span style='font-size:15pt; color:"</span> <span class="o">+</span> <span class="nx">titlecolor</span> <span class="o">+</span> <span class="s2">";'&gt;×&lt;/span&gt;"</span><span class="p">;</span>
+        <span class="nx">closeBtn</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">cursor:pointer; padding:2px;background-color:</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">titlebgcolor</span><span class="p">;</span>
+        <span class="nx">closeBtn</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">&lt;span style='font-size:15pt; color:</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">titlecolor</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">;'&gt;×&lt;/span&gt;</span><span class="dl">"</span><span class="p">;</span>
         <span class="nx">closeBtn</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
             <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">bgObj</span><span class="p">);</span>
             <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">msgObj</span><span class="p">);</span>
         <span class="p">}</span>
         <span class="kd">var</span> <span class="nx">msgBox</span> <span class="o">=</span> <span class="nx">table</span><span class="p">.</span><span class="nx">insertRow</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">).</span><span class="nx">insertCell</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-        <span class="nx">msgBox</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">=</span> <span class="s2">"font:10pt '宋体';"</span><span class="p">;</span>
+        <span class="nx">msgBox</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">font:10pt '宋体';</span><span class="dl">"</span><span class="p">;</span>
         <span class="nx">msgBox</span><span class="p">.</span><span class="nx">colSpan</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
         <span class="nx">msgBox</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">;</span>
         <span class="cm">/**
@@ -628,7 +628,7 @@
         * 为了兼容 Ie 进行获取ie 浏览器窗口的操作控制
         */</span>
         <span class="kd">function</span> <span class="nx">getEvent</span><span class="p">()</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="nb">window</span><span class="p">.</span><span class="nx">event</span> <span class="o">||</span> <span class="kr">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">.</span><span class="nx">caller</span><span class="p">.</span><span class="kr">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+            <span class="k">return</span> <span class="nb">window</span><span class="p">.</span><span class="nx">event</span> <span class="o">||</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">.</span><span class="nx">caller</span><span class="p">.</span><span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
         <span class="p">}</span>
     <span class="p">}</span>
 </code></pre></div></div>

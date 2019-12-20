@@ -172,7 +172,7 @@ author：张建新</p>
 
 <h1 id="进行配置">进行配置</h1>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| ------- | ------ | ------- |
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| ------- | ------ | ------- |
 | :------| ------: | :------: |
 | curr | 1 | 2 | 3 |  4  | 5 |
 | prev | 5 | 1 | 2 |  3  | 4 |
@@ -181,9 +181,9 @@ author：张建新</p>
 
 <h1 id="分配mongodb-目录">分配mongoDB 目录</h1>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    mkdir <span class="nt">-p</span>  /home/hadmin/data/mongodb/prev
-    mkdir <span class="nt">-p</span>  /home/hadmin/data/mongodb/curr
-    mkdir <span class="nt">-p</span>  /home/hadmin/data/mongodb/next
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nb">mkdir</span> <span class="nt">-p</span>  /home/hadmin/data/mongodb/prev
+    <span class="nb">mkdir</span> <span class="nt">-p</span>  /home/hadmin/data/mongodb/curr
+    <span class="nb">mkdir</span> <span class="nt">-p</span>  /home/hadmin/data/mongodb/next
 </code></pre></div></div>
 
 <h1 id="进行mount">进行mount</h1>
@@ -197,7 +197,7 @@ author：张建新</p>
 <h1 id="查看硬盘大小">查看硬盘大小</h1>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-    <span class="o">[</span>root@dscn022 mongodb]# df <span class="nt">-h</span>
+    <span class="o">[</span>root@dscn022 mongodb]# <span class="nb">df</span> <span class="nt">-h</span>
     Filesystem                Size  Used Avail Use% Mounted on
     /dev/mapper/rhel-root      50G  5.1G   45G  11% /
     devtmpfs                  126G     0  126G   0% /dev
@@ -220,9 +220,9 @@ author：张建新</p>
 
 <h1 id="脚本-傻瓜模式">脚本 （傻瓜模式）</h1>
 <ul>
-  <li>重要 <code class="highlighter-rouge">numactl</code></li>
+  <li>重要 <code class="language-plaintext highlighter-rouge">numactl</code></li>
   <li>yum install -y numactl</li>
-  <li>配置Mongodb用到的文件夹都要<code class="highlighter-rouge">mkdir</code></li>
+  <li>配置Mongodb用到的文件夹都要<code class="language-plaintext highlighter-rouge">mkdir</code></li>
   <li>common.sh</li>
 </ul>
 
@@ -420,7 +420,7 @@ author：张建新</p>
   <li>启动Route 3个节点</li>
   <li>sbin包含文件
     <ul>
-      <li>stop 文件请看<code class="highlighter-rouge">common.sh</code></li>
+      <li>stop 文件请看<code class="language-plaintext highlighter-rouge">common.sh</code></li>
     </ul>
 
     <p><img src="http://112firshme11224.test.upcdn.net/images/WX20171111-014151@2x.png" alt="" /></p>
@@ -442,9 +442,9 @@ author：张建新</p>
 
 <h1 id="提醒">提醒</h1>
 <ul>
-  <li>注意 <code class="highlighter-rouge">ConfigServer</code> 名称</li>
-  <li>注意 <code class="highlighter-rouge">Route</code>指定的 ConfigServer地址</li>
-  <li>节点互信 以及<code class="highlighter-rouge">hosts</code></li>
+  <li>注意 <code class="language-plaintext highlighter-rouge">ConfigServer</code> 名称</li>
+  <li>注意 <code class="language-plaintext highlighter-rouge">Route</code>指定的 ConfigServer地址</li>
+  <li>节点互信 以及<code class="language-plaintext highlighter-rouge">hosts</code></li>
 </ul>
 
 <h1 id="感谢兽兽提供的脚本">感谢兽兽提供的脚本</h1>
@@ -453,7 +453,7 @@ author：张建新</p>
 
 <ul>
   <li>以上操作经过验证可以直接拿去。</li>
-  <li>auther <code class="highlighter-rouge">breakEval13</code></li>
+  <li>auther <code class="language-plaintext highlighter-rouge">breakEval13</code></li>
   <li>https://github.com/breakEval13</li>
 </ul>
 

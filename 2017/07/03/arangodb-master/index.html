@@ -149,7 +149,7 @@
 
 <p>We are auto generating docker images via our build system so the Dockerfile is a template. To build your own ArangoDB image:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp Dockerfile.templ Dockerfile
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp </span>Dockerfile.templ Dockerfile
 
 </code></pre></div></div>
 
@@ -158,7 +158,7 @@
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker build <span class="nt">-t</span> arangodb <span class="nb">.</span>
 </code></pre></div></div>
 
-<p>This will create an image named <code class="highlighter-rouge">arangodb</code>.</p>
+<p>This will create an image named <code class="language-plaintext highlighter-rouge">arangodb</code>.</p>
 
 <h2 id="reference-documentation">Reference documentation</h2>
 
@@ -167,7 +167,7 @@
 <p>https://hub.docker.com/_/arangodb/</p>
 
 <h1 id="3docker-compose-mini-集群启动方式">3.docker-compose mini 集群启动方式</h1>
-<p><code class="highlighter-rouge"> 各位稍等，稍后整理一并奉上。</code></p>
+<p><code class="language-plaintext highlighter-rouge"> 各位稍等，稍后整理一并奉上。</code></p>
 
 <ul>
   <li>大体思路,Docker-Compose 通过link进行docker容器的内部链接，来实现集群模式。</li>

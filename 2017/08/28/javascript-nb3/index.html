@@ -140,7 +140,7 @@ author：zhangjianxin</p>
 
 <p>1、单行写一个评级组件</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"★★★★★☆☆☆☆☆"</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">5</span> <span class="o">-</span> <span class="nx">rate</span><span class="p">,</span> <span class="mi">10</span> <span class="o">-</span> <span class="nx">rate</span><span class="p">);</span><span class="err">定义一个变量</span><span class="nx">rate</span><span class="err">是</span><span class="mi">1</span><span class="err">到</span><span class="mi">5</span><span class="err">的值，然后执行上面代码，看图</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">"</span><span class="s2">★★★★★☆☆☆☆☆</span><span class="dl">"</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">5</span> <span class="o">-</span> <span class="nx">rate</span><span class="p">,</span> <span class="mi">10</span> <span class="o">-</span> <span class="nx">rate</span><span class="p">);</span><span class="err">定义一个变量</span><span class="nx">rate</span><span class="err">是</span><span class="mi">1</span><span class="err">到</span><span class="mi">5</span><span class="err">的值，然后执行上面代码，看图</span>
 </code></pre></div></div>
 
 <p><img src="http://112firshme11224.test.upcdn.net/blog/js/1.jpg" alt="" />
@@ -148,13 +148,13 @@ author：zhangjianxin</p>
 
 <p><img src="http://112firshme11224.test.upcdn.net/blog/js/2.jpg" alt="" />
 2、如何装逼用代码骂别人SB</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="o">~+</span><span class="p">[])</span><span class="o">+</span><span class="p">{})[</span><span class="o">--</span><span class="p">[</span><span class="o">~+</span><span class="s2">""</span><span class="p">][</span><span class="o">+</span><span class="p">[]]</span><span class="o">*</span><span class="p">[</span><span class="o">~+</span><span class="p">[]]</span> <span class="o">+</span> <span class="o">~~!+</span><span class="p">[]]</span><span class="o">+</span><span class="p">({}</span><span class="o">+</span><span class="p">[])[[</span><span class="o">~!+</span><span class="p">[]]</span><span class="o">*~+</span><span class="p">[]]</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="o">~+</span><span class="p">[])</span><span class="o">+</span><span class="p">{})[</span><span class="o">--</span><span class="p">[</span><span class="o">~+</span><span class="dl">""</span><span class="p">][</span><span class="o">+</span><span class="p">[]]</span><span class="o">*</span><span class="p">[</span><span class="o">~+</span><span class="p">[]]</span> <span class="o">+</span> <span class="o">~~!+</span><span class="p">[]]</span><span class="o">+</span><span class="p">({}</span><span class="o">+</span><span class="p">[])[[</span><span class="o">~!+</span><span class="p">[]]</span><span class="o">*~+</span><span class="p">[]]</span>
 
 </code></pre></div></div>
 
 <p><img src="http://112firshme11224.test.upcdn.net/blog/js/3.jpg" alt="" /></p>
 
-<p>了解为什么请移步：<code class="highlighter-rouge">一行能装逼的JavaScript代码</code></p>
+<p>了解为什么请移步：<code class="language-plaintext highlighter-rouge">一行能装逼的JavaScript代码</code></p>
 
 <p><img src="http://112firshme11224.test.upcdn.net/blog/js/6.jpg" alt="" /></p>
 
@@ -176,7 +176,7 @@ author：zhangjianxin</p>
     <span class="nx">something</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
     <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span>
-        <span class="s2">"http://stackoverflow.com/search?q=[js]+"</span> <span class="o">+</span>
+        <span class="dl">"</span><span class="s2">http://stackoverflow.com/search?q=[js]+</span><span class="dl">"</span> <span class="o">+</span>
         <span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -186,13 +186,13 @@ author：zhangjianxin</p>
 <p><img src="http://112firshme11224.test.upcdn.net/blog/js/8.jpg" alt="" /></p>
 
 <p>5、从一行代码里面学点JavaScript</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[].</span><span class="nx">forEach</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">$$</span><span class="p">(</span><span class="s2">"*"</span><span class="p">),</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">){</span>
-    <span class="nx">a</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">outline</span><span class="o">=</span><span class="s2">"1px solid #"</span><span class="o">+</span><span class="p">(</span><span class="o">~~</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">24</span><span class="p">))).</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[].</span><span class="nx">forEach</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">$$</span><span class="p">(</span><span class="dl">"</span><span class="s2">*</span><span class="dl">"</span><span class="p">),</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">){</span>
+    <span class="nx">a</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">outline</span><span class="o">=</span><span class="dl">"</span><span class="s2">1px solid #</span><span class="dl">"</span><span class="o">+</span><span class="p">(</span><span class="o">~~</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">24</span><span class="p">))).</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
 <span class="p">})</span>
 </code></pre></div></div>
 <p>翻译成正常语言就是这样的</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">forEach</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">'*'</span><span class="p">),</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">forEach</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="dl">'</span><span class="s1">*</span><span class="dl">'</span><span class="p">),</span>
 <span class="nx">dom</span> <span class="o">=&gt;</span> <span class="nx">dom</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">outline</span> <span class="o">=</span> <span class="s2">`1px solid #</span><span class="p">${</span><span class="nb">parseInt</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span>
 <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">24</span><span class="p">)).</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">)}</span><span class="s2">`</span><span class="p">)</span>
 </code></pre></div></div>
@@ -281,8 +281,8 @@ author：zhangjianxin</p>
 用正则魔法实现：</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="kd">var</span> <span class="nx">test1</span> <span class="o">=</span> <span class="s1">'1234567890'</span>
-<span class="kd">var</span> <span class="nx">format</span> <span class="o">=</span> <span class="nx">test1</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/</span><span class="se">\B(?=(\d{3})</span><span class="sr">+</span><span class="se">(?!\d))</span><span class="sr">/g</span><span class="p">,</span> <span class="s1">','</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">test1</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">1234567890</span><span class="dl">'</span>
+<span class="kd">var</span> <span class="nx">format</span> <span class="o">=</span> <span class="nx">test1</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/</span><span class="se">\B(?=(\d{3})</span><span class="sr">+</span><span class="se">(?!\d))</span><span class="sr">/g</span><span class="p">,</span> <span class="dl">'</span><span class="s1">,</span><span class="dl">'</span><span class="p">)</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">format</span><span class="p">)</span> <span class="c1">// 1,234,567,890</span>
 
@@ -291,11 +291,11 @@ author：zhangjianxin</p>
 <p>非正则的优雅实现：</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">function</span> <span class="nx">formatCash</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
-       <span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">''</span><span class="p">).</span><span class="nx">reverse</span><span class="p">().</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">prev</span><span class="p">,</span> <span class="nx">next</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="p">((</span><span class="nx">index</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span> <span class="p">?</span> <span class="nx">next</span> <span class="p">:</span> <span class="p">(</span><span class="nx">next</span> <span class="o">+</span> <span class="s1">','</span><span class="p">))</span> <span class="o">+</span> <span class="nx">prev</span>
+       <span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">''</span><span class="p">).</span><span class="nx">reverse</span><span class="p">().</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">prev</span><span class="p">,</span> <span class="nx">next</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="p">((</span><span class="nx">index</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span> <span class="p">?</span> <span class="nx">next</span> <span class="p">:</span> <span class="p">(</span><span class="nx">next</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">,</span><span class="dl">'</span><span class="p">))</span> <span class="o">+</span> <span class="nx">prev</span>
        <span class="p">})</span>
 <span class="p">}</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">formatCash</span><span class="p">(</span><span class="s1">'1234567890'</span><span class="p">))</span> <span class="c1">// 1,234,567,890</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">formatCash</span><span class="p">(</span><span class="dl">'</span><span class="s1">1234567890</span><span class="dl">'</span><span class="p">))</span> <span class="c1">// 1,234,567,890</span>
 
 </code></pre></div></div>
 
@@ -305,7 +305,7 @@ author：zhangjianxin</p>
 我服</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">alert</span><span class="p">(</span><span class="s1">'牛逼你把我关了啊'</span><span class="p">)</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">牛逼你把我关了啊</span><span class="dl">'</span><span class="p">)</span>
 <span class="p">}</span>
 
 </code></pre></div></div>
@@ -316,7 +316,7 @@ author：zhangjianxin</p>
 
 <p>清除缓存：</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">"javascript:alert('清除成功');"</span><span class="o">&gt;</span><span class="err">清除缓存</span><span class="o">&lt;</span><span class="sr">/a</span><span class="err">&gt;
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="dl">"</span><span class="s2">javascript:alert('清除成功');</span><span class="dl">"</span><span class="o">&gt;</span><span class="err">清除缓存</span><span class="o">&lt;</span><span class="sr">/a</span><span class="err">&gt;
 </span></code></pre></div></div>
 
 <p>13、逗号运算符</p>
@@ -413,7 +413,7 @@ author：zhangjianxin</p>
 
 <p>21、最短的代码实现数组去重</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[...</span><span class="k">new</span> <span class="nb">Set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"1"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])]</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[...</span><span class="k">new</span> <span class="nb">Set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])]</span>
 </code></pre></div></div>
 
 <p><img src="http://112firshme11224.test.upcdn.net/blog/js/25.jpg" alt="" /></p>
@@ -471,25 +471,25 @@ author：zhangjianxin</p>
 <p>26、将argruments对象转换成数组</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="kd">var</span> <span class="nx">argArray</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="kr">arguments</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">argArray</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
 
 </code></pre></div></div>
 <p>或者ES6：</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="kd">var</span> <span class="nx">argArray</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="kr">arguments</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">argArray</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="nx">arguments</span><span class="p">)</span>
 
 </code></pre></div></div>
 
-<p>27、javascript高逼格之<code class="highlighter-rouge">Function</code>构造函数</p>
+<p>27、javascript高逼格之<code class="language-plaintext highlighter-rouge">Function</code>构造函数</p>
 
-<p>很多<code class="highlighter-rouge">JavaScript</code>教程都告诉我们，不要直接用内置对象的构造函数来创建基本变量，例如var arr = new Array(2); 的写法就应该用var arr = [1, 2];的写法来取代。</p>
+<p>很多<code class="language-plaintext highlighter-rouge">JavaScript</code>教程都告诉我们，不要直接用内置对象的构造函数来创建基本变量，例如var arr = new Array(2); 的写法就应该用var arr = [1, 2];的写法来取代。</p>
 
-<p>但是，Function构造函数（注意是<code class="highlighter-rouge">大写</code>的Function）有点特别。Function构造函数接受的参数中，第一个是要传入的参数名，第二个是函数内的代码（用字符串来表示）。</p>
+<p>但是，Function构造函数（注意是<code class="language-plaintext highlighter-rouge">大写</code>的Function）有点特别。Function构造函数接受的参数中，第一个是要传入的参数名，第二个是函数内的代码（用字符串来表示）。</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="kd">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Function</span><span class="p">(</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'alert(a)'</span><span class="p">);</span>
-<span class="nx">f</span><span class="p">(</span><span class="s1">'firsh'</span><span class="p">);</span> <span class="c1">// 将会弹出窗口显示firsh</span>
+<span class="kd">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Function</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">alert(a)</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">f</span><span class="p">(</span><span class="dl">'</span><span class="s1">firsh</span><span class="dl">'</span><span class="p">);</span> <span class="c1">// 将会弹出窗口显示firsh</span>
 
 </code></pre></div></div>
 
@@ -534,7 +534,7 @@ author：zhangjianxin</p>
 
 <ul>
   <li>以上操作经过验证可以直接拿去。</li>
-  <li>Owner <code class="highlighter-rouge">breakEval13</code></li>
+  <li>Owner <code class="language-plaintext highlighter-rouge">breakEval13</code></li>
   <li>https://github.com/breakEval13</li>
 </ul>
 

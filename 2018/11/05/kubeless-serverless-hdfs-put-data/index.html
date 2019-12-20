@@ -143,7 +143,7 @@ from hdfs import Client
 from bottle import route, run
 from bottle import request
 
-client <span class="o">=</span> Client<span class="o">(</span><span class="s2">"http://hdfs-web-svc.cloudera:50070"</span>, <span class="nv">root</span><span class="o">=</span><span class="s2">"/"</span>, <span class="nv">timeout</span><span class="o">=</span>100, <span class="nv">session</span><span class="o">=</span>False<span class="o">)</span>
+client <span class="o">=</span> Client<span class="o">(</span><span class="s2">"http://hdfs-web-svc.cloudera:50070"</span>, <span class="nv">root</span><span class="o">=</span><span class="s2">"/"</span>, <span class="nb">timeout</span><span class="o">=</span>100, <span class="nv">session</span><span class="o">=</span>False<span class="o">)</span>
 <span class="c"># 文件上传的HTML模板，这里没有额外去写html模板了，直接写在这里，方便点吧</span>
 @route<span class="o">(</span><span class="s1">'/upload'</span><span class="o">)</span>
 def upload<span class="o">()</span>:

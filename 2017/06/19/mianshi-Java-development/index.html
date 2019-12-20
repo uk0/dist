@@ -281,7 +281,7 @@
   <li>为什么一个语言中，”函数是第一公民”是很重要的？</li>
   <li>模式匹配(Pattern Matching)和Switch语句(Switch clauses)的区别在哪儿？</li>
   <li>为什么有些语言设计上没有异常机制？这有什么优缺点？</li>
-  <li>如果<code class="highlighter-rouge">Cat</code>是一个<code class="highlighter-rouge">Animal</code>, 那么<code class="highlighter-rouge">TaskCare&lt;Cat&gt;</code>是一个<code class="highlighter-rouge">TakeCare&lt;Animal&gt;</code>吗？</li>
+  <li>如果<code class="language-plaintext highlighter-rouge">Cat</code>是一个<code class="language-plaintext highlighter-rouge">Animal</code>, 那么<code class="language-plaintext highlighter-rouge">TaskCare&lt;Cat&gt;</code>是一个<code class="language-plaintext highlighter-rouge">TakeCare&lt;Animal&gt;</code>吗？</li>
 </ul>
 
 <p>####<a href="#toc">[↑]</a> <a name="web">web相关问题:</a></p>
@@ -294,7 +294,7 @@
 
 <ul>
   <li>如果要你将一个项目从MySQL迁移至PostgreSQL中，你会如何迁移？</li>
-  <li>为什么<code class="highlighter-rouge">SELECT * FROM table WHERE field = null</code>不能匹配空的字段？</li>
+  <li>为什么<code class="language-plaintext highlighter-rouge">SELECT * FROM table WHERE field = null</code>不能匹配空的字段？</li>
   <li>什么是ACID(原子性，一致性，隔离性，持久性)原则？</li>
   <li>你是如何进行数据库模式(Database schema)迁移的？</li>
   <li>延迟加载(lazy loading)是如何实现的？什么场景下有用？他有什么缺陷？</li>
@@ -386,7 +386,7 @@
   <li>使用任何一门语言，写一个基本的消息代理。</li>
   <li>写一个基础的web服务器，然后画一张线路图，展示你将来还想要实现的功能。</li>
   <li>如何对一个10GB的文件进行排序？如果是10TB的数据，你会采用什么方法？</li>
-  <li>请实现<code class="highlighter-rouge">rnd()</code>函数</li>
+  <li>请实现<code class="language-plaintext highlighter-rouge">rnd()</code>函数</li>
 </ul>
 
 <p>####<a href="#toc">[↑]</a> <a name="architecture">软件架构相关问题:</a></p>
@@ -455,8 +455,8 @@
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">hookupevents</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"button"</span> <span class="o">+</span> <span class="nx">i</span><span class="p">)</span>
-      <span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">button</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">i</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
         <span class="nx">alert</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span> 
       <span class="p">});</span>
   <span class="p">}</span>
@@ -467,10 +467,10 @@
   <li>关于类型擦除(Type Erasure)，这段Java代码的输出是什么？为什么？</li>
 </ul>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">li</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
-<span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Float</span><span class="o">&gt;</span> <span class="n">lf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Float</span><span class="o">&gt;();</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">li</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;();</span>
+<span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Float</span><span class="o">&gt;</span> <span class="n">lf</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Float</span><span class="o">&gt;();</span>
 <span class="k">if</span> <span class="o">(</span><span class="n">li</span><span class="o">.</span><span class="na">getClass</span><span class="o">()</span> <span class="o">==</span> <span class="n">lf</span><span class="o">.</span><span class="na">getClass</span><span class="o">())</span> <span class="c1">// evaluates to true</span>
-  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Equal"</span><span class="o">);</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Equal"</span><span class="o">);</span>
 </code></pre></div></div>
 
 <ul>
@@ -478,20 +478,20 @@
 </ul>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Stack</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">elements</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Object</span><span class="o">[]</span> <span class="n">elements</span><span class="o">;</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">DEFAULT_INITIAL_CAPACITY</span> <span class="o">=</span> <span class="mi">16</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">DEFAULT_INITIAL_CAPACITY</span> <span class="o">=</span> <span class="mi">16</span><span class="o">;</span>
 
     <span class="kd">public</span> <span class="nf">Stack</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">elements</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[</span><span class="n">DEFAULT_INITIAL_CAPACITY</span><span class="o">];</span>
+        <span class="n">elements</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Object</span><span class="o">[</span><span class="no">DEFAULT_INITIAL_CAPACITY</span><span class="o">];</span>
     <span class="o">}</span>
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">push</span><span class="o">(</span><span class="n">Object</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">push</span><span class="o">(</span><span class="nc">Object</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">ensureCapacity</span><span class="o">();</span>
         <span class="n">elements</span><span class="o">[</span><span class="n">size</span><span class="o">++]</span> <span class="o">=</span> <span class="n">e</span><span class="o">;</span>
     <span class="o">}</span>
    
-    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">pop</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">pop</span><span class="o">()</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
             <span class="k">throw</span> <span class="k">new</span> <span class="nf">EmptyStackException</span><span class="o">();</span>
         <span class="k">return</span> <span class="n">elements</span><span class="o">[--</span><span class="n">size</span><span class="o">];</span>
@@ -503,30 +503,30 @@
      */</span>
     <span class="kd">private</span> <span class="kt">void</span> <span class="nf">ensureCapacity</span><span class="o">()</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">elements</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">size</span><span class="o">)</span>
-            <span class="n">elements</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">copyOf</span><span class="o">(</span><span class="n">elements</span><span class="o">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+            <span class="n">elements</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">copyOf</span><span class="o">(</span><span class="n">elements</span><span class="o">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
 <ul>
-  <li><code class="highlighter-rouge">if</code>语句，或者更加通用点，条件表达式通常是过程式编程/命令式编程的形式。你能去掉这段代码中的<code class="highlighter-rouge">switch</code>语句，用面向对象的方式来修改这段代码吗？</li>
+  <li><code class="language-plaintext highlighter-rouge">if</code>语句，或者更加通用点，条件表达式通常是过程式编程/命令式编程的形式。你能去掉这段代码中的<code class="language-plaintext highlighter-rouge">switch</code>语句，用面向对象的方式来修改这段代码吗？</li>
 </ul>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Formatter</span> <span class="o">{</span>
 
-    <span class="kd">private</span> <span class="n">Service</span> <span class="n">service</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Service</span> <span class="n">service</span><span class="o">;</span>
 
-    <span class="kd">public</span> <span class="nf">Formatter</span><span class="o">(</span><span class="n">Service</span> <span class="n">service</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nf">Formatter</span><span class="o">(</span><span class="nc">Service</span> <span class="n">service</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">this</span><span class="o">.</span><span class="na">service</span> <span class="o">=</span> <span class="n">service</span><span class="o">;</span>
     <span class="o">}</span>
 
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">doTheJob</span><span class="o">(</span><span class="n">String</span> <span class="n">theInput</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">String</span> <span class="n">response</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="na">askForPermission</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">doTheJob</span><span class="o">(</span><span class="nc">String</span> <span class="n">theInput</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">response</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="na">askForPermission</span><span class="o">();</span>
         <span class="k">switch</span> <span class="o">(</span><span class="n">response</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">case</span> <span class="s">"FAIL"</span><span class="o">:</span>
             <span class="k">return</span> <span class="s">"error"</span><span class="o">;</span>
         <span class="k">case</span> <span class="s">"OK"</span><span class="o">:</span>
-            <span class="k">return</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%s%s"</span><span class="o">,</span> <span class="n">theInput</span><span class="o">,</span> <span class="n">theInput</span><span class="o">);</span>
+            <span class="k">return</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%s%s"</span><span class="o">,</span> <span class="n">theInput</span><span class="o">,</span> <span class="n">theInput</span><span class="o">);</span>
         <span class="k">default</span><span class="o">:</span>
             <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
         <span class="o">}</span>
@@ -535,28 +535,28 @@
 </code></pre></div></div>
 
 <ul>
-  <li>你能去掉这里的<code class="highlighter-rouge">if</code>语句，将它改成更加面向对象吗？</li>
+  <li>你能去掉这里的<code class="language-plaintext highlighter-rouge">if</code>语句，将它改成更加面向对象吗？</li>
 </ul>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TheService</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="n">FileHandler</span> <span class="n">fileHandler</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="n">FooRepository</span> <span class="n">fooRepository</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">FileHandler</span> <span class="n">fileHandler</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">FooRepository</span> <span class="n">fooRepository</span><span class="o">;</span>
 
-    <span class="kd">public</span> <span class="nf">TheService</span><span class="o">(</span><span class="n">FileHandler</span> <span class="n">fileHandler</span><span class="o">,</span> <span class="n">FooRepository</span> <span class="n">fooRepository</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nf">TheService</span><span class="o">(</span><span class="nc">FileHandler</span> <span class="n">fileHandler</span><span class="o">,</span> <span class="nc">FooRepository</span> <span class="n">fooRepository</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">this</span><span class="o">.</span><span class="na">fileHandler</span> <span class="o">=</span> <span class="n">fileHandler</span><span class="o">;</span>
         <span class="k">this</span><span class="o">.</span><span class="na">fooRepository</span> <span class="o">=</span> <span class="n">fooRepository</span><span class="o">;</span>
     <span class="o">}</span>
 
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">Execute</span><span class="o">(</span><span class="kd">final</span> <span class="n">String</span> <span class="n">file</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">Execute</span><span class="o">(</span><span class="kd">final</span> <span class="nc">String</span> <span class="n">file</span><span class="o">)</span> <span class="o">{</span>
 
-        <span class="kd">final</span> <span class="n">String</span> <span class="n">rewrittenUrl</span> <span class="o">=</span> <span class="n">fileHandler</span><span class="o">.</span><span class="na">getXmlFileFromFileName</span><span class="o">(</span><span class="n">file</span><span class="o">);</span>
-        <span class="kd">final</span> <span class="n">String</span> <span class="n">executionId</span> <span class="o">=</span> <span class="n">fileHandler</span><span class="o">.</span><span class="na">getExecutionIdFromFileName</span><span class="o">(</span><span class="n">file</span><span class="o">);</span>
+        <span class="kd">final</span> <span class="nc">String</span> <span class="n">rewrittenUrl</span> <span class="o">=</span> <span class="n">fileHandler</span><span class="o">.</span><span class="na">getXmlFileFromFileName</span><span class="o">(</span><span class="n">file</span><span class="o">);</span>
+        <span class="kd">final</span> <span class="nc">String</span> <span class="n">executionId</span> <span class="o">=</span> <span class="n">fileHandler</span><span class="o">.</span><span class="na">getExecutionIdFromFileName</span><span class="o">(</span><span class="n">file</span><span class="o">);</span>
 
         <span class="k">if</span> <span class="o">((</span><span class="n">executionId</span> <span class="o">==</span> <span class="s">""</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">rewrittenUrl</span> <span class="o">==</span> <span class="s">""</span><span class="o">))</span> <span class="o">{</span>
             <span class="k">return</span> <span class="s">""</span><span class="o">;</span>
         <span class="o">}</span>
 
-        <span class="n">Foo</span> <span class="n">knownFoo</span> <span class="o">=</span> <span class="n">fooRepository</span><span class="o">.</span><span class="na">getFooByXmlFileName</span><span class="o">(</span><span class="n">rewrittenUrl</span><span class="o">);</span>
+        <span class="nc">Foo</span> <span class="n">knownFoo</span> <span class="o">=</span> <span class="n">fooRepository</span><span class="o">.</span><span class="na">getFooByXmlFileName</span><span class="o">(</span><span class="n">rewrittenUrl</span><span class="o">);</span>
 
         <span class="k">if</span> <span class="o">(</span><span class="n">knownFoo</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">return</span> <span class="s">""</span><span class="o">;</span>
