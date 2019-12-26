@@ -1,5 +1,11 @@
 {
   
+  "2019-12-26-native-spark-study1": {
+    "title": "Rust Native Spark Sample Install",
+    "url": " /2019/12/26/native_spark-study1/",
+    "category": "spark"
+  },
+  
   "2019-09-05-arp-dniff-url-sslniff": {
     "title": "Arp 欺骗获取设备信息",
     "url": " /2019/09/05/arp-dniff-url-sslniff/",
@@ -1676,6 +1682,12 @@
     "title": "Arp 欺骗获取设备信息",
     "url": "/2019/09/05/arp-dniff-url-sslniff/",
     "category": "[&quot;ctf&quot;]"
+  },
+  
+  "2019-12-26-native-spark-study1": {
+    "title": "Rust Native Spark Sample Install",
+    "url": "/2019/12/26/native_spark-study1/",
+    "category": "[&quot;spark&quot;]"
   },
   
   "wiki-android-studio": {
