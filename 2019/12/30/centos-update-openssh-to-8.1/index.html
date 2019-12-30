@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Linux/Unix &mdash; 张建新</title>
+    <title>CentOS6 下升级默认的OpenSSH操作记录（升级到OpenSSH_8.1p1) &mdash; 张建新</title>
       <!-- or -->
 
     <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
@@ -25,23 +25,23 @@
     
 
     
-    <link rel="canonical" href="https://firsh.me/wiki/linux/">
+    <link rel="canonical" href="https://firsh.me/2019/12/30/centos-update-openssh-to-8.1/">
     <link rel="alternate" type="application/atom+xml" title="张建新" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="Linux/Unix">
+    <meta property="og:title" content="CentOS6 下升级默认的OpenSSH操作记录（升级到OpenSSH_8.1p1)">
       
-    <meta name="keywords" content="Linux">
-    <meta name="og:keywords" content="Linux">
+    <meta name="keywords" content="升级 openssh">
+    <meta name="og:keywords" content="升级 openssh">
       
-    <meta name="description" content="类 Unix 系统下的一些常用命令和用法。">
-    <meta name="og:description" content="类 Unix 系统下的一些常用命令和用法。">
+    <meta name="description" content="升级当前机器的openssh 到最新版本来规避漏洞导致服务器收到攻击。">
+    <meta name="og:description" content="升级当前机器的openssh 到最新版本来规避漏洞导致服务器收到攻击。">
       
     
     
         
     
-    <meta property="og:url" content="https://firsh.me/wiki/linux/">
+    <meta property="og:url" content="https://firsh.me/2019/12/30/centos-update-openssh-to-8.1/">
     <meta property="og:site_name" content="张建新">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -97,12 +97,25 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="Linux/Unix">
+    <section class="collection-head small geopattern" data-pattern-id="CentOS6 下升级默认的O">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">Linux/Unix</h1>
+        <h1 class="collection-header">CentOS6 下升级默认的OpenSSH操作记录（升级到OpenSSH_8.1p1)</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2019/12/30
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#linux" title="linux">linux</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
@@ -113,57 +126,132 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <p>类 Unix 系统下的一些常用命令和用法。</p>
+    <p>升级当前机器的openssh 到最新版本来规避漏洞导致服务器收到攻击。</p>
 
-<h2 id="实用命令">实用命令</h2>
+<p>### 准备和检查</p>
 
-<h3 id="fuser">fuser</h3>
+<ul>
+  <li>检查系统版本</li>
+  <li>检查openssh 版本</li>
+  <li>下载openssh 源码包</li>
+</ul>
 
-<p>查看文件被谁占用。</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>查看操作系统版本
+<span class="o">[</span>root@Centos6 ~]# <span class="nb">cat</span> /etc/redhat-release       <span class="c">#或者执行"cat /etc/issue"</span>
+CentOS release 6.9 <span class="o">(</span>Final<span class="o">)</span>
+  
+查看默认的OpenSSH版本
+<span class="o">[</span>root@Centos6 ~]# ssh <span class="nt">-V</span>
+OpenSSH_5.3p1, OpenSSL 1.0.1e-fips 11 Feb 2013
+ 
+openssl默认版本如下，这个是关系到下面编译安装openssh的成功与否。
+<span class="o">[</span>root@Centos6 ~]# openssl version <span class="nt">-a</span>
+OpenSSL 1.0.1e-fips 11 Feb 2013
+ 
+备份ssh目录（此步非常重要，一定要记得提前做备份）
+<span class="o">[</span>root@Centos6 ~]# <span class="nb">cp</span> <span class="nt">-rf</span> /etc/ssh /etc/ssh.bak
+  
+安装telnet，记得提前部署telnet远程登录环境<span class="o">(</span>root用户登录<span class="o">)</span>，避免ssh升级出现问题，导致无法远程管理！
+<span class="o">[</span>root@Centos6 ~]# yum <span class="nb">install </span>telnet-server
+<span class="o">[</span>root@Centos6 ~]# vim /etc/xinetd.d/telnet       
+<span class="c"># default: on</span>
+<span class="c"># description: The telnet server serves telnet sessions; it uses \</span>
+<span class="c">#       unencrypted username/password pairs for authentication.</span>
+service telnet
+<span class="o">{</span>
+        flags           <span class="o">=</span> REUSE
+        socket_type     <span class="o">=</span> stream      
+        <span class="nb">wait</span>            <span class="o">=</span> no
+        user            <span class="o">=</span> root
+        server          <span class="o">=</span> /usr/sbin/in.telnetd
+        log_on_failure  +<span class="o">=</span> USERID
+        disable         <span class="o">=</span> no                     <span class="c">#将默认的yes修改为no。开启telnet服务功能，否则telnet启动后，23端口就会起不来！</span>
+<span class="o">}</span>
+  
+重启telnet服务
+<span class="o">[</span>root@Centos6 ~]# /etc/init.d/xinetd start
+Starting xinetd:                                           <span class="o">[</span>  OK  <span class="o">]</span>
+<span class="o">[</span>root@Centos6 ~]# /etc/init.d/xinetd restart
+Stopping xinetd:                                           <span class="o">[</span>  OK  <span class="o">]</span>
+Starting xinetd:                                           <span class="o">[</span>  OK  <span class="o">]</span>
+  
+telnet默认用于远程登录的端口是23（21是默认的ftp端口、22是默认的ssh端口、23是默认的telnet端口）
+<span class="o">[</span>root@Centos6 ~]# lsof <span class="nt">-i</span>:23
+COMMAND    PID USER   FD   TYPE   DEVICE SIZE/OFF NODE NAME
+xinetd    2489 root    5u  IPv6 22131982      0t0  TCP <span class="k">*</span>:telnet <span class="o">(</span>LISTEN<span class="o">)</span>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fuser <span class="nt">-u</span> .linux.md.swp
 </code></pre></div></div>
 
-<h3 id="id">id</h3>
+<h5 id="默认情况下linux不允许root用户以telnet方式登录linux主机若要允许root用户登录可采取以下两种方法中的任何一种方法">默认情况下，linux不允许root用户以telnet方式登录linux主机，若要允许root用户登录，可采取以下两种方法中的任何一种方法：</h5>
 
-<p>查看当前用户、组 id。</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1）第一种方法：修改securetty文件
+增加pts配置。如果登录用户较多，需要更多的pts/<span class="k">*</span>。
+<span class="o">[</span>root@Centos6 ~]# vim /etc/securetty
+......
+pts/0
+pts/1
+pts/2
+  
+2）第二种方法：移除securetty文件
+验证规则设置在/etc/security文件中，该文件定义root用户只能在tty1-tty6的终端上记录，删除该文件或者将其改名即可避开验证规则实现root用户远程登录。
+<span class="o">[</span>root@Centos6 ~]# <span class="nb">rm</span> <span class="nt">-rf</span> /etc/securetty
+  
+以上两种方法中的任意一种设置后，在客户端使用telnet远程登录目标服务器<span class="o">(</span>使用root用户<span class="o">)</span>都是可以的！
 
-<h3 id="lsof">lsof</h3>
-
-<p>查看打开的文件列表。</p>
-
-<blockquote>
-  <p>An  open  file  may  be  a  regular  file,  a directory, a block special file, a character special file, an executing text reference, a library, a stream or a network file (Internet socket, NFS file or UNIX domain socket.)  A specific file or all the files in a file system may be selected by path.</p>
-</blockquote>
-
-<h4 id="查看网络相关的文件占用">查看网络相关的文件占用</h4>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lsof <span class="nt">-i</span>
 </code></pre></div></div>
 
-<h4 id="查看端口占用">查看端口占用</h4>
+<h4 id="升级组件">升级组件</h4>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lsof <span class="nt">-i</span> tcp:5037
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@Centos6 ~]# yum <span class="nb">install</span> <span class="nt">-y</span> gcc openssl-devel pam-devel rpm-build tcp_wrappers-devel
+
+<span class="c"># downlaod </span>
+wget http://openbsd.hk/pub/OpenBSD/OpenSSH/portable/openssh-8.1p1.tar.gz
+
+<span class="nb">tar</span> <span class="nt">-zvxf</span> openssh-8.1p1.tar.gz <span class="nt">-C</span> /opt/
+<span class="nb">cd</span> /opt/openssh-8.1p1
+./configure <span class="nt">--prefix</span><span class="o">=</span>/usr <span class="nt">--sysconfdir</span><span class="o">=</span>/etc/ssh <span class="nt">--with-pam</span> <span class="nt">--with-zlib</span> <span class="nt">--with-md5-passwords</span> <span class="nt">--with-tcp-wrappers</span>
+make <span class="o">&amp;&amp;</span> make <span class="nb">install</span>
+
+
+<span class="c">## 安装后提示：</span>
+
+/etc/ssh/ssh_config already exists, <span class="nb">install </span>will not overwrite
+/etc/ssh/sshd_config already exists, <span class="nb">install </span>will not overwrite
+/etc/ssh/moduli already exists, <span class="nb">install </span>will not overwrite
+ssh-keygen: generating new host keys: ECDSA ED25519
+/usr/sbin/sshd <span class="nt">-t</span> <span class="nt">-f</span> /etc/ssh/sshd_config
+/etc/ssh/sshd_config line 81: Unsupported option GSSAPIAuthentication
+/etc/ssh/sshd_config line 83: Unsupported option GSSAPICleanupCredentials
+
+
+<span class="c">## 修改配置文件,允许root登录</span>
+<span class="o">[</span>root@Centos6 openssh-7.6p1]# <span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'/^#PermitRootLogin/s/#PermitRootLogin yes/PermitRootLogin yes/'</span> /etc/ssh/sshd_config
+<span class="o">[</span>root@Centos6 openssh-7.6p1]# <span class="nb">cat</span> /etc/ssh/sshd_config|grep RootLogin
+PermitRootLogin <span class="nb">yes</span>
+
+
+<span class="c">#重启OpenSSH</span>
+<span class="o">[</span>root@Centos6 openssh-7.6p1]# service sshd restart                 
+Stopping sshd:                                             <span class="o">[</span>  OK  <span class="o">]</span>
+Starting sshd: /etc/ssh/sshd_config line 81: Unsupported option GSSAPIAuthentication
+/etc/ssh/sshd_config line 83: Unsupported option GSSAPICleanupCredentials
+                                                           <span class="o">[</span>  OK  <span class="o">]</span>
+<span class="c">#如上重启OpenSSH出现的告警错误，解决办法如下：</span>
+<span class="c">#将/etc/ssh/sshd_config文件中以上行数内容注释下即可</span>
+<span class="o">[</span>root@Centos6 openssh-7.6p1]# <span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'/^GSSAPICleanupCredentials/s/GSSAPICleanupCredentials yes/#GSSAPICleanupCredentials yes/'</span> /etc/ssh/sshd_config
+<span class="o">[</span>root@Centos6 openssh-7.6p1]# <span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'/^GSSAPIAuthentication/s/GSSAPIAuthentication yes/#GSSAPIAuthentication yes/'</span> /etc/ssh/sshd_config
+<span class="o">[</span>root@Centos6 openssh-7.6p1]# <span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'/^GSSAPIAuthentication/s/GSSAPIAuthentication no/#GSSAPIAuthentication no/'</span> /etc/ssh/sshd_config
+
+<span class="c">#次重启OpenSSH服务，则不会出现错误了</span>
+<span class="o">[</span>root@Centos6 openssh-7.6p1]# service sshd restart
+Stopping sshd:                                             <span class="o">[</span>  OK  <span class="o">]</span>
+Starting sshd:                                             <span class="o">[</span>  OK  <span class="o">]</span>
+<span class="c"># 升级后版本</span>
+<span class="o">[</span>root@Centos6 openssh-7.6p1]# ssh <span class="nt">-V</span>
+OpenSSH_7.6p1, OpenSSL 1.0.1e-fips 11 Feb 2013
 </code></pre></div></div>
 
-<h4 id="查看某个文件被谁占用">查看某个文件被谁占用</h4>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lsof .linux.md.swp
-</code></pre></div></div>
-
-<h4 id="查看某个用户占用的文件信息">查看某个用户占用的文件信息</h4>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lsof <span class="nt">-u</span> mazhuang
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">-u</code> 后面可以跟 uid 或 login name。</p>
-
-<h4 id="查看某个程序占用的文件信息">查看某个程序占用的文件信息</h4>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lsof <span class="nt">-c</span> Vim
-</code></pre></div></div>
-
-<p>注意程序名区分大小写。</p>
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
 
     </article>
     <div class="share">
@@ -177,7 +265,7 @@
         <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
         <script>
         var gitalk = new Gitalk({
-            id: '/wiki/linux/',
+            id: '/2019/12/30/centos-update-openssh-to-8.1/',
             clientID: '0dc80b46a482ec78f3e0',
             clientSecret: '8cae5d306b3703ad240b74142995473086fcbbab',
             repo: 'blog-comments',

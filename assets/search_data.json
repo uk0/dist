@@ -1,5 +1,11 @@
 {
   
+  "2019-12-30-centos-update-openssh-to-8-1": {
+    "title": "CentOS6 下升级默认的OpenSSH操作记录（升级到OpenSSH_8.1p1)",
+    "url": " /2019/12/30/centos-update-openssh-to-8.1/",
+    "category": "linux"
+  },
+  
   "2019-12-26-native-spark-study1": {
     "title": "Rust Native Spark Sample Install",
     "url": " /2019/12/26/native_spark-study1/",
@@ -1688,6 +1694,12 @@
     "title": "Rust Native Spark Sample Install",
     "url": "/2019/12/26/native_spark-study1/",
     "category": "[&quot;spark&quot;]"
+  },
+  
+  "2019-12-30-centos-update-openssh-to-8-1": {
+    "title": "CentOS6 下升级默认的OpenSSH操作记录（升级到OpenSSH_8.1p1)",
+    "url": "/2019/12/30/centos-update-openssh-to-8.1/",
+    "category": "[&quot;linux&quot;]"
   },
   
   "wiki-android-studio": {
