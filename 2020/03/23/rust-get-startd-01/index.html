@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Rust 第一个入门程序 &mdash; firshme</title>
+      <!-- or -->
+
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/components/collection.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/globals/common.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="https://firsh.me/2020/03/23/rust-get-startd-01/">
+    <link rel="alternate" type="application/atom+xml" title="firshme" href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="Rust 第一个入门程序">
+      
+    <meta name="keywords" content="rust rust入门程序 rustweb actix">
+    <meta name="og:keywords" content="rust rust入门程序 rustweb actix">
+      
+    <meta name="description" content="记录第一个rust 程序，以及对用到的工具rust语言特性的介绍。">
+    <meta name="og:description" content="记录第一个rust 程序，以及对用到的工具rust语言特性的介绍。">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="https://firsh.me/2020/03/23/rust-get-startd-01/">
+    <meta property="og:site_name" content="firshme">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2020-03-23">
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-3969253077255521",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+            src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+    <script src="http://112firshme11224.test.upcdn.net/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="http://112firshme11224.test.upcdn.net/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="firshme"><span class="octicon octicon-mark-github"></span> firshme</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="首页">首页</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="分类">分类</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="维基">维基</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="链接">链接</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="Rust 第一个入门程序">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">Rust 第一个入门程序</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2020/03/23
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#Rust" title="Rust">Rust</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <p>记录第一个rust 程序，以及对用到的工具rust语言特性的介绍。</p>
+
+<h3 id="rust-官方文档">Rust 官方文档</h3>
+
+<ul>
+  <li>https://doc.rust-lang.org/book/</li>
+</ul>
+
+<h3 id="安装rust-cargo">安装rust cargo</h3>
+
+<ul>
+  <li>安装
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c">## install rust</span>
+  curl <span class="nt">--proto</span> <span class="s1">'=https'</span> <span class="nt">--tlsv1</span>.2 <span class="nt">-sSf</span> https://sh.rustup.rs | sh
+  <span class="c">## </span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>官方安装文档</p>
+
+    <blockquote>
+      <p>https://forge.rust-lang.org/infra/other-installation-methods.html</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="创建一个rust项目">创建一个rust项目</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cargo new web_demo  <span class="nt">--bin</span>
+
+
+<span class="o">&gt;</span> <span class="nb">cd </span>web_demo
+<span class="o">&gt;</span> tree <span class="nb">.</span>
+<span class="nb">.</span>
+├── Cargo.toml
+└── src
+    └── main.rs
+
+1 directory, 2 files
+
+</code></pre></div></div>
+
+<p>Let’s take a closer look at <code class="language-plaintext highlighter-rouge">Cargo.toml</code>:</p>
+
+<div class="language-toml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">[package]</span>
+<span class="py">name</span> <span class="p">=</span> <span class="s">"web-demo"</span>
+<span class="py">version</span> <span class="p">=</span> <span class="s">"0.1.0"</span>
+<span class="py">authors</span> <span class="p">=</span> <span class="p">[</span><span class="s">"张建新 &lt;zhangjianxin@bigsfintech.com&gt;"</span><span class="p">]</span>
+<span class="py">edition</span> <span class="p">=</span> <span class="s">"2018"</span>
+
+<span class="c"># See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html</span>
+
+<span class="nn">[dependencies]</span>
+
+<span class="c"># 下面是我做测试添加的依赖</span>
+<span class="py">actix-web</span> <span class="p">=</span> <span class="s">"2.0"</span>
+<span class="py">actix-rt</span> <span class="p">=</span> <span class="s">"1.0"</span>
+<span class="py">actix-files</span> <span class="p">=</span> <span class="s">"0.2.1"</span>
+<span class="py">actix-session</span> <span class="p">=</span> <span class="s">"0.3.0"</span>
+<span class="py">serde_json</span> <span class="p">=</span> <span class="s">"1.0"</span>
+<span class="py">serde</span><span class="p">=</span><span class="s">"1.0.104"</span>
+<span class="py">strfmt</span><span class="p">=</span><span class="s">"0.1.6"</span>
+<span class="py">kv</span> <span class="p">=</span> <span class="s">"0.20.2"</span>
+<span class="py">base64</span> <span class="p">=</span> <span class="s">"0.12.0"</span>
+</code></pre></div></div>
+
+<p>This is called a manifest, and it contains all of the metadata that Cargo needs to compile your package.</p>
+
+<p>Here’s what’s in <code class="language-plaintext highlighter-rouge">src/main.rs</code>:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"Hello, world!"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="开始添砖加瓦">开始添砖加瓦</h3>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+<span class="k">use</span> <span class="n">actix_files</span><span class="p">;</span>
+<span class="k">use</span> <span class="nn">actix_web</span><span class="p">::</span><span class="nn">http</span><span class="p">::</span><span class="n">StatusCode</span><span class="p">;</span>
+<span class="k">use</span> <span class="nn">actix_web</span><span class="p">::{</span>
+    <span class="n">guard</span><span class="p">,</span> <span class="n">middleware</span><span class="p">,</span> <span class="n">web</span><span class="p">,</span> <span class="n">App</span><span class="p">,</span> <span class="n">HttpRequest</span><span class="p">,</span> <span class="n">HttpResponse</span><span class="p">,</span> <span class="n">HttpServer</span><span class="p">,</span> <span class="n">Responder</span><span class="p">,</span> <span class="n">Result</span><span class="p">,</span>
+<span class="p">};</span>
+<span class="k">use</span> <span class="nn">kv</span><span class="p">::</span><span class="o">*</span><span class="p">;</span>
+<span class="k">use</span> <span class="nn">std</span><span class="p">::</span><span class="nn">collections</span><span class="p">::</span><span class="n">HashMap</span><span class="p">;</span>
+<span class="k">use</span> <span class="nn">std</span><span class="p">::{</span><span class="n">fs</span><span class="p">,</span> <span class="n">path</span><span class="p">};</span>
+<span class="k">use</span> <span class="nn">std</span><span class="p">::</span><span class="nb">str</span><span class="p">;</span>
+<span class="k">use</span> <span class="nn">strfmt</span><span class="p">::</span><span class="n">strfmt</span><span class="p">;</span>
+<span class="k">use</span> <span class="nn">actix_files</span><span class="p">::</span><span class="n">NamedFile</span><span class="p">;</span>
+<span class="k">use</span> <span class="nn">std</span><span class="p">::</span><span class="nn">path</span><span class="p">::</span><span class="n">PathBuf</span><span class="p">;</span>
+<span class="k">use</span> <span class="nn">base64</span><span class="p">::{</span><span class="n">decode</span><span class="p">,</span> <span class="n">encode</span><span class="p">};</span>
+<span class="k">use</span> <span class="nn">serde</span><span class="p">::{</span><span class="n">Deserialize</span><span class="p">,</span> <span class="n">Serialize</span><span class="p">};</span>
+
+
+<span class="nd">#[derive(Serialize,</span> <span class="nd">Deserialize)]</span>
+<span class="k">struct</span> <span class="n">ResultResp</span> <span class="p">{</span>
+    <span class="n">msg</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="n">code</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="n">data</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="n">data_array</span> <span class="p">:</span><span class="nb">Vec</span><span class="o">&lt;</span><span class="nb">String</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<span class="nd">#[derive(Debug,</span> <span class="nd">serde::Serialize,</span> <span class="nd">serde::Deserialize,</span> <span class="nd">PartialEq)]</span>
+<span class="k">struct</span> <span class="n">KvS</span> <span class="p">{</span>
+    <span class="n">url</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="n">data</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<span class="nd">#[derive(Debug,</span> <span class="nd">serde::Serialize,</span> <span class="nd">serde::Deserialize,</span> <span class="nd">PartialEq)]</span>
+<span class="k">struct</span> <span class="n">History</span> <span class="p">{</span>
+    <span class="n">url</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="n">s</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="n">r</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="n">time</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="n">ip</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<span class="nd">#[derive(Deserialize)]</span>
+<span class="k">struct</span> <span class="n">RequestData</span> <span class="p">{</span>
+    <span class="n">help</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+    <span class="n">data</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="n">exec</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="n">args</span><span class="p">:</span> <span class="nb">Vec</span><span class="o">&lt;</span><span class="nb">String</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="nd">#[derive(Deserialize)]</span>
+<span class="k">struct</span> <span class="n">RequestDataAddurl</span> <span class="p">{</span>
+    <span class="n">help</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+    <span class="n">data</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="n">exec</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="n">url</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="n">args</span><span class="p">:</span> <span class="nb">Vec</span><span class="o">&lt;</span><span class="nb">String</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+
+<span class="k">fn</span> <span class="nf">reset</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="o">&amp;</span><span class="nb">str</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">String</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">s</span> <span class="o">=</span> <span class="nd">format!</span><span class="p">(</span><span class="s">"./stroe/{}"</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+    <span class="c">//let _ = fs::remove_dir_all(&amp;s);</span>
+    <span class="n">s</span>
+<span class="p">}</span>
+
+
+
+<span class="k">async</span> <span class="k">fn</span> <span class="nf">hello</span><span class="p">()</span> <span class="k">-&gt;</span> <span class="k">impl</span> <span class="n">Responder</span> <span class="p">{</span>
+    <span class="s">"hello"</span>
+<span class="p">}</span>
+
+<span class="c">//* 修改模板 以及保存模板</span>
+<span class="k">async</span> <span class="k">fn</span> <span class="nf">modify_template</span><span class="p">(</span><span class="n">info</span><span class="p">:</span> <span class="nn">web</span><span class="p">::</span><span class="n">Json</span><span class="o">&lt;</span><span class="n">RequestData</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="k">impl</span> <span class="n">Responder</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">resp</span> <span class="o">=</span> <span class="n">ResultResp</span> <span class="p">{</span>
+        <span class="n">msg</span><span class="p">:</span> <span class="s">"data == null is error "</span><span class="nf">.to_owned</span><span class="p">(),</span>
+        <span class="n">code</span><span class="p">:</span> <span class="nd">format!</span><span class="p">(</span><span class="s">"Use {} "</span><span class="p">,</span> <span class="n">info</span><span class="py">.exec</span><span class="nf">.to_owned</span><span class="p">()),</span>
+        <span class="n">data</span><span class="p">:</span> <span class="s">""</span><span class="nf">.to_owned</span><span class="p">(),</span>
+        <span class="n">data_array</span><span class="p">:</span> <span class="nn">Vec</span><span class="p">::</span><span class="nf">new</span><span class="p">(),</span>
+    <span class="p">};</span>
+
+    <span class="c">//if tos::template::CMD_LIST.contains(&amp;&amp;*info.exec) {</span>
+        <span class="nd">println!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="s">"success"</span><span class="nf">.to_owned</span><span class="p">());</span>
+
+        <span class="nf">put_k</span><span class="p">(</span><span class="n">info</span><span class="py">.exec</span><span class="nf">.to_owned</span><span class="p">(),</span> <span class="n">info</span><span class="py">.data</span><span class="nf">.to_owned</span><span class="p">());</span>
+
+        <span class="n">resp</span><span class="py">.data</span><span class="nf">.push_str</span><span class="p">(</span><span class="s">"template add success"</span><span class="p">);</span>
+    <span class="c">//}</span>
+
+    <span class="k">let</span> <span class="n">j</span> <span class="o">=</span> <span class="nn">serde_json</span><span class="p">::</span><span class="nn">ser</span><span class="p">::</span><span class="nf">to_string</span><span class="p">(</span><span class="o">&amp;</span><span class="n">resp</span><span class="p">);</span>
+    <span class="nn">HttpResponse</span><span class="p">::</span><span class="nf">Ok</span><span class="p">()</span>
+        <span class="nf">.content_type</span><span class="p">(</span><span class="s">"application/json"</span><span class="p">)</span>
+        <span class="nf">.header</span><span class="p">(</span><span class="s">"X-Hdr"</span><span class="p">,</span> <span class="s">"sample"</span><span class="p">);</span>
+
+    <span class="n">j</span>
+<span class="p">}</span>
+
+<span class="c">//* 获取单个模板信息</span>
+<span class="k">async</span> <span class="k">fn</span> <span class="nf">get_template</span><span class="p">(</span><span class="n">info</span><span class="p">:</span> <span class="nn">web</span><span class="p">::</span><span class="n">Json</span><span class="o">&lt;</span><span class="n">RequestData</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="k">impl</span> <span class="n">Responder</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">resp</span> <span class="o">=</span> <span class="n">ResultResp</span> <span class="p">{</span>
+        <span class="n">msg</span><span class="p">:</span> <span class="s">"data == null is error "</span><span class="nf">.to_owned</span><span class="p">(),</span>
+        <span class="n">code</span><span class="p">:</span> <span class="nd">format!</span><span class="p">(</span><span class="s">"Use {} "</span><span class="p">,</span> <span class="n">info</span><span class="py">.exec</span><span class="nf">.to_owned</span><span class="p">()),</span>
+        <span class="n">data</span><span class="p">:</span> <span class="s">""</span><span class="nf">.to_owned</span><span class="p">(),</span>
+        <span class="n">data_array</span><span class="p">:</span> <span class="nn">Vec</span><span class="p">::</span><span class="nf">new</span><span class="p">(),</span>
+    <span class="p">};</span>
+
+    <span class="c">//if tos::template::CMD_LIST.contains(&amp;&amp;*info.exec) {</span>
+        <span class="nd">println!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="s">"success"</span><span class="nf">.to_owned</span><span class="p">());</span>
+        <span class="k">let</span> <span class="k">mut</span> <span class="n">x</span> <span class="o">=</span>  <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">""</span><span class="p">);</span>
+        <span class="k">match</span> <span class="nf">get_k</span><span class="p">(</span><span class="n">info</span><span class="py">.exec</span><span class="nf">.to_owned</span><span class="p">())</span> <span class="p">{</span>
+            <span class="nf">Some</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">v</span><span class="p">,</span>
+            <span class="nb">None</span> <span class="k">=&gt;</span> <span class="nd">panic!</span><span class="p">(),</span>
+        <span class="p">}</span>
+        <span class="k">let</span> <span class="n">b</span> <span class="o">=</span> <span class="nn">base64</span><span class="p">::</span><span class="nf">decode</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="nf">.unwrap</span><span class="p">();</span>
+
+        <span class="k">let</span> <span class="n">s</span> <span class="o">=</span> <span class="nn">str</span><span class="p">::</span><span class="nf">from_utf8</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">)</span><span class="nf">.unwrap</span><span class="p">();</span>
+
+        <span class="n">resp</span><span class="py">.data</span><span class="nf">.push_str</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+    <span class="c">//}</span>
+
+    <span class="k">let</span> <span class="n">j</span> <span class="o">=</span> <span class="nn">serde_json</span><span class="p">::</span><span class="nn">ser</span><span class="p">::</span><span class="nf">to_string</span><span class="p">(</span><span class="o">&amp;</span><span class="n">resp</span><span class="p">);</span>
+    <span class="nn">HttpResponse</span><span class="p">::</span><span class="nf">Ok</span><span class="p">()</span>
+        <span class="nf">.content_type</span><span class="p">(</span><span class="s">"application/json"</span><span class="p">)</span>
+        <span class="nf">.header</span><span class="p">(</span><span class="s">"X-Hdr"</span><span class="p">,</span> <span class="s">"sample"</span><span class="p">);</span>
+
+    <span class="n">j</span>
+<span class="p">}</span>
+
+<span class="c">//* iter keys</span>
+
+<span class="k">fn</span> <span class="nf">iter_k</span><span class="p">()</span> <span class="k">-&gt;</span><span class="nb">Vec</span><span class="o">&lt;</span><span class="nb">String</span><span class="o">&gt;</span><span class="p">{</span>
+    <span class="k">let</span> <span class="n">path</span> <span class="o">=</span> <span class="nf">reset</span><span class="p">(</span><span class="s">"kvs"</span><span class="p">);</span>
+    <span class="k">let</span> <span class="n">cfg</span> <span class="o">=</span> <span class="nn">Config</span><span class="p">::</span><span class="nf">new</span><span class="p">(</span><span class="n">path</span><span class="nf">.clone</span><span class="p">());</span>
+    <span class="k">let</span> <span class="n">store</span> <span class="o">=</span> <span class="nn">Store</span><span class="p">::</span><span class="nf">new</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span><span class="nf">.unwrap</span><span class="p">();</span>
+    <span class="k">let</span> <span class="n">test_iter</span> <span class="o">=</span> <span class="n">store</span><span class="py">.bucket</span><span class="p">::</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span><span class="nb">String</span><span class="o">&gt;</span><span class="p">(</span><span class="nf">Some</span><span class="p">(</span><span class="s">"stroe"</span><span class="p">))</span><span class="nf">.unwrap</span><span class="p">();</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">v</span><span class="p">:</span> <span class="nb">Vec</span><span class="o">&lt;</span><span class="nb">String</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nd">vec!</span><span class="p">[];</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="n">in</span> <span class="n">test_iter</span><span class="nf">.iter</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="n">item</span> <span class="o">=</span> <span class="n">item</span><span class="nf">.unwrap</span><span class="p">();</span>
+        <span class="k">let</span> <span class="n">key</span><span class="p">:</span> <span class="nb">String</span> <span class="o">=</span> <span class="n">item</span><span class="nf">.key</span><span class="p">()</span><span class="nf">.unwrap</span><span class="p">();</span>
+        <span class="k">let</span> <span class="n">value</span> <span class="o">=</span> <span class="n">item</span><span class="py">.value</span><span class="p">::</span><span class="o">&lt;</span><span class="nb">String</span><span class="o">&gt;</span><span class="p">()</span><span class="nf">.unwrap</span><span class="p">();</span>
+        <span class="nd">println!</span><span class="p">(</span><span class="s">"key: {}, value: {}"</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+        <span class="c">// let b;</span>
+        <span class="c">// match  base64::decode(value) {</span>
+        <span class="c">//     Ok(v) =&gt; b =v,</span>
+        <span class="c">//     Err(e) =&gt; panic!(),</span>
+        <span class="c">// }</span>
+        <span class="c">// let s = str::from_utf8(&amp;b).unwrap();</span>
+        <span class="n">v</span><span class="nf">.push</span><span class="p">(</span><span class="n">key</span><span class="nf">.to_owned</span><span class="p">());</span>
+    <span class="p">}</span>
+    <span class="n">v</span>
+<span class="p">}</span>
+
+<span class="c">//* 获取所有模板 信息 列表JSON</span>
+<span class="k">async</span> <span class="k">fn</span> <span class="nf">get_templates</span><span class="p">()</span> <span class="k">-&gt;</span> <span class="k">impl</span> <span class="n">Responder</span> <span class="p">{</span>
+    <span class="k">let</span>  <span class="k">mut</span> <span class="n">resp</span> <span class="o">=</span> <span class="n">ResultResp</span> <span class="p">{</span>
+        <span class="n">msg</span><span class="p">:</span> <span class="s">"data == null is error "</span><span class="nf">.to_owned</span><span class="p">(),</span>
+        <span class="n">code</span><span class="p">:</span> <span class="s">"0"</span><span class="nf">.to_owned</span><span class="p">(),</span>
+        <span class="n">data</span><span class="p">:</span> <span class="s">""</span><span class="nf">.to_owned</span><span class="p">(),</span>
+        <span class="n">data_array</span><span class="p">:</span> <span class="nn">Vec</span><span class="p">::</span><span class="nf">new</span><span class="p">(),</span>
+    <span class="p">};</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="s">"success"</span><span class="nf">.to_owned</span><span class="p">());</span>
+
+    <span class="n">resp</span><span class="py">.data_array</span> <span class="o">=</span> <span class="nf">iter_k</span><span class="p">();</span>
+
+    <span class="k">let</span> <span class="n">j</span> <span class="o">=</span> <span class="nn">serde_json</span><span class="p">::</span><span class="nn">ser</span><span class="p">::</span><span class="nf">to_string</span><span class="p">(</span><span class="o">&amp;</span><span class="n">resp</span><span class="p">);</span>
+    <span class="nn">HttpResponse</span><span class="p">::</span><span class="nf">Ok</span><span class="p">()</span>
+        <span class="nf">.content_type</span><span class="p">(</span><span class="s">"application/json"</span><span class="p">)</span>
+        <span class="nf">.header</span><span class="p">(</span><span class="s">"X-Hdr"</span><span class="p">,</span> <span class="s">"sample"</span><span class="p">);</span>
+
+    <span class="n">j</span>
+<span class="p">}</span>
+
+<span class="c">//* 发起请求</span>
+<span class="c">/// extract `Info` using serde</span>
+<span class="k">async</span> <span class="k">fn</span> <span class="nf">start_http_client_post</span><span class="p">(</span><span class="n">info</span><span class="p">:</span> <span class="nn">web</span><span class="p">::</span><span class="n">Json</span><span class="o">&lt;</span><span class="n">RequestData</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="n">Result</span><span class="o">&lt;</span><span class="nb">String</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">info</span><span class="py">.help</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="n">message</span> <span class="o">=</span> <span class="nd">format!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="nn">tos</span><span class="p">::</span><span class="nn">template</span><span class="p">::</span><span class="n">TRACKING_HELP</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nn">Result</span><span class="p">::</span><span class="nf">Ok</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="nn">tos</span><span class="p">::</span><span class="nn">template</span><span class="p">::</span><span class="n">CMD_LIST</span><span class="nf">.contains</span><span class="p">(</span><span class="o">&amp;&amp;*</span><span class="n">info</span><span class="py">.exec</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nd">println!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="n">info</span><span class="py">.args</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+        <span class="k">let</span> <span class="k">mut</span> <span class="n">vars</span> <span class="o">=</span> <span class="nn">HashMap</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+        <span class="n">vars</span><span class="nf">.insert</span><span class="p">(</span><span class="s">"timestamp"</span><span class="nf">.to_string</span><span class="p">(),</span> <span class="n">info</span><span class="py">.args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="nf">.to_string</span><span class="p">());</span>
+        <span class="n">vars</span><span class="nf">.insert</span><span class="p">(</span><span class="s">"tcuId"</span><span class="nf">.to_string</span><span class="p">(),</span> <span class="n">info</span><span class="py">.args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="nf">.to_string</span><span class="p">());</span>
+        <span class="n">vars</span><span class="nf">.insert</span><span class="p">(</span><span class="s">"vin"</span><span class="nf">.to_string</span><span class="p">(),</span> <span class="n">info</span><span class="py">.args</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="nf">.to_string</span><span class="p">());</span>
+
+        <span class="k">let</span> <span class="k">mut</span> <span class="n">x</span> <span class="o">=</span><span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">""</span><span class="p">);</span>
+
+        <span class="k">match</span> <span class="nf">get_k</span><span class="p">(</span><span class="n">info</span><span class="py">.exec</span><span class="nf">.to_owned</span><span class="p">())</span> <span class="p">{</span>
+            <span class="nf">Some</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">v</span><span class="p">,</span>
+            <span class="nb">None</span> <span class="k">=&gt;</span> <span class="nd">panic!</span><span class="p">(),</span>
+        <span class="p">}</span>
+        <span class="k">let</span> <span class="n">b</span> <span class="o">=</span> <span class="nn">base64</span><span class="p">::</span><span class="nf">decode</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="nf">.unwrap</span><span class="p">();</span>
+
+        <span class="k">let</span> <span class="n">s</span> <span class="o">=</span> <span class="nn">str</span><span class="p">::</span><span class="nf">from_utf8</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">)</span><span class="nf">.unwrap</span><span class="p">();</span>
+        <span class="nd">println!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nn">Result</span><span class="p">::</span><span class="nf">Ok</span><span class="p">(</span><span class="nd">format!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="nf">strfmt</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="nf">.to_owned</span><span class="p">(),</span> <span class="o">&amp;</span><span class="n">vars</span><span class="p">)</span><span class="nf">.unwrap</span><span class="p">()));</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nn">Result</span><span class="p">::</span><span class="nf">Ok</span><span class="p">(</span><span class="nd">format!</span><span class="p">(</span><span class="s">"not found cmd  = {}"</span><span class="p">,</span> <span class="n">info</span><span class="py">.exec</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="nd">#[warn(unused_mut)]</span>
+<span class="k">fn</span> <span class="nf">put_k</span><span class="p">(</span><span class="n">K</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">V</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="n">Result</span><span class="o">&lt;</span><span class="p">(),</span> <span class="n">Error</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="c">// Configure the database</span>
+    <span class="k">let</span> <span class="n">path</span> <span class="o">=</span> <span class="nf">reset</span><span class="p">(</span><span class="s">"kvs"</span><span class="p">);</span>
+    <span class="k">let</span> <span class="n">cfg</span> <span class="o">=</span> <span class="nn">Config</span><span class="p">::</span><span class="nf">new</span><span class="p">(</span><span class="n">path</span><span class="nf">.clone</span><span class="p">());</span>
+    <span class="k">let</span> <span class="n">store</span> <span class="o">=</span> <span class="nn">Store</span><span class="p">::</span><span class="nf">new</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span><span class="nf">.unwrap</span><span class="p">();</span>
+    <span class="c">// raw Integer String</span>
+    <span class="k">let</span> <span class="n">test</span> <span class="o">=</span> <span class="n">store</span><span class="py">.bucket</span><span class="p">::</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span> <span class="nb">String</span><span class="o">&gt;</span><span class="p">(</span><span class="nf">Some</span><span class="p">(</span><span class="s">"stroe"</span><span class="p">))</span><span class="o">?</span><span class="p">;</span>
+    <span class="c">// Set testing = 123</span>
+
+    <span class="n">test</span><span class="nf">.set</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+
+    <span class="k">let</span> <span class="n">temp_get</span> <span class="o">=</span> <span class="n">test</span><span class="nf">.get</span><span class="p">(</span><span class="s">"TrackingCmd"</span><span class="p">)</span><span class="nf">.unwrap</span><span class="p">();</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"{:?}"</span><span class="p">,</span> <span class="n">temp_get</span><span class="p">);</span>
+    <span class="nf">Ok</span><span class="p">(())</span>
+<span class="p">}</span>
+
+
+
+<span class="c">//* get kv stroe by 'K</span>
+
+<span class="k">fn</span> <span class="nf">get_k</span><span class="p">(</span><span class="n">K</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">Option</span><span class="o">&lt;</span><span class="nb">String</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="c">// Configure the database</span>
+    <span class="k">let</span> <span class="n">path</span> <span class="o">=</span> <span class="nf">reset</span><span class="p">(</span><span class="s">"kvs"</span><span class="p">);</span>
+    <span class="k">let</span> <span class="n">cfg</span> <span class="o">=</span> <span class="nn">Config</span><span class="p">::</span><span class="nf">new</span><span class="p">(</span><span class="n">path</span><span class="nf">.clone</span><span class="p">());</span>
+    <span class="k">let</span> <span class="n">store</span> <span class="o">=</span> <span class="nn">Store</span><span class="p">::</span><span class="nf">new</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span><span class="nf">.unwrap</span><span class="p">();</span>
+
+    <span class="k">let</span> <span class="n">test_get</span> <span class="o">=</span> <span class="n">store</span><span class="py">.bucket</span><span class="p">::</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span> <span class="nb">String</span><span class="o">&gt;</span><span class="p">(</span><span class="nf">Some</span><span class="p">(</span><span class="s">"stroe"</span><span class="p">))</span><span class="nf">.unwrap</span><span class="p">();</span>
+
+    <span class="k">let</span> <span class="n">c</span> <span class="o">=</span> <span class="n">test_get</span><span class="nf">.get</span><span class="p">(</span><span class="n">K</span><span class="nf">.to_owned</span><span class="p">())</span><span class="nf">.unwrap</span><span class="p">();</span>
+
+    <span class="n">c</span>
+<span class="p">}</span>
+
+<span class="k">async</span> <span class="k">fn</span> <span class="nf">static_index</span><span class="p">(</span><span class="n">req</span><span class="p">:</span> <span class="n">HttpRequest</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="n">Result</span><span class="o">&lt;</span><span class="n">NamedFile</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="nf">Ok</span><span class="p">(</span><span class="nn">actix_files</span><span class="p">::</span><span class="nn">NamedFile</span><span class="p">::</span><span class="nf">open</span><span class="p">(</span>
+        <span class="s">"../static/index.html"</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">?</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nd">#[actix_rt::main]</span>
+<span class="k">async</span> <span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="k">-&gt;</span> <span class="nn">std</span><span class="p">::</span><span class="nn">io</span><span class="p">::</span><span class="n">Result</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">use</span> <span class="nn">actix_web</span><span class="p">::{</span><span class="n">web</span><span class="p">,</span> <span class="n">App</span><span class="p">,</span> <span class="n">HttpServer</span><span class="p">};</span>
+
+    <span class="nn">HttpServer</span><span class="p">::</span><span class="nf">new</span><span class="p">(||</span> <span class="p">{</span>
+        <span class="nn">App</span><span class="p">::</span><span class="nf">new</span><span class="p">()</span>
+            <span class="nf">.wrap</span><span class="p">(</span><span class="nn">middleware</span><span class="p">::</span><span class="nn">Compress</span><span class="p">::</span><span class="nf">default</span><span class="p">())</span>
+            <span class="nf">.data</span><span class="p">(</span><span class="nn">web</span><span class="p">::</span><span class="nn">JsonConfig</span><span class="p">::</span><span class="nf">default</span><span class="p">()</span><span class="nf">.limit</span><span class="p">(</span><span class="mi">4096</span><span class="p">))</span> <span class="c">// &lt;- limit size of the payload (global configuration)</span>
+            <span class="nf">.service</span><span class="p">(</span><span class="nn">web</span><span class="p">::</span><span class="nf">resource</span><span class="p">(</span><span class="s">"/addTask"</span><span class="p">)</span><span class="nf">.route</span><span class="p">(</span><span class="nn">web</span><span class="p">::</span><span class="nf">post</span><span class="p">()</span><span class="nf">.to</span><span class="p">(</span><span class="n">start_http_client_post</span><span class="p">)))</span>
+            <span class="nf">.service</span><span class="p">(</span><span class="nn">web</span><span class="p">::</span><span class="nf">resource</span><span class="p">(</span><span class="s">"/hello"</span><span class="p">)</span><span class="nf">.route</span><span class="p">(</span><span class="nn">web</span><span class="p">::</span><span class="nf">get</span><span class="p">()</span><span class="nf">.to</span><span class="p">(</span><span class="n">hello</span><span class="p">)))</span>
+            <span class="nf">.service</span><span class="p">(</span><span class="nn">web</span><span class="p">::</span><span class="nf">resource</span><span class="p">(</span><span class="s">"/addTemplate"</span><span class="p">)</span><span class="nf">.route</span><span class="p">(</span><span class="nn">web</span><span class="p">::</span><span class="nf">post</span><span class="p">()</span><span class="nf">.to</span><span class="p">(</span><span class="n">modify_template</span><span class="p">)))</span>
+            <span class="nf">.service</span><span class="p">(</span><span class="nn">web</span><span class="p">::</span><span class="nf">resource</span><span class="p">(</span><span class="s">"/getTemplate"</span><span class="p">)</span><span class="nf">.route</span><span class="p">(</span><span class="nn">web</span><span class="p">::</span><span class="nf">post</span><span class="p">()</span><span class="nf">.to</span><span class="p">(</span><span class="n">get_template</span><span class="p">)))</span>
+            <span class="nf">.service</span><span class="p">(</span><span class="nn">web</span><span class="p">::</span><span class="nf">resource</span><span class="p">(</span><span class="s">"/getTemplateList"</span><span class="p">)</span><span class="nf">.route</span><span class="p">(</span><span class="nn">web</span><span class="p">::</span><span class="nf">get</span><span class="p">()</span><span class="nf">.to</span><span class="p">(</span><span class="n">get_templates</span><span class="p">)))</span>
+            <span class="nf">.service</span><span class="p">(</span><span class="nn">actix_files</span><span class="p">::</span><span class="nn">Files</span><span class="p">::</span><span class="nf">new</span><span class="p">(</span>
+                <span class="s">"/static"</span><span class="p">,</span>
+                <span class="s">"../static/"</span><span class="p">,</span>
+            <span class="p">))</span>
+            <span class="nf">.default_service</span><span class="p">(</span>
+                <span class="nn">web</span><span class="p">::</span><span class="nf">resource</span><span class="p">(</span><span class="s">""</span><span class="p">)</span><span class="nf">.route</span><span class="p">(</span><span class="nn">web</span><span class="p">::</span><span class="nf">get</span><span class="p">()</span><span class="nf">.to</span><span class="p">(</span><span class="n">static_index</span><span class="p">))</span><span class="nf">.route</span><span class="p">(</span>
+                    <span class="nn">web</span><span class="p">::</span><span class="nf">route</span><span class="p">()</span>
+                        <span class="nf">.guard</span><span class="p">(</span><span class="nn">guard</span><span class="p">::</span><span class="nf">Not</span><span class="p">(</span><span class="nn">guard</span><span class="p">::</span><span class="nf">Get</span><span class="p">()))</span>
+                        <span class="nf">.to</span><span class="p">(||</span> <span class="nn">HttpResponse</span><span class="p">::</span><span class="nf">MethodNotAllowed</span><span class="p">()),</span>
+                <span class="p">),</span>
+            <span class="p">)</span>
+    <span class="p">})</span>
+    <span class="nf">.bind</span><span class="p">(</span><span class="s">"127.0.0.1:8088"</span><span class="p">)</span><span class="o">?</span>
+    <span class="nf">.run</span><span class="p">()</span>
+    <span class="py">.await</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h3 id="写一个简单的web遇到哪些感觉有意思的东西">写一个简单的web遇到哪些感觉有意思的东西</h3>
+
+<ul>
+  <li>match 大体功能同等于<code class="language-plaintext highlighter-rouge">switch </code> 但是加强了枚举</li>
+  <li>Some  <code class="language-plaintext highlighter-rouge">一个神奇的枚举种类</code> （比较有意思的点）</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td> </td>
+          <td><code class="language-plaintext highlighter-rouge">闭包</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>? <code class="language-plaintext highlighter-rouge">Error propagation	一般会和 Match Some Restlt&lt;Option&gt; </code> 打一套组合拳 主要还是用于传播 （比较有意思的点）</li>
+  <li>unwrap  和  <code class="language-plaintext highlighter-rouge">?</code> 相反的工作 <code class="language-plaintext highlighter-rouge">?</code>是传播  <code class="language-plaintext highlighter-rouge">unwrap</code> 摊开数据 解包数据返回。</li>
+  <li>async await Rust的异步并发编程</li>
+</ul>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="k">fn</span> <span class="nf">print_async</span><span class="p">()</span> <span class="p">{</span>
+     <span class="nd">println!</span><span class="p">(</span><span class="s">"Hello from print_async"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+     <span class="k">let</span> <span class="n">future</span> <span class="o">=</span> <span class="nf">print_async</span><span class="p">();</span>
+     <span class="nd">println!</span><span class="p">(</span><span class="s">"Hello from main"</span><span class="p">);</span>
+     <span class="nn">futures</span><span class="p">::</span><span class="nf">block_on</span><span class="p">(</span><span class="n">future</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c">// 本质上是 延迟运算</span>
+<span class="c">// 在手动 poll future 之前，异步函数内部一行代码也不会执行</span>
+</code></pre></div></div>
+<ul>
+  <li>await! <code class="language-plaintext highlighter-rouge">是一个编译器内建的 macro ，用来暂停（pause） Future 的执行流程，并且把执行流程交回给调用方 (yield) 和React访问rest接口 一致。</code></li>
+</ul>
+
+<h4 id="今天是学习rust的第一天-开阔了视野">今天是学习Rust的第一天 开阔了视野</h4>
+
+<ul>
+  <li>文章不定时更新，遇到自己觉得有意思的问题 第一时间更新上来。</li>
+</ul>
+
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+        <div id="gitalk-container"></div>
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+        var gitalk = new Gitalk({
+            id: '/2020/03/23/rust-get-startd-01/',
+            clientID: '0dc80b46a482ec78f3e0',
+            clientSecret: '8cae5d306b3703ad240b74142995473086fcbbab',
+            repo: 'blog-comments',
+            owner: 'uk0',
+            admin: ['uk0'],
+            labels: ['gitment'],
+            perPage: 50,
+        })
+        gitalk.render('gitalk-container')
+        </script>
+      <!-- 多说公共JS代码 END -->
+      <!-- Duoshuo Comment END -->
+  
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    <h3>Affiliate</h3>
+<a href="https://www.vultr.com/?ref=7142633"><img src="https://www.vultr.com/media/banner_3.png" width="300" height="250"></a>
+
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="http://112firshme11224.test.upcdn.net/assets/css/modules/sidebar-search.css">
+<script src="http://112firshme11224.test.upcdn.net/assets/js/lunr.min.js"></script>
+<script src="http://112firshme11224.test.upcdn.net/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+<script src="http://112firshme11224.test.upcdn.net/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="ZhangJianXin">ZhangJianXin</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="https://github.com/uk0/uk0.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="首页" target="">首页</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="分类" target="">分类</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="维基" target="">维基</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="链接" target="">链接</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="关于" target="">关于</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="http://112firshme11224.test.upcdn.net/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="http://112firshme11224.test.upcdn.net/assets/js/geopattern.js"></script>
+    <script src="http://112firshme11224.test.upcdn.net/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130872028-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-130872028-1');
+        </script>
+    </div>
+    
+</body>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>

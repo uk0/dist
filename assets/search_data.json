@@ -1,5 +1,17 @@
 {
   
+  "2020-03-23-rust-get-startd-01": {
+    "title": "Rust 第一个入门程序",
+    "url": " /2020/03/23/rust-get-startd-01/",
+    "category": "Rust"
+  },
+  
+  "2020-02-24-associate-with-tdengine-and-start-the-eve-of-quantitative-trading": {
+    "title": "TDengine在量化交易中提供数据分析[更新中]。",
+    "url": " /2020/02/24/associate-with-tdengine-and-start-the-eve-of-quantitative-trading/",
+    "category": "TDengine"
+  },
+  
   "2019-12-30-centos-update-openssh-to-8-1": {
     "title": "CentOS6 下升级默认的OpenSSH操作记录（升级到OpenSSH_8.1p1)",
     "url": " /2019/12/30/centos-update-openssh-to-8.1/",
@@ -1700,6 +1712,18 @@
     "title": "CentOS6 下升级默认的OpenSSH操作记录（升级到OpenSSH_8.1p1)",
     "url": "/2019/12/30/centos-update-openssh-to-8.1/",
     "category": "[&quot;linux&quot;]"
+  },
+  
+  "2020-02-24-associate-with-tdengine-and-start-the-eve-of-quantitative-trading": {
+    "title": "TDengine在量化交易中提供数据分析[更新中]。",
+    "url": "/2020/02/24/associate-with-tdengine-and-start-the-eve-of-quantitative-trading/",
+    "category": "[&quot;TDengine&quot;]"
+  },
+  
+  "2020-03-23-rust-get-startd-01": {
+    "title": "Rust 第一个入门程序",
+    "url": "/2020/03/23/rust-get-startd-01/",
+    "category": "[&quot;Rust&quot;]"
   },
   
   "wiki-android-studio": {

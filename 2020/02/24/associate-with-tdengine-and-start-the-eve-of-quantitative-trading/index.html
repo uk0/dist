@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>TDengine在量化交易中提供数据分析[更新中]。 &mdash; firshme</title>
+      <!-- or -->
+
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/components/collection.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/globals/common.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="https://firsh.me/2020/02/24/associate-with-tdengine-and-start-the-eve-of-quantitative-trading/">
+    <link rel="alternate" type="application/atom+xml" title="firshme" href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="TDengine在量化交易中提供数据分析[更新中]。">
+      
+    <meta name="keywords" content="TDengine db python xgboost">
+    <meta name="og:keywords" content="TDengine db python xgboost">
+      
+    <meta name="description" content="记录一下量化交易的开始">
+    <meta name="og:description" content="记录一下量化交易的开始">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="https://firsh.me/2020/02/24/associate-with-tdengine-and-start-the-eve-of-quantitative-trading/">
+    <meta property="og:site_name" content="firshme">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2020-02-24">
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-3969253077255521",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+            src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+    <script src="http://112firshme11224.test.upcdn.net/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="http://112firshme11224.test.upcdn.net/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="firshme"><span class="octicon octicon-mark-github"></span> firshme</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="首页">首页</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="分类">分类</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="维基">维基</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="链接">链接</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="TDengine在量化交易中提">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">TDengine在量化交易中提供数据分析[更新中]。</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2020/02/24
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#TDengine" title="TDengine">TDengine</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <h3 id="记录一下量化交易的开始">记录一下量化交易的开始</h3>
+
+<h3 id="准备工具">准备工具</h3>
+
+<ul>
+  <li>DB TDengine</li>
+  <li>编程语言 Golang + Python</li>
+  <li>环境 Unix Linux</li>
+  <li>交易所 Bitmex Huobi Binance Okex</li>
+  <li>每天增量300w数据</li>
+  <li>机器配置 I7-8700 + 32GB DDR4 + GTX2060 + GTX1080 (Xgboost) 磁盘 6TB（SATA6GB/s）</li>
+</ul>
+
+<h3 id="编译-tdengine-修改表字段限制">编译 TDengine （修改表字段限制）</h3>
+
+<ul>
+  <li>
+    <p>下载或者clone 官方发布的Release</p>
+  </li>
+  <li>
+    <p>编译</p>
+  </li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum <span class="nb">install </span>gcc gcc-c++ make maven  <span class="nt">-y</span> <span class="c"># centos 7</span>
+
+git clone https://github.com/taosdata/TDengine
+
+<span class="nb">cd </span>TDengine
+
+<span class="nb">mkdir </span>build <span class="o">&amp;&amp;</span> <span class="nb">cd </span>build
+
+cmake .. <span class="o">&amp;&amp;</span> cmake <span class="nt">--build</span> <span class="nb">.</span>
+
+make <span class="nb">install</span>
+
+<span class="c">#Install the project...</span>
+<span class="c">#/usr/bin/cmake -P cmake_install.cmake</span>
+<span class="c">#-- Install configuration: "Debug"</span>
+<span class="c">#make install script: /root/TDengine-ver-1.6.5.5-fnk/packaging/tools/make_install.sh</span>
+<span class="c">#this is centos system</span>
+<span class="c">#source directory: /root/TDengine-ver-1.6.5.5-fnk</span>
+<span class="c">#binary directory: /root/TDengine-ver-1.6.5.5-fnk/build</span>
+<span class="c">#Start to install TDEngine...</span>
+<span class="c">#Created symlink from /etc/systemd/system/multi-user.target.wants/taosd.service to /etc/systemd/system/taosd.service.</span>
+
+<span class="c">#TDengine is installed successfully!</span>
+
+<span class="c">#To configure TDengine : edit /etc/taos/taos.cfg</span>
+<span class="c">#To start TDengine     : sudo systemctl start taosd</span>
+<span class="c">#To access TDengine    : use taos in shell</span>
+
+<span class="c">#TDengine is installed successfully!</span>
+
+<span class="c"># 出现这个说明已经安装好了</span>
+
+</code></pre></div></div>
+
+<h3 id="修改taos-db-配置文件">修改Taos DB 配置文件</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 将数据存储地址修改成 数据盘 日志改为 日志盘</span>
+<span class="c"># data file's directory</span>
+dataDir               /data
+
+<span class="c"># log file's directory</span>
+logDir                /data/log
+
+</code></pre></div></div>
+
+<h3 id="创建数据库">创建数据库</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">database</span> <span class="n">bitmex</span><span class="p">;</span>
+<span class="n">use</span> <span class="n">bitmex</span><span class="p">;</span>
+<span class="c1">--- 订单订阅数据表</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">bitmex</span><span class="p">.</span><span class="n">trade</span>
+ <span class="p">(</span>
+   <span class="n">ts</span>                   <span class="nb">TIMESTAMP</span><span class="p">,</span>
+   <span class="n">systemc_time</span>         <span class="nb">BIGINT</span><span class="p">,</span>
+   <span class="n">bitmex_timestamp</span>     <span class="nb">TIMESTAMP</span><span class="p">,</span>
+   <span class="n">side</span>                 <span class="nb">BINARY</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
+   <span class="k">size</span>                 <span class="nb">FLOAT</span><span class="p">,</span>
+   <span class="n">price</span>                <span class="nb">FLOAT</span><span class="p">,</span>
+   <span class="n">symbol</span>               <span class="nb">BINARY</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+<span class="p">);</span>
+
+
+<span class="c1">--- 交易深度数据</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">bitmex</span><span class="p">.</span><span class="n">order_l1_10</span> 
+  <span class="p">(</span> 
+     <span class="n">ts</span>               <span class="nb">TIMESTAMP</span><span class="p">,</span> 
+     <span class="n">systemc_time</span>     <span class="nb">BIGINT</span><span class="p">,</span> 
+     <span class="n">symbol</span>           <span class="nb">BINARY</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span> 
+     <span class="n">bitmex_timestamp</span> <span class="nb">TIMESTAMP</span><span class="p">,</span> 
+     <span class="n">asks_1_p</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">asks_1_s</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">asks_2_p</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">asks_2_s</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">asks_3_p</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">asks_3_s</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">asks_4_p</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">asks_4_s</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">asks_5_p</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">asks_5_s</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">asks_6_p</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">asks_6_s</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">asks_7_p</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">asks_7_s</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">asks_8_p</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">asks_8_s</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">asks_9_p</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">asks_9_s</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">asks_10_p</span>        <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">asks_10_s</span>        <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">bids_1_p</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">bids_1_s</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">bids_2_p</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">bids_2_s</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">bids_3_p</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">bids_3_s</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">bids_4_p</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">bids_4_s</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">bids_5_p</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">bids_5_s</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">bids_6_p</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">bids_6_s</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">bids_7_p</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">bids_7_s</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">bids_8_p</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">bids_8_s</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">bids_9_p</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">bids_9_s</span>         <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">bids_10_p</span>        <span class="nb">FLOAT</span><span class="p">,</span> 
+     <span class="n">bids_10_s</span>        <span class="nb">FLOAT</span> 
+  <span class="p">);</span> 
+</code></pre></div></div>
+
+<h3 id="启动采集工具-开始实时的通过websocket接收数据">启动采集工具 （开始实时的通过WebSocket接收数据）</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 采集部分两部分</span>
+
+<span class="c"># 采集端 Agent（通过SSL GRPC 将数据传输到 Server）多个 Agent 同时传输</span>
+
+<span class="c"># Server端 将通过GRPC 接收到的数据 通过http接口落库（这里用http接口是因为开发和部署的机器都是Unix的机器，数据库在内网的一台mac上运行。）</span>
+
+</code></pre></div></div>
+<ul>
+  <li>采集服务目录结构</li>
+</ul>
+
+<p><img src="http://112firshme11224.test.upcdn.net/blog/2020-02-25-22-06-16.png!100" alt="" /></p>
+
+<ul>
+  <li>采集服务日志恢复
+    <blockquote>
+      <p>下图所看到的是 GRPC服务断掉了，数据将会写入log文件并且有明确的标记，当grpc再次可用，将会启动日志恢复。</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p><img src="http://112firshme11224.test.upcdn.net/blog/2020-02-25-22-12-48.png!100" alt="" /></p>
+
+<h3 id="通过middware将数据实时的放入tdengine这里存在一层日志备份未来可能存储到hdfs走flink训练">通过Middware将数据实时的放入TDEngine（这里存在一层日志备份未来可能存储到Hdfs走FLink训练）</h3>
+
+<h3 id="确认数据">确认数据</h3>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"succ"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"head"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"systemc_time"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bitmex_timestamp"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asks_1_p"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asks_1_s"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asks_2_p"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asks_2_s"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asks_3_p"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asks_3_s"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asks_4_p"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asks_4_s"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asks_5_p"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asks_5_s"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asks_6_p"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asks_6_s"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asks_7_p"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asks_7_s"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asks_8_p"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asks_8_s"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asks_9_p"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asks_9_s"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asks_10_p"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"asks_10_s"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids_1_p"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids_1_s"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids_2_p"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids_2_s"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids_3_p"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids_3_s"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids_4_p"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids_4_s"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids_5_p"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids_5_s"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids_6_p"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids_6_s"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids_7_p"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids_7_s"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids_8_p"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids_8_s"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids_9_p"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids_9_s"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids_10_p"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids_10_s"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"2020-02-25 21:02:56.000"</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1582635776179</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"XBTUSD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"2020-02-25 13:02:55.729"</span><span class="p">,</span><span class="w">
+            </span><span class="mi">9625</span><span class="p">,</span><span class="w">
+            </span><span class="mi">49906</span><span class="p">,</span><span class="w">
+            </span><span class="mf">9625.5</span><span class="p">,</span><span class="w">
+            </span><span class="mi">82752</span><span class="p">,</span><span class="w">
+            </span><span class="mi">9626</span><span class="p">,</span><span class="w">
+            </span><span class="mi">10282</span><span class="p">,</span><span class="w">
+            </span><span class="mf">9626.5</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1112</span><span class="p">,</span><span class="w">
+            </span><span class="mi">9627</span><span class="p">,</span><span class="w">
+            </span><span class="mi">109168</span><span class="p">,</span><span class="w">
+            </span><span class="mf">9627.5</span><span class="p">,</span><span class="w">
+            </span><span class="mi">47425</span><span class="p">,</span><span class="w">
+            </span><span class="mi">9628</span><span class="p">,</span><span class="w">
+            </span><span class="mi">84425</span><span class="p">,</span><span class="w">
+            </span><span class="mf">9628.5</span><span class="p">,</span><span class="w">
+            </span><span class="mi">114773</span><span class="p">,</span><span class="w">
+            </span><span class="mi">9629</span><span class="p">,</span><span class="w">
+            </span><span class="mi">69830</span><span class="p">,</span><span class="w">
+            </span><span class="mf">9629.5</span><span class="p">,</span><span class="w">
+            </span><span class="mi">34412</span><span class="p">,</span><span class="w">
+            </span><span class="mf">9624.5</span><span class="p">,</span><span class="w">
+            </span><span class="mi">2225271</span><span class="p">,</span><span class="w">
+            </span><span class="mi">9624</span><span class="p">,</span><span class="w">
+            </span><span class="mi">3024</span><span class="p">,</span><span class="w">
+            </span><span class="mf">9623.5</span><span class="p">,</span><span class="w">
+            </span><span class="mi">11051</span><span class="p">,</span><span class="w">
+            </span><span class="mi">9623</span><span class="p">,</span><span class="w">
+            </span><span class="mi">468523</span><span class="p">,</span><span class="w">
+            </span><span class="mf">9622.5</span><span class="p">,</span><span class="w">
+            </span><span class="mi">6502</span><span class="p">,</span><span class="w">
+            </span><span class="mi">9622</span><span class="p">,</span><span class="w">
+            </span><span class="mi">9985</span><span class="p">,</span><span class="w">
+            </span><span class="mf">9621.5</span><span class="p">,</span><span class="w">
+            </span><span class="mi">550000</span><span class="p">,</span><span class="w">
+            </span><span class="mi">9621</span><span class="p">,</span><span class="w">
+            </span><span class="mi">9295</span><span class="p">,</span><span class="w">
+            </span><span class="mf">9620.5</span><span class="p">,</span><span class="w">
+            </span><span class="mi">726837</span><span class="p">,</span><span class="w">
+            </span><span class="mi">9620</span><span class="p">,</span><span class="w">
+            </span><span class="mi">647086</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"rows"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="提供web界面-空和多-多家交易所对比以及瞬时趋势">提供Web界面 空和多 多家交易所对比，以及瞬时趋势</h3>
+
+<h3 id="python-调用数据开启分析-基础分析-ema-交叉-四家交易所同时10秒计算一次">Python 调用数据开启分析 基础分析 EMA 交叉 （四家交易所同时10秒计算一次）</h3>
+
+<h3 id="每天计算趋势图">每天计算趋势图</h3>
+
+<h3 id="钉钉通知">钉钉通知。</h3>
+
+<h3 id="纠正模型">纠正模型</h3>
+
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+        <div id="gitalk-container"></div>
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+        var gitalk = new Gitalk({
+            id: '/2020/02/24/associate-with-tdengine-and-start-the-',
+            clientID: '0dc80b46a482ec78f3e0',
+            clientSecret: '8cae5d306b3703ad240b74142995473086fcbbab',
+            repo: 'blog-comments',
+            owner: 'uk0',
+            admin: ['uk0'],
+            labels: ['gitment'],
+            perPage: 50,
+        })
+        gitalk.render('gitalk-container')
+        </script>
+      <!-- 多说公共JS代码 END -->
+      <!-- Duoshuo Comment END -->
+  
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    <h3>Affiliate</h3>
+<a href="https://www.vultr.com/?ref=7142633"><img src="https://www.vultr.com/media/banner_3.png" width="300" height="250"></a>
+
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="http://112firshme11224.test.upcdn.net/assets/css/modules/sidebar-search.css">
+<script src="http://112firshme11224.test.upcdn.net/assets/js/lunr.min.js"></script>
+<script src="http://112firshme11224.test.upcdn.net/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+<script src="http://112firshme11224.test.upcdn.net/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="ZhangJianXin">ZhangJianXin</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="https://github.com/uk0/uk0.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="首页" target="">首页</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="分类" target="">分类</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="维基" target="">维基</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="链接" target="">链接</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="关于" target="">关于</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="http://112firshme11224.test.upcdn.net/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="http://112firshme11224.test.upcdn.net/assets/js/geopattern.js"></script>
+    <script src="http://112firshme11224.test.upcdn.net/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130872028-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-130872028-1');
+        </script>
+    </div>
+    
+</body>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>
