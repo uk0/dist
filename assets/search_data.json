@@ -1,5 +1,11 @@
 {
   
+  "2020-04-03-apache-httpd-latest-onekey": {
+    "title": "Apache Httpd 2.4.43 Install",
+    "url": " /2020/04/03/apache-httpd-latest-onekey/",
+    "category": "httpd"
+  },
+  
   "2020-03-23-rust-get-startd-01": {
     "title": "Rust 第一个入门程序",
     "url": " /2020/03/23/rust-get-startd-01/",
@@ -1724,6 +1730,12 @@
     "title": "Rust 第一个入门程序",
     "url": "/2020/03/23/rust-get-startd-01/",
     "category": "[&quot;Rust&quot;]"
+  },
+  
+  "2020-04-03-apache-httpd-latest-onekey": {
+    "title": "Apache Httpd 2.4.43 Install",
+    "url": "/2020/04/03/apache-httpd-latest-onekey/",
+    "category": "[&quot;httpd&quot;, &quot;apache&quot;]"
   },
   
   "wiki-android-studio": {

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Apache Httpd 2.4.43 Install &mdash; firshme</title>
+      <!-- or -->
+
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/components/collection.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/globals/common.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="https://firsh.me/2020/04/03/apache-httpd-latest-onekey/">
+    <link rel="alternate" type="application/atom+xml" title="firshme" href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="Apache Httpd 2.4.43 Install">
+      
+    <meta name="keywords" content="安装httpd">
+    <meta name="og:keywords" content="安装httpd">
+      
+    <meta name="description" content="安装httpd 过程记录。">
+    <meta name="og:description" content="安装httpd 过程记录。">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="https://firsh.me/2020/04/03/apache-httpd-latest-onekey/">
+    <meta property="og:site_name" content="firshme">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2020-04-03">
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-3969253077255521",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+            src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+    <script src="http://112firshme11224.test.upcdn.net/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="http://112firshme11224.test.upcdn.net/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="firshme"><span class="octicon octicon-mark-github"></span> firshme</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="首页">首页</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="分类">分类</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="维基">维基</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="链接">链接</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="Apache Httpd 2.">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">Apache Httpd 2.4.43 Install</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2020/04/03
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#httpd" title="httpd">httpd</a>
+          </span>
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#apache" title="apache">apache</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <p>安装httpd 过程记录。</p>
+
+<h3 id="准备">准备</h3>
+
+<ul>
+  <li>系统 Linux x86_64 gcc 版本4.8</li>
+  <li>apr + apr-utils + pcre + httpd-2.4.43 <code class="language-plaintext highlighter-rouge">源码包</code></li>
+  <li><code class="language-plaintext highlighter-rouge">yum install -y libxml2-devel</code></li>
+  <li><code class="language-plaintext highlighter-rouge">yum install -y gcc gcc-c++</code></li>
+</ul>
+
+<h3 id="安装开始">安装开始</h3>
+
+<h4 id="apr">apr</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget <span class="nt">-c</span> http://archive.apache.org/dist/apr/apr-1.6.2.tar.gz
+<span class="nb">tar</span> <span class="nt">-xf</span> apr-1.6.2.tar.gz
+<span class="nb">cd </span>apr-1.6.2
+./configure <span class="nt">--prefix</span><span class="o">=</span>/usr/local/apr
+make <span class="o">&amp;&amp;</span> make <span class="nb">install</span>
+
+</code></pre></div></div>
+
+<h4 id="apr-utils">apr-utils</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+wget <span class="nt">-c</span> http://archive.apache.org/dist/apr/apr-util-1.6.1.tar.gz
+<span class="nb">tar</span> <span class="nt">-xf</span> apr-util-1.6.1.tar.gz
+<span class="nb">cd </span>apr-util-1.6.1
+./configure <span class="nt">--prefix</span><span class="o">=</span>/usr/local/apr-util <span class="nt">--with-apr</span><span class="o">=</span>/usr/local/apr/bin/apr-1-config
+make <span class="o">&amp;&amp;</span> make <span class="nb">install</span>
+
+</code></pre></div></div>
+
+<h4 id="pcre">pcre</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget <span class="nt">-c</span> https://ftp.pcre.org/pub/pcre/pcre-8.41.tar.gz
+<span class="nb">tar</span> <span class="nt">-xf</span> pcre-8.41.tar.gz
+<span class="nb">cd </span>pcre-8.41
+./configure <span class="nt">--prefix</span><span class="o">=</span>/usr/local/pcre
+make <span class="o">&amp;&amp;</span> make <span class="nb">install</span>
+</code></pre></div></div>
+
+<h4 id="httpd">httpd</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://ftp.riken.jp/net/apache//httpd/httpd-2.4.43.tar.gz
+<span class="nb">tar</span> <span class="nt">-zxvf</span> httpd-2.4.43.tar.gz
+<span class="nb">cd </span>httpd-2.4.43
+<span class="nb">cd</span> ..
+<span class="nb">cp</span> <span class="nt">-r</span> apr-1.6.2 httpd-2.4.43/srclib/apr
+<span class="nb">cp</span> <span class="nt">-r</span> apr-util-1.6.1  httpd-2.4.43/srclib/apr-util
+
+./configure <span class="nt">--prefix</span><span class="o">=</span>/usr/local/apache2 <span class="nt">--with-apr</span><span class="o">=</span>/usr/local/apr <span class="nt">--with-apr-util</span><span class="o">=</span>/usr/local/apr-util <span class="nt">--with-pcre</span><span class="o">=</span>/usr/local/pcre <span class="nt">--enable-mods-shared</span><span class="o">=</span>most <span class="nt">--enable-so</span> <span class="nt">--with-included-apr</span>
+make <span class="o">&amp;&amp;</span> make <span class="nb">install</span>
+
+</code></pre></div></div>
+
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+        <div id="gitalk-container"></div>
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+        var gitalk = new Gitalk({
+            id: '/2020/04/03/apache-httpd-latest-onekey/',
+            clientID: '0dc80b46a482ec78f3e0',
+            clientSecret: '8cae5d306b3703ad240b74142995473086fcbbab',
+            repo: 'blog-comments',
+            owner: 'uk0',
+            admin: ['uk0'],
+            labels: ['gitment'],
+            perPage: 50,
+        })
+        gitalk.render('gitalk-container')
+        </script>
+      <!-- 多说公共JS代码 END -->
+      <!-- Duoshuo Comment END -->
+  
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    <h3>Affiliate</h3>
+<a href="https://www.vultr.com/?ref=7142633"><img src="https://www.vultr.com/media/banner_3.png" width="300" height="250"></a>
+
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="http://112firshme11224.test.upcdn.net/assets/css/modules/sidebar-search.css">
+<script src="http://112firshme11224.test.upcdn.net/assets/js/lunr.min.js"></script>
+<script src="http://112firshme11224.test.upcdn.net/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+<script src="http://112firshme11224.test.upcdn.net/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="ZhangJianXin">ZhangJianXin</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="https://github.com/uk0/uk0.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="首页" target="">首页</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="分类" target="">分类</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="维基" target="">维基</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="链接" target="">链接</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="关于" target="">关于</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="http://112firshme11224.test.upcdn.net/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="http://112firshme11224.test.upcdn.net/assets/js/geopattern.js"></script>
+    <script src="http://112firshme11224.test.upcdn.net/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130872028-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-130872028-1');
+        </script>
+    </div>
+    
+</body>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>
