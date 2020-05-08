@@ -1,4 +1,66 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://firsh.me/" rel="alternate" type="text/html" /><updated>2020-04-20T16:07:35+08:00</updated><id>https://firsh.me/feed.xml</id><title type="html">firshme</title><subtitle>张建新个人博客,我没有生来天赋过人,只有对技术的虔诚。</subtitle><author><name>ZhangJianXin</name></author><entry><title type="html">Apache Httpd 2.4.43 Install</title><link href="https://firsh.me/2020/04/03/apache-httpd-latest-onekey/" rel="alternate" type="text/html" title="Apache Httpd 2.4.43 Install" /><published>2020-04-03T16:10:24+08:00</published><updated>2020-04-03T16:10:24+08:00</updated><id>https://firsh.me/2020/04/03/apache-httpd-latest-onekey</id><content type="html" xml:base="https://firsh.me/2020/04/03/apache-httpd-latest-onekey/">&lt;p&gt;安装httpd 过程记录。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://firsh.me/" rel="alternate" type="text/html" /><updated>2020-05-08T18:28:40+08:00</updated><id>https://firsh.me/feed.xml</id><title type="html">firshme</title><subtitle>张建新个人博客,我没有生来天赋过人,只有对技术的虔诚。</subtitle><author><name>ZhangJianXin</name></author><entry><title type="html">Time Machine Backup Fix ERROR</title><link href="https://firsh.me/2020/05/08/time-machine-by-s3-and-usb/" rel="alternate" type="text/html" title="Time Machine Backup Fix ERROR" /><published>2020-05-08T17:49:27+08:00</published><updated>2020-05-08T17:49:27+08:00</updated><id>https://firsh.me/2020/05/08/time-machine-by-s3-and-usb</id><content type="html" xml:base="https://firsh.me/2020/05/08/time-machine-by-s3-and-usb/">&lt;h3 id=&quot;介绍背景&quot;&gt;介绍背景&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;系统配置
+&lt;img src=&quot;http://112firshme11224.test.upcdn.net/blog/2020-05-08-17-50-43.png!/watermark/text/Zmlyc2gubWU=/font/simyou/align/southeast/size/18/color/FFFFFF/margin/5x5&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Script  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://github.com/uk0/TimeMachine-sparsebundle&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;问题介绍&quot;&gt;问题介绍&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;usb 外接硬盘 无法备份 （或者第二备份失败） 长时间插入硬盘 不会自动备份等问题。&lt;/li&gt;
+  &lt;li&gt;将数据备份到 AWS&lt;/li&gt;
+  &lt;li&gt;工具 goofys test-macos ./test&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;测试&quot;&gt;测试&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Mount s3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;goofys test-macos ./test
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;运行makeImage.sh 脚本创建Image&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; sh  ./makeImage.sh  600 /Volumes/tm
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://112firshme11224.test.upcdn.net/blog/2020-05-08-18-06-14.png!/watermark/text/Zmlyc2gubWU=/font/simyou/align/southeast/size/18/color/FFFFFF/margin/5x5&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;在/Volumes/tm生成类似上图所示的文件（设备名字可能不同）&lt;/li&gt;
+  &lt;li&gt;双击这个文件会发现多了一个磁盘&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://112firshme11224.test.upcdn.net/blog/2020-05-08-18-08-06.png!/watermark/text/Zmlyc2gubWU=/font/simyou/align/southeast/size/18/color/FFFFFF/margin/5x5&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;最后告诉系统要使用这个硬盘来进行备份&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;tmutil setdestination /Volumes/Time&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;Machine&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;Backups
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;成功备份截图。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://112firshme11224.test.upcdn.net/blog/2020-05-08-18-25-20.png!/watermark/text/Zmlyc2gubWU=/font/simyou/align/southeast/size/18/color/FFFFFF/margin/5x5&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;以上的方法 适用与移动硬盘直接格式化后TimeMachine 无法备份，可以 用这个办法试试，将移动硬盘当作S3即可。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">介绍背景</summary></entry><entry><title type="html">Apache Httpd 2.4.43 Install</title><link href="https://firsh.me/2020/04/03/apache-httpd-latest-onekey/" rel="alternate" type="text/html" title="Apache Httpd 2.4.43 Install" /><published>2020-04-03T16:10:24+08:00</published><updated>2020-04-03T16:10:24+08:00</updated><id>https://firsh.me/2020/04/03/apache-httpd-latest-onekey</id><content type="html" xml:base="https://firsh.me/2020/04/03/apache-httpd-latest-onekey/">&lt;p&gt;安装httpd 过程记录。&lt;/p&gt;
 
 &lt;h3 id=&quot;准备&quot;&gt;准备&lt;/h3&gt;
 
@@ -1447,57 +1509,4 @@ root@john:/tmp# nc &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; &lt;span cla
 `&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">数据通过FTP上传到服务器要求将数据发送到RocketMQ原版本用Java写的（不是本人）TPS上不去资源消耗大等问题。</summary></entry><entry><title type="html">xgboost on yarn (cdh,cloudera)</title><link href="https://firsh.me/2019/03/21/xgboost-on-yarn/" rel="alternate" type="text/html" title="xgboost on yarn (cdh,cloudera)" /><published>2019-03-21T13:20:52+08:00</published><updated>2019-03-21T13:20:52+08:00</updated><id>https://firsh.me/2019/03/21/xgboost-on-yarn</id><content type="html" xml:base="https://firsh.me/2019/03/21/xgboost-on-yarn/">&lt;p&gt;Xgboost install by cluster yarn&lt;/p&gt;
-
-&lt;h2 id=&quot;yum-安装基础的依赖&quot;&gt;yum 安装基础的依赖&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;yum &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;gcc-c++ fuse-devel git  hadoop-libhdfs-devel
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;配置环境变量&quot;&gt;配置环境变量&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;MVN_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/soft/apache-maven-3.6.0
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$MVN_HOME&lt;/span&gt;/bin:&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;XGB_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/download
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$XGB_HOME&lt;/span&gt;:&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HDFS_LIB_PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;XGB_HOME&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;/xgboost-packages/libhdfs
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;LD_LIBRARY_PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;XGB_HOME&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;/xgboost-packages/lib64:&lt;span class=&quot;nv&quot;&gt;$JAVA_HOME&lt;/span&gt;/jre/lib/amd64/server:/&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;XGB_HOME&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;/xgboost-packages/libhdfs:&lt;span class=&quot;nv&quot;&gt;$LD_LIBRARY_PATH&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HADOOP_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/cloudera/parcels/CDH/lib/hadoop
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HADOOP_COMMON_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HADOOP_HOME&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HADOOP_HDFS_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/cloudera/parcels/CDH/lib/hadoop-hdfs
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HADOOP_MAPRED_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/cloudera/parcels/CDH/lib/hadoop-yarn
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HADOOP_YARN_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HADOOP_MAPRED_HOME&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HADOOP_CONF_DIR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HADOOP_HOME&lt;/span&gt;/etc/hadoop
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;xgboost-git-clone--and-install&quot;&gt;xgboost git clone  and install&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; xgboost-packages/lib64
-
-&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;xgboost-packages
-
-
-git clone &lt;span class=&quot;nt&quot;&gt;--recursive&lt;/span&gt; https://github.com/dmlc/xgboost
-&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;xgboost
-&lt;span class=&quot;nb&quot;&gt;cp &lt;/span&gt;make/config.mk ./
-vim config.mk
-add line &lt;span class=&quot;c&quot;&gt;# HADOOP_HOME = /usr/lib/hadoop&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;build
-&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;build
-cmake .. &lt;span class=&quot;nv&quot;&gt;USE_HDFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ON &lt;span class=&quot;c&quot;&gt;# 开启HDFS&lt;/span&gt;
-make &lt;span class=&quot;nt&quot;&gt;-j4&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;install-python-package-on-env&quot;&gt;install python package on env&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;python-package/ &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; python setup.py &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h2 id=&quot;install-jvm-package-on-env&quot;&gt;install jvm-package on env&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;jvm-packages/ &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; mvn &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;:install-file &lt;span class=&quot;nt&quot;&gt;-Dfile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;xgboost4j-spark-0.83-jar-with-dependencies.jar &lt;span class=&quot;nt&quot;&gt;-DgroupId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ml.dmlc &lt;span class=&quot;nt&quot;&gt;-DartifactId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;xgboost4j-spark &lt;span class=&quot;nt&quot;&gt;-Dversion&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.7 &lt;span class=&quot;nt&quot;&gt;-Dpackaging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;jar
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">Xgboost install by cluster yarn</summary></entry></feed>
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">数据通过FTP上传到服务器要求将数据发送到RocketMQ原版本用Java写的（不是本人）TPS上不去资源消耗大等问题。</summary></entry></feed>

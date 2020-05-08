@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Linux/Unix &mdash; firshme</title>
+    <title>Time Machine Backup Fix ERROR &mdash; firshme</title>
       <!-- or -->
 
     <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
@@ -25,23 +25,23 @@
     
 
     
-    <link rel="canonical" href="https://firsh.me/wiki/linux/">
+    <link rel="canonical" href="https://firsh.me/2020/05/08/time-machine-by-s3-and-usb/">
     <link rel="alternate" type="application/atom+xml" title="firshme" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
-    <meta property="og:title" content="Linux/Unix">
+    <meta property="og:title" content="Time Machine Backup Fix ERROR">
       
-    <meta name="keywords" content="Linux">
-    <meta name="og:keywords" content="Linux">
+    <meta name="keywords" content="time machine">
+    <meta name="og:keywords" content="time machine">
       
-    <meta name="description" content="类 Unix 系统下的一些常用命令和用法。">
-    <meta name="og:description" content="类 Unix 系统下的一些常用命令和用法。">
+    <meta name="description" content="介绍背景">
+    <meta name="og:description" content="介绍背景">
       
     
     
         
     
-    <meta property="og:url" content="https://firsh.me/wiki/linux/">
+    <meta property="og:url" content="https://firsh.me/2020/05/08/time-machine-by-s3-and-usb/">
     <meta property="og:site_name" content="firshme">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
@@ -97,12 +97,25 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="Linux/Unix">
+    <section class="collection-head small geopattern" data-pattern-id="Time Machine Ba">
 <div class="container">
   <div class="columns">
     <div class="column three-fourths">
       <div class="collection-title">
-        <h1 class="collection-header">Linux/Unix</h1>
+        <h1 class="collection-header">Time Machine Backup Fix ERROR</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2020/05/08
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#macos" title="macos">macos</a>
+          </span>
+          
+        </div>
       </div>
     </div>
   </div>
@@ -113,57 +126,69 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <p>类 Unix 系统下的一些常用命令和用法。</p>
+    <h3 id="介绍背景">介绍背景</h3>
 
-<h2 id="实用命令">实用命令</h2>
+<ul>
+  <li>
+    <p>系统配置
+<img src="http://112firshme11224.test.upcdn.net/blog/2020-05-08-17-50-43.png!/watermark/text/Zmlyc2gubWU=/font/simyou/align/southeast/size/18/color/FFFFFF/margin/5x5" alt="" /></p>
+  </li>
+  <li>
+    <p>Script  <code class="language-plaintext highlighter-rouge">https://github.com/uk0/TimeMachine-sparsebundle</code></p>
+  </li>
+</ul>
 
-<h3 id="fuser">fuser</h3>
+<h4 id="问题介绍">问题介绍</h4>
 
-<p>查看文件被谁占用。</p>
+<ul>
+  <li>usb 外接硬盘 无法备份 （或者第二备份失败） 长时间插入硬盘 不会自动备份等问题。</li>
+  <li>将数据备份到 AWS</li>
+  <li>工具 goofys test-macos ./test</li>
+</ul>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fuser <span class="nt">-u</span> .linux.md.swp
+<h4 id="测试">测试</h4>
+
+<ul>
+  <li>Mount s3</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>goofys test-macos ./test
 </code></pre></div></div>
 
-<h3 id="id">id</h3>
+<ul>
+  <li>运行makeImage.sh 脚本创建Image</li>
+</ul>
 
-<p>查看当前用户、组 id。</p>
-
-<h3 id="lsof">lsof</h3>
-
-<p>查看打开的文件列表。</p>
-
-<blockquote>
-  <p>An  open  file  may  be  a  regular  file,  a directory, a block special file, a character special file, an executing text reference, a library, a stream or a network file (Internet socket, NFS file or UNIX domain socket.)  A specific file or all the files in a file system may be selected by path.</p>
-</blockquote>
-
-<h4 id="查看网络相关的文件占用">查看网络相关的文件占用</h4>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lsof <span class="nt">-i</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> sh  ./makeImage.sh  600 /Volumes/tm
 </code></pre></div></div>
 
-<h4 id="查看端口占用">查看端口占用</h4>
+<p><img src="http://112firshme11224.test.upcdn.net/blog/2020-05-08-18-06-14.png!/watermark/text/Zmlyc2gubWU=/font/simyou/align/southeast/size/18/color/FFFFFF/margin/5x5" alt="" /></p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lsof <span class="nt">-i</span> tcp:5037
+<ul>
+  <li>在/Volumes/tm生成类似上图所示的文件（设备名字可能不同）</li>
+  <li>双击这个文件会发现多了一个磁盘</li>
+</ul>
+
+<p><img src="http://112firshme11224.test.upcdn.net/blog/2020-05-08-18-08-06.png!/watermark/text/Zmlyc2gubWU=/font/simyou/align/southeast/size/18/color/FFFFFF/margin/5x5" alt="" /></p>
+
+<ul>
+  <li>最后告诉系统要使用这个硬盘来进行备份</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>tmutil setdestination /Volumes/Time<span class="se">\ </span>Machine<span class="se">\ </span>Backups
 </code></pre></div></div>
 
-<h4 id="查看某个文件被谁占用">查看某个文件被谁占用</h4>
+<ul>
+  <li>成功备份截图。</li>
+</ul>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lsof .linux.md.swp
-</code></pre></div></div>
+<p><img src="http://112firshme11224.test.upcdn.net/blog/2020-05-08-18-25-20.png!/watermark/text/Zmlyc2gubWU=/font/simyou/align/southeast/size/18/color/FFFFFF/margin/5x5" alt="" /></p>
 
-<h4 id="查看某个用户占用的文件信息">查看某个用户占用的文件信息</h4>
+<ul>
+  <li>以上的方法 适用与移动硬盘直接格式化后TimeMachine 无法备份，可以 用这个办法试试，将移动硬盘当作S3即可。</li>
+</ul>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lsof <span class="nt">-u</span> mazhuang
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">-u</code> 后面可以跟 uid 或 login name。</p>
-
-<h4 id="查看某个程序占用的文件信息">查看某个程序占用的文件信息</h4>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lsof <span class="nt">-c</span> Vim
-</code></pre></div></div>
-
-<p>注意程序名区分大小写。</p>
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
 
     </article>
     <div class="share">
@@ -177,7 +202,7 @@
         <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
         <script>
         var gitalk = new Gitalk({
-            id: '/wiki/linux/',
+            id: '/2020/05/08/time-machine-by-s3-and-usb/',
             clientID: '0dc80b46a482ec78f3e0',
             clientSecret: '8cae5d306b3703ad240b74142995473086fcbbab',
             repo: 'blog-comments',

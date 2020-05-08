@@ -1,5 +1,11 @@
 {
   
+  "2020-05-08-time-machine-by-s3-and-usb": {
+    "title": "Time Machine Backup Fix ERROR",
+    "url": " /2020/05/08/time-machine-by-s3-and-usb/",
+    "category": "macos"
+  },
+  
   "2020-04-03-apache-httpd-latest-onekey": {
     "title": "Apache Httpd 2.4.43 Install",
     "url": " /2020/04/03/apache-httpd-latest-onekey/",
@@ -1736,6 +1742,12 @@
     "title": "Apache Httpd 2.4.43 Install",
     "url": "/2020/04/03/apache-httpd-latest-onekey/",
     "category": "[&quot;httpd&quot;, &quot;apache&quot;]"
+  },
+  
+  "2020-05-08-time-machine-by-s3-and-usb": {
+    "title": "Time Machine Backup Fix ERROR",
+    "url": "/2020/05/08/time-machine-by-s3-and-usb/",
+    "category": "[&quot;macos&quot;]"
   },
   
   "wiki-android-studio": {
