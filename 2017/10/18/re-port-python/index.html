@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Python端口转发 &mdash; firshme</title>
+    <title>Python端口转发 &mdash; 下水鱼</title>
       <!-- or -->
 
     <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
@@ -26,7 +26,7 @@
 
     
     <link rel="canonical" href="https://firsh.me/2017/10/18/re-port-python/">
-    <link rel="alternate" type="application/atom+xml" title="firshme" href="/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="下水鱼" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
     <meta property="og:title" content="Python端口转发">
@@ -42,7 +42,7 @@
         
     
     <meta property="og:url" content="https://firsh.me/2017/10/18/re-port-python/">
-    <meta property="og:site_name" content="firshme">
+    <meta property="og:site_name" content="下水鱼">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
     
@@ -74,7 +74,7 @@
 <body class="" data-mz="">
     <header class="site-header">
         <div class="container">
-            <h1><a href="/" title="firshme"><span class="octicon octicon-mark-github"></span> firshme</a></h1>
+            <h1><a href="/" title="下水鱼"><span class="octicon octicon-mark-github"></span> 下水鱼</a></h1>
             <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -137,106 +137,106 @@ author：zhangjianxin</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="kn">import</span> <span class="nn">socket</span><span class="p">,</span><span class="n">asyncore</span>
 
-<span class="k">class</span> <span class="nc">forwarder</span><span class="p">(</span><span class="n">asyncore</span><span class="o">.</span><span class="n">dispatcher</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">forwarder</span><span class="p">(</span><span class="n">asyncore</span><span class="p">.</span><span class="n">dispatcher</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">remoteip</span><span class="p">,</span><span class="n">remoteport</span><span class="p">,</span><span class="n">backlog</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
-        <span class="n">asyncore</span><span class="o">.</span><span class="n">dispatcher</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">remoteip</span><span class="o">=</span><span class="n">remoteip</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">remoteport</span><span class="o">=</span><span class="n">remoteport</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">create_socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span><span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_reuse_addr</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="n">ip</span><span class="p">,</span><span class="n">port</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="n">backlog</span><span class="p">)</span>
+        <span class="n">asyncore</span><span class="p">.</span><span class="n">dispatcher</span><span class="p">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">remoteip</span><span class="o">=</span><span class="n">remoteip</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">remoteport</span><span class="o">=</span><span class="n">remoteport</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">create_socket</span><span class="p">(</span><span class="n">socket</span><span class="p">.</span><span class="n">AF_INET</span><span class="p">,</span><span class="n">socket</span><span class="p">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">set_reuse_addr</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">bind</span><span class="p">((</span><span class="n">ip</span><span class="p">,</span><span class="n">port</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span><span class="n">backlog</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">handle_accept</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">conn</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+        <span class="n">conn</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">accept</span><span class="p">()</span>
         <span class="c1"># print '--- Connect --- '
-</span>        <span class="n">sender</span><span class="p">(</span><span class="n">receiver</span><span class="p">(</span><span class="n">conn</span><span class="p">),</span><span class="bp">self</span><span class="o">.</span><span class="n">remoteip</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">remoteport</span><span class="p">)</span>
+</span>        <span class="n">sender</span><span class="p">(</span><span class="n">receiver</span><span class="p">(</span><span class="n">conn</span><span class="p">),</span><span class="bp">self</span><span class="p">.</span><span class="n">remoteip</span><span class="p">,</span><span class="bp">self</span><span class="p">.</span><span class="n">remoteport</span><span class="p">)</span>
 
-<span class="k">class</span> <span class="nc">receiver</span><span class="p">(</span><span class="n">asyncore</span><span class="o">.</span><span class="n">dispatcher</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">receiver</span><span class="p">(</span><span class="n">asyncore</span><span class="p">.</span><span class="n">dispatcher</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">conn</span><span class="p">):</span>
-        <span class="n">asyncore</span><span class="o">.</span><span class="n">dispatcher</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">conn</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">from_remote_buffer</span><span class="o">=</span><span class="s">''</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">to_remote_buffer</span><span class="o">=</span><span class="s">''</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sender</span><span class="o">=</span><span class="bp">None</span>
+        <span class="n">asyncore</span><span class="p">.</span><span class="n">dispatcher</span><span class="p">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">conn</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">from_remote_buffer</span><span class="o">=</span><span class="s">''</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">to_remote_buffer</span><span class="o">=</span><span class="s">''</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">sender</span><span class="o">=</span><span class="bp">None</span>
 
     <span class="k">def</span> <span class="nf">handle_connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>
 
     <span class="k">def</span> <span class="nf">handle_read</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">read</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">4096</span><span class="p">)</span>
+        <span class="n">read</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">4096</span><span class="p">)</span>
         <span class="c1"># print '%04i --&gt;'%len(read)
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">from_remote_buffer</span> <span class="o">+=</span> <span class="n">read</span>
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">from_remote_buffer</span> <span class="o">+=</span> <span class="n">read</span>
 
     <span class="k">def</span> <span class="nf">writable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_remote_buffer</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">to_remote_buffer</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">handle_write</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">sent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_remote_buffer</span><span class="p">)</span>
+        <span class="n">sent</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">to_remote_buffer</span><span class="p">)</span>
         <span class="c1"># print '%04i &lt;--'%sent
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">to_remote_buffer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_remote_buffer</span><span class="p">[</span><span class="n">sent</span><span class="p">:]</span>
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">to_remote_buffer</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">to_remote_buffer</span><span class="p">[</span><span class="n">sent</span><span class="p">:]</span>
 
     <span class="k">def</span> <span class="nf">handle_close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sender</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">sender</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">sender</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">sender</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 
-<span class="k">class</span> <span class="nc">sender</span><span class="p">(</span><span class="n">asyncore</span><span class="o">.</span><span class="n">dispatcher</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">sender</span><span class="p">(</span><span class="n">asyncore</span><span class="p">.</span><span class="n">dispatcher</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receiver</span><span class="p">,</span> <span class="n">remoteaddr</span><span class="p">,</span><span class="n">remoteport</span><span class="p">):</span>
-        <span class="n">asyncore</span><span class="o">.</span><span class="n">dispatcher</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">receiver</span><span class="o">=</span><span class="n">receiver</span>
-        <span class="n">receiver</span><span class="o">.</span><span class="n">sender</span><span class="o">=</span><span class="bp">self</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">create_socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="n">remoteaddr</span><span class="p">,</span> <span class="n">remoteport</span><span class="p">))</span>
+        <span class="n">asyncore</span><span class="p">.</span><span class="n">dispatcher</span><span class="p">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">receiver</span><span class="o">=</span><span class="n">receiver</span>
+        <span class="n">receiver</span><span class="p">.</span><span class="n">sender</span><span class="o">=</span><span class="bp">self</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">create_socket</span><span class="p">(</span><span class="n">socket</span><span class="p">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="p">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">connect</span><span class="p">((</span><span class="n">remoteaddr</span><span class="p">,</span> <span class="n">remoteport</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">handle_connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>  <span class="c1">#www.iplaypy.com
 </span>
     <span class="k">def</span> <span class="nf">handle_read</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">read</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">4096</span><span class="p">)</span>
+        <span class="n">read</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">4096</span><span class="p">)</span>
         <span class="c1"># print '&lt;-- %04i'%len(read)
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">receiver</span><span class="o">.</span><span class="n">to_remote_buffer</span> <span class="o">+=</span> <span class="n">read</span>
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">receiver</span><span class="p">.</span><span class="n">to_remote_buffer</span> <span class="o">+=</span> <span class="n">read</span>
 
     <span class="k">def</span> <span class="nf">writable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">receiver</span><span class="o">.</span><span class="n">from_remote_buffer</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">receiver</span><span class="p">.</span><span class="n">from_remote_buffer</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">handle_write</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">sent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">receiver</span><span class="o">.</span><span class="n">from_remote_buffer</span><span class="p">)</span>
+        <span class="n">sent</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">receiver</span><span class="p">.</span><span class="n">from_remote_buffer</span><span class="p">)</span>
         <span class="c1"># print '--&gt; %04i'%sent
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">receiver</span><span class="o">.</span><span class="n">from_remote_buffer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">receiver</span><span class="o">.</span><span class="n">from_remote_buffer</span><span class="p">[</span><span class="n">sent</span><span class="p">:]</span>
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">receiver</span><span class="p">.</span><span class="n">from_remote_buffer</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">receiver</span><span class="p">.</span><span class="n">from_remote_buffer</span><span class="p">[</span><span class="n">sent</span><span class="p">:]</span>
 
     <span class="k">def</span> <span class="nf">handle_close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">receiver</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">receiver</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 
 <span class="k">if</span> <span class="n">__name__</span><span class="o">==</span><span class="s">'__main__'</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">optparse</span>
 
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">optparse</span><span class="o">.</span><span class="n">OptionParser</span><span class="p">()</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">optparse</span><span class="p">.</span><span class="n">OptionParser</span><span class="p">()</span>
 
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_option</span><span class="p">(</span>
         <span class="s">'-l'</span><span class="p">,</span><span class="s">'--local-ip'</span><span class="p">,</span>
         <span class="n">dest</span><span class="o">=</span><span class="s">'local_ip'</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="s">'127.0.0.1'</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s">'Local IP address to bind to'</span><span class="p">)</span>
 
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_option</span><span class="p">(</span>
         <span class="s">'-p'</span><span class="p">,</span><span class="s">'--local-port'</span><span class="p">,</span>
         <span class="nb">type</span><span class="o">=</span><span class="s">'int'</span><span class="p">,</span><span class="n">dest</span><span class="o">=</span><span class="s">'local_port'</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s">'Local port to bind to'</span><span class="p">)</span>
 
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_option</span><span class="p">(</span>
         <span class="s">'-r'</span><span class="p">,</span><span class="s">'--remote-ip'</span><span class="p">,</span><span class="n">dest</span><span class="o">=</span><span class="s">'remote_ip'</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s">'Local IP address to bind to'</span><span class="p">)</span>
 
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_option</span><span class="p">(</span>
         <span class="s">'-P'</span><span class="p">,</span><span class="s">'--remote-port'</span><span class="p">,</span>
         <span class="nb">type</span><span class="o">=</span><span class="s">'int'</span><span class="p">,</span><span class="n">dest</span><span class="o">=</span><span class="s">'remote_port'</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s">'Remote port to bind to'</span><span class="p">)</span>
 
-    <span class="n">options</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="n">options</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
 
-    <span class="n">forwarder</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">local_ip</span><span class="p">,</span><span class="n">options</span><span class="o">.</span><span class="n">local_port</span><span class="p">,</span><span class="n">options</span><span class="o">.</span><span class="n">remote_ip</span><span class="p">,</span><span class="n">options</span><span class="o">.</span><span class="n">remote_port</span><span class="p">)</span>
+    <span class="n">forwarder</span><span class="p">(</span><span class="n">options</span><span class="p">.</span><span class="n">local_ip</span><span class="p">,</span><span class="n">options</span><span class="p">.</span><span class="n">local_port</span><span class="p">,</span><span class="n">options</span><span class="p">.</span><span class="n">remote_ip</span><span class="p">,</span><span class="n">options</span><span class="p">.</span><span class="n">remote_port</span><span class="p">)</span>
 
-    <span class="n">asyncore</span><span class="o">.</span><span class="n">loop</span><span class="p">()</span>
+    <span class="n">asyncore</span><span class="p">.</span><span class="n">loop</span><span class="p">()</span>
 
 </code></pre></div></div>
 

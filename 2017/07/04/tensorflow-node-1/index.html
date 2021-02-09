@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>TensorFlow学习笔记1：入门 &mdash; firshme</title>
+    <title>TensorFlow学习笔记1：入门 &mdash; 下水鱼</title>
       <!-- or -->
 
     <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
@@ -26,7 +26,7 @@
 
     
     <link rel="canonical" href="https://firsh.me/2017/07/04/tensorflow-node-1/">
-    <link rel="alternate" type="application/atom+xml" title="firshme" href="/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="下水鱼" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
     <meta property="og:title" content="TensorFlow学习笔记1：入门">
@@ -42,7 +42,7 @@
         
     
     <meta property="og:url" content="https://firsh.me/2017/07/04/tensorflow-node-1/">
-    <meta property="og:site_name" content="firshme">
+    <meta property="og:site_name" content="下水鱼">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
     
@@ -74,7 +74,7 @@
 <body class="" data-mz="">
     <header class="site-header">
         <div class="container">
-            <h1><a href="/" title="firshme"><span class="octicon octicon-mark-github"></span> firshme</a></h1>
+            <h1><a href="/" title="下水鱼"><span class="octicon octicon-mark-github"></span> 下水鱼</a></h1>
             <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -463,19 +463,19 @@ mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 
 <p>最后，我们在一个图片类别的evidence(不知如何翻译..)中加入偏置(bias)，加入偏置的目的是加入一些与输入独立无关的信息。所以图片类别的evidence可表示为</p>
 
-<script type="math/tex; mode=display">evidence\_{i}=\sum \_{j}W\_{ij}x\_{j}+b\_{i}</script>
+\[evidence\_{i}=\sum \_{j}W\_{ij}x\_{j}+b\_{i}\]
 
 <p>其中，\( W_i \) 和 \( b_i \) 分别为类别 \( i \) 的权值和偏置，\( j \) 是输入图片 \( x \) 的像素索引。然后，我们将得到的evidence值通过一个”softmax”函数转化为概率值 \( y \) :</p>
 
-<script type="math/tex; mode=display">y = softmax(evidence)</script>
+\[y = softmax(evidence)\]
 
 <p>这里softmax函数的作用相当于是一个转换函数，它的作用是将原始的线性函数输出结果以某种方式转换为我们需要的值，这里我们需要0-9十个类别上的概率分布。softmax函数的定义如下：</p>
 
-<script type="math/tex; mode=display">softmax(x) = normalize(exp(x))</script>
+\[softmax(x) = normalize(exp(x))\]
 
 <p>具体计算方式如下</p>
 
-<script type="math/tex; mode=display">softmax(x)\_{i} = \dfrac {exp\left( x\_{i}\right) } {\Sigma \_{j}exp\left( x\_{j}\right) }</script>
+\[softmax(x)\_{i} = \dfrac {exp\left( x\_{i}\right) } {\Sigma \_{j}exp\left( x\_{j}\right) }\]
 
 <p>这里的softmax函数能够得到类别上的概率值分布，并保证所有类别上的概率值之和为1. 下面的图示将有助于你理解softmax函数的计算过程：</p>
 
@@ -491,7 +491,7 @@ mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 
 <p>也可以简化成</p>
 
-<script type="math/tex; mode=display">y = softmax( Wx + b )</script>
+\[y = softmax( Wx + b )\]
 
 <h3 id="softmax-regression的程序实现">Softmax Regression的程序实现</h3>
 
@@ -528,7 +528,7 @@ b = tf.Variable(tf.zeros([10]))
 
 <p>在机器学习中，通常需要选择一个代价函数（或者损失函数），来指示训练模型的好坏。这里，我们使用交叉熵函数（cross-entropy）作为代价函数，交叉熵是一个源于信息论中信息压缩领域的概念，但是现在已经应用在多个领域。它的定义如下：</p>
 
-<script type="math/tex; mode=display">H\_{y'}\left( y\right) = -\sum \_{i}y\_{i}'\log \left( y\_{i}\right)</script>
+\[H\_{y'}\left( y\right) = -\sum \_{i}y\_{i}'\log \left( y\_{i}\right)\]
 
 <p>这里 \( y \) 是所预测的概率分布，而 \( y’ \) 是真实的分布(one-hot vector表示的图片label)。直观上，交叉熵函数的输出值表示了预测的概率分布与真实的分布的符合程度。更加深入地理解交叉熵函数，可参考<a href="http://colah.github.io/posts/2015-09-Visual-Information/">这篇博文</a>。</p>
 

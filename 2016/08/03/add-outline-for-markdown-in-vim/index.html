@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>在 Vim 里为 Markdown 文档展示导航窗格 &mdash; firshme</title>
+    <title>在 Vim 里为 Markdown 文档展示导航窗格 &mdash; 下水鱼</title>
       <!-- or -->
 
     <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
@@ -26,7 +26,7 @@
 
     
     <link rel="canonical" href="https://firsh.me/2016/08/03/add-outline-for-markdown-in-vim/">
-    <link rel="alternate" type="application/atom+xml" title="firshme" href="/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="下水鱼" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
     <meta property="og:title" content="在 Vim 里为 Markdown 文档展示导航窗格">
@@ -42,7 +42,7 @@
         
     
     <meta property="og:url" content="https://firsh.me/2016/08/03/add-outline-for-markdown-in-vim/">
-    <meta property="og:site_name" content="firshme">
+    <meta property="og:site_name" content="下水鱼">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
     
@@ -74,7 +74,7 @@
 <body class="" data-mz="">
     <header class="site-header">
         <div class="container">
-            <h1><a href="/" title="firshme"><span class="octicon octicon-mark-github"></span> firshme</a></h1>
+            <h1><a href="/" title="下水鱼"><span class="octicon octicon-mark-github"></span> 下水鱼</a></h1>
             <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -185,7 +185,7 @@
     <p>给 ~/.ctags 文件（Windows 下是 <code class="language-plaintext highlighter-rouge">C:\Users\&lt;username&gt;\.ctags</code> 里增加如下内容，没有这个文件就新建一个：</p>
 
     <div class="language-viml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">--</span>langdef<span class="p">=</span>markdown
-<span class="p">--</span>langmap<span class="p">=</span>markdown<span class="p">:.</span>md
+<span class="p">--</span><span class="nb">langmap</span><span class="p">=</span>markdown<span class="p">:.</span>md
 <span class="p">--</span>regex<span class="p">-</span>markdown<span class="p">=</span><span class="sr">/^#{1}[ \t]*([^#]+.*)/</span><span class="p">.</span> \<span class="m">1</span><span class="sr">/h,headings/</span>
 <span class="p">--</span>regex<span class="p">-</span>markdown<span class="p">=</span><span class="sr">/^#{2}[ \t]*([^#]+.*)/</span><span class="p">.</span>   \<span class="m">1</span><span class="sr">/h,headings/</span>
 <span class="p">--</span>regex<span class="p">-</span>markdown<span class="p">=</span><span class="sr">/^#{3}[ \t]*([^#]+.*)/</span><span class="p">.</span>     \<span class="m">1</span><span class="sr">/h,headings/</span>
@@ -218,7 +218,7 @@
   <li>
     <p>现在你可以使用 <code class="language-plaintext highlighter-rouge">:TagbarToggle&lt;CR&gt;</code> 来打开导航窗格了，但每次开关导航窗格都要敲这么长一串命令毕竟不够方便，配置快捷键来操作更顺手，在你的 vimrc 文件里增加一个映射：</p>
 
-    <div class="language-viml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nnoremap <span class="p">&lt;</span>leader<span class="p">&gt;</span>tb <span class="p">:</span>TagbarToggle<span class="p">&lt;</span>CR<span class="p">&gt;</span>
+    <div class="language-viml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nnoremap <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="nb">tb</span> <span class="p">:</span>TagbarToggle<span class="p">&lt;</span>CR<span class="p">&gt;</span>
 </code></pre></div>    </div>
 
     <p>现在你可以使用 <code class="language-plaintext highlighter-rouge">&lt;leader&gt;tb</code> 来随时开/关导航窗格了。</p>

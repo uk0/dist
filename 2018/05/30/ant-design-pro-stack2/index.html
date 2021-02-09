@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Ant-Design-Pro 基础问题[第四天] &mdash; firshme</title>
+    <title>Ant-Design-Pro 基础问题[第四天] &mdash; 下水鱼</title>
       <!-- or -->
 
     <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
@@ -26,7 +26,7 @@
 
     
     <link rel="canonical" href="https://firsh.me/2018/05/30/ant-design-pro-stack2/">
-    <link rel="alternate" type="application/atom+xml" title="firshme" href="/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="下水鱼" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
     <meta property="og:title" content="Ant-Design-Pro 基础问题[第四天]">
@@ -42,7 +42,7 @@
         
     
     <meta property="og:url" content="https://firsh.me/2018/05/30/ant-design-pro-stack2/">
-    <meta property="og:site_name" content="firshme">
+    <meta property="og:site_name" content="下水鱼">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
     
@@ -74,7 +74,7 @@
 <body class="" data-mz="">
     <header class="site-header">
         <div class="container">
-            <h1><a href="/" title="firshme"><span class="octicon octicon-mark-github"></span> firshme</a></h1>
+            <h1><a href="/" title="下水鱼"><span class="octicon octicon-mark-github"></span> 下水鱼</a></h1>
             <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -268,7 +268,7 @@
     * @param  {state:Object} ... 里面多个参数 
     *
     */</span>
-    <span class="kd">const</span> <span class="p">{</span><span class="nx">isLoading</span><span class="p">,...</span><span class="err"></span><span class="p">[</span><span class="err">省略</span><span class="p">]}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="p">{</span><span class="nx">isLoading</span><span class="p">,...</span><span class="err"></span><span class="p">[</span><span class="nx">省略</span><span class="p">]}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">;</span>
 
     <span class="kd">const</span> <span class="nx">parentMethods</span> <span class="o">=</span> <span class="p">{</span>
         <span class="na">handleAdd</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleAdd</span><span class="p">,</span>
@@ -296,7 +296,7 @@
      *@param {Object} payload 是我们提交的参数，或者是用来修改数据等。
      *@param {function} callback 执行成功的回调可以将参数 call回去。
      **/</span>
-     <span class="na">effects</span><span class="p">:</span> <span class="p">{</span>
+     <span class="nx">effects</span><span class="p">:</span> <span class="p">{</span>
         <span class="o">*</span> <span class="nx">insertChannelCfg</span><span class="p">({</span><span class="nx">payload</span><span class="p">,</span> <span class="nx">callback</span><span class="p">},</span> <span class="p">{</span><span class="nx">call</span><span class="p">,</span> <span class="nx">put</span><span class="p">})</span> <span class="p">{</span>
             <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">yield</span> <span class="nx">call</span><span class="p">(</span><span class="nx">insertParkManagerChannelCfg</span><span class="p">,</span> <span class="nx">payload</span><span class="p">);</span>
             <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">result Data  successfully</span><span class="dl">"</span><span class="p">);</span>
@@ -395,7 +395,7 @@
       * this.ModifyHandleModalVisible(row,true)  这样会直接被触发（渲染周期开始）。
       **/</span>
       <span class="o">&lt;</span><span class="nx">Button</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">edit</span><span class="dl">"</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span><span class="o">=&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">ModifyHandleModalVisible</span><span class="p">(</span><span class="nx">row</span><span class="p">,</span><span class="kc">true</span><span class="p">)}</span><span class="o">&gt;</span>
-              <span class="err">修改</span>
+              <span class="nx">修改</span>
       <span class="o">&lt;</span><span class="sr">/Button</span><span class="err">&gt;
 </span></code></pre></div>    </div>
     <h4 id="dispatch-type-payload-获得数据的流程redux-"><span id="form_4"><font>dispatch type payload 获得数据的流程(Redux) </font></span></h4>

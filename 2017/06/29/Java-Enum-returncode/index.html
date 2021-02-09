@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Java RESTfull状态码以及返回码Enum实现[学习] &mdash; firshme</title>
+    <title>Java RESTfull状态码以及返回码Enum实现[学习] &mdash; 下水鱼</title>
       <!-- or -->
 
     <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
@@ -26,7 +26,7 @@
 
     
     <link rel="canonical" href="https://firsh.me/2017/06/29/Java-Enum-returncode/">
-    <link rel="alternate" type="application/atom+xml" title="firshme" href="/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="下水鱼" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
     <meta property="og:title" content="Java RESTfull状态码以及返回码Enum实现[学习]">
@@ -42,7 +42,7 @@
         
     
     <meta property="og:url" content="https://firsh.me/2017/06/29/Java-Enum-returncode/">
-    <meta property="og:site_name" content="firshme">
+    <meta property="og:site_name" content="下水鱼">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
     
@@ -74,7 +74,7 @@
 <body class="" data-mz="">
     <header class="site-header">
         <div class="container">
-            <h1><a href="/" title="firshme"><span class="octicon octicon-mark-github"></span> firshme</a></h1>
+            <h1><a href="/" title="下水鱼"><span class="octicon octicon-mark-github"></span> 下水鱼</a></h1>
             <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -134,7 +134,7 @@
     <p>Java RESTfull 开发中利用枚举类来记录错误码和错误码对应的错误信息，效果很棒。</p>
 
 <h2 id="1-java中枚举类可以用于记录错误码和错误码对应的错误信息其实现的技巧如下">1. Java中枚举类可以用于记录错误码和错误码对应的错误信息，其实现的技巧如下：</h2>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">todcloud</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Enum</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">todcloud.utils.Enum</span><span class="o">;</span>
 
 <span class="cm">/**
  * Created by zhangjianxin on 2017/6/29.
@@ -171,7 +171,7 @@
 
 <h2 id="2-调用测试">2. 调用测试</h2>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">todcloud</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Enum</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">todcloud.utils.Enum</span><span class="o">;</span>
 
 <span class="cm">/**
  * Created by zhangjianxin on 2017/6/29.
@@ -193,7 +193,7 @@
 
 <h2 id="3失败案例">3.失败案例</h2>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">todcloud</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Enum</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">todcloud.utils.Enum</span><span class="o">;</span>
 
 <span class="cm">/**
  * Created by zhangjianxin on 2017/6/29.
@@ -233,7 +233,7 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">todcloud</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Enum</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">todcloud.utils.Enum</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">com.alibaba.fastjson.JSONObject</span><span class="o">;</span>
 
@@ -270,7 +270,7 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">todcloud</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Enum</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">todcloud.utils.Enum</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">com.alibaba.fastjson.JSON</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.alibaba.fastjson.JSONObject</span><span class="o">;</span>
@@ -285,7 +285,7 @@
 
 </code></pre></div></div>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">todcloud</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Enum</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">todcloud.utils.Enum</span><span class="o">;</span>
 
 <span class="cm">/**
  * Created by zhangjianxin on 2017/6/29.

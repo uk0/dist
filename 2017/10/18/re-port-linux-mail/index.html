@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Python监控Linux服务器登陆 &mdash; firshme</title>
+    <title>Python监控Linux服务器登陆 &mdash; 下水鱼</title>
       <!-- or -->
 
     <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
@@ -26,7 +26,7 @@
 
     
     <link rel="canonical" href="https://firsh.me/2017/10/18/re-port-linux-mail/">
-    <link rel="alternate" type="application/atom+xml" title="firshme" href="/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="下水鱼" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
     <meta property="og:title" content="Python监控Linux服务器登陆">
@@ -42,7 +42,7 @@
         
     
     <meta property="og:url" content="https://firsh.me/2017/10/18/re-port-linux-mail/">
-    <meta property="og:site_name" content="firshme">
+    <meta property="og:site_name" content="下水鱼">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
     
@@ -74,7 +74,7 @@
 <body class="" data-mz="">
     <header class="site-header">
         <div class="container">
-            <h1><a href="/" title="firshme"><span class="octicon octicon-mark-github"></span> firshme</a></h1>
+            <h1><a href="/" title="下水鱼"><span class="octicon octicon-mark-github"></span> 下水鱼</a></h1>
             <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -145,18 +145,18 @@ author：zhangjianxin</p>
 <span class="n">user</span> <span class="o">=</span> <span class="s">'1234567'</span>
 <span class="n">password</span> <span class="o">=</span> <span class="s">'xxxx'</span>
 
-<span class="n">run_comd</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="s">'w¦grep pts'</span><span class="p">,</span><span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">run_comd</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">run_comd</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">Popen</span><span class="p">(</span><span class="s">'w¦grep pts'</span><span class="p">,</span><span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">PIPE</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">run_comd</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
 <span class="n">mailb</span> <span class="o">=</span> <span class="p">[</span><span class="s">"服务器有新用户登录"</span><span class="p">,</span><span class="n">data</span><span class="p">]</span>
 <span class="n">mailh</span> <span class="o">=</span> <span class="p">[</span><span class="s">"From: 1234567@qq.com"</span><span class="p">,</span> <span class="s">"To: xxxx@gmail.com"</span><span class="p">,</span> <span class="s">"Subject: 用户登录监控"</span><span class="p">]</span>
-<span class="n">mailmsg</span> <span class="o">=</span> <span class="s">"</span><span class="se">\r\n\r\n</span><span class="s">"</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">"</span><span class="se">\r\n</span><span class="s">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">mailh</span><span class="p">),</span> <span class="s">"</span><span class="se">\r\n</span><span class="s">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">mailb</span><span class="p">)])</span>
+<span class="n">mailmsg</span> <span class="o">=</span> <span class="s">"</span><span class="se">\r\n\r\n</span><span class="s">"</span><span class="p">.</span><span class="n">join</span><span class="p">([</span><span class="s">"</span><span class="se">\r\n</span><span class="s">"</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">mailh</span><span class="p">),</span> <span class="s">"</span><span class="se">\r\n</span><span class="s">"</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">mailb</span><span class="p">)])</span>
 
 <span class="c1">#www.iplaypy.com
 </span><span class="k">def</span> <span class="nf">send_mail</span><span class="p">():</span>
     <span class="n">send</span> <span class="o">=</span> <span class="n">SMTP</span><span class="p">(</span><span class="n">smtp</span><span class="p">)</span>
-    <span class="n">send</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">user</span><span class="p">,</span><span class="n">password</span><span class="p">)</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">send</span><span class="o">.</span><span class="n">sendmail</span><span class="p">(</span><span class="s">"1234567@qq.com"</span><span class="p">,</span> <span class="p">(</span><span class="s">"xxxx@gmail.com"</span><span class="p">,),</span> <span class="n">mailmsg</span><span class="p">)</span>
-    <span class="n">send</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+    <span class="n">send</span><span class="p">.</span><span class="n">login</span><span class="p">(</span><span class="n">user</span><span class="p">,</span><span class="n">password</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">send</span><span class="p">.</span><span class="n">sendmail</span><span class="p">(</span><span class="s">"1234567@qq.com"</span><span class="p">,</span> <span class="p">(</span><span class="s">"xxxx@gmail.com"</span><span class="p">,),</span> <span class="n">mailmsg</span><span class="p">)</span>
+    <span class="n">send</span><span class="p">.</span><span class="n">quit</span><span class="p">()</span>
 <span class="k">if</span> <span class="n">data</span> <span class="o">==</span> <span class="s">''</span><span class="p">:</span>
     <span class="k">pass</span>
 <span class="k">else</span><span class="p">:</span>

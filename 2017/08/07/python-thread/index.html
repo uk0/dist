@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>使用python进程与线程 &mdash; firshme</title>
+    <title>使用python进程与线程 &mdash; 下水鱼</title>
       <!-- or -->
 
     <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
@@ -26,7 +26,7 @@
 
     
     <link rel="canonical" href="https://firsh.me/2017/08/07/python-thread/">
-    <link rel="alternate" type="application/atom+xml" title="firshme" href="/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="下水鱼" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
     <meta property="og:title" content="使用python进程与线程">
@@ -42,7 +42,7 @@
         
     
     <meta property="og:url" content="https://firsh.me/2017/08/07/python-thread/">
-    <meta property="og:site_name" content="firshme">
+    <meta property="og:site_name" content="下水鱼">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
     
@@ -74,7 +74,7 @@
 <body class="" data-mz="">
     <header class="site-header">
         <div class="container">
-            <h1><a href="/" title="firshme"><span class="octicon octicon-mark-github"></span> firshme</a></h1>
+            <h1><a href="/" title="下水鱼"><span class="octicon octicon-mark-github"></span> 下水鱼</a></h1>
             <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -748,9 +748,9 @@ c()更适合并发执行，另外，func函数仅被pool中的一个进程运行
     <span class="k">async</span><span class="err"> </span><span class="n">def</span><span class="err"> </span><span class="n">cor2</span><span class="p">():</span>
     <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"COR2"</span><span class="p">)</span>
     <span class="err">  </span>
-    <span class="n">loop</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>
-    <span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">cor1</span><span class="p">())</span>
-    <span class="n">loop</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">loop</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">asyncio</span><span class="p">.</span><span class="n">get_event_loop</span><span class="p">()</span>
+    <span class="n">loop</span><span class="p">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">cor1</span><span class="p">())</span>
+    <span class="n">loop</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>最后三行是重点。</p>
@@ -766,19 +766,19 @@ c()更适合并发执行，另外，func函数仅被pool中的一个进程运行
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">import</span><span class="err"> </span><span class="n">greenlet</span>
     <span class="n">def</span><span class="err"> </span><span class="n">fun1</span><span class="p">():</span>
     <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"12"</span><span class="p">)</span>
-    <span class="err">    </span><span class="n">gr2</span><span class="o">.</span><span class="n">switch</span><span class="p">()</span>
+    <span class="err">    </span><span class="n">gr2</span><span class="p">.</span><span class="n">switch</span><span class="p">()</span>
     <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"56"</span><span class="p">)</span>
-    <span class="err">    </span><span class="n">gr2</span><span class="o">.</span><span class="n">switch</span><span class="p">()</span>
+    <span class="err">    </span><span class="n">gr2</span><span class="p">.</span><span class="n">switch</span><span class="p">()</span>
     <span class="err"> </span>
     <span class="n">def</span><span class="err"> </span><span class="n">fun2</span><span class="p">():</span>
     <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"34"</span><span class="p">)</span>
-    <span class="err">    </span><span class="n">gr1</span><span class="o">.</span><span class="n">switch</span><span class="p">()</span>
+    <span class="err">    </span><span class="n">gr1</span><span class="p">.</span><span class="n">switch</span><span class="p">()</span>
     <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"78"</span><span class="p">)</span>
     <span class="err"> </span>
     <span class="err"> </span>
-    <span class="n">gr1</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">greenlet</span><span class="o">.</span><span class="n">greenlet</span><span class="p">(</span><span class="n">fun1</span><span class="p">)</span>
-    <span class="n">gr2</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">greenlet</span><span class="o">.</span><span class="n">greenlet</span><span class="p">(</span><span class="n">fun2</span><span class="p">)</span>
-    <span class="n">gr1</span><span class="o">.</span><span class="n">switch</span><span class="p">()</span>
+    <span class="n">gr1</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">greenlet</span><span class="p">.</span><span class="n">greenlet</span><span class="p">(</span><span class="n">fun1</span><span class="p">)</span>
+    <span class="n">gr2</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">greenlet</span><span class="p">.</span><span class="n">greenlet</span><span class="p">(</span><span class="n">fun2</span><span class="p">)</span>
+    <span class="n">gr1</span><span class="p">.</span><span class="n">switch</span><span class="p">()</span>
 </code></pre></div></div>
 
 <h3 id="2gevent">2、gevent</h3>
@@ -793,17 +793,17 @@ c()更适合并发执行，另外，func函数仅被pool中的一个进程运行
     <span class="err"> </span>
     <span class="n">def</span><span class="err"> </span><span class="n">fun1</span><span class="p">():</span>
     <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"www.baidu.com"</span><span class="p">)</span><span class="err">   </span><span class="c1"># 第一步
-</span>    <span class="err">    </span><span class="n">gevent</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span>    <span class="err">    </span><span class="n">gevent</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"end the baidu.com"</span><span class="p">)</span><span class="err">  </span><span class="c1"># 第三步
 </span>    <span class="err"> </span>
     <span class="n">def</span><span class="err"> </span><span class="n">fun2</span><span class="p">():</span>
     <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"www.zhihu.com"</span><span class="p">)</span><span class="err">   </span><span class="c1"># 第二步
-</span>    <span class="err">    </span><span class="n">gevent</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span>    <span class="err">    </span><span class="n">gevent</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"end th zhihu.com"</span><span class="p">)</span><span class="err">  </span><span class="c1"># 第四步
 </span>    <span class="err"> </span>
-    <span class="n">gevent</span><span class="o">.</span><span class="n">joinall</span><span class="p">([</span>
-    <span class="err">    </span><span class="n">gevent</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">fun1</span><span class="p">),</span>
-    <span class="err">    </span><span class="n">gevent</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">fun2</span><span class="p">),</span>
+    <span class="n">gevent</span><span class="p">.</span><span class="n">joinall</span><span class="p">([</span>
+    <span class="err">    </span><span class="n">gevent</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">fun1</span><span class="p">),</span>
+    <span class="err">    </span><span class="n">gevent</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">fun2</span><span class="p">),</span>
     <span class="p">])</span>
 </code></pre></div></div>
 
@@ -814,15 +814,15 @@ c()更适合并发执行，另外，func函数仅被pool中的一个进程运行
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">import</span><span class="err"> </span><span class="n">gevent</span>
     <span class="k">import</span><span class="err"> </span><span class="n">requests</span>
     <span class="n">def</span><span class="err"> </span><span class="n">func</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
-    <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"get: </span><span class="si">%</span><span class="s">s"</span><span class="o">%</span><span class="n">url</span><span class="p">)</span>
-    <span class="err">    </span><span class="n">gevent</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="err">    </span><span class="n">date</span><span class="err"> </span><span class="o">=</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-    <span class="err">    </span><span class="n">ret</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">date</span><span class="o">.</span><span class="n">text</span>
+    <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">"get: %s"</span><span class="o">%</span><span class="n">url</span><span class="p">)</span>
+    <span class="err">    </span><span class="n">gevent</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="err">    </span><span class="n">date</span><span class="err"> </span><span class="o">=</span><span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="err">    </span><span class="n">ret</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">date</span><span class="p">.</span><span class="n">text</span>
     <span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">ret</span><span class="p">))</span>
-    <span class="n">gevent</span><span class="o">.</span><span class="n">joinall</span><span class="p">([</span>
-    <span class="err">    </span><span class="n">gevent</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="err"> </span><span class="s">'https://www.pythontab.com/'</span><span class="p">),</span>
-    <span class="err">    </span><span class="n">gevent</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="err"> </span><span class="s">'https://www.yahoo.com/'</span><span class="p">),</span>
-    <span class="err">    </span><span class="n">gevent</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="err"> </span><span class="s">'https://github.com/'</span><span class="p">),</span>
+    <span class="n">gevent</span><span class="p">.</span><span class="n">joinall</span><span class="p">([</span>
+    <span class="err">    </span><span class="n">gevent</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="err"> </span><span class="s">'https://www.pythontab.com/'</span><span class="p">),</span>
+    <span class="err">    </span><span class="n">gevent</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="err"> </span><span class="s">'https://www.yahoo.com/'</span><span class="p">),</span>
+    <span class="err">    </span><span class="n">gevent</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="err"> </span><span class="s">'https://github.com/'</span><span class="p">),</span>
     <span class="p">])</span>
 </code></pre></div></div>
 

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Mongodb作为Flink 的 Sink &mdash; firshme</title>
+    <title>Mongodb作为Flink 的 Sink &mdash; 下水鱼</title>
       <!-- or -->
 
     <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
@@ -26,7 +26,7 @@
 
     
     <link rel="canonical" href="https://firsh.me/2017/08/02/Mongodb-flink-sink/">
-    <link rel="alternate" type="application/atom+xml" title="firshme" href="/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="下水鱼" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
     <meta property="og:title" content="Mongodb作为Flink 的 Sink">
@@ -42,7 +42,7 @@
         
     
     <meta property="og:url" content="https://firsh.me/2017/08/02/Mongodb-flink-sink/">
-    <meta property="og:site_name" content="firshme">
+    <meta property="og:site_name" content="下水鱼">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
     
@@ -74,7 +74,7 @@
 <body class="" data-mz="">
     <header class="site-header">
         <div class="container">
-            <h1><a href="/" title="firshme"><span class="octicon octicon-mark-github"></span> firshme</a></h1>
+            <h1><a href="/" title="下水鱼"><span class="octicon octicon-mark-github"></span> 下水鱼</a></h1>
             <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -134,7 +134,7 @@ Mongodb 采用集群主从模式。</p>
   <li>继承RichSinkFunction，重写<code class="language-plaintext highlighter-rouge">open</code> 和 <code class="language-plaintext highlighter-rouge">invoke</code>方法，还有<code class="language-plaintext highlighter-rouge">close</code>。</li>
 </ul>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">e</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">sink</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.e.firsh.spb.sink</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">com.alibaba.fastjson.JSON</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.e.firs.spb.utils.Mongo.MongoService</span><span class="o">;</span>
@@ -174,7 +174,7 @@ Mongodb 采用集群主从模式。</p>
   <li>MongoDB Service 处理工具</li>
 </ul>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">e</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Mongo</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.e.firsh.spb.utils.Mongo</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">com.alibaba.fastjson.JSONObject</span><span class="o">;</span>
 
@@ -238,7 +238,7 @@ Mongodb 采用集群主从模式。</p>
   <li>获得mongodb链接池的工具类，获得某个DB的链接。</li>
 </ul>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">e</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Mongo</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.e.firsh.spb.utils.Mongo</span><span class="o">;</span>
 
 <span class="cm">/**
  * Created by zhangjianxin on 2017/7/31.
@@ -300,7 +300,7 @@ Mongodb 采用集群主从模式。</p>
   <li>用来操作实体的工具类</li>
 </ul>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">e</span><span class="o">.</span><span class="na">firsh</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Mongo</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.e.firsh.spb.utils.Mongo</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.net.UnknownHostException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
@@ -382,7 +382,7 @@ Mongodb 采用集群主从模式。</p>
   <li>JSON的小工具类</li>
 </ul>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">tod</span><span class="o">.</span><span class="na">spb</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">Mongo</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.tod.spb.utils.Mongo</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">java.io.OutputStream</span><span class="o">;</span>
 

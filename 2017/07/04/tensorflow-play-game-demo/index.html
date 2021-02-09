@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>用Tensorflow基于Deep Q Learning DQN 玩Flappy Bird &mdash; firshme</title>
+    <title>用Tensorflow基于Deep Q Learning DQN 玩Flappy Bird &mdash; 下水鱼</title>
       <!-- or -->
 
     <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
@@ -26,7 +26,7 @@
 
     
     <link rel="canonical" href="https://firsh.me/2017/07/04/tensorflow-play-game-demo/">
-    <link rel="alternate" type="application/atom+xml" title="firshme" href="/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="下水鱼" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
     <meta property="og:title" content="用Tensorflow基于Deep Q Learning DQN 玩Flappy Bird">
@@ -42,7 +42,7 @@
         
     
     <meta property="og:url" content="https://firsh.me/2017/07/04/tensorflow-play-game-demo/">
-    <meta property="og:site_name" content="firshme">
+    <meta property="og:site_name" content="下水鱼">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
     
@@ -74,7 +74,7 @@
 <body class="" data-mz="">
     <header class="site-header">
         <div class="container">
-            <h1><a href="/" title="firshme"><span class="octicon octicon-mark-github"></span> firshme</a></h1>
+            <h1><a href="/" title="下水鱼"><span class="octicon octicon-mark-github"></span> 下水鱼</a></h1>
             <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -158,7 +158,7 @@
  <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
  <span class="kn">import</span> <span class="nn">cv2</span>
  <span class="kn">import</span> <span class="nn">sys</span>
- <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">"game/"</span><span class="p">)</span>
+ <span class="n">sys</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"game/"</span><span class="p">)</span>
  <span class="kn">import</span> <span class="nn">wrapped_flappy_bird</span> <span class="k">as</span> <span class="n">game</span>
  <span class="kn">import</span> <span class="nn">random</span>
  <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
@@ -176,18 +176,18 @@
 </span> <span class="n">FRAME_PER_ACTION</span> <span class="o">=</span> <span class="mi">1</span>
  
  <span class="k">def</span> <span class="nf">weight_variable</span><span class="p">(</span><span class="n">shape</span><span class="p">):</span>
-     <span class="n">initial</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">)</span>
-     <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
+     <span class="n">initial</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">truncated_normal</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">)</span>
+     <span class="k">return</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
  
  <span class="k">def</span> <span class="nf">bias_variable</span><span class="p">(</span><span class="n">shape</span><span class="p">):</span>
-     <span class="n">initial</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="n">shape</span><span class="p">)</span>
-     <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
+     <span class="n">initial</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">constant</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="n">shape</span><span class="p">)</span>
+     <span class="k">return</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
  
  <span class="k">def</span> <span class="nf">conv2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">stride</span><span class="p">):</span>
-     <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span> <span class="o">=</span> <span class="s">"SAME"</span><span class="p">)</span>
+     <span class="k">return</span> <span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span> <span class="o">=</span> <span class="s">"SAME"</span><span class="p">)</span>
  
  <span class="k">def</span> <span class="nf">max_pool_2x2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-     <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">max_pool</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ksize</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span> <span class="o">=</span> <span class="s">"SAME"</span><span class="p">)</span>
+     <span class="k">return</span> <span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">max_pool</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ksize</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span> <span class="o">=</span> <span class="s">"SAME"</span><span class="p">)</span>
  
  <span class="k">def</span> <span class="nf">createNetwork</span><span class="p">():</span>
      <span class="c1"># network weights
@@ -207,38 +207,38 @@
      <span class="n">b_fc2</span> <span class="o">=</span> <span class="n">bias_variable</span><span class="p">([</span><span class="n">ACTIONS</span><span class="p">])</span>
  
      <span class="c1"># input layer
-</span>     <span class="n">s</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</span>     <span class="n">s</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
  
      <span class="c1"># hidden layers
-</span>     <span class="n">h_conv1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">conv2d</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">W_conv1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_conv1</span><span class="p">)</span>
+</span>     <span class="n">h_conv1</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">relu</span><span class="p">(</span><span class="n">conv2d</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">W_conv1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_conv1</span><span class="p">)</span>
      <span class="n">h_pool1</span> <span class="o">=</span> <span class="n">max_pool_2x2</span><span class="p">(</span><span class="n">h_conv1</span><span class="p">)</span>
  
-     <span class="n">h_conv2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">conv2d</span><span class="p">(</span><span class="n">h_pool1</span><span class="p">,</span> <span class="n">W_conv2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_conv2</span><span class="p">)</span>
+     <span class="n">h_conv2</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">relu</span><span class="p">(</span><span class="n">conv2d</span><span class="p">(</span><span class="n">h_pool1</span><span class="p">,</span> <span class="n">W_conv2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_conv2</span><span class="p">)</span>
      <span class="c1">#h_pool2 = max_pool_2x2(h_conv2)
 </span> 
-     <span class="n">h_conv3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">conv2d</span><span class="p">(</span><span class="n">h_conv2</span><span class="p">,</span> <span class="n">W_conv3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_conv3</span><span class="p">)</span>
+     <span class="n">h_conv3</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">relu</span><span class="p">(</span><span class="n">conv2d</span><span class="p">(</span><span class="n">h_conv2</span><span class="p">,</span> <span class="n">W_conv3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_conv3</span><span class="p">)</span>
      <span class="c1">#h_pool3 = max_pool_2x2(h_conv3)
 </span> 
      <span class="c1">#h_pool3_flat = tf.reshape(h_pool3, [-1, 256])
-</span>     <span class="n">h_conv3_flat</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">h_conv3</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1600</span><span class="p">])</span>
+</span>     <span class="n">h_conv3_flat</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">h_conv3</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1600</span><span class="p">])</span>
  
-     <span class="n">h_fc1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">h_conv3_flat</span><span class="p">,</span> <span class="n">W_fc1</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_fc1</span><span class="p">)</span>
+     <span class="n">h_fc1</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">relu</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">h_conv3_flat</span><span class="p">,</span> <span class="n">W_fc1</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_fc1</span><span class="p">)</span>
  
      <span class="c1"># readout layer
-</span>     <span class="n">readout</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">h_fc1</span><span class="p">,</span> <span class="n">W_fc2</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_fc2</span>
+</span>     <span class="n">readout</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">h_fc1</span><span class="p">,</span> <span class="n">W_fc2</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_fc2</span>
  
      <span class="k">return</span> <span class="n">s</span><span class="p">,</span> <span class="n">readout</span><span class="p">,</span> <span class="n">h_fc1</span>
  
  <span class="k">def</span> <span class="nf">trainNetwork</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">readout</span><span class="p">,</span> <span class="n">h_fc1</span><span class="p">,</span> <span class="n">sess</span><span class="p">):</span>
      <span class="c1"># define the cost function
-</span>     <span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="n">ACTIONS</span><span class="p">])</span>
-     <span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">])</span>
-     <span class="n">readout_action</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">readout</span><span class="p">,</span> <span class="n">a</span><span class="p">),</span> <span class="n">reduction_indices</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-     <span class="n">cost</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">readout_action</span><span class="p">))</span>
-     <span class="n">train_step</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+</span>     <span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="n">ACTIONS</span><span class="p">])</span>
+     <span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">])</span>
+     <span class="n">readout_action</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">readout</span><span class="p">,</span> <span class="n">a</span><span class="p">),</span> <span class="n">reduction_indices</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+     <span class="n">cost</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">square</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">readout_action</span><span class="p">))</span>
+     <span class="n">train_step</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">train</span><span class="p">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">).</span><span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
  
      <span class="c1"># open up a game state to communicate with emulator
-</span>     <span class="n">game_state</span> <span class="o">=</span> <span class="n">game</span><span class="o">.</span><span class="n">GameState</span><span class="p">()</span>
+</span>     <span class="n">game_state</span> <span class="o">=</span> <span class="n">game</span><span class="p">.</span><span class="n">GameState</span><span class="p">()</span>
  
      <span class="c1"># store the previous observations in replay memory
 </span>     <span class="n">D</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
@@ -248,20 +248,20 @@
      <span class="n">h_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"logs_"</span> <span class="o">+</span> <span class="n">GAME</span> <span class="o">+</span> <span class="s">"/hidden.txt"</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
  
      <span class="c1"># get the first state by doing nothing and preprocess the image to 80x80x4
-</span>     <span class="n">do_nothing</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ACTIONS</span><span class="p">)</span>
+</span>     <span class="n">do_nothing</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ACTIONS</span><span class="p">)</span>
      <span class="n">do_nothing</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-     <span class="n">x_t</span><span class="p">,</span> <span class="n">r_0</span><span class="p">,</span> <span class="n">terminal</span> <span class="o">=</span> <span class="n">game_state</span><span class="o">.</span><span class="n">frame_step</span><span class="p">(</span><span class="n">do_nothing</span><span class="p">)</span>
-     <span class="n">x_t</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">x_t</span><span class="p">,</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">)),</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
-     <span class="n">ret</span><span class="p">,</span> <span class="n">x_t</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">x_t</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span>
-     <span class="n">s_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">((</span><span class="n">x_t</span><span class="p">,</span> <span class="n">x_t</span><span class="p">,</span> <span class="n">x_t</span><span class="p">,</span> <span class="n">x_t</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+     <span class="n">x_t</span><span class="p">,</span> <span class="n">r_0</span><span class="p">,</span> <span class="n">terminal</span> <span class="o">=</span> <span class="n">game_state</span><span class="p">.</span><span class="n">frame_step</span><span class="p">(</span><span class="n">do_nothing</span><span class="p">)</span>
+     <span class="n">x_t</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">x_t</span><span class="p">,</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">)),</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+     <span class="n">ret</span><span class="p">,</span> <span class="n">x_t</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">x_t</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="n">cv2</span><span class="p">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span>
+     <span class="n">s_t</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">stack</span><span class="p">((</span><span class="n">x_t</span><span class="p">,</span> <span class="n">x_t</span><span class="p">,</span> <span class="n">x_t</span><span class="p">,</span> <span class="n">x_t</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
  
      <span class="c1"># saving and loading networks
-</span>     <span class="n">saver</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Saver</span><span class="p">()</span>
-     <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">initialize_all_variables</span><span class="p">())</span>
-     <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">get_checkpoint_state</span><span class="p">(</span><span class="s">"saved_networks"</span><span class="p">)</span>
-     <span class="k">if</span> <span class="n">checkpoint</span> <span class="ow">and</span> <span class="n">checkpoint</span><span class="o">.</span><span class="n">model_checkpoint_path</span><span class="p">:</span>
-         <span class="n">saver</span><span class="o">.</span><span class="n">restore</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="n">checkpoint</span><span class="o">.</span><span class="n">model_checkpoint_path</span><span class="p">)</span>
-         <span class="k">print</span><span class="p">(</span><span class="s">"Successfully loaded:"</span><span class="p">,</span> <span class="n">checkpoint</span><span class="o">.</span><span class="n">model_checkpoint_path</span><span class="p">)</span>
+</span>     <span class="n">saver</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">train</span><span class="p">.</span><span class="n">Saver</span><span class="p">()</span>
+     <span class="n">sess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">initialize_all_variables</span><span class="p">())</span>
+     <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">train</span><span class="p">.</span><span class="n">get_checkpoint_state</span><span class="p">(</span><span class="s">"saved_networks"</span><span class="p">)</span>
+     <span class="k">if</span> <span class="n">checkpoint</span> <span class="ow">and</span> <span class="n">checkpoint</span><span class="p">.</span><span class="n">model_checkpoint_path</span><span class="p">:</span>
+         <span class="n">saver</span><span class="p">.</span><span class="n">restore</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="n">checkpoint</span><span class="p">.</span><span class="n">model_checkpoint_path</span><span class="p">)</span>
+         <span class="k">print</span><span class="p">(</span><span class="s">"Successfully loaded:"</span><span class="p">,</span> <span class="n">checkpoint</span><span class="p">.</span><span class="n">model_checkpoint_path</span><span class="p">)</span>
      <span class="k">else</span><span class="p">:</span>
          <span class="k">print</span><span class="p">(</span><span class="s">"Could not find old network weights"</span><span class="p">)</span>
  
@@ -270,16 +270,16 @@
      <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
      <span class="k">while</span> <span class="s">"flappy bird"</span> <span class="o">!=</span> <span class="s">"angry bird"</span><span class="p">:</span>
          <span class="c1"># choose an action epsilon greedily
-</span>         <span class="n">readout_t</span> <span class="o">=</span> <span class="n">readout</span><span class="o">.</span><span class="nb">eval</span><span class="p">(</span><span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">s</span> <span class="p">:</span> <span class="p">[</span><span class="n">s_t</span><span class="p">]})[</span><span class="mi">0</span><span class="p">]</span>
-         <span class="n">a_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">ACTIONS</span><span class="p">])</span>
+</span>         <span class="n">readout_t</span> <span class="o">=</span> <span class="n">readout</span><span class="p">.</span><span class="nb">eval</span><span class="p">(</span><span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">s</span> <span class="p">:</span> <span class="p">[</span><span class="n">s_t</span><span class="p">]})[</span><span class="mi">0</span><span class="p">]</span>
+         <span class="n">a_t</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">ACTIONS</span><span class="p">])</span>
          <span class="n">action_index</span> <span class="o">=</span> <span class="mi">0</span>
          <span class="k">if</span> <span class="n">t</span> <span class="o">%</span> <span class="n">FRAME_PER_ACTION</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-             <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="n">epsilon</span><span class="p">:</span>
+             <span class="k">if</span> <span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="n">epsilon</span><span class="p">:</span>
                  <span class="k">print</span><span class="p">(</span><span class="s">"----------Random Action----------"</span><span class="p">)</span>
-                 <span class="n">action_index</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="n">ACTIONS</span><span class="p">)</span>
-                 <span class="n">a_t</span><span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="n">ACTIONS</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
+                 <span class="n">action_index</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randrange</span><span class="p">(</span><span class="n">ACTIONS</span><span class="p">)</span>
+                 <span class="n">a_t</span><span class="p">[</span><span class="n">random</span><span class="p">.</span><span class="n">randrange</span><span class="p">(</span><span class="n">ACTIONS</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
              <span class="k">else</span><span class="p">:</span>
-                 <span class="n">action_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">readout_t</span><span class="p">)</span>
+                 <span class="n">action_index</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">readout_t</span><span class="p">)</span>
                  <span class="n">a_t</span><span class="p">[</span><span class="n">action_index</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
          <span class="k">else</span><span class="p">:</span>
              <span class="n">a_t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># do nothing
@@ -289,22 +289,22 @@
              <span class="n">epsilon</span> <span class="o">-=</span> <span class="p">(</span><span class="n">INITIAL_EPSILON</span> <span class="o">-</span> <span class="n">FINAL_EPSILON</span><span class="p">)</span> <span class="o">/</span> <span class="n">EXPLORE</span>
  
          <span class="c1"># run the selected action and observe next state and reward
-</span>         <span class="n">x_t1_colored</span><span class="p">,</span> <span class="n">r_t</span><span class="p">,</span> <span class="n">terminal</span> <span class="o">=</span> <span class="n">game_state</span><span class="o">.</span><span class="n">frame_step</span><span class="p">(</span><span class="n">a_t</span><span class="p">)</span>
-         <span class="n">x_t1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">x_t1_colored</span><span class="p">,</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">)),</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
-         <span class="n">ret</span><span class="p">,</span> <span class="n">x_t1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">x_t1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span>
-         <span class="n">x_t1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_t1</span><span class="p">,</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</span>         <span class="n">x_t1_colored</span><span class="p">,</span> <span class="n">r_t</span><span class="p">,</span> <span class="n">terminal</span> <span class="o">=</span> <span class="n">game_state</span><span class="p">.</span><span class="n">frame_step</span><span class="p">(</span><span class="n">a_t</span><span class="p">)</span>
+         <span class="n">x_t1</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">x_t1_colored</span><span class="p">,</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">)),</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+         <span class="n">ret</span><span class="p">,</span> <span class="n">x_t1</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">x_t1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span>
+         <span class="n">x_t1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_t1</span><span class="p">,</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
          <span class="c1">#s_t1 = np.append(x_t1, s_t[:,:,1:], axis = 2)
-</span>         <span class="n">s_t1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_t1</span><span class="p">,</span> <span class="n">s_t</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span>         <span class="n">s_t1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_t1</span><span class="p">,</span> <span class="n">s_t</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
  
          <span class="c1"># store the transition in D
-</span>         <span class="n">D</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">s_t</span><span class="p">,</span> <span class="n">a_t</span><span class="p">,</span> <span class="n">r_t</span><span class="p">,</span> <span class="n">s_t1</span><span class="p">,</span> <span class="n">terminal</span><span class="p">))</span>
+</span>         <span class="n">D</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">s_t</span><span class="p">,</span> <span class="n">a_t</span><span class="p">,</span> <span class="n">r_t</span><span class="p">,</span> <span class="n">s_t1</span><span class="p">,</span> <span class="n">terminal</span><span class="p">))</span>
          <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">D</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">REPLAY_MEMORY</span><span class="p">:</span>
-             <span class="n">D</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+             <span class="n">D</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
  
          <span class="c1"># only train if done observing
 </span>         <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="n">OBSERVE</span><span class="p">:</span>
              <span class="c1"># sample a minibatch to train on
-</span>             <span class="n">minibatch</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">BATCH</span><span class="p">)</span>
+</span>             <span class="n">minibatch</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">sample</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">BATCH</span><span class="p">)</span>
  
              <span class="c1"># get the batch variables
 </span>             <span class="n">s_j_batch</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">minibatch</span><span class="p">]</span>
@@ -313,17 +313,17 @@
              <span class="n">s_j1_batch</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">minibatch</span><span class="p">]</span>
  
              <span class="n">y_batch</span> <span class="o">=</span> <span class="p">[]</span>
-             <span class="n">readout_j1_batch</span> <span class="o">=</span> <span class="n">readout</span><span class="o">.</span><span class="nb">eval</span><span class="p">(</span><span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">s</span> <span class="p">:</span> <span class="n">s_j1_batch</span><span class="p">})</span>
+             <span class="n">readout_j1_batch</span> <span class="o">=</span> <span class="n">readout</span><span class="p">.</span><span class="nb">eval</span><span class="p">(</span><span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">s</span> <span class="p">:</span> <span class="n">s_j1_batch</span><span class="p">})</span>
              <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">minibatch</span><span class="p">)):</span>
                  <span class="n">terminal</span> <span class="o">=</span> <span class="n">minibatch</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span>
                  <span class="c1"># if terminal, only equals reward
 </span>                 <span class="k">if</span> <span class="n">terminal</span><span class="p">:</span>
-                     <span class="n">y_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r_batch</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                     <span class="n">y_batch</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">r_batch</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
                  <span class="k">else</span><span class="p">:</span>
-                     <span class="n">y_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r_batch</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">GAMMA</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="nb">max</span><span class="p">(</span><span class="n">readout_j1_batch</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+                     <span class="n">y_batch</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">r_batch</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">GAMMA</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">readout_j1_batch</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
  
              <span class="c1"># perform gradient step
-</span>             <span class="n">train_step</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span>
+</span>             <span class="n">train_step</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span>
                  <span class="n">y</span> <span class="p">:</span> <span class="n">y_batch</span><span class="p">,</span>
                  <span class="n">a</span> <span class="p">:</span> <span class="n">a_batch</span><span class="p">,</span>
                  <span class="n">s</span> <span class="p">:</span> <span class="n">s_j_batch</span><span class="p">}</span>
@@ -335,7 +335,7 @@
  
          <span class="c1"># save progress every 10000 iterations
 </span>         <span class="k">if</span> <span class="n">t</span> <span class="o">%</span> <span class="mi">10000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-             <span class="n">saver</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="s">'saved_networks/'</span> <span class="o">+</span> <span class="n">GAME</span> <span class="o">+</span> <span class="s">'-dqn'</span><span class="p">,</span> <span class="n">global_step</span> <span class="o">=</span> <span class="n">t</span><span class="p">)</span>
+             <span class="n">saver</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="s">'saved_networks/'</span> <span class="o">+</span> <span class="n">GAME</span> <span class="o">+</span> <span class="s">'-dqn'</span><span class="p">,</span> <span class="n">global_step</span> <span class="o">=</span> <span class="n">t</span><span class="p">)</span>
  
          <span class="c1"># print info
 </span>         <span class="n">state</span> <span class="o">=</span> <span class="s">""</span>
@@ -348,17 +348,17 @@
  
          <span class="k">print</span><span class="p">(</span><span class="s">"TIMESTEP"</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="s">"/ STATE"</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> \
              <span class="s">"/ EPSILON"</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="s">"/ ACTION"</span><span class="p">,</span> <span class="n">action_index</span><span class="p">,</span> <span class="s">"/ REWARD"</span><span class="p">,</span> <span class="n">r_t</span><span class="p">,</span> \
-             <span class="s">"/ Q_MAX </span><span class="si">%</span><span class="s">e"</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="nb">max</span><span class="p">(</span><span class="n">readout_t</span><span class="p">))</span>
+             <span class="s">"/ Q_MAX %e"</span> <span class="o">%</span> <span class="n">np</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">readout_t</span><span class="p">))</span>
          <span class="c1"># write info to files
 </span>         <span class="s">'''
-         if t </span><span class="si">% 10000</span><span class="s"> &lt;= 100:
+         if t % 10000 &lt;= 100:
              a_file.write(",".join([str(x) for x in readout_t]) + '</span><span class="se">\n</span><span class="s">')
              h_file.write(",".join([str(x) for x in h_fc1.eval(feed_dict={s:[s_t]})[0]]) + '</span><span class="se">\n</span><span class="s">')
              cv2.imwrite("logs_tetris/frame" + str(t) + ".png", x_t1)
          '''</span>
  
  <span class="k">def</span> <span class="nf">playGame</span><span class="p">():</span>
-     <span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">InteractiveSession</span><span class="p">()</span>
+     <span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">InteractiveSession</span><span class="p">()</span>
      <span class="n">s</span><span class="p">,</span> <span class="n">readout</span><span class="p">,</span> <span class="n">h_fc1</span> <span class="o">=</span> <span class="n">createNetwork</span><span class="p">()</span>
      <span class="n">trainNetwork</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">readout</span><span class="p">,</span> <span class="n">h_fc1</span><span class="p">,</span> <span class="n">sess</span><span class="p">)</span>
  

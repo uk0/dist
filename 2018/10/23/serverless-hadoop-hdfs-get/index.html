@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>通过Serverless 获取 hadoop 文件系统的[原创] &mdash; firshme</title>
+    <title>通过Serverless 获取 hadoop 文件系统的[原创] &mdash; 下水鱼</title>
       <!-- or -->
 
     <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
@@ -26,7 +26,7 @@
 
     
     <link rel="canonical" href="https://firsh.me/2018/10/23/serverless-hadoop-hdfs-get/">
-    <link rel="alternate" type="application/atom+xml" title="firshme" href="/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="下水鱼" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
     <meta property="og:title" content="通过Serverless 获取 hadoop 文件系统的[原创]">
@@ -42,7 +42,7 @@
         
     
     <meta property="og:url" content="https://firsh.me/2018/10/23/serverless-hadoop-hdfs-get/">
-    <meta property="og:site_name" content="firshme">
+    <meta property="og:site_name" content="下水鱼">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
     
@@ -74,7 +74,7 @@
 <body class="" data-mz="">
     <header class="site-header">
         <div class="container">
-            <h1><a href="/" title="firshme"><span class="octicon octicon-mark-github"></span> firshme</a></h1>
+            <h1><a href="/" title="下水鱼"><span class="octicon octicon-mark-github"></span> 下水鱼</a></h1>
             <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -168,9 +168,9 @@
 <span class="n">headers</span><span class="p">[</span><span class="s">'Content-Disposition'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'attachment;filename="data.csv"'</span>
 <span class="o">@</span><span class="n">route</span><span class="p">(</span><span class="s">'/download'</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">getfile</span><span class="p">():</span>
-    <span class="k">with</span> <span class="n">client</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s">"/public/csv/parking_ths_car_record/part-m-00000"</span><span class="p">)</span> <span class="k">as</span> <span class="n">reader</span><span class="p">:</span>
-        <span class="n">content</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-        <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">,</span> <span class="s">'ignore'</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">'gbk'</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">client</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="s">"/public/csv/parking_ths_car_record/part-m-00000"</span><span class="p">)</span> <span class="k">as</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">reader</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">,</span> <span class="s">'ignore'</span><span class="p">).</span><span class="n">encode</span><span class="p">(</span><span class="s">'gbk'</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">HTTPResponse</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">content</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 
 </code></pre></div></div>

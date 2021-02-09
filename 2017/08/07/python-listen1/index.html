@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>使用python把图片存入数据库. &mdash; firshme</title>
+    <title>使用python把图片存入数据库. &mdash; 下水鱼</title>
       <!-- or -->
 
     <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
@@ -26,7 +26,7 @@
 
     
     <link rel="canonical" href="https://firsh.me/2017/08/07/python-listen1/">
-    <link rel="alternate" type="application/atom+xml" title="firshme" href="/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="下水鱼" href="/feed.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     
     <meta property="og:title" content="使用python把图片存入数据库.">
@@ -42,7 +42,7 @@
         
     
     <meta property="og:url" content="https://firsh.me/2017/08/07/python-listen1/">
-    <meta property="og:site_name" content="firshme">
+    <meta property="og:site_name" content="下水鱼">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
     
@@ -74,7 +74,7 @@
 <body class="" data-mz="">
     <header class="site-header">
         <div class="container">
-            <h1><a href="/" title="firshme"><span class="octicon octicon-mark-github"></span> firshme</a></h1>
+            <h1><a href="/" title="下水鱼"><span class="octicon octicon-mark-github"></span> 下水鱼</a></h1>
             <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -151,25 +151,25 @@ l对于大数据的查询速度会很慢。</p>
 <span class="k">try</span><span class="p">:</span>
     <span class="c1">#读取图片文件
 </span>    <span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"./test.jpg"</span><span class="p">)</span>
-    <span class="n">img</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">fp</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">fp</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 <span class="k">except</span> <span class="nb">IOError</span><span class="p">,</span><span class="n">e</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s">"Error </span><span class="si">%</span><span class="s">d </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">"Error %d %s"</span> <span class="o">%</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">e</span><span class="p">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="c1">#mysql连接
-</span>    <span class="n">conn</span> <span class="o">=</span> <span class="n">mysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'localhost'</span><span class="p">,</span><span class="n">user</span><span class="o">=</span><span class="s">'root'</span><span class="p">,</span><span class="n">passwd</span><span class="o">=</span><span class="s">'123456'</span><span class="p">,</span><span class="n">db</span><span class="o">=</span><span class="s">'test'</span><span class="p">)</span>
-    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+</span>    <span class="n">conn</span> <span class="o">=</span> <span class="n">mysql</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'localhost'</span><span class="p">,</span><span class="n">user</span><span class="o">=</span><span class="s">'root'</span><span class="p">,</span><span class="n">passwd</span><span class="o">=</span><span class="s">'123456'</span><span class="p">,</span><span class="n">db</span><span class="o">=</span><span class="s">'test'</span><span class="p">)</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">cursor</span><span class="p">()</span>
     <span class="c1">#注意使用Binary()函数来指定存储的是二进制
-</span>    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"INSERT INTO images SET data='</span><span class="si">%</span><span class="s">s'"</span> <span class="o">%</span> <span class="n">mysql</span><span class="o">.</span><span class="n">Binary</span><span class="p">(</span><span class="n">img</span><span class="p">))</span>
+</span>    <span class="n">cursor</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"INSERT INTO images SET data='%s'"</span> <span class="o">%</span> <span class="n">mysql</span><span class="p">.</span><span class="n">Binary</span><span class="p">(</span><span class="n">img</span><span class="p">))</span>
     <span class="c1">#如果数据库没有设置自动提交，这里要提交一下
-</span>    <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-    <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span>    <span class="n">conn</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="n">cursor</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
     <span class="c1">#关闭数据库连接
-</span>    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="k">except</span> <span class="n">mysql</span><span class="o">.</span><span class="n">Error</span><span class="p">,</span><span class="n">e</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s">"Error </span><span class="si">%</span><span class="s">d </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span>    <span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+<span class="k">except</span> <span class="n">mysql</span><span class="p">.</span><span class="n">Error</span><span class="p">,</span><span class="n">e</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">"Error %d %s"</span> <span class="o">%</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">e</span><span class="p">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 </code></pre></div></div>
 
