@@ -1,4 +1,1410 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://firsh.me/" rel="alternate" type="text/html" /><updated>2021-02-19T09:38:08+08:00</updated><id>https://firsh.me/feed.xml</id><title type="html">下水鱼</title><subtitle>张建新个人博客,我没有生来天赋过人,只有对技术的虔诚。</subtitle><author><name>ZhangJianXin</name></author><entry><title type="html">Time Machine Backup Fix ERROR</title><link href="https://firsh.me/2020/05/08/time-machine-by-s3-and-usb/" rel="alternate" type="text/html" title="Time Machine Backup Fix ERROR" /><published>2020-05-08T17:49:27+08:00</published><updated>2020-05-08T17:49:27+08:00</updated><id>https://firsh.me/2020/05/08/time-machine-by-s3-and-usb</id><content type="html" xml:base="https://firsh.me/2020/05/08/time-machine-by-s3-and-usb/">&lt;h3 id=&quot;介绍背景&quot;&gt;介绍背景&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://firsh.me/" rel="alternate" type="text/html" /><updated>2021-04-24T00:05:53+08:00</updated><id>https://firsh.me/feed.xml</id><title type="html">下水鱼</title><subtitle>张建新个人博客,我没有生来天赋过人,只有对技术的虔诚。</subtitle><author><name>ZhangJianXin</name></author><entry><title type="html">Tdengine on k8s</title><link href="https://firsh.me/2021/04/23/tdengine-on-k8s/" rel="alternate" type="text/html" title="Tdengine on k8s" /><published>2021-04-23T23:48:46+08:00</published><updated>2021-04-23T23:48:46+08:00</updated><id>https://firsh.me/2021/04/23/tdengine-on-k8s</id><content type="html" xml:base="https://firsh.me/2021/04/23/tdengine-on-k8s/">&lt;p&gt;将 Tdengine 集群模式部署到 Kubernetes ，支持扩节点，后面我会将自动脚本提交到 我的github。&lt;/p&gt;
+
+&lt;h4 id=&quot;准备&quot;&gt;准备&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Tdengine 2.0.20 源代码&lt;/li&gt;
+  &lt;li&gt;K8S集群(存储 nfs ceph)&lt;/li&gt;
+  &lt;li&gt;yaml 文件&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;为集群创建-存储使用nfs&quot;&gt;为集群创建 存储（使用nfs）&lt;/h4&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;c1&quot;&gt;# 这里面提前创建好了  storage = nfs&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;PersistentVolumeClaim&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;testtdpvc1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;accessModes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ReadWriteMany&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;resources&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;storage&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;20&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;volumeName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;storageClassName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nfs&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;PersistentVolumeClaim&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;testtdpvc2&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;accessModes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ReadWriteMany&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;resources&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;storage&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;20&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;volumeName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;storageClassName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nfs&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;PersistentVolumeClaim&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;testtdpvc3&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;accessModes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ReadWriteMany&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;resources&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;storage&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;20&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;volumeName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;storageClassName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nfs&lt;/span&gt;
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;准备集群配置文件&quot;&gt;准备集群配置文件&lt;/h4&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ConfigMap&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;ms1.cnf&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;########################################################&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;#                                                      #&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;#                  TDengine Configuration              #&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;#   Any questions, please email support@taosdata.com   #&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;#                                                      #&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;########################################################&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# first fully qualified domain name (FQDN) for TDengine system&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;firstEp                   tdmnode-0.default.svc.cluster.local:6030&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;secondEp                  tdmnode-1.default.svc.cluster.local:6030&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# local fully qualified domain name (FQDN)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;fqdn                      tdmnode-0.default.svc.cluster.local&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# first port number for the connection (12 continuous UDP/TCP port number are used)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;serverPort                6030&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# log file's director&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;logDir                    /etc/taos/log&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# data file's directory&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;dataDir                   /etc/taos/data&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# temporary file's directory&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;tempDir                   /tmp/&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the arbitrator's fully qualified domain name (FQDN) for TDengine system, for cluster only&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# arbitrator                arbitrator_hostname:6042&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of threads per CPU core&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# numOfThreadsPerCore       1.0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of threads to commit cache data&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;numOfCommitThreads        4&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the proportion of total CPU cores available for query processing&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 2.0: the query threads will be set to double of the CPU cores.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 1.0: all CPU cores are available for query processing [default].&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 0.5: only half of the CPU cores are available for query.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 0.0: only one core available.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# ratioOfQueryCores        1.0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the last_row/first/last aggregator will not change the original column name in the result fields&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# keepColumnName            0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of management nodes in the system&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# numOfMnodes               3&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable backuping vnode directory when removing vnode&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# vnodeBak                  1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable installation / usage report&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# telemetryReporting        1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable load balancing&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# balance                   1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# role for dnode. 0 - any, 1 - mnode, 2 - dnode&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# role                      0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# max timer control blocks&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxTmrCtrl                512&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# time interval of system monitor, seconds&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# monitorInterval           30&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of seconds allowed for a dnode to be offline, for cluster only&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# offlineThreshold          8640000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# RPC re-try timer, millisecond&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# rpcTimer                  300&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# RPC maximum time for ack, seconds.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# rpcMaxTime                600&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# time interval of dnode status reporting to mnode, seconds, for cluster only&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# statusInterval            1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# time interval of heart beat from shell to dnode, seconds&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# shellActivityTimer        3&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# minimum sliding window time, milli-second&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# minSlidingTime            10&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# minimum time window, milli-second&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# minIntervalTime           10&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# maximum delay before launching a stream computation, milli-second&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxStreamCompDelay        20000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# maximum delay before launching a stream computation for the first time, milli-second&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxFirstStreamCompDelay   10000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# retry delay when a stream computation fails, milli-second&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# retryStreamCompDelay      10&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the delayed time for launching a stream computation, from 0.1(default, 10% of whole computing time window) to 0.9&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# streamCompDelayRatio      0.1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# max number of vgroups per db, 0 means configured automatically&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxVgroupsPerDb           0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# max number of tables per vnode&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxTablesPerVnode         1000000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# cache block size (Mbyte)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# cache                     16&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of cache blocks per vnode&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# blocks                    6&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of days per DB file&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;days                  3650&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of days to keep DB file&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# keep                  3650&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# minimum rows of records in file block&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# minRows               100&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# maximum rows of records in file block&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxRows               4096&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the number of acknowledgments required for successful data writing&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# quorum                1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable compression&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# comp                  2&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# write ahead log (WAL) level, 0: no wal; 1: write wal, but no fysnc; 2: write wal, and call fsync&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# walLevel              1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# if walLevel is set to 2, the cycle of fsync being executed, if set to 0, fsync is called right away&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# fsync                 3000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of replications, for cluster only&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# replica               1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the compressed rpc message, option:&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;#  -1 (no compression)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;#   0 (all message compressed),&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# &amp;gt; 0 (rpc message body which larger than this value will be compressed)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# compressMsgSize       -1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# max length of an SQL&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxSQLLength          65480&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the maximum number of records allowed for super table time sorting&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxNumOfOrderedRes    100000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# system time zone&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# timezone              Asia/Shanghai (CST, +0800)&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# system locale&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# locale                en_US.UTF-8&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# default system charset&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# charset               UTF-8&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# max number of connections allowed in dnode&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxShellConns         5000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# max number of connections allowed in client&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxConnections        5000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# stop writing logs when the disk size of the log folder is less than this value&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# minimalLogDirGB       0.1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# stop writing temporary files when the disk size of the tmp folder is less than this value&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# minimalTmpDirGB       0.1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# if disk free space is less than this value, taosd service exit directly within startup process&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# minimalDataDirGB      0.1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# One mnode is equal to the number of vnode consumed&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# mnodeEqualVnodeNum    4&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enbale/disable http service&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# http                  1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable system monitor&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# monitor               1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable recording the SQL statements via restful interface&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# httpEnableRecordSql   0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of threads used to process http requests&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# httpMaxThreads        2&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# maximum number of rows returned by the restful interface&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# restfulRowLimit       10240&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# The following parameter is used to limit the maximum number of lines in log files.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# max number of lines per log filters&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# numOfLogLines         10000000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable async log&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# asyncLog              1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# time of keeping log files, days&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# logKeepDays           0&lt;/span&gt;
+
+
+    &lt;span class=&quot;s&quot;&gt;# The following parameters are used for debug purpose only.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# debugFlag 8 bits mask: FILE-SCREEN-UNUSED-HeartBeat-DUMP-TRACE_WARN-ERROR&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 131: output warning and error&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 135: output debug, warning and error&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 143: output trace, debug, warning and error to log&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 199: output debug, warning and error to both screen and file&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 207: output trace, debug, warning and error to both screen and file&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for all log type, take effect when non-zero value&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;debugFlag             135&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for meta management messages&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# mDebugFlag            135&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for dnode messages&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# dDebugFlag            135&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for sync module&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# sDebugFlag            135&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for WAL&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# wDebugFlag            135&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for SDB&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# sdbDebugFlag          135&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for RPC&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# rpcDebugFlag          131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for TAOS TIMER&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# tmrDebugFlag          131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for TDengine client&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# cDebugFlag            131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for JNI&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# jniDebugFlag          131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for storage&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# uDebugFlag            131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for http server&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# httpDebugFlag         131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for monitor&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# monDebugFlag          131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for query&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# qDebugFlag            131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for vnode&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# vDebugFlag            131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for TSDB&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# tsdbDebugFlag         131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for continue query&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# cqDebugFlag           131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable recording the SQL in taos client&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# enableRecordSql    0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# generate core file when service crash&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# enableCoreFile        1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# maximum display width of binary and nchar fields in the shell. The parts exceeding this limit will be hidden&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxBinaryDisplayWidth 30&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable stream (continuous query)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# stream                1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# in retrieve blocking model, only in 50% query threads will be used in query processing in dnode&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# retrieveBlockingModel    0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the maximum allowed query buffer size in MB during query processing for each data node&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# -1 no limit (default)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 0  no query allowed, queries are disabled&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# queryBufferSize         -1&lt;/span&gt;
+
+  &lt;span class=&quot;s&quot;&gt;ms2.cnf&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;########################################################&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;#                                                      #&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;#                  TDengine Configuration              #&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;#   Any questions, please email support@taosdata.com   #&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;#                                                      #&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;########################################################&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# first fully qualified domain name (FQDN) for TDengine system&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;firstEp                   tdmnode-0.default.svc.cluster.local:6030&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;secondEp                  tdmnode-1.default.svc.cluster.local:6030&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# local fully qualified domain name (FQDN)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;fqdn                      tdmnode-1.default.svc.cluster.local&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# first port number for the connection (12 continuous UDP/TCP port number are used)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;serverPort                6030&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# log file's director&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;logDir                    /etc/taos/log&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# data file's directory&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;dataDir                   /etc/taos/data&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# temporary file's directory&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;tempDir                   /tmp/&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the arbitrator's fully qualified domain name (FQDN) for TDengine system, for cluster only&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# arbitrator                arbitrator_hostname:6042&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of threads per CPU core&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# numOfThreadsPerCore       1.0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of threads to commit cache data&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;numOfCommitThreads        4&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the proportion of total CPU cores available for query processing&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 2.0: the query threads will be set to double of the CPU cores.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 1.0: all CPU cores are available for query processing [default].&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 0.5: only half of the CPU cores are available for query.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 0.0: only one core available.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# ratioOfQueryCores        1.0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the last_row/first/last aggregator will not change the original column name in the result fields&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# keepColumnName            0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of management nodes in the system&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# numOfMnodes               3&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable backuping vnode directory when removing vnode&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# vnodeBak                  1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable installation / usage report&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# telemetryReporting        1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable load balancing&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# balance                   1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# role for dnode. 0 - any, 1 - mnode, 2 - dnode&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# role                      0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# max timer control blocks&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxTmrCtrl                512&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# time interval of system monitor, seconds&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# monitorInterval           30&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of seconds allowed for a dnode to be offline, for cluster only&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# offlineThreshold          8640000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# RPC re-try timer, millisecond&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# rpcTimer                  300&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# RPC maximum time for ack, seconds.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# rpcMaxTime                600&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# time interval of dnode status reporting to mnode, seconds, for cluster only&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# statusInterval            1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# time interval of heart beat from shell to dnode, seconds&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# shellActivityTimer        3&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# minimum sliding window time, milli-second&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# minSlidingTime            10&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# minimum time window, milli-second&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# minIntervalTime           10&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# maximum delay before launching a stream computation, milli-second&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxStreamCompDelay        20000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# maximum delay before launching a stream computation for the first time, milli-second&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxFirstStreamCompDelay   10000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# retry delay when a stream computation fails, milli-second&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# retryStreamCompDelay      10&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the delayed time for launching a stream computation, from 0.1(default, 10% of whole computing time window) to 0.9&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# streamCompDelayRatio      0.1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# max number of vgroups per db, 0 means configured automatically&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxVgroupsPerDb           0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# max number of tables per vnode&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxTablesPerVnode         1000000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# cache block size (Mbyte)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# cache                     16&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of cache blocks per vnode&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# blocks                    6&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of days per DB file&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;days                  3650&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of days to keep DB file&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# keep                  3650&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# minimum rows of records in file block&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# minRows               100&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# maximum rows of records in file block&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxRows               4096&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the number of acknowledgments required for successful data writing&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# quorum                1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable compression&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# comp                  2&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# write ahead log (WAL) level, 0: no wal; 1: write wal, but no fysnc; 2: write wal, and call fsync&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# walLevel              1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# if walLevel is set to 2, the cycle of fsync being executed, if set to 0, fsync is called right away&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# fsync                 3000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of replications, for cluster only&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# replica               1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the compressed rpc message, option:&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;#  -1 (no compression)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;#   0 (all message compressed),&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# &amp;gt; 0 (rpc message body which larger than this value will be compressed)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# compressMsgSize       -1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# max length of an SQL&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxSQLLength          65480&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the maximum number of records allowed for super table time sorting&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxNumOfOrderedRes    100000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# system time zone&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# timezone              Asia/Shanghai (CST, +0800)&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# system locale&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# locale                en_US.UTF-8&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# default system charset&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# charset               UTF-8&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# max number of connections allowed in dnode&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxShellConns         5000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# max number of connections allowed in client&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxConnections        5000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# stop writing logs when the disk size of the log folder is less than this value&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# minimalLogDirGB       0.1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# stop writing temporary files when the disk size of the tmp folder is less than this value&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# minimalTmpDirGB       0.1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# if disk free space is less than this value, taosd service exit directly within startup process&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# minimalDataDirGB      0.1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# One mnode is equal to the number of vnode consumed&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# mnodeEqualVnodeNum    4&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enbale/disable http service&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# http                  1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable system monitor&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# monitor               1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable recording the SQL statements via restful interface&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# httpEnableRecordSql   0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of threads used to process http requests&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# httpMaxThreads        2&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# maximum number of rows returned by the restful interface&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# restfulRowLimit       10240&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# The following parameter is used to limit the maximum number of lines in log files.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# max number of lines per log filters&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# numOfLogLines         10000000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable async log&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# asyncLog              1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# time of keeping log files, days&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# logKeepDays           0&lt;/span&gt;
+
+
+    &lt;span class=&quot;s&quot;&gt;# The following parameters are used for debug purpose only.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# debugFlag 8 bits mask: FILE-SCREEN-UNUSED-HeartBeat-DUMP-TRACE_WARN-ERROR&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 131: output warning and error&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 135: output debug, warning and error&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 143: output trace, debug, warning and error to log&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 199: output debug, warning and error to both screen and file&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 207: output trace, debug, warning and error to both screen and file&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for all log type, take effect when non-zero value&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;debugFlag             135&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for meta management messages&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# mDebugFlag            135&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for dnode messages&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# dDebugFlag            135&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for sync module&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# sDebugFlag            135&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for WAL&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# wDebugFlag            135&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for SDB&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# sdbDebugFlag          135&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for RPC&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# rpcDebugFlag          131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for TAOS TIMER&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# tmrDebugFlag          131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for TDengine client&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# cDebugFlag            131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for JNI&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# jniDebugFlag          131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for storage&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# uDebugFlag            131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for http server&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# httpDebugFlag         131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for monitor&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# monDebugFlag          131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for query&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# qDebugFlag            131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for vnode&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# vDebugFlag            131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for TSDB&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# tsdbDebugFlag         131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for continue query&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# cqDebugFlag           131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable recording the SQL in taos client&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# enableRecordSql    0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# generate core file when service crash&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# enableCoreFile        1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# maximum display width of binary and nchar fields in the shell. The parts exceeding this limit will be hidden&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxBinaryDisplayWidth 30&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable stream (continuous query)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# stream                1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# in retrieve blocking model, only in 50% query threads will be used in query processing in dnode&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# retrieveBlockingModel    0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the maximum allowed query buffer size in MB during query processing for each data node&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# -1 no limit (default)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 0  no query allowed, queries are disabled&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# queryBufferSize         -1&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;ms3.cnf&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;########################################################&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;#                                                      #&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;#                  TDengine Configuration              #&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;#   Any questions, please email support@taosdata.com   #&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;#                                                      #&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;########################################################&lt;/span&gt;
+
+
+    &lt;span class=&quot;s&quot;&gt;# first fully qualified domain name (FQDN) for TDengine system&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;firstEp                   tdmnode-0.default.svc.cluster.local:6030&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;secondEp                  tdmnode-1.default.svc.cluster.local:6030&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# local fully qualified domain name (FQDN)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;fqdn                      tdmnode-2.default.svc.cluster.local&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# first port number for the connection (12 continuous UDP/TCP port number are used)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;serverPort                6030&lt;/span&gt;
+
+
+    &lt;span class=&quot;s&quot;&gt;# log file's director&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;logDir                    /etc/taos/log&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# data file's directory&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;dataDir                   /etc/taos/data&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# temporary file's directory&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;tempDir                   /tmp/&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the arbitrator's fully qualified domain name (FQDN) for TDengine system, for cluster only&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# arbitrator                arbitrator_hostname:6042&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of threads per CPU core&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# numOfThreadsPerCore       1.0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of threads to commit cache data&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;numOfCommitThreads        4&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the proportion of total CPU cores available for query processing&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 2.0: the query threads will be set to double of the CPU cores.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 1.0: all CPU cores are available for query processing [default].&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 0.5: only half of the CPU cores are available for query.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 0.0: only one core available.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# ratioOfQueryCores        1.0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the last_row/first/last aggregator will not change the original column name in the result fields&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# keepColumnName            0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of management nodes in the system&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# numOfMnodes               3&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable backuping vnode directory when removing vnode&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# vnodeBak                  1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable installation / usage report&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# telemetryReporting        1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable load balancing&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# balance                   1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# role for dnode. 0 - any, 1 - mnode, 2 - dnode&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# role                      0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# max timer control blocks&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxTmrCtrl                512&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# time interval of system monitor, seconds&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# monitorInterval           30&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of seconds allowed for a dnode to be offline, for cluster only&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# offlineThreshold          8640000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# RPC re-try timer, millisecond&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# rpcTimer                  300&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# RPC maximum time for ack, seconds.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# rpcMaxTime                600&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# time interval of dnode status reporting to mnode, seconds, for cluster only&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# statusInterval            1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# time interval of heart beat from shell to dnode, seconds&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# shellActivityTimer        3&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# minimum sliding window time, milli-second&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# minSlidingTime            10&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# minimum time window, milli-second&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# minIntervalTime           10&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# maximum delay before launching a stream computation, milli-second&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxStreamCompDelay        20000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# maximum delay before launching a stream computation for the first time, milli-second&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxFirstStreamCompDelay   10000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# retry delay when a stream computation fails, milli-second&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# retryStreamCompDelay      10&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the delayed time for launching a stream computation, from 0.1(default, 10% of whole computing time window) to 0.9&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# streamCompDelayRatio      0.1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# max number of vgroups per db, 0 means configured automatically&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxVgroupsPerDb           0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# max number of tables per vnode&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxTablesPerVnode         1000000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# cache block size (Mbyte)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# cache                     16&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of cache blocks per vnode&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# blocks                    6&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of days per DB file&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;days                  3650&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of days to keep DB file&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# keep                  3650&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# minimum rows of records in file block&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# minRows               100&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# maximum rows of records in file block&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxRows               4096&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the number of acknowledgments required for successful data writing&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# quorum                1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable compression&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# comp                  2&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# write ahead log (WAL) level, 0: no wal; 1: write wal, but no fysnc; 2: write wal, and call fsync&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# walLevel              1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# if walLevel is set to 2, the cycle of fsync being executed, if set to 0, fsync is called right away&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# fsync                 3000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of replications, for cluster only&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# replica               1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the compressed rpc message, option:&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;#  -1 (no compression)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;#   0 (all message compressed),&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# &amp;gt; 0 (rpc message body which larger than this value will be compressed)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# compressMsgSize       -1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# max length of an SQL&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxSQLLength          65480&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the maximum number of records allowed for super table time sorting&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxNumOfOrderedRes    100000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# system time zone&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# timezone              Asia/Shanghai (CST, +0800)&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# system locale&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# locale                en_US.UTF-8&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# default system charset&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# charset               UTF-8&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# max number of connections allowed in dnode&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxShellConns         5000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# max number of connections allowed in client&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxConnections        5000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# stop writing logs when the disk size of the log folder is less than this value&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# minimalLogDirGB       0.1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# stop writing temporary files when the disk size of the tmp folder is less than this value&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# minimalTmpDirGB       0.1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# if disk free space is less than this value, taosd service exit directly within startup process&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# minimalDataDirGB      0.1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# One mnode is equal to the number of vnode consumed&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# mnodeEqualVnodeNum    4&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enbale/disable http service&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# http                  1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable system monitor&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# monitor               1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable recording the SQL statements via restful interface&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# httpEnableRecordSql   0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# number of threads used to process http requests&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# httpMaxThreads        2&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# maximum number of rows returned by the restful interface&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# restfulRowLimit       10240&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# The following parameter is used to limit the maximum number of lines in log files.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# max number of lines per log filters&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# numOfLogLines         10000000&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable async log&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# asyncLog              1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# time of keeping log files, days&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# logKeepDays           0&lt;/span&gt;
+
+
+    &lt;span class=&quot;s&quot;&gt;# The following parameters are used for debug purpose only.&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# debugFlag 8 bits mask: FILE-SCREEN-UNUSED-HeartBeat-DUMP-TRACE_WARN-ERROR&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 131: output warning and error&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 135: output debug, warning and error&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 143: output trace, debug, warning and error to log&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 199: output debug, warning and error to both screen and file&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 207: output trace, debug, warning and error to both screen and file&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for all log type, take effect when non-zero value&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;debugFlag             135&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for meta management messages&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# mDebugFlag            135&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for dnode messages&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# dDebugFlag            135&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for sync module&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# sDebugFlag            135&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for WAL&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# wDebugFlag            135&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for SDB&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# sdbDebugFlag          135&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for RPC&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# rpcDebugFlag          131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for TAOS TIMER&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# tmrDebugFlag          131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for TDengine client&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# cDebugFlag            131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for JNI&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# jniDebugFlag          131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for storage&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# uDebugFlag            131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for http server&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# httpDebugFlag         131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for monitor&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# monDebugFlag          131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for query&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# qDebugFlag            131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for vnode&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# vDebugFlag            131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for TSDB&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# tsdbDebugFlag         131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# debug flag for continue query&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# cqDebugFlag           131&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable recording the SQL in taos client&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# enableRecordSql    0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# generate core file when service crash&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# enableCoreFile        1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# maximum display width of binary and nchar fields in the shell. The parts exceeding this limit will be hidden&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# maxBinaryDisplayWidth 30&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# enable/disable stream (continuous query)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# stream                1&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# in retrieve blocking model, only in 50% query threads will be used in query processing in dnode&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# retrieveBlockingModel    0&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;# the maximum allowed query buffer size in MB during query processing for each data node&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# -1 no limit (default)&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# 0  no query allowed, queries are disabled&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;# queryBufferSize         -1&lt;/span&gt;
+
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;节点配置文件-1&quot;&gt;节点配置文件 1&lt;/h4&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;apps/v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;StatefulSet&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode-0&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;matchLabels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode-0&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;serviceName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;tdmnode-0&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;replicas&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode-0&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;containers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode-0&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdengine/tdengine:latest&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6030&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6035&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6041&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6031&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6032&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6033&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6034&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6036&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6037&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6038&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6039&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6040&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;bash&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-c&quot;&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;set -ex&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;apt install inetutils-ping dnsutils -y&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;# nodes&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;export nodes=3&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;export end_index=$(($nodes - 1))&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;while :; do&lt;/span&gt;
+                &lt;span class=&quot;s&quot;&gt;sleep 1&lt;/span&gt;
+                &lt;span class=&quot;s&quot;&gt;export index=0&lt;/span&gt;
+                &lt;span class=&quot;s&quot;&gt;for i in `seq 0 $end_index`; do&lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;tmpip=`dig tdmnode-$i.default.svc.cluster.local | grep &quot;ANSWER SECTION&quot; -A 1 | awk 'NR&amp;gt;1 {print$5}'`&lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;if [ -z &quot;$tmpip&quot; ]; then&lt;/span&gt;
+                    &lt;span class=&quot;s&quot;&gt;echo -e &quot;\033[31m wait Node tdmnode-$i ip is null  \033[0m&quot;;&lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;else&lt;/span&gt;
+                    &lt;span class=&quot;s&quot;&gt;index=$(($index + 1));&lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;fi&lt;/span&gt;
+                &lt;span class=&quot;s&quot;&gt;done&lt;/span&gt;
+
+                &lt;span class=&quot;s&quot;&gt;if [ $index -ge $nodes ] ; then&lt;/span&gt;
+                      &lt;span class=&quot;s&quot;&gt;echo -e &quot;\033[32m ips is ready .Starting now Tdengine Taosd.... \033[0m&quot;&lt;/span&gt;
+                      &lt;span class=&quot;s&quot;&gt;for i in `seq 0 $end_index`; do&lt;/span&gt;
+                          &lt;span class=&quot;s&quot;&gt;tmpip=`dig tdmnode-$i.default.svc.cluster.local | grep &quot;ANSWER SECTION&quot; -A 1 | awk 'NR&amp;gt;1 {print$5}'`&lt;/span&gt;
+                          &lt;span class=&quot;s&quot;&gt;echo  &quot;${tmpip}       tdmnode-$i.default.svc.cluster.local&quot; &amp;gt;&amp;gt; /etc/hosts ;&lt;/span&gt;
+                          &lt;span class=&quot;s&quot;&gt;done&lt;/span&gt;
+                      &lt;span class=&quot;s&quot;&gt;break&lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;else&lt;/span&gt;
+                     &lt;span class=&quot;s&quot;&gt;index=0&lt;/span&gt;
+                     &lt;span class=&quot;s&quot;&gt;echo -e &quot;\033[31m all node not get ready pls wait....  \033[0m&quot;;&lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;fi&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;done&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;taosd&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;MY_POD_IP&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;valueFrom&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;fieldRef&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                  &lt;span class=&quot;na&quot;&gt;fieldPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;status.podIP&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;volumeMounts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;config-map&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;mountPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/etc/taos/taos.cfg&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;subPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ms1.cnf&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;datadir&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;mountPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/etc/taos/data&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;config-map&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;configMap&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+              &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ms1.cnf&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ms1.cnf&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;datadir&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;persistentVolumeClaim&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;claimName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;testtdpvc3&lt;/span&gt;
+
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Service&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode-0&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode-0&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;clusterIP&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;None&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6030&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6030&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6030&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6031&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6031&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6031&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6032&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6032&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6032&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6033&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6033&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6033&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6034&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6034&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6034&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6035&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6035&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6035&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6036&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6036&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6036&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6037&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6037&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6037&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6038&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6038&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6038&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6039&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6039&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6039&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6040&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6040&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6040&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6041&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6041&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6041&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode-0&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;sessionAffinity&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;None&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ClusterIP&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;节点配置文件-2&quot;&gt;节点配置文件 2&lt;/h4&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;apps/v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;StatefulSet&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode-1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;matchLabels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode-1&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;serviceName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;tdmnode-1&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;replicas&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode-1&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;containers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode-1&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdengine/tdengine:latest&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6030&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6035&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6041&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6031&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6032&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6033&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6034&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6036&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6037&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6038&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6039&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6040&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;bash&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-c&quot;&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;set -ex&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;apt install inetutils-ping dnsutils -y&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;# nodes&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;export nodes=3&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;export end_index=$(($nodes - 1))&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;while :; do&lt;/span&gt;
+                &lt;span class=&quot;s&quot;&gt;sleep 1&lt;/span&gt;
+                &lt;span class=&quot;s&quot;&gt;export index=0&lt;/span&gt;
+                &lt;span class=&quot;s&quot;&gt;for i in `seq 0 $end_index`; do&lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;tmpip=`dig tdmnode-$i.default.svc.cluster.local | grep &quot;ANSWER SECTION&quot; -A 1 | awk 'NR&amp;gt;1 {print$5}'`&lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;if [ -z &quot;$tmpip&quot; ]; then&lt;/span&gt;
+                    &lt;span class=&quot;s&quot;&gt;echo -e &quot;\033[31m wait Node tdmnode-$i ip is null  \033[0m&quot;;&lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;else&lt;/span&gt;
+                    &lt;span class=&quot;s&quot;&gt;index=$(($index + 1))&lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;fi&lt;/span&gt;
+                &lt;span class=&quot;s&quot;&gt;done&lt;/span&gt;
+
+                &lt;span class=&quot;s&quot;&gt;if [ $index -ge $nodes ] ; then&lt;/span&gt;
+                      &lt;span class=&quot;s&quot;&gt;echo -e &quot;\033[32m ips is ready .Starting now Tdengine Taosd.... \033[0m&quot;&lt;/span&gt;
+                      &lt;span class=&quot;s&quot;&gt;for i in `seq 0 $end_index`; do&lt;/span&gt;
+                          &lt;span class=&quot;s&quot;&gt;tmpip=`dig tdmnode-$i.default.svc.cluster.local | grep &quot;ANSWER SECTION&quot; -A 1 | awk 'NR&amp;gt;1 {print$5}'`&lt;/span&gt;
+                          &lt;span class=&quot;s&quot;&gt;echo  &quot;${tmpip}       tdmnode-$i.default.svc.cluster.local&quot; &amp;gt;&amp;gt; /etc/hosts ;&lt;/span&gt;
+                          &lt;span class=&quot;s&quot;&gt;done&lt;/span&gt;
+                      &lt;span class=&quot;s&quot;&gt;break&lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;else&lt;/span&gt;
+                     &lt;span class=&quot;s&quot;&gt;index=0&lt;/span&gt;
+                     &lt;span class=&quot;s&quot;&gt;echo -e &quot;\033[31m all node not get ready pls wait....  \033[0m&quot;;&lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;fi&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;done&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;taosd&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;MY_POD_IP&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;valueFrom&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;fieldRef&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                  &lt;span class=&quot;na&quot;&gt;fieldPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;status.podIP&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;volumeMounts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;config-map&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;mountPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/etc/taos/taos.cfg&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;subPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ms2.cnf&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;datadir&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;mountPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/etc/taos/data&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;config-map&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;configMap&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+              &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ms2.cnf&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ms2.cnf&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;datadir&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;persistentVolumeClaim&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;claimName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;testtdpvc2&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Service&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode-1&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode-1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;clusterIP&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;None&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6030&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6030&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6030&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6031&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6031&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6031&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6032&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6032&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6032&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6033&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6033&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6033&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6034&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6034&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6034&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6035&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6035&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6035&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6036&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6036&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6036&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6037&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6037&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6037&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6038&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6038&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6038&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6039&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6039&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6039&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6040&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6040&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6040&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6041&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6041&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6041&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode-1&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;sessionAffinity&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;None&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ClusterIP&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;节点配置文件-3&quot;&gt;节点配置文件 3&lt;/h4&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;apps/v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;StatefulSet&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode-2&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;matchLabels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode-2&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;serviceName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;tdmnode-2&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;replicas&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode-2&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;containers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode-2&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdengine/tdengine:latest&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6030&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6035&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6041&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6031&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6032&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6033&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6034&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6036&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6037&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6038&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6039&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;containerPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6040&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;bash&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-c&quot;&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;set -ex&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;apt install inetutils-ping dnsutils -y&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;# nodes&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;export nodes=3&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;export end_index=$(($nodes - 1))&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;while :; do&lt;/span&gt;
+                &lt;span class=&quot;s&quot;&gt;sleep 1&lt;/span&gt;
+                &lt;span class=&quot;s&quot;&gt;export index=0&lt;/span&gt;
+                &lt;span class=&quot;s&quot;&gt;for i in `seq 0 $end_index`; do&lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;tmpip=`dig tdmnode-$i.default.svc.cluster.local | grep &quot;ANSWER SECTION&quot; -A 1 | awk 'NR&amp;gt;1 {print$5}'`&lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;if [ -z &quot;$tmpip&quot; ]; then&lt;/span&gt;
+                    &lt;span class=&quot;s&quot;&gt;echo -e &quot;\033[31m wait Node tdmnode-$i ip is null  \033[0m&quot;;&lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;else&lt;/span&gt;
+                    &lt;span class=&quot;s&quot;&gt;index=$(($index + 1))&lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;fi&lt;/span&gt;
+                &lt;span class=&quot;s&quot;&gt;done&lt;/span&gt;
+
+                &lt;span class=&quot;s&quot;&gt;if [ $index -ge $nodes ] ; then&lt;/span&gt;
+                      &lt;span class=&quot;s&quot;&gt;echo -e &quot;\033[32m ips is ready .Starting now Tdengine Taosd.... \033[0m&quot;&lt;/span&gt;
+                      &lt;span class=&quot;s&quot;&gt;for i in `seq 0 $end_index`; do&lt;/span&gt;
+                          &lt;span class=&quot;s&quot;&gt;tmpip=`dig tdmnode-$i.default.svc.cluster.local | grep &quot;ANSWER SECTION&quot; -A 1 | awk 'NR&amp;gt;1 {print$5}'`&lt;/span&gt;
+                          &lt;span class=&quot;s&quot;&gt;echo  &quot;${tmpip}       tdmnode-$i.default.svc.cluster.local&quot; &amp;gt;&amp;gt; /etc/hosts ;&lt;/span&gt;
+                          &lt;span class=&quot;s&quot;&gt;done&lt;/span&gt;
+                      &lt;span class=&quot;s&quot;&gt;break&lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;else&lt;/span&gt;
+                     &lt;span class=&quot;s&quot;&gt;index=0&lt;/span&gt;
+                     &lt;span class=&quot;s&quot;&gt;echo -e &quot;\033[31m all node not get ready pls wait....  \033[0m&quot;;&lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;fi&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;done&lt;/span&gt;
+              &lt;span class=&quot;s&quot;&gt;taosd&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;MY_POD_IP&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;valueFrom&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;fieldRef&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+                  &lt;span class=&quot;na&quot;&gt;fieldPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;status.podIP&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;volumeMounts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;config-map&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;mountPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/etc/taos/taos.cfg&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;subPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ms3.cnf&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;datadir&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;mountPath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/etc/taos/data&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;config-map&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;configMap&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+              &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ms3.cnf&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ms3.cnf&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;datadir&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;persistentVolumeClaim&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;claimName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;testtdpvc1&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Service&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode-2&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode-2&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;clusterIP&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;None&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6030&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6030&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6030&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6031&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6031&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6031&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6032&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6032&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6032&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6033&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6033&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6033&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6034&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6034&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6034&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6035&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6035&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6035&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6036&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6036&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6036&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6037&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6037&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6037&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6038&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6038&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6038&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6039&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6039&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6039&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6040&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6040&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6040&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;port6041&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6041&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;targetPort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6041&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tdmnode-2&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;sessionAffinity&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;None&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ClusterIP&lt;/span&gt;
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;注意事项&quot;&gt;注意事项&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;1 pvc 策略 非立即回收（重启集群 只删除 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;StatefulSet &lt;/code&gt; 即可）&lt;/li&gt;
+  &lt;li&gt;2 监控IP 解析 哪一块目前还不完善 需要一定的时间才能解析到IP 大约 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;5s&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;内部使用方式&quot;&gt;内部使用方式&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;1 将Client 文件通过nfs映射到POD 或者其他 类型的 APP内部，通过 脚本初始化，大概内容如下。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+       &lt;span class=&quot;nb&quot;&gt;command&lt;/span&gt;：
+        - sh 或者 bash
+        - &lt;span class=&quot;s2&quot;&gt;&quot;-c&quot;&lt;/span&gt;
+        - |
+        &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /plugin_free/client_td_2.0.20
+        ./install_client.sh
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;目前在k8s 集群上已经连续运行了一周，期间多次强行破坏集群验证恢复能力，以及数据存储能力，目前集群数据大约15亿条（单表测试，还在继续写入。）&lt;/p&gt;
+
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><category term="kubernetes" /><summary type="html">将 Tdengine 集群模式部署到 Kubernetes ，支持扩节点，后面我会将自动脚本提交到 我的github。</summary></entry><entry><title type="html">Time Machine Backup Fix ERROR</title><link href="https://firsh.me/2020/05/08/time-machine-by-s3-and-usb/" rel="alternate" type="text/html" title="Time Machine Backup Fix ERROR" /><published>2020-05-08T17:49:27+08:00</published><updated>2020-05-08T17:49:27+08:00</updated><id>https://firsh.me/2020/05/08/time-machine-by-s3-and-usb</id><content type="html" xml:base="https://firsh.me/2020/05/08/time-machine-by-s3-and-usb/">&lt;h3 id=&quot;介绍背景&quot;&gt;介绍背景&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -1308,205 +2714,4 @@ root@john:/tmp# nc &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; &lt;span cla
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><category term="Java" /><category term="Linux" /><category term="Directio" /><summary type="html">场景 APIServer接口要求较高的并发，而且还要将数据文件存储到本地备份，在低消耗内存CPU情况下提高程序的运行速度以及稳定性。 相关文章 http://man7.org/linux/man-pages/man2/open.2.html 实现思路 调用Linux本身的接口 Java采用JNA实现</summary></entry><entry><title type="html">读取数据发送到MQ</title><link href="https://firsh.me/2019/08/03/file_to_rocketmq_middleware/" rel="alternate" type="text/html" title="读取数据发送到MQ" /><published>2019-08-03T14:01:12+08:00</published><updated>2019-08-03T14:01:12+08:00</updated><id>https://firsh.me/2019/08/03/file_to_rocketmq_middleware</id><content type="html" xml:base="https://firsh.me/2019/08/03/file_to_rocketmq_middleware/">&lt;p&gt;数据通过FTP上传到服务器要求将数据发送到RocketMQ原版本用Java写的（不是本人）TPS上不去资源消耗大等问题。&lt;/p&gt;
-
-&lt;h2 id=&quot;缘由&quot;&gt;缘由&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;数据通过FTP上传到服务器要求将数据发送到RocketMQ原版本用Java写的（不是本人）TPS上不去资源消耗大等问题。&lt;/li&gt;
-  &lt;li&gt;解决方案：采用Golang 重新实现，用到了Golang的 Go关键字 WaitGroup MMAP等。&lt;/li&gt;
-  &lt;li&gt;目前TPS 在虚拟机上跑 TPS稳定 5600 - 4700 &lt;/li&gt;
-  &lt;li&gt;链接如下：https://github.com/uk0/file_to_rocketmq_middleware&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;核心代码介绍&quot;&gt;核心代码介绍&lt;/h2&gt;
-
-&lt;div class=&quot;language-go highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&quot;fmt&quot;&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&quot;github.com/astaxie/beego/logs&quot;&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&quot;github.com/zjykzk/rocketmq-client-go/log&quot;&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&quot;github.com/zjykzk/rocketmq-client-go/message&quot;&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&quot;github.com/zjykzk/rocketmq-client-go/producer&quot;&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&quot;math/rand&quot;&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&quot;os&quot;&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&quot;runtime&quot;&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&quot;strings&quot;&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&quot;sync/atomic&quot;&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&quot;time&quot;&lt;/span&gt;
-	&lt;span class=&quot;s&quot;&gt;&quot;unsafe&quot;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Client&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;P&lt;/span&gt;            &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;producer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Producer&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;Group&lt;/span&gt;        &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;NamesrvAddrs&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;DataChan&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;chan&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Message&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Logger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;OpenFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;O_RDWR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;O_CREATE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;O_APPEND&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0666&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;nil&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;nb&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;create file error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-	&lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;New&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Ldefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Level&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Ldebug&lt;/span&gt;
-
-	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;nil&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cli&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SendMsg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stati&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;statiBenchmarkProducerSnapshot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messageBody&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;range&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cli&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DataChan&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Topic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messageBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;topic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;byte&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;messageBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)}&lt;/span&gt;
-
-		&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cli&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SendSync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;nil&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-			&lt;span class=&quot;n&quot;&gt;logs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Debug&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Send with sync error:%s&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-			&lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;
-		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-		&lt;span class=&quot;c&quot;&gt;// 取模&lt;/span&gt;
-		&lt;span class=&quot;c&quot;&gt;//var BatchLines = []message.Data{};&lt;/span&gt;
-		&lt;span class=&quot;c&quot;&gt;//BatchLines = append(BatchLines, message.Data{Body: []byte(messageBody.line)})&lt;/span&gt;
-		&lt;span class=&quot;c&quot;&gt;//if count%defaultSendLimitbatch == 0 {&lt;/span&gt;
-		&lt;span class=&quot;c&quot;&gt;//&lt;/span&gt;
-		&lt;span class=&quot;c&quot;&gt;//	r, err3 := client.SendBatchSync(&amp;amp;message.Batch{Topic: messageBody.topic, Datas: BatchLines})&lt;/span&gt;
-		&lt;span class=&quot;c&quot;&gt;//	if err3 != nil {&lt;/span&gt;
-		&lt;span class=&quot;c&quot;&gt;//		logs.Debug(&quot;SendWithBatchSync error:%s\n&quot;, err3)&lt;/span&gt;
-		&lt;span class=&quot;c&quot;&gt;//		continue&lt;/span&gt;
-		&lt;span class=&quot;c&quot;&gt;//	}&lt;/span&gt;
-		&lt;span class=&quot;c&quot;&gt;//	logs.Debug(fmt.Sprintf(&quot;BatchSendMessageResult: %s FileName = %s  Process = %f%%  ProcessCount = %d , TotalCount = %d&quot;, r.OffsetID, messageBody.FileName, float32(messageBody.ProcessCount)/float32(messageBody.TotalCount)*100, messageBody.ProcessCount, messageBody.TotalCount))&lt;/span&gt;
-		&lt;span class=&quot;c&quot;&gt;//}&lt;/span&gt;
-
-		&lt;span class=&quot;c&quot;&gt;//selector&lt;/span&gt;
-		&lt;span class=&quot;c&quot;&gt;//r, err2 := client.SendSyncWithSelector(m, messageQueueSelector{}, count)&lt;/span&gt;
-		&lt;span class=&quot;c&quot;&gt;//if err2 != nil {&lt;/span&gt;
-		&lt;span class=&quot;c&quot;&gt;//	logs.Debug(&quot;SendWithSelector error:%s\n&quot;, err2)&lt;/span&gt;
-		&lt;span class=&quot;c&quot;&gt;//	continue&lt;/span&gt;
-		&lt;span class=&quot;c&quot;&gt;//}&lt;/span&gt;
-
-		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;producer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;OK&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-			&lt;span class=&quot;n&quot;&gt;atomic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AddInt64&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stati&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;receiveResponseSuccessCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-			&lt;span class=&quot;n&quot;&gt;atomic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AddInt64&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stati&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sendRequestSuccessCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-			&lt;span class=&quot;n&quot;&gt;currentRT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int64&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Since&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Millisecond&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-			&lt;span class=&quot;n&quot;&gt;atomic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AddInt64&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stati&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sendMessageSuccessTimeTotal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;currentRT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-			&lt;span class=&quot;n&quot;&gt;prevRT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;atomic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LoadInt64&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stati&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sendMessageMaxRT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-			&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;currentRT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prevRT&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-				&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;atomic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CompareAndSwapInt64&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stati&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sendMessageMaxRT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prevRT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;currentRT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-					&lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;
-				&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-				&lt;span class=&quot;n&quot;&gt;prevRT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;atomic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LoadInt64&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stati&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sendMessageMaxRT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-			&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-			&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-				&lt;span class=&quot;n&quot;&gt;logs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Debug&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fmt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sprintf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;SendMessageResultQueueOffset : %d FileName = %s  Process = %f%%  ProcessCount = %d , TotalCount = %d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;QueueOffset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messageBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FileName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;float32&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;messageBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ProcessCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float32&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;messageBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TotalCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messageBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ProcessCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messageBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TotalCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-			&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;logs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Debug&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;DONE&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NewMQSender&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;groupId&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nameSvr&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cli&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;cli&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;Group&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;groupId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;NamesrvAddrs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nameSvr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;DataChan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;stati&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;statiBenchmarkProducerSnapshot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;snapshots&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;produceSnapshots&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cur&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stati&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-
-	&lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;producer.log&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;nil&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;logs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Debug&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;new logger of producer.loge error:%s&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-	&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;producer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;New&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;groupId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;strings&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nameSvr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-	&lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;nil&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;logs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Debug&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;start producer error: &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	&lt;span class=&quot;c&quot;&gt;//defer client.Shutdown()&lt;/span&gt;
-
-	&lt;span class=&quot;n&quot;&gt;cli&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;P&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;
-	&lt;span class=&quot;c&quot;&gt;// 根据CPU来协商启动协程数&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;runtime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GOMAXPROCS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;runtime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NumCPU&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;go&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-			&lt;span class=&quot;n&quot;&gt;waitgroup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-			&lt;span class=&quot;n&quot;&gt;cli&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SendMsg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stati&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-			&lt;span class=&quot;n&quot;&gt;waitgroup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-		&lt;span class=&quot;p&quot;&gt;}()&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	&lt;span class=&quot;c&quot;&gt;// snapshot&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;go&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;waitgroup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;defer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;waitgroup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;ticker&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewTicker&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Second&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-			&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-			&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ticker&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-				&lt;span class=&quot;n&quot;&gt;snapshots&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TakeSnapshot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-			&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}()&lt;/span&gt;
-	&lt;span class=&quot;c&quot;&gt;// print statistic&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;go&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;waitgroup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;defer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;waitgroup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;ticker&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewTicker&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Second&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-			&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-			&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ticker&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-				&lt;span class=&quot;n&quot;&gt;snapshots&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TrintStati&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-			&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}()&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messageQueueSelector&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messageQueueSelector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mqs&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;interface&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{})&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Queue&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;orderID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mqs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;orderID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mqs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;letterBytes&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;letterIdxMask&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;6&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;// All 1-bits, as many as 6&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;// 随机&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;src&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rand&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewSource&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UnixNano&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RandStringBytesMaskImprSrc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;make&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([]&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;byte&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-	&lt;span class=&quot;c&quot;&gt;// A src.Int63() generates 63 random bits, enough for 10 characters!&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cache&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remain&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Int63&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remain&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-			&lt;span class=&quot;n&quot;&gt;cache&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remain&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Int63&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10&lt;/span&gt;
-		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;letterBytes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cache&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;letterIdxMask&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;letterBytes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;cache&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;remain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unsafe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pointer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;调用方式 `	_, _ = NewMQSender(TConfig.SendGroup, TConfig.RocketMQNameserver)
-`&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><category term="rocketmq" /><category term="golang" /><summary type="html">数据通过FTP上传到服务器要求将数据发送到RocketMQ原版本用Java写的（不是本人）TPS上不去资源消耗大等问题。</summary></entry></feed>
+&lt;p&gt;转载请注明出处，本文采用 &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-nd/4.0/&quot;&gt;CC4.0&lt;/a&gt; 协议授权&lt;/p&gt;</content><author><name>ZhangJianXin</name></author><category term="Java" /><category term="Linux" /><category term="Directio" /><summary type="html">场景 APIServer接口要求较高的并发，而且还要将数据文件存储到本地备份，在低消耗内存CPU情况下提高程序的运行速度以及稳定性。 相关文章 http://man7.org/linux/man-pages/man2/open.2.html 实现思路 调用Linux本身的接口 Java采用JNA实现</summary></entry></feed>

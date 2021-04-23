@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Tdengine on k8s &mdash; 下水鱼</title>
+      <!-- or -->
+
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/components/collection.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/globals/common.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="https://firsh.me/2021/04/23/tdengine-on-k8s/">
+    <link rel="alternate" type="application/atom+xml" title="下水鱼" href="/feed.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <meta property="og:title" content="Tdengine on k8s">
+      
+    <meta name="keywords" content="tdengine kuubernetes">
+    <meta name="og:keywords" content="tdengine kuubernetes">
+      
+    <meta name="description" content="将 Tdengine 集群模式部署到 Kubernetes ，支持扩节点，后面我会将自动脚本提交到 我的github。">
+    <meta name="og:description" content="将 Tdengine 集群模式部署到 Kubernetes ，支持扩节点，后面我会将自动脚本提交到 我的github。">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="https://firsh.me/2021/04/23/tdengine-on-k8s/">
+    <meta property="og:site_name" content="下水鱼">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2021-04-23">
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-3969253077255521",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+            src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+    <script src="http://112firshme11224.test.upcdn.net/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="http://112firshme11224.test.upcdn.net/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/" title="下水鱼"><span class="octicon octicon-mark-github"></span> 下水鱼</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="/" class=" site-header-nav-item" target="" title="首页">首页</a>
+                
+                <a href="/categories/" class=" site-header-nav-item" target="" title="分类">分类</a>
+                
+                <a href="/wiki/" class=" site-header-nav-item" target="" title="维基">维基</a>
+                
+                <a href="/links/" class=" site-header-nav-item" target="" title="链接">链接</a>
+                
+                <a href="/about/" class=" site-header-nav-item" target="" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="Tdengine on k8s">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">Tdengine on k8s</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2021/04/23
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#kubernetes" title="kubernetes">kubernetes</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <p>将 Tdengine 集群模式部署到 Kubernetes ，支持扩节点，后面我会将自动脚本提交到 我的github。</p>
+
+<h4 id="准备">准备</h4>
+
+<ul>
+  <li>Tdengine 2.0.20 源代码</li>
+  <li>K8S集群(存储 nfs ceph)</li>
+  <li>yaml 文件</li>
+</ul>
+
+<h4 id="为集群创建-存储使用nfs">为集群创建 存储（使用nfs）</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1"># 这里面提前创建好了  storage = nfs</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">PersistentVolumeClaim</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">testtdpvc1</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">accessModes</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">ReadWriteMany</span>
+  <span class="na">resources</span><span class="pi">:</span>
+    <span class="na">requests</span><span class="pi">:</span>
+      <span class="na">storage</span><span class="pi">:</span> <span class="s2">"</span><span class="s">20"</span>
+  <span class="na">volumeName</span><span class="pi">:</span>
+  <span class="na">storageClassName</span><span class="pi">:</span> <span class="s">nfs</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">PersistentVolumeClaim</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">testtdpvc2</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">accessModes</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">ReadWriteMany</span>
+  <span class="na">resources</span><span class="pi">:</span>
+    <span class="na">requests</span><span class="pi">:</span>
+      <span class="na">storage</span><span class="pi">:</span> <span class="s2">"</span><span class="s">20"</span>
+  <span class="na">volumeName</span><span class="pi">:</span>
+  <span class="na">storageClassName</span><span class="pi">:</span> <span class="s">nfs</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">PersistentVolumeClaim</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">testtdpvc3</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">accessModes</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">ReadWriteMany</span>
+  <span class="na">resources</span><span class="pi">:</span>
+    <span class="na">requests</span><span class="pi">:</span>
+      <span class="na">storage</span><span class="pi">:</span> <span class="s2">"</span><span class="s">20"</span>
+  <span class="na">volumeName</span><span class="pi">:</span>
+  <span class="na">storageClassName</span><span class="pi">:</span> <span class="s">nfs</span>
+
+
+</code></pre></div></div>
+
+<h4 id="准备集群配置文件">准备集群配置文件</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ConfigMap</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">tdmnode</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">tdmnode</span>
+<span class="na">data</span><span class="pi">:</span>
+  <span class="s">ms1.cnf</span><span class="pi">:</span> <span class="pi">|</span>
+    <span class="s">########################################################</span>
+    <span class="s">#                                                      #</span>
+    <span class="s">#                  TDengine Configuration              #</span>
+    <span class="s">#   Any questions, please email support@taosdata.com   #</span>
+    <span class="s">#                                                      #</span>
+    <span class="s">########################################################</span>
+
+    <span class="s"># first fully qualified domain name (FQDN) for TDengine system</span>
+    <span class="s">firstEp                   tdmnode-0.default.svc.cluster.local:6030</span>
+    <span class="s">secondEp                  tdmnode-1.default.svc.cluster.local:6030</span>
+    <span class="s"># local fully qualified domain name (FQDN)</span>
+    <span class="s">fqdn                      tdmnode-0.default.svc.cluster.local</span>
+
+    <span class="s"># first port number for the connection (12 continuous UDP/TCP port number are used)</span>
+    <span class="s">serverPort                6030</span>
+
+    <span class="s"># log file's director</span>
+    <span class="s">logDir                    /etc/taos/log</span>
+
+    <span class="s"># data file's directory</span>
+    <span class="s">dataDir                   /etc/taos/data</span>
+
+    <span class="s"># temporary file's directory</span>
+    <span class="s">tempDir                   /tmp/</span>
+
+    <span class="s"># the arbitrator's fully qualified domain name (FQDN) for TDengine system, for cluster only</span>
+    <span class="s"># arbitrator                arbitrator_hostname:6042</span>
+
+    <span class="s"># number of threads per CPU core</span>
+    <span class="s"># numOfThreadsPerCore       1.0</span>
+
+    <span class="s"># number of threads to commit cache data</span>
+    <span class="s">numOfCommitThreads        4</span>
+
+    <span class="s"># the proportion of total CPU cores available for query processing</span>
+    <span class="s"># 2.0: the query threads will be set to double of the CPU cores.</span>
+    <span class="s"># 1.0: all CPU cores are available for query processing [default].</span>
+    <span class="s"># 0.5: only half of the CPU cores are available for query.</span>
+    <span class="s"># 0.0: only one core available.</span>
+    <span class="s"># ratioOfQueryCores        1.0</span>
+
+    <span class="s"># the last_row/first/last aggregator will not change the original column name in the result fields</span>
+    <span class="s"># keepColumnName            0</span>
+
+    <span class="s"># number of management nodes in the system</span>
+    <span class="s"># numOfMnodes               3</span>
+
+    <span class="s"># enable/disable backuping vnode directory when removing vnode</span>
+    <span class="s"># vnodeBak                  1</span>
+
+    <span class="s"># enable/disable installation / usage report</span>
+    <span class="s"># telemetryReporting        1</span>
+
+    <span class="s"># enable/disable load balancing</span>
+    <span class="s"># balance                   1</span>
+
+    <span class="s"># role for dnode. 0 - any, 1 - mnode, 2 - dnode</span>
+    <span class="s"># role                      0</span>
+
+    <span class="s"># max timer control blocks</span>
+    <span class="s"># maxTmrCtrl                512</span>
+
+    <span class="s"># time interval of system monitor, seconds</span>
+    <span class="s"># monitorInterval           30</span>
+
+    <span class="s"># number of seconds allowed for a dnode to be offline, for cluster only</span>
+    <span class="s"># offlineThreshold          8640000</span>
+
+    <span class="s"># RPC re-try timer, millisecond</span>
+    <span class="s"># rpcTimer                  300</span>
+
+    <span class="s"># RPC maximum time for ack, seconds.</span>
+    <span class="s"># rpcMaxTime                600</span>
+
+    <span class="s"># time interval of dnode status reporting to mnode, seconds, for cluster only</span>
+    <span class="s"># statusInterval            1</span>
+
+    <span class="s"># time interval of heart beat from shell to dnode, seconds</span>
+    <span class="s"># shellActivityTimer        3</span>
+
+    <span class="s"># minimum sliding window time, milli-second</span>
+    <span class="s"># minSlidingTime            10</span>
+
+    <span class="s"># minimum time window, milli-second</span>
+    <span class="s"># minIntervalTime           10</span>
+
+    <span class="s"># maximum delay before launching a stream computation, milli-second</span>
+    <span class="s"># maxStreamCompDelay        20000</span>
+
+    <span class="s"># maximum delay before launching a stream computation for the first time, milli-second</span>
+    <span class="s"># maxFirstStreamCompDelay   10000</span>
+
+    <span class="s"># retry delay when a stream computation fails, milli-second</span>
+    <span class="s"># retryStreamCompDelay      10</span>
+
+    <span class="s"># the delayed time for launching a stream computation, from 0.1(default, 10% of whole computing time window) to 0.9</span>
+    <span class="s"># streamCompDelayRatio      0.1</span>
+
+    <span class="s"># max number of vgroups per db, 0 means configured automatically</span>
+    <span class="s"># maxVgroupsPerDb           0</span>
+
+    <span class="s"># max number of tables per vnode</span>
+    <span class="s"># maxTablesPerVnode         1000000</span>
+
+    <span class="s"># cache block size (Mbyte)</span>
+    <span class="s"># cache                     16</span>
+
+    <span class="s"># number of cache blocks per vnode</span>
+    <span class="s"># blocks                    6</span>
+
+    <span class="s"># number of days per DB file</span>
+    <span class="s">days                  3650</span>
+
+    <span class="s"># number of days to keep DB file</span>
+    <span class="s"># keep                  3650</span>
+
+    <span class="s"># minimum rows of records in file block</span>
+    <span class="s"># minRows               100</span>
+
+    <span class="s"># maximum rows of records in file block</span>
+    <span class="s"># maxRows               4096</span>
+
+    <span class="s"># the number of acknowledgments required for successful data writing</span>
+    <span class="s"># quorum                1</span>
+
+    <span class="s"># enable/disable compression</span>
+    <span class="s"># comp                  2</span>
+
+    <span class="s"># write ahead log (WAL) level, 0: no wal; 1: write wal, but no fysnc; 2: write wal, and call fsync</span>
+    <span class="s"># walLevel              1</span>
+
+    <span class="s"># if walLevel is set to 2, the cycle of fsync being executed, if set to 0, fsync is called right away</span>
+    <span class="s"># fsync                 3000</span>
+
+    <span class="s"># number of replications, for cluster only</span>
+    <span class="s"># replica               1</span>
+
+    <span class="s"># the compressed rpc message, option:</span>
+    <span class="s">#  -1 (no compression)</span>
+    <span class="s">#   0 (all message compressed),</span>
+    <span class="s"># &gt; 0 (rpc message body which larger than this value will be compressed)</span>
+    <span class="s"># compressMsgSize       -1</span>
+
+    <span class="s"># max length of an SQL</span>
+    <span class="s"># maxSQLLength          65480</span>
+
+    <span class="s"># the maximum number of records allowed for super table time sorting</span>
+    <span class="s"># maxNumOfOrderedRes    100000</span>
+
+    <span class="s"># system time zone</span>
+    <span class="s"># timezone              Asia/Shanghai (CST, +0800)</span>
+
+    <span class="s"># system locale</span>
+    <span class="s"># locale                en_US.UTF-8</span>
+
+    <span class="s"># default system charset</span>
+    <span class="s"># charset               UTF-8</span>
+
+    <span class="s"># max number of connections allowed in dnode</span>
+    <span class="s"># maxShellConns         5000</span>
+
+    <span class="s"># max number of connections allowed in client</span>
+    <span class="s"># maxConnections        5000</span>
+
+    <span class="s"># stop writing logs when the disk size of the log folder is less than this value</span>
+    <span class="s"># minimalLogDirGB       0.1</span>
+
+    <span class="s"># stop writing temporary files when the disk size of the tmp folder is less than this value</span>
+    <span class="s"># minimalTmpDirGB       0.1</span>
+
+    <span class="s"># if disk free space is less than this value, taosd service exit directly within startup process</span>
+    <span class="s"># minimalDataDirGB      0.1</span>
+
+    <span class="s"># One mnode is equal to the number of vnode consumed</span>
+    <span class="s"># mnodeEqualVnodeNum    4</span>
+
+    <span class="s"># enbale/disable http service</span>
+    <span class="s"># http                  1</span>
+
+    <span class="s"># enable/disable system monitor</span>
+    <span class="s"># monitor               1</span>
+
+    <span class="s"># enable/disable recording the SQL statements via restful interface</span>
+    <span class="s"># httpEnableRecordSql   0</span>
+
+    <span class="s"># number of threads used to process http requests</span>
+    <span class="s"># httpMaxThreads        2</span>
+
+    <span class="s"># maximum number of rows returned by the restful interface</span>
+    <span class="s"># restfulRowLimit       10240</span>
+
+    <span class="s"># The following parameter is used to limit the maximum number of lines in log files.</span>
+    <span class="s"># max number of lines per log filters</span>
+    <span class="s"># numOfLogLines         10000000</span>
+
+    <span class="s"># enable/disable async log</span>
+    <span class="s"># asyncLog              1</span>
+
+    <span class="s"># time of keeping log files, days</span>
+    <span class="s"># logKeepDays           0</span>
+
+
+    <span class="s"># The following parameters are used for debug purpose only.</span>
+    <span class="s"># debugFlag 8 bits mask: FILE-SCREEN-UNUSED-HeartBeat-DUMP-TRACE_WARN-ERROR</span>
+    <span class="s"># 131: output warning and error</span>
+    <span class="s"># 135: output debug, warning and error</span>
+    <span class="s"># 143: output trace, debug, warning and error to log</span>
+    <span class="s"># 199: output debug, warning and error to both screen and file</span>
+    <span class="s"># 207: output trace, debug, warning and error to both screen and file</span>
+
+    <span class="s"># debug flag for all log type, take effect when non-zero value</span>
+    <span class="s">debugFlag             135</span>
+
+    <span class="s"># debug flag for meta management messages</span>
+    <span class="s"># mDebugFlag            135</span>
+
+    <span class="s"># debug flag for dnode messages</span>
+    <span class="s"># dDebugFlag            135</span>
+
+    <span class="s"># debug flag for sync module</span>
+    <span class="s"># sDebugFlag            135</span>
+
+    <span class="s"># debug flag for WAL</span>
+    <span class="s"># wDebugFlag            135</span>
+
+    <span class="s"># debug flag for SDB</span>
+    <span class="s"># sdbDebugFlag          135</span>
+
+    <span class="s"># debug flag for RPC</span>
+    <span class="s"># rpcDebugFlag          131</span>
+
+    <span class="s"># debug flag for TAOS TIMER</span>
+    <span class="s"># tmrDebugFlag          131</span>
+
+    <span class="s"># debug flag for TDengine client</span>
+    <span class="s"># cDebugFlag            131</span>
+
+    <span class="s"># debug flag for JNI</span>
+    <span class="s"># jniDebugFlag          131</span>
+
+    <span class="s"># debug flag for storage</span>
+    <span class="s"># uDebugFlag            131</span>
+
+    <span class="s"># debug flag for http server</span>
+    <span class="s"># httpDebugFlag         131</span>
+
+    <span class="s"># debug flag for monitor</span>
+    <span class="s"># monDebugFlag          131</span>
+
+    <span class="s"># debug flag for query</span>
+    <span class="s"># qDebugFlag            131</span>
+
+    <span class="s"># debug flag for vnode</span>
+    <span class="s"># vDebugFlag            131</span>
+
+    <span class="s"># debug flag for TSDB</span>
+    <span class="s"># tsdbDebugFlag         131</span>
+
+    <span class="s"># debug flag for continue query</span>
+    <span class="s"># cqDebugFlag           131</span>
+
+    <span class="s"># enable/disable recording the SQL in taos client</span>
+    <span class="s"># enableRecordSql    0</span>
+
+    <span class="s"># generate core file when service crash</span>
+    <span class="s"># enableCoreFile        1</span>
+
+    <span class="s"># maximum display width of binary and nchar fields in the shell. The parts exceeding this limit will be hidden</span>
+    <span class="s"># maxBinaryDisplayWidth 30</span>
+
+    <span class="s"># enable/disable stream (continuous query)</span>
+    <span class="s"># stream                1</span>
+
+    <span class="s"># in retrieve blocking model, only in 50% query threads will be used in query processing in dnode</span>
+    <span class="s"># retrieveBlockingModel    0</span>
+
+    <span class="s"># the maximum allowed query buffer size in MB during query processing for each data node</span>
+    <span class="s"># -1 no limit (default)</span>
+    <span class="s"># 0  no query allowed, queries are disabled</span>
+    <span class="s"># queryBufferSize         -1</span>
+
+  <span class="s">ms2.cnf</span><span class="pi">:</span> <span class="pi">|</span>
+    <span class="s">########################################################</span>
+    <span class="s">#                                                      #</span>
+    <span class="s">#                  TDengine Configuration              #</span>
+    <span class="s">#   Any questions, please email support@taosdata.com   #</span>
+    <span class="s">#                                                      #</span>
+    <span class="s">########################################################</span>
+
+    <span class="s"># first fully qualified domain name (FQDN) for TDengine system</span>
+    <span class="s">firstEp                   tdmnode-0.default.svc.cluster.local:6030</span>
+    <span class="s">secondEp                  tdmnode-1.default.svc.cluster.local:6030</span>
+    <span class="s"># local fully qualified domain name (FQDN)</span>
+    <span class="s">fqdn                      tdmnode-1.default.svc.cluster.local</span>
+
+    <span class="s"># first port number for the connection (12 continuous UDP/TCP port number are used)</span>
+    <span class="s">serverPort                6030</span>
+
+    <span class="s"># log file's director</span>
+    <span class="s">logDir                    /etc/taos/log</span>
+
+    <span class="s"># data file's directory</span>
+    <span class="s">dataDir                   /etc/taos/data</span>
+
+    <span class="s"># temporary file's directory</span>
+    <span class="s">tempDir                   /tmp/</span>
+
+    <span class="s"># the arbitrator's fully qualified domain name (FQDN) for TDengine system, for cluster only</span>
+    <span class="s"># arbitrator                arbitrator_hostname:6042</span>
+
+    <span class="s"># number of threads per CPU core</span>
+    <span class="s"># numOfThreadsPerCore       1.0</span>
+
+    <span class="s"># number of threads to commit cache data</span>
+    <span class="s">numOfCommitThreads        4</span>
+
+    <span class="s"># the proportion of total CPU cores available for query processing</span>
+    <span class="s"># 2.0: the query threads will be set to double of the CPU cores.</span>
+    <span class="s"># 1.0: all CPU cores are available for query processing [default].</span>
+    <span class="s"># 0.5: only half of the CPU cores are available for query.</span>
+    <span class="s"># 0.0: only one core available.</span>
+    <span class="s"># ratioOfQueryCores        1.0</span>
+
+    <span class="s"># the last_row/first/last aggregator will not change the original column name in the result fields</span>
+    <span class="s"># keepColumnName            0</span>
+
+    <span class="s"># number of management nodes in the system</span>
+    <span class="s"># numOfMnodes               3</span>
+
+    <span class="s"># enable/disable backuping vnode directory when removing vnode</span>
+    <span class="s"># vnodeBak                  1</span>
+
+    <span class="s"># enable/disable installation / usage report</span>
+    <span class="s"># telemetryReporting        1</span>
+
+    <span class="s"># enable/disable load balancing</span>
+    <span class="s"># balance                   1</span>
+
+    <span class="s"># role for dnode. 0 - any, 1 - mnode, 2 - dnode</span>
+    <span class="s"># role                      0</span>
+
+    <span class="s"># max timer control blocks</span>
+    <span class="s"># maxTmrCtrl                512</span>
+
+    <span class="s"># time interval of system monitor, seconds</span>
+    <span class="s"># monitorInterval           30</span>
+
+    <span class="s"># number of seconds allowed for a dnode to be offline, for cluster only</span>
+    <span class="s"># offlineThreshold          8640000</span>
+
+    <span class="s"># RPC re-try timer, millisecond</span>
+    <span class="s"># rpcTimer                  300</span>
+
+    <span class="s"># RPC maximum time for ack, seconds.</span>
+    <span class="s"># rpcMaxTime                600</span>
+
+    <span class="s"># time interval of dnode status reporting to mnode, seconds, for cluster only</span>
+    <span class="s"># statusInterval            1</span>
+
+    <span class="s"># time interval of heart beat from shell to dnode, seconds</span>
+    <span class="s"># shellActivityTimer        3</span>
+
+    <span class="s"># minimum sliding window time, milli-second</span>
+    <span class="s"># minSlidingTime            10</span>
+
+    <span class="s"># minimum time window, milli-second</span>
+    <span class="s"># minIntervalTime           10</span>
+
+    <span class="s"># maximum delay before launching a stream computation, milli-second</span>
+    <span class="s"># maxStreamCompDelay        20000</span>
+
+    <span class="s"># maximum delay before launching a stream computation for the first time, milli-second</span>
+    <span class="s"># maxFirstStreamCompDelay   10000</span>
+
+    <span class="s"># retry delay when a stream computation fails, milli-second</span>
+    <span class="s"># retryStreamCompDelay      10</span>
+
+    <span class="s"># the delayed time for launching a stream computation, from 0.1(default, 10% of whole computing time window) to 0.9</span>
+    <span class="s"># streamCompDelayRatio      0.1</span>
+
+    <span class="s"># max number of vgroups per db, 0 means configured automatically</span>
+    <span class="s"># maxVgroupsPerDb           0</span>
+
+    <span class="s"># max number of tables per vnode</span>
+    <span class="s"># maxTablesPerVnode         1000000</span>
+
+    <span class="s"># cache block size (Mbyte)</span>
+    <span class="s"># cache                     16</span>
+
+    <span class="s"># number of cache blocks per vnode</span>
+    <span class="s"># blocks                    6</span>
+
+    <span class="s"># number of days per DB file</span>
+    <span class="s">days                  3650</span>
+
+    <span class="s"># number of days to keep DB file</span>
+    <span class="s"># keep                  3650</span>
+
+    <span class="s"># minimum rows of records in file block</span>
+    <span class="s"># minRows               100</span>
+
+    <span class="s"># maximum rows of records in file block</span>
+    <span class="s"># maxRows               4096</span>
+
+    <span class="s"># the number of acknowledgments required for successful data writing</span>
+    <span class="s"># quorum                1</span>
+
+    <span class="s"># enable/disable compression</span>
+    <span class="s"># comp                  2</span>
+
+    <span class="s"># write ahead log (WAL) level, 0: no wal; 1: write wal, but no fysnc; 2: write wal, and call fsync</span>
+    <span class="s"># walLevel              1</span>
+
+    <span class="s"># if walLevel is set to 2, the cycle of fsync being executed, if set to 0, fsync is called right away</span>
+    <span class="s"># fsync                 3000</span>
+
+    <span class="s"># number of replications, for cluster only</span>
+    <span class="s"># replica               1</span>
+
+    <span class="s"># the compressed rpc message, option:</span>
+    <span class="s">#  -1 (no compression)</span>
+    <span class="s">#   0 (all message compressed),</span>
+    <span class="s"># &gt; 0 (rpc message body which larger than this value will be compressed)</span>
+    <span class="s"># compressMsgSize       -1</span>
+
+    <span class="s"># max length of an SQL</span>
+    <span class="s"># maxSQLLength          65480</span>
+
+    <span class="s"># the maximum number of records allowed for super table time sorting</span>
+    <span class="s"># maxNumOfOrderedRes    100000</span>
+
+    <span class="s"># system time zone</span>
+    <span class="s"># timezone              Asia/Shanghai (CST, +0800)</span>
+
+    <span class="s"># system locale</span>
+    <span class="s"># locale                en_US.UTF-8</span>
+
+    <span class="s"># default system charset</span>
+    <span class="s"># charset               UTF-8</span>
+
+    <span class="s"># max number of connections allowed in dnode</span>
+    <span class="s"># maxShellConns         5000</span>
+
+    <span class="s"># max number of connections allowed in client</span>
+    <span class="s"># maxConnections        5000</span>
+
+    <span class="s"># stop writing logs when the disk size of the log folder is less than this value</span>
+    <span class="s"># minimalLogDirGB       0.1</span>
+
+    <span class="s"># stop writing temporary files when the disk size of the tmp folder is less than this value</span>
+    <span class="s"># minimalTmpDirGB       0.1</span>
+
+    <span class="s"># if disk free space is less than this value, taosd service exit directly within startup process</span>
+    <span class="s"># minimalDataDirGB      0.1</span>
+
+    <span class="s"># One mnode is equal to the number of vnode consumed</span>
+    <span class="s"># mnodeEqualVnodeNum    4</span>
+
+    <span class="s"># enbale/disable http service</span>
+    <span class="s"># http                  1</span>
+
+    <span class="s"># enable/disable system monitor</span>
+    <span class="s"># monitor               1</span>
+
+    <span class="s"># enable/disable recording the SQL statements via restful interface</span>
+    <span class="s"># httpEnableRecordSql   0</span>
+
+    <span class="s"># number of threads used to process http requests</span>
+    <span class="s"># httpMaxThreads        2</span>
+
+    <span class="s"># maximum number of rows returned by the restful interface</span>
+    <span class="s"># restfulRowLimit       10240</span>
+
+    <span class="s"># The following parameter is used to limit the maximum number of lines in log files.</span>
+    <span class="s"># max number of lines per log filters</span>
+    <span class="s"># numOfLogLines         10000000</span>
+
+    <span class="s"># enable/disable async log</span>
+    <span class="s"># asyncLog              1</span>
+
+    <span class="s"># time of keeping log files, days</span>
+    <span class="s"># logKeepDays           0</span>
+
+
+    <span class="s"># The following parameters are used for debug purpose only.</span>
+    <span class="s"># debugFlag 8 bits mask: FILE-SCREEN-UNUSED-HeartBeat-DUMP-TRACE_WARN-ERROR</span>
+    <span class="s"># 131: output warning and error</span>
+    <span class="s"># 135: output debug, warning and error</span>
+    <span class="s"># 143: output trace, debug, warning and error to log</span>
+    <span class="s"># 199: output debug, warning and error to both screen and file</span>
+    <span class="s"># 207: output trace, debug, warning and error to both screen and file</span>
+
+    <span class="s"># debug flag for all log type, take effect when non-zero value</span>
+    <span class="s">debugFlag             135</span>
+
+    <span class="s"># debug flag for meta management messages</span>
+    <span class="s"># mDebugFlag            135</span>
+
+    <span class="s"># debug flag for dnode messages</span>
+    <span class="s"># dDebugFlag            135</span>
+
+    <span class="s"># debug flag for sync module</span>
+    <span class="s"># sDebugFlag            135</span>
+
+    <span class="s"># debug flag for WAL</span>
+    <span class="s"># wDebugFlag            135</span>
+
+    <span class="s"># debug flag for SDB</span>
+    <span class="s"># sdbDebugFlag          135</span>
+
+    <span class="s"># debug flag for RPC</span>
+    <span class="s"># rpcDebugFlag          131</span>
+
+    <span class="s"># debug flag for TAOS TIMER</span>
+    <span class="s"># tmrDebugFlag          131</span>
+
+    <span class="s"># debug flag for TDengine client</span>
+    <span class="s"># cDebugFlag            131</span>
+
+    <span class="s"># debug flag for JNI</span>
+    <span class="s"># jniDebugFlag          131</span>
+
+    <span class="s"># debug flag for storage</span>
+    <span class="s"># uDebugFlag            131</span>
+
+    <span class="s"># debug flag for http server</span>
+    <span class="s"># httpDebugFlag         131</span>
+
+    <span class="s"># debug flag for monitor</span>
+    <span class="s"># monDebugFlag          131</span>
+
+    <span class="s"># debug flag for query</span>
+    <span class="s"># qDebugFlag            131</span>
+
+    <span class="s"># debug flag for vnode</span>
+    <span class="s"># vDebugFlag            131</span>
+
+    <span class="s"># debug flag for TSDB</span>
+    <span class="s"># tsdbDebugFlag         131</span>
+
+    <span class="s"># debug flag for continue query</span>
+    <span class="s"># cqDebugFlag           131</span>
+
+    <span class="s"># enable/disable recording the SQL in taos client</span>
+    <span class="s"># enableRecordSql    0</span>
+
+    <span class="s"># generate core file when service crash</span>
+    <span class="s"># enableCoreFile        1</span>
+
+    <span class="s"># maximum display width of binary and nchar fields in the shell. The parts exceeding this limit will be hidden</span>
+    <span class="s"># maxBinaryDisplayWidth 30</span>
+
+    <span class="s"># enable/disable stream (continuous query)</span>
+    <span class="s"># stream                1</span>
+
+    <span class="s"># in retrieve blocking model, only in 50% query threads will be used in query processing in dnode</span>
+    <span class="s"># retrieveBlockingModel    0</span>
+
+    <span class="s"># the maximum allowed query buffer size in MB during query processing for each data node</span>
+    <span class="s"># -1 no limit (default)</span>
+    <span class="s"># 0  no query allowed, queries are disabled</span>
+    <span class="s"># queryBufferSize         -1</span>
+  <span class="s">ms3.cnf</span><span class="pi">:</span> <span class="pi">|</span>
+    <span class="s">########################################################</span>
+    <span class="s">#                                                      #</span>
+    <span class="s">#                  TDengine Configuration              #</span>
+    <span class="s">#   Any questions, please email support@taosdata.com   #</span>
+    <span class="s">#                                                      #</span>
+    <span class="s">########################################################</span>
+
+
+    <span class="s"># first fully qualified domain name (FQDN) for TDengine system</span>
+    <span class="s">firstEp                   tdmnode-0.default.svc.cluster.local:6030</span>
+    <span class="s">secondEp                  tdmnode-1.default.svc.cluster.local:6030</span>
+    <span class="s"># local fully qualified domain name (FQDN)</span>
+    <span class="s">fqdn                      tdmnode-2.default.svc.cluster.local</span>
+
+    <span class="s"># first port number for the connection (12 continuous UDP/TCP port number are used)</span>
+    <span class="s">serverPort                6030</span>
+
+
+    <span class="s"># log file's director</span>
+    <span class="s">logDir                    /etc/taos/log</span>
+
+    <span class="s"># data file's directory</span>
+    <span class="s">dataDir                   /etc/taos/data</span>
+
+    <span class="s"># temporary file's directory</span>
+    <span class="s">tempDir                   /tmp/</span>
+
+    <span class="s"># the arbitrator's fully qualified domain name (FQDN) for TDengine system, for cluster only</span>
+    <span class="s"># arbitrator                arbitrator_hostname:6042</span>
+
+    <span class="s"># number of threads per CPU core</span>
+    <span class="s"># numOfThreadsPerCore       1.0</span>
+
+    <span class="s"># number of threads to commit cache data</span>
+    <span class="s">numOfCommitThreads        4</span>
+
+    <span class="s"># the proportion of total CPU cores available for query processing</span>
+    <span class="s"># 2.0: the query threads will be set to double of the CPU cores.</span>
+    <span class="s"># 1.0: all CPU cores are available for query processing [default].</span>
+    <span class="s"># 0.5: only half of the CPU cores are available for query.</span>
+    <span class="s"># 0.0: only one core available.</span>
+    <span class="s"># ratioOfQueryCores        1.0</span>
+
+    <span class="s"># the last_row/first/last aggregator will not change the original column name in the result fields</span>
+    <span class="s"># keepColumnName            0</span>
+
+    <span class="s"># number of management nodes in the system</span>
+    <span class="s"># numOfMnodes               3</span>
+
+    <span class="s"># enable/disable backuping vnode directory when removing vnode</span>
+    <span class="s"># vnodeBak                  1</span>
+
+    <span class="s"># enable/disable installation / usage report</span>
+    <span class="s"># telemetryReporting        1</span>
+
+    <span class="s"># enable/disable load balancing</span>
+    <span class="s"># balance                   1</span>
+
+    <span class="s"># role for dnode. 0 - any, 1 - mnode, 2 - dnode</span>
+    <span class="s"># role                      0</span>
+
+    <span class="s"># max timer control blocks</span>
+    <span class="s"># maxTmrCtrl                512</span>
+
+    <span class="s"># time interval of system monitor, seconds</span>
+    <span class="s"># monitorInterval           30</span>
+
+    <span class="s"># number of seconds allowed for a dnode to be offline, for cluster only</span>
+    <span class="s"># offlineThreshold          8640000</span>
+
+    <span class="s"># RPC re-try timer, millisecond</span>
+    <span class="s"># rpcTimer                  300</span>
+
+    <span class="s"># RPC maximum time for ack, seconds.</span>
+    <span class="s"># rpcMaxTime                600</span>
+
+    <span class="s"># time interval of dnode status reporting to mnode, seconds, for cluster only</span>
+    <span class="s"># statusInterval            1</span>
+
+    <span class="s"># time interval of heart beat from shell to dnode, seconds</span>
+    <span class="s"># shellActivityTimer        3</span>
+
+    <span class="s"># minimum sliding window time, milli-second</span>
+    <span class="s"># minSlidingTime            10</span>
+
+    <span class="s"># minimum time window, milli-second</span>
+    <span class="s"># minIntervalTime           10</span>
+
+    <span class="s"># maximum delay before launching a stream computation, milli-second</span>
+    <span class="s"># maxStreamCompDelay        20000</span>
+
+    <span class="s"># maximum delay before launching a stream computation for the first time, milli-second</span>
+    <span class="s"># maxFirstStreamCompDelay   10000</span>
+
+    <span class="s"># retry delay when a stream computation fails, milli-second</span>
+    <span class="s"># retryStreamCompDelay      10</span>
+
+    <span class="s"># the delayed time for launching a stream computation, from 0.1(default, 10% of whole computing time window) to 0.9</span>
+    <span class="s"># streamCompDelayRatio      0.1</span>
+
+    <span class="s"># max number of vgroups per db, 0 means configured automatically</span>
+    <span class="s"># maxVgroupsPerDb           0</span>
+
+    <span class="s"># max number of tables per vnode</span>
+    <span class="s"># maxTablesPerVnode         1000000</span>
+
+    <span class="s"># cache block size (Mbyte)</span>
+    <span class="s"># cache                     16</span>
+
+    <span class="s"># number of cache blocks per vnode</span>
+    <span class="s"># blocks                    6</span>
+
+    <span class="s"># number of days per DB file</span>
+    <span class="s">days                  3650</span>
+
+    <span class="s"># number of days to keep DB file</span>
+    <span class="s"># keep                  3650</span>
+
+    <span class="s"># minimum rows of records in file block</span>
+    <span class="s"># minRows               100</span>
+
+    <span class="s"># maximum rows of records in file block</span>
+    <span class="s"># maxRows               4096</span>
+
+    <span class="s"># the number of acknowledgments required for successful data writing</span>
+    <span class="s"># quorum                1</span>
+
+    <span class="s"># enable/disable compression</span>
+    <span class="s"># comp                  2</span>
+
+    <span class="s"># write ahead log (WAL) level, 0: no wal; 1: write wal, but no fysnc; 2: write wal, and call fsync</span>
+    <span class="s"># walLevel              1</span>
+
+    <span class="s"># if walLevel is set to 2, the cycle of fsync being executed, if set to 0, fsync is called right away</span>
+    <span class="s"># fsync                 3000</span>
+
+    <span class="s"># number of replications, for cluster only</span>
+    <span class="s"># replica               1</span>
+
+    <span class="s"># the compressed rpc message, option:</span>
+    <span class="s">#  -1 (no compression)</span>
+    <span class="s">#   0 (all message compressed),</span>
+    <span class="s"># &gt; 0 (rpc message body which larger than this value will be compressed)</span>
+    <span class="s"># compressMsgSize       -1</span>
+
+    <span class="s"># max length of an SQL</span>
+    <span class="s"># maxSQLLength          65480</span>
+
+    <span class="s"># the maximum number of records allowed for super table time sorting</span>
+    <span class="s"># maxNumOfOrderedRes    100000</span>
+
+    <span class="s"># system time zone</span>
+    <span class="s"># timezone              Asia/Shanghai (CST, +0800)</span>
+
+    <span class="s"># system locale</span>
+    <span class="s"># locale                en_US.UTF-8</span>
+
+    <span class="s"># default system charset</span>
+    <span class="s"># charset               UTF-8</span>
+
+    <span class="s"># max number of connections allowed in dnode</span>
+    <span class="s"># maxShellConns         5000</span>
+
+    <span class="s"># max number of connections allowed in client</span>
+    <span class="s"># maxConnections        5000</span>
+
+    <span class="s"># stop writing logs when the disk size of the log folder is less than this value</span>
+    <span class="s"># minimalLogDirGB       0.1</span>
+
+    <span class="s"># stop writing temporary files when the disk size of the tmp folder is less than this value</span>
+    <span class="s"># minimalTmpDirGB       0.1</span>
+
+    <span class="s"># if disk free space is less than this value, taosd service exit directly within startup process</span>
+    <span class="s"># minimalDataDirGB      0.1</span>
+
+    <span class="s"># One mnode is equal to the number of vnode consumed</span>
+    <span class="s"># mnodeEqualVnodeNum    4</span>
+
+    <span class="s"># enbale/disable http service</span>
+    <span class="s"># http                  1</span>
+
+    <span class="s"># enable/disable system monitor</span>
+    <span class="s"># monitor               1</span>
+
+    <span class="s"># enable/disable recording the SQL statements via restful interface</span>
+    <span class="s"># httpEnableRecordSql   0</span>
+
+    <span class="s"># number of threads used to process http requests</span>
+    <span class="s"># httpMaxThreads        2</span>
+
+    <span class="s"># maximum number of rows returned by the restful interface</span>
+    <span class="s"># restfulRowLimit       10240</span>
+
+    <span class="s"># The following parameter is used to limit the maximum number of lines in log files.</span>
+    <span class="s"># max number of lines per log filters</span>
+    <span class="s"># numOfLogLines         10000000</span>
+
+    <span class="s"># enable/disable async log</span>
+    <span class="s"># asyncLog              1</span>
+
+    <span class="s"># time of keeping log files, days</span>
+    <span class="s"># logKeepDays           0</span>
+
+
+    <span class="s"># The following parameters are used for debug purpose only.</span>
+    <span class="s"># debugFlag 8 bits mask: FILE-SCREEN-UNUSED-HeartBeat-DUMP-TRACE_WARN-ERROR</span>
+    <span class="s"># 131: output warning and error</span>
+    <span class="s"># 135: output debug, warning and error</span>
+    <span class="s"># 143: output trace, debug, warning and error to log</span>
+    <span class="s"># 199: output debug, warning and error to both screen and file</span>
+    <span class="s"># 207: output trace, debug, warning and error to both screen and file</span>
+
+    <span class="s"># debug flag for all log type, take effect when non-zero value</span>
+    <span class="s">debugFlag             135</span>
+
+    <span class="s"># debug flag for meta management messages</span>
+    <span class="s"># mDebugFlag            135</span>
+
+    <span class="s"># debug flag for dnode messages</span>
+    <span class="s"># dDebugFlag            135</span>
+
+    <span class="s"># debug flag for sync module</span>
+    <span class="s"># sDebugFlag            135</span>
+
+    <span class="s"># debug flag for WAL</span>
+    <span class="s"># wDebugFlag            135</span>
+
+    <span class="s"># debug flag for SDB</span>
+    <span class="s"># sdbDebugFlag          135</span>
+
+    <span class="s"># debug flag for RPC</span>
+    <span class="s"># rpcDebugFlag          131</span>
+
+    <span class="s"># debug flag for TAOS TIMER</span>
+    <span class="s"># tmrDebugFlag          131</span>
+
+    <span class="s"># debug flag for TDengine client</span>
+    <span class="s"># cDebugFlag            131</span>
+
+    <span class="s"># debug flag for JNI</span>
+    <span class="s"># jniDebugFlag          131</span>
+
+    <span class="s"># debug flag for storage</span>
+    <span class="s"># uDebugFlag            131</span>
+
+    <span class="s"># debug flag for http server</span>
+    <span class="s"># httpDebugFlag         131</span>
+
+    <span class="s"># debug flag for monitor</span>
+    <span class="s"># monDebugFlag          131</span>
+
+    <span class="s"># debug flag for query</span>
+    <span class="s"># qDebugFlag            131</span>
+
+    <span class="s"># debug flag for vnode</span>
+    <span class="s"># vDebugFlag            131</span>
+
+    <span class="s"># debug flag for TSDB</span>
+    <span class="s"># tsdbDebugFlag         131</span>
+
+    <span class="s"># debug flag for continue query</span>
+    <span class="s"># cqDebugFlag           131</span>
+
+    <span class="s"># enable/disable recording the SQL in taos client</span>
+    <span class="s"># enableRecordSql    0</span>
+
+    <span class="s"># generate core file when service crash</span>
+    <span class="s"># enableCoreFile        1</span>
+
+    <span class="s"># maximum display width of binary and nchar fields in the shell. The parts exceeding this limit will be hidden</span>
+    <span class="s"># maxBinaryDisplayWidth 30</span>
+
+    <span class="s"># enable/disable stream (continuous query)</span>
+    <span class="s"># stream                1</span>
+
+    <span class="s"># in retrieve blocking model, only in 50% query threads will be used in query processing in dnode</span>
+    <span class="s"># retrieveBlockingModel    0</span>
+
+    <span class="s"># the maximum allowed query buffer size in MB during query processing for each data node</span>
+    <span class="s"># -1 no limit (default)</span>
+    <span class="s"># 0  no query allowed, queries are disabled</span>
+    <span class="s"># queryBufferSize         -1</span>
+
+
+
+</code></pre></div></div>
+
+<h4 id="节点配置文件-1">节点配置文件 1</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">apps/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">StatefulSet</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">tdmnode-0</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="na">app</span><span class="pi">:</span> <span class="s">tdmnode-0</span>
+  <span class="na">serviceName</span><span class="pi">:</span> <span class="s2">"</span><span class="s">tdmnode-0"</span>
+  <span class="na">replicas</span><span class="pi">:</span> <span class="m">1</span>
+  <span class="na">template</span><span class="pi">:</span>
+    <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">labels</span><span class="pi">:</span>
+        <span class="na">app</span><span class="pi">:</span> <span class="s">tdmnode-0</span>
+    <span class="na">spec</span><span class="pi">:</span>
+      <span class="na">containers</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">tdmnode-0</span>
+          <span class="na">image</span><span class="pi">:</span> <span class="s">tdengine/tdengine:latest</span>
+          <span class="na">ports</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6030</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6035</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6041</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6031</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6032</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6033</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6034</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6036</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6037</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6038</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6039</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6040</span>
+          <span class="na">command</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">bash</span>
+            <span class="pi">-</span> <span class="s2">"</span><span class="s">-c"</span>
+            <span class="pi">-</span> <span class="pi">|</span>
+              <span class="s">set -ex</span>
+              <span class="s">apt install inetutils-ping dnsutils -y</span>
+              <span class="s"># nodes</span>
+              <span class="s">export nodes=3</span>
+              <span class="s">export end_index=$(($nodes - 1))</span>
+              <span class="s">while :; do</span>
+                <span class="s">sleep 1</span>
+                <span class="s">export index=0</span>
+                <span class="s">for i in `seq 0 $end_index`; do</span>
+                 <span class="s">tmpip=`dig tdmnode-$i.default.svc.cluster.local | grep "ANSWER SECTION" -A 1 | awk 'NR&gt;1 {print$5}'`</span>
+                 <span class="s">if [ -z "$tmpip" ]; then</span>
+                    <span class="s">echo -e "\033[31m wait Node tdmnode-$i ip is null  \033[0m";</span>
+                 <span class="s">else</span>
+                    <span class="s">index=$(($index + 1));</span>
+                 <span class="s">fi</span>
+                <span class="s">done</span>
+
+                <span class="s">if [ $index -ge $nodes ] ; then</span>
+                      <span class="s">echo -e "\033[32m ips is ready .Starting now Tdengine Taosd.... \033[0m"</span>
+                      <span class="s">for i in `seq 0 $end_index`; do</span>
+                          <span class="s">tmpip=`dig tdmnode-$i.default.svc.cluster.local | grep "ANSWER SECTION" -A 1 | awk 'NR&gt;1 {print$5}'`</span>
+                          <span class="s">echo  "${tmpip}       tdmnode-$i.default.svc.cluster.local" &gt;&gt; /etc/hosts ;</span>
+                          <span class="s">done</span>
+                      <span class="s">break</span>
+                 <span class="s">else</span>
+                     <span class="s">index=0</span>
+                     <span class="s">echo -e "\033[31m all node not get ready pls wait....  \033[0m";</span>
+                 <span class="s">fi</span>
+              <span class="s">done</span>
+              <span class="s">taosd</span>
+          <span class="na">env</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">MY_POD_IP</span>
+              <span class="na">valueFrom</span><span class="pi">:</span>
+                <span class="na">fieldRef</span><span class="pi">:</span>
+                  <span class="na">fieldPath</span><span class="pi">:</span> <span class="s">status.podIP</span>
+          <span class="na">volumeMounts</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">config-map</span>
+              <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/etc/taos/taos.cfg</span>
+              <span class="na">subPath</span><span class="pi">:</span> <span class="s">ms1.cnf</span>
+            <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">datadir</span>
+              <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/etc/taos/data</span>
+      <span class="na">volumes</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">config-map</span>
+          <span class="na">configMap</span><span class="pi">:</span>
+            <span class="na">name</span><span class="pi">:</span> <span class="s">tdmnode</span>
+            <span class="na">items</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="na">key</span><span class="pi">:</span> <span class="s">ms1.cnf</span>
+                <span class="na">path</span><span class="pi">:</span> <span class="s">ms1.cnf</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">datadir</span>
+          <span class="na">persistentVolumeClaim</span><span class="pi">:</span>
+            <span class="na">claimName</span><span class="pi">:</span> <span class="s">testtdpvc3</span>
+
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Service</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">tdmnode-0</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">tdmnode-0</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">clusterIP</span><span class="pi">:</span> <span class="s">None</span>
+  <span class="na">ports</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6030</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6030</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6030</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6031</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6031</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6031</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6032</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6032</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6032</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6033</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6033</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6033</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6034</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6034</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6034</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6035</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6035</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6035</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6036</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6036</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6036</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6037</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6037</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6037</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6038</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6038</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6038</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6039</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6039</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6039</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6040</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6040</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6040</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6041</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6041</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6041</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">tdmnode-0</span>
+  <span class="na">sessionAffinity</span><span class="pi">:</span> <span class="s">None</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">ClusterIP</span>
+
+</code></pre></div></div>
+
+<h4 id="节点配置文件-2">节点配置文件 2</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">apps/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">StatefulSet</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">tdmnode-1</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="na">app</span><span class="pi">:</span> <span class="s">tdmnode-1</span>
+  <span class="na">serviceName</span><span class="pi">:</span> <span class="s2">"</span><span class="s">tdmnode-1"</span>
+  <span class="na">replicas</span><span class="pi">:</span> <span class="m">1</span>
+  <span class="na">template</span><span class="pi">:</span>
+    <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">labels</span><span class="pi">:</span>
+        <span class="na">app</span><span class="pi">:</span> <span class="s">tdmnode-1</span>
+    <span class="na">spec</span><span class="pi">:</span>
+      <span class="na">containers</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">tdmnode-1</span>
+          <span class="na">image</span><span class="pi">:</span> <span class="s">tdengine/tdengine:latest</span>
+          <span class="na">ports</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6030</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6035</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6041</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6031</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6032</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6033</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6034</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6036</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6037</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6038</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6039</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6040</span>
+          <span class="na">command</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">bash</span>
+            <span class="pi">-</span> <span class="s2">"</span><span class="s">-c"</span>
+            <span class="pi">-</span> <span class="pi">|</span>
+              <span class="s">set -ex</span>
+              <span class="s">apt install inetutils-ping dnsutils -y</span>
+              <span class="s"># nodes</span>
+              <span class="s">export nodes=3</span>
+              <span class="s">export end_index=$(($nodes - 1))</span>
+              <span class="s">while :; do</span>
+                <span class="s">sleep 1</span>
+                <span class="s">export index=0</span>
+                <span class="s">for i in `seq 0 $end_index`; do</span>
+                 <span class="s">tmpip=`dig tdmnode-$i.default.svc.cluster.local | grep "ANSWER SECTION" -A 1 | awk 'NR&gt;1 {print$5}'`</span>
+                 <span class="s">if [ -z "$tmpip" ]; then</span>
+                    <span class="s">echo -e "\033[31m wait Node tdmnode-$i ip is null  \033[0m";</span>
+                 <span class="s">else</span>
+                    <span class="s">index=$(($index + 1))</span>
+                 <span class="s">fi</span>
+                <span class="s">done</span>
+
+                <span class="s">if [ $index -ge $nodes ] ; then</span>
+                      <span class="s">echo -e "\033[32m ips is ready .Starting now Tdengine Taosd.... \033[0m"</span>
+                      <span class="s">for i in `seq 0 $end_index`; do</span>
+                          <span class="s">tmpip=`dig tdmnode-$i.default.svc.cluster.local | grep "ANSWER SECTION" -A 1 | awk 'NR&gt;1 {print$5}'`</span>
+                          <span class="s">echo  "${tmpip}       tdmnode-$i.default.svc.cluster.local" &gt;&gt; /etc/hosts ;</span>
+                          <span class="s">done</span>
+                      <span class="s">break</span>
+                 <span class="s">else</span>
+                     <span class="s">index=0</span>
+                     <span class="s">echo -e "\033[31m all node not get ready pls wait....  \033[0m";</span>
+                 <span class="s">fi</span>
+              <span class="s">done</span>
+              <span class="s">taosd</span>
+          <span class="na">env</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">MY_POD_IP</span>
+              <span class="na">valueFrom</span><span class="pi">:</span>
+                <span class="na">fieldRef</span><span class="pi">:</span>
+                  <span class="na">fieldPath</span><span class="pi">:</span> <span class="s">status.podIP</span>
+          <span class="na">volumeMounts</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">config-map</span>
+              <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/etc/taos/taos.cfg</span>
+              <span class="na">subPath</span><span class="pi">:</span> <span class="s">ms2.cnf</span>
+            <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">datadir</span>
+              <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/etc/taos/data</span>
+      <span class="na">volumes</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">config-map</span>
+          <span class="na">configMap</span><span class="pi">:</span>
+            <span class="na">name</span><span class="pi">:</span> <span class="s">tdmnode</span>
+            <span class="na">items</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="na">key</span><span class="pi">:</span> <span class="s">ms2.cnf</span>
+                <span class="na">path</span><span class="pi">:</span> <span class="s">ms2.cnf</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">datadir</span>
+          <span class="na">persistentVolumeClaim</span><span class="pi">:</span>
+            <span class="na">claimName</span><span class="pi">:</span> <span class="s">testtdpvc2</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Service</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">tdmnode-1</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">tdmnode-1</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">clusterIP</span><span class="pi">:</span> <span class="s">None</span>
+  <span class="na">ports</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6030</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6030</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6030</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6031</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6031</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6031</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6032</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6032</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6032</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6033</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6033</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6033</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6034</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6034</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6034</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6035</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6035</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6035</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6036</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6036</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6036</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6037</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6037</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6037</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6038</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6038</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6038</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6039</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6039</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6039</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6040</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6040</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6040</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6041</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6041</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6041</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">tdmnode-1</span>
+  <span class="na">sessionAffinity</span><span class="pi">:</span> <span class="s">None</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">ClusterIP</span>
+
+</code></pre></div></div>
+
+<h4 id="节点配置文件-3">节点配置文件 3</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">apps/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">StatefulSet</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">tdmnode-2</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="na">app</span><span class="pi">:</span> <span class="s">tdmnode-2</span>
+  <span class="na">serviceName</span><span class="pi">:</span> <span class="s2">"</span><span class="s">tdmnode-2"</span>
+  <span class="na">replicas</span><span class="pi">:</span> <span class="m">1</span>
+  <span class="na">template</span><span class="pi">:</span>
+    <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">labels</span><span class="pi">:</span>
+        <span class="na">app</span><span class="pi">:</span> <span class="s">tdmnode-2</span>
+    <span class="na">spec</span><span class="pi">:</span>
+      <span class="na">containers</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">tdmnode-2</span>
+          <span class="na">image</span><span class="pi">:</span> <span class="s">tdengine/tdengine:latest</span>
+          <span class="na">ports</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6030</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6035</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6041</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6031</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6032</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6033</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6034</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6036</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6037</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6038</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6039</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">6040</span>
+          <span class="na">command</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">bash</span>
+            <span class="pi">-</span> <span class="s2">"</span><span class="s">-c"</span>
+            <span class="pi">-</span> <span class="pi">|</span>
+              <span class="s">set -ex</span>
+              <span class="s">apt install inetutils-ping dnsutils -y</span>
+              <span class="s"># nodes</span>
+              <span class="s">export nodes=3</span>
+              <span class="s">export end_index=$(($nodes - 1))</span>
+              <span class="s">while :; do</span>
+                <span class="s">sleep 1</span>
+                <span class="s">export index=0</span>
+                <span class="s">for i in `seq 0 $end_index`; do</span>
+                 <span class="s">tmpip=`dig tdmnode-$i.default.svc.cluster.local | grep "ANSWER SECTION" -A 1 | awk 'NR&gt;1 {print$5}'`</span>
+                 <span class="s">if [ -z "$tmpip" ]; then</span>
+                    <span class="s">echo -e "\033[31m wait Node tdmnode-$i ip is null  \033[0m";</span>
+                 <span class="s">else</span>
+                    <span class="s">index=$(($index + 1))</span>
+                 <span class="s">fi</span>
+                <span class="s">done</span>
+
+                <span class="s">if [ $index -ge $nodes ] ; then</span>
+                      <span class="s">echo -e "\033[32m ips is ready .Starting now Tdengine Taosd.... \033[0m"</span>
+                      <span class="s">for i in `seq 0 $end_index`; do</span>
+                          <span class="s">tmpip=`dig tdmnode-$i.default.svc.cluster.local | grep "ANSWER SECTION" -A 1 | awk 'NR&gt;1 {print$5}'`</span>
+                          <span class="s">echo  "${tmpip}       tdmnode-$i.default.svc.cluster.local" &gt;&gt; /etc/hosts ;</span>
+                          <span class="s">done</span>
+                      <span class="s">break</span>
+                 <span class="s">else</span>
+                     <span class="s">index=0</span>
+                     <span class="s">echo -e "\033[31m all node not get ready pls wait....  \033[0m";</span>
+                 <span class="s">fi</span>
+              <span class="s">done</span>
+              <span class="s">taosd</span>
+          <span class="na">env</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">MY_POD_IP</span>
+              <span class="na">valueFrom</span><span class="pi">:</span>
+                <span class="na">fieldRef</span><span class="pi">:</span>
+                  <span class="na">fieldPath</span><span class="pi">:</span> <span class="s">status.podIP</span>
+          <span class="na">volumeMounts</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">config-map</span>
+              <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/etc/taos/taos.cfg</span>
+              <span class="na">subPath</span><span class="pi">:</span> <span class="s">ms3.cnf</span>
+            <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">datadir</span>
+              <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/etc/taos/data</span>
+      <span class="na">volumes</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">config-map</span>
+          <span class="na">configMap</span><span class="pi">:</span>
+            <span class="na">name</span><span class="pi">:</span> <span class="s">tdmnode</span>
+            <span class="na">items</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="na">key</span><span class="pi">:</span> <span class="s">ms3.cnf</span>
+                <span class="na">path</span><span class="pi">:</span> <span class="s">ms3.cnf</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">datadir</span>
+          <span class="na">persistentVolumeClaim</span><span class="pi">:</span>
+            <span class="na">claimName</span><span class="pi">:</span> <span class="s">testtdpvc1</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Service</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">tdmnode-2</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">tdmnode-2</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">clusterIP</span><span class="pi">:</span> <span class="s">None</span>
+  <span class="na">ports</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6030</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6030</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6030</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6031</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6031</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6031</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6032</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6032</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6032</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6033</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6033</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6033</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6034</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6034</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6034</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6035</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6035</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6035</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6036</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6036</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6036</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6037</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6037</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6037</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6038</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6038</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6038</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6039</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6039</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6039</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6040</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6040</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6040</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">port6041</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">6041</span>
+      <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">6041</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">tdmnode-2</span>
+  <span class="na">sessionAffinity</span><span class="pi">:</span> <span class="s">None</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">ClusterIP</span>
+
+
+</code></pre></div></div>
+
+<h4 id="注意事项">注意事项</h4>
+
+<ul>
+  <li>1 pvc 策略 非立即回收（重启集群 只删除 <code class="language-plaintext highlighter-rouge">StatefulSet </code> 即可）</li>
+  <li>2 监控IP 解析 哪一块目前还不完善 需要一定的时间才能解析到IP 大约 <code class="language-plaintext highlighter-rouge">5s</code></li>
+</ul>
+
+<h4 id="内部使用方式">内部使用方式</h4>
+
+<ul>
+  <li>1 将Client 文件通过nfs映射到POD 或者其他 类型的 APP内部，通过 脚本初始化，大概内容如下。</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+       <span class="nb">command</span>：
+        - sh 或者 bash
+        - <span class="s2">"-c"</span>
+        - |
+        <span class="nb">cd</span> /plugin_free/client_td_2.0.20
+        ./install_client.sh
+
+</code></pre></div></div>
+
+<p>目前在k8s 集群上已经连续运行了一周，期间多次强行破坏集群验证恢复能力，以及数据存储能力，目前集群数据大约15亿条（单表测试，还在继续写入。）</p>
+
+<p>转载请注明出处，本文采用 <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC4.0</a> 协议授权</p>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+  
+        <div id="gitalk-container"></div>
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+        var gitalk = new Gitalk({
+            id: '/2021/04/23/tdengine-on-k8s/',
+            clientID: '0dc80b46a482ec78f3e0',
+            clientSecret: '8cae5d306b3703ad240b74142995473086fcbbab',
+            repo: 'blog-comments',
+            owner: 'uk0',
+            admin: ['uk0'],
+            labels: ['gitment'],
+            perPage: 50,
+        })
+        gitalk.render('gitalk-container')
+        </script>
+      <!-- 多说公共JS代码 END -->
+      <!-- Duoshuo Comment END -->
+  
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    <h3>Affiliate</h3>
+<a href="https://www.vultr.com/?ref=7142633"><img src="https://www.vultr.com/media/banner_3.png" width="300" height="250"></a>
+
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+    <button class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="http://112firshme11224.test.upcdn.net/assets/css/modules/sidebar-search.css">
+<script src="http://112firshme11224.test.upcdn.net/assets/js/lunr.min.js"></script>
+<script src="http://112firshme11224.test.upcdn.net/assets/js/search.js"></script>
+
+
+    
+<h3>Post Directory</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+<script src="http://112firshme11224.test.upcdn.net/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="ZhangJianXin">ZhangJianXin</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="https://github.com/uk0/uk0.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="/" title="首页" target="">首页</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/" title="分类" target="">分类</a>
+                </li>
+                
+                <li>
+                    <a href="/wiki/" title="维基" target="">维基</a>
+                </li>
+                
+                <li>
+                    <a href="/links/" title="链接" target="">链接</a>
+                </li>
+                
+                <li>
+                    <a href="/about/" title="关于" target="">关于</a>
+                </li>
+                
+                <li><a href="/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="http://112firshme11224.test.upcdn.net/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="http://112firshme11224.test.upcdn.net/assets/js/geopattern.js"></script>
+    <script src="http://112firshme11224.test.upcdn.net/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="http://112firshme11224.test.upcdn.net/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+    
+    <div style="display:none">
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130872028-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-130872028-1');
+        </script>
+    </div>
+    
+</body>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</html>

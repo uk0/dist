@@ -1,5 +1,11 @@
 {
   
+  "2021-04-23-tdengine-on-k8s": {
+    "title": "Tdengine on k8s",
+    "url": " /2021/04/23/tdengine-on-k8s/",
+    "category": "kubernetes"
+  },
+  
   "2020-05-08-time-machine-by-s3-and-usb": {
     "title": "Time Machine Backup Fix ERROR",
     "url": " /2020/05/08/time-machine-by-s3-and-usb/",
@@ -1748,6 +1754,12 @@
     "title": "Time Machine Backup Fix ERROR",
     "url": "/2020/05/08/time-machine-by-s3-and-usb/",
     "category": "[&quot;macos&quot;]"
+  },
+  
+  "2021-04-23-tdengine-on-k8s": {
+    "title": "Tdengine on k8s",
+    "url": "/2021/04/23/tdengine-on-k8s/",
+    "category": "[&quot;kubernetes&quot;]"
   },
   
   "wiki-android-studio": {
