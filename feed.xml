@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://firsh.me/" rel="alternate" type="text/html" /><updated>2021-04-24T00:55:29+08:00</updated><id>https://firsh.me/feed.xml</id><title type="html">下水鱼</title><subtitle>张建新个人博客,我没有生来天赋过人,只有对技术的虔诚。</subtitle><author><name>ZhangJianXin</name></author><entry><title type="html">Tdengine on k8s</title><link href="https://firsh.me/2021/04/23/tdengine-on-k8s/" rel="alternate" type="text/html" title="Tdengine on k8s" /><published>2021-04-23T23:48:46+08:00</published><updated>2021-04-23T23:48:46+08:00</updated><id>https://firsh.me/2021/04/23/tdengine-on-k8s</id><content type="html" xml:base="https://firsh.me/2021/04/23/tdengine-on-k8s/">&lt;p&gt;将 Tdengine 集群模式部署到 Kubernetes ，支持扩节点，后面我会将自动脚本提交到 我的github。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://firsh.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://firsh.me/" rel="alternate" type="text/html" /><updated>2021-04-24T01:01:21+08:00</updated><id>https://firsh.me/feed.xml</id><title type="html">下水鱼</title><subtitle>张建新个人博客,我没有生来天赋过人,只有对技术的虔诚。</subtitle><author><name>ZhangJianXin</name></author><entry><title type="html">Tdengine on k8s</title><link href="https://firsh.me/2021/04/23/tdengine-on-k8s/" rel="alternate" type="text/html" title="Tdengine on k8s" /><published>2021-04-23T23:48:46+08:00</published><updated>2021-04-23T23:48:46+08:00</updated><id>https://firsh.me/2021/04/23/tdengine-on-k8s</id><content type="html" xml:base="https://firsh.me/2021/04/23/tdengine-on-k8s/">&lt;p&gt;将 Tdengine 集群模式部署到 Kubernetes ，支持扩节点，后面我会将自动脚本提交到 我的github。&lt;/p&gt;
 
 &lt;h4 id=&quot;准备&quot;&gt;准备&lt;/h4&gt;
 
@@ -1453,6 +1453,8 @@
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;img src=&quot;http://112firshme11224.test.upcdn.net/blog/2021-04-24-00-52-32.png!100/watermark/text/VXB5dW4g5Zu+5bqK/font/simyou/align/southeast/size/18/color/FFFFFF/margin/5x5&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;tdengine-采用默认配置文件没有修改时区镜像也没有修改时区所以日志时间有误差忽略即可强迫症可以自己加&quot;&gt;tdengine 采用默认配置文件没有修改时区，镜像也没有修改时区，所以日志时间有误差，忽略即可，（强迫症可以自己加）&lt;/h4&gt;
 
 &lt;h3 id=&quot;以上操作均在正式环境在运行出现问题我会及时更新感谢您的阅读&quot;&gt;以上操作均在正式环境在运行，出现问题我会及时更新，感谢您的阅读。&lt;/h3&gt;
 
